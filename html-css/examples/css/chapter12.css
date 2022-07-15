@@ -1,0 +1,216 @@
+
+/* SPECIFYING TYPEFACES */
+.specifying-body {
+    font-family: Georgia, Times, serif;
+}
+
+.specifying-h1 {
+    font-family: Arial, Verdana, sans-serif;
+}
+
+.credits {
+    font-family: "Courier New", Courier, monospace;
+}
+
+
+/* SIZE OF TYPE */
+.sizeOfType-body {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 12px;
+}
+
+.sizeOfType-h1 {
+    font-size: 200%;
+}
+
+.sizeOfType-h2 {
+    font-size: 1.3em;
+}
+
+
+/* BOLD */
+.bold{
+    font-weight: bold;
+}
+
+
+/* ITALIC */
+.italic{
+    font-style: italic;
+}
+
+
+/* UPPERCASE & LOWERCASE */
+.up-low-h1 {
+    text-transform: uppercase;
+}
+
+.up-low-h2 {
+    text-transform: lowercase;
+}
+
+.up-low-p {
+    text-transform: capitalize;
+}
+
+
+
+/* UNDERLINE & STRIKE */
+.under-strike-p {
+    text-decoration: underline;
+}
+
+.under-strike-a {
+    text-decoration: none;
+}
+
+
+/* LEADING */
+.leading-p {
+    line-height: 1.4em;
+}
+
+
+/* LETTER & WORDS SPACING */
+.letter-words-h1, .letter-words-h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.letter-words-p {
+    font-weight: bold;
+    word-spacing: 1em;
+}
+
+
+/* ALIGNMENT */
+.alignment-h1 {
+    text-align: left;
+}
+
+.alignment-h2 {
+    text-align: justify;
+}
+
+.alignment-p {
+    text-align: right;
+}
+
+
+
+/* VERTICAL ALIGNMENT */
+.six-months {
+    vertical-align: text-top;
+}
+
+.one-year {
+    vertical-align: baseline;
+}
+
+.two-years {
+    vertical-align: text-bottom;
+}
+
+
+
+/* INDENTING TEXT */
+.indenting-h3 {
+    background-image: url("https://ghechua.net/wp-content/uploads/2022/05/meme-meo-doi-di-ra-di-2.jpg");
+    background-repeat: no-repeat;
+    color: aliceblue;
+    text-indent: -9999px;
+}
+
+.indenting-p {
+    text-indent: 20px;
+}
+
+
+/* CSS3: DROP SHADOW */
+p.one {
+    background-color: #eeeeee;
+    color: #666666;
+    text-shadow: 1px 1px 0px #000000;
+}
+
+p.two {
+    background-color: #dddddd;
+    color: #666666;
+    text-shadow: 1px 1px 3px #666666;
+}
+
+p.three {
+    background-color: #cccccc;
+    color: #ffffff;
+    text-shadow: 2px 2px 7px #111111;
+}
+
+p.four {
+    background-color: #bbbbbb;
+    color: #cccccc;
+    text-shadow: -1px -2px #666666;
+}
+
+p.five {
+    background-color: #aaaaaa;
+    color: #ffffff;
+    text-shadow: -1px -1px #666666;
+}
+
+
+/* FIRST LETTER OR LINE */
+p.intro-one:first-letter {
+    font-size: 200%;
+}
+
+p.intro-two:first-line {
+    font-weight: bold;
+}
+
+
+
+/* STYLING LINKS */
+a.link:link {
+    color: deeppink;
+    text-decoration: none;
+}
+
+a.visit:visited {
+    color: black;
+}
+
+a.hover:hover {
+    color: deeppink;
+    text-decoration: underline;
+}
+
+a.active:active {
+    color: darkcyan;
+}
+
+
+
+/* RESPONDING TO USERS */
+input {
+    padding: 6px 12px 6px 12px;
+    border: 1px solid #665544;
+    color: #ffffff;
+}
+
+input.submit:hover {
+    background-color: #665544;
+}
+
+input.submit:active {
+    background-color: chocolate;
+}
+
+input.text {
+    color: #cccccc;
+}
+
+input.text:focus {
+    color: #665544;
+}
+
+
