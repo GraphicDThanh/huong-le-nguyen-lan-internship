@@ -1,0 +1,107 @@
+/* controlling sizes of images in CSS */
+img.large {
+  width: 500px;
+  height: 500px;
+}
+
+img.medium {
+  width: 250px;
+  height: 250px;
+}
+
+img.small {
+  width: 100px;
+  height: 100px;
+}
+
+/* aligning images using CSS */
+img.align-left {
+  float: left;
+  margin-right: 10px;
+}
+
+img.align-right {
+  float: right;
+  margin-left: 10px;
+}
+
+img.aligning-medium {
+  width: 250px;
+  height: 250px;
+}
+
+/* centering images using CSS */
+img.align-center {
+  display: block;
+  margin: 0px auto;
+}
+
+img.center-medium {
+  width: 250px;
+  height: 250px;
+}
+
+/* background images */
+body {
+  background-image: url("https://img.freepik.com/premium-vector/digital-contour-curve-line-wave-with-wireframe-abstract-background-futuristic-technology-concept_31949-2003.jpg?w=1380");
+/* repeating images */
+  background-repeat: repeat-x;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+
+/* image rollovers & sprites */
+a.button {
+  height: 36px;
+  background-image: url("https://img.freepik.com/premium-vector/digital-contour-curve-line-wave-with-wireframe-abstract-background-futuristic-technology-concept_31949-2003.jpg?w=1380");
+  text-indent: -9999px;
+  display: inline-block;
+}
+
+a.add-to-basket {
+  width: 174px;
+  background-position: 0px 0px;
+}
+
+a.framing-options {
+  width: 210px;
+  background-position: -175px 0px;
+}
+
+a.add-to-basket:hover {
+  background-position: 0px -40px;
+}
+
+a.framing-options:hover {
+  background-position: -175px -40px;
+}
+
+a.add-to-basket:active {
+  background-position: 0px -80px;
+}
+
+a#framing-options:active {
+  background-position: -175px -80px;
+}
+
+/* CSS3: gradients */
+.gradient {
+  /* fallback color */
+  background-color: #66cccc;
+  /* fallback image */
+  background-image: url(images/fallback-image.png);
+  /* Firefox 3.6+ */
+  background-image: -moz-linear-gradient(#336666,
+    #66cccc);
+  /* Safari 4+, Chrome 1+ */
+  background-image: -webkit-gradient(linear, 0% 0%,
+    0% 100%, from(#66cccc), to(#336666));
+  /* Safari 5.1+, Chrome 10+ */
+  background-image: -webkit-linear-gradient(#336666,
+    #66cccc);
+  /* Opera 11.10+ */
+  background-image: -o-linear-gradient(#336666,
+    #66cccc);
+  height: 150px;
+  width: 300px;
+}

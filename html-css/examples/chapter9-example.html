@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapter 9</title>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+  <script type="text/javascript"> 
+    var flashvars = {}; 
+    var params = {movie: "../video/puppy.flv"}; 
+    swfobject.embedSWF("flash/osplayer.swf", "snow", "400", "320", "8.0.0", flashvars, params);
+  </script>
+</head>
+<body>
+  <video poster="images/puppy.jpg" width="400" height="320" controls="controls">
+    <source src="https://youtu.be/Px4AJUkVHL0" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+    <source src="https://youtu.be/Px4AJUkVHL0" type='video/webm; codecs="vp8, vorbis"' />
+    <div id="snow">
+      <p>You cannot see this video of a puppy playing in the snow because this browser does not support our video formats.</p>
+    </div>
+  </video>
+</body>
+</html>
