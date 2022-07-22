@@ -11,5 +11,11 @@ nav {
 .nav-item a {
   text-decoration: none;
   font-size: var(--small);
+  font-weight: var(--bold-900);
+  color: var(--dark-color);
   margin-right: 30px;
+}
+
+.nav-item a:hover {
+  color: var(--normal-color);
 }

@@ -1,0 +1,12 @@
+.card {
+    width: 367px;
+    padding: 10px;
+    background-color: var(--white);
+    align-items: center;
+}
+
+.card-title {
+    font-weight: bold;
+    font-size: var(--small);
+    margin: 0 10px 0 10px;
+}

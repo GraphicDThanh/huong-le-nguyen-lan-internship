@@ -2,9 +2,24 @@
   color: var(--dark-color);
   font-size: var(--small);
   font-weight: var(--bold-600);
-  background-color: none;
-  width: 130px;
-  height: 50px;
+  background-color: var(--light-color);
+  padding: 10px 25px 10px 25px;
   border-radius: 5px;
   border-width: 1px;
+}
+
+.btn:hover {
+  background-color: var(--normal-color);
+  color: var(--white);
+}
+
+.btn-warning{
+  background-color: var(--normal-color);
+  color: var(--white);
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: var(--normal-color);
+  color: var(--white);
 }
