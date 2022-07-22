@@ -148,25 +148,25 @@ div {
   margin: 0 auto;
 }
 
-.fixed>#content {
+.fixed > .content {
   overflow: auto;
   height: 100%;
 }
 
-.fixed> #header>#nav, .fixed>#content#feature, .fixed>#footer {
+.fixed> .header > .nav, .fixed> .content .feature, .fixed>.footer {
   background-color: #efefef;
   padding: 10px;
   margin: 10px;
 }
 
-.fixed>#content>.column1, .fixed>#content>.column2, .fixed>#content>.column3 {
+.fixed > .content > .column1, .fixed > .content > .column2, .fixed > .content > .column3 {
   background-color: #efefef;
   width: 300px;
   float: left;
   margin: 10px;
 }
 
-.fixed> #header>#nav>ul>li {
+.fixed> .header > .nav > ul > li {
   display: inline;
   padding: 5px;
 }
