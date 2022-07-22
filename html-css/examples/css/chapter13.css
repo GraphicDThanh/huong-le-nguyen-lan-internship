@@ -1,288 +1,254 @@
-/* BOX DIMENSIONS */
+/* box dimensions */
 .box {
-    height: 300px;
-    width: 300px;
-    background-color: #bbbbaa;
+	height: 300px;
+	width: 300px;
+	background-color: #bbbbaa;
 }
 
 div.box > p {
-    height: 75%;
-    width: 75%;
-    background-color: #0088dd;
+	height: 75%;
+	width: 75%;
+	background-color: #0088dd;
 }
 
-
-
-/* LIMITING WIDTH */
+/* limiting width */
 td.description {
-    min-width: 450px;
-    max-width: 650px;
-    text-align: left;
-    padding: 5px;
-    margin: 0px;
+	min-width: 450px;
+	max-width: 650px;
+	text-align: left;
+	padding: 5px;
+	margin: 0px;
 }
 
-
-/* LIMITING HEIGHT */
+/* limiting height */
 .limiting-h2, .limiting-p {
-    width: 400px;
-    font-size: 90%;
-    line-height: 1.2em;
+	width: 400px;
+	font-size: 90%;
+	line-height: 1.2em;
 }
 
 .limiting-h2 {
-    color: #0088dd;
-    border-bottom: 1px solid #0088dd;
+	color: #0088dd;
+	border-bottom: 1px solid #0088dd;
 }
 
 .limiting-p {
-    min-height: 10px;
-    max-height: 30px;
+	min-height: 10px;
+	max-height: 30px;
 }
 
-
-
-/* OVERFLOWING CONTENT */
+/* overflowing content */
 p.one {
-    overflow: hidden;
+	overflow: hidden;
 }
 
 p.two {
-    overflow: scroll;
+	overflow: scroll;
 }
 
-
-
-/* BORDER WIDTH */
+/* border width */
 .three {  
-    border-style: solid;
-    border-width: 2px;
+	border-style: solid;
+	border-width: 2px;
 }
 
 .four {  
-    border-style: solid;
-    border-width: thick;
+	border-style: solid;
+	border-width: thick;
 }
 
 .five {  
-    border-style: solid;
-    border-width: 1px 4px 12px 4px;
+	border-style: solid;
+	border-width: 1px 4px 12px 4px;
 }
 
-
-/* BORDER STYLE */
+/* border style */
 h5.one {
-    border-style: solid;
+	border-style: solid;
 }
 
 h5.two {
-    border-style: dotted;
+	border-style: dotted;
 }
 
 h5.three {
-    border-style: dashed;
+	border-style: dashed;
 }
 
 h5.four {
-    border-style: double;
+	border-style: double;
 }
 
 h5.five {
-    border-style: groove;
+	border-style: groove;
 }
 
 h5.six {
-    border-style: ridge;
+	border-style: ridge;
 }
 
 h5.seven {
-    border-style: inset;
+	border-style: inset;
 }
 
 h5.eight {
-    border-style: outset;
+	border-style: outset;
 }
 
-
-
-/* BORDER COLOR */
+/* border color */
 p.border-one {
-    border-style: solid;
-    border-color: #0088dd;
+	border-style: solid;
+	border-color: #0088dd;
 }
 
 p.border-two {
-    border-style: solid;
-    border-color: #bbbbaa #111111 #ee3e80 #0088dd;
+	border-style: solid;
+	border-color: #bbbbaa #111111 #ee3e80 #0088dd;
 }
 
-
-
-/* SHORTHAND */
+/* shorthand */
 .shorthand-p {
-    width: 250px;
-    border: 3px dotted #0088dd;
+	width: 250px;
+	border: 3px dotted #0088dd;
 }
 
-
-
-
-/* PADDING */
+/* padding */
 .padding {
-    width: 275px;
-    border: 2px solid #0088dd;
+	width: 275px;
+	border: 2px solid #0088dd;
 }
 
 .padding-example {
-    padding: 10px;
+	padding: 10px;
 }
 
-
-/* MARGIN */
+/* margin */
 .margin {
-    width: 200px;
-    border: 2px solid #0088dd;
-    padding: 10px;
+	width: 200px;
+	border: 2px solid #0088dd;
+	padding: 10px;
 }
 
 .margin-example {
-    margin: 20px;
+	margin: 20px;
 }
 
-
-
-/* CENTERING CONTENT */
+/* centering content */
 .centering-body {
-    text-align: center;
+	text-align: center;
 }
 
 .centering {
-    width: 300px;
-    padding: 50px;
-    border: 20px solid #0088dd;
+	width: 300px;
+	padding: 50px;
+	border: 20px solid #0088dd;
 }
 
 .centering-example {
-    margin: 10px auto 10px auto;
-    text-align: left;
+	margin: 10px auto 10px auto;
+	text-align: left;
 }
 
-
-
-/* CHANGE INLINE/ BLOCK */
+/* change inline/ block */
 li {
-    display: inline;
-    margin-right: 10px;
+	display: inline;
+	margin-right: 10px;
 }
 
 li.coming-soon {
-    display: none;
+	display: none;
 }
 
-
-
-/* HIDING BOXES */
+/* hiding boxes */
 .hiding {
-    display: inline;
-    margin-right: 10px;
+	display: inline;
+	margin-right: 10px;
 }
 
 .hiding-coming-soon {
-    visibility: hidden;
+	visibility: hidden;
 }
 
-
-
-/* CSS3: BORDER IMAGES */
+/* CSS3: border images */
 p.first {
-    -moz-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 stretch;
-    -webkit-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 stretch;
-    border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 stretch;
+	-moz-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 stretch;
+	-webkit-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 stretch;
+	border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 stretch;
 }
 
 p.second {
-    -moz-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 round;
-    -webkit-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 round;
-    border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 round;
+	-moz-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 round;
+	-webkit-border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 round;
+	border-image: url("https://upload.wikimedia.org/wikipedia/commons/2/23/PSM_V70_D469_Vision_test_dot.png") 11 11 11 11 round;
 }
 
-
-
-/* CSS3: BOX SHADOWS */
-p.box-fisrt {
-    -moz-box-shadow: -5px -5px #777777;
-    -webkit-box-shadow: -5px -5px #777777;
-    box-shadow: -5px -5px #777777;
+/* CSS3: box shadows */
+p.box-first {
+	-moz-box-shadow: -5px -5px #777777;
+	-webkit-box-shadow: -5px -5px #777777;
+	box-shadow: -5px -5px #777777;
 }
 
 p.box-second {
-    -moz-box-shadow: 5px 5px 5px #777777;
-    -webkit-box-shadow: 5px 5px 5px #777777;
-    box-shadow: 5px 5px 5px #777777;
+	-moz-box-shadow: 5px 5px 5px #777777;
+	-webkit-box-shadow: 5px 5px 5px #777777;
+	box-shadow: 5px 5px 5px #777777;
 }
 
 p.box-third {
-    -moz-box-shadow: 5px 5px 5px 5px #777777;
-    -webkit-box-shadow: 5px 5px 5px 5px #777777;
-    box-shadow: 5px 5px 5px 5px #777777;
+	-moz-box-shadow: 5px 5px 5px 5px #777777;
+	-webkit-box-shadow: 5px 5px 5px 5px #777777;
+	box-shadow: 5px 5px 5px 5px #777777;
 }
 
 p.box-fourth {
-    -moz-box-shadow: 0 0 10px #777777;
-    -webkit-box-shadow: 0 0 10px #777777;
-    box-shadow: 0 0 10px #777777;
+	-moz-box-shadow: 0 0 10px #777777;
+	-webkit-box-shadow: 0 0 10px #777777;
+	box-shadow: 0 0 10px #777777;
 }
 
 p.box-fifth {
-    -moz-box-shadow: inset 0 0 10px #777777;
-    -webkit-box-shadow: inset 0 0 10px #777777;
-    box-shadow: inset 0 0 10px #777777;
+	-moz-box-shadow: inset 0 0 10px #777777;
+	-webkit-box-shadow: inset 0 0 10px #777777;
+	box-shadow: inset 0 0 10px #777777;
 } 
 
-
-
-/* CSS3: ROUNDED CORNERS */
+/* CSS3: rounded corners */
 .rounded {
-    border: 5px solid #cccccc;
-    padding: 20px;
-    width: 275px;
-    text-align: center;
-    border-radius: 10px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
+	border: 5px solid #cccccc;
+	padding: 20px;
+	width: 275px;
+	text-align: center;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
 }
 
-
-
-/* CSS3: ELLIPTICAL SHAPES */
+/* CSS3: elliptical shapes */
 p.elliptical-one {
-    width: 150px;
-    height: 150px;
-    border-style: solid;
-    border-top-left-radius: 80px 50px;
-    -moz-border-radius-top-left: 80px 50px;
-    -webkit-border-radius-top-left: 80px 50px;
+	width: 150px;
+	height: 150px;
+	border-style: solid;
+	border-top-left-radius: 80px 50px;
+	-moz-border-radius-top-left: 80px 50px;
+	-webkit-border-radius-top-left: 80px 50px;
 }
 
 p.elliptical-two {
-    width: 150px;
-    height: 150px;
-    border-style: solid;
-    border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
-    -moz-border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
-    -webkit-border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
+	width: 150px;
+	height: 150px;
+	border-style: solid;
+	border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
+	-moz-border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
+	-webkit-border-radius: 1em 4em 1em 4em / 2em 1em 2em 1em;
 }
 
 p.elliptical-three {
-    width: 150px;
-    height: 150px;
-    border-style: solid;
-    padding: 0px;
-    border-radius: 100px;
-    -moz-border-radius: 100px;
-    -webkit-border-radius: 100px;
+	width: 150px;
+	height: 150px;
+	border-style: solid;
+	padding: 0px;
+	border-radius: 100px;
+	-moz-border-radius: 100px;
+	-webkit-border-radius: 100px;
 }
-
-
-
-

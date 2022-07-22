@@ -1,76 +1,58 @@
-/* FOREGROUND COLOR */
+/* foreground color */
 /* color name */
 .forgeground-h1 {
-    color: DarkCyan;
+  color: DarkCyan;
 }
 
-    /* hex code */
+/* hex code */
 .forgeground-h2 {
-    color: #ee3e80;
+  color: #ee3e80;
 }
 
 /* rgb value */
 .forgeground-p {
-    color: rgb(100,100,90);
+  color: rgb(100,100,90);
 }
 
-
-
-/* BACKGROUND COLOR */
+/* background color */
 .background-color-body {
-    background-color: rgb(200,200,200);
+  background-color: rgb(200,200,200);
 }
 
 .background-color-h1 {
-    background-color: DarkCyan;
+  background-color: DarkCyan;
 }
 
 .background-color-h2 {
-    background-color: #ee3e80;
+  background-color: #ee3e80;
 }
 
 .background-color-p {
-    background-color: white;
+  background-color: white;
 }
 
-
-
-/* CSS3: OPACITY */
+/* CSS3: opacity */
 .p-one {
-    width: 100px;
-    height:100px;
-    background-color: rgb(185, 88, 88);
-    opacity: 0.5;
+  width: 100px;
+  height:100px;
+  background-color: rgb(185, 88, 88);
+  opacity: 0.5;
 }
 
 .p-two {
-    width: 100px;
-    height:100px;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.5);
+  width: 100px;
+  height:100px;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5);
 }
-
 
 /* CSS3: HSL & HSLA */
 .hsl-hsla-body {
-    background-color: #C8C8C8;
-    background-color: hsl(0,0%,78%);
+  background-color: #C8C8C8;
+  background-color: hsl(0,0%,78%);
 }
 
 .hsl-hsla-p {
-    background-color: #ffffff;
-    background-color: hsla(0,100%,100%,0.5);
+  background-color: #ffffff;
+  background-color: hsla(0,100%,100%,0.5);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

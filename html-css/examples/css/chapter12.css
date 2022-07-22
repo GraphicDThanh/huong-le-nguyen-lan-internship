@@ -1,216 +1,194 @@
-
-/* SPECIFYING TYPEFACES */
+/* specifying typefaces */
 .specifying-body {
-    font-family: Georgia, Times, serif;
+  font-family: Georgia, Times, serif;
 }
 
 .specifying-h1 {
-    font-family: Arial, Verdana, sans-serif;
+  font-family: Arial, Verdana, sans-serif;
 }
 
 .credits {
-    font-family: "Courier New", Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
 }
 
-
-/* SIZE OF TYPE */
+/* size of type */
 .sizeOfType-body {
-    font-family: Arial, Verdana, sans-serif;
-    font-size: 12px;
+  font-family: Arial, Verdana, sans-serif;
+  font-size: 12px;
 }
 
 .sizeOfType-h1 {
-    font-size: 200%;
+  font-size: 200%;
 }
 
 .sizeOfType-h2 {
-    font-size: 1.3em;
+  font-size: 1.3em;
 }
 
-
-/* BOLD */
+/* bold */
 .bold{
-    font-weight: bold;
+  font-weight: bold;
 }
 
-
-/* ITALIC */
+/* italic */
 .italic{
-    font-style: italic;
+  font-style: italic;
 }
 
-
-/* UPPERCASE & LOWERCASE */
+/* uppercase & lowercase */
 .up-low-h1 {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .up-low-h2 {
-    text-transform: lowercase;
+  text-transform: lowercase;
 }
 
 .up-low-p {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
-
-
-/* UNDERLINE & STRIKE */
+/* underline & strike */
 .under-strike-p {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .under-strike-a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
-
-/* LEADING */
+/* leading */
 .leading-p {
-    line-height: 1.4em;
+  line-height: 1.4em;
 }
 
-
-/* LETTER & WORDS SPACING */
+/* letter & words spacing */
 .letter-words-h1, .letter-words-h1 {
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }
 
 .letter-words-p {
-    font-weight: bold;
-    word-spacing: 1em;
+  font-weight: bold;
+  word-spacing: 1em;
 }
 
-
-/* ALIGNMENT */
+/* alignment */
 .alignment-h1 {
-    text-align: left;
+  text-align: left;
 }
 
 .alignment-h2 {
-    text-align: justify;
+  text-align: justify;
 }
 
 .alignment-p {
-    text-align: right;
+  text-align: right;
 }
 
-
-
-/* VERTICAL ALIGNMENT */
+/* vertical alignment */
 .six-months {
-    vertical-align: text-top;
+  vertical-align: text-top;
 }
 
 .one-year {
-    vertical-align: baseline;
+  vertical-align: baseline;
 }
 
 .two-years {
-    vertical-align: text-bottom;
+  vertical-align: text-bottom;
 }
 
-
-
-/* INDENTING TEXT */
+/* indenting text */
 .indenting-h3 {
-    background-image: url("https://ghechua.net/wp-content/uploads/2022/05/meme-meo-doi-di-ra-di-2.jpg");
-    background-repeat: no-repeat;
-    color: aliceblue;
-    text-indent: -9999px;
+  background-image: url("https://ghechua.net/wp-content/uploads/2022/05/meme-meo-doi-di-ra-di-2.jpg");
+  background-repeat: no-repeat;
+  color: aliceblue;
+  text-indent: -9999px;
 }
 
 .indenting-p {
-    text-indent: 20px;
+  text-indent: 20px;
 }
 
-
-/* CSS3: DROP SHADOW */
+/* CSS3: drop shadow */
 p.one {
-    background-color: #eeeeee;
-    color: #666666;
-    text-shadow: 1px 1px 0px #000000;
+  background-color: #eeeeee;
+  color: #666666;
+  text-shadow: 1px 1px 0px #000000;
 }
 
 p.two {
-    background-color: #dddddd;
-    color: #666666;
-    text-shadow: 1px 1px 3px #666666;
+  background-color: #dddddd;
+  color: #666666;
+  text-shadow: 1px 1px 3px #666666;
 }
 
 p.three {
-    background-color: #cccccc;
-    color: #ffffff;
-    text-shadow: 2px 2px 7px #111111;
+  background-color: #cccccc;
+  color: #ffffff;
+  text-shadow: 2px 2px 7px #111111;
 }
 
 p.four {
-    background-color: #bbbbbb;
-    color: #cccccc;
-    text-shadow: -1px -2px #666666;
+  background-color: #bbbbbb;
+  color: #cccccc;
+  text-shadow: -1px -2px #666666;
 }
 
 p.five {
-    background-color: #aaaaaa;
-    color: #ffffff;
-    text-shadow: -1px -1px #666666;
+  background-color: #aaaaaa;
+  color: #ffffff;
+  text-shadow: -1px -1px #666666;
 }
 
-
-/* FIRST LETTER OR LINE */
+/* first letter or line */
 p.intro-one:first-letter {
-    font-size: 200%;
+  font-size: 200%;
 }
 
 p.intro-two:first-line {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-
-
-/* STYLING LINKS */
+/* styling links */
 a.link:link {
-    color: deeppink;
-    text-decoration: none;
+  color: deeppink;
+  text-decoration: none;
 }
 
 a.visit:visited {
-    color: black;
+  color: black;
 }
 
 a.hover:hover {
-    color: deeppink;
-    text-decoration: underline;
+  color: deeppink;
+  text-decoration: underline;
 }
 
 a.active:active {
-    color: darkcyan;
+  color: darkcyan;
 }
 
-
-
-/* RESPONDING TO USERS */
+/* responding to users */
 input {
-    padding: 6px 12px 6px 12px;
-    border: 1px solid #665544;
-    color: #ffffff;
+  padding: 6px 12px 6px 12px;
+  border: 1px solid #665544;
+  color: #ffffff;
 }
 
 input.submit:hover {
-    background-color: #665544;
+  background-color: #665544;
 }
 
 input.submit:active {
-    background-color: chocolate;
+  background-color: chocolate;
 }
 
 input.text {
-    color: #cccccc;
+  color: #cccccc;
 }
 
 input.text:focus {
-    color: #665544;
+  color: #665544;
 }
-
-

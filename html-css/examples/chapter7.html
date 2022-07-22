@@ -1,214 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 <body>
-    <!-- FORM STRUCTURE -->
-    <h2>FORM STRUCTURE</h2>
-    <form action="http://www.example.com/subscribe.php" method="get">
-        <p>This is where the form controls will appear.</p>
-    </form>
-    <br>
+  <!-- form structure -->
+  <h2>FORM STRUCTURE</h2>
+  <form action="http://www.example.com/subscribe.php" method="get">
+    <p>This is where the form controls will appear.</p>
+  </form>
+  <br>
 
+  <!-- text input -->
+  <h2>TEXT INPUT</h2>
+  <form action="http://www.example.com/login.php">
+    <p>Username:
+      <input type="text" name="username" size="20" maxlength="40" />
+    </p>
+  </form>
+  <br>
 
-    <!-- TEXT INPUT -->
-    <h2>TEXT INPUT</h2>
-    <form action="http://www.example.com/login.php">
-        <p>Username:
-            <input type="text" name="username" size="20" maxlength="40" />
-        </p>
-    </form>
-    <br>
+  <!-- password input -->
+  <h2>PASSWORD INPUT</h2>
+  <form action="http://www.example.com/login.php">
+    <p>Username:
+      <input type="text" name="username" size="20" maxlength="40" />
+    </p>
+    <p>Password:
+      <input type="password" name="password" size="20" maxlength="40" />
+    </p>
+  </form>
+  <br>
 
-    <!-- PASSWORD INPUT -->
-    <h2>PASSWORD INPUT</h2>
-    <form action="http://www.example.com/login.php">
-        <p>Username:
-            <input type="text" name="username" size="20" maxlength="40" />
-        </p>
-        <p>Password:
-            <input type="password" name="password" size="20" maxlength="40" />
-        </p>
-    </form>
-    <br>
+  <!-- text area -->
+  <h2>TEXT AREA</h2>
+  <form action="http://www.example.com/comments.php">
+    <p>Note: </p>
+    <textarea name="comments" cols="20" rows="4"></textarea>
+  </form>
+  <br>
 
+  <!-- radio buttons -->
+  <h2>RADIO BUTTONS</h2>
+  <form action="http://www.example.com/profile.php">
+    <p>Sex: <br />
+      <input type="radio" name="sex" value="female" checked="checked" /> Female
+      <input type="radio" name="sex" value="male" /> Male
+    </p>
+  </form>
+  <br>
 
-    <!-- TEXT AREA -->
-    <h2>TEXT AREA</h2>
-    <form action="http://www.example.com/comments.php">
-        <p>Note: </p>
-            <textarea name="comments" cols="20" rows="4"></textarea>
-    </form>
-    <br>
+  <!-- checkbox -->
+  <h2>CHECKBOX</h2>
+  <form action="http://www.example.com/profile.php">
+    <p>Hobbies: <br />
+      <input type="checkbox" name="hobbies" value="travel" checked="checked" /> Travel
+      <input type="checkbox" name="hobbies" value="foood" /> Food
+      <input type="checkbox" name="hobbies" value="music" /> Music
+    </p>
+  </form>
+  <br>
 
+  <!-- dropdown list box -->
+  <h2>DROPDOWN LIST BOX</h2>
+  <form action="http://www.example.com/profile.php">
+    <p>Country:</p>
+    <select name="countries">
+      <option value="vn">Vietnam</option>
+      <option value="us">United States</option>
+      <option value="jp">Japan</option>
+    </select>
+  </form>
+  <br>
 
-    <!-- RADIO BUTTONS -->
-    <h2>RADIO BUTTONS</h2>
-    <form action="http://www.example.com/profile.php">
-        <p>Sex: <br />
-            <input type="radio" name="sex" value="female" checked="checked" /> Female
-            <input type="radio" name="sex" value="male" /> Male
-        </p>
-    </form>
-    <br>
+  <!-- multiple select box -->
+  <h2>MULTIPLE SELECT BOX</h2>
+  <form action="http://www.example.com/profile.php">
+    <p>Musical instrument: </p>
+    <select name="instruments" size="3" multiple="multiple">
+      <option value="guitar" selected="selected"> Guitar</option>
+      <option value="drums">Drums</option>
+      <option value="keyboard" selected="selected">Keyboard</option>
+      <option value="bass">Bass</option>
+    </select>
+  </form>
+  <br>
 
+  <!-- file input box -->
+  <h2>FILE INPUT BOX</h2>
+  <form action="http://www.example.com/upload.php" method="post">
+    <p>Upload your song:</p>
+    <input type="file" name="user-song" /> <br>
+    <input type="submit" value="Upload" />
+  </form>
+  <br>
 
-    <!-- CHECKBOX -->
-    <h2>CHECKBOX</h2>
-    <form action="http://www.example.com/profile.php">
-        <p>Hobbies: <br />
-            <input type="checkbox" name="hobbies" value="travel" checked="checked" /> Travel
-            <input type="checkbox" name="hobbies" value="foood" /> Food
-            <input type="checkbox" name="hobbies" value="music" /> Music
-        </p>
-    </form>
-    <br>
+  <!-- submit button -->
+  <h2>SUBMIT BUTTON</h2>
+  <form action="http://www.example.com/subscribe.php">
+    <p>Enter your email:</p>
+    <input type="text" name="email" />
+    <input type="submit" name="subscribe" value="Submit" />
+  </form>
+  <br>
 
+  <!-- image button -->
+  <h2>IMAGE BUTTON</h2>
+  <form action="http://www.example.org/subscribe.php">
+    <p>Enter your email:</p>
+    <input type="text" name="email" />
+    <input type="image" src="https://ghechua.net/wp-content/uploads/2022/05/meme-meo-doi-di-ra-di-2.jpg" width="80" height="30" />
+  </form>
+  <br>
 
-    <!-- DROPDOWN LIST BOX -->
-    <h2>DROPDOWN LIST BOX</h2>
-    <form action="http://www.example.com/profile.php">
-        <p>Country:</p>
-        <select name="countries">
-            <option value="vn">Vietnam</option>
-            <option value="us">United States</option>
-            <option value="jp">Japan</option>
-        </select>
-    </form>
-    <br>
+  <!-- button & hidden controls -->
+  <h2>BUTTON & HIDDEN CONTROLS</h2>
+  <form action="http://www.example.com/add.php">
+    <button>    <img src="https://ghechua.net/wp-content/uploads/2022/05/meme-meo-doi-di-ra-di-2.jpg" alt="add" width="10" height="10"/> Add</button>
+    <input type="hidden" name="bookmark" value="lyrics" />
+  </form>
+  <br>
 
-    <!-- MULTIPLE SELECT BOX -->
-    <h2>MULTIPLE SELECT BOX</h2>
-    <form action="http://www.example.com/profile.php">
-        <p>Musical instrument: </p>
-        <select name="instruments" size="3" multiple="multiple">
-            <option value="guitar" selected="selected"> Guitar</option>
-            <option value="drums">Drums</option>
-            <option value="keyboard" selected="selected">Keyboard</option>
-            <option value="bass">Bass</option>
-        </select>
-    </form>
-    <br>
+  <!-- labeling form controls -->
+  <h2>LABELING FORM CONTROLS</h2>
+  <label>Age: <input type="text" name="age" /></label>
+  <br>
+  Gender: 
+  <input id="female" type="radio" name="gender" value="f">    <label for="female">Female</label>
+  <input id="male" type="radio" name="gender" value="m">      <label for="male">Male</label>
+  <br>
 
+  <!-- grouping form elements -->
+  <h2>GROUPING FORM ELEMENTS</h2>
+  <fieldset>
+    <legend>Contact</legend>
+    <label>Email:   <br>
+    <input type="text" name="email" /></label>  <br>
+    <label>Mobile:  <br>
+    <input type="text" name="mobile" /></label> <br>
+    <label>Telephone:   <br>
+    <input type="text" name="telephone" /></label>
+  </fieldset>
+  <br>
 
-    <!-- FILE INPUT BOX -->
-    <h2>FILE INPUT BOX</h2>
-    <form action="http://www.example.com/upload.php" method="post">
-        <p>Upload your song:</p>
-        <input type="file" name="user-song" /> <br>
-        <input type="submit" value="Upload" />
-    </form>
-    <br>
+  <!-- HTML5: form validation -->
+  <h2>HTML5: FORM VALIDATION</h2>
+  <form action="http://www.example.com/login/" method="post">
+    <label for="username">Username:</label>
+    <input type="text" name="username" required="required" /></title>   <br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" required="required" /> <br>
+    <input type="submit" value="Submit" />
+  </form>
+  <br>
 
+  <!-- HTML5: date input -->
+  <h2>HTML5: DATE INPUT</h2>
+  <form action="http://www.example.com/bookings/" method="post">
+    <label for="username">Date:</label>
+    <input type="date" name="depart" /> <br>
+    <input type="submit" value="Submit" />
+  </form>
+  <br>
 
-    <!-- SUBMIT BUTTON -->
-    <h2>SUBMIT BUTTON</h2>
-    <form action="http://www.example.com/subscribe.php">
-        <p>Enter your email:</p>
-        <input type="text" name="email" />
-        <input type="submit" name="subscribe" value="Submit" />
-    </form>
-    <br>
+  <!-- HTML5: email & url input -->
+  <h2>HTML5: EMAIL & URL INPUT</h2>
+  <form action="http://www.example.org/subscribe.php">
+    <p>Enter your email address:</p>
+    <input type="email" name="email" /> <br>
+    <input type="submit" value="Submit" />
+  </form>
+  <br>
+  
+  <form action="http://www.example.org/profile.php">
+    <p>Enter your website address:</p>
+    <input type="url" name="website" /> <br>
+    <input type="submit" value="Submit" />
+  </form>
+  <br>
 
+  <!-- HTML5: search input -->
+  <h2>HTML5: SEARCH INPUT</h2>
+  <form action="http://www.example.org/search.php">
+    <p>Search:</p>
+    <input type="search" name="search" /> <br>
+    <input type="submit" value="Search" />
+  </form>
+  <br>
 
-    <!-- IMAGE BUTTON -->
-    <h2>IMAGE BUTTON</h2>
-    <form action="http://www.example.org/subscribe.php">
-        <p>Enter your email:</p>
-        <input type="text" name="email" />
-        <input type="image" src="https://ghechua.net/wp-content/uploads/2022/05/meme-meo-doi-di-ra-di-2.jpg" width="80" height="30" />
-    </form>
-    <br>
-
-
-    <!-- BUTTON & HIDDEN CONTROLS -->
-    <h2>BUTTON & HIDDEN CONTROLS</h2>
-    <form action="http://www.example.com/add.php">
-        <button>    <img src="https://ghechua.net/wp-content/uploads/2022/05/meme-meo-doi-di-ra-di-2.jpg" alt="add" width="10" height="10"/> Add</button>
-        <input type="hidden" name="bookmark" value="lyrics" />
-    </form>
-    <br>
-
-
-    <!-- LABELING FORM CONTROLS -->
-    <h2>LABELING FORM CONTROLS</h2>
-    <label>Age: <input type="text" name="age" /></label>
-    <br>
-    Gender: 
-    <input id="female" type="radio" name="gender" value="f">    <label for="female">Female</label>
-    <input id="male" type="radio" name="gender" value="m">      <label for="male">Male</label>
-    <br>
-
-
-    <!-- GROUPING FORM ELEMENTS -->
-    <h2>GROUPING FORM ELEMENTS</h2>
-    <fieldset>
-        <legend>Contact</legend>
-        <label>Email:   <br>
-        <input type="text" name="email" /></label>  <br>
-        <label>Mobile:  <br>
-        <input type="text" name="mobile" /></label> <br>
-        <label>Telephone:   <br>
-        <input type="text" name="telephone" /></label>
-    </fieldset>
-    <br>
-
-
-    <!-- HTML5: FORM VALIDATION -->
-    <h2>HTML5: FORM VALIDATION</h2>
-    <form action="http://www.example.com/login/" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required="required" /></title>   <br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required="required" /> <br>
-        <input type="submit" value="Submit" />
-    </form>
-    <br>
-
-    <!-- HTML5: DATE INPUT -->
-    <h2>HTML5: DATE INPUT</h2>
-    <form action="http://www.example.com/bookings/" method="post">
-        <label for="username">Date:</label>
-        <input type="date" name="depart" /> <br>
-        <input type="submit" value="Submit" />
-    </form>
-    <br>
-
-    <!-- HTML5: EMAIL & URL INPUT -->
-    <h2>HTML5: EMAIL & URL INPUT</h2>
-    <form action="http://www.example.org/subscribe.php">
-        <p>Enter your email address:</p>
-        <input type="email" name="email" /> <br>
-        <input type="submit" value="Submit" />
-    </form>
-    <br>
-    
-    <form action="http://www.example.org/profile.php">
-        <p>Enter your website address:</p>
-        <input type="url" name="website" /> <br>
-        <input type="submit" value="Submit" />
-    </form>
-    <br>
-
-    <!-- HTML5: SEARCH INPUT -->
-    <h2>HTML5: SEARCH INPUT</h2>
-    <form action="http://www.example.org/search.php">
-        <p>Search:</p>
-        <input type="search" name="search" /> <br>
-        <input type="submit" value="Search" />
-    </form>
-    <br>
-
-    <form action="http://www.example.org/search.php">
-        <p>Search:</p>
-        <input type="search" name="search" placeholder="Enter keyword" /> <br>
-        <input type="submit" value="Search" />
-    </form>
-    <br>
+  <form action="http://www.example.org/search.php">
+    <p>Search:</p>
+    <input type="search" name="search" placeholder="Enter keyword" /> <br>
+    <input type="submit" value="Search" />
+  </form>
+  <br>
 </body>
 </html>
-
