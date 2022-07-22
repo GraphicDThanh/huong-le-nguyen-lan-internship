@@ -1,10 +1,10 @@
-.logo{
-    color: var(--dark-color);
-    font-size: var(--large);
-    font-weight: bold;
-    text-decoration: none;
+.logo {
+  color: var(--dark-color);
+  font-size: var(--large);
+  font-weight: bold;
+  text-decoration: none;
 }
 
-.logo span{
-    color: var(--normal-color);
+.logo span {
+  color: var(--normal-color);
 }

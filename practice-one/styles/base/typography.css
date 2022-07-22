@@ -1,14 +1,13 @@
 @font-face {
-    font-family: "popins";
-    font-display: swap;
-    src: url("../../assets/fonts/Poppins-ExtraLight.ttf");
+  font-family: "popins";
+  font-display: swap;
+  src: url("../../assets/fonts/Poppins-ExtraLight.ttf");
 }
 
-
-body{
-    font-family: "popins";
+body {
+  font-family: "popins";
 }
 
-:root{
-    font-size: 16px;
+:root {
+  font-size: 16px;
 }
