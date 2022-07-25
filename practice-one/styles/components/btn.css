@@ -1,7 +1,7 @@
 .btn {
   color: var(--dark-color);
   font-size: var(--small);
-  font-weight: var(--bold-600);
+  font-family: poppins-semi;
   background-color: var(--light-color);
   padding: 10px 25px 10px 25px;
   border-radius: 5px;
@@ -10,6 +10,7 @@
 
 .btn:hover {
   background-color: var(--normal-color);
+  cursor: pointer;
   color: var(--white);
 }
 
@@ -20,6 +21,7 @@
 }
 
 .btn-warning:hover {
-  background-color: var(--normal-color);
+  background-color: var(--normal-color-5);
+  cursor: pointer;
   color: var(--white);
 }

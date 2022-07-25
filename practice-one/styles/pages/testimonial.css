@@ -1,0 +1,15 @@
+.testimonial {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.testimonial-button {
+}
+
+.testimonial-body {
+	padding-top: 30px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}

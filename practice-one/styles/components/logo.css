@@ -1,6 +1,7 @@
 .logo {
   color: var(--dark-color);
   font-size: var(--large);
+  font-family: poppins-semi;
   font-weight: bold;
   text-decoration: none;
 }
