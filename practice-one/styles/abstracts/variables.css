@@ -1,0 +1,19 @@
+:root {
+  /* Color */
+  --primary-color: #ff5300;
+  --primary-color-500: #e64d00;
+  --primary-background-color: #fff7f4;
+  --secondary-background-color: #ffffff;
+  --text-color: #7b7b7b;
+  --secondary-color: #373737;
+
+  /* Font-large */
+  --huge: 65px;
+  --biggest: 49px;
+  --large: 39px;
+  --almost-small: 25px;
+  --small: 20px;
+  --small-medium: 12.8px;
+  --smallest: 10.2px;
+  --normal: 16px;
+}
