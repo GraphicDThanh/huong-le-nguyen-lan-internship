@@ -1,0 +1,26 @@
+@font-face {
+  font-family: "popins";
+  font-display: swap;
+  src: url("../../assets/fonts/Poppins-ExtraLight.ttf");
+}
+
+@font-face {
+  font-family: "poppins-bold";
+  src: url("../../assets/fonts/Poppins-Black.ttf");
+}
+
+@font-face {
+  font-family: "poppins-semi";
+  src: url("../../assets/fonts/Poppins-SemiBold.ttf");
+}
+
+body {
+  font-family: "popins";
+  font-weight: bold;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+:root {
+  font-size: 16px;
+}
