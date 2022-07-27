@@ -63,35 +63,35 @@ p.two {
 }
 
 /* border style */
-h5.one {
+h3.one {
 	border-style: solid;
 }
 
-h5.two {
+h3.two {
 	border-style: dotted;
 }
 
-h5.three {
+h3.three {
 	border-style: dashed;
 }
 
-h5.four {
+h3.four {
 	border-style: double;
 }
 
-h5.five {
+h3.five {
 	border-style: groove;
 }
 
-h5.six {
+h3.six {
 	border-style: ridge;
 }
 
-h5.seven {
+h3.seven {
 	border-style: inset;
 }
 
-h5.eight {
+h3.eight {
 	border-style: outset;
 }
 
