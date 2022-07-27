@@ -1,0 +1,172 @@
+/* normal flow */
+.normal-flow {
+  width: 750px;
+  font-family: Arial, Verdana, sans-serif;
+  color: #665544;
+}
+
+.normal-flow > h1 {
+  background-color: #efefef;
+  padding: 10px;
+}
+
+.normal-flow > p {
+  width: 450px;
+}
+
+/* relative positioning */
+.relative-positioning > .example {
+  position: relative;
+  top: 10px;
+  left: 100px;
+}
+
+
+
+/* absolute positioning */
+.absolute > h1 {
+  position: absolute;
+  top: 0px;
+  left: 500px;
+  width: 250px;
+}
+
+.absolute > p {
+  width: 450px;
+}
+
+/* fixed positioning */
+.fixed > h1 {
+  position: fixed;
+  top: 0px;
+  left: 50px;
+  padding: 10px;
+  margin: 0px;
+  width: 100%;
+  background-color: #efefef;
+}
+
+.fixed > .example {
+  margin-top: 100px;
+}
+
+/* overlapping elements */
+.overlapping > h1 {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  margin: 0px;
+  padding: 10px;
+  width: 100%;
+  background-color: #efefef;
+  z-index: 10;
+}
+
+.overlapping > p {
+  position: relative;
+  top: 70px;
+  left: 70px;
+}
+
+
+/* floating elements */
+blockquote {
+  float: right;
+  width: 275px;
+  font-size: 130%;
+  font-style: italic;
+  font-family: Georgia, Times, serif;
+  margin: 0px 0px 10px 10px;
+  padding: 10px;
+  border-top: 1px solid #665544;
+  border-bottom: 1px solid #665544;
+}
+
+/* using float to place elements side-by-side */
+.use-float {
+  width: 750px;
+  font-family: Arial, Verdana, sans-serif;
+  color: #665544;
+}
+
+.use-float > p {
+  width: 230px;
+  float: left;
+  margin: 5px;
+  padding: 5px;
+  background-color: #efefef;
+}
+
+
+/* CLEARING FLOATS */
+.clearing {
+  width: 750px;
+  font-family: Arial, Verdana, sans-serif;
+  color: #665544;
+}
+
+.clearing > p {
+  width: 230px;
+  float: left;
+  margin: 5px;
+  padding: 5px;
+  background-color: #efefef;
+}
+
+.clearing > .clear {
+  clear: left;
+}
+
+/* parents of floated elements: problem */
+.problem {
+  border: 1px solid #665544;
+}
+
+/* parents of floated elements: solution */
+div {
+  border: 1px solid #665544;
+  overflow: auto;
+  width: 100%;
+}
+
+/* creating multi-column layouts with floats */
+.column1of2 {
+  float: left;
+  width: 620px;
+  margin: 10px;
+}
+
+.column2of2 {
+  float: left;
+  width: 300px;
+  margin: 10px;
+}
+
+/* a fixed layout */
+.fixed {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.fixed > .content {
+  overflow: auto;
+  height: 100%;
+}
+
+.fixed> .header > .nav, .fixed> .content .feature, .fixed>.footer {
+  background-color: #efefef;
+  padding: 10px;
+  margin: 10px;
+}
+
+.fixed > .content > .column1, .fixed > .content > .column2, .fixed > .content > .column3 {
+  background-color: #efefef;
+  width: 300px;
+  float: left;
+  margin: 10px;
+}
+
+.fixed> .header > .nav > ul > li {
+  display: inline;
+  padding: 5px;
+}
