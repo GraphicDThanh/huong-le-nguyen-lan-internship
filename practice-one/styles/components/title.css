@@ -3,8 +3,6 @@
   margin-top: 120px;
 }
 
-
-
 .section-name::after,
 .section-name-line-right::before {
   background-color:var(--normal-color);
