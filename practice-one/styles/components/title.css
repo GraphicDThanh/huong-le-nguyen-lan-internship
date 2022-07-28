@@ -1,0 +1,51 @@
+.section-name {
+  color: var(--normal-color);
+  margin-top: 120px;
+}
+
+
+
+.section-name::after,
+.section-name-line-right::before {
+  background-color:var(--normal-color);
+  content: "";
+  display: inline-block;
+  height: 1px;
+  position: relative;
+  vertical-align: middle;
+  width: 40px;
+}
+
+.section-name::after {
+  left: 0.5em;
+}
+.section-name-line-right::before {
+  right: 0.5em;
+}
+
+.section-name-line-right {
+  text-align: center;
+}
+
+.section-title {
+  color: var(--dark-color);
+  font-size: var(--large);
+  font-family: poppins-semi;
+  text-align: center;
+  margin: 30px 0 30px 0;
+}
+
+.left {
+  text-align: left;
+}
+
+.section-title-biggest {
+  font-size: var(--biggest);
+  font-family: poppins-bold;
+  color: var(--dark-color);
+  line-height: 1.5;
+}
+
+.description {
+  padding-bottom: 30px;
+}
