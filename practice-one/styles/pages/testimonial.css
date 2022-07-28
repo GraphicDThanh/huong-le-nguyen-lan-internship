@@ -1,0 +1,21 @@
+.testimonial {
+  margin-top: 100px;
+}
+
+.testimonial .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testimonial-body {
+  margin: 30px 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 30px;
+}
