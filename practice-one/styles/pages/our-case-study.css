@@ -34,7 +34,7 @@
   display: none;
 }
 
-.image-other {
+.web-template {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@
   justify-content: center;
 }
 
-.image-other a{
+.web-template a{
   text-decoration: none;
   color: var(--white);
 }

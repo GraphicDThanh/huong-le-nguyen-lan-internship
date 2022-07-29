@@ -33,7 +33,7 @@ footer {
   vertical-align: text-top;
 }
 
-.footer-other {
+.footer-terms {
   color: var(--white);
   display: flex;
   border-top: 1px solid var(--white);
@@ -41,7 +41,7 @@ footer {
   padding-top: 20px;
 }
 
-.footer-other span img{
+.footer-terms span img{
   vertical-align: text-bottom;
 }
 
@@ -64,4 +64,8 @@ footer {
 .help-list li a{
   color: var(--white);
   text-decoration: none;
+}
+
+.up-page {
+  position: fixed;
 }

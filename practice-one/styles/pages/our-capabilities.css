@@ -15,7 +15,7 @@
   justify-content: space-between;
 }
 
-.capabilities-body-card > .card {
+.capabilities-body-card > .card-item {
   padding: 0;
   width: 120px;
   height: 108px;
@@ -25,13 +25,13 @@
   align-items: center;
 }
 
-.capabilities-body-card > .card p {  
+.capabilities-body-card > .card-item p {  
   color: var(--normal-color);
   font-family: poppins-semi;
   font-size: var(--almost-small);
 }
 
-.capabilities-body-card > .card span{ 
+.capabilities-body-card > .card-item span{ 
   margin: 5px;
   font-size: var(--small-medium);
   color: var(--dark-color);

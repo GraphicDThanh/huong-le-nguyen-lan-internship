@@ -1,10 +1,12 @@
 .testimonial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-top: 100px;
 }
 
 .testimonial .container {
-  display: flex;
-  flex-direction: column;
+  margin: 0;
 }
 
 .testimonial-slide {
@@ -17,5 +19,23 @@
   margin: 30px 30px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 30px;
+  grid-gap: 50px;
+}
+
+.button-slide {
+  margin-top: 150px;
+  width: 50px;
+  height: 50px;
+  font-family: poppins-semi;
+  font-size: var(--almost-small);
+  align-items: center;
+  border-radius: 50%;
+  border-width: thin;
+  background-color: var(--light-color);
+  cursor: pointer;
+}
+
+.button-slide:hover {
+  color: var(--normal-color);
+  border-color: var(--normal-color);
 }
