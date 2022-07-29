@@ -67,5 +67,22 @@ footer {
 }
 
 .up-page {
+  width: 60px;
+  height: 60px;
   position: fixed;
+  bottom: 10px;
+  right: 300px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  opacity: 0.8;
+  background-color: var(--normal-color);
+}
+
+.up-page:hover {
+  opacity: 1;
+}
+
+.up-page img {
+  margin: 15px 0 0 17px;
 }
