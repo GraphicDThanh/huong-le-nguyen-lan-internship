@@ -20,25 +20,25 @@ nav {
   color: var(--normal-color);
 }
 
-.nav-second {
+.nav-case-study {
   margin-left: 5px;
   padding-bottom: 30px;
 }
 
-.nav-item-second {
+.nav-item-case-study {
   padding: 5px 30px;
   font-size: var(--small);
   border-radius: 10px;
 }
 
-.nav-item-second a {
+.nav-item-case-study a {
   color: var( --secondary-color);
 }
 
-.nav-item-second:hover{
+.nav-item-case-study:hover{
   background-color: var(--normal-color);  
 }
 
-.nav-item-second:hover a{
+.nav-item-case-study:hover a{
   color: var(--white);
 }
