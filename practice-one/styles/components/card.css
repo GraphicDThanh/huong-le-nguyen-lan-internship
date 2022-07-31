@@ -31,7 +31,36 @@
 }
 
 .card-rate {
-  align-items: center;
+  float: left;
+  width: max-content;
+}
+
+.card-rate input {
+  display: none;
+}
+
+.card-rate label {
+  float:right;
+  width:1em;
+  font-size:30px;
+  cursor: pointer;
+  color:#ccc;
+}
+
+.card-rate label:before {
+  content: '★ ';
+}
+
+.card-rate input:checked ~ label {
+  color: #ff5300;    
+}
+
+.card-rate label:hover ~ label {
+  color: #ff5300;  
+}
+
+.card-rate input:checked, label:hover{
+  color: #ff5300;
 }
 
 .card-body {
