@@ -1,10 +1,10 @@
-.section-name {
+.section-title {
   color: var(--primary-color);
   margin-top: 20px;
 }
 
-.section-name::after,
-.section-name-line-right::before {
+.section-title::after,
+.section-title-primary::before {
   background-color: var(--primary-color);
   content: "";
   display: inline-block;
@@ -14,18 +14,18 @@
   vertical-align: text-bottom;
 }
 
-.section-name::after {
+.section-title::after {
   left: 0.5em;
 }
-.section-name-line-right::before {
+.section-title-primary::before {
   right: 0.5em;
 }
 
-.section-name-line-right {
+.section-title-primary {
   text-align: center;
 }
 
-.section-title {
+.section-name {
   color: var(--dark-color);
   font-size: var(--large);
   font-family: poppins-semi;
