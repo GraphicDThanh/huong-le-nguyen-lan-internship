@@ -10,15 +10,15 @@
   margin-left: 30px;
 }
 
-.send-mail-title .section-name {
+.send-mail-title .section-title {
   color: var(--white);
 }
 
-.send-mail-title .section-name::after {
+.send-mail-title .section-title::after {
   background-color:var(--white);
 }
 
-.send-mail-title .section-title {
+.send-mail-title .section-name {
   color: var(--white);
 }
 
