@@ -1,4 +1,4 @@
-nav {
+.navigation {
   display: flex;
 }
 
@@ -17,7 +17,7 @@ nav {
 }
 
 .nav-item a:hover {
-  color: var(--normal-color);
+  color: var(--primary-color);
 }
 
 .nav-case-study {
@@ -35,8 +35,8 @@ nav {
   color: var( --secondary-color);
 }
 
-.nav-item-case-study:hover{
-  background-color: var(--normal-color);  
+.nav-item-case-study:hover {
+  background-color: var(--primary-color);  
 }
 
 .nav-item-case-study:hover a{

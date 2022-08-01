@@ -1,11 +1,11 @@
 .section-name {
-  color: var(--normal-color);
+  color: var(--primary-color);
   margin-top: 20px;
 }
 
 .section-name::after,
 .section-name-line-right::before {
-  background-color:var(--normal-color);
+  background-color: var(--primary-color);
   content: "";
   display: inline-block;
   height: 1px;
@@ -31,10 +31,6 @@
   font-family: poppins-semi;
   text-align: center;
   margin: 30px 0 30px 0;
-}
-
-.left {
-  text-align: left;
 }
 
 .section-title-biggest {

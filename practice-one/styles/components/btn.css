@@ -8,14 +8,14 @@
   border-width: 1px;
 }
 
-.btn-primary{
-  background-color: var(--normal-color);
+.btn-primary {
+  background-color: var(--primary-color);
   color: var(--white);
   border: none;
 }
 
 .btn-primary:hover {
-  background-color: var(--normal-color-5);
+  background-color: var(--primary-color-darker);
   color: var(--white);
 }
 
@@ -24,6 +24,6 @@
 }
 
 .btn-secondary:hover {
-  background-color: var(--normal-color);
+  background-color: var(--primary-color);
   color: var(--white);
 }

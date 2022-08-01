@@ -1,11 +1,11 @@
 :root {
   /* Color */
-  --normal-color: #ff5300;
-  --normal-color-5: #e64d00;
-  --light-color: #fff7f4;
-  --white: #ffffff;
+  --primary-color: #ff5300;
+  --primary-color-darker: #e64d00;
   --secondary-color: #7b7b7b;
   --dark-color: #373737;
+  --light-color: #fff7f4;
+  --white: #ffffff;  
 
   /* Font-large */
   --huge: 65px;
@@ -13,7 +13,7 @@
   --large: 39px;
   --almost-small: 25px;
   --small: 20px;
-  --small-medium: 13px;
-  --smallest: 10.2px;
+  --smaller: 13px;
+  --smallest: 10px;
   --normal: 16px;
 }
