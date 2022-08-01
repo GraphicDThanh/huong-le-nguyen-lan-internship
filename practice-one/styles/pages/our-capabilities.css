@@ -10,6 +10,10 @@
   margin-right: 50px;
 }
 
+.capabilities-content .section-title {
+  text-align: left;
+}
+
 .capabilities-body-card {
   display: flex;
   justify-content: space-between;
@@ -26,14 +30,14 @@
 }
 
 .capabilities-body-card > .card-item p {  
-  color: var(--normal-color);
+  color: var(--primary-color);
   font-family: poppins-semi;
   font-size: var(--almost-small);
 }
 
-.capabilities-body-card > .card-item span{ 
+.capabilities-body-card > .card-item span { 
   margin: 5px;
-  font-size: var(--small-medium);
+  font-size: var(--smaller);
   color: var(--dark-color);
   text-align: center;
 }

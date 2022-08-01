@@ -11,7 +11,7 @@ footer {
   grid-gap: 50px;
 }
 
-.footer-logo p{
+.footer-logo p {
   margin-top: 25px;
 }
 
@@ -22,7 +22,7 @@ footer {
 .footer-name h3 {
   font-family: poppins-semi;
   font-size: var(--almost-small);
-  color: var(--normal-color);
+  color: var(--primary-color);
   margin-bottom: 30px;
 }
 
@@ -41,7 +41,7 @@ footer {
   padding-top: 20px;
 }
 
-.footer-terms span img{
+.footer-terms span img {
   vertical-align: text-bottom;
 }
 
@@ -61,7 +61,7 @@ footer {
   margin: 0 10px 0 ;
 }
 
-.help-list li a{
+.help-list li a {
   color: var(--white);
   text-decoration: none;
 }
@@ -76,7 +76,7 @@ footer {
   cursor: pointer;
   border-radius: 50px;
   opacity: 0.8;
-  background-color: var(--normal-color);
+  background-color: var(--primary-color);
 }
 
 .up-page:hover {

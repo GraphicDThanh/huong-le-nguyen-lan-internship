@@ -30,7 +30,7 @@
   grid-row: 2/4;
   z-index: 1;
   opacity: 0.8;
-  background-color: var(--normal-color);
+  background-color: var(--primary-color);
   display: none;
 }
 
@@ -42,14 +42,12 @@
   justify-content: center;
 }
 
-.web-template a{
+.web-template a {
   text-decoration: none;
   color: var(--white);
 }
 
 .our-case-study-images {
   display: grid;
-  grid-template-columns: 390px 390px 390px;
-  grid-template-rows: 1fr 1fr 1fr;
-  justify-content: center;
+  grid-template-columns: repeat(3, 390px);
 }

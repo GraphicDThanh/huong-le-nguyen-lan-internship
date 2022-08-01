@@ -18,7 +18,7 @@
 .testimonial-body {
   margin: 30px 30px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 50px;
 }
 
@@ -36,6 +36,6 @@
 }
 
 .button-slide:hover {
-  color: var(--normal-color);
-  border-color: var(--normal-color);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
 }

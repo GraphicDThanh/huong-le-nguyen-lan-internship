@@ -1,6 +1,6 @@
 .send-mail-container {
   margin-top: 100px;
-  background-color: var(--normal-color);
+  background-color: var(--primary-color);
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
@@ -15,14 +15,7 @@
 }
 
 .send-mail-title .section-name::after {
-  color: var(--white);
   background-color:var(--white);
-  content: "";
-  display: inline-block;
-  height: 1px;
-  position: relative;
-  vertical-align: text-bottom;
-  width: 40px;
 }
 
 .send-mail-title .section-title {
