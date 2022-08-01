@@ -26,8 +26,7 @@
 }
 
 .card-img img {
-  justify-content: center;
-  align-items: center;
+  margin-left: 5px;
 }
 
 .card-rate {
@@ -40,11 +39,11 @@
 }
 
 .card-rate label {
-  float:right;
-  width:1em;
-  font-size:30px;
+  float: right;
+  width: 1em;
+  font-size: 30px;
   cursor: pointer;
-  color:#ccc;
+  color: #ccc;
 }
 
 .card-rate label:before {
@@ -52,15 +51,15 @@
 }
 
 .card-rate input:checked ~ label {
-  color: #ff5300;    
+  color: var(--primary-color);    
 }
 
 .card-rate label:hover ~ label {
-  color: #ff5300;  
+  color: var(--primary-color);  
 }
 
-.card-rate input:checked, label:hover{
-  color: #ff5300;
+.card-rate input:checked, label:hover {
+  color: var(--primary-color)
 }
 
 .card-body {
@@ -78,7 +77,7 @@
 }
 
 .card-details {
-  font-size: var(--small-medium);
+  font-size: var(--smaller);
   padding: 10px 0;
   display: flex;
 }
@@ -87,10 +86,6 @@
   color: var(--dark-color);
   font-size: var(--smallest);
   margin-right: 10px;
-}
-
-.details img {
-  vertical-align: text-top;
 }
 
 .card-description {
@@ -102,13 +97,13 @@
   grid-template-columns: 60px 230px 50px;
 }
 
-.card-button{
+.card-button {
   width: 160px;
   height: 50px;
   grid-column: 1/3;
 }
 
-.card-author {
+.card-author, .card-icons {
   width: 60px;
   height: 60px;
 }
@@ -123,17 +118,15 @@
 .card-info p:first-child {
   font-family: poppins-semi;
   font-size: var(--small);
-  color: var(--normal-color);
+  color: var(--primary-color);
 }
 
 .card-info p:nth-child(2) {
   font-family: popins;
-  font-size: var(--small-medium);
+  font-size: var(--smaller);
 }
 
 .card-icons {
-  width: 60px;
-  height: 60px;
   display: flex;
   align-items: center;
 }
