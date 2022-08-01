@@ -1,0 +1,13 @@
+.blog-container {
+  margin-top: 100px;
+}
+
+.blog-container .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card {
+  display: flex;
+  justify-content: space-between;
+}

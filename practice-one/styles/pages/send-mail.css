@@ -1,0 +1,49 @@
+.send-mail-container {
+  margin-top: 100px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.send-mail-title {
+  margin-left: 30px;
+}
+
+.send-mail-title .section-title {
+  color: var(--white);
+}
+
+.send-mail-title .section-title::after {
+  background-color:var(--white);
+}
+
+.send-mail-title .section-name {
+  color: var(--white);
+}
+
+.send-mail-button {
+  margin: 50px 50px 0 0;
+}
+
+.send-mail-button button {
+  margin-left: -200px;
+  color: white;
+  border: 0;
+  -webkit-appearance: none;
+}
+
+.search-input {
+  width: 640px;
+  height: 70px;
+  font-family: popins;
+  font-weight: bold;
+  font-size: var(--normal);
+  padding-left: 30px;
+  border-radius: 5px;
+  border: none;
+}
+
+.search-input:focus {
+  outline: 0;
+}

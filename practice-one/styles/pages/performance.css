@@ -1,0 +1,28 @@
+.performance-container {
+  margin-top: 100px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  background-color: var(--primary-color);
+  border-radius: 10px;
+}
+
+.performance-card {
+  text-align: center;
+  color: var(--white);
+  font-size: var(--small);
+}
+
+.performance-card p:nth-child(2) {
+  font-family: poppins-semi;
+  font-size: var(--large);
+}
+
+.performance-card:nth-child(2) {
+  border-left: 3px solid var(--white);
+  border-right: 3px solid var(--white);
+}
+
+.performance-card:nth-child(3) {
+  border-right: 3px solid var(--white);
+}
