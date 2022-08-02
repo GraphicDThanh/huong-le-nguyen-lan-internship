@@ -1,13 +1,12 @@
-.about-us .container {
+.about-us {
   margin-top: 100px;
-  height: fit-content;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.img-about-us {
-  margin-top: 150px;
+.about-us .container {
+  padding: 100px 0 100px 0;
+  height: fit-content;
+  display: flex;
+  align-items: flex-end;
 }
 
 .about-us-content .section-name {

@@ -12,6 +12,8 @@
 }
 
 .image-link {
+  width: 390px;
+  height: 314px;
   grid-column: 1;
   grid-row: 1/2;
   z-index: -1;

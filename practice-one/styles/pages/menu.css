@@ -1,9 +1,13 @@
+.menu {
+  padding-bottom: 100px;
+}
+
 .header-list {
   display: flex;
   justify-content: space-between;
 }
 
-.header-content {
+.jumbotron .container {
   display: flex;
-  padding: 200px 0px 10px 0px;
+  padding-bottom: 100px;
 }
