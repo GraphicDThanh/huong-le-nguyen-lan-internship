@@ -1,13 +1,55 @@
 .menu {
+  padding-top: 30px;
   padding-bottom: 100px;
 }
 
 .header-list {
   display: flex;
   justify-content: space-between;
+  height: 50px;
+  align-items: center;
+}
+
+.list .nav {
+  gap: 29px;
+}
+
+.logo {
+  width: 186px;
+  height: 50px;
+}
+
+.logo img {
+  padding-top: 5px;
+  vertical-align: middle;
 }
 
 .jumbotron .container {
   display: flex;
-  padding-bottom: 100px;
+  height: 471px;
+  align-items: center;
+  padding-top: 50px;
+  padding-bottom: 150px;
+}
+
+.header-jumbotron {
+  width: 617px;
+  padding-top: 35px;
+}
+
+.header-jumbotron .highlights {
+  margin: 20px 15px 20px 0;
+}
+
+.header-jumbotron .btn {
+  margin-top: 10px;
+}
+
+.jumbotron .container .frame-img {
+  width: 553px;
+  height: 471px;
+}
+
+.jumbotron .container .frame-img img {
+  padding-left: 10px;
 }

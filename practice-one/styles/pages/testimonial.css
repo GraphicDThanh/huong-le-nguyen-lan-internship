@@ -2,24 +2,88 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 0 100px 0;
-  margin-top: 100px;
+  padding: 120px 0 120px 0;
+  gap: 25px;
 }
 
 .testimonial .container {
   margin: 0;
 }
 
-.testimonial-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.testimonial .container .section-name {
+  padding: 15px 0 0 12px;
 }
 
 .testimonial-body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 50px;
+  padding-top: 60px;
+  gap: 30px;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  padding: 25px;
+}
+
+.testimonial-card .card-body {
+  padding: 10px 0 30px 0;
+}
+
+.testimonial-card .card-body .card-description {
+  padding: 2px 0 0 2px;
+}
+
+.card-rate {
+  width: max-content;
+}
+
+.card-rate span {
+  float: right;
+  font-size: var(--small);
+  padding: 5px 11px 0 5px;
+}
+
+.card-rate span:hover {
+  color: var(--primary-color);
+}
+
+.card-rate span:hover ~ span {
+  color: var(--primary-color);
+}
+
+.card-author, .card-icons {
+  width: 60px;
+  height: 60px;
+}
+
+.card-info {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-info p:first-child {
+  font-family: poppins-semi;
+  font-size: var(--small);
+  color: var(--primary-color);
+}
+
+.card-info p:nth-child(2) {
+  font-family: popins;
+  font-size: var(--smaller);
+}
+
+.card-icons {
+  display: flex;
+  align-items: center;
+}
+
+.card-button {
+  grid-column: 1/3;
 }
 
 .button-slide {

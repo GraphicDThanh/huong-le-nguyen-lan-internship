@@ -1,24 +1,35 @@
 footer {
-  margin-top: 100px;
+  margin-top: 130px;
   background-color: black;
 }
 
 .footer-info {
+  padding-top: 55px;
   color: var(--white);
   display: grid;
   grid-template-columns: repeat(4, 300px);
-  grid-gap: 50px;
+  grid-gap: 5px;
+}
+
+.footer-logo .frame-img {
+  width: 175px;
+  height: 47px;
+}
+
+.footer-logo p {
+  padding-top: 20px;
 }
 
 .footer-name {
-  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .footer-name p:first-child {
   font-family: poppins-semi;
   font-size: var(--almost-small);
   color: var(--primary-color);
-  margin-bottom: 5px;
+  padding-bottom: 20px;
+
 }
 
 .footer-call-us {
@@ -41,17 +52,25 @@ footer {
   color: var(--white);
   display: flex;
   border-top: 1px solid var(--white);
-  margin-top: 50px;
+  margin-top: 60px;
   padding-top: 20px;
+  padding-bottom: 30px;
+  gap: 50px;
 }
 
 .footer-terms span img {
   vertical-align: text-bottom;
+  padding-right: 15px;
+}
+
+.footer-terms span {
+  font-weight: var(--thin);
+  letter-spacing: 1px;
+
 }
 
 .help-list {
   display: flex;
-  margin-left: 100px;
 }
 
 .help-list li::before {
@@ -68,6 +87,7 @@ footer {
 .help-list li a {
   color: var(--white);
   text-decoration: none;
+  padding-right: 30px;
 }
 
 .up-page {
@@ -75,7 +95,7 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 10px;
-  right: 300px;
+  right: 140px;
   border: none;
   cursor: pointer;
   border-radius: 50px;

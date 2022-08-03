@@ -1,35 +1,58 @@
-.about-us {
-  margin-top: 100px;
+.about-us .container {
+  padding: 100px 0 85px 0;
+  display: flex;
+  align-items: center;
 }
 
-.about-us .container {
-  padding: 100px 0 100px 0;
-  height: fit-content;
+.about-us .container .img-about-us {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  width: 621px;
+  height: 450px;
+}
+
+.about-us .container .img-about-us img {
+  padding-left: 16px;
+}
+
+.about-us-content {
+  width: 549px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-us-content .highlights {
+  margin: 15px 15px 20px 0;
+}
+
+.about-us-content .section-title {
+  padding-top: 19px;
 }
 
 .about-us-content .section-name {
+  padding-top: 18px;
+  padding-bottom: 5px;
   text-align: left;
 }
 
 .about-us-content-list li::before {
-  height: 20px;
-  width: 20px;
+  height: 24px;
+  width: 24px;
   content: "";
   background-image: url("../../assets/icons/icon-checkbox-circle.svg");
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  vertical-align: bottom;
-  margin: 10px 10px 0 0;
+  margin-right: 14px;
 }
 
 .about-us-content-list li {
   display: flex;
+  align-items: center;
 }
 
 .about-us-content-list li p {
   color: var(--dark-color);
-  line-height: 2.5;
+  line-height: 2.3;
 }
