@@ -1,7 +1,7 @@
 .card-item {
   width: 370px;
   background-color: var(--white);
-  box-shadow: rgba(0, 0, 0, 0.08) 1px 3px 5px, rgba(17, 17, 26, 0.1) 0px 4px 16px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   display: flex;
   flex-direction: column;
