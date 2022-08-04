@@ -1,8 +1,12 @@
 .our-case-study {
-  margin-top: 100px;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.our-case-study .section-name {
+  padding-top: 15px;
 }
 
 .image-item {
@@ -16,7 +20,6 @@
   height: 314px;
   grid-column: 1;
   grid-row: 1/2;
-  z-index: -1;
 }
 
 .image-item:hover .image-web {
