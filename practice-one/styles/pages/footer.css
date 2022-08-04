@@ -7,16 +7,18 @@ footer {
   padding-top: 55px;
   color: var(--white);
   display: grid;
-  grid-template-columns: repeat(4, 300px);
-  grid-gap: 5px;
+  grid-template-columns: 280px 280px 280px 260px;
+  grid-gap: 20px;
 }
 
 .footer-logo .frame-img {
+  padding-top: 5px;
   width: 175px;
   height: 47px;
 }
 
 .footer-logo p {
+  font-weight: var(--regular);
   padding-top: 20px;
 }
 
@@ -28,8 +30,13 @@ footer {
   font-family: poppins-semi;
   font-size: var(--almost-small);
   color: var(--primary-color);
-  padding-bottom: 20px;
+  padding-bottom: 25px;
+}
 
+.footer-location p, a {
+  font-family: poppins-medium;
+  font-weight: var(--medium);
+  font-size: var(--small);
 }
 
 .footer-call-us {
@@ -42,10 +49,14 @@ footer {
   text-decoration: none;
 }
 
+.footer-call-us a:nth-child(2) {
+  padding-bottom: 10px;
+}
+
 .social-icons {
-  width: 85%;
+  padding-top: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between
 }
 
 .footer-terms {
@@ -55,7 +66,7 @@ footer {
   margin-top: 60px;
   padding-top: 20px;
   padding-bottom: 30px;
-  gap: 50px;
+  gap: 85px;
 }
 
 .footer-terms span img {
@@ -64,9 +75,9 @@ footer {
 }
 
 .footer-terms span {
-  font-weight: var(--thin);
-  letter-spacing: 1px;
-
+  font-family: popins;
+  font-weight: var(--regular);
+  letter-spacing: 0.3px;
 }
 
 .help-list {
@@ -74,8 +85,8 @@ footer {
 }
 
 .help-list li::before {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   content: "";
   background-image: url("../../assets/icons/icon-circle.svg");
   background-size: cover;
@@ -85,9 +96,12 @@ footer {
 }
 
 .help-list li a {
+  font-family: popins;
   color: var(--white);
+  font-size: var(--normal);
+  font-weight: var(--regular);
   text-decoration: none;
-  padding-right: 30px;
+  padding-right: 25px;
 }
 
 .up-page {
@@ -95,11 +109,11 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 10px;
-  right: 140px;
   border: none;
   cursor: pointer;
   border-radius: 50px;
   opacity: 0.8;
+  margin-left: 1110px;
   background-color: var(--primary-color);
 }
 

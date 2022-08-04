@@ -17,6 +17,7 @@
 .section-title::after {
   left: 12px;
 }
+
 .section-title-primary::before {
   right: 12px;
 }
