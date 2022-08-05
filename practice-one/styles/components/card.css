@@ -8,7 +8,7 @@
 }
 
 .card-title {
-  font-family: poppins-semi, Arial, Helvetica;
+  font-family: poppins-semi, Tahoma, sans-serif;
   font-weight: var(--semibold);
   font-size: var(--small);
   color: var(--dark-color);
