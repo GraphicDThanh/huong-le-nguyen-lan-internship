@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "popins";
+  font-family: "poppins";
   src: url("../../assets/fonts/poppins-extraLight.ttf");
 }
 
@@ -19,7 +19,7 @@
 }
 
 body {
-  font-family: "popins";
+  font-family: "poppins";
   font-weight: bold;
   line-height: 1.5;
   color: var(--secondary-color);
