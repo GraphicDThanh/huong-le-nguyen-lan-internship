@@ -31,7 +31,7 @@
 }
 
 .blog-card .card-body .card-title {
-  font-family: poppins-medium;
+  font-family: poppins-medium, Arial, Helvetica, sans-serif;
   font-weight: var(--medium);
 }
 
@@ -45,7 +45,7 @@
   padding-top: 8px;
 }
 
-.time-and-location {
+.date-author-comment {
   display: flex;
   color: var(--dark-color);
   font-weight: var(--regular);
@@ -53,7 +53,7 @@
   margin-right: 10px;
 }
 
-.time-and-location .frame-img {
+.date-author-comment .frame-img {
   width: 15px;
   height: 15px;
   margin-right: 5px;

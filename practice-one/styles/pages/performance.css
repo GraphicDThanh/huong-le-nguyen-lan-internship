@@ -36,6 +36,6 @@
 }
 
 .performance-description {
-  font-family: poppins-medium;
+  font-family: poppins-medium, Arial, Helvetica, sans-serif;
   font-weight: var(--medium);
 }

@@ -20,11 +20,11 @@
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
-  gap: 25px;
+  gap: 20px;
 }
 
 .capabilities-body-card > .card-item {
-  width: 100px;
+  width: 110px;
   padding: 12px 15px 15px 12px;
   text-align: center;
 }
@@ -35,7 +35,7 @@
 
 .capabilities-body-card > .card-item p {  
   color: var(--primary-color);
-  font-family: poppins-semi;
+  font-family: poppins-semi, Arial, Helvetica, sans-serif;
   font-size: var(--almost-small);
   font-weight: var(--semibold);
 }

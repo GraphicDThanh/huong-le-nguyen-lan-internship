@@ -1,4 +1,4 @@
-.menu {
+.header-wrap {
   padding: 30px 0 100px 0;
 }
 
@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.list .nav {
+.menu .nav {
   gap: 29px;
 }
 

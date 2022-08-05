@@ -1,7 +1,7 @@
 .about-us .container {
   padding: 100px 0 85px 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .about-us .container .img-about-us {
@@ -17,7 +17,6 @@
 
 .about-us-content {
   width: 549px;
-  height: 450px;
   display: flex;
   flex-direction: column;
 }
