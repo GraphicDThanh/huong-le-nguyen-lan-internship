@@ -1,24 +1,43 @@
 footer {
-  margin-top: 100px;
+  margin-top: 125px;
   background-color: black;
 }
 
 .footer-info {
   color: var(--white);
+  padding-top: 55px;
   display: grid;
-  grid-template-columns: repeat(4, 300px);
-  grid-gap: 50px;
+  grid-template-columns: 280px 280px 280px 260px;
+  grid-gap: 20px;
+}
+
+.footer-logo .frame-img {
+  width: 175px;
+  height: 47px;
+  padding-top: 5px;
+}
+
+.footer-logo p {
+  font-weight: var(--regular);
+  padding-top: 20px;
 }
 
 .footer-name {
-  margin-top: 10px;
+  padding-top: 10px;
 }
 
 .footer-name p:first-child {
-  font-family: poppins-semi;
+  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-weight: var(--semibold);
   font-size: var(--almost-small);
   color: var(--primary-color);
-  margin-bottom: 5px;
+  padding-bottom: 25px;
+}
+
+.footer-location p, a {
+  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-weight: var(--medium);
+  font-size: var(--small);
 }
 
 .footer-call-us {
@@ -31,32 +50,43 @@ footer {
   text-decoration: none;
 }
 
+.footer-call-us a:nth-child(2) {
+  padding-bottom: 10px;
+}
+
 .social-icons {
-  width: 85%;
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
 }
 
 .footer-terms {
   color: var(--white);
+  padding: 20px 0 30px 0;
+  margin-top: 60px;
   display: flex;
+  gap: 85px;
   border-top: 1px solid var(--white);
-  margin-top: 50px;
-  padding-top: 20px;
 }
 
 .footer-terms span img {
+  padding-right: 15px;
   vertical-align: text-bottom;
+}
+
+.footer-terms span {
+  font-family: popins, Arial, Helvetica, sans-serif;
+  font-weight: var(--regular);
+  letter-spacing: 0.3px;
 }
 
 .help-list {
   display: flex;
-  margin-left: 100px;
 }
 
 .help-list li::before {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   content: "";
   background-image: url("../../assets/icons/icon-circle.svg");
   background-size: cover;
@@ -66,8 +96,12 @@ footer {
 }
 
 .help-list li a {
+  font-family: popins, Arial, Helvetica, sans-serif;
+  font-size: var(--normal);
+  font-weight: var(--regular);
   color: var(--white);
   text-decoration: none;
+  padding-right: 25px;
 }
 
 .up-page {
@@ -75,11 +109,11 @@ footer {
   height: 60px;
   position: fixed;
   bottom: 10px;
-  right: 300px;
   border: none;
   cursor: pointer;
   border-radius: 50px;
   opacity: 0.8;
+  margin-left: 1110px;
   background-color: var(--primary-color);
 }
 

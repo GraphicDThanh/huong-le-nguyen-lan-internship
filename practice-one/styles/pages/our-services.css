@@ -1,10 +1,48 @@
-.our-services-content {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 30px;
-  grid-row-gap: 30px;
+.our-services .section-name {
+  padding: 10px 0 0 8px;
 }
 
-.our-services {
-  margin-top: 100px;
+.our-services-content {
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 30px;
+  row-gap: 25px;
+}
+
+.our-services-card {
+  width: 370px;
+  align-items: center;
+}
+
+.our-services-card .card-header {
+  height: 80px;
+  padding: 31px 0 0 7px;
+  display: flex;
+  gap: 165px;
+}
+
+.our-services-card .card-header, .card-body {
+  width: 330px;
+}
+
+.our-services-card:first-child .card-header p {
+  margin-left: 15px;
+}
+
+.our-services-card .card-body {
+  padding: 20px 0 25px 10px;
+}
+
+.our-services-card .card-body .card-title {
+  font-size: var(--almost-small);
+}
+
+.our-services-card .card-body .card-details {
+  padding-top: 3px;
+  padding-bottom: 16px;
+}
+
+.our-services-card .card-body .card-description {
+  padding-right: 5px;
 }
