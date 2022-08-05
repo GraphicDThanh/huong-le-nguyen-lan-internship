@@ -15,7 +15,7 @@
 .nav-item a {
   text-decoration: none;
   font-size: var(--small);
-  font-family: poppins-medium, Arial, Helvetica;
+  font-family: poppins-medium, Tahoma, sans-serif;
   font-weight: var(--medium);
   color: var(--dark-color);
 }
