@@ -30,13 +30,13 @@
   color: var(--dark-color);
   font-size: var(--large);
   font-weight: var(--semibold);
-  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-family: poppins-medium, Arial, Helvetica;
   text-align: center;
 }
 
 .section-title-biggest {
   font-size: var(--biggest);
-  font-family: poppins-bold, Arial, Helvetica, sans-serif;
+  font-family: poppins-bold, Arial, Helvetica;
   font-weight: var(--bold);
   color: var(--dark-color);
   line-height: 1.5;

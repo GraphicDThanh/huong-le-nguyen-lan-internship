@@ -7,22 +7,8 @@
   flex-direction: column;
 }
 
-.card-header p {
-  justify-content: center;
-  color: var(--grey-fade-color);
-  font-size: var(--huge);
-  font-family: poppins-semi, Arial, Helvetica, sans-serif;
-  font-weight: var(--semibold);
-}
-
-
-.card-img {
-  width: 340px;
-  height: 225px;
-}
-
 .card-title {
-  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-family: poppins-semi, Arial, Helvetica;
   font-weight: var(--semibold);
   font-size: var(--small);
   color: var(--dark-color);

@@ -15,7 +15,7 @@
 .nav-item a {
   text-decoration: none;
   font-size: var(--small);
-  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-family: poppins-medium, Arial, Helvetica;
   font-weight: var(--medium);
   color: var(--dark-color);
 }
@@ -27,8 +27,9 @@
 .nav-case-study {
   width: 100%;
   height: 60px;
-  display: flex;
   padding: 20px 0 25px 0;
+  display: flex;
+  justify-content: center;
   gap: 65px;
   cursor: pointer;
 }

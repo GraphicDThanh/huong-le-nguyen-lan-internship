@@ -1,6 +1,6 @@
 .btn {
   font-size: var(--small);
-  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-family: poppins-medium, Arial, Helvetica;
   font-weight: var(--medium);
   border-radius: 5px;
   cursor: pointer;
