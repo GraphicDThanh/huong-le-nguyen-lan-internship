@@ -1,4 +1,4 @@
-.our-capabilities .container {
+.our-capabilities-wrapper .container {
   display: flex;
 }
 
@@ -34,7 +34,7 @@
 
 .capabilities-body-card > .card-item p {  
   color: var(--primary-color);
-  font-family: poppins-semi, Arial, Helvetica;
+  font-family: poppins-semi, Tahoma, sans-serif;
   font-size: var(--almost-small);
   font-weight: var(--semibold);
 }

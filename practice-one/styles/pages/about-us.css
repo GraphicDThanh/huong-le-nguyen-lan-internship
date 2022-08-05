@@ -1,18 +1,18 @@
-.about-us .container {
+.about-us-wrapper .container {
   padding: 100px 0 85px 0;
   display: flex;
   align-items: flex-start;
   gap: 10px;
 }
 
-.about-us .container .img-about-us {
+.about-us-wrapper .container .img-about-us {
   display: flex;
   align-items: center;
   width: 621px;
   height: 450px;
 }
 
-.about-us .container .img-about-us img {
+.about-us-wrapper .container .img-about-us img {
   padding-left: 16px;
 }
 

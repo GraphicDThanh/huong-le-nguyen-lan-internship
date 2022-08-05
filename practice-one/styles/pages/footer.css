@@ -1,4 +1,4 @@
-.footer-container {
+.footer-wrapper {
   background-color: black;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .footer-name p:first-child {
-  font-family: poppins-semi, Arial, Helvetica;
+  font-family: poppins-semi, Tahoma, sans-serif;
   font-weight: var(--semibold);
   font-size: var(--almost-small);
   color: var(--primary-color);
@@ -34,7 +34,7 @@
 }
 
 .footer-location p, a {
-  font-family: poppins-medium, Arial, Helvetica;
+  font-family: poppins-medium, Tahoma, sans-serif;
   font-weight: var(--medium);
   font-size: var(--small);
 }
@@ -74,7 +74,7 @@
 }
 
 .footer-terms span {
-  font-family: poppins, Arial, Helvetica;
+  font-family: poppins, Tahoma, sans-serif;
   font-weight: var(--regular);
   letter-spacing: 0.3px;
 }
@@ -95,7 +95,7 @@
 }
 
 .help-list li a {
-  font-family: poppins, Arial, Helvetica;
+  font-family: poppins, Tahoma, sans-serif;
   font-size: var(--normal);
   font-weight: var(--regular);
   color: var(--white);

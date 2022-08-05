@@ -1,14 +1,14 @@
-.blog-container {
+.blog-wrapper {
   padding: 100px 0 90px 0;
 }
 
-.blog-container .container {
+.blog-wrapper .container {
   padding-top: 12px;
   display: flex;
   flex-direction: column;
 }
 
-.blog-container .container .section-name {
+.blog-wrapper .container .section-name {
   padding: 15px 0 0 19px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .blog-card .card-body .card-title {
-  font-family: poppins-medium, Arial, Helvetica;
+  font-family: poppins-medium, Tahoma, sans-serif;
   font-weight: var(--medium);
 }
 

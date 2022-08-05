@@ -1,4 +1,4 @@
-.performance-container {
+.performance-wrapper {
   padding: 70px 0;
   display: flex;
   justify-content: space-around;
@@ -32,10 +32,10 @@
   color: var(--white);
   font-size: var(--large);
   font-weight: var(--semibold);
-  font-family: poppins-semi, Arial, Helvetica;
+  font-family: poppins-semi, Tahoma, sans-serif;
 }
 
 .performance-description {
-  font-family: poppins-medium, Arial, Helvetica;
+  font-family: poppins-medium, Tahoma, sans-serif;
   font-weight: var(--medium);
 }

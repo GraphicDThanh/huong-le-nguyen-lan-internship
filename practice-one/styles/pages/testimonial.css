@@ -1,4 +1,4 @@
-.testimonial {
+.testimonial-wrapper {
   padding: 118px 0;
   display: flex;
   align-items: center;
@@ -6,11 +6,11 @@
   gap: 25px;
 }
 
-.testimonial .container {
+.testimonial-wrapper .container {
   margin: 0;
 }
 
-.testimonial .container .section-name {
+.testimonial-wrapper .container .section-name {
   padding: 15px 0 0 12px;
 }
 
@@ -67,14 +67,14 @@
 }
 
 .card-info p:first-child {
-  font-family: poppins-semi, Arial, Helvetica;
+  font-family: poppins-semi, Tahoma, sans-serif;
   font-weight: var(--medium);
   font-size: var(--small);
   color: var(--primary-color);
 }
 
 .card-info p:nth-child(2) {
-  font-family: poppins, Arial, Helvetica;
+  font-family: poppins, Tahoma, sans-serif;
   font-size: var(--smaller);
 }
 
@@ -91,7 +91,7 @@
   margin-top: 150px;
   width: 50px;
   height: 50px;
-  font-family: poppins-semi, Arial, Helvetica;
+  font-family: poppins-semi, Tahoma, sans-serif;
   font-size: var(--almost-small);
   align-items: center;
   border-radius: 50%;

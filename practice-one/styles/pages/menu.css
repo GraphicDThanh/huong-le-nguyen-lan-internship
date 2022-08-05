@@ -1,4 +1,4 @@
-.header-wrap {
+.header-wrapper {
   padding: 30px 0 100px 0;
 }
 
@@ -23,7 +23,7 @@
   vertical-align: middle;
 }
 
-.jumbotron .container {
+.jumbotron-wrapper .container {
   display: flex;
   align-items: center;
   padding: 50px 0 150px;
@@ -37,11 +37,11 @@
   padding: 20px 15px 35px 0;
 }
 
-.jumbotron .container .frame-img {
+.jumbotron-wrapper .container .frame-img {
   width: 553px;
   height: 471px;
 }
 
-.jumbotron .container .frame-img img {
+.jumbotron-wrapper .container .frame-img img {
   padding-left: 10px;
 }
