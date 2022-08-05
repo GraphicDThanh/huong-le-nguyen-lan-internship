@@ -1,28 +1,28 @@
-.about-us .container {
+.about-us-wrapper .container {
   padding: 100px 0 85px 0;
   display: flex;
   align-items: flex-start;
+  gap: 10px;
 }
 
-.about-us .container .img-about-us {
+.about-us-wrapper .container .img-about-us {
   display: flex;
   align-items: center;
   width: 621px;
   height: 450px;
 }
 
-.about-us .container .img-about-us img {
+.about-us-wrapper .container .img-about-us img {
   padding-left: 16px;
 }
 
 .about-us-content {
-  width: 549px;
   display: flex;
   flex-direction: column;
 }
 
 .about-us-content .highlights {
-  margin: 15px 15px 20px 0;
+  margin: 15px 0 20px 0;
 }
 
 .about-us-content .section-title {

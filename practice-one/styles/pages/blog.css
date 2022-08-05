@@ -1,14 +1,14 @@
-.blog-container {
+.blog-wrapper {
   padding: 100px 0 90px 0;
 }
 
-.blog-container .container {
+.blog-wrapper .container {
   padding-top: 12px;
   display: flex;
   flex-direction: column;
 }
 
-.blog-container .container .section-name {
+.blog-wrapper .container .section-name {
   padding: 15px 0 0 19px;
 }
 
@@ -19,25 +19,25 @@
 }
 
 .blog-card {
-  width: 340px;
   margin-top: 30px;
   padding: 15px;
   display: flex;
   gap: 17px;
 }
 
-.blog-card .card-body {
+.card-img {
   width: 340px;
+  height: 225px;
 }
 
 .blog-card .card-body .card-title {
-  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-family: poppins-medium, Tahoma, sans-serif;
   font-weight: var(--medium);
 }
 
 .blog-card .card-body .card-details {
   display: flex;
-  gap: 5px;
+  gap: 15px;
   padding: 15px 0;
 }
 
@@ -50,15 +50,14 @@
   color: var(--dark-color);
   font-weight: var(--regular);
   font-size: var(--smallest);
-  margin-right: 10px;
+  gap: 5px;
 }
 
 .date-author-comment .frame-img {
   width: 15px;
   height: 15px;
-  margin-right: 5px;
 }
 
 .blog-card .card-footer {
-  margin: 10px 0 15px 0;
+  padding: 10px 0 15px 0;  
 }

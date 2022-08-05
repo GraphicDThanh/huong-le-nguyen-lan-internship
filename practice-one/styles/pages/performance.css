@@ -1,4 +1,4 @@
-.performance-container {
+.performance-wrapper {
   padding: 70px 0;
   display: flex;
   justify-content: space-around;
@@ -9,7 +9,7 @@
 
 .line-straight {
   width: 3px;
-  height: 140px;
+  height: 135px;
   border-radius: 5px;
   background-color: var(--white);
 }
@@ -32,10 +32,10 @@
   color: var(--white);
   font-size: var(--large);
   font-weight: var(--semibold);
-  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-family: poppins-semi, Tahoma, sans-serif;
 }
 
 .performance-description {
-  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-family: poppins-medium, Tahoma, sans-serif;
   font-weight: var(--medium);
 }
