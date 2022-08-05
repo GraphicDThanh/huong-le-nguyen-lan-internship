@@ -1,32 +1,97 @@
 .testimonial {
+  padding: 118px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 0 100px 0;
-  margin-top: 100px;
+  gap: 25px;
 }
 
 .testimonial .container {
   margin: 0;
 }
 
-.testimonial-slide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.testimonial .container .section-name {
+  padding: 15px 0 0 12px;
 }
 
 .testimonial-body {
+  padding-top: 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 50px;
+  gap: 30px;
+}
+
+.testimonial-card {
+  width: 320px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-card .card-body {
+  padding: 10px 0 30px 0;
+}
+
+.testimonial-card .card-body .card-description {
+  padding: 2px 10px 0 2px;
+}
+
+.card-rate {
+  width: max-content;
+}
+
+.card-rate span {
+  font-size: var(--small);
+  padding: 5px 11px 0 5px;
+  float: right;
+}
+
+.card-rate span:hover {
+  color: var(--primary-color);
+}
+
+.card-rate span:hover ~ span {
+  color: var(--primary-color);
+}
+
+.card-author, .card-icons {
+  width: 60px;
+  height: 60px;
+}
+
+.card-info {
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-info p:first-child {
+  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-weight: var(--medium);
+  font-size: var(--small);
+  color: var(--primary-color);
+}
+
+.card-info p:nth-child(2) {
+  font-family: popins, Arial, Helvetica, sans-serif;
+  font-size: var(--smaller);
+}
+
+.card-icons {
+  display: flex;
+  align-items: center;
+}
+
+.card-button {
+  grid-column: 1/3;
 }
 
 .button-slide {
   margin-top: 150px;
   width: 50px;
   height: 50px;
-  font-family: poppins-semi;
+  font-family: poppins-semi, Arial, Helvetica, sans-serif;
   font-size: var(--almost-small);
   align-items: center;
   border-radius: 50%;

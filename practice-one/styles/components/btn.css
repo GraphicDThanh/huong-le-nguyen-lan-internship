@@ -1,11 +1,11 @@
 .btn {
   font-size: var(--small);
-  font-family: popins, Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  padding: 10px 25px;
+  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-weight: var(--medium);
   border-radius: 5px;
   cursor: pointer;
   border-width: 1px;
+  padding: 9px 23px 9px 23px;
 }
 
 .btn-primary {
@@ -25,5 +25,6 @@
 
 .btn-secondary:hover {
   background-color: var(--primary-color);
+  border: 1px solid red;
   color: var(--white);
 }
