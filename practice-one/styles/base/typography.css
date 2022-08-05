@@ -19,7 +19,7 @@
 }
 
 body {
-  font-family: "poppins";
+  font-family: poppins, Tahoma, sans-serif;
   font-weight: bold;
   line-height: 1.5;
   color: var(--secondary-color);
