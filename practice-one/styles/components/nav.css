@@ -1,4 +1,4 @@
-.list {
+.menu {
   display: flex;
   gap: 42px;
 }
@@ -15,7 +15,7 @@
 .nav-item a {
   text-decoration: none;
   font-size: var(--small);
-  font-family: poppins-medium;
+  font-family: poppins-medium, Arial, Helvetica, sans-serif;
   font-weight: var(--medium);
   color: var(--dark-color);
 }

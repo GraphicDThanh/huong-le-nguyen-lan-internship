@@ -9,7 +9,7 @@
 
 .card-header p {
   justify-content: center;
-  color: var(--almost-white);
+  color: var(--grey-fade-color);
   font-size: var(--huge);
   font-family: poppins-semi, Arial, Helvetica, sans-serif;
   font-weight: var(--semibold);
@@ -22,7 +22,7 @@
 }
 
 .card-title {
-  font-family: poppins-semi;
+  font-family: poppins-semi, Arial, Helvetica, sans-serif;
   font-weight: var(--semibold);
   font-size: var(--small);
   color: var(--dark-color);
