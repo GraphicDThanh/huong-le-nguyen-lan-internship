@@ -45,7 +45,7 @@
 .search-input {
   width: 610px;
   height: 70px;
-  font-family: popins, Arial, Helvetica, sans-serif;
+  font-family: poppins, Arial, Helvetica;
   font-weight: bold;
   font-size: var(--normal);
   padding-left: 30px;

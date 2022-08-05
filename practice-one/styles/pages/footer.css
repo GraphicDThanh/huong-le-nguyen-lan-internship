@@ -1,5 +1,4 @@
-footer {
-  margin-top: 125px;
+.footer-container {
   background-color: black;
 }
 
@@ -7,7 +6,7 @@ footer {
   color: var(--white);
   padding-top: 55px;
   display: grid;
-  grid-template-columns: 280px 280px 280px 260px;
+  grid-template-columns: repeat(4, 277px);
   grid-gap: 20px;
 }
 
@@ -27,7 +26,7 @@ footer {
 }
 
 .footer-name p:first-child {
-  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-family: poppins-semi, Arial, Helvetica;
   font-weight: var(--semibold);
   font-size: var(--almost-small);
   color: var(--primary-color);
@@ -35,7 +34,7 @@ footer {
 }
 
 .footer-location p, a {
-  font-family: poppins-medium, Arial, Helvetica, sans-serif;
+  font-family: poppins-medium, Arial, Helvetica;
   font-weight: var(--medium);
   font-size: var(--small);
 }
@@ -75,7 +74,7 @@ footer {
 }
 
 .footer-terms span {
-  font-family: popins, Arial, Helvetica, sans-serif;
+  font-family: poppins, Arial, Helvetica;
   font-weight: var(--regular);
   letter-spacing: 0.3px;
 }
@@ -96,7 +95,7 @@ footer {
 }
 
 .help-list li a {
-  font-family: popins, Arial, Helvetica, sans-serif;
+  font-family: poppins, Arial, Helvetica;
   font-size: var(--normal);
   font-weight: var(--regular);
   color: var(--white);

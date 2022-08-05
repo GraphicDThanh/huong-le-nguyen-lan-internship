@@ -24,23 +24,17 @@
 }
 
 .jumbotron .container {
-  height: 471px;
   display: flex;
   align-items: center;
   padding: 50px 0 150px;
 }
 
 .header-jumbotron {
-  width: 617px;
   padding-top: 35px;
 }
 
 .header-jumbotron .highlights {
-  margin: 20px 15px 20px 0;
-}
-
-.header-jumbotron .btn {
-  margin-top: 10px;
+  padding: 20px 15px 35px 0;
 }
 
 .jumbotron .container .frame-img {

@@ -3,7 +3,7 @@
 }
 
 .our-services-content {
-  margin-top: 25px;
+  padding-top: 25px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 30px;
@@ -11,7 +11,6 @@
 }
 
 .our-services-card {
-  width: 370px;
   align-items: center;
 }
 
@@ -22,8 +21,15 @@
   gap: 165px;
 }
 
-.our-services-card .card-header, .card-body {
-  width: 330px;
+.our-services-card .card-header .frame-img {
+  width: 80px;
+}
+
+.our-services-card .card-header p {
+  color: var(--grey-fade-color);
+  font-size: var(--huge);
+  font-family: poppins-semi, Arial, Helvetica;
+  font-weight: var(--semibold);
 }
 
 .our-services-card:first-child .card-header p {
@@ -31,7 +37,7 @@
 }
 
 .our-services-card .card-body {
-  padding: 20px 0 25px 10px;
+  padding: 20px 10px 25px 25px;
 }
 
 .our-services-card .card-body .card-title {

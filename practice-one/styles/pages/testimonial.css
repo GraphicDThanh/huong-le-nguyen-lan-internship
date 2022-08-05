@@ -67,14 +67,14 @@
 }
 
 .card-info p:first-child {
-  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-family: poppins-semi, Arial, Helvetica;
   font-weight: var(--medium);
   font-size: var(--small);
   color: var(--primary-color);
 }
 
 .card-info p:nth-child(2) {
-  font-family: popins, Arial, Helvetica, sans-serif;
+  font-family: poppins, Arial, Helvetica;
   font-size: var(--smaller);
 }
 
@@ -91,7 +91,7 @@
   margin-top: 150px;
   width: 50px;
   height: 50px;
-  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-family: poppins-semi, Arial, Helvetica;
   font-size: var(--almost-small);
   align-items: center;
   border-radius: 50%;

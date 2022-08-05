@@ -30,7 +30,7 @@
   width: 270px;
   height: 230px;
   font-size: var(--almost-small);
-  font-family: poppins-semi, Arial, Helvetica, sans-serif;
+  font-family: poppins-semi, Arial, Helvetica;
   grid-column: 2/4;
   grid-row: 2/4;
   z-index: 1;
