@@ -1,6 +1,5 @@
 .section-title {
   color: var(--primary-color);
-  margin-top: 20px;
 }
 
 .section-title::after,
@@ -11,14 +10,16 @@
   height: 1px;
   width: 40px;
   position: relative;
-  vertical-align: text-bottom;
+  vertical-align: middle;
+  top: 5px;
 }
 
 .section-title::after {
-  left: 0.5em;
+  left: 12px;
 }
+
 .section-title-primary::before {
-  right: 0.5em;
+  right: 12px;
 }
 
 .section-title-primary {
@@ -28,18 +29,19 @@
 .section-name {
   color: var(--dark-color);
   font-size: var(--large);
-  font-family: poppins-semi;
+  font-weight: var(--semibold);
+  font-family: poppins-medium, Arial, Helvetica, sans-serif;
   text-align: center;
-  margin: 30px 0 30px 0;
 }
 
 .section-title-biggest {
   font-size: var(--biggest);
-  font-family: poppins-bold;
+  font-family: poppins-bold, Arial, Helvetica, sans-serif;
+  font-weight: var(--bold);
   color: var(--dark-color);
   line-height: 1.5;
 }
 
 .highlights {
-  padding-bottom: 30px;
+  line-height: 1.5;
 }
