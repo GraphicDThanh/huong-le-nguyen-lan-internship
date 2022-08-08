@@ -10,7 +10,7 @@
 ### Information
 - Timeline
   - Estimate day: 4 days.
-  - Actual day: 12 days.
+  - Actual day: 14 days.
 - Techniques: HTML5/ CSS3.
 - Editor: Visual Studio Code.
 - Supported browser: Chrome latest.
@@ -18,11 +18,11 @@
 ### Getting started
 - Step 1: Clone repository
   - With HTTPS :
-     -  ` $ git clone -b feat/init-structure https://github.com/GraphicDThanh/huong-le-nguyen-lan-internship.git`
+     -  ` $ git clone -b feat/practice-one https://github.com/GraphicDThanh/huong-le-nguyen-lan-internship.git`
   - With SSH: 
-     - ` $ git clone -b feat/init-structure git@github.com:GraphicDThanh/huong-le-nguyen-lan-internship.git`
+     - ` $ git clone -b feat/practice-one git@github.com:GraphicDThanh/huong-le-nguyen-lan-internship.git`
      - key : 123456
  - Step 2: Move to folder which just cloned in your computer
-   - `$ cd huong-le-nguyen-lan-internship/practice-one/pages`
+   - `$ cd huong-le-nguyen-lan-internship/practice-one`
  - Step 3: Open index.html
  - Step 4: "Live Server" in "Extensions" and install. After install right-click and click "Open with Live Server"
