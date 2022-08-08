@@ -9,6 +9,35 @@
   padding-top: 15px;
 }
 
+.category-case-study {
+  width: 100%;
+  height: 60px;
+  padding: 20px 0 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.category-item-case-study {
+  padding: 16px 35px;
+  font-size: var(--small);
+  border-radius: 10px;
+}
+
+.category-item-case-study a {
+  text-decoration: none;
+  color: var( --secondary-color);
+}
+
+.category-item-case-study:hover {
+  background-color: var(--primary-color);  
+}
+
+.category-item-case-study:hover a {
+  color: var(--white);
+}
+
 .image-item {
   display: grid;
   grid-template-columns: 60px 270px 60px;
