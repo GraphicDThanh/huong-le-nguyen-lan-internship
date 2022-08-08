@@ -1,8 +1,10 @@
 .send-mail-wrapper {
+  padding: 50px 0 50px 0;
   background-color: var(--primary-color);
   border-radius: 5px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .send-mail-title {
@@ -28,23 +30,24 @@
 }
 
 .send-mail-button {
-  padding: 60px 40px 60px 0;
-  position: relative;
+  margin-right: 40px;
+  height: 70px;
+  border-radius: 5px;
+  background-color: var(--white);
+  display: flex;
+  padding-right: 5px;
   align-items: center;
 }
 
 .send-mail-button .btn {
-  position: absolute;
-  right: 45px;
-  top: 65px;
-  padding: 15px 38px 15px 38px;
+  padding: 15px 38px 15px 38px;  
   border: none;
-  color: white;
+  color: var(--white);
 }
 
 .search-input {
-  width: 610px;
-  height: 70px;
+  width: 410px;
+  height: 65px;
   font-family: poppins, Tahoma, sans-serif;
   font-weight: bold;
   font-size: var(--normal);
