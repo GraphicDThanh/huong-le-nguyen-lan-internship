@@ -1,0 +1,46 @@
+.header-wrapper {
+  background-color: aqua;
+}
+
+.main-wrapper {
+  margin: auto;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 20%);
+  grid-template-rows: repeat(3, 100px);
+  gap: 30px;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  grid-column: 1;
+  grid-row: 1/4;
+}
+
+.menu li {
+  margin-bottom: 10px;
+  padding: 10px;
+  list-style: none;
+  text-align: center;
+  background-color: rgb(155, 92, 92);
+}
+
+.details {
+  grid-column: 2/4;
+  grid-row: 1/4;
+}
+
+.aside {
+  text-align: center;
+  grid-column: 4;
+  grid-row: 1/4;
+  background-color: rgb(125, 141, 141);
+  color: white;
+}
+
+.footer-wrapper {
+  background-color: cadetblue;
+}
