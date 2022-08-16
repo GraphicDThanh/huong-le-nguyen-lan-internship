@@ -1,0 +1,17 @@
+{
+  "name": "my-project",
+  "source": "src/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "husky": "^8.0.1",
+    "parcel": "^2.7.0",
+    "posthtml": "^0.16.6",
+    "posthtml-include": "^1.7.4"
+  }
+}
