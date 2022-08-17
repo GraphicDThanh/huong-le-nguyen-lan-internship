@@ -1,0 +1,38 @@
+.btn-radius {
+  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-size: var(--normal);
+  color: var(--white);
+  padding: 0.9375em 2.25rem;
+  border-radius: 2.3125rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-darker);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color-darker);
+  outline: 0.0625rem solid var(--primary-color-darker);
+}
+
+.btn-secondary:hover {
+  color: var(--white);
+  background-color: var(--primary-color-darker);
+  outline: none;
+}
+
+@media screen and (min-width: 1440px) {
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    outline: 0.0625rem solid var(--white);
+  }
+}
