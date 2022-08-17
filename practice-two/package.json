@@ -2,7 +2,8 @@
   "name": "my-project",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel src/index.html",
+    "components": "parcel src/components.html --port 5000",
     "build": "parcel build",
     "prepare": "husky install"
   },
