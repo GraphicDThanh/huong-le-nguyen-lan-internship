@@ -1,0 +1,8 @@
+.container-components {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  background-color: rgb(138, 154, 168);
+}
