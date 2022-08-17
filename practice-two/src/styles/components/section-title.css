@@ -1,0 +1,14 @@
+.section-title {
+  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-size: var(--biggest);
+  line-height: 3.563rem;
+}
+
+.section-title-dark {
+  color: var(--dark-background-color);
+}
+
+.section-title-dark-small {
+  color: var(--dark-background-color);
+  font-size: var(--small);
+}
