@@ -1,1 +1,19 @@
-
+:root {
+  /* Color */
+  --primary-color: #23A6F0;
+  --primary-color-darker: #119dee;
+  --warm-color:#F3CD03;
+  --text-color: #737373;
+  --text-fade-color: #BDBDBD;
+  --light-background-color: #8EC2F2;
+  --dark-background-color: #252B42;
+  --white: #ffffff; 
+  
+  /* Font-large */
+  --biggest: 2.5rem; /*40*/
+  --big: 1.875rem; /*30*/
+  --small: 1.5rem; /*24*/
+  --smaller: 1.25rem; /*20*/
+  --smallest: 1rem; /*16*/
+  --normal: 0.875rem; /*14*/
+}
