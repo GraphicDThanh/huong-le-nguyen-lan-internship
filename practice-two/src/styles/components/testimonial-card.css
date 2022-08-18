@@ -1,1 +1,52 @@
+.testimonial-card {
+  width: 245px;
+  color: var(--text-color);
+  padding: 30px 40px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
 
+.card-name {
+  font-size: var(--small);
+  padding-top: 8px;
+  font-family: montserrat-bold, Tahoma, sans-serif;
+  color: var(--dark-background-color);
+}
+
+.card-job {
+  font-family: montserrat-semiBold, Tahoma, sans-serif;
+  padding-top: 8px;
+}
+
+.card-rate {
+  width: max-content;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 2px;
+}
+
+.stars {
+  width: 20px; 
+  height: 20px;
+  background: url('../../assets/icons/stars.png') -10px -10px;
+}
+
+.stars:hover {
+  background: url('../../assets/icons/stars.png') -10px -50px;
+}
+
+.stars:hover ~ *.stars {
+  background: url('../../assets/icons/stars.png') -10px -50px;
+}
+
+.description {
+  padding-top: 5px;
+  padding-right: 50px;
+  font-family: montserrat-medium, Tahoma, sans-serif;
+  font-size: var(--normal);
+  line-height: 20px;
+  letter-spacing: 0.2px;
+}
