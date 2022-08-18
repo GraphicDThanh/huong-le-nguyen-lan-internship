@@ -2,8 +2,8 @@
   font-family: montserrat-bold, Tahoma, sans-serif;
   color: var(--white);
   background-color: var(--primary-color);
-  padding: 0.9375rem 2.5rem;
-  border-radius: 0.3125rem;
+  padding: 15px 40px;
+  border-radius: 5px;
   border: none;
   outline: none;
   cursor: pointer;
@@ -15,6 +15,6 @@
 
 @media screen and (min-width: 1440px) {
   .btn-menu {
-    padding: 0.9375rem 1.5625rem;
+    padding: 30px 25px;
   }
 }

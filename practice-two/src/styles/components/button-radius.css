@@ -2,8 +2,8 @@
   font-family: montserrat-bold, Tahoma, sans-serif;
   font-size: var(--normal);
   color: var(--white);
-  padding: 0.9375em 2.25rem;
-  border-radius: 2.3125rem;
+  padding: 10px 36px;
+  border-radius: 37px;
   cursor: pointer;
   border: none;
   outline: none;
@@ -20,7 +20,7 @@
 .btn-secondary {
   background-color: transparent;
   color: var(--primary-color-darker);
-  outline: 0.0625rem solid var(--primary-color-darker);
+  outline: 1px solid var(--primary-color-darker);
 }
 
 .btn-secondary:hover {
@@ -33,6 +33,6 @@
   .btn-secondary {
     background-color: transparent;
     color: var(--white);
-    outline: 0.0625rem solid var(--white);
+    outline: 1px solid var(--white);
   }
 }
