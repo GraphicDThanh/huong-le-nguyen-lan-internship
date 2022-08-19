@@ -1,16 +1,21 @@
-.btn-radius {
+.btn {
   font-family: montserrat-bold, Tahoma, sans-serif;
   font-size: var(--normal);
-  color: var(--white);
-  padding: 12px 36px;
-  border-radius: 37px;
   cursor: pointer;
-  border: none;
   outline: none;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--white);
 }
 
-.btn-primary {
-  background-color: var(--primary-color);
+.btn-radius {
+  padding: 12px 36px;
+  border-radius: 37px;
+}
+
+.btn-rectangle {
+  padding: 15px 82px;
+  border-radius: 5px;
 }
 
 .btn-primary:hover {
@@ -29,10 +34,18 @@
   outline: none;
 }
 
+.btn-menu {
+  display: none;
+}
+
 @media screen and (min-width: 1440px) {
   .btn-secondary {
     background-color: transparent;
     color: var(--white);
     outline: 1px solid var(--white);
+  }
+
+  .btn-menu {
+    padding: 15px 25px;
   }
 }
