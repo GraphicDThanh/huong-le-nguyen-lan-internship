@@ -10,6 +10,43 @@
   </head>
   <body>
     <div class="container-components">
+      <div class="components-btn">
+        <h2>Components button</h2>
+        <include 
+          src="partials/components/button-radius.html" 
+          locals='{
+            "type": "button", 
+            "text": "Get Quote Now", 
+            "class": "btn-primary"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button-radius.html" 
+          locals='{
+            "type": "button", 
+            "text": "Learn More", 
+            "class": "btn-secondary"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button-rectangle.html"
+          locals='{
+            "type": "button",
+            "text": "Try for free"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/button-rectangle.html"
+          locals='{
+            "type": "button",
+            "class": "btn-menu",
+            "text": "Become a member"
+          }'>
+        </include>
+      </div>
       
     </div>
   </body>
