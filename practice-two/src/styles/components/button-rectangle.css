@@ -1,1 +1,20 @@
+.btn-rectangle {
+  font-family: montserrat-bold, Tahoma, sans-serif;
+  color: var(--white);
+  background-color: var(--primary-color);
+  padding: 15px 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 
+.btn-rectangle:hover {
+  background-color: var(--primary-color-darker);
+}
+
+@media screen and (min-width: 1440px) {
+  .btn-menu {
+    padding: 15px 25px;
+  }
+}
