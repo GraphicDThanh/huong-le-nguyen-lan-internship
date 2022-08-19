@@ -10,7 +10,22 @@
   </head>
   <body>
     <div class="container-components">
-      
+      <include 
+        src="partials/components/pricing-card.html"
+        locals='{
+          "title": "FREE",
+          "price": "0"
+        }'>
+      </include>
+
+      <include 
+        src="partials/components/pricing-card.html"
+        locals='{
+          "class": "pricing-card-status",
+          "title": "SILVER",
+          "price": "9.99"
+        }'>
+      </include>
     </div>
   </body>
 </html>

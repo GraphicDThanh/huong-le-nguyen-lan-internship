@@ -1,1 +1,30 @@
-
+<div class="pricing-card {{class}}">
+  <div class="card-status">
+    <p>New</p>
+  </div>
+  <p class="card-title">{{title}}</p>
+  <p class="card-name">Organize across all apps by hand</p>
+  <div class="card-price">
+    <p class="price">{{price}}</p>
+    <p class="unit">$</p>
+    <p class="month">Per Month</p>
+  </div>
+  <div class="card-list">
+    <ul class="list">
+      <li class="checked">Unlimited product updates</li>
+      <li class="checked">Unlimited product updates</li>
+      <li class="checked">Unlimited product updates</li>
+      <li class="unchecked">1GB  Cloud storage</li>
+      <li class="unchecked">Email and community support</li>
+    </ul>
+  </div>
+  <div class="card-btn">
+    <include 
+      src="../src/partials/components/button-rectangle.html" 
+      locals='{
+        "type": "button", 
+        "text": "Try for free", 
+      }'>
+    </include>
+  </div>
+</div>
