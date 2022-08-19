@@ -9,40 +9,41 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <div class="container-components">
+    <div class="container-component">
       <div class="components-btn">
-        <h2>Components button</h2>
+        <h2>List component button</h2>
         <include 
           src="partials/components/button-radius.html" 
           locals='{
+            "class": "btn-radius btn-primary",
             "type": "button", 
-            "text": "Get Quote Now", 
-            "class": "btn-primary"
+            "text": "Get Quote Now"
           }'>
         </include>
         
         <include 
           src="partials/components/button-radius.html" 
           locals='{
+            "class": "btn-radius btn-secondary",
             "type": "button", 
-            "text": "Learn More", 
-            "class": "btn-secondary"
+            "text": "Learn More"
           }'>
         </include>
         
         <include 
-          src="partials/components/button-rectangle.html"
+          src="partials/components/button-radius.html"
           locals='{
+            "class": "btn-rectangle btn-primary",
             "type": "button",
             "text": "Try for free"
           }'>
         </include>
 
         <include 
-          src="partials/components/button-rectangle.html"
+          src="partials/components/button-radius.html"
           locals='{
+            "class": "btn-rectangle btn-primary btn-menu",
             "type": "button",
-            "class": "btn-menu",
             "text": "Become a member"
           }'>
         </include>
