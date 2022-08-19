@@ -8,7 +8,7 @@
   background-color: rgb(138, 154, 168);
 }
 
-.components-testimonial-card {
+.components-industry-card {
   display: flex;
   flex-direction: column;
   gap: 30px;

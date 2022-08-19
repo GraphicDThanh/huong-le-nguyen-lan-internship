@@ -1,1 +1,44 @@
+.industry-card {
+  width: 331px;
+  height: 452px;
+  display: flex;
+  background-repeat: no-repeat;
+  flex-direction: column-reverse;
+  align-items: center;
+}
 
+.card-content {
+  width: 86%;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.card-content .card-name {
+  font-size: var(--normal);
+  font-family: montserrat-semiBold, Tahoma, sans-serif;
+}
+
+.card-content .card-title {
+  font-size: var(--small);
+  font-family: montserrat-bold, Tahoma, sans-serif;
+  line-height: 32px;
+  letter-spacing: 0.1px;
+}
+
+.forest {
+  background-image: url(../../assets/images/forest.png);
+}
+
+.chart {
+  background-image: url(../../assets/images/chart.png);
+}
+
+.economy {
+  background-image: url(../../assets/images/economy.png);
+}
+
+.sky-stars {
+  background-image: url(../../assets/images/sky-stars.png);
+}

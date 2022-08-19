@@ -10,7 +10,27 @@
   </head>
   <body>
     <div class="container-components">
-      
+      <div class="components-industry-card">
+        <h2>Industry components</h2>
+        <include 
+          src="partials/components/industry-card.html"
+          locals='{
+            "class": "forest",
+            "name": "Tax Management",
+            "title": "Life Tips From Top Ten Adventure Travelers"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/industry-card.html"
+          locals='{
+            "class": "chart",
+            "name": "Tax Management",
+            "title": "Life Tips From Top Ten Adventure Travelers"
+          }'>
+        </include>
+      </div>
+
     </div>
   </body>
 </html>
