@@ -1,12 +1,12 @@
 :root {
   /* Color */
-  --primary-color: #23A6F0;
+  --primary-color:#23a6f0;
   --primary-color-darker: #119dee;
-  --warm-color:#F3CD03;
+  --warm-color:#f3cd03;
   --text-color: #737373;
-  --text-fade-color: #BDBDBD;
-  --light-background-color: #8EC2F2;
-  --dark-background-color: #252B42;
+  --text-fade-color:#bdbdbd;
+  --light-background-color:#8ec2f2;
+  --dark-background-color:#252b42;
   --white: #ffffff; 
   
   /* Font-large */
