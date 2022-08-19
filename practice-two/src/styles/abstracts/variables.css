@@ -10,10 +10,10 @@
   --white: #ffffff; 
   
   /* Font-large */
-  --biggest: 40px; /*40*/
-  --big: 30px; /*30*/
-  --small: 24px; /*24*/
-  --smaller: 20px; /*20*/
-  --smallest: 16px; /*16*/
-  --normal: 14px; /*14*/
+  --biggest: 40px;
+  --big: 30px; 
+  --small: 24px;
+  --smaller: 20px; 
+  --smallest: 16px;
+  --normal: 14px;
 }
