@@ -1,1 +1,16 @@
-
+<div class="industry-card {{class}}">
+  <div class="card-content">
+    <p class="card-name">{{name}}</p>
+    <p class="card-title">{{title}}</p>
+    <div class="card-btn">
+      <include 
+      src="../src/partials/components/button-radius.html" 
+      locals='{
+        "type": "button", 
+        "text": "View Project", 
+        "class": "btn-primary"
+      }'>
+    </include>
+    </div>
+  </div>
+</div>
