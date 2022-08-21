@@ -15,20 +15,19 @@
 }
 
 .pricing-card-status .card-status {
+  width: 90px;
+  height: 90px;
   position: absolute;
   top: -30px;
   right: 15px;
-  display: block;
-}
-
-.pricing-card-status .card-status {
-  width: 90px;
-  height: 90px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: block; 
+  text-align: center;
   border-radius: 52px;
   background-color: var(--alert-color);
+}
+
+.pricing-card-status .card-status p {
+  padding-top: 35px;
 }
 
 .pricing-card .card-title, 
@@ -50,32 +49,29 @@
 
 .pricing-card .card-price {
   color: var(--primary-color);
-  display: grid;
-  grid-template-columns: 1fr 10px 1fr;
-  grid-template-rows: repeat(2, 28px);
+  display: flex;
 }
 
 .pricing-card .card-price .price {
-  padding-top: 20px;
+  padding-top: 16px;
   font-size: var(--biggest);
-  text-align: right;
-  grid-column: 1;
-  grid-row: 1/3;
 }
 
-.pricing-card .card-price .unit {
-  padding-top: 5px;
+.pricing-card .card-price .unit-and-month {
+  padding: 5px 0 0 10px;
+}
+
+.pricing-card .card-price .unit-and-month .unit {
   font-size: var(--smallest);
-  grid-column: 3;
-  grid-row: 1;
 }
 
-.pricing-card .card-price .month {
-  padding-top: 3px;
+.pricing-card .card-price .unit-and-month .month {
   font-family: montserrat-semiBold, Tahoma, sans-serif;
   font-size: var(--normal);
-  grid-column: 3;
-  grid-row: 2;
+}
+
+.pricing-card .card-list {
+  padding-top: 5px;
 }
 
 .pricing-card .card-list .list {
