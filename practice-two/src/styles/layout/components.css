@@ -1,4 +1,4 @@
-.container-components {
+.container-component {
   padding: 10px;
   margin: auto;
   display: flex;
@@ -8,7 +8,7 @@
   background-color: rgb(138, 154, 168);
 }
 
-.components-industry-card {
+.component-testimonial-card {
   display: flex;
   flex-direction: column;
   gap: 30px;
