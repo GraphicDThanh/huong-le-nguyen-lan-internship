@@ -1,20 +1,20 @@
 @font-face {
-  font-family: "montserrat-regular"; /*400*/
+  font-family: "montserrat-regular"; /*font-weight: 400*/
   src: url("../../assets/fonts/Montserrat-Regular.ttf");
 }
 
 @font-face {
-  font-family: "montserrat-medium"; /*500*/
+  font-family: "montserrat-medium"; /*font-weight: 500*/
   src: url("../../assets/fonts/Montserrat-Medium.ttf");
 }
 
 @font-face {
-  font-family: "montserrat-semiBold"; /*600*/
+  font-family: "montserrat-semiBold"; /*font-weight: 600*/
   src: url("../../assets/fonts/Montserrat-SemiBold.ttf");
 }
 
 @font-face {
-  font-family: "montserrat-bold"; /*700*/
+  font-family: "montserrat-bold"; /*font-weight: 700*/
   src: url("../../assets/fonts/Montserrat-Bold.ttf");
 }
 
