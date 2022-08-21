@@ -2,7 +2,6 @@
   width: 331px;
   height: 452px;
   display: flex;
-  background-repeat: no-repeat;
   flex-direction: column-reverse;
   align-items: center;
 }
