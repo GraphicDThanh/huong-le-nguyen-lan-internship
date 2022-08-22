@@ -1,1 +1,103 @@
-<button type="button">Hello</button>
+<header class="header-wrapper">
+  <div class="header-nav container">
+    <figure class="header-logo">
+      <a href="javascript:void(0)">
+        <img src="assets/icons/BrandName.svg" alt="Logo BrandName">
+      </a>
+    </figure>
+  
+    <div class="icons-nav">
+      <div class="icon icon-search"></div>
+      <div class="icon icon-cart"></div>
+      <div class="icon icon-bars">
+        <label for="nav-mobile-input"></label>
+      </div>
+    </div>
+
+    <div class="header-pc">
+      <nav class="nav-pc">
+        <ul class="nav-collapse">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Product</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+        </ul>
+    
+        <ul class="nav-collapse">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Login</a>
+          </li>
+          <include 
+            src="../src/partials/components/button.html"
+            locals='{
+              "class": "btn-rectangle btn-primary btn-menu",
+              "type": "button",
+              "text": "Become a member"
+            }'>
+          </include>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <div class="nav-list">
+    <input type="checkbox" class="bars-checkbox" id="nav-mobile-input">
+    <nav class="nav-mobile">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>  
+
+  <div class="header-content container">
+    <div class="filter-overlay"></div>
+    <h1>We Ensure A Best Insurance Service</h1>
+    <p class="text-mobile">
+      We know how large 
+      objects will act, but things 
+      on a small scale just do 
+      not act that way.
+    </p>
+    <p class="text-pc">
+      We know how large objects will act, 
+      but things on a small scale.
+    </p>
+    <div class="jumbotron-btn">
+      <include 
+        src="../src/partials/components/button.html" 
+        locals='{
+          "class": "btn-radius btn-primary",
+          "type": "button", 
+          "text": "Get Quote Now"
+        }'>
+      </include>
+      <include 
+        src="../src/partials/components/button.html" 
+        locals='{
+          "class": "btn-radius btn-secondary",
+          "type": "button", 
+          "text": "Learn More"
+        }'>
+      </include>
+    </div>
+  </div>
+</header>
