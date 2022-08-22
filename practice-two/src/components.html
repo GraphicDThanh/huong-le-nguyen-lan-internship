@@ -10,6 +10,36 @@
   </head>
   <body>
     <div class="container-component">
+      <div class="components-title">
+        <h2>List components title</h2>
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "title": "Pricing"}'>
+        </include>
+
+        <include 
+          src="partials/components/section-text.html"
+          locals='{
+            "title": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title-dark",
+            "title": "Pricing"}'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title-dark-small",
+            "title": "Pricing"}'>
+        </include>
+      </div>
+      
       <div class="components-btn">
         <h2>List component button</h2>
         <include 
