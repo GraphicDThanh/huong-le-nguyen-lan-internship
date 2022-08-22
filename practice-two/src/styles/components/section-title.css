@@ -4,11 +4,10 @@
   line-height: 57px;
 }
 
-.section-title-dark {
+.section-title-dark, .section-title-dark-small {
   color: var(--dark-background-color);
 }
 
 .section-title-dark-small {
-  color: var(--dark-background-color);
   font-size: var(--small);
 }
