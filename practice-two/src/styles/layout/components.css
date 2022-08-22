@@ -1,0 +1,15 @@
+.container-component {
+  padding: 10px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  background-color: var(--dark-color-lighter);
+}
+
+.component-testimonial-card {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
