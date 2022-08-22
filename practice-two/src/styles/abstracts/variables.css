@@ -6,7 +6,7 @@
   --alert-color: #e77c40;
   --dark-color: #252b42;
   --dark-color-lighter: #2e3552;
-  --white: #ffffff; 
+  --white: #fff;
   
   /* Text-color */
   --text-color: #737373;
@@ -15,10 +15,9 @@
   /* Background-color */
   --light-background-color: #8ec2f2;
 
-  /* Font-large */
-  --huge: 58px;
+  /* Font-size */
   --biggest: 40px;
-  --big: 30px; 
+  --big: 30px;
   --small: 24px;
   --smaller: 20px; 
   --smallest: 16px;
