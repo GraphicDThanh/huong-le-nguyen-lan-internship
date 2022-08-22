@@ -18,7 +18,8 @@
   border-radius: 5px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover,
+.btn-secondary:hover {
   background-color: var(--primary-color-darker);
 }
 
@@ -30,7 +31,6 @@
 
 .btn-secondary:hover {
   color: var(--white);
-  background-color: var(--primary-color-darker);
   outline: none;
 }
 
