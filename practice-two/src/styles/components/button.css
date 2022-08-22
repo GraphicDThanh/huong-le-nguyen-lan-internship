@@ -1,0 +1,67 @@
+.btn {
+  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-size: var(--normal);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-radius {
+  padding: 10px 36px;
+  border-radius: 37px;
+}
+
+.btn-rectangle {
+  padding: 15px 82px;
+  border-radius: 5px;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background-color: var(--primary-color-darker);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color-darker);
+  outline: 1px solid var(--primary-color-darker);
+}
+
+.btn-secondary:hover {
+  color: var(--white);
+  outline: none;
+}
+
+.btn-menu {
+  display: none;
+}
+
+@media screen and (min-width: 1440px) {
+  .btn-radius {
+    padding: 15px 36px;
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: var(--white);
+    outline: 1px solid var(--white);
+  }
+
+  .btn-menu {
+    display: block;
+    padding: 15px 25px;
+  }
+
+  .btn-menu::after {
+    width: 12px;
+    height: 10px;
+    content: "";
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-left: 10px;
+    background: url(../../assets/icons/icon-arrow-next.svg);
+  }
+}

@@ -10,6 +10,75 @@
   </head>
   <body>
     <div class="container-component">
+      <div class="components-title">
+        <h2>List components title</h2>
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "title": "Pricing"}'>
+        </include>
+
+        <include 
+          src="partials/components/section-text.html"
+          locals='{
+            "title": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title-dark",
+            "title": "Pricing"}'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title-dark-small",
+            "title": "Pricing"}'>
+        </include>
+      </div>
+      
+      <div class="components-btn">
+        <h2>List component button</h2>
+        <include 
+          src="partials/components/button.html" 
+          locals='{
+            "class": "btn-radius btn-primary",
+            "type": "button", 
+            "text": "Get Quote Now"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button.html" 
+          locals='{
+            "class": "btn-radius btn-secondary",
+            "type": "button", 
+            "text": "Learn More"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button.html"
+          locals='{
+            "class": "btn-rectangle btn-primary",
+            "type": "button",
+            "text": "Try for free"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/button.html"
+          locals='{
+            "class": "btn-rectangle btn-primary btn-menu",
+            "type": "button",
+            "text": "Become a member"
+          }'>
+        </include>
+      </div>
+
       <div class="components-testimonial-card">
         <h2>Testimonial components</h2>
         <include 
