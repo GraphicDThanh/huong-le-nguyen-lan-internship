@@ -1,6 +1,4 @@
 .main-content {
-  padding: 0 45px;
   display: flex;
   flex-direction: column;
-  background-color: var(--light-background-color);
 }
