@@ -1,11 +1,12 @@
 .pricing-card {
-  width: 327px;
+  width: 323px;
   font-family: montserrat-bold, Tahoma, sans-serif;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 35px;
+  border: 2px solid var(--light-background-color);
   border-radius: 10px;
   background-color: var(--white);
 }
@@ -35,6 +36,10 @@
   font-size: var(--small);
 }
 
+.pricing-card .card-title, .card-name {
+  order: 1;
+}
+
 .pricing-card .card-title {
   padding-top: 53px;
   color: var(--dark-color);
@@ -50,6 +55,7 @@
 .pricing-card .card-price {
   color: var(--primary-color);
   display: flex;
+  order: 2;
 }
 
 .pricing-card .card-price .price {
@@ -72,11 +78,12 @@
 
 .pricing-card .card-list {
   padding-top: 5px;
+  order: 3;
 }
 
 .pricing-card .card-list .list {
   color: var(--dark-color);
-  padding: 0 40px;
+  padding: 0 34px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -93,11 +100,15 @@
   width: 35px;
   height: 32px;
   content: "";
+  margin-right: 10px;
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  margin-right: 10px;
   vertical-align: text-bottom;
+}
+
+.pricing-card .card-list .list li:nth-child(5)::before {
+  padding-bottom: 20px;
 }
 
 .pricing-card .card-list .list .checked::before {
@@ -110,4 +121,41 @@
 
 .pricing-card .card-btn {
   padding-bottom: 50px;
+  order: 4;
+}
+
+@media screen and (min-width: 1440px) {
+  .pricing-card .card-price {
+    width: 120px;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .pricing-card .card-price .unit-and-month {
+    padding: 0;
+  }
+
+  .pricing-card .card-price .unit-and-month .unit {
+    padding-top: 17px;
+    font-size: var(--biggest);
+  }
+
+  .pricing-card .card-price .unit-and-month .month {
+    font-family: montserrat-bold, Tahoma, sans-serif;
+    font-size: var(--smallest);
+    position: absolute;
+    left: 13px;
+    top: 55px;
+  }
+
+  .pricing-card .card-list {
+    order: 4;
+    padding-bottom: 50px;
+  }
+
+  .pricing-card .card-btn {
+    order: 3;
+    padding: 40px 0 0 0;
+  }
+ 
 }
