@@ -9,7 +9,7 @@
 }
 
 .btn-radius {
-  padding: 12px 36px;
+  padding: 10px 36px;
   border-radius: 37px;
 }
 
@@ -39,6 +39,10 @@
 }
 
 @media screen and (min-width: 1440px) {
+  .btn-radius {
+    padding: 15px 36px;
+  }
+
   .btn-secondary {
     background-color: transparent;
     color: var(--white);
@@ -46,6 +50,18 @@
   }
 
   .btn-menu {
+    display: block;
     padding: 15px 25px;
+  }
+
+  .btn-menu::after {
+    width: 12px;
+    height: 10px;
+    content: "";
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-left: 10px;
+    background: url(../../assets/icons/icon-arrow-next.svg);
   }
 }
