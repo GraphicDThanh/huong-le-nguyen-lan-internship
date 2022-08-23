@@ -1,1 +1,15 @@
+.feature-wrapper {
+  padding: 120px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 115px;
+  background-color: var(--dark-color);
+}
 
+@media screen and (min-width: 1440px) {
+  .feature-wrapper {
+    padding: 140px 244px;
+    flex-direction: row;
+
+  }
+}
