@@ -16,7 +16,7 @@
 
 .card-content .card-name {
   font-size: var(--normal);
-  font-family: montserrat-semiBold, Tahoma, sans-serif;
+  font-family: montserrat-medium, Tahoma, sans-serif;
 }
 
 .card-content .card-title {
@@ -40,4 +40,11 @@
 
 .sky-stars {
   background-image: url(../../assets/images/sky-stars.png);
+}
+
+@media screen and (min-width: 1440px) {
+  .card-content .card-title {
+    font-family: montserrat-regular, Tahoma, sans-serif;
+    font-size: var(--smaller);
+  }
 }
