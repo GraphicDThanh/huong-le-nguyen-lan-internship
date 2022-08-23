@@ -1,0 +1,35 @@
+.feature-frame{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.frame-img {
+  width: 75px;
+  height: 60px;
+}
+
+.frame-wallet {
+  background: url('../../assets/icons/icon-frame.png') -10px -90px;
+}
+
+.frame-flag {
+  background: url('../../assets/icons/icon-frame.png') -10px -10px;
+}
+
+.frame-users {
+  background: url('../../assets/icons/icon-frame.png') -103px -10px;
+}
+
+.feature-frame .frame-title {
+  padding: 30px 0 10px 0;
+  font-size: var(--smallest);
+  font-family: montserrat-bold, Tahoma, sans-serif;
+}
+
+.feature-frame .frame-description {
+  width: 60%;
+  font-size: var(--normal);
+  font-family: montserrat-medium, Tahoma, sans-serif;
+}
