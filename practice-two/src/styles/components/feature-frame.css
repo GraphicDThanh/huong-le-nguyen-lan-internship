@@ -8,18 +8,19 @@
 .frame-img {
   width: 75px;
   height: 60px;
+  background: url('../../assets/icons/icon-frame.png');
 }
 
 .frame-wallet {
-  background: url('../../assets/icons/icon-frame.png') -10px -90px;
+  background-position: -10px -90px;
 }
 
 .frame-flag {
-  background: url('../../assets/icons/icon-frame.png') -10px -10px;
+  background-position: -10px -10px;
 }
 
 .frame-users {
-  background: url('../../assets/icons/icon-frame.png') -103px -10px;
+  background-position: -103px -10px;
 }
 
 .feature-frame .frame-title {
