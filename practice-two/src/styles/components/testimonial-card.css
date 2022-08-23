@@ -39,11 +39,11 @@
 }
 
 .stars:hover {
-  background: url('../../assets/icons/stars.png') -10px -50px;
+  background-position: -10px -50px;
 }
 
 .stars:hover ~ .stars {
-  background: url('../../assets/icons/stars.png') -10px -50px;
+  background-position: -10px -50px;
 }
 
 .description {
