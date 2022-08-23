@@ -9,23 +9,94 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <div class="container-components">
-      <include 
-        src="partials/components/pricing-card.html"
-        locals='{
-          "title": "FREE",
-          "price": "0"
-        }'>
-      </include>
+    <div class="container-component">
+      <div class="components-title">
+        <h2>List components title</h2>
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "title": "Pricing"}'>
+        </include>
 
-      <include 
-        src="partials/components/pricing-card.html"
-        locals='{
-          "class": "pricing-card-status",
-          "title": "SILVER",
-          "price": "9.99"
-        }'>
-      </include>
+        <include 
+          src="partials/components/section-text.html"
+          locals='{
+            "title": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title-dark",
+            "title": "Pricing"}'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title-dark-small",
+            "title": "Pricing"}'>
+        </include>
+      </div>
+      
+      <div class="components-btn">
+        <h2>List component button</h2>
+        <include 
+          src="partials/components/button.html" 
+          locals='{
+            "class": "btn-radius btn-primary",
+            "type": "button", 
+            "text": "Get Quote Now"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button.html" 
+          locals='{
+            "class": "btn-radius btn-secondary",
+            "type": "button", 
+            "text": "Learn More"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button.html"
+          locals='{
+            "class": "btn-rectangle btn-primary",
+            "type": "button",
+            "text": "Try for free"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/button.html"
+          locals='{
+            "class": "btn-rectangle btn-primary btn-menu",
+            "type": "button",
+            "text": "Become a member"
+          }'>
+        </include>
+      </div>
+
+      <div class="component-pricing-card">
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "title": "FREE",
+            "price": "0"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "class": "pricing-card-status",
+            "title": "SILVER",
+            "price": "9.99"
+          }'>
+        </include>
+      </div>
     </div>
   </body>
 </html>
