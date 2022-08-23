@@ -8,6 +8,10 @@
   background-color: var(--white);
 }
 
+.card-avatar {
+  display: none;
+}
+
 .testimonial-card .card-name {
   font-size: var(--small);
   padding-top: 8px;
@@ -25,7 +29,7 @@
   padding-top: 5px;
   display: flex;
   flex-direction: row-reverse;
-  gap: 2px;
+  gap: 8px;
 }
 
 .stars {
@@ -48,4 +52,31 @@
   font-size: var(--normal);
   line-height: 20px;
   letter-spacing: 0.2px;
+}
+
+@media screen and (min-width: 1440px) {
+  .testimonial-card {
+    position: relative;
+    width: 370px;
+  }
+
+  .description {
+    padding: 5px 0 0 0;
+  }
+
+  .card-avatar {
+    display: block;
+    position: absolute;
+    height: 72px;
+    width: 72px;
+    left: -50px;
+  }
+
+  .man {
+    background-image: url(../../assets/images/man.png);
+  }
+
+  .woman {
+    background-image: url(../../assets/images/woman.png);
+  }
 }
