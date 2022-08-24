@@ -1,5 +1,5 @@
 .header-wrapper {
-  background-color: var(--dark-color);  
+  background-color: var(--dark-color);
 }
 
 .header-nav {
@@ -9,30 +9,37 @@
   gap: 70px;
 }
 
+.header-logo {
+  width: 145px;
+  height: 32px;
+}
+
 .icon {
   cursor: pointer;
-  width: 24px; height: 23px;
+  width: 24px;
+  height: 23px;
+  background: url('../../assets/icons/icons-menu.png');
 }
 
 .icon-search {
   height: 28px;
-  background: url('../../assets/icons/icons-menu.png') -10px -10px;
+  background-position: -10px -10px;
 }
 
 .icon-cart {
-  background: url('../../assets/icons/icons-menu.png') -54px -10px;
+  background-position: -54px -10px;
 }
 
 .icon-bars {
   margin: 5px 0 0 5px;
-  background: url('../../assets/icons/icons-menu.png') -54px -54px;
+  background-position: -54px -54px;
 }
 
 .icon-bars:hover {
-  background: url('../../assets/icons/icons-menu.png') -10px -54px;
+  background-position: -10px -54px;
 }
 
-.icon-bars label{
+.icon-bars label {
   padding: 20px;
   cursor: pointer;
 }
@@ -49,38 +56,40 @@
 }
 
 .nav-mobile {
-  padding: 50px 0 80px 0;
+  height: 0;
+  transition: height 1s;
 }
 
 .text-pc,
 .header-pc,
-.bars-checkbox,
-.nav-mobile {
+.bars-checkbox {
   display: none;
 }
 
 .bars-checkbox:checked ~ .nav-mobile {
-  display: block;
+  height: 415px;
 }
 
-.nav-list .nav-mobile {
+.nav-mobile {
   width: 100%;
 }
 
-.nav-list .nav-mobile .nav {
+.nav-mobile .nav {
+  padding-top: 50px;
+  padding-bottom: 100px;
   text-align: center;
 }
 
-.nav-list .nav-mobile .nav .nav-item {
+.nav-mobile .nav .nav-item {
   cursor: pointer;
   padding: 25px 0;
 }
 
-.nav-list .nav-mobile .nav .nav-item:hover {
+.nav-mobile .nav .nav-item:hover {
   background-color: var(--dark-color-lighter);
 }
 
-.nav-list .nav-mobile .nav .nav-item .nav-link{
+.nav .nav-item .nav-link{
   font-family: montserrat-regular, Tahoma, sans-serif;
   font-size: var(--big);
   color: var(--white);
@@ -96,7 +105,7 @@
   align-items: center;
   justify-content: flex-end;
   background-image: url(../../assets/images/background-family-hello.jpg);
-  background-position: -1301px 1085px;
+  background-position: -1300px 1085px;
   background-size: 600%;
 }
 
@@ -113,14 +122,16 @@
   display: block;
 }
 
-.header-content h1, p, .jumbotron-btn {
+.header-content .title-biggest,
+.jumbotron-btn,
+p {
   z-index: 2;
 }
 
-.header-content h1 {
+.header-content .title-biggest {
   font-family: montserrat-bold, Tahoma, sans-serif;
   font-size: var(--biggest);
-  line-height: 57px;
+  line-height: 58px;
   color: var(--white);
 }
 
@@ -168,7 +179,7 @@
     display: flex;
     gap: 230px;
   }
-  
+
   .nav-pc .nav-collapse:first-child {
     gap: 20px;
   }
@@ -180,7 +191,7 @@
     gap: 45px;
   }
 
-  .nav-pc .nav-collapse .nav-item .nav-link{
+  .nav-collapse .nav-item .nav-link {
     font-family: montserrat-bold, Tahoma, sans-serif;
     font-size: var(--normal);
     text-decoration: none;
@@ -191,19 +202,19 @@
     width: 50%;
     background-image: none;
     align-items: flex-start;
-    filter: brightness(1);
   }
 
-  .header-content p, h1 {
+  .header-content p,
+  .title-biggest {
     text-align: left;
   }
 
-  .header-content h1 {
+  .header-content .title-biggest {
     font-size: var(--huge);
     line-height: 80px;
     padding-bottom: 25px;
   }
-  
+
   .header-content p {
     width: 52%;
     padding: 7px 0;
