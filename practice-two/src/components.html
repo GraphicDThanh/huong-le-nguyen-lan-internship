@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <div class="container-component">
+    <div class="component container-component">
       <div class="components-title">
         <h2>List components title</h2>
         <include 
@@ -40,7 +40,7 @@
         </include>
       </div>
       
-      <div class="components-btn">
+      <div class="component components-btn">
         <h2>List component button</h2>
         <include 
           src="partials/components/button.html" 
@@ -75,6 +75,26 @@
             "class": "btn-rectangle btn-primary btn-menu",
             "type": "button",
             "text": "Become a member"
+          }'>
+        </include>
+      </div>
+
+      <div class="component component-pricing-card">
+        <h2>Component pricing card</h2>
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "title": "FREE",
+            "price": "0"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "class": "pricing-card-status",
+            "title": "SILVER",
+            "price": "9.99"
           }'>
         </include>
       </div>
