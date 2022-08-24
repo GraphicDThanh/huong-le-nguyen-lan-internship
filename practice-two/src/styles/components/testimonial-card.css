@@ -1,5 +1,4 @@
 .testimonial-card {
-  width: 245px;
   padding: 30px 40px;
   color: var(--text-color);
   display: flex;
@@ -38,10 +37,7 @@
   background: url('../../assets/icons/stars.png') -10px -10px;
 }
 
-.star:hover {
-  background-position: -10px -50px;
-}
-
+.star:hover,
 .star:hover ~ .star {
   background-position: -10px -50px;
 }
@@ -57,7 +53,6 @@
 @media screen and (min-width: 1440px) {
   .testimonial-card {
     position: relative;
-    width: 370px;
   }
 
   .description {
