@@ -1,1 +1,38 @@
+.pricing-wrapper {
+  padding: 75px 45px 155px 45px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  background-color: var(--dark-color);
+}
 
+.pricing-title {
+  padding: 0 30px;
+  text-align: center;
+}
+
+.pricing-title p {
+  padding-top: 10px;
+}
+
+.pricing-content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+@media screen and (min-width: 1440px) {
+  .pricing-wrapper {
+    align-items: center;
+    gap: 110px;
+  }
+
+  .pricing-title {
+    width: 400px;
+  }
+
+  .pricing-content {
+    flex-direction: row;
+    gap: 30px;
+  }
+}
