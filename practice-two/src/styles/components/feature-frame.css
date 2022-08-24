@@ -1,4 +1,5 @@
 .feature-frame{
+  width: 225px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,13 +31,6 @@
 }
 
 .feature-frame .frame-description {
-  width: 60%;
   font-size: var(--normal);
   font-family: montserrat-medium, Tahoma, sans-serif;
-}
-
-@media screen and (min-width: 1440px) {
-  .feature-frame .frame-description {
-    width: 100%;
-  }
 }
