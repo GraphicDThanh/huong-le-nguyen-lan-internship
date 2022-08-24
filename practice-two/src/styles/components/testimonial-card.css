@@ -32,18 +32,18 @@
   gap: 8px;
 }
 
-.stars {
+.star {
   width: 20px; 
   height: 20px;
   background: url('../../assets/icons/stars.png') -10px -10px;
 }
 
-.stars:hover {
-  background: url('../../assets/icons/stars.png') -10px -50px;
+.star:hover {
+  background-position: -10px -50px;
 }
 
-.stars:hover ~ .stars {
-  background: url('../../assets/icons/stars.png') -10px -50px;
+.star:hover ~ .star {
+  background-position: -10px -50px;
 }
 
 .description {
