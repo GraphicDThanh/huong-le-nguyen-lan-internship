@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <div class="container-component">
+    <div class="component container-component">
       <div class="components-title">
         <h2>List components title</h2>
         <include 
@@ -40,7 +40,7 @@
         </include>
       </div>
       
-      <div class="components-btn">
+      <div class="component components-btn">
         <h2>List component button</h2>
         <include 
           src="partials/components/button.html" 
@@ -79,7 +79,7 @@
         </include>
       </div>
 
-      <div class="components-testimonial-card">
+      <div class="component components-testimonial-card">
         <h2>Testimonial components</h2>
         <include 
           src="partials/components/testimonial-card.html"
@@ -87,6 +87,26 @@
             "name": "Regina Miles",
             "job": "Designer",
             "description": "This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space. This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space."
+          }'>
+        </include>
+      </div>
+    
+      <div class="component component-pricing-card">
+        <h2>Component pricing card</h2>
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "title": "FREE",
+            "price": "0"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "class": "pricing-card-status",
+            "title": "SILVER",
+            "price": "9.99"
           }'>
         </include>
       </div>
