@@ -110,12 +110,17 @@
   vertical-align: text-bottom;
 }
 
+.checked::before,
+.unchecked::before {
+  background: url('../../assets/icons/icon-tick.png');
+}
+
 .checked::before {
-  background: url('../../assets/icons/icon-tick.png') -63px -10px;
+  background-position: -63px -10px;
 }
 
 .unchecked::before {
-  background: url('../../assets/icons/icon-tick.png') -10px -10px;
+  background-position: -10px -10px;
 }
 
 .pricing-card .card-list .list li:nth-child(5)::before {
