@@ -23,6 +23,7 @@
 
 @media screen and (min-width: 1440px) {
   .pricing-wrapper {
+    padding: 75px 197px 155px;
     align-items: center;
     gap: 110px;
   }
