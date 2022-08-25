@@ -1,5 +1,4 @@
 .testimonial-card {
-  width: 245px;
   padding: 30px 40px;
   color: var(--text-color);
   display: flex;
@@ -35,18 +34,14 @@
   gap: 8px;
 }
 
-.stars {
-  width: 20px; 
-  height: 20px;
+.star {
+  padding: 10px;
   background: url('../../assets/icons/stars.png') -10px -10px;
 }
 
-.stars:hover {
-  background: url('../../assets/icons/stars.png') -10px -50px;
-}
-
-.stars:hover ~ .stars {
-  background: url('../../assets/icons/stars.png') -10px -50px;
+.star:hover,
+.star:hover ~ .star {
+  background-position: -10px -50px;
 }
 
 .description {
@@ -60,7 +55,6 @@
 @media screen and (min-width: 1440px) {
   .testimonial-card {
     position: relative;
-    width: 370px;
   }
 
   .description {
@@ -70,8 +64,7 @@
   .card-avatar {
     display: block;
     position: absolute;
-    height: 72px;
-    width: 72px;
+    padding: 36px;
     left: -50px;
   }
 
