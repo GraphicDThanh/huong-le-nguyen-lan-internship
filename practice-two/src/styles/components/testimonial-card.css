@@ -12,16 +12,19 @@
   display: none;
 }
 
+.testimonial-card .card-name,
+.card-job {
+  padding-top: 8px;
+}
+
 .testimonial-card .card-name {
   font-size: var(--small);
-  padding-top: 8px;
   color: var(--dark-background-color);
   font-family: montserrat-bold, Tahoma, sans-serif;
 }
 
 .card-job {
   font-family: montserrat-semiBold, Tahoma, sans-serif;
-  padding-top: 8px;
 }
 
 .card-rate {
