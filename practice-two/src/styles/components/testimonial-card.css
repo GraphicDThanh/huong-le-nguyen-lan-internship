@@ -1,1 +1,75 @@
+.testimonial-card {
+  padding: 30px 40px;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  background-color: var(--white);
+}
 
+.card-avatar {
+  display: none;
+}
+
+.testimonial-card .card-name {
+  font-size: var(--small);
+  padding-top: 8px;
+  color: var(--dark-background-color);
+  font-family: montserrat-bold, Tahoma, sans-serif;
+}
+
+.card-job {
+  font-family: montserrat-semiBold, Tahoma, sans-serif;
+  padding-top: 8px;
+}
+
+.card-rate {
+  width: max-content;
+  padding-top: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+}
+
+.star {
+  padding: 10px;
+  background: url('../../assets/icons/stars.png') -10px -10px;
+}
+
+.star:hover,
+.star:hover ~ .star {
+  background-position: -10px -50px;
+}
+
+.description {
+  padding: 5px 50px 0 0;
+  font-family: montserrat-medium, Tahoma, sans-serif;
+  font-size: var(--normal);
+  line-height: 20px;
+  letter-spacing: 0.2px;
+}
+
+@media screen and (min-width: 1440px) {
+  .testimonial-card {
+    position: relative;
+  }
+
+  .description {
+    padding: 5px 0 0 0;
+  }
+
+  .card-avatar {
+    display: block;
+    position: absolute;
+    padding: 36px;
+    left: -50px;
+  }
+
+  .man {
+    background-image: url(../../assets/images/man.png);
+  }
+
+  .woman {
+    background-image: url(../../assets/images/woman.png);
+  }
+}
