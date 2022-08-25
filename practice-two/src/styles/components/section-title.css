@@ -5,9 +5,10 @@
 }
 
 .section-title-dark, .section-title-dark-small {
-  color: var(--dark-background-color);
+  color: var(--dark-color);
 }
 
 .section-title-dark-small {
-  font-size: var(--small);
+  line-height: 24px;
+  font-size: var(--smallest);
 }

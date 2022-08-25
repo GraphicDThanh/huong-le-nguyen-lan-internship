@@ -11,16 +11,20 @@
   display: none;
 }
 
+.testimonial-card .card-name,
+.card-job {
+  padding-top: 8px;
+}
+
+
 .testimonial-card .card-name {
   font-size: var(--small);
-  padding-top: 8px;
   color: var(--dark-background-color);
   font-family: montserrat-bold, Tahoma, sans-serif;
 }
 
 .card-job {
   font-family: montserrat-semiBold, Tahoma, sans-serif;
-  padding-top: 8px;
 }
 
 .card-rate {
@@ -32,8 +36,7 @@
 }
 
 .star {
-  width: 20px; 
-  height: 20px;
+  padding: 10px;
   background: url('../../assets/icons/stars.png') -10px -10px;
 }
 
@@ -62,8 +65,7 @@
   .card-avatar {
     display: block;
     position: absolute;
-    height: 72px;
-    width: 72px;
+    padding: 36px;
     left: -50px;
   }
 

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body>
-    <div class="component container-component">
+    <div class="container-component">
       <div class="components-title">
         <h2>List components title</h2>
         <include 
@@ -40,7 +40,7 @@
         </include>
       </div>
       
-      <div class="component components-btn">
+      <div class="components-btn">
         <h2>List component button</h2>
         <include 
           src="partials/components/button.html" 
@@ -91,22 +91,45 @@
         </include>
       </div>
     
-      <div class="component component-pricing-card">
-        <h2>Component pricing card</h2>
+      <div class="component component-feature-frame">
+        <h2>Component feature frame</h2>
         <include 
-          src="partials/components/pricing-card.html"
+          src="partials/components/feature-frame.html"
           locals='{
-            "title": "FREE",
-            "price": "0"
+            "class": "frame-wallet",
+            "title": "Peace of Mind",
+            "description": "So it really behaves like neither. Now we have given up. "
           }'>
         </include>
 
         <include 
-          src="partials/components/pricing-card.html"
+          src="partials/components/feature-frame.html"
           locals='{
-            "class": "pricing-card-status",
-            "title": "SILVER",
-            "price": "9.99"
+            "class": "frame-users",
+            "title": "Peace of Mind",
+            "description": "So it really behaves like neither. Now we have given up. "
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/feature-frame.html"
+          locals='{
+            "class": "frame-flag",
+            "title": "Peace of Mind",
+            "description": "So it really behaves like neither. Now we have given up. "
+          }'>
+        </include>
+      </div>
+
+      <div class="component component-testimonial-card">
+        <h2>Component pricing card</h2>
+        <include 
+          src="partials/components/testimonial-card.html"
+          locals='{
+            "avatar": "man",
+            "name": "Regina Miles",
+            "job": "Designer",
+            "description": "This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space. This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space."
           }'>
         </include>
       </div>
