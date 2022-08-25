@@ -124,7 +124,7 @@
 
 .header-content .title-biggest,
 .jumbotron-btn,
-p {
+.header-text {
   z-index: 2;
 }
 
@@ -135,7 +135,7 @@ p {
   color: var(--white);
 }
 
-.header-content p {
+.header-content .header-text {
   padding: 35px 25px 15px 25px;
   font-family: montserrat-medium, Tahoma, sans-serif;
   font-size: var(--smaller);
@@ -152,7 +152,6 @@ p {
 
 @media screen and (min-width: 1140px) {
   .header-wrapper {
-    height: 670px;
     background-image: url(../../assets/images/background-family-hello.jpg);
     background-size: cover;
   }
@@ -204,7 +203,7 @@ p {
     align-items: flex-start;
   }
 
-  .header-content p,
+  .header-content .header-text,
   .title-biggest {
     text-align: left;
   }
@@ -215,7 +214,7 @@ p {
     padding-bottom: 25px;
   }
 
-  .header-content p {
+  .header-content .header-text {
     width: 52%;
     padding: 7px 0;
   }
