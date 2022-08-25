@@ -16,8 +16,7 @@
 
 .icon {
   cursor: pointer;
-  width: 24px;
-  height: 23px;
+  padding: 5px 12px;
   background: url('../../assets/icons/icons-menu.png');
 }
 
@@ -32,6 +31,7 @@
 
 .icon-bars {
   margin: 5px 0 0 5px;
+  padding: 0;
   background-position: -54px -54px;
 }
 
