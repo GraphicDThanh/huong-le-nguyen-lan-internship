@@ -1,1 +1,105 @@
+.footer-menu,
+.footer-social {
+  background-color: var(--dark-color);
+}
 
+.footer-menu {
+  padding: 55px 86px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.footer-list:nth-child(5) .list-item:nth-child(2):before {
+  background-position: -10px -61px;
+}
+
+.footer-list:nth-child(5) .list-item:nth-child(3):before {
+  background-position: -10px -10px;
+}
+
+.footer-list:nth-child(5) .list-item:nth-child(4)::before {
+  background-position: -98px -10px;
+}
+
+.footer-list p:first-child {
+  font-size: var(--smallest);
+  font-family: montserrat-bold, Tahoma, sans-serif;
+  padding-bottom: 20px;
+}
+
+.footer-list a {
+  color: var(--white);
+  font-size: var(--normal);
+  font-family: montserrat-medium, Tahoma, sans-serif;
+  line-height: 24px;
+  padding-bottom: 10px;
+  text-decoration: none;
+}
+
+.footer-social {
+  padding: 25px 90px 55px;
+}
+
+.footer-social p {
+  font-size: var(--normal);
+  font-family: montserrat-semiBold, Tahoma, sans-serif;
+  padding-bottom: 50px;
+}
+
+.list-icons-social a .icon-social {
+  padding: 5px 20px;
+  background: url('../../assets/icons/icon-footer-social.png');
+}
+
+.list-icons-social a .facebook {
+  background-position: -54px -10px;
+}
+
+.list-icons-social a .instagram {
+  background-position: -10px -10px;
+}
+
+.list-icons-social a .twitter {
+  background-position: -98px -10px;
+}
+
+.list-icons-social a .youtube {
+  background-position: -10px -97px;
+}
+
+@media screen and (min-width: 1440px) {
+  .footer-menu {
+    padding: 50px 285px 50px 195px;
+    display: grid;
+    grid-template-columns: repeat(4, 152px) 321px;
+  }
+
+  .footer-social {
+    padding: 25px 260px 25px 195px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white);
+  }
+
+  .footer-social p {
+    color: var(--text-color);
+  }
+
+  .list-icons-social a .facebook {
+    background-position: -10px -54px;
+  }
+  
+  .list-icons-social a .instagram {
+    background-position: -54px -54px;
+  }
+  
+  .list-icons-social a .twitter {
+    background-position: -54px -97px;
+  }
+  
+  .list-icons-social a .youtube {
+    padding-top: 10px;
+    display: none;
+  }
+}
