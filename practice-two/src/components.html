@@ -89,7 +89,7 @@
             "title": "Life Tips From Top Ten Adventure Travelers"
           }'>
         </include>
-
+      
         <include 
           src="partials/components/industry-card.html"
           locals='{
@@ -99,7 +99,30 @@
           }'>
         </include>  
       </div>
-      
+
+      <div class="component component-pricing-card">
+        <h2>Component pricing card</h2>
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "title": "FREE",
+            "price": "0" 
+          }'>
+        </include>   
+
+        <include
+          src="partials/components/pricing-card.html"
+          locals='{
+            "class": "pricing-card-status",
+            "title": "SILVER",
+            "price": "9.99"
+          }'>
+        </include>
+      </div>
+        
+       
+      </div>
+
       <div class="component components-testimonial-card">
         <h2>Testimonial components</h2>
         <include 
@@ -141,7 +164,6 @@
           }'>
         </include>
       </div>
-    </div>
     </div>
   </body>
 </html>
