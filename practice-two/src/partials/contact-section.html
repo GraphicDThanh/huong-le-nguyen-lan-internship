@@ -1,1 +1,43 @@
+<div class="contact-wrapper">
+  <div class="contact-title">
+    <include 
+      src="partials/components/section-title.html"
+      locals='{
+        "class": "section-title-dark-small",
+        "title": "Contact Us"
+      }'>
+    </include>
 
+    <include 
+      src="partials/components/section-title.html"
+      locals='{
+        "class": "section-title-dark",
+        "title": "Make an Appointment"
+      }'>
+    </include>
+  </div>
+
+  <div class="contact-content">
+    <form action="" class="contact-form">
+      <input type="text" class="form-item form-fullname" placeholder="Full Name">
+      <input type="email" class="form-item form-email" placeholder="example@gmail.com">
+      <select name="" id="" class="form-item form-select">
+        <option hidden>Please Select</option>
+        <option value="danang">DaNang</option>
+      </select>
+      <select class="form-item form-select-time" class="form-item">
+        <option hidden>4:00 Available</option>
+        <option value="5pm">5:00 PM</option>
+      </select>
+      <textarea cols="30" rows="10" class="form-item form-textarea" placeholder="Message"></textarea>
+      <include 
+        src="partials/components/button.html"
+        locals='{
+          "class": "btn-rectangle btn-primary",
+          "type": "submit",
+          "text": "Book Appointment"
+        }'>
+      </include>
+    </form>
+  </div>
+</div>

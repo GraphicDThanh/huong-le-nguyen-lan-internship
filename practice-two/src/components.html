@@ -79,6 +79,50 @@
         </include>
       </div>
 
+      <div class="component components-industry-card">
+        <h2>Component industry card</h2>
+        <include 
+          src="partials/components/industry-card.html"
+          locals='{
+            "class": "forest",
+            "name": "Tax Management",
+            "title": "Life Tips From Top Ten Adventure Travelers"
+          }'>
+        </include>
+      
+        <include 
+          src="partials/components/industry-card.html"
+          locals='{
+            "class": "chart",
+            "name": "Tax Management",
+            "title": "Life Tips From Top Ten Adventure Travelers"
+          }'>
+        </include>  
+      </div>
+
+      <div class="component component-pricing-card">
+        <h2>Component pricing card</h2>
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "title": "FREE",
+            "price": "0" 
+          }'>
+        </include>   
+
+        <include
+          src="partials/components/pricing-card.html"
+          locals='{
+            "class": "pricing-card-status",
+            "title": "SILVER",
+            "price": "9.99"
+          }'>
+        </include>
+      </div>
+        
+       
+      </div>
+
       <div class="component components-testimonial-card">
         <h2>Testimonial components</h2>
         <include 
@@ -117,19 +161,6 @@
             "class": "frame-flag",
             "title": "Peace of Mind",
             "description": "So it really behaves like neither. Now we have given up. "
-          }'>
-        </include>
-      </div>
-
-      <div class="component component-testimonial-card">
-        <h2>Component pricing card</h2>
-        <include 
-          src="partials/components/testimonial-card.html"
-          locals='{
-            "avatar": "man",
-            "name": "Regina Miles",
-            "job": "Designer",
-            "description": "This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space. This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space."
           }'>
         </include>
       </div>
