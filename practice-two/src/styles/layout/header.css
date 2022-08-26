@@ -197,6 +197,11 @@
     color: var(--white);
   }
 
+  
+  .nav-collapse .nav-item .nav-link:hover {
+    color: var(--primary-color);
+  }
+
   .header-content {
     width: 50%;
     background-image: none;
