@@ -1,37 +1,49 @@
 <footer class="footer-wrapper">
   <div class="footer-menu">
-    <div class="footer-list">
-      <p>Company Info</p>
-      <a href="javascript:void(0)">About Us</a>
-      <a href="javascript:void(0)">Carrier</a>
-      <a href="javascript:void(0)">We are hiring</a>
-      <a href="javascript:void(0)">Blog</a>
-    </div>
+    <include 
+      src="partials/components/footer-menu.html"
+      locals='{
+        "title": "Company Info",
+        "itemFirst": "About Us",
+        "itemSecond": "Carrier",
+        "itemThird": "We are hiring",
+        "itemFourth": "Blog"
+      }'>
+    </include>
   
-    <div class="footer-list">
-      <p>Legal</p>
-      <a href="javascript:void(0)">About Us</a>
-      <a href="javascript:void(0)">Carrier</a>
-      <a href="javascript:void(0)">We are hiring</a>
-      <a href="javascript:void(0)">Blog</a>
-    </div>
-  
-    <div class="footer-list">
-      <p>Features</p>
-      <a href="javascript:void(0)">Business Marketing</a>
-      <a href="javascript:void(0)">User Analytic</a>
-      <a href="javascript:void(0)">Live Chat</a>
-      <a href="javascript:void(0)">Unlimited Support</a>
-    </div>
-  
-    <div class="footer-list">
-      <p>Resources</p>
-      <a href="javascript:void(0)">IOS & Android</a>
-      <a href="javascript:void(0)">Watch a Demo</a>
-      <a href="javascript:void(0)">Customers</a>
-      <a href="javascript:void(0)">API</a>
-    </div>
-  
+    <include 
+      src="partials/components/footer-menu.html"
+      locals='{
+        "title": "Legal",
+        "itemFirst": "About Us",
+        "itemSecond": "Carrier",
+        "itemThird": "We are hiring",
+        "itemFourth": "Blog"
+      }'>
+    </include>
+
+    <include 
+      src="partials/components/footer-menu.html"
+      locals='{
+        "title": "Features",
+        "itemFirst": "Business Marketing",
+        "itemSecond": "User Analytic",
+        "itemThird": "Live Chat",
+        "itemFourth": "Unlimited Support"
+      }'>
+    </include>
+
+    <include 
+      src="partials/components/footer-menu.html"
+      locals='{
+        "title": "Resources",
+        "itemFirst": "IOS & Android",
+        "itemSecond": "Watch a Demo",
+        "itemThird": "Customers",
+        "itemFourth": "API"
+      }'>
+    </include>
+    
     <address class="footer-list">
       <p>Get In Touch</p>
       <a href="tel:+(480)555-0103" class="list-item">(480) 555-0103</a>
