@@ -65,8 +65,7 @@
   .card-avatar {
     display: block;
     position: absolute;
-    height: 72px;
-    width: 72px;
+    padding: 36px;
     left: -50px;
   }
 
