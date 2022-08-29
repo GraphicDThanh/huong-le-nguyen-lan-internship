@@ -1,12 +1,15 @@
 .contact-wrapper {
-  padding: 115px 60px 114px;
+  padding: 115px 60px 118px;
+  background-image: url(../../assets/images/background-family-contact.jpg);
+  background-repeat: no-repeat;
+  background-position: 54%;
+  background-size: 500%;
+}
+
+.contact-wrapper .container {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  background-image: url(../../assets/images/background-family-contact.jpg);
-  background-repeat: no-repeat;
-  background-position: -780px;
-  background-size: 460%;
 }
 
 .contact-title .section-title:nth-child(2) {
@@ -17,7 +20,7 @@
   width: 286px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
 }
 
 .form-item {
@@ -38,6 +41,7 @@
 .form-textarea {
   height: 120px;
   padding-top: 16px;
+  margin-bottom: 20px;
 }
 
 .contact-form .btn {
@@ -46,7 +50,7 @@
 
 @media screen and (min-width: 1440px) {
   .contact-wrapper {
-    padding: 90px 644px 90px 180px;
+    padding: 115px 60px 60px;
     background-position: 0 0;
     background-size: 100%;
   }

@@ -3,11 +3,16 @@
   background-color: var(--dark-color);
 }
 
-.footer-menu {
-  padding: 55px 86px;
+.footer-menu .container {
+  padding: 62px 0;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 24px;
+}
+
+.footer-menu .container,
+.footer-social .container {
+  width: 245px;
 }
 
 .footer-list:nth-child(5) .list-item:nth-child(2):before {
@@ -28,27 +33,25 @@
   padding-bottom: 20px;
 }
 
-.footer-list a {
-  color: var(--white);
-  font-size: var(--normal);
-  font-family: montserrat-medium, Tahoma, sans-serif;
-  line-height: 24px;
-  padding-bottom: 10px;
-  text-decoration: none;
-}
-
 .footer-social {
-  padding: 25px 90px 55px;
+  padding-bottom: 55px;
 }
 
-.footer-social p {
+.footer-social .container p {
+  padding: 0 20px 54px 0;
   font-size: var(--normal);
   font-family: montserrat-semiBold, Tahoma, sans-serif;
   padding-bottom: 50px;
 }
 
+.list-icons-social {
+  display: flex;
+  gap: 20px;
+}
+
 .list-icons-social a .icon-social {
-  padding: 5px 20px;
+  width: 25px;
+  height: 26px;
   background: url('../../assets/icons/icon-footer-social.png');
 }
 
@@ -65,25 +68,39 @@
 }
 
 .list-icons-social a .youtube {
+  margin-top: 2px;
   background-position: -10px -97px;
 }
 
 @media screen and (min-width: 1440px) {
-  .footer-menu {
-    padding: 50px 285px 50px 195px;
-    display: grid;
-    grid-template-columns: repeat(4, 152px) 321px;
+  .footer-menu .container,
+  .footer-social .container {
+    width: 1050px;
+  }
+
+  .footer-menu .container {
+    padding: 50px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .footer-social {
-    padding: 25px 260px 25px 195px;
+    padding: 25px 0;
     display: flex;
     justify-content: space-between;
     background-color: var(--white);
   }
 
-  .footer-social p {
+  .footer-social .container {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white);
+  }
+
+  .footer-social .container p {
     color: var(--text-color);
+    padding-bottom: 0;
   }
 
   .list-icons-social a .facebook {
@@ -95,6 +112,7 @@
   }
   
   .list-icons-social a .twitter {
+    margin-top: 2px;
     background-position: -54px -97px;
   }
   
