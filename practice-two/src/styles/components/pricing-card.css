@@ -125,10 +125,6 @@
   background-position: -10px -10px;
 }
 
-.pricing-card .card-list .list-criteria li:nth-child(5)::before {
-  padding-bottom: 20px;
-}
-
 .pricing-card .card-btn {
   order: 5;
 }
