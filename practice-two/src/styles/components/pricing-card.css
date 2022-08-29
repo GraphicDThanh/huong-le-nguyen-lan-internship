@@ -1,5 +1,5 @@
 .pricing-card {
-  padding: 50px 38px;
+  padding: 56px 38px;
   font-family: montserrat-bold, Tahoma, sans-serif;
   position: relative;
   display: flex;
@@ -36,16 +36,21 @@
   font-size: var(--small);
 }
 
-.pricing-card .card-title,
-.card-name {
+.pricing-card .card-title {
   order: 1;
+}
+
+
+.pricing-card .card-description {
+  order: 2;
 }
 
 .pricing-card .card-title {
   color: var(--dark-color);
 }
 
-.pricing-card .card-name {
+.pricing-card .card-description {
+  padding: 0 25px;
   color: var(--text-color);
   line-height: 24px;
   text-align: center;
@@ -54,16 +59,16 @@
 .pricing-card .card-price {
   color: var(--primary-color);
   display: flex;
-  order: 2;
+  order: 3;
 }
 
 .pricing-card .card-price .price {
-  padding-top: 16px;
+  padding: 22px 0 10px;
   font-size: var(--biggest);
 }
 
 .unit-and-month {
-  padding: 5px 0 0 10px;
+  padding: 14px 0 0 10px;
 }
 
 .unit-and-month .unit {
@@ -77,10 +82,10 @@
 
 .pricing-card .card-list {
   padding-top: 5px;
-  order: 3;
+  order: 4;
 }
 
-.pricing-card .card-list .list {
+.pricing-card .card-list .list-criteria {
   color: var(--dark-color);
   display: flex;
   flex-direction: column;
@@ -120,20 +125,23 @@
   background-position: -10px -10px;
 }
 
-.pricing-card .card-list .list li:nth-child(5)::before {
+.pricing-card .card-list .list-criteria li:nth-child(5)::before {
   padding-bottom: 20px;
 }
 
 .pricing-card .card-btn {
-  order: 4;
+  order: 5;
 }
 
 .pricing-card .card-btn .btn {
   padding: 15px 80px;
-  order: 4;
 }
 
 @media screen and (min-width: 1440px) {
+  .pricing-card {
+    padding: 54px 38px 40px;
+  }
+
   .pricing-card .card-price {
     width: 120px;
     justify-content: center;
@@ -145,7 +153,7 @@
   }
 
   .unit-and-month .unit {
-    padding-top: 16px;
+    padding: 25px 0;
     font-size: var(--biggest);
   }
 
@@ -154,15 +162,16 @@
     font-size: var(--smallest);
     position: absolute;
     left: 12px;
-    top: 55px;
+    top: 65px;
   }
 
   .pricing-card .card-list {
+    padding-top: 0;
     order: 4;
   }
 
   .pricing-card .card-btn {
     order: 3;
-    padding: 40px 0 0 0;
+    padding: 20px 0 0 0;
   } 
 }

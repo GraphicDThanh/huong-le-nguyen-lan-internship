@@ -7,7 +7,8 @@
 }
 
 .frame-img {
-  padding: 30px 35px;
+  width: 70px;
+  height: 60px;
   background: url('../../assets/icons/icon-frame.png');
 }
 
