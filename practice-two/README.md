@@ -19,7 +19,7 @@
 
 ### Information
 - Timeline
-  - Estimate day: 10 days.
+  - Estimate day: 12 days.
   - Actual day: .
 - Techniques: HTML5/ CSS3.
 - Editor: Visual Studio Code.
@@ -31,14 +31,10 @@
      - `$ git clone -b feat/practice-two https://github.com/GraphicDThanh/huong-le-nguyen-lan-internship.git`
   - With SSH: 
      - `$ git clone -b feat/practice-two git@github.com:GraphicDThanh/huong-le-nguyen-lan-internship.git`
-     - key: 123456
- - Step 2: Move to folder which just cloned in your computer
-   - `$ cd huong-le-nguyen-lan-internship/`
- - Step 3: Install commitlint
+ - Step 2: Move to folder practice-two which just cloned in your computer
+   - `$ cd huong-le-nguyen-lan-internship/practice-two`
+ - Step 3: Now you need to install packages
    - `$ npm install`
- - Step 4: Move to folder practice-two.
-   - `$ cd practice-two`
- - Step 5: Now you need to install parcel to run project
-   - `$ npm install --save-dev parcel`
- - Step 6: After install parcel
-   - `$ npm run start` 
+ - Step 4: After install packages
+   - `$ npm run start`
+ - Step 5: Open [localhost](http://localhost:1234) to see the website
