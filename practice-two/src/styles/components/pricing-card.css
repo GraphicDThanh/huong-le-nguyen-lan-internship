@@ -97,7 +97,7 @@
   font-size: var(--normal);
   line-height: 24px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .checked::before,
@@ -109,7 +109,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
-  vertical-align: text-bottom;
 }
 
 .checked::before,
