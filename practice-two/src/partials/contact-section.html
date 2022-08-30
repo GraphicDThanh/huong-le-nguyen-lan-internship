@@ -20,8 +20,8 @@
   
     <div class="contact-content">
       <form action="" class="contact-form">
-        <input type="text" class="form-item form-fullname" placeholder="Full Name">
-        <input type="email" class="form-item form-email" placeholder="example@gmail.com">
+        <input type="text" class="form-item form-fullname" placeholder="Full Name" name="fullname">
+        <input type="email" class="form-item form-email" placeholder="example@gmail.com" name="email">
         <select name="" id="" class="form-item form-select">
           <option hidden>Please Select</option>
           <option value="danang">DaNang</option>
@@ -30,7 +30,7 @@
           <option hidden>4:00 Available</option>
           <option value="5pm">5:00 PM</option>
         </select>
-        <textarea cols="30" rows="10" class="form-item form-textarea" placeholder="Message"></textarea>
+        <textarea cols="30" rows="10" name="form-textarea" class="form-item form-textarea" placeholder="Message"></textarea>
         <include 
           src="partials/components/button.html"
           locals='{
