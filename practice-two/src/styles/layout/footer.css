@@ -52,6 +52,7 @@
 .list-icons-social a .icon-social {
   width: 25px;
   height: 26px;
+  display: block;
   background: url('../../assets/icons/icon-footer-social.png');
 }
 
