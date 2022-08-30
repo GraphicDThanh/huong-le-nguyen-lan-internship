@@ -7,8 +7,9 @@
 }
 
 .frame-img {
-  width: 70px;
-  height: 60px;
+  width: 75px;
+  height: 65px;
+  display: block;
   background: url('../../assets/icons/icon-frame.png');
 }
 
