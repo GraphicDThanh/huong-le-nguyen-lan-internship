@@ -1,45 +1,47 @@
-<div class="pricing-wrapper container">
-  <div class="pricing-title">
-    <include 
-      src="partials/components/section-title.html"
-      locals='{
-        "title": "Pricing"}'>
-    </include>
-
-    <include 
-      src="partials/components/section-text.html"
-      locals='{
-        "title": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics"
-      }'>
-    </include>
+<section class="pricing-wrapper">
+  <div class="pricing-cover container">
+    <div class="pricing-title">
+      <include 
+        src="partials/components/section-title.html"
+        locals='{
+          "title": "Pricing"}'>
+      </include>
+  
+      <include 
+        src="partials/components/section-text.html"
+        locals='{
+          "title": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics"
+        }'>
+      </include>
+    </div>
+  
+    <div class="pricing-content">
+      <include 
+        src="partials/components/pricing-card.html"
+        locals='{
+          "class": "",
+          "title": "FREE",
+          "price": "0"
+        }'>
+      </include>
+  
+      <include 
+        src="partials/components/pricing-card.html"
+        locals='{
+          "class": "pricing-card-status",
+          "title": "SILVER",
+          "price": "9.99"
+        }'>
+      </include>
+  
+      <include 
+        src="partials/components/pricing-card.html"
+        locals='{
+          "class": "",
+          "title": "GOLD",
+          "price": "19.99"
+        }'>
+      </include>
+    </div>
   </div>
-
-  <div class="pricing-content">
-    <include 
-      src="partials/components/pricing-card.html"
-      locals='{
-        "class": "",
-        "title": "FREE",
-        "price": "0"
-      }'>
-    </include>
-
-    <include 
-      src="partials/components/pricing-card.html"
-      locals='{
-        "class": "pricing-card-status",
-        "title": "SILVER",
-        "price": "9.99"
-      }'>
-    </include>
-
-    <include 
-      src="partials/components/pricing-card.html"
-      locals='{
-        "class": "",
-        "title": "GOLD",
-        "price": "19.99"
-      }'>
-    </include>
-  </div>
-</div>
+</section>
