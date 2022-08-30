@@ -1,9 +1,12 @@
 .pricing-wrapper {
-  padding: 75px 45px 155px;
+  padding: 70px 0 150px;
+  background-color: var(--dark-color);
+}
+
+.pricing-wrapper .pricing-cover {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  background-color: var(--dark-color);
 }
 
 .pricing-title {
@@ -23,9 +26,12 @@
 
 @media screen and (min-width: 1440px) {
   .pricing-wrapper {
-    padding: 75px 197px 155px;
+    padding: 120px 0 150px;
+  }
+
+  .pricing-wrapper .pricing-cover {
     align-items: center;
-    gap: 110px;
+    gap: 105px;
   }
 
   .pricing-title {

@@ -1,16 +1,18 @@
 .feature-wrapper {
-  padding: 120px 0;
+  padding: 120px 50px;
+  background-color: var(--dark-color);
+}
+
+.feature-wrapper .feature-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 115px;
-  background-color: var(--dark-color);
 }
 
 @media screen and (min-width: 1440px) {
-  .feature-wrapper {
-    padding: 140px 244px;
+  .feature-wrapper .feature-content {
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
   }
 }

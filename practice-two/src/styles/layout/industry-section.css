@@ -1,5 +1,5 @@
 .industry-wrapper {
-  padding: 75px 45px 100px;
+  padding: 78px 0 100px;
   background-color: var(--dark-color);
 }
 
@@ -9,16 +9,14 @@
 }
 
 .industry-title p:nth-child(3) {
-  padding-top: 30px;
+  padding: 30px 22px 60px;
 }
 
 .industry-content {
-  padding-top: 60px;
   display: flex;
   flex-direction: column;
   gap: 30px;
 }
-
 
 .text-pc {
   display: none;
@@ -26,7 +24,11 @@
 
 @media screen and (min-width: 1440px) {
   .industry-wrapper {
-    padding: 75px 20px 100px;
+    padding: 145px 0 100px;
+  }
+
+  .industry-wrapper .industry-cover {
+    width: 1408px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,11 +36,16 @@
   }
 
   .industry-title {
-    width: 30%;
+    width: 32%;
+  }
+
+  .industry-title p:nth-child(3) {
+    padding: 10px 22px 75px;
   }
 
   .industry-content {
     flex-direction: row;
+    gap: 25px;
   }
 
   .text-pc {

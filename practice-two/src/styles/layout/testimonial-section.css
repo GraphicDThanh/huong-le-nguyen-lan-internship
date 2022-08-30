@@ -1,10 +1,13 @@
 .testimonial-wrapper {
-  padding: 75px 45px 80px 45px;
+  padding: 75px 0 80px;
+  background-color: var(--light-background-color);
+}
+
+.testimonial-wrapper .testimonial-cover {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 60px;
-  background-color: var(--light-background-color);
 }
 
 .testimonial-content {
@@ -19,7 +22,7 @@
 }
 
 .testimonial-wrapper .testimonial-title .section-title {
-  padding-bottom: 10px;
+  padding-bottom: 6px;
 }
 
 .text-pc {
@@ -28,8 +31,12 @@
 
 @media screen and (min-width: 1440px) {
   .testimonial-wrapper {
-    padding: 100px 0 145px 0;
-    gap: 125px;
+    padding: 110px 0 155px;
+  }
+
+  .testimonial-wrapper .testimonial-cover {
+    gap: 100px;
+    width: 1106px;
   }
 
   .testimonial-content {
