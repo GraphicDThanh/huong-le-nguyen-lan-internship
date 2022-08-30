@@ -1,37 +1,41 @@
 .newsletter-wrapper {
-  padding: 40px 85px;
+  padding: 40px 40px 40px 80px;
 }
 
-.newsletter-wrapper p {
+.newsletter-wrapper .newsletter-content {
   color: var(--dark-color);
 }
 
-.newsletter-wrapper p:first-child {
+.newsletter-wrapper .newsletter-content p:first-child {
   font-size: var(--small);
   line-height: 32px;
   font-family: montserrat-bold, Tahoma, sans-serif;
 }
 
-.newsletter-wrapper .section-text {
-  padding: 10px 10px 50px 0;
+.newsletter-title .section-text {
+  padding: 10px 0 50px;
+  width: 60%;
 }
 
-.newsletter-wrapper .btn {
+.newsletter-wrapper .newsletter-content .btn {
   padding: 18px 40px;
 }
 
 @media screen and (min-width: 1440px) {
   .newsletter-wrapper {
-    padding: 40px 230px 40px 195px;
+    padding: 40px;
+  }  
+
+  .newsletter-wrapper .newsletter-content {
     display: flex;
     justify-content: space-between;
   }
 
-  .newsletter-wrapper .section-text {
+  .newsletter-wrapper .newsletter-content .section-text {
     padding: 10px 0 0;
   }
 
-  .newsletter-wrapper .btn {
+  .newsletter-wrapper .newsletter-content .btn {
     margin: 5px 0;
   }
 }
