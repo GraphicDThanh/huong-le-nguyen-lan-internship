@@ -1,22 +1,58 @@
 <header class="header-wrapper">
-  <div class="header-nav">
-    <figure class="header-logo">
-      <a href="javascript:void(0)">
-        <img src="assets/icons/BrandName.svg" alt="Logo BrandName">
-      </a>
-    </figure>
+  <div class="header-content container">
+    <div class="header-nav">
+      <figure class="header-logo">
+        <a href="javascript:void(0)">
+          <img src="assets/icons/BrandName.svg" alt="Logo BrandName">
+        </a>
+      </figure>
+    
+      <div class="icons-nav">
+        <span class="icon icon-search"></span>
+        <span class="icon icon-cart"></span>
+        <span class="icon icon-bars">
+          <label for="nav-mobile-input"></label>
+        </span>
+      </div>
   
-    <div class="icons-nav">
-      <div class="icon icon-search"></div>
-      <div class="icon icon-cart"></div>
-      <div class="icon icon-bars">
-        <label for="nav-mobile-input"></label>
+      <div class="header-pc">
+        <nav class="nav-pc">
+          <ul class="nav-collapse">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+      
+          <ul class="nav-collapse">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+            <include 
+              src="../src/partials/components/button.html"
+              locals='{
+                "class": "btn-rectangle btn-primary btn-menu",
+                "type": "button",
+                "text": "Become a member"
+              }'>
+            </include>
+          </ul>
+        </nav>
       </div>
     </div>
-
-    <div class="header-pc">
-      <nav class="nav-pc">
-        <ul class="nav-collapse">
+  
+    <div class="nav-list">
+      <input type="checkbox" class="bars-checkbox" id="nav-mobile-input">
+      <nav class="nav-mobile">
+        <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="#">Home</a>
           </li>
@@ -30,47 +66,13 @@
             <a class="nav-link" href="#">Contact</a>
           </li>
         </ul>
-    
-        <ul class="nav-collapse">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
-          </li>
-          <include 
-            src="../src/partials/components/button.html"
-            locals='{
-              "class": "btn-rectangle btn-primary btn-menu",
-              "type": "button",
-              "text": "Become a member"
-            }'>
-          </include>
-        </ul>
       </nav>
-    </div>
+    </div>  
   </div>
 
-  <div class="nav-list">
-    <input type="checkbox" class="bars-checkbox" id="nav-mobile-input">
-    <nav class="nav-mobile">
-      <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Product</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </nav>
-  </div>  
-
-  <div class="header-content">
+  <div class="header-jumbotron">
     <div class="filter-overlay"></div>
-    <div class="container">
+    <div class="header-content container">
       <h1 class="title-biggest">We Ensure A Best Insurance Service</h1>
       <p class="header-text text-mobile">
         We know how large 
