@@ -95,7 +95,7 @@
 .checked,
 .unchecked {
   font-size: var(--normal);
-  line-height: 24px;
+  line-height: 28px;
   display: flex;
   align-items: flex-start;
 }
