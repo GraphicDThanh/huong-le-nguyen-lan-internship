@@ -11,12 +11,12 @@
   display: none;
 }
 
-.testimonial-card .card-name,
+.testimonial-card .card-header .card-name,
 .card-job {
   padding-top: 8px;
 }
 
-.testimonial-card .card-name {
+.testimonial-card .card-header .card-name {
   font-size: var(--small);
   color: var(--dark-background-color);
   font-family: montserrat-bold, Tahoma, sans-serif;
@@ -46,7 +46,7 @@
   background-position: -10px -50px;
 }
 
-.description {
+.testimonial-card .card-body .description {
   padding: 5px 50px 0 0;
   font-family: montserrat-medium, Tahoma, sans-serif;
   font-size: var(--normal);
@@ -59,7 +59,7 @@
     position: relative;
   }
 
-  .description {
+  .testimonial-card .card-body .description {
     padding: 5px 0 0 0;
   }
 

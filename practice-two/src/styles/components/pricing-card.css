@@ -27,7 +27,7 @@
   background-color: var(--alert-color);
 }
 
-.pricing-card-status .card-status span {
+.pricing-card-status .card-status .status {
   line-height: 90px;
 }
 
