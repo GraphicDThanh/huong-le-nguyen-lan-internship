@@ -17,7 +17,8 @@
 .select-input .arrow-select {
   padding: 4px;
   margin-bottom: 5px;
-  border: solid var(--text-color);
+  border-style: solid;
+  border-color: var(--text-color);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
