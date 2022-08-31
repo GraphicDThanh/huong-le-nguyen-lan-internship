@@ -32,12 +32,13 @@
   position: absolute;
   visibility: hidden;
   background-color: var(--white);
+  z-index: 5;
 }
 
-.select-options span {
+.select-options .option {
   padding: 10px 15px;
 }
 
-.select-options span:hover {
+.select-options option:hover {
   background-color: #f2f2f2;
 }

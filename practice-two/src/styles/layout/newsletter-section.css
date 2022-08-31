@@ -1,5 +1,5 @@
 .newsletter-wrapper {
-  padding: 40px 40px 40px 80px;
+  padding: 40px 40px 40px 90px;
 }
 
 .newsletter-wrapper .newsletter-content {
@@ -10,6 +10,10 @@
   font-size: var(--small);
   line-height: 32px;
   font-family: montserrat-bold, Tahoma, sans-serif;
+}
+
+.newsletter-title {
+  padding-right: 50px;
 }
 
 .newsletter-title .section-text {

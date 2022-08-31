@@ -1,5 +1,5 @@
 .pricing-wrapper {
-  padding: 70px 0 150px;
+  padding: 70px 0 180px;
   background-color: var(--dark-color);
 }
 
@@ -15,7 +15,7 @@
 }
 
 .pricing-title p {
-  padding-top: 10px;
+  padding-top: 5px;
 }
 
 .pricing-content {
@@ -26,7 +26,7 @@
 
 @media screen and (min-width: 1440px) {
   .pricing-wrapper {
-    padding: 120px 0 150px;
+    padding: 125px 0 150px;
   }
 
   .pricing-wrapper .pricing-cover {

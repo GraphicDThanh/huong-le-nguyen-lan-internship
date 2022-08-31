@@ -22,7 +22,7 @@
 }
 
 .testimonial-wrapper .testimonial-title .section-title {
-  padding-bottom: 6px;
+  padding-bottom: 10px;
 }
 
 .text-pc {
@@ -31,7 +31,7 @@
 
 @media screen and (min-width: 1440px) {
   .testimonial-wrapper {
-    padding: 110px 0 155px;
+    padding: 110px 0 150px;
   }
 
   .testimonial-wrapper .testimonial-cover {

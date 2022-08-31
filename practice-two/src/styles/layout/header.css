@@ -3,10 +3,10 @@
 }
 
 .header-nav {
-  padding: 35px 0;
+  padding: 45px 0;
   display: flex;
   justify-content: space-between;
-  gap: 70px;
+  gap: 60px;
 }
 
 .header-logo {
@@ -71,7 +71,7 @@
 }
 
 .bars-checkbox:checked ~ .nav-mobile {
-  height: 415px;
+  height: 410px;
 }
 
 .nav-mobile {
@@ -79,7 +79,7 @@
 }
 
 .nav-mobile .nav {
-  padding-top: 35px;
+  padding-top: 30px;
   text-align: center;
 }
 
@@ -186,7 +186,8 @@
     gap: 20px;
   }
 
-  .nav-pc .nav-collapse {
+  .nav-pc .nav-collapse,
+  .nav-bar {
     display: flex;
     align-items: center;
     padding-right: 10px;

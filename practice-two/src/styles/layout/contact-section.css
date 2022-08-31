@@ -31,7 +31,7 @@
   width: 286px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
 }
 
 .form-item,
@@ -44,7 +44,7 @@
   outline: none;
 }
 
-.form-item,
+.placeholder,
 .select-dropdown,
 .form-item::placeholder {
   color: var(--text-fade-color);
@@ -66,7 +66,7 @@
   }
   
   .contact-wrapper {
-    padding: 95px 60px 80px;
+    padding: 90px 60px 85px;
     background-position: 0 0;
     background-size: 100%;
   }

@@ -3,7 +3,7 @@
   background-color: var(--dark-color);
 }
 
-.footer-menu {
+.footer-wrapper .footer-menu {
   padding: 62px 88px;
 }
 
@@ -72,7 +72,7 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .footer-menu {
+  .footer-wrapper .footer-menu {
     padding: 52px 88px 45px;
   }
 
