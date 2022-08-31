@@ -11,19 +11,30 @@
 - Semantic HTML tags
 - Flexbox, Grid
 - Sprite image in SVG
-- Structure CSS with SASS 7-1 pattern
+- Structure CSS 7-1 pattern
 - Structure HTML by components and pages
 - Run app by Parcel
 - HTML inspector
 
-
 ### Information
 - Timeline
-  - Estimate day: 12 days.
-  - Actual day: .
-- Techniques: HTML5/ CSS3.
+  - Estimate day: 10 days.
+  - Actual day: 12 days
+- Techniques: 
+  - HTML5/ CSS3
+  - Semantic HTML tags
+  - Flexbox, Grid
+  - Sprite image in SVG
+  - Structure css 7-1 pattern
+  - Structure html by components and pages
+  - Run app by parcel
 - Editor: Visual Studio Code.
-- Supported browser: Chrome latest.
+- Supported browser: Chrome, Firefox, Edge
+
+### Development Environment
+- Node v16.16
+- Parcel v2.7
+- Posthtml v0.16
 
 ### Getting started
 - Step 1: Clone repository
