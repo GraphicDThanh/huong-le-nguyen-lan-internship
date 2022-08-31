@@ -22,6 +22,7 @@ body {
   font-family: montserrat-medium, Tahoma, sans-serif;
   color: var(--white);
   line-height: 20px;
+  overflow-x: hidden;
 }
 
 :root {
