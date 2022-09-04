@@ -39,6 +39,6 @@
   padding: 10px 15px;
 }
 
-.select-options option:hover {
+.select-options .option:hover {
   background-color: #f2f2f2;
 }
