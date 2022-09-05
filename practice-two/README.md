@@ -29,7 +29,7 @@
   - Structure html by components and pages
   - Run app by parcel
 - Editor: Visual Studio Code.
-- Supported browser: Chrome, Firefox, Edge
+- Supported browser: Chrome v104, Firefox v104, Edge v105
 
 ### Development Environment
 - Node v16.16
