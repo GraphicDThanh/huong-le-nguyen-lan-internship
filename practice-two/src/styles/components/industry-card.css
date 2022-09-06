@@ -15,13 +15,13 @@
 .card-content .card-name {
   order: 1;
   font-size: var(--normal);
-  font-family: montserrat-medium, Tahoma, sans-serif;
+  font-family: var(--medium), Tahoma, sans-serif;
 }
 
 .card-content .card-title {
   order: 2;
   font-size: var(--small);
-  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-family: var(--bold), Tahoma, sans-serif;
   line-height: 30px;
   letter-spacing: 0.1px;
 }
@@ -52,7 +52,7 @@
   }
 
   .card-content .card-title {
-    font-family: montserrat-regular, Tahoma, sans-serif;
+    font-family: var(--regular), Tahoma, sans-serif;
     font-size: var(--smaller);
   }
 }

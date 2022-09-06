@@ -93,7 +93,7 @@
 }
 
 .nav .nav-item .nav-link{
-  font-family: montserrat-semiBold, Tahoma, sans-serif;
+  font-family: var(--semiBold), Tahoma, sans-serif;
   font-size: var(--big);
   color: var(--white);
   text-decoration: none;
@@ -132,7 +132,7 @@
 }
 
 .header-jumbotron .title-biggest {
-  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-family: var(--bold), Tahoma, sans-serif;
   font-size: var(--biggest);
   line-height: 58px;
   color: var(--white);
@@ -140,7 +140,7 @@
 
 .header-jumbotron .header-text {
   padding: 38px 25px 16px;
-  font-family: montserrat-medium, Tahoma, sans-serif;
+  font-family: var(--medium), Tahoma, sans-serif;
   font-size: var(--smaller);
   line-height: 30px;
 }
@@ -195,7 +195,7 @@
   }
 
   .nav-collapse .nav-item .nav-link {
-    font-family: montserrat-bold, Tahoma, sans-serif;
+    font-family: var(--bold), Tahoma, sans-serif;
     font-size: var(--normal);
     text-decoration: none;
     color: var(--white);

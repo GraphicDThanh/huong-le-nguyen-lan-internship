@@ -4,10 +4,11 @@
 }
 
 .footer-wrapper .footer-menu {
-  padding: 62px 88px;
+  padding: 62px 0;
 }
 
 .footer-menu .footer-menu-content {
+  padding-left: 80px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -27,18 +28,22 @@
 
 .footer-list p:first-child {
   font-size: var(--smallest);
-  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-family: var(--bold), Tahoma, sans-serif;
   padding-bottom: 20px;
 }
 
 .footer-social {
-  padding: 0 90px 55px;
+  padding-bottom: 55px;
+}
+
+.footer-social .footer-social-content {
+  width: 60%;
 }
 
 .footer-social .footer-social-content .author {
-  padding: 0 90px 55px 0;
+  padding-bottom: 55px;
   font-size: var(--normal);
-  font-family: montserrat-semiBold, Tahoma, sans-serif;
+  font-family: var(--semiBold), Tahoma, sans-serif;
   padding-bottom: 50px;
 }
 

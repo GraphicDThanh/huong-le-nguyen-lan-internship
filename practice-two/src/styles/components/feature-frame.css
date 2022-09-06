@@ -28,10 +28,10 @@
 .feature-frame .frame-title {
   padding: 22px 0 12px;
   font-size: var(--smallest);
-  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-family: var(--bold), Tahoma, sans-serif;
 }
 
 .feature-frame .frame-description {
   font-size: var(--normal);
-  font-family: montserrat-medium, Tahoma, sans-serif;
+  font-family: var(--medium), Tahoma, sans-serif;
 }

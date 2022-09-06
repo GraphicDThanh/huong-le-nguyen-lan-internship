@@ -23,4 +23,10 @@
   --smaller: 20px; 
   --smallest: 16px;
   --normal: 14px;
+
+  /* Font-family */
+  --regular: 'montserrat-regular';
+  --medium: 'montserrat-medium';
+  --semiBold: 'montserrat-semiBold';
+  --bold: 'montserrat-bold';
 }

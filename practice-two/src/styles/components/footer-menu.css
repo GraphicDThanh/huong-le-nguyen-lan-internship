@@ -33,14 +33,14 @@
 
 .footer-list p:first-child {
   font-size: var(--smallest);
-  font-family: montserrat-bold, Tahoma, sans-serif;
+  font-family: var(--bold), Tahoma, sans-serif;
   padding-bottom: 20px;
 }
 
 .footer-list a {
   color: var(--white);
   font-size: var(--normal);
-  font-family: montserrat-medium, Tahoma, sans-serif;
+  font-family: var(--medium), Tahoma, sans-serif;
   line-height: 24px;
   padding-bottom: 10px;
   text-decoration: none;
