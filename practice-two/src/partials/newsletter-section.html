@@ -1,21 +1,23 @@
 <div class="newsletter-wrapper">
-  <div class="newsletter-content container">
-    <div class="newsletter-title">
-      <p>Consulting Agency For Your Business</p>
+  <div class="container">
+    <div class="newsletter-content">
+      <hgroup class="newsletter-title">
+        <p>Consulting Agency For Your Business</p>
+        <include 
+          src="partials/components/section-text.html"
+          locals='{
+            "text": "the quick fox jumps over the lazy dog"
+          }'>
+        </include>
+      </hgroup>
       <include 
-        src="partials/components/section-text.html"
+        src="partials/components/button.html"
         locals='{
-          "title": "the quick fox jumps over the lazy dog"
+          "class": "btn-rectangle btn-primary",
+          "type": "button",
+          "text": "Contact Us"
         }'>
       </include>
     </div>
-    <include 
-      src="partials/components/button.html"
-      locals='{
-        "class": "btn-rectangle btn-primary",
-        "type": "button",
-        "text": "Contact Us"
-      }'>
-    </include>
   </div>
 </div>
