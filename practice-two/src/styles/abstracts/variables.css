@@ -2,6 +2,7 @@
   /* Color */
   --primary-color: #23a6f0;
   --primary-color-darker: #119dee;
+  --primary-color-lighter: #8ec2f2;
   --warm-color: #f3cd03;
   --alert-color: #e77c40;
   --dark-color: #252b42;
@@ -11,9 +12,6 @@
   /* Text-color */
   --text-color: #737373;
   --text-fade-color: #bdbdbd;
-
-  /* Background-color */
-  --light-background-color: #8ec2f2;
 
   /* Font-size */
   --huge: 58px;

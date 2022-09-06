@@ -1,6 +1,6 @@
 .testimonial-wrapper {
   padding: 75px 0 80px;
-  background-color: var(--light-background-color);
+  background-color: var(--primary-color-lighter);
 }
 
 .testimonial-wrapper .testimonial-cover {

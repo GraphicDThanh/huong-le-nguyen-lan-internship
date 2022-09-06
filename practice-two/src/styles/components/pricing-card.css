@@ -7,7 +7,7 @@
   align-items: center;
   gap: 35px;
   border-radius: 10px;
-  border: 2px solid var(--light-background-color);
+  border: 2px solid var(--primary-color-lighter);
   background-color: var(--white);
 }
 
@@ -76,6 +76,7 @@
 }
 
 .unit-and-month .month {
+  color: var(--primary-color-lighter);
   font-family: var(--semiBold), Tahoma, sans-serif;
   font-size: var(--normal);
 }
