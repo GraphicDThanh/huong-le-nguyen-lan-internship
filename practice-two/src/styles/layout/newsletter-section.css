@@ -3,8 +3,9 @@
 }
 
 .newsletter-wrapper .newsletter-content {
+  padding: 0 20px 0 40px;
   color: var(--dark-color);
-}
+} 
 
 .newsletter-wrapper .newsletter-content p:first-child {
   font-size: var(--small);
@@ -14,7 +15,7 @@
 
 .newsletter-title .section-text {
   padding: 10px 0 50px;
-  width: 60%;
+  width: 65%;
 }
 
 .newsletter-wrapper .newsletter-content .btn {
@@ -22,11 +23,8 @@
 }
 
 @media screen and (min-width: 1440px) {
-  .newsletter-wrapper {
-    padding: 40px;
-  }  
-
   .newsletter-wrapper .newsletter-content {
+    padding: 0;
     display: flex;
     justify-content: space-between;
   }
