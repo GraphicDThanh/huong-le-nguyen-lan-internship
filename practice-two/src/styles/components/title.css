@@ -12,3 +12,9 @@
   line-height: 24px;
   font-size: var(--smallest);
 }
+
+.section-text {
+  font-family: montserrat-regular, Tahoma, sans-serif;
+  font-size: var(--normal);
+  line-height: 20px;
+}

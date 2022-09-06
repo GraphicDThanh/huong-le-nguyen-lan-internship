@@ -8,7 +8,7 @@
   padding: 0 30px;
 }
 
-.industry-title p:nth-child(3) {
+.industry-title h2:nth-child(3) {
   padding: 30px 22px 60px;
 }
 
