@@ -19,11 +19,11 @@
 .testimonial-card .card-header .card-name {
   font-size: var(--small);
   color: var(--dark-background-color);
-  font-family: var(--bold), Tahoma, sans-serif;
+  font-family: var(--font-bold), var(--font-default);
 }
 
 .card-job {
-  font-family: var(--semiBold), Tahoma, sans-serif;
+  font-family: var(--font-semiBold), var(--font-default);
 }
 
 .card-rate {
@@ -48,7 +48,6 @@
 
 .testimonial-card .card-body .description {
   padding: 5px 50px 0 0;
-  font-family: var(--medium), Tahoma, sans-serif;
   font-size: var(--normal);
   line-height: 20px;
   letter-spacing: 0.2px;

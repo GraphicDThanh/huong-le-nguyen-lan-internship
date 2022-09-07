@@ -28,7 +28,7 @@
 
 .footer-list p:first-child {
   font-size: var(--smallest);
-  font-family: var(--bold), Tahoma, sans-serif;
+  font-family: var(--font-bold), var(--font-default);
   padding-bottom: 20px;
 }
 
@@ -43,7 +43,7 @@
 .footer-social .footer-social-content .author {
   padding-bottom: 55px;
   font-size: var(--normal);
-  font-family: var(--semiBold), Tahoma, sans-serif;
+  font-family: var(--font-semiBold), var(--font-default);
   padding-bottom: 50px;
 }
 

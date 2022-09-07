@@ -1,6 +1,6 @@
 .pricing-card {
   padding: 55px 38px 45px;
-  font-family: var(--bold), Tahoma, sans-serif;
+  font-family: var(--font-bold), var(--font-default);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -77,7 +77,7 @@
 
 .unit-and-month .month {
   color: var(--primary-color-lighter);
-  font-family: var(--semiBold), Tahoma, sans-serif;
+  font-family: var(--font-semiBold), var(--font-default);
   font-size: var(--normal);
 }
 
@@ -154,7 +154,7 @@
   }
 
   .unit-and-month .month {
-    font-family: var(--bold), Tahoma, sans-serif;
+    font-family: var(--font-bold), var(--font-default);
     font-size: var(--smallest);
     position: absolute;
     left: 12px;

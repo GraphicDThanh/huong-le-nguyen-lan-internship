@@ -23,8 +23,9 @@
   --normal: 14px;
 
   /* Font-family */
-  --regular: 'montserrat-regular';
-  --medium: 'montserrat-medium';
-  --semiBold: 'montserrat-semiBold';
-  --bold: 'montserrat-bold';
+  --font-regular: 'montserrat-regular';
+  --font-medium: 'montserrat-medium';
+  --font-semiBold: 'montserrat-semiBold';
+  --font-bold: 'montserrat-bold';
+  --font-default: 'Tahoma, sans-serif';
 }

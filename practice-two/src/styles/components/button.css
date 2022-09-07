@@ -1,5 +1,5 @@
 .btn {
-  font-family: var(--bold), Tahoma, sans-serif;
+  font-family: var(--font-bold), var(--font-default);
   font-size: var(--normal);
   cursor: pointer;
   outline: none;
