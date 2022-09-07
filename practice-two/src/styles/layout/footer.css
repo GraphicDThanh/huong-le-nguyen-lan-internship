@@ -46,30 +46,6 @@
   display: flex;
   gap: 20px;
 }
-/* 
-.list-icons-social a .icon-social {
-  width: 25px;
-  height: 26px;
-  display: block;
-  background: url('../../assets/icons/icon-footer-social.png');
-} */
-/* 
-.list-icons-social a .facebook {
-  background-position: -54px -10px;
-}
-
-.list-icons-social a .instagram {
-  background-position: -10px -10px;
-}
-
-.list-icons-social a .twitter {
-  background-position: -98px -10px;
-}
-
-.list-icons-social a .youtube {
-  margin-top: 2px;
-  background-position: -10px -97px;
-} */
 
 @media screen and (min-width: 1440px) {
   .footer-wrapper .footer-menu {
