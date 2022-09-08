@@ -19,7 +19,7 @@
 }
 
 body {
-  font-family: montserrat-medium, Tahoma, sans-serif;
+  font-family: var(--font-medium), var(--font-default);
   color: var(--white);
   line-height: 20px;
   overflow-x: hidden;

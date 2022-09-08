@@ -8,11 +8,25 @@
       </figure>
     
       <div class="icons-nav">
-        <span class="icon icon-search"></span>
-        <span class="icon icon-cart"></span>
-        <span class="icon icon-bars">
-          <label for="nav-mobile-input"></label>
-        </span>
+        <include 
+          src="partials/components/icon.html"
+          locals='{
+            "class": "icon-header icon-search"
+          }'>
+        </include>
+        <include 
+          src="partials/components/icon.html"
+          locals='{
+            "class": "icon-header icon-cart"
+          }'>
+        </include>
+        <include 
+          src="partials/components/icon.html"
+          locals='{
+            "class": "icon-header icon-bars"
+          }'>
+        </include>
+        <label for="nav-mobile-input" class="nav-mobile-input"></label>
       </div>
   
       <div class="header-pc">
