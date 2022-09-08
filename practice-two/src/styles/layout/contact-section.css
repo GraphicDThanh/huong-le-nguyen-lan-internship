@@ -38,7 +38,7 @@
 .select-input {
   height: 46px;
   font-size: var(--normal);
-  font-family: montserrat-semiBold, Tahoma, sans-serif;
+  font-family: var(--font-semiBold), var(--font-default);
   padding: 0 15px;
   border-radius: 5px;
   outline: none;
