@@ -10,11 +10,36 @@
     <p class="card-job">{{job}}</p>
   </div>
   <div class="card-rate">
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
-    <span class="star"></span>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
   </div>
   <div class="card-body">
     <p class="description">{{description}}</p>
