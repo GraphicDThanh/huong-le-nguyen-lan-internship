@@ -6,32 +6,39 @@
   text-align: center;
 }
 
-.frame-img {
-  width: 75px;
-  height: 65px;
+.frame-wallet .icon-wallet {
   display: block;
-  background: url('../../assets/icons/icon-frame.png');
 }
 
-.frame-wallet {
-  background-position: -10px -90px;
+.frame-wallet .icon-flag,
+.frame-wallet .icon-users {
+  display: none;
 }
 
-.frame-flag {
-  background-position: -10px -10px;
+.frame-flag .icon-flag {
+  display: block;
 }
 
-.frame-users {
-  background-position: -103px -10px;
+.frame-flag .icon-wallet,
+.frame-flag .icon-users {
+  display: none;
+}
+
+.frame-users .icon-users {
+  display: block;
+}
+
+.frame-users .icon-wallet,
+.frame-users .icon-flag {
+  display: none;
 }
 
 .feature-frame .frame-title {
   padding: 22px 0 12px;
   font-size: var(--smallest);
-  font-family: var(--bold), Tahoma, sans-serif;
+  font-family: var(--font-bold), var(--font-default);
 }
 
 .feature-frame .frame-description {
   font-size: var(--normal);
-  font-family: var(--medium), Tahoma, sans-serif;
 }

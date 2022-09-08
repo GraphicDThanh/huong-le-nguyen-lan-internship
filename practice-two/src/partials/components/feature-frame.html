@@ -1,5 +1,22 @@
-<div class="feature-frame">
-  <span class="frame-img {{class}}"></span>
+<div class="feature-frame {{class}}">
+  <include 
+    src="partials/components/icon.html"
+    locals='{
+      "class": "icon-frame icon-wallet"
+    }'>
+  </include>
+  <include 
+    src="partials/components/icon.html"
+    locals='{
+      "class": "icon-frame icon-flag"
+    }'>
+  </include>
+  <include 
+    src="partials/components/icon.html"
+    locals='{
+      "class": "icon-frame icon-users"
+    }'>
+  </include>
   <p class="frame-title">{{title}}</p>
   <p class="frame-description">{{description}}</p>
 </div>

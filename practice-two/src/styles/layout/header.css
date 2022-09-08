@@ -18,39 +18,20 @@
   display: block;
 }
 
-.icon {
-  cursor: pointer;
-  width: 24px;
-  height: 28px;
-  background: url('../../assets/icons/icons-menu.png');
-}
-
-.icon-search {
-  background-position: -10px -10px;
-}
-
-.icon-cart {
-  background-position: -54px -10px;
-}
-
-.icon-bars {
-  margin: 5px 0 0 5px;
-  padding: 0;
-  background-position: -54px -54px;
-}
-
-.icon-bars:hover {
-  background-position: -10px -54px;
-}
-
-.icon-bars label {
-  padding: 20px;
-  cursor: pointer;
-}
-
 .icons-nav {
   display: flex;
   gap: 25px;
+}
+
+.icons-nav .icon-bars {
+  position: relative;
+}
+
+.nav-mobile-input {
+  position: absolute;
+  padding: 15px;
+  cursor: pointer;
+  right: 30px;
 }
 
 .nav-list {
@@ -93,7 +74,7 @@
 }
 
 .nav .nav-item .nav-link{
-  font-family: var(--semiBold), Tahoma, sans-serif;
+  font-family: var(--font-semiBold), var(--font-default);
   font-size: var(--big);
   color: var(--white);
   text-decoration: none;
@@ -132,7 +113,7 @@
 }
 
 .header-jumbotron .title-biggest {
-  font-family: var(--bold), Tahoma, sans-serif;
+  font-family: var(--font-bold), var(--font-default);
   font-size: var(--biggest);
   line-height: 58px;
   color: var(--white);
@@ -140,7 +121,6 @@
 
 .header-jumbotron .header-text {
   padding: 38px 25px 16px;
-  font-family: var(--medium), Tahoma, sans-serif;
   font-size: var(--smaller);
   line-height: 30px;
 }
@@ -195,7 +175,7 @@
   }
 
   .nav-collapse .nav-item .nav-link {
-    font-family: var(--bold), Tahoma, sans-serif;
+    font-family: var(--font-bold), var(--font-default);
     font-size: var(--normal);
     text-decoration: none;
     color: var(--white);

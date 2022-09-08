@@ -1,5 +1,5 @@
 .section-title {
-  font-family: var(--bold), Tahoma, sans-serif;
+  font-family: var(--font-bold), var(--font-default);
   font-size: var(--biggest);
   line-height: 57px;
 }
