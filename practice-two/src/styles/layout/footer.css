@@ -8,7 +8,7 @@
 }
 
 .footer-menu .footer-menu-content {
-  padding-left: 80px;
+  padding-left: 40px;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -37,7 +37,7 @@
 }
 
 .footer-social .footer-social-content {
-  width: 60%;
+  padding: 0 50px 0 40px;
 }
 
 .footer-social .footer-social-content .author {
@@ -54,10 +54,11 @@
 
 @media screen and (min-width: 1440px) {
   .footer-wrapper .footer-menu {
-    padding: 52px 88px 45px;
+    padding: 52px 0 45px;
   }
 
   .footer-menu .footer-menu-content {
+    padding: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -71,6 +72,7 @@
   }
 
   .footer-social .footer-social-content {
+    padding: 0;
     display: flex;
     justify-content: space-between;
     background-color: var(--white);
