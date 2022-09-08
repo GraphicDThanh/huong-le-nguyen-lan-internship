@@ -24,11 +24,11 @@
 
 @media screen and (min-width: 1440px) {
   .industry-wrapper {
-    padding: 145px 0 100px;
+    padding: 140px 0 124px;
   }
 
   .industry-wrapper .industry-cover {
-    width: 1408px;
+    min-width: 1408px;
     display: flex;
     flex-direction: column;
     align-items: center;
