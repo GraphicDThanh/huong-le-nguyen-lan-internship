@@ -70,11 +70,11 @@
     left: -50px;
   }
 
-  .man {
-    background-image: url(../../assets/images/man.png);
+  .avatar-man .man {
+    display: block;
   }
 
-  .woman {
-    background-image: url(../../assets/images/woman.png);
+  .avatar-man .woman {
+    display: none;
   }
 }
