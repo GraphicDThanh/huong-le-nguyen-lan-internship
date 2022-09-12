@@ -54,5 +54,41 @@ console.log(gg);
 
 // Find a specific item in the array
 const student = ["Huong", "Le", "Nguyen", "Lan"];
-console.log(student.find(x => x === "a"));
+console.log(student.find(x => x === "Huong"));
 
+const array1 = [5, 14, 8 ,9 , 44];
+const isLargeNumber = (element) => element > 13;
+console.log(array1.findIndex(isLargeNumber));
+
+// include() method
+console.log("array include: ");
+console.log(student.includes("Huong"));
+console.log(student.includes("Huong", 0));
+
+// sort() method
+console.log("array sort: ");
+const array2 = [1, 30, 4, 21, 100000];
+array2.sort();
+console.log(array2);
+
+// slide() method
+const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+console.log("array slide: ");
+// output: Array ["camel", "duck", "elephant"]
+console.log(animals.slice(2));
+
+// output: Array ["camel", "duck"]
+console.log(animals.slice(2, 4));
+
+// output: Array ["duck", "elephant"]
+console.log(animals.slice(-2));
+
+// output: Array ["camel", "duck"]
+console.log(animals.slice(2, -1));
+
+// output: Array ["ant", "bison", "camel", "duck", "elephant"]
+console.log(animals.slice());
+
+// toString() method
+const array3 = [1, 2, 'a', '1a'];
+console.log(array3.toString());
