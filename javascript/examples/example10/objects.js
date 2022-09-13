@@ -7,6 +7,7 @@ function ObjectCar(brand, model) {
 }
 
 var myCar = new ObjectCar("Ford", "Fiesta");
+
 console.log(myCar.getDetails());
 
 // Reference types
@@ -16,10 +17,14 @@ const car = {
 
 const anotherCar = car;
 anotherCar.color = "yellow";
+
+console.log("reference types");
 console.log(car.color);
 
 // Primitive types
 let age = 36;
 let myAge = age;
+
+console.log("primitive types");
 console.log("My Age: " + myAge);
 console.log("Age: " + age);

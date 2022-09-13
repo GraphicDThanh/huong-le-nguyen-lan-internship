@@ -18,3 +18,13 @@ console.log(myCar.brand.name);
 console.log(myCar.color);
 console.log(myCar["brand"]["name"]);
 
+// Delete a property
+const student = {
+  id: 1,
+  name: "Huong",
+  mark: 10
+}
+
+delete student.id;
+console.log("Delete a property");
+console.log(student);
