@@ -19,9 +19,15 @@ class Animal {
     let animal = name + " and " + color;
     console.log("Animal is: " + animal);
   }
+
+  animalColor(color) {
+    console.log(color);
+  }
 }
 
-let newAnimal = Animal.animalRun("cat", "yellow");
+let cat = new Animal();
+cat.animalColor("white");
+Animal.animalRun("cat", "yellow");
 
 // Private Method
 class PrivateMethod {

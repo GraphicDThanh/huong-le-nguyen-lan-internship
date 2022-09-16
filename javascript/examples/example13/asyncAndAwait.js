@@ -25,3 +25,37 @@ const doSomething = async () => {
 }
 
 doSomething();
+
+const num1 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("this is 1");
+    }, 1000);
+  });
+}
+
+const num2 = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("this is 2");
+    }, 1500);
+  });
+}
+
+const num3 = () => {
+  return new Promise((resolve, reject) => {
+    resolve("this is 3");
+  });
+}
+
+const syncAwait = async () => {
+  try {
+    console.log(await num1());
+    console.log(await num2());
+    console.log(await num3());
+  } catch (error) {
+    console.log("errors");
+  }
+}
+
+syncAwait();
