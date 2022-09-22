@@ -1,7 +1,9 @@
-@import url(button-radius.css);
-@import url(button-rectangle.css);
+@import url(button.css);
 @import url(industry-card.css);
 @import url(pricing-card.css);
 @import url(testimonial-card.css);
-@import url(section-title.css);
-@import url(section-text.css);
+@import url(title.css);
+@import url(footer-menu.css);
+@import url(feature-frame.css);
+@import url(select-menu.css);
+@import url(icon.css);

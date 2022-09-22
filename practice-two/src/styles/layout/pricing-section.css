@@ -1,1 +1,45 @@
+.pricing-wrapper {
+  padding: 70px 0 180px;
+  background-color: var(--dark-color);
+}
 
+.pricing-wrapper .pricing-cover {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.pricing-title {
+  padding: 0 30px;
+  text-align: center;
+}
+
+.pricing-title p {
+  padding-top: 5px;
+}
+
+.pricing-content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+@media screen and (min-width: 1440px) {
+  .pricing-wrapper {
+    padding: 125px 0 150px;
+  }
+
+  .pricing-wrapper .pricing-cover {
+    align-items: center;
+    gap: 105px;
+  }
+
+  .pricing-title {
+    width: 400px;
+  }
+
+  .pricing-content {
+    flex-direction: row;
+    gap: 30px;
+  }
+}

@@ -1,0 +1,20 @@
+.section-title {
+  font-family: var(--font-bold), var(--font-default);
+  font-size: var(--biggest);
+  line-height: 57px;
+}
+
+.section-title-dark, .section-title-dark-small {
+  color: var(--dark-color);
+}
+
+.section-title-dark-small {
+  line-height: 24px;
+  font-size: var(--smallest);
+}
+
+.section-text {
+  font-family: montserrat-regular, Tahoma, sans-serif;
+  font-size: var(--normal);
+  line-height: 20px;
+}

@@ -1,1 +1,24 @@
-
+<div class="newsletter-wrapper">
+  <div class="container">
+    <div class="newsletter-content">
+      <div class="newsletter-title">
+        <p>Consulting Agency For Your Business</p>
+        <include 
+          src="partials/components/title.html"
+          locals='{
+            "class": "section-text",
+            "text": "the quick fox jumps over the lazy dog"
+          }'>
+        </include>
+      </div>
+      <include 
+        src="partials/components/button.html"
+        locals='{
+          "class": "btn-rectangle btn-primary",
+          "type": "button",
+          "text": "Contact Us"
+        }'>
+      </include>
+    </div>
+  </div>
+</div>

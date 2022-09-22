@@ -1,0 +1,44 @@
+.feature-frame{
+  width: 225px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.frame-wallet .icon-wallet {
+  display: block;
+}
+
+.frame-wallet .icon-flag,
+.frame-wallet .icon-users {
+  display: none;
+}
+
+.frame-flag .icon-flag {
+  display: block;
+}
+
+.frame-flag .icon-wallet,
+.frame-flag .icon-users {
+  display: none;
+}
+
+.frame-users .icon-users {
+  display: block;
+}
+
+.frame-users .icon-wallet,
+.frame-users .icon-flag {
+  display: none;
+}
+
+.feature-frame .frame-title {
+  padding: 22px 0 12px;
+  font-size: var(--smallest);
+  font-family: var(--font-bold), var(--font-default);
+}
+
+.feature-frame .frame-description {
+  font-size: var(--normal);
+}

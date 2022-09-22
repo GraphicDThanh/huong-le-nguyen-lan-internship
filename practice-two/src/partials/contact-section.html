@@ -1,1 +1,63 @@
+<div class="contact-wrapper" id="contact-section">
+  <div class="contact-content container">
+    <div class="contact-title">
+      <include 
+        src="partials/components/title.html"
+        locals='{
+          "class": "section-title section-title-dark-small",
+          "text": "Contact Us"
+        }'>
+      </include>
+  
+      <include 
+        src="partials/components/title.html"
+        locals='{
+          "class": "section-title section-title-dark",
+          "text": "Make an Appointment"
+        }'>
+      </include>
+    </div>
+  
+      <form action="" class="contact-form">
+        <div class="form-group">
+          <input type="text" class="form-item form-fullname" placeholder="Full Name">
+          <input type="email" class="form-item form-email" placeholder="example@gmail.com">
+        </div>
+        <div class="form-group">
+          <include 
+            src="partials/components/select-menu.html"
+            locals='{
+              "placeholder": "Please Select",
+              "optionFirst": "DaNang",
+              "optionSecond": "HoChiMinh",
+              "optionThird": "HaNoi"
+            }'>
+          </include>
 
+          <include 
+            src="partials/components/select-menu.html"
+            locals='{
+              "placeholder": "4:00 Available",
+              "optionFirst": "5:00 PM",
+              "optionSecond": "6:00 PM",
+              "optionThird": "7:00 PM"
+            }'>
+          </include>
+        </div>
+        <div class="form-group">
+          <textarea cols="30" rows="10" class="form-item form-textarea" placeholder="Message"></textarea>
+        </div>
+        <div class="form-btn">
+          <include 
+            src="partials/components/button.html"
+            locals='{
+              "class": "btn-rectangle btn-primary",
+              "type": "submit",
+              "text": "Book Appointment"
+            }'>
+          </include>
+        </div>
+      </form>
+
+  </div>
+</div>

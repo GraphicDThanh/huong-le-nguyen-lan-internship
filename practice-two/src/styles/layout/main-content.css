@@ -1,1 +1,38 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
 
+.feature-wrapper {
+  order: 1;
+}
+
+.testimonial-wrapper {
+  order: 2;
+}
+
+.industry-wrapper {
+  order: 3;
+}
+
+.pricing-wrapper {
+  order: 4;
+}
+
+.contact-wrapper {
+  order: 5;
+}
+
+.newsletter-wrapper {
+  order: 6;
+}
+
+@media screen and (min-width: 1440px) {
+  .feature-wrapper {
+    order: 2;
+  }
+
+  .testimonial-wrapper {
+    order: 1;
+  }
+}

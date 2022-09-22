@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body>
+    <div class="container-component">
+      <div class="container components-title">
+        <h2>List components title</h2>
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title",
+            "title": "Pricing"}'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-text",
+            "title": "Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title section-title-dark",
+            "title": "Pricing"}'>
+        </include>
+
+        <include 
+          src="partials/components/section-title.html"
+          locals='{
+            "class": "section-title section-title-dark-small",
+            "title": "Pricing"}'>
+        </include>
+      </div>
+      
+      <div class="container components-btn">
+        <h2>List component button</h2>
+        <include 
+          src="partials/components/button.html" 
+          locals='{
+            "class": "btn-radius btn-primary",
+            "type": "button", 
+            "text": "Get Quote Now"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button.html" 
+          locals='{
+            "class": "btn-radius btn-secondary",
+            "type": "button", 
+            "text": "Learn More"
+          }'>
+        </include>
+        
+        <include 
+          src="partials/components/button.html"
+          locals='{
+            "class": "btn-rectangle btn-primary",
+            "type": "button",
+            "text": "Try for free"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/button.html"
+          locals='{
+            "class": "btn-rectangle btn-primary btn-menu",
+            "type": "button",
+            "text": "Become a member"
+          }'>
+        </include>
+      </div>
+
+      <div class="container component components-industry-card">
+        <h2>Component industry card</h2>
+        <include 
+          src="partials/components/industry-card.html"
+          locals='{
+            "class": "forest",
+            "name": "Tax Management",
+            "title": "Life Tips From Top Ten Adventure Travelers"
+          }'>
+        </include>
+      
+        <include 
+          src="partials/components/industry-card.html"
+          locals='{
+            "class": "chart",
+            "name": "Tax Management",
+            "title": "Life Tips From Top Ten Adventure Travelers"
+          }'>
+        </include>  
+      </div>
+
+      <div class="container component component-pricing-card">
+        <h2>Component pricing card</h2>
+        <include 
+          src="partials/components/pricing-card.html"
+          locals='{
+            "title": "FREE",
+            "price": "0" 
+          }'>
+        </include>   
+
+        <include
+          src="partials/components/pricing-card.html"
+          locals='{
+            "class": "pricing-card-status",
+            "title": "SILVER",
+            "price": "9.99"
+          }'>
+        </include>
+      </div>
+
+      <div class="container component components-testimonial-card">
+        <h2>Testimonial components</h2>
+        <include 
+          src="partials/components/testimonial-card.html"
+          locals='{
+            "name": "Regina Miles",
+            "job": "Designer",
+            "description": "This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space. This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space."
+          }'>
+        </include>
+      </div>
+    
+      <div class="container component component-feature-frame">
+        <h2>Component feature frame</h2>
+        <include 
+          src="partials/components/feature-frame.html"
+          locals='{
+            "class": "frame-wallet",
+            "title": "Peace of Mind",
+            "description": "So it really behaves like neither. Now we have given up. "
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/feature-frame.html"
+          locals='{
+            "class": "frame-users",
+            "title": "Peace of Mind",
+            "description": "So it really behaves like neither. Now we have given up. "
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/feature-frame.html"
+          locals='{
+            "class": "frame-flag",
+            "title": "Peace of Mind",
+            "description": "So it really behaves like neither. Now we have given up. "
+          }'>
+        </include>
+      </div>
+
+      <div class="container component component-select-menu">
+        <h2>Component select-menu</h2>
+        <include 
+          src="partials/components/select-menu.html"
+          locals='{
+            "placeholder": "Please Select",
+            "optionFirst": "DaNang",
+            "optionSecond": "HoChiMinh",
+            "optionThird": "HaNoi"
+          }'>
+        </include>
+      </div>
+
+      <div class="container component component-footer-menu">
+        <h2>Component footer-menu</h2>
+        <include 
+          src="partials/components/footer-menu.html"
+          locals='{
+            "title": "Legal",
+            "itemFirst": "About Us",
+            "itemSecond": "Carrier",
+            "itemThird": "We are hiring",
+            "itemFourth": "Blog"
+          }'>
+        </include>
+      </div>
+
+      <div class="container component component-icon">
+        <h2>List component icon</h2>
+        <include 
+          src="partials/components/icon.html"
+          locals='{
+            "class": "icon-header icon-search"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/icon.html"
+          locals='{
+            "class": "icon-header icon-cart"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/icon.html"
+          locals='{
+            "class": "icon-social icon-facebook"
+          }'>
+        </include>
+
+        <include 
+          src="partials/components/icon.html"
+          locals='{
+            "class": "icon-social icon-youtube"
+          }'>
+        </include>
+      </div>
+    </div>
+  </body>
+</html>

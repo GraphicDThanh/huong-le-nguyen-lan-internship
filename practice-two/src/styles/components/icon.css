@@ -1,0 +1,100 @@
+.icon {
+  cursor: pointer;
+  display: block;
+}
+
+.icon-header {
+  width: 26px;
+  height: 28px;
+  background: url('../../assets/icons/icons-menu.png');
+}
+
+.icon-search {
+  background-position: -10px -10px;
+}
+
+.icon-cart {
+  background-position: -54px -10px;
+}
+
+.icon-bars {
+  margin: 5px 0 0 5px;
+  padding: 0;
+  background-position: -54px -54px;
+}
+
+.icon-bars:hover {
+  background-position: -10px -54px;
+}
+
+.icon-frame {
+  width: 75px;
+  height: 65px;
+  background: url('../../assets/icons/icon-frame.png');
+}
+
+.icon-wallet {
+  background-position: -10px -90px;
+}
+
+.icon-flag {
+  background-position: -10px -10px;
+}
+
+.icon-users {
+  background-position: -103px -10px;
+}
+
+.icon-star {
+  height: 20px;
+  width: 20px;
+  background: url('../../assets/icons/stars.png') -10px -10px;
+}
+
+.icon-star:hover,
+.icon-star:hover ~ .icon-star {
+  background-position: -10px -50px;
+}
+
+.icon-social {
+  width: 25px;
+  height: 26px;
+  background: url('../../assets/icons/icon-footer-social.png');
+}
+
+.icon-facebook {
+  background-position: -54px -10px;
+}
+
+.icon-instagram {
+  background-position: -10px -10px;
+}
+
+.icon-twitter {
+  background-position: -98px -10px;
+}
+
+.icon-youtube {
+  margin-top: 2px;
+  background-position: -10px -97px;
+}
+
+@media screen and (min-width: 1440px) {
+  .icon-facebook {
+    background-position: -10px -54px;
+  }
+  
+  .icon-instagram {
+    background-position: -54px -54px;
+  }
+  
+  .icon-twitter {
+    margin-top: 2px;
+    background-position: -54px -97px;
+  }
+  
+  .icon-youtube {
+    padding-top: 10px;
+    display: none;
+  }
+}

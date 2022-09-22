@@ -1,1 +1,58 @@
+.industry-wrapper {
+  padding: 78px 0 100px;
+  background-color: var(--dark-color);
+}
 
+.industry-title {
+  text-align: center;
+  padding: 0 30px;
+}
+
+.industry-title h2:nth-child(3) {
+  padding: 30px 22px 60px;
+}
+
+.industry-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.text-pc {
+  display: none;
+}
+
+@media screen and (min-width: 1440px) {
+  .industry-wrapper {
+    padding: 140px 0 124px;
+  }
+
+  .industry-wrapper .industry-cover {
+    min-width: 1408px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .industry-title {
+    width: 32%;
+  }
+
+  .industry-title p:nth-child(3) {
+    padding: 10px 22px 75px;
+  }
+
+  .industry-content {
+    flex-direction: row;
+    gap: 25px;
+  }
+
+  .text-pc {
+    display: block;
+  }
+
+  .text-mobile {
+    display: none;
+  }
+}

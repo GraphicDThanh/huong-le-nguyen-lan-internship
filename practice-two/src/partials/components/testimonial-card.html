@@ -1,1 +1,47 @@
-
+<div class="testimonial-card {{class}}">
+  <figure class="card-avatar">
+    <img src="./assets/images/man.png" alt="Avatar a man" class="man">
+  </figure>
+  <figure class="card-avatar">
+    <img src="./assets/images/woman.png" alt="Avatar a man" class="woman">
+  </figure>
+  <div class="card-header">
+    <p class="card-name">{{name}}</p>
+    <p class="card-job">{{job}}</p>
+  </div>
+  <div class="card-rate">
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+    <include 
+      src="partials/components/icon.html"
+      locals='{
+        "class": "icon-star"
+      }'>
+    </include>
+  </div>
+  <div class="card-body">
+    <p class="description">{{description}}</p>
+  </div>
+</div>

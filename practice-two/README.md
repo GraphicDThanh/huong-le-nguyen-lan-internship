@@ -11,19 +11,30 @@
 - Semantic HTML tags
 - Flexbox, Grid
 - Sprite image in SVG
-- Structure CSS with SASS 7-1 pattern
+- Structure CSS 7-1 pattern
 - Structure HTML by components and pages
 - Run app by Parcel
 - HTML inspector
 
-
 ### Information
 - Timeline
   - Estimate day: 10 days.
-  - Actual day: .
-- Techniques: HTML5/ CSS3.
+  - Actual day: 12 days
+- Techniques: 
+  - HTML5/ CSS3
+  - Semantic HTML tags
+  - Flexbox, Grid
+  - Sprite image in SVG
+  - Structure css 7-1 pattern
+  - Structure html by components and pages
+  - Run app by parcel
 - Editor: Visual Studio Code.
-- Supported browser: Chrome latest.
+- Supported browser: Chrome v104, Firefox v104, Edge v105
+
+### Development Environment
+- Node v16.16
+- Parcel v2.7
+- Posthtml v0.16
 
 ### Getting started
 - Step 1: Clone repository
@@ -31,14 +42,10 @@
      - `$ git clone -b feat/practice-two https://github.com/GraphicDThanh/huong-le-nguyen-lan-internship.git`
   - With SSH: 
      - `$ git clone -b feat/practice-two git@github.com:GraphicDThanh/huong-le-nguyen-lan-internship.git`
-     - key: 123456
- - Step 2: Move to folder which just cloned in your computer
-   - `$ cd huong-le-nguyen-lan-internship/`
- - Step 3: Install commitlint
+ - Step 2: Move to folder practice-two which just cloned in your computer
+   - `$ cd huong-le-nguyen-lan-internship/practice-two`
+ - Step 3: Now you need to install packages
    - `$ npm install`
- - Step 4: Move to folder practice-two.
-   - `$ cd practice-two`
- - Step 5: Now you need to install parcel to run project
-   - `$ npm install --save-dev parcel`
- - Step 6: After install parcel
-   - `$ npm run start` 
+ - Step 4: After install packages
+   - `$ npm run start`
+ - Step 5: Open [localhost](http://localhost:1234) to see the website
