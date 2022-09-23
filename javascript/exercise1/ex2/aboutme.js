@@ -21,4 +21,4 @@ for (let i = 0; i < liText.length; i += 1) {
 
 const img = document.createElement('img');
 document.body.appendChild(img);
-img.src = 'https://logos-world.net/wp-content/uploads/2020/10/Yahoo-Logo-700x394.png';
+img.setAttribute('src', 'https://logos-world.net/wp-content/uploads/2020/10/Yahoo-Logo-700x394.png')

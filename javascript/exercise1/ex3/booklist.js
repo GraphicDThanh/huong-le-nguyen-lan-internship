@@ -1,13 +1,13 @@
 // The Recipe Card
-const obj = {
+const Services = {
   title: 'Mole',
   servings: 2,
   ingredients: ['cumin', 'cinnamon', 'cocoa'],
 };
 
-console.log(obj.title);
-console.log(obj.servings);
-obj.ingredients.forEach((element) => {
+console.log(Services.title);
+console.log(Services.servings);
+Services.ingredients.forEach((element) => {
   console.log(element);
 });
 
@@ -15,7 +15,7 @@ obj.ingredients.forEach((element) => {
 const list = document.createElement('ul');
 document.body.appendChild(list);
 
-const arr = [
+const listBooks = [
   {
     title: 'The Design of EveryDay Thing',
     img: 'http://ecx.images-amazon.com/images/I/41j2ODGkJDL._AA115_.jpg',
@@ -30,7 +30,7 @@ const arr = [
   },
 ];
 
-arr.forEach((element) => {
+listBooks.forEach((element) => {
   const listChild = document.createElement('li');
   const book = document.createElement('span');
   const img = document.createElement('img');
@@ -43,7 +43,7 @@ arr.forEach((element) => {
   listChild.appendChild(book);
   list.appendChild(listChild);
 
-  if (element.alreadyRead === true) {
+  if (element.alreadyRead) {
     console.log(`You already read "${element.title}" by ${element.author}`);
     book.style.color = 'gray';
   } else {
