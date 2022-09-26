@@ -1,13 +1,13 @@
 // The Recipe Card
-const services = {
+const service = {
   title: 'Mole',
   servings: 2,
   ingredients: ['cumin', 'cinnamon', 'cocoa'],
 };
 
-console.log(services.title);
-console.log(services.servings);
-services.ingredients.forEach((element) => {
+console.log(service.title);
+console.log(service.servings);
+service.ingredients.forEach((element) => {
   console.log(element);
 });
 
