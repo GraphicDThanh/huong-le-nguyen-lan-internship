@@ -1,8 +1,8 @@
 const btn = document.querySelector('.btn');
 const text = document.querySelector('.demoText');
 
-const changeColor = () => {
+const changeBackgroundColor = () => {
   text.style.backgroundColor = 'red';
 };
 
-btn.addEventListener('click', changeColor);
+btn.addEventListener('click', changeBackgroundColor);
