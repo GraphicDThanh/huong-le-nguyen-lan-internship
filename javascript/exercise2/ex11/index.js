@@ -1,5 +1,3 @@
-const button = document.querySelector('.button');
-
 const listImgs = [
   {
     url: 'http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg',
@@ -18,7 +16,7 @@ const listImgs = [
   },
 ];
 
-const changeImage = () => {
+function changeImage() {
   const imageBox = document.querySelector('.demo');
   const img = document.createElement('img');
   const listImg = document.getElementsByTagName('img');
@@ -32,6 +30,4 @@ const changeImage = () => {
     listImg[0].parentNode.removeChild(listImg[0]);
   }
   imageBox.appendChild(img);
-};
-
-button.addEventListener('click', changeImage);
+}

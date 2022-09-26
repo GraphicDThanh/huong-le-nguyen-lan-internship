@@ -1,4 +1,5 @@
 const volumeSphere = (e) => {
+  // This event is used to avoid the page reload of the submit event
   e.preventDefault();
   const radius = document.querySelector('.radius').value;
   const volume = document.querySelector('.volume');
@@ -6,5 +7,4 @@ const volumeSphere = (e) => {
   volume.value = `${total}`;
 };
 
-document.getElementById('myForm').onsubmit = volumeSphere;
-window.onload = document.getElementById('myForm').onsubmit;
+document.getElementById('myForm').addEventListener('submit', volumeSphere);

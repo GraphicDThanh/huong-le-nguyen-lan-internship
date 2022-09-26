@@ -1,8 +1,4 @@
-const selectBox = document.querySelector('#colorSelect');
-const button = document.querySelector('input');
-
-const removeColor = () => {
+function removeColor() {
+  const selectBox = document.querySelector('#colorSelect');
   selectBox.remove(selectBox.selectedIndex);
-};
-
-button.addEventListener('click', removeColor);
+}

@@ -1,4 +1,4 @@
-const boldText = document.querySelectorAll('.group-text span');
+const boldText = document.querySelectorAll('.group-text strong');
 const linkAction = document.querySelector('.group-text a');
 
 const highlight = () => {

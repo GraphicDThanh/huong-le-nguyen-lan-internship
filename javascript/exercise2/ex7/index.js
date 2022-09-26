@@ -1,6 +1,4 @@
-const button = document.querySelector('.button');
-
-const createTable = () => {
+function createTable() {
   const content = document.querySelector('.content').value;
   const row = +document.querySelector('.row').value;
   const column = +document.querySelector('.column').value;
@@ -12,6 +10,4 @@ const createTable = () => {
       cell.innerHTML = content;
     }
   }
-};
-
-button.addEventListener('click', createTable);
+}
