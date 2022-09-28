@@ -78,7 +78,7 @@ const checkPassword = () => {
   } else if (!passwordValue.match(rules)) {
     error.innerText = 'Password must contain letters and at least one digit';
     isErrors = true;
-  // length > 8
+  // check length > 8
   } else if (passwordValue.length < 8) {
     error.innerText = 'Password minimum is 8 characters ';
     isErrors = true;
@@ -125,6 +125,7 @@ const checkConfirmPassword = () => {
 };
 
 function submitForm(e) {
+  // This event is used to avoid the page reload of the submit event
   e.preventDefault();
   const details = document.querySelector('.details');
 
