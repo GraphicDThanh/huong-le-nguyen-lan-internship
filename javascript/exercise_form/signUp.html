@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="container">
-    <form class="sign-up" id="sign-up-form" method="post" action="http://www2.cs.uregina.ca/~temp8/lab6/checkForm.php">
+    <form class="sign-up" id="sign-up-form">
       <h1 class="sign-up-title">Sign Up</h1>
       <div class="form-cover">
         <div class="form-group">
@@ -24,12 +24,12 @@
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="text" name="password" class="password" placeholder="Enter Password">
+          <input type="password" name="password" class="password" placeholder="Enter Password">
           <span class="message"></span>
         </div>
         <div class="form-group">
           <label for="confirm-password">Confirm Password:</label>
-          <input type="text" name="confirm-password" class="confirm-password" placeholder="Confirm Password">
+          <input type="password" name="confirm-password" class="confirm-password" placeholder="Confirm Password">
           <span class="message"></span>
         </div>
       </div>
@@ -42,7 +42,6 @@
       <p class="details"></p>
     </div>
   </div>
-  <!-- <script src="signUp.js"></script> -->
-  <script src="signUp2.js"></script>
+  <script src="signUp.js"></script>
 </body>
 </html>

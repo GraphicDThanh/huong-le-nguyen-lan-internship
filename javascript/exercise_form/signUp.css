@@ -16,7 +16,6 @@
 .sign-up {
   width: 20%;
   padding: 50px;
-  border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #fff;
 }
@@ -94,5 +93,12 @@
 }
 
 .information {
+  width: 20%;
+  padding: 10px 50px;
+  background-color: #fff;
+}
 
+.information p {
+  font-size: 16px;
+  font-family: sans-serif, Tahoma, Verdana;
 }
