@@ -1,14 +1,14 @@
-const boldText = document.querySelectorAll('.group-text strong');
+const boldTexts = document.querySelectorAll('.group-text strong');
 const linkAction = document.querySelector('.group-text a');
 
 const highlight = () => {
-  boldText.forEach((element) => {
+  boldTexts.forEach((element) => {
     element.setAttribute('style', 'color: red');
   });
 };
 
 const unHighlight = () => {
-  boldText.forEach((element) => {
+  boldTexts.forEach((element) => {
     element.removeAttribute('style');
   });
 };

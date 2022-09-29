@@ -1,4 +1,4 @@
-const listImgs = [
+const listImg = [
   {
     url: 'http://farm4.staticflickr.com/3691/11268502654_f28f05966c_m.jpg',
     width: '240px',
@@ -18,16 +18,17 @@ const listImgs = [
 
 function changeImage() {
   const imageBox = document.querySelector('.demo');
-  const img = document.createElement('img');
-  const listImg = document.getElementsByTagName('img');
-  const listLength = listImg.length;
-  const random = Math.floor(Math.random() * listImgs.length);
+  const imgElement = document.createElement('img');
+  const listTagImg = document.getElementsByTagName('img');
+  const listLength = listTagImg.length;
+  const random = Math.floor(Math.random() * listImg.length);
 
-  img.setAttribute('src', listImgs[random].url);
-  img.style.width = listImgs[random].width;
-  img.style.height = listImgs[random].height;
+  imgElement.setAttribute('src', listImg[random].url);
+  imgElement.style.width = listImg[random].width;
+  imgElement.style.height = listImg[random].height;
+
   if (listLength === 1) {
-    listImg[0].parentNode.removeChild(listImg[0]);
+    listTagImg[0].parentNode.removeChild(listTagImg[0]);
   }
-  imageBox.appendChild(img);
+  imageBox.appendChild(imgElement);
 }
