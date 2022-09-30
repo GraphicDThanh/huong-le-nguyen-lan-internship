@@ -5,7 +5,19 @@ const confirmPassword = document.querySelector('.confirm-password');
 const signUpForm = document.getElementById('sign-up-form');
 let isErrors = false;
 
-const checkEmail = (() => {
+function checkErrors(element) {
+  const error = element.parentElement.querySelector('.message');
+
+  if (isErrors) {
+    element.classList.add('valid');
+    error.style.display = 'block';
+  } else {
+    element.classList.remove('valid');
+    error.style.display = 'none';
+  }
+}
+
+const checkEmail = () => {
   const rules = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const error = email.parentElement.querySelector('.message');
   const emailValue = email.value;
@@ -22,16 +34,10 @@ const checkEmail = (() => {
     isErrors = false;
   }
 
-  if (isErrors) {
-    email.className = 'valid';
-    error.style.display = 'block';
-  } else {
-    email.classList.remove('valid');
-    error.style.display = 'none';
-  }
+  checkErrors(email);
 
   return isErrors;
-});
+};
 
 const checkUsername = () => {
   const rules = /\W/g;
@@ -54,13 +60,7 @@ const checkUsername = () => {
     isErrors = false;
   }
 
-  if (isErrors) {
-    username.className = 'valid';
-    error.style.display = 'block';
-  } else {
-    username.classList.remove('valid');
-    error.style.display = 'none';
-  }
+  checkErrors(username);
 
   return isErrors;
 };
@@ -86,13 +86,7 @@ const checkPassword = () => {
     isErrors = false;
   }
 
-  if (isErrors) {
-    password.className = 'valid';
-    error.style.display = 'block';
-  } else {
-    password.classList.remove('valid');
-    error.style.display = 'none';
-  }
+  checkErrors(password);
 
   return isErrors;
 };
@@ -113,13 +107,7 @@ const checkConfirmPassword = () => {
     isErrors = false;
   }
 
-  if (isErrors) {
-    confirmPassword.className = 'valid';
-    error.style.display = 'block';
-  } else {
-    confirmPassword.classList.remove('valid');
-    error.style.display = 'none';
-  }
+  checkErrors(confirmPassword);
 
   return isErrors;
 };
