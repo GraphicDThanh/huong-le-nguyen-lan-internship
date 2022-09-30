@@ -12,7 +12,6 @@
 }
 
 .task-table {
-  font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
@@ -32,6 +31,10 @@
 .column-title {
   text-align: center;
   background-color: #e6e6e6;
+}
+
+.task-details .task-name {
+  word-break: break-all;
 }
 
 .task-details, .column-title {
@@ -78,7 +81,8 @@
   border: 1px solid #28a745;
 }
 
-.btn-submit:hover, .btn-done:hover {
+.btn-submit:hover,
+.btn-done:hover {
   background-color: #46d267;
   border: 1px solid #46d267;
 }
