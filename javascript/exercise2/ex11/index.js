@@ -20,14 +20,14 @@ function changeImage() {
   const imageBox = document.querySelector('.demo');
   const imgElement = document.createElement('img');
   const listTagImg = document.getElementsByTagName('img');
-  const listLength = listTagImg.length;
+  const lengthOfTagList = listTagImg.length;
   const random = Math.floor(Math.random() * listImg.length);
 
   imgElement.setAttribute('src', listImg[random].url);
   imgElement.style.width = listImg[random].width;
   imgElement.style.height = listImg[random].height;
 
-  if (listLength === 1) {
+  if (lengthOfTagList === 1) {
     listTagImg[0].parentNode.removeChild(listTagImg[0]);
   }
   imageBox.appendChild(imgElement);
