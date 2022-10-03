@@ -28,11 +28,11 @@ function checkEmpty(value, element, errorMessageEmpty) {
 }
 
 // check value match with rules
-function checkRules(value, element, rules, errorMessageRules) {
-  const error = element.parentElement.querySelector('.message');
+function checkRules(elementRules) {
+  const error = elementRules.element.parentElement.querySelector('.message');
 
-  if (!value.match(rules)) {
-    error.innerText = errorMessageRules;
+  if (!elementRules.value.match(elementRules.rule)) {
+    error.innerText = elementRules.message;
     isErrors = true;
   } else {
     isErrors = false;
@@ -43,7 +43,14 @@ const isValidEmail = () => {
   const rules = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const emailValue = email.value;
 
-  checkRules(emailValue, email, rules, 'Email is valid');
+  const emailRules = {
+    value: emailValue,
+    element: email,
+    rule: rules,
+    message: 'Email is valid',
+  };
+
+  checkRules(emailRules);
   checkEmpty(emailValue, email, 'Email is empty');
   checkErrors(email);
 
@@ -78,13 +85,20 @@ const isValidPassword = () => {
   const passwordValue = password.value;
   const error = password.parentElement.querySelector('.message');
 
+  const passwordRules = {
+    value: passwordValue,
+    element: password,
+    rule: rules,
+    message: 'Password must contain letters and at least one digit',
+  };
+
   // check length > 8
   if (passwordValue.length < 8) {
     error.innerText = 'Password minimum is 8 characters ';
     isErrors = true;
   }
   // check password contain letters and at least one digit
-  checkRules(passwordValue, password, rules, 'Password must contain letters and at least one digit');
+  checkRules(passwordRules);
   // check empty
   checkEmpty(passwordValue, password, 'Password is empty');
   checkErrors(password);
