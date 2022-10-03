@@ -17,39 +17,46 @@ function checkErrors(element) {
   }
 }
 
-const checkEmail = () => {
-  const rules = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
-  const error = email.parentElement.querySelector('.message');
-  const emailValue = email.value;
+// check empty
+function checkEmpty(value, element, errorMessageEmpty) {
+  const error = element.parentElement.querySelector('.message');
 
-  // check empty
-  if (emailValue.length === 0) {
-    error.innerText = 'Email is empty';
+  if (value === '') {
+    error.innerText = errorMessageEmpty;
     isErrors = true;
-  // check email
-  } else if (!emailValue.match(rules)) {
-    error.innerText = 'Email is not valid !';
+  }
+}
+
+// check value match with rules
+function checkRules(value, element, rules, errorMessageRules) {
+  const error = element.parentElement.querySelector('.message');
+
+  if (!value.match(rules)) {
+    error.innerText = errorMessageRules;
     isErrors = true;
   } else {
     isErrors = false;
   }
+}
 
+const isValidEmail = () => {
+  const rules = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
+  const emailValue = email.value;
+
+  checkRules(emailValue, email, rules, 'Email is valid');
+  checkEmpty(emailValue, email, 'Email is empty', rules);
   checkErrors(email);
 
   return isErrors;
 };
 
-const checkUsername = () => {
-  const rules = /\W/g;
+const isValidUsername = () => {
+  const rules = /[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?]+/g;
   const usernameValue = username.value;
   const error = username.parentElement.querySelector('.message');
 
-  // check empty
-  if (usernameValue.length === 0) {
-    error.innerText = 'Username is empty';
-    isErrors = true;
   // check username contain special characters
-  } else if (usernameValue.match(rules)) {
+  if (usernameValue.match(rules)) {
     error.innerText = 'Username do not contain special characters';
     isErrors = true;
   // check length < 25
@@ -59,54 +66,43 @@ const checkUsername = () => {
   } else {
     isErrors = false;
   }
-
+  // check empty
+  checkEmpty(usernameValue, username, 'Username is empty');
   checkErrors(username);
 
   return isErrors;
 };
 
-const checkPassword = () => {
+const isValidPassword = () => {
   const rules = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/g;
   const passwordValue = password.value;
   const error = password.parentElement.querySelector('.message');
 
-  // check empty
-  if (passwordValue.length === 0) {
-    error.innerText = 'Password is empty';
-    isErrors = true;
-  // check password contain letters and at least one digit
-  } else if (!passwordValue.match(rules)) {
-    error.innerText = 'Password must contain letters and at least one digit';
-    isErrors = true;
   // check length > 8
-  } else if (passwordValue.length < 8) {
+  if (passwordValue.length < 8) {
     error.innerText = 'Password minimum is 8 characters ';
     isErrors = true;
-  } else {
-    isErrors = false;
   }
-
+  // check password contain letters and at least one digit
+  checkRules(passwordValue, password, rules, 'Password must contain letters and at least one digit');
+  // check empty
+  checkEmpty(passwordValue, password, 'Password is empty');
   checkErrors(password);
 
   return isErrors;
 };
 
-const checkConfirmPassword = () => {
+const isValidConfirmPassword = () => {
   const confirmPasswordValue = confirmPassword.value;
   const error = confirmPassword.parentElement.querySelector('.message');
 
-  // check empty
-  if (confirmPasswordValue.length === 0) {
-    error.innerText = 'Confirm password is empty';
-    isErrors = true;
   // check password and confirm password match
-  } else if (confirmPasswordValue !== password.value) {
+  if (confirmPasswordValue !== password.value) {
     error.innerText = 'Confirm password and password do not match';
     isErrors = true;
-  } else {
-    isErrors = false;
   }
-
+  // check empty
+  checkEmpty(confirmPasswordValue, confirmPassword, 'Confirm password is empty');
   checkErrors(confirmPassword);
 
   return isErrors;
@@ -117,20 +113,20 @@ function submitForm(e) {
   e.preventDefault();
   const details = document.querySelector('.details');
 
-  checkEmail();
-  checkUsername();
-  checkPassword();
-  checkConfirmPassword();
+  isValidEmail();
+  isValidUsername();
+  isValidPassword();
+  isValidConfirmPassword();
 
-  if (!checkEmail() && !checkUsername() && !checkPassword() && !checkConfirmPassword()) {
+  if (!isValidEmail() && !isValidUsername() && !isValidPassword() && !isValidConfirmPassword()) {
     details.innerHTML = `Email: ${email.value} </br> Username: ${username.value} </br> Password: ${password.value} </br> Confirm Password: ${confirmPassword.value}`;
   } else {
     details.innerText = 'Invalid Data Entered';
   }
 }
 
-email.addEventListener('blur', checkEmail);
-username.addEventListener('blur', checkUsername);
-password.addEventListener('blur', checkPassword);
-confirmPassword.addEventListener('blur', checkConfirmPassword);
+email.addEventListener('blur', isValidEmail);
+username.addEventListener('blur', isValidUsername);
+password.addEventListener('blur', isValidPassword);
+confirmPassword.addEventListener('blur', isValidConfirmPassword);
 signUpForm.addEventListener('submit', submitForm);
