@@ -47,19 +47,19 @@
 }
 
 .form-group input {
-  padding: 15px 15px;
+  padding: 15px;
   outline: none;
   border: 1px solid #737373;
   border-radius: 5px;
 }
 
 .form-group input:focus {
-  border: 1px solid #385cb9;
+  border-color: #385cb9;
 }
 
 .form-group .valid {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border: 1px solid #ff5b5b;
+  border-color: #ff5b5b;
 }
 
 .form-group .message {
@@ -89,7 +89,7 @@
 .form-button .btn:hover {
   color: #fff;
   background-color: #3558b1;
-  border: 1px solid #2f4e9d;
+  border-color: #2f4e9d;
 }
 
 .information {
