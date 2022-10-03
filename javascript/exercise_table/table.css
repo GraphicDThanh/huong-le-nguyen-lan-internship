@@ -54,6 +54,7 @@
 }
 
 .select-pomodoro {
+  cursor: pointer;
   padding: 10px;
   outline: none;
   border: 1px solid #ccc;
@@ -66,44 +67,41 @@
   outline: none;
   border-radius: 5px;
   background-color: #fff;
+  border: 1px solid #28a745;
 }
 
-.btn-submit:hover,
-.btn-delete:hover,
-.btn-done:hover,
-.btn-increase:hover {
+.btn:hover {
   color: #fff;
 }
 
 .btn-submit, .btn-done {
   color: #28a745;
-  border: 1px solid #28a745;
 }
 
 .btn-submit:hover,
 .btn-done:hover {
   background-color: #46d267;
-  border: 1px solid #46d267;
+  border-color:#46d267;
 }
 
 .btn-delete {
   color: #ff5b5b;
-  border: 1px solid #ff4d4d;
+  border-color: #ff4d4d;
 }
 
 .btn-delete:hover {
   background-color: #ff5b5b;
-  border: 1px solid #ff5b5b;
+  border-color: #ff5b5b;
 }
 
 .btn-increase {
   color: #4da6ff;
-  border: 1px solid #3399ff;
+  border-color:#3399ff;
 }
 
 .btn-increase:hover {
   background-color: #4da6ff;
-  border: 1px solid #4da6ff;
+  border-color:#4da6ff;
 }
 
 .error {
