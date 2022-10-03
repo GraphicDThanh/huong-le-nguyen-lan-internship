@@ -3,7 +3,9 @@ function createTable() {
   const row = +document.querySelector('.row').value;
   const column = +document.querySelector('.column').value;
 
-  if (row <= 0 && column <= 0) {
+  if (row === 0 && column === 0) {
+    document.querySelector('.error').innerHTML = 'row and column do not empty';
+  } else if (row < 1 && column < 1) {
     document.querySelector('.error').innerHTML = 'row and column do not less then 1';
   } else {
     for (let i = 0; i < row; i += 1) {
