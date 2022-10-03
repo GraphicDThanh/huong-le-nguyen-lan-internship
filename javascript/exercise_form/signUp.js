@@ -44,7 +44,7 @@ const isValidEmail = () => {
   const emailValue = email.value;
 
   checkRules(emailValue, email, rules, 'Email is valid');
-  checkEmpty(emailValue, email, 'Email is empty', rules);
+  checkEmpty(emailValue, email, 'Email is empty');
   checkErrors(email);
 
   return isErrors;
