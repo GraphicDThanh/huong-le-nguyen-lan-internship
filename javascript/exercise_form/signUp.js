@@ -5,9 +5,11 @@ const confirmPassword = document.querySelector('.confirm-password');
 const signUpForm = document.getElementById('sign-up-form');
 let isError = false;
 
-/*
-  show and hide error
-*/
+/**
+  * @description Show and hide error
+  *
+  * @param {Object} element of input
+  */
 function showHideErrors(element) {
   const error = element.parentElement.querySelector('.message');
 
@@ -20,9 +22,15 @@ function showHideErrors(element) {
   }
 }
 
-/*
-  check empty input
-*/
+/**
+  * @description check empty input
+  *
+  * @param {String} value is value of input
+  * @param {Object} element of input
+  * @param {String} errorMessageEmpty is error message
+  *
+  * @return {Boolean} isError
+  */
 function isValidEmpty(value, element, errorMessageEmpty) {
   const error = element.parentElement.querySelector('.message');
 
@@ -32,10 +40,14 @@ function isValidEmpty(value, element, errorMessageEmpty) {
   }
 }
 
-/*
-  check value match with rules
-  with elementRules is an object
-*/
+/**
+  * @description check value match with rules
+  *
+  * @param {Object} elementRules is object keep value of input,
+  * element input, rules and error message
+  *
+  * @return {Boolean} isError
+  */
 function isValidRules(elementRules) {
   const error = elementRules.element.parentElement.querySelector('.message');
 
@@ -47,9 +59,11 @@ function isValidRules(elementRules) {
   }
 }
 
-/*
-  check error of email
-*/
+/**
+  * @description check error of email
+  *
+  * @return {Boolean} isError
+  */
 const isValidEmail = () => {
   const rules = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const emailValue = email.value;
@@ -68,9 +82,11 @@ const isValidEmail = () => {
   return isError;
 };
 
-/*
-  check error of username
-*/
+/**
+  * @description check error of username
+  *
+  * @return {Boolean} isError
+  */
 const isValidUsername = () => {
   const rules = /[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?]+/g;
   const usernameValue = username.value;
@@ -94,9 +110,11 @@ const isValidUsername = () => {
   return isError;
 };
 
-/*
-  check error of password
-*/
+/**
+  * @description check error of password
+  *
+  * @return {Boolean} isError
+  */
 const isValidPassword = () => {
   const rules = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/g;
   const passwordValue = password.value;
@@ -123,9 +141,11 @@ const isValidPassword = () => {
   return isError;
 };
 
-/*
-  check confirm password matches with password
-*/
+/**
+  * @description check confirm password matches with password
+  *
+  * @return {Boolean} isError
+  */
 const isValidConfirmPassword = () => {
   const confirmPasswordValue = confirmPassword.value;
   const error = confirmPassword.parentElement.querySelector('.message');
@@ -142,9 +162,9 @@ const isValidConfirmPassword = () => {
   return isError;
 };
 
-/*
-  function of form submit
-*/
+/**
+  * @description function of form submit
+  */
 function submitForm(e) {
   // This event is used to avoid the page reload of the submit event
   e.preventDefault();
