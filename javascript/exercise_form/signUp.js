@@ -9,6 +9,7 @@ let isError = false;
  * @description Show and hide error
  *
  * @param {Object} element of input
+ * @param {Boolean} isValid is value of isError
  */
 function showHideErrors(element, isValid) {
   const error = element.parentElement.querySelector('.message');
@@ -189,6 +190,8 @@ const isValidConfirmPassword = () => {
 
 /**
  * @description function of form submit
+ *
+ * @param {Object} e is a submit event
  */
 function submitForm(e) {
   // This event is used to avoid the page reload of the submit event
