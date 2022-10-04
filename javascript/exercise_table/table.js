@@ -4,18 +4,25 @@ import tasks from './data.js';
 const taskForm = document.getElementById('taskForm');
 const tableBody = document.querySelector('tbody');
 
-/*
-  function common events of each button in a task
-*/
+/**
+ * @description function common events of each button in a task
+ * 
+ * @param {Object} button is an list of buttons
+ * @param {Function} func handle event
+ */
 function buttonEvent(button, func) {
   Array.from(button).forEach((btn) => {
     btn.addEventListener('click', func);
   });
 }
 
-/*
-  function create tr element
-*/
+/**
+ * @description function create tr element
+ * 
+ * @param {Object} task keep a task
+ * 
+ * @return {Object} trElement is a element of task
+ */
 function createElement(task) {
   const trElement = document.createElement('tr');
   trElement.classList.add('task');
@@ -38,18 +45,21 @@ function createElement(task) {
   return trElement;
 }
 
-/*
-  function find task element from id
-*/
+/**
+ * @description function find task element from id
+ * 
+ * @param {Number} indexTask is index of task
+ */
 function findTask(indexTask) {
   const idTask = document.getElementById(indexTask);
   return idTask;
 }
 
-/*
-  function delete task
-  with e is an event of button delete
-*/
+/**
+ * @description function delete task
+ * 
+ * @param {Object} e is a pointerEvent of button delete
+ */
 const deleteTask = (e) => {
   const indexTask = Number(e.target.dataset.id);
   const taskElement = findTask(indexTask);
@@ -59,10 +69,11 @@ const deleteTask = (e) => {
   taskElement.remove();
 };
 
-/*
-  func increase, after click the number of pomodoro will increase
-  with e is an event of button increase
-*/
+/**
+ * @description func increase, after click the number of pomodoro will increase
+ * 
+ * @param {Object} e is a pointerEvent of button increase
+ */
 const increaseTask = (e) => {
   const indexTask = e.target.dataset.id;
   const task = findTask(indexTask);
@@ -78,10 +89,11 @@ const increaseTask = (e) => {
   }
 };
 
-/*
-  func done tasks, after click button Done and Increase will disable
-  with e is an event of button done
-*/
+/**
+ * @description func done tasks, after click button Done and Increase will disable
+ * 
+ * @param {Object} e is a pointerEvent of button increase
+ */
 const doneTask = (e) => {
   const targetElement = e.target;
   const targetElementParent = targetElement.parentElement;
@@ -102,9 +114,9 @@ const doneTask = (e) => {
   btnIncrease.remove();
 };
 
-/*
-  func handle events in a task
-*/
+/**
+ * @description func handle events in a task
+ */
 const handleEvents = () => {
   const buttonsDelete = document.getElementsByClassName('btn-delete');
   const buttonsDone = document.getElementsByClassName('btn-done');
@@ -115,9 +127,9 @@ const handleEvents = () => {
   buttonEvent(buttonsIncrease, increaseTask);
 };
 
-/*
-  render table
-*/
+/**
+ * @description function render table
+ */
 const renderTasks = () => {
   tasks.forEach((element) => {
     const task = {
@@ -136,9 +148,11 @@ const renderTasks = () => {
   handleEvents();
 };
 
-/*
-  add tasks
-*/
+/**
+ * @description function add task
+ * 
+ * @param {Object} e is a pointerEvent of button add
+ */
 const addTask = (e) => {
   // This event is used to avoid the page reload of the submit event
   e.preventDefault();
