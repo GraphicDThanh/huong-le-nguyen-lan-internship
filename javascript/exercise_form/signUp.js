@@ -80,9 +80,7 @@ const isValidEmail = () => {
   const isRules = isValidRules(emailRules);
   const isEmpty = isValidEmpty(emailValue, email, 'Email is empty');
 
-  if (isEmpty) {
-    isError = true;
-  } else if (isRules) {
+  if (isEmpty || isRules) {
     isError = true;
   } else {
     isError = false;
@@ -144,10 +142,8 @@ const isValidPassword = () => {
   const isEmpty = isValidEmpty(passwordValue, password, 'Password is empty');
 
   // check empty
-  if (isEmpty) {
-    isError = true;
   // check password length must be more than 8 characters
-  } else if (isRules) {
+  if (isEmpty || isRules) {
     isError = true;
   // check password contain letters and at least one digit
   } else if (passwordValue.length < 8) {
