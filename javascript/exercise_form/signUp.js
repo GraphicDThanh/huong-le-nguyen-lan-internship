@@ -3,12 +3,15 @@ const username = document.querySelector('.username');
 const password = document.querySelector('.password');
 const confirmPassword = document.querySelector('.confirm-password');
 const signUpForm = document.getElementById('sign-up-form');
-let isErrors = false;
+let isError = false;
 
-function checkErrors(element) {
+/*
+  show and hide error
+*/
+function showHideErrors(element) {
   const error = element.parentElement.querySelector('.message');
 
-  if (isErrors) {
+  if (isError) {
     element.classList.add('valid');
     error.style.display = 'block';
   } else {
@@ -17,28 +20,36 @@ function checkErrors(element) {
   }
 }
 
-// check empty
-function checkEmpty(value, element, errorMessageEmpty) {
+/*
+  check empty input
+*/
+function isValidEmpty(value, element, errorMessageEmpty) {
   const error = element.parentElement.querySelector('.message');
 
   if (value === '') {
     error.innerText = errorMessageEmpty;
-    isErrors = true;
+    isError = true;
   }
 }
 
-// check value match with rules
-function checkRules(elementRules) {
+/*
+  check value match with rules
+  with elementRules is an object
+*/
+function isValidRules(elementRules) {
   const error = elementRules.element.parentElement.querySelector('.message');
 
   if (!elementRules.value.match(elementRules.rule)) {
     error.innerText = elementRules.message;
-    isErrors = true;
+    isError = true;
   } else {
-    isErrors = false;
+    isError = false;
   }
 }
 
+/*
+  check error of email
+*/
 const isValidEmail = () => {
   const rules = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const emailValue = email.value;
@@ -50,13 +61,16 @@ const isValidEmail = () => {
     message: 'Email is valid',
   };
 
-  checkRules(emailRules);
-  checkEmpty(emailValue, email, 'Email is empty');
-  checkErrors(email);
+  isValidRules(emailRules);
+  isValidEmpty(emailValue, email, 'Email is empty');
+  showHideErrors(email);
 
-  return isErrors;
+  return isError;
 };
 
+/*
+  check error of username
+*/
 const isValidUsername = () => {
   const rules = /[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?]+/g;
   const usernameValue = username.value;
@@ -65,21 +79,24 @@ const isValidUsername = () => {
   // check username contain special characters
   if (usernameValue.match(rules)) {
     error.innerText = 'Username do not contain special characters';
-    isErrors = true;
-  // check length < 25
+    isError = true;
+  // check length must be less than 25 characters
   } else if (usernameValue.length > 25) {
     error.innerText = 'Username maximum is 25 characters';
-    isErrors = true;
+    isError = true;
   } else {
-    isErrors = false;
+    isError = false;
   }
   // check empty
-  checkEmpty(usernameValue, username, 'Username is empty');
-  checkErrors(username);
+  isValidEmpty(usernameValue, username, 'Username is empty');
+  showHideErrors(username);
 
-  return isErrors;
+  return isError;
 };
 
+/*
+  check error of password
+*/
 const isValidPassword = () => {
   const rules = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/g;
   const passwordValue = password.value;
@@ -92,20 +109,23 @@ const isValidPassword = () => {
     message: 'Password must contain letters and at least one digit',
   };
 
-  // check length > 8
+  // check password length must be more than 8 characters
   if (passwordValue.length < 8) {
     error.innerText = 'Password minimum is 8 characters ';
-    isErrors = true;
+    isError = true;
   }
   // check password contain letters and at least one digit
-  checkRules(passwordRules);
+  isValidRules(passwordRules);
   // check empty
-  checkEmpty(passwordValue, password, 'Password is empty');
-  checkErrors(password);
+  isValidEmpty(passwordValue, password, 'Password is empty');
+  showHideErrors(password);
 
-  return isErrors;
+  return isError;
 };
 
+/*
+  check confirm password matches with password
+*/
 const isValidConfirmPassword = () => {
   const confirmPasswordValue = confirmPassword.value;
   const error = confirmPassword.parentElement.querySelector('.message');
@@ -113,15 +133,18 @@ const isValidConfirmPassword = () => {
   // check password and confirm password match
   if (confirmPasswordValue !== password.value) {
     error.innerText = 'Confirm password and password do not match';
-    isErrors = true;
+    isError = true;
   }
   // check empty
-  checkEmpty(confirmPasswordValue, confirmPassword, 'Confirm password is empty');
-  checkErrors(confirmPassword);
+  isValidEmpty(confirmPasswordValue, confirmPassword, 'Confirm password is empty');
+  showHideErrors(confirmPassword);
 
-  return isErrors;
+  return isError;
 };
 
+/*
+  function of form submit
+*/
 function submitForm(e) {
   // This event is used to avoid the page reload of the submit event
   e.preventDefault();
