@@ -6,14 +6,14 @@ const signUpForm = document.getElementById('sign-up-form');
 let isError = false;
 
 /**
-  * @description Show and hide error
-  *
-  * @param {Object} element of input
-  */
-function showHideErrors(element) {
+ * @description Show and hide error
+ *
+ * @param {Object} element of input
+ */
+function showHideErrors(element, isValid) {
   const error = element.parentElement.querySelector('.message');
 
-  if (isError) {
+  if (isValid) {
     element.classList.add('valid');
     error.style.display = 'block';
   } else {
@@ -23,47 +23,49 @@ function showHideErrors(element) {
 }
 
 /**
-  * @description check empty input
-  *
-  * @param {String} value is value of input
-  * @param {Object} element of input
-  * @param {String} errorMessageEmpty is error message
-  *
-  * @return {Boolean} isError
-  */
+ * @description check empty input
+ *
+ * @param {String} value is value of input
+ * @param {Object} element of input
+ * @param {String} errorMessageEmpty is error message
+ *
+ * @return {Boolean} isError
+ */
 function isValidEmpty(value, element, errorMessageEmpty) {
   const error = element.parentElement.querySelector('.message');
 
   if (value === '') {
     error.innerText = errorMessageEmpty;
-    isError = true;
+    return true;
   }
+
+  return false;
 }
 
 /**
-  * @description check value match with rules
-  *
-  * @param {Object} elementRules is object keep value of input,
-  * element input, rules and error message
-  *
-  * @return {Boolean} isError
-  */
+ * @description check value match with rules
+ *
+ * @param {Object} elementRules is object keep value of input,
+ * element input, rules and error message
+ *
+ * @return {Boolean} isError
+ */
 function isValidRules(elementRules) {
   const error = elementRules.element.parentElement.querySelector('.message');
 
   if (!elementRules.value.match(elementRules.rule)) {
     error.innerText = elementRules.message;
-    isError = true;
-  } else {
-    isError = false;
+    return true;
   }
+
+  return false;
 }
 
 /**
-  * @description check error of email
-  *
-  * @return {Boolean} isError
-  */
+ * @description check error of email
+ *
+ * @return {Boolean} isError
+ */
 const isValidEmail = () => {
   const rules = /^[\w-\\.]+@([\w-]+\.)+[\w-]{2,4}$/g;
   const emailValue = email.value;
@@ -74,23 +76,32 @@ const isValidEmail = () => {
     rule: rules,
     message: 'Email is valid',
   };
+  const isRules = isValidRules(emailRules);
+  const isEmpty = isValidEmpty(emailValue, email, 'Email is empty');
 
-  isValidRules(emailRules);
-  isValidEmpty(emailValue, email, 'Email is empty');
-  showHideErrors(email);
+  if (isEmpty) {
+    isError = true;
+  } else if (isRules) {
+    isError = true;
+  } else {
+    isError = false;
+  }
+
+  showHideErrors(email, isError);
 
   return isError;
 };
 
 /**
-  * @description check error of username
-  *
-  * @return {Boolean} isError
-  */
+ * @description check error of username
+ *
+ * @return {Boolean} isError
+ */
 const isValidUsername = () => {
   const rules = /[!@#$%^&*()_+\-=\\[\]{};':"\\|,.<>\\/?]+/g;
   const usernameValue = username.value;
   const error = username.parentElement.querySelector('.message');
+  const isEmpty = isValidEmpty(usernameValue, username, 'Username is empty');
 
   // check username contain special characters
   if (usernameValue.match(rules)) {
@@ -100,21 +111,23 @@ const isValidUsername = () => {
   } else if (usernameValue.length > 25) {
     error.innerText = 'Username maximum is 25 characters';
     isError = true;
+  // check empty
+  } else if (isEmpty) {
+    isError = true;
   } else {
     isError = false;
   }
-  // check empty
-  isValidEmpty(usernameValue, username, 'Username is empty');
-  showHideErrors(username);
+
+  showHideErrors(username, isError);
 
   return isError;
 };
 
 /**
-  * @description check error of password
-  *
-  * @return {Boolean} isError
-  */
+ * @description check error of password
+ *
+ * @return {Boolean} isError
+ */
 const isValidPassword = () => {
   const rules = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{1,}$/g;
   const passwordValue = password.value;
@@ -126,45 +139,57 @@ const isValidPassword = () => {
     rule: rules,
     message: 'Password must contain letters and at least one digit',
   };
+  const isRules = isValidRules(passwordRules);
+  const isEmpty = isValidEmpty(passwordValue, password, 'Password is empty');
 
+  // check empty
+  if (isEmpty) {
+    isError = true;
   // check password length must be more than 8 characters
-  if (passwordValue.length < 8) {
+  } else if (isRules) {
+    isError = true;
+  // check password contain letters and at least one digit
+  } else if (passwordValue.length < 8) {
     error.innerText = 'Password minimum is 8 characters ';
     isError = true;
+  } else {
+    isError = false;
   }
-  // check password contain letters and at least one digit
-  isValidRules(passwordRules);
-  // check empty
-  isValidEmpty(passwordValue, password, 'Password is empty');
-  showHideErrors(password);
+
+  showHideErrors(password, isError);
 
   return isError;
 };
 
 /**
-  * @description check confirm password matches with password
-  *
-  * @return {Boolean} isError
-  */
+ * @description check confirm password matches with password
+ *
+ * @return {Boolean} isError
+ */
 const isValidConfirmPassword = () => {
   const confirmPasswordValue = confirmPassword.value;
   const error = confirmPassword.parentElement.querySelector('.message');
+  const isEmpty = isValidEmpty(confirmPasswordValue, confirmPassword, 'Confirm password is empty');
 
+  // check empty
+  if (isEmpty) {
+    isError = true;
   // check password and confirm password match
-  if (confirmPasswordValue !== password.value) {
+  } else if (confirmPasswordValue !== password.value) {
     error.innerText = 'Confirm password and password do not match';
     isError = true;
+  } else {
+    isError = false;
   }
-  // check empty
-  isValidEmpty(confirmPasswordValue, confirmPassword, 'Confirm password is empty');
-  showHideErrors(confirmPassword);
+
+  showHideErrors(confirmPassword, isError);
 
   return isError;
 };
 
 /**
-  * @description function of form submit
-  */
+ * @description function of form submit
+ */
 function submitForm(e) {
   // This event is used to avoid the page reload of the submit event
   e.preventDefault();
