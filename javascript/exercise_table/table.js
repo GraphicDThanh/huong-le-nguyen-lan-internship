@@ -4,14 +4,18 @@ import tasks from './data.js';
 const taskForm = document.getElementById('taskForm');
 const tableBody = document.querySelector('tbody');
 
-// function common events of each button
+/*
+  function common events of each button in a task
+*/
 function buttonEvent(button, func) {
   Array.from(button).forEach((btn) => {
     btn.addEventListener('click', func);
   });
 }
 
-// func create tr element
+/*
+  function create tr element
+*/
 function createElement(task) {
   const trElement = document.createElement('tr');
   trElement.classList.add('task');
@@ -34,13 +38,18 @@ function createElement(task) {
   return trElement;
 }
 
-// func find task element from id
+/*
+  function find task element from id
+*/
 function findTask(indexTask) {
   const idTask = document.getElementById(indexTask);
   return idTask;
 }
 
-// delete task
+/*
+  function delete task
+  with e is an event of button delete
+*/
 const deleteTask = (e) => {
   const indexTask = Number(e.target.dataset.id);
   const taskElement = findTask(indexTask);
@@ -50,7 +59,10 @@ const deleteTask = (e) => {
   taskElement.remove();
 };
 
-// func increase, after click the number of pomodoro will increase
+/*
+  func increase, after click the number of pomodoro will increase
+  with e is an event of button increase
+*/
 const increaseTask = (e) => {
   const indexTask = e.target.dataset.id;
   const task = findTask(indexTask);
@@ -66,7 +78,10 @@ const increaseTask = (e) => {
   }
 };
 
-// func done tasks, after click button Done and Increase will disable
+/*
+  func done tasks, after click button Done and Increase will disable
+  with e is an event of button done
+*/
 const doneTask = (e) => {
   const targetElement = e.target;
   const targetElementParent = targetElement.parentElement;
@@ -87,7 +102,9 @@ const doneTask = (e) => {
   btnIncrease.remove();
 };
 
-// func handle events in a task
+/*
+  func handle events in a task
+*/
 const handleEvents = () => {
   const buttonsDelete = document.getElementsByClassName('btn-delete');
   const buttonsDone = document.getElementsByClassName('btn-done');
@@ -98,7 +115,9 @@ const handleEvents = () => {
   buttonEvent(buttonsIncrease, increaseTask);
 };
 
-// render table
+/*
+  render table
+*/
 const renderTasks = () => {
   tasks.forEach((element) => {
     const task = {
@@ -117,7 +136,9 @@ const renderTasks = () => {
   handleEvents();
 };
 
-// add task
+/*
+  add tasks
+*/
 const addTask = (e) => {
   // This event is used to avoid the page reload of the submit event
   e.preventDefault();
@@ -126,28 +147,27 @@ const addTask = (e) => {
   const selectPomodoro = document.querySelector('.select-pomodoro').value;
   const taskName = inputTask.value;
 
+  const temp = {
+    name: taskName,
+    pomodoro: 0,
+    count: selectPomodoro,
+    isFinished: false,
+  };
+
+  const task = {
+    id: tasks.length,
+    ...temp,
+  };
+
   if (taskName === '') {
     errorMessage.style.display = 'block';
     inputTask.classList.add('valid');
     errorMessage.innerText = 'Task name is empty';
   } else {
-    const temp = {
-      name: taskName,
-      pomodoro: 0,
-      count: selectPomodoro,
-      isFinished: false,
-    };
-
-    const task = {
-      id: tasks.length - 1,
-      ...temp,
-    };
-
     tasks.push({
       id: tasks.length > 0 ? tasks.length : 0,
       ...temp,
     });
-
     errorMessage.style.display = 'none';
     inputTask.classList.remove('valid');
 
