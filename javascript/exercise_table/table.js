@@ -128,27 +128,6 @@ const handleEvents = () => {
 };
 
 /**
- * @description function render table
- */
-const renderTasks = () => {
-  tasks.forEach((element) => {
-    const task = {
-      id: element.id,
-      name: element.name,
-      pomodoro: element.pomodoroDone,
-      count: element.pomodoroCount,
-      isFinished: element.isFinished,
-    };
-
-    tableBody.append(
-      createElement(task),
-    );
-  });
-
-  handleEvents();
-};
-
-/**
  * @description function add task
  * 
  * @param {Object} e is a pointerEvent of button add
@@ -195,6 +174,25 @@ const addTask = (e) => {
   taskForm.reset();
 };
 
-renderTasks();
+/**
+ * @description function render table
+ */
+(() => {
+  tasks.forEach((element) => {
+    const task = {
+      id: element.id,
+      name: element.name,
+      pomodoro: element.pomodoroDone,
+      count: element.pomodoroCount,
+      isFinished: element.isFinished,
+    };
+
+    tableBody.append(
+      createElement(task),
+    );
+  });
+
+  handleEvents();
+})();
 
 taskForm.addEventListener('submit', addTask);
