@@ -6,7 +6,7 @@ const tableBody = document.querySelector('tbody');
 
 /**
  * @description function common events of each button in a task
- * 
+ *
  * @param {Object} button is an list of buttons
  * @param {Function} func handle event
  */
@@ -18,9 +18,9 @@ function buttonEvent(button, func) {
 
 /**
  * @description function create tr element
- * 
+ *
  * @param {Object} task keep a task
- * 
+ *
  * @return {Object} trElement is a element of task
  */
 function createElement(task) {
@@ -47,7 +47,7 @@ function createElement(task) {
 
 /**
  * @description function find task element from id
- * 
+ *
  * @param {Number} indexTask is index of task
  */
 function findTask(indexTask) {
@@ -57,7 +57,7 @@ function findTask(indexTask) {
 
 /**
  * @description function delete task
- * 
+ *
  * @param {Object} e is a pointerEvent of button delete
  */
 const deleteTask = (e) => {
@@ -71,7 +71,7 @@ const deleteTask = (e) => {
 
 /**
  * @description func increase, after click the number of pomodoro will increase
- * 
+ *
  * @param {Object} e is a pointerEvent of button increase
  */
 const increaseTask = (e) => {
@@ -91,7 +91,7 @@ const increaseTask = (e) => {
 
 /**
  * @description func done tasks, after click button Done and Increase will disable
- * 
+ *
  * @param {Object} e is a pointerEvent of button increase
  */
 const doneTask = (e) => {
@@ -129,7 +129,7 @@ const handleEvents = () => {
 
 /**
  * @description function add task
- * 
+ *
  * @param {Object} e is a pointerEvent of button add
  */
 const addTask = (e) => {
