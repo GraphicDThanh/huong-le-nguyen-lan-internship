@@ -1,0 +1,115 @@
+.container {
+  width: 70%;
+  padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: auto;
+}
+
+.task-table, .error {
+  font-family: arial, sans-serif;
+}
+
+.task-table {
+  border-collapse: collapse;
+}
+
+.row-title .column-title:first-child {
+  width: 50%;
+}
+
+.row-title .column-title:nth-child(2) {
+  width: 20%;
+}
+
+.row-title .column-title:nth-child(3) {
+  width: 30%;
+}
+
+.column-title {
+  text-align: center;
+  background-color: #e6e6e6;
+}
+
+.task-details .task-name {
+  word-break: break-all;
+}
+
+.task-details, .column-title {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.task-form {
+  display: flex;
+  gap: 10px;
+}
+
+.task-form .input-task-name {
+  width: 250px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+.select-pomodoro {
+  cursor: pointer;
+  padding: 10px;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+.btn {
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  outline: none;
+  border-radius: 5px;
+  background-color: #fff;
+  border: 1px solid #28a745;
+}
+
+.btn:hover {
+  color: #fff;
+}
+
+.btn-submit, .btn-done {
+  color: #28a745;
+}
+
+.btn-submit:hover,
+.btn-done:hover {
+  background-color: #46d267;
+  border-color:#46d267;
+}
+
+.btn-delete {
+  color: #ff5b5b;
+  border-color: #ff4d4d;
+}
+
+.btn-delete:hover {
+  background-color: #ff5b5b;
+  border-color: #ff5b5b;
+}
+
+.btn-increase {
+  color: #4da6ff;
+  border-color:#3399ff;
+}
+
+.btn-increase:hover {
+  background-color: #4da6ff;
+  border-color:#4da6ff;
+}
+
+.error {
+  padding-top: 5px;
+  font-size: 14px;
+  color: #ff5b5b;
+}
+
+.task-form .valid {
+  border: 1px solid #ff5b5b;
+}
