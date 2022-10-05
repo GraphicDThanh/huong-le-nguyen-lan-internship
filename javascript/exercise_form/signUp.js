@@ -10,6 +10,8 @@ let isError = false;
  *
  * @param {Object} element of input
  * @param {Boolean} isValid is value of isError
+ *
+ * @return {Boolean} isValid
  */
 function isShowHideErrors(element, isValid) {
   const error = element.parentElement.querySelector('.message');
@@ -32,7 +34,7 @@ function isShowHideErrors(element, isValid) {
  * @param {Object} element of input
  * @param {String} errorMessageEmpty is error message
  *
- * @return {Boolean} isError
+ * @return true/ false
  */
 function isValidEmpty(value, element, errorMessageEmpty) {
   const error = element.parentElement.querySelector('.message');
@@ -51,7 +53,7 @@ function isValidEmpty(value, element, errorMessageEmpty) {
  * @param {Object} elementRules is object keep value of input,
  * element input, rules and error message
  *
- * @return {Boolean} isError
+ * @return true/ false
  */
 function isValidRules(elementRules) {
   const error = elementRules.element.parentElement.querySelector('.message');
@@ -82,14 +84,9 @@ const isValidEmail = () => {
   const isRules = isValidRules(emailRules);
   const isEmpty = isValidEmpty(emailValue, email, 'Email is empty');
 
-  // check emptpy
-  if (isEmpty) {
-    isError = true;
-    return isShowHideErrors(email, isError);
-  }
-
+  // check empty
   // check email
-  if (isRules) {
+  if (isEmpty || isRules) {
     isError = true;
     return isShowHideErrors(email, isError);
   }
@@ -156,13 +153,8 @@ const isValidPassword = () => {
   const isEmpty = isValidEmpty(passwordValue, password, 'Password is empty');
 
   // check empty
-  if (isEmpty) {
-    isError = true;
-    return isShowHideErrors(password, isError);
-  }
-
   // check password contain letters and at least one digit
-  if (isRules) {
+  if (isEmpty || isRules) {
     isError = true;
     return isShowHideErrors(password, isError);
   }
