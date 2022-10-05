@@ -1,0 +1,61 @@
+.send-mail-wrapper {
+  padding: 50px 0 50px 0;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.send-mail-title {
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.send-mail-title .section-title {
+  color: var(--white);
+  font-weight: var(--regular);
+  padding-top: 15px;
+}
+
+.send-mail-title .section-title::after {
+  background-color:var(--white);
+}
+
+.send-mail-title .section-name {
+  padding-top: 10px;
+  color: var(--white);
+}
+
+.send-mail-button {
+  margin-right: 40px;
+  height: 70px;
+  border-radius: 5px;
+  background-color: var(--white);
+  display: flex;
+  padding-right: 5px;
+  align-items: center;
+}
+
+.send-mail-button .btn {
+  padding: 15px 38px 15px 38px;  
+  border: none;
+  color: var(--white);
+}
+
+.search-input {
+  width: 410px;
+  height: 65px;
+  font-family: poppins, Tahoma, sans-serif;
+  font-weight: bold;
+  font-size: var(--normal);
+  padding-left: 30px;
+  border-radius: 5px;
+  border: none;
+}
+
+.search-input:focus {
+  outline: 0;
+}

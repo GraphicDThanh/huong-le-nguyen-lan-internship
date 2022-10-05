@@ -1,0 +1,56 @@
+.about-us-wrapper .container {
+  padding: 100px 0 85px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.about-us-wrapper .container .img-about-us {
+  display: flex;
+  align-items: center;
+  width: 621px;
+  height: 450px;
+}
+
+.about-us-wrapper .container .img-about-us img {
+  padding-left: 16px;
+}
+
+.about-us-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-us-content .highlights {
+  margin: 15px 0 20px 0;
+}
+
+.about-us-content .section-title {
+  padding-top: 19px;
+}
+
+.about-us-content .section-name {
+  padding: 18px 0 5px 0;
+  text-align: left;
+}
+
+.about-us-content-list li::before {
+  height: 24px;
+  width: 24px;
+  content: "";
+  background-image: url("../../assets/icons/icon-checkbox-circle.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  margin-right: 14px;
+}
+
+.about-us-content-list li {
+  display: flex;
+  align-items: center;
+}
+
+.about-us-content-list li p {
+  color: var(--dark-color);
+  line-height: 2.3;
+}

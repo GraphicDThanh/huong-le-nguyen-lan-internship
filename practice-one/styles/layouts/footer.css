@@ -1,0 +1,125 @@
+.footer-wrapper {
+  background-color: black;
+}
+
+.footer-info {
+  color: var(--white);
+  padding-top: 55px;
+  display: grid;
+  grid-template-columns: repeat(4, 277px);
+  grid-gap: 20px;
+}
+
+.footer-logo .frame-img {
+  width: 175px;
+  height: 47px;
+  padding-top: 5px;
+}
+
+.footer-logo p {
+  font-weight: var(--regular);
+  padding-top: 20px;
+}
+
+.footer-name {
+  padding-top: 10px;
+}
+
+.footer-name p:first-child {
+  font-family: poppins-semi, Tahoma, sans-serif;
+  font-weight: var(--semibold);
+  font-size: var(--almost-small);
+  color: var(--primary-color);
+  padding-bottom: 25px;
+}
+
+.footer-location p, a {
+  font-family: poppins-medium, Tahoma, sans-serif;
+  font-weight: var(--medium);
+  font-size: var(--small);
+}
+
+.footer-call-us {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-call-us a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.footer-call-us a:nth-child(2) {
+  padding-bottom: 10px;
+}
+
+.social-icons {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-terms {
+  color: var(--white);
+  padding: 20px 0 30px 0;
+  margin-top: 60px;
+  display: flex;
+  gap: 85px;
+  border-top: 1px solid var(--white);
+}
+
+.footer-terms span img {
+  padding-right: 15px;
+  vertical-align: text-bottom;
+}
+
+.footer-terms span {
+  font-family: poppins, Tahoma, sans-serif;
+  font-weight: var(--regular);
+  letter-spacing: 0.3px;
+}
+
+.help-list {
+  display: flex;
+}
+
+.help-list li::before {
+  height: 18px;
+  width: 18px;
+  content: "";
+  background-image: url("../../assets/icons/icon-circle.svg");
+  background-size: cover;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 10px;
+}
+
+.help-list li a {
+  font-family: poppins, Tahoma, sans-serif;
+  font-size: var(--normal);
+  font-weight: var(--regular);
+  color: var(--white);
+  text-decoration: none;
+  padding-right: 25px;
+}
+
+.up-page {
+  width: 60px;
+  height: 60px;
+  position: fixed;
+  bottom: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  opacity: 0.8;
+  margin-left: 1110px;
+  background-color: var(--primary-color);
+}
+
+.up-page:hover {
+  opacity: 1;
+}
+
+.up-page img {
+  margin: 15px 0 0 17px;
+}

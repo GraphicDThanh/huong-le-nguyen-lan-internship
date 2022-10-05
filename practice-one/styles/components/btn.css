@@ -1,0 +1,30 @@
+.btn {
+  font-size: var(--small);
+  font-family: poppins-medium, Tahoma, sans-serif;
+  font-weight: var(--medium);
+  border-radius: 5px;
+  cursor: pointer;
+  border-width: 1px;
+  padding: 9px 23px 9px 23px;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-color-darker);
+  color: var(--white);
+}
+
+.btn-secondary {
+  background-color: var(--light-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--primary-color);
+  border: 1px solid red;
+  color: var(--white);
+}

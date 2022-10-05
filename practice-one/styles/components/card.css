@@ -1,0 +1,30 @@
+.card-item {
+  width: 370px;
+  background-color: var(--white);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  font-family: poppins-semi, Tahoma, sans-serif;
+  font-weight: var(--semibold);
+  font-size: var(--small);
+  color: var(--dark-color);
+}
+
+.card-title-large {
+  font-size: var(--almost-small);
+}
+
+.card-details {
+  font-weight: var(--thin);
+  font-size: var(--smaller);
+  display: flex;
+}
+
+.card-footer {
+  display: grid;
+  grid-template-columns: 60px 200px 50px;
+}

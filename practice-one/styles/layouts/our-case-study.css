@@ -1,0 +1,87 @@
+.our-case-study-wrapper {
+  padding-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.our-case-study-wrapper .section-name {
+  padding-top: 15px;
+}
+
+.category-case-study {
+  width: 100%;
+  height: 60px;
+  padding: 20px 0 25px 0;
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.category-item-case-study {
+  padding: 16px 35px;
+  font-size: var(--small);
+  border-radius: 10px;
+}
+
+.category-item-case-study a {
+  text-decoration: none;
+  color: var( --secondary-color);
+}
+
+.category-item-case-study:hover {
+  background-color: var(--primary-color);  
+}
+
+.category-item-case-study:hover a {
+  color: var(--white);
+}
+
+.image-item {
+  display: grid;
+  grid-template-columns: 60px 270px 60px;
+  grid-template-rows: 41px 230px 41px;
+}
+
+.image-link {
+  width: 390px;
+  height: 314px;
+  grid-column: 1;
+  grid-row: 1/2;
+}
+
+.image-item:hover .image-web {
+  display: block;
+}
+
+.image-web {
+  width: 270px;
+  height: 230px;
+  font-size: var(--almost-small);
+  font-family: poppins-semi, Tahoma, sans-serif;
+  grid-column: 2/4;
+  grid-row: 2/4;
+  z-index: 1;
+  opacity: 0.8;
+  background-color: var(--primary-color);
+  display: none;
+}
+
+.web-template {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.web-template a {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.our-case-study-images {
+  display: grid;
+  grid-template-columns: repeat(3, 390px);
+}

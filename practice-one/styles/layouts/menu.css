@@ -1,0 +1,47 @@
+.header-wrapper {
+  padding: 30px 0 100px 0;
+}
+
+.header-list {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu .nav {
+  gap: 29px;
+}
+
+.logo {
+  width: 186px;
+  height: 50px;
+}
+
+.logo img {
+  padding-top: 5px;
+  vertical-align: middle;
+}
+
+.jumbotron-wrapper .container {
+  display: flex;
+  align-items: center;
+  padding: 50px 0 150px;
+}
+
+.header-jumbotron {
+  padding-top: 35px;
+}
+
+.header-jumbotron .highlights {
+  padding: 20px 15px 35px 0;
+}
+
+.jumbotron-wrapper .container .frame-img {
+  width: 553px;
+  height: 471px;
+}
+
+.jumbotron-wrapper .container .frame-img img {
+  padding-left: 10px;
+}

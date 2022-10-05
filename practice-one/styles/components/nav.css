@@ -1,0 +1,25 @@
+.menu {
+  display: flex;
+  gap: 42px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  display: inline-block;
+}
+
+.nav-item a {
+  text-decoration: none;
+  font-size: var(--small);
+  font-family: poppins-medium, Tahoma, sans-serif;
+  font-weight: var(--medium);
+  color: var(--dark-color);
+}
+
+.nav-item a:hover {
+  color: var(--primary-color);
+}

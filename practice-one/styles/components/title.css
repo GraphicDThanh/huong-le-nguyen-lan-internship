@@ -1,0 +1,47 @@
+.section-title {
+  color: var(--primary-color);
+}
+
+.section-title::after,
+.section-title-primary::before {
+  background-color: var(--primary-color);
+  content: "";
+  display: inline-block;
+  height: 1px;
+  width: 40px;
+  position: relative;
+  vertical-align: middle;
+  top: 5px;
+}
+
+.section-title::after {
+  left: 12px;
+}
+
+.section-title-primary::before {
+  right: 12px;
+}
+
+.section-title-primary {
+  text-align: center;
+}
+
+.section-name {
+  color: var(--dark-color);
+  font-size: var(--large);
+  font-weight: var(--semibold);
+  font-family: poppins-medium, Tahoma, sans-serif;
+  text-align: center;
+}
+
+.section-title-biggest {
+  font-size: var(--biggest);
+  font-family: poppins-bold, Tahoma, sans-serif;
+  font-weight: var(--bold);
+  color: var(--dark-color);
+  line-height: 1.5;
+}
+
+.highlights {
+  line-height: 1.5;
+}

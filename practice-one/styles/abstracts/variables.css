@@ -1,0 +1,27 @@
+:root {
+  /* Color */
+  --primary-color: #ff5300;
+  --primary-color-darker: #e64d00;
+  --secondary-color: #7b7b7b;
+  --dark-color: #373737;
+  --light-color: #fff7f4;
+  --grey-fade-color: #efefef;
+  --white: #ffffff;  
+  
+  /* Font-large */
+  --huge: 65px;
+  --biggest: 49px;
+  --large: 39px;
+  --almost-small: 25px;
+  --small: 20px;
+  --smaller: 13px;
+  --smallest: 10px;
+  --normal: 16px;
+
+  /* Font-weight */
+  --bold: 700;
+  --semibold: 600;
+  --medium: 500;
+  --regular: 400;
+  --thin: 200;
+}
