@@ -11,7 +11,7 @@ let isError = false;
  * @param {Object} element of input
  * @param {Boolean} isValid is value of isError
  */
-function showHideErrors(element, isValid) {
+function isShowHideErrors(element, isValid) {
   const error = element.parentElement.querySelector('.message');
 
   if (isValid) {
@@ -21,6 +21,8 @@ function showHideErrors(element, isValid) {
     element.classList.remove('valid');
     error.style.display = 'none';
   }
+
+  return isValid;
 }
 
 /**
@@ -80,14 +82,20 @@ const isValidEmail = () => {
   const isRules = isValidRules(emailRules);
   const isEmpty = isValidEmpty(emailValue, email, 'Email is empty');
 
-  if (isEmpty || isRules) {
+  // check emptpy
+  if (isEmpty) {
     isError = true;
-  } else {
-    isError = false;
+    return isShowHideErrors(email, isError);
   }
 
-  showHideErrors(email, isError);
+  // check email
+  if (isRules) {
+    isError = true;
+    return isShowHideErrors(email, isError);
+  }
 
+  isError = false;
+  isShowHideErrors(email, isError);
   return isError;
 };
 
@@ -102,22 +110,28 @@ const isValidUsername = () => {
   const error = username.parentElement.querySelector('.message');
   const isEmpty = isValidEmpty(usernameValue, username, 'Username is empty');
 
+  // check empty
+  if (isEmpty) {
+    isError = true;
+    return isShowHideErrors(username, isError);
+  }
+
   // check username contain special characters
   if (usernameValue.match(rules)) {
     error.innerText = 'Username do not contain special characters';
     isError = true;
-  // check length must be less than 25 characters
-  } else if (usernameValue.length > 25) {
-    error.innerText = 'Username maximum is 25 characters';
-    isError = true;
-  // check empty
-  } else if (isEmpty) {
-    isError = true;
-  } else {
-    isError = false;
+    return isShowHideErrors(username, isError);
   }
 
-  showHideErrors(username, isError);
+  // check length must be less than 25 characters
+  if (usernameValue.length > 25) {
+    error.innerText = 'Username maximum is 25 characters';
+    isError = true;
+    return isShowHideErrors(username, isError);
+  }
+
+  isError = false;
+  isShowHideErrors(username, isError);
 
   return isError;
 };
@@ -142,18 +156,26 @@ const isValidPassword = () => {
   const isEmpty = isValidEmpty(passwordValue, password, 'Password is empty');
 
   // check empty
-  // check password length must be more than 8 characters
-  if (isEmpty || isRules) {
+  if (isEmpty) {
     isError = true;
-  // check password contain letters and at least one digit
-  } else if (passwordValue.length < 8) {
-    error.innerText = 'Password minimum is 8 characters ';
-    isError = true;
-  } else {
-    isError = false;
+    return isShowHideErrors(password, isError);
   }
 
-  showHideErrors(password, isError);
+  // check password contain letters and at least one digit
+  if (isRules) {
+    isError = true;
+    return isShowHideErrors(password, isError);
+  }
+
+  // check password length must be more than 8 characters
+  if (passwordValue.length < 8) {
+    error.innerText = 'Password minimum is 8 characters ';
+    isError = true;
+    return isShowHideErrors(password, isError);
+  }
+
+  isError = false;
+  isShowHideErrors(password, isError);
 
   return isError;
 };
@@ -171,15 +193,18 @@ const isValidConfirmPassword = () => {
   // check empty
   if (isEmpty) {
     isError = true;
-  // check password and confirm password match
-  } else if (confirmPasswordValue !== password.value) {
-    error.innerText = 'Confirm password and password do not match';
-    isError = true;
-  } else {
-    isError = false;
+    return isShowHideErrors(confirmPassword, isError);
   }
 
-  showHideErrors(confirmPassword, isError);
+  // check password and confirm password match
+  if (confirmPasswordValue !== password.value) {
+    error.innerText = 'Confirm password and password do not match';
+    isError = true;
+    return isShowHideErrors(confirmPassword, isError);
+  }
+
+  isError = false;
+  isShowHideErrors(confirmPassword, isError);
 
   return isError;
 };
