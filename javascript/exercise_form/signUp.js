@@ -9,7 +9,7 @@ let isError = false;
  * @description Show and hide error
  *
  * @param {Object} element of input
- * @param {Boolean} isValid is value of isError
+ * @param {Boolean} isValid accept the true/ false value was transferred into
  *
  * @return {Boolean} isValid
  */
@@ -67,7 +67,7 @@ function isValidRules(elementRules) {
 }
 
 /**
- * @description check error of email
+ * @description check validate of email
  *
  * @return {Boolean} isError
  */
@@ -84,8 +84,8 @@ const isValidEmail = () => {
   const isRules = isValidRules(emailRules);
   const isEmpty = isValidEmpty(emailValue, email, 'Email is empty');
 
-  // check empty
-  // check email
+  // check empty of input email
+  // check rules if email match with it
   if (isEmpty || isRules) {
     isError = true;
     return isShowHideErrors(email, isError);
@@ -93,11 +93,12 @@ const isValidEmail = () => {
 
   isError = false;
   isShowHideErrors(email, isError);
+
   return isError;
 };
 
 /**
- * @description check error of username
+ * @description check validate of username
  *
  * @return {Boolean} isError
  */
@@ -107,7 +108,7 @@ const isValidUsername = () => {
   const error = username.parentElement.querySelector('.message');
   const isEmpty = isValidEmpty(usernameValue, username, 'Username is empty');
 
-  // check empty
+  // check empty of username input
   if (isEmpty) {
     isError = true;
     return isShowHideErrors(username, isError);
@@ -134,7 +135,7 @@ const isValidUsername = () => {
 };
 
 /**
- * @description check error of password
+ * @description check validate of password
  *
  * @return {Boolean} isError
  */
@@ -152,7 +153,7 @@ const isValidPassword = () => {
   const isRules = isValidRules(passwordRules);
   const isEmpty = isValidEmpty(passwordValue, password, 'Password is empty');
 
-  // check empty
+  // check empty of password input
   // check password contain letters and at least one digit
   if (isEmpty || isRules) {
     isError = true;
@@ -173,7 +174,7 @@ const isValidPassword = () => {
 };
 
 /**
- * @description check confirm password matches with password
+ * @description check validate of confirm password
  *
  * @return {Boolean} isError
  */
@@ -182,7 +183,7 @@ const isValidConfirmPassword = () => {
   const error = confirmPassword.parentElement.querySelector('.message');
   const isEmpty = isValidEmpty(confirmPasswordValue, confirmPassword, 'Confirm password is empty');
 
-  // check empty
+  // check empty of confirm password input
   if (isEmpty) {
     isError = true;
     return isShowHideErrors(confirmPassword, isError);
