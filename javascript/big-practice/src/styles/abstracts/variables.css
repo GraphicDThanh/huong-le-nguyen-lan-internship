@@ -1,0 +1,16 @@
+:root {
+  /* Color */
+  --light-color: #fff;
+  --primary-color: #feefc3;
+  --secondary-color: #f1f3f4;
+  --fade-color: #e0e2e5;
+
+  /* Font-color */
+  --text-color: #202124;
+  --text-fade-color: #5f6368;
+
+  /* Font-family */
+  --font-regular: "openSans-regular";
+  --font-logo: "PTsans-regular";
+  --font-default: "Arial, sans-serif";
+}
