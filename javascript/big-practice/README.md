@@ -46,7 +46,7 @@
   - With SSH: 
      - `$ git clone -b feat/big-practice-js git@github.com:GraphicDThanh/huong-le-nguyen-lan-internship.git`
  - Step 2: Move to `huong-le-nguyen-lan-internship\javascript\big-practice` which just cloned in your computer
- - Step 4: Now you need to install packages
+ - Step 3: Now you need to install packages
    - `$ npm install`
  - Step 4: After install packages
    - `$ npm run start`
