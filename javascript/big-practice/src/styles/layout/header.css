@@ -47,7 +47,7 @@
 }
 
 .icon-logo-cover span {
-  font-family: var(--font-logo);
+  font-family: var(--font-logo), var(--font-default);
   color: var(--text-fade-color);
   font-size: 22px;
 }

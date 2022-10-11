@@ -1,0 +1,72 @@
+.note {
+  cursor: pointer;
+  width: 220px;
+  max-height: fit-content;
+  padding: 10px;
+  border: 1px solid var(--fade-color);
+  border-radius: 8px;
+  position: relative;
+}
+
+.note .icon-check {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: -10px;
+  left: -12px;
+}
+
+.note:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note:hover .icon-check,
+.note-selected .icon-check {
+  background-color: var(--light-color);
+  border-radius: 45px;
+  animation: fadeInOut linear 0.2s;
+  background-image: url("../../assets/icons/icon-checked.svg");
+}
+
+.note:hover .note-utilities {
+  visibility: visible;
+  animation: fadeIn linear 0.2s;
+}
+
+.note-selected {
+  border: 2px solid var(--text-color);
+}
+
+.note-selected .icon-check {
+  background-color: #6f6f6f;
+}
+
+.select-note {
+  visibility: hidden;
+}
+
+.note-content {
+  padding: 10px;
+  min-height: 60px;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.note-content .note-title {
+  line-height: 25px;
+}
+
+.note-content .note-description {
+  margin-top: 5px;
+  font-size: 18px;
+  font-family: var(--font-light), var(--font-default);
+}
+
+.note-btn {
+  display: flex;
+  justify-content: end;
+}
+
+.note .note-utilities {
+  visibility: hidden;
+}

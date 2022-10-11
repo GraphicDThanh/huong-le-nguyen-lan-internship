@@ -1,0 +1,71 @@
+.form-note {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note-form-overlay {
+  width: 600px;
+  max-height: 850px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--light-color);
+  display: none;
+}
+
+.form-add-note {
+  width: 600px;
+}
+
+.form-title .form-group {
+  display: flex;
+}
+
+.icon-pin-cover,
+.items-utilities {
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 45px;
+}
+
+.form-note .input-note {
+  width: 95%;
+  font-size: 16px;
+  font-family: var(--font-regular), var(--font-default);
+  min-height: 20px;
+  word-break: break-word;
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+.form-note .form-group .note-description {
+  font-family: var(--font-light), var(--font-default);
+}
+
+.form-utilities .form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.items-utilities:hover,
+.icon-pin-cover:hover {
+  background-color: var(--hover-utilities-color);
+}
+
+.items-utilities img,
+.icon-pin-cover img {
+  width: 18px;
+  height: 18px;
+}
+
+.form-add-note .form-title,
+.form-add-note .form-utilities {
+  display: none;
+  animation: fadeIn linear 0.3s;
+}

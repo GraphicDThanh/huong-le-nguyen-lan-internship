@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Google Keep</title>
+    <link rel="icon" href="../assets/icons/logo-google-keep-small.png" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="../styles/main.css">
   </head>
   <body>
@@ -76,6 +77,85 @@
           </ul>
         </nav>
       </aside>
+
+      <section class="section-wrapper">
+        <div class="form-input">
+          <form class="form-note form-add-note">
+            <div class="form-title">
+              <div class="form-group">
+                <textarea class="input-note note-title" rows="1" placeholder="Title"></textarea>
+                <figure class="icon-pin-cover">
+                  <img src="../assets/icons/icon-pin.svg" alt="icon pin">
+                </figure>
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea class="input-note note-description" rows="1" placeholder="Take a note..."></textarea>
+            </div>
+            <div class="form-utilities">
+              <div class="form-group">
+                <div class="items-utilities">
+                  <img src="../assets/icons/icon-color-board.svg" alt="icon color board">
+                </div>
+                <div class="form-buttons">
+                  <button class="btn btn-close" type="button">Close</button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="list-notes">
+          <div class="note">
+            <div class="icon-check">
+              <input type="checkbox" class="select-note">
+            </div>
+            <div class="note-content">
+              <p class="note-title">
+                asd Lorem ipsum, conpLorem ipsum dolor sit amet consectetur adipisicing elit. Quasi 
+                architecto veritatis vero quidem omnis. Sed alias beatae quia, voluptatibus 
+                dicta quam ducimus nam ad ullam rerum ab animi! Nobis, rerum.
+                iciatis!
+              </p>
+              <p class="note-description">asd</p>
+            </div>
+            <div class="note-utilities">
+              <div class="note-btn">
+                <button class="btn btm-delete" type="button">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="overlay">
+          <div class="note-overlay">
+            <form class="form-note note-form-overlay">
+              <div class="form-title">
+                <div class="form-group">
+                  <textarea class="input-note note-title" rows="1" placeholder="Title"></textarea>
+                  <figure class="icon-pin-cover">
+                    <img src="../assets/icons/icon-pin.svg" alt="icon pin">
+                  </figure>
+                </div>
+              </div>
+              <div class="form-group">
+                <textarea class="input-note note-description" rows="1" placeholder="Note"></textarea>
+              </div>
+              <div class="form-utilities">
+                <div class="form-group">
+                  <div class="items-utilities">
+                    <img src="../assets/icons/icon-color-board.svg" alt="icon color board">
+                  </div>
+                  <div class="form-buttons">
+                    <button class="btn btn-delete" type="button">Delete</button>
+                    <button class="btn btn-close" type="button">Close</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
