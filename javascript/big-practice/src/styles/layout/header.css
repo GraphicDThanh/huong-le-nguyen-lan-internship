@@ -1,0 +1,126 @@
+.header-wrapper,
+.header-default,
+.header-after-select  {
+  height: 65px;
+}
+
+.header-default,
+.header-after-select  {
+  padding: 0 10px;
+  transition: transform ease-out 0.3s;
+  border-bottom: 1px solid var(--fade-color);
+}
+
+.header-default {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-menu-search {
+  display: flex;
+  align-items: center;
+}
+
+.icon-menu-cover {
+  padding: 13px 12px;
+}
+
+.icon-menu-cover:hover,
+.form-search .icon-close:hover,
+.form-search .icon-search-cover:hover,
+.count-and-close .icon-close-cover:hover {
+  cursor: pointer;
+  border-radius: 45px;
+  background-color: var(--hover-utilities-color);
+}
+
+.icon-menu-cover img {
+  width: 20px;
+  height: 15px;
+}
+
+.icon-logo-cover {
+  display: flex;
+  align-items: center;
+  padding-right: 90px;
+}
+
+.icon-logo-cover span {
+  font-family: var(--font-logo), var(--font-default);
+  color: var(--text-fade-color);
+  font-size: 22px;
+}
+
+.icon-logo-cover img {
+  height: 40px;
+  width: 40px;
+}
+
+.form-search {
+  width: 700px;
+  height: 50px;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+}
+
+.form-search .icon-search-cover {
+  padding: 7px 8px;
+}
+
+.form-search .icon-search-cover img {
+  width: 18px;
+  height: 18px;
+}
+
+.form-search .search {
+  width: 600px;
+  font-size: 17px;
+  background-color: var(--secondary-color);
+  outline: none;
+  border: none;
+}
+
+.form-search .icon-close {
+  padding: 8px;
+}
+
+.avatar-user-cover {
+  padding-right: 10px;
+}
+
+.avatar-user-cover .avatar-user {
+  width: 32px;
+  height: 32px;
+}
+
+.header-after-select {
+  transform: translateY(-200%);
+  background-color: var(--light-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.count-and-close {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.count-and-close .icon-close-cover {
+  padding: 14px 15px;
+}
+
+.count-selected {
+  font-size: 20px;
+}
+
+.header-utilities {
+  margin-right: 50px;
+}
