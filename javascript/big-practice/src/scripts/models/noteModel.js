@@ -2,18 +2,18 @@
  * @class noteModel
  * @description manage data of a note
  */
-export default class noteModel {
-  constructor(note) {
+export default class NoteModel {
+  constructor(item) {
     const {
       id,
-      noteTitle,
-      noteDescription,
+      itemTitle,
+      itemDescription,
       isTrash,
-    } = note;
+    } = item;
 
     this.id = id;
-    this.noteTitle = noteTitle;
-    this.noteDescription = noteDescription;
+    this.itemTitle = itemTitle;
+    this.itemDescription = itemDescription;
     this.isTrash = isTrash;
   }
 }

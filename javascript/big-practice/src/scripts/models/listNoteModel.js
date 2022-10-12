@@ -1,31 +1,13 @@
 import NoteModel from './noteModel';
+import data from '../data';
 
 /**
  * @class listNoteModel
  * @description manage data of note list
  */
-export default class listNoteModel {
+export default class ListNoteModel {
   constructor(noteModel) {
-    this.notes = [
-      {
-        id: 0,
-        noteTitle: 'id perspiciatis nemo natus exercitationem ipsam ducimus, nam aspernatur! Nobis placeat qui obcaecati commodi.',
-        noteDescription: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga incidunt autem praesentium necessitatibus corporis laudantium alias, ',
-        isTrash: false,
-      },
-      {
-        id: 1,
-        noteTitle: 'Lorem ipsum dolor sit',
-        noteDescription: 'adipisicing elit. Fuga incidunt autem praesentium necessitatibus corporis',
-        isTrash: false,
-      },
-      {
-        id: 2,
-        noteTitle: 'natus exercitationem ipsam ducimus, nam aspernatur!',
-        noteDescription: 'nam aspernatur! Nobis placeat qui obcaecati commodi.',
-        isTrash: false,
-      },
-    ];
+    this.items = data;
     this.noteModel = noteModel;
   }
 
@@ -37,16 +19,17 @@ export default class listNoteModel {
    *
    * @returns {Object} note
    */
-  addNote = (title, description) => {
-    const note = {
-      id: this.notes.length > 0 ? this.notes.length : 0,
-      noteTitle: title,
-      noteDescription: description,
+  addItem = (title, description) => {
+    const itemsLength = this.items.length;
+    const item = {
+      id: itemsLength > 0 ? itemsLength : 0,
+      itemTitle: title,
+      itemDescription: description,
       isTrash: false,
     };
-    const noteModel = new NoteModel(note);
-    this.notes.push(noteModel);
+    const noteModel = new NoteModel(item);
+    this.items.push(noteModel);
 
-    return note;
+    return item;
   };
 }
