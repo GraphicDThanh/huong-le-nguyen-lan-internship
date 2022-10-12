@@ -5,7 +5,7 @@
  * @param model
  * @param view
  */
-export default class noteController {
+export default class NoteController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
@@ -14,14 +14,14 @@ export default class noteController {
   init() {
     this.renderAllNote();
     this.view.showInputForm();
-    this.view.bindAddNewNote(this.onAddNote);
+    this.view.bindAddNewItem(this.addNote);
   }
 
   /**
    * @description render all the notes
    */
   renderAllNote = () => {
-    this.view.renderListNote(this.model.notes);
+    this.view.renderListItems(this.model.items);
   };
 
   /**
@@ -30,8 +30,8 @@ export default class noteController {
    * @param {String} title is title from input
    * @param {String} description is description from input
    */
-  onAddNote = (title, description) => {
-    const note = this.model.addNote(title, description);
-    this.view.renderANote(note);
+  addNote = (title, description) => {
+    const note = this.model.addItem(title, description);
+    this.view.renderItem(note);
   };
 }
