@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/extensions
 import NoteView from './views/noteView';
 import ListNoteView from './views/listNoteView';
 import ListNoteModel from './models/listNoteModel';
