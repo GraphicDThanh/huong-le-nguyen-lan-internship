@@ -1,3 +1,5 @@
+import selectDOMClass from '../utils/selectDOMByClass';
+
 /**
  * @class listNoteView
  * @description manage view of listNote
@@ -5,14 +7,14 @@
 export default class ListNoteView {
   constructor(noteView) {
     this.noteView = noteView;
-    this.listNoteElement = document.querySelector('.list-notes');
+    this.listNoteElement = selectDOMClass('.list-notes');
 
     // input form
-    this.formElement = document.querySelector('.form-add-note');
-    this.formTitleElement = document.querySelector('.form-title');
-    this.formUtilitiesElement = document.querySelector('.form-utilities');
-    this.closeButtonElement = document.querySelector('.form-add-note .btn-close');
-    this.inputAddElement = document.querySelector('.form-add-note .form-group-input .input-note');
+    this.formElement = selectDOMClass('.form-add-note');
+    this.formTitleElement = selectDOMClass('.form-title');
+    this.formUtilitiesElement = selectDOMClass('.form-utilities');
+    this.closeButtonElement = selectDOMClass('.form-add-note .btn-close');
+    this.inputAddElement = selectDOMClass('.form-add-note .form-group-input .input-note');
   }
 
   /**
@@ -20,15 +22,15 @@ export default class ListNoteView {
    *
    * @param {Array} listNote is a list of notes from data
    */
-  renderListItems = (listItems) => {
-    listItems.forEach((element) => {
-      const item = {
-        id: element.id,
-        title: element.noteTitle,
-        description: element.noteDescription,
-        isTrash: element.isTrash,
+  renderListNotes = (listNotes) => {
+    listNotes.forEach((note) => {
+      const noteItem = {
+        id: note.id,
+        title: note.title,
+        description: note.description,
+        isTrash: note.isTrash,
       };
-      this.listNoteElement.appendChild(this.noteView.renderItem(item));
+      this.listNoteElement.appendChild(this.noteView.constructor.renderNote(noteItem));
     });
   };
 
@@ -37,14 +39,14 @@ export default class ListNoteView {
    *
    * @param {Object} note is a data of a note
    */
-  renderItem = (listItems) => {
-    const item = {
-      id: listItems.id,
-      title: listItems.itemTitle,
-      description: listItems.itemDescription,
-      isTrash: listItems.isTrash,
+  renderNote = (note) => {
+    const noteItem = {
+      id: note.id,
+      title: note.title,
+      description: note.description,
+      isTrash: note.isTrash,
     };
-    this.listNoteElement.appendChild(this.noteView.renderItem(item));
+    this.listNoteElement.appendChild(this.noteView.constructor.renderNote(noteItem));
   };
 
   /**
@@ -63,10 +65,10 @@ export default class ListNoteView {
    * @param {function} handle is a function transmission in
    * two String values is title and description of input form
    */
-  bindAddNewItem = (handle) => {
+  bindAddNewNote = (handle) => {
     this.closeButtonElement.addEventListener('click', () => {
-      this.titleValue = document.querySelector('.note-title').value;
-      this.descriptionValue = document.querySelector('.note-description').value;
+      this.titleValue = selectDOMClass('.note-title').value;
+      this.descriptionValue = selectDOMClass('.note-description').value;
 
       if ((this.titleValue === '') && (this.descriptionValue === '')) {
         this.formUtilitiesElement.style.display = 'none';

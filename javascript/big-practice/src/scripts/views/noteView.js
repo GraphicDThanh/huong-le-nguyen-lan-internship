@@ -3,11 +3,6 @@
  * @description manage view of a note
  */
 export default class NoteView {
-  constructor() {
-    this.noteElement = null;
-    this.formElement = null;
-  }
-
   /**
    * @description function create a note
    *
@@ -15,24 +10,24 @@ export default class NoteView {
    *
    * @returns {Object} noteElement is a element note
    */
-  renderItem = (item) => {
-    this.noteElement = document.createElement('div');
-    this.noteElement.classList.add('note');
-    this.noteElement.setAttribute('id', item.id);
+  static renderNote = (note) => {
+    const noteElement = document.createElement('div');
+    noteElement.classList.add('note');
+    noteElement.setAttribute('id', note.id);
 
-    this.noteElement.innerHTML = `
+    noteElement.innerHTML = `
       <div class="icon-check">
         <input type="checkbox" class="select-note">
       </div>
       <div class="note-content">
-        <p class="note-title">${item.title}</p>
-        <p class="note-description">${item.description}</p>
+        <p class="note-title">${note.title}</p>
+        <p class="note-description">${note.description}</p>
       </div>
       <div class="note-utilities">
         <div class="note-btn">
-          <button class="btn btm-delete" type="button" id="${item.id}">Delete</button>
+          <button class="btn btn-delete" type="button" id="${note.id}">Delete</button>
         </div>
       </div>`;
-    return this.noteElement;
+    return noteElement;
   };
 }
