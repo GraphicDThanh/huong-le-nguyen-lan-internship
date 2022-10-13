@@ -13,8 +13,8 @@ export default class NoteController {
 
   init() {
     this.renderAllNotes();
-    this.view.showInputForm();
-    this.view.bindAddNewNote(this.addNote);
+    this.view.constructor.bindDeleteItem(this.deleteNote);
+    this.view.bindShowAndAddInput(this.addNote);
   }
 
   /**

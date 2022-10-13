@@ -50,6 +50,41 @@ export default class ListNoteView {
   };
 
   /**
+   * @description function add element note and hide input after adding
+   *
+   * @param {function} handler is a function with 2 values are
+   *  title and description
+   */
+  addNewNote = (handler) => {
+    const titleValue = selectDOMClass('.note-title').value;
+    const descriptionValue = selectDOMClass('.note-description').value;
+
+    if (!titleValue && !descriptionValue) {
+      this.formUtilitiesElement.classList.add('hide');
+      this.formTitleElement.classList.add('hide');
+    } else {
+      handler(titleValue, descriptionValue);
+      this.formElement.reset();
+      this.formUtilitiesElement.classList.add('hide');
+      this.formTitleElement.classList.add('hide');
+    }
+  };
+
+  /**
+   * @description function hide input form when click every where outside input form
+   *
+   * @param {Object} e is event of button
+   * @param {function} handler is fis a function with 2 values are
+   *  title and description
+   */
+  handleClickOut = (e, handler) => {
+    const note = document.querySelector('.form-input');
+    if (e.target.contains(note)) {
+      this.addNewNote(handler);
+    }
+  };
+
+  /**
    * @description function show input form
    */
   showInputForm = () => {
@@ -60,23 +95,19 @@ export default class ListNoteView {
   };
 
   /**
-   * @description function add a new note and turn off input form
+   * @description function events to show or hide input form
    *
-   * @param {function} handler is a function transmission in
-   * two String values is title and description of input form
+   * @param {*} handler is a function transmitted from from the model
    */
-  bindAddNewNote = (handler) => {
-    this.closeButtonElement.addEventListener('click', () => {
-      this.titleValue = selectDOMClass('.note-title').value;
-      this.descriptionValue = selectDOMClass('.note-description').value;
+  bindShowAndAddInput = (handler) => {
+    this.showInputForm();
 
-      if (!this.titleValue && !this.descriptionValue) {
-        this.formUtilitiesElement.classList.add('hide');
-        this.formTitleElement.classList.add('hide');
-      } else {
-        handler(this.titleValue, this.descriptionValue);
-        this.formElement.reset();
-      }
+    window.addEventListener('click', (e) => {
+      this.handleClickOut(e, handler);
+    });
+
+    this.closeButtonElement.addEventListener('click', () => {
+      this.addNewNote(handler);
     });
   };
 }
