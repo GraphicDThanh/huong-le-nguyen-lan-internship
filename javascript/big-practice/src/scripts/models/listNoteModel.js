@@ -19,13 +19,13 @@ export default class ListNoteModel {
    *
    * @returns {Object} note
    */
-  addNoteModel = (noteTitle, noteDescription) => {
+  addNoteModel = (title, description) => {
     const notesLength = this.notes.length;
 
     const note = {
       id: notesLength > 0 ? notesLength : 0,
-      title: noteTitle,
-      description: noteDescription,
+      title,
+      description,
       isTrash: false,
     };
 
