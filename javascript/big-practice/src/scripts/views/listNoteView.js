@@ -62,10 +62,10 @@ export default class ListNoteView {
   /**
    * @description function add a new note and turn off input form
    *
-   * @param {function} handle is a function transmission in
+   * @param {function} handler is a function transmission in
    * two String values is title and description of input form
    */
-  bindAddNewNote = (handle) => {
+  bindAddNewNote = (handler) => {
     this.closeButtonElement.addEventListener('click', () => {
       this.titleValue = selectDOMClass('.note-title').value;
       this.descriptionValue = selectDOMClass('.note-description').value;
@@ -74,7 +74,7 @@ export default class ListNoteView {
         this.formUtilitiesElement.style.display = 'none';
         this.formTitleElement.style.display = 'none';
       } else {
-        handle(this.titleValue, this.descriptionValue);
+        handler(this.titleValue, this.descriptionValue);
         this.formElement.reset();
       }
     });
