@@ -22,16 +22,16 @@ export default class ListNoteModel {
   addNoteModel = (title, description) => {
     const notesLength = this.notes.length;
 
-    const note = {
+    const noteItem = {
       id: notesLength > 0 ? notesLength : 0,
       title,
       description,
       isTrash: false,
     };
 
-    const noteModel = new NoteModel(note);
-    this.notes.push(noteModel);
+    const note = new NoteModel(noteItem);
+    this.notes.push(note);
 
-    return note;
+    return noteItem;
   };
 }
