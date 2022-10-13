@@ -3,17 +3,17 @@
  * @description manage data of a note
  */
 export default class NoteModel {
-  constructor(item) {
+  constructor(note) {
     const {
       id,
-      itemTitle,
-      itemDescription,
+      title,
+      description,
       isTrash,
-    } = item;
+    } = note;
 
     this.id = id;
-    this.itemTitle = itemTitle;
-    this.itemDescription = itemDescription;
+    this.title = title;
+    this.description = description;
     this.isTrash = isTrash;
   }
 }
