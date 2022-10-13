@@ -12,16 +12,16 @@ export default class NoteController {
   }
 
   init() {
-    this.renderAllNote();
+    this.renderAllNotes();
     this.view.showInputForm();
-    this.view.bindAddNewItem(this.addNote);
+    this.view.bindAddNewNote(this.addNote);
   }
 
   /**
    * @description render all the notes
    */
-  renderAllNote = () => {
-    this.view.renderListItems(this.model.items);
+  renderAllNotes = () => {
+    this.view.renderListNotes(this.model.notes);
   };
 
   /**
@@ -31,7 +31,7 @@ export default class NoteController {
    * @param {String} description is description from input
    */
   addNote = (title, description) => {
-    const note = this.model.addItem(title, description);
-    this.view.renderItem(note);
+    const note = this.model.addNoteModel(title, description);
+    this.view.renderNote(note);
   };
 }

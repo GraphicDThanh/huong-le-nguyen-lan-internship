@@ -7,7 +7,7 @@ import data from '../data';
  */
 export default class ListNoteModel {
   constructor(noteModel) {
-    this.items = data;
+    this.notes = data;
     this.noteModel = noteModel;
   }
 
@@ -19,17 +19,19 @@ export default class ListNoteModel {
    *
    * @returns {Object} note
    */
-  addItem = (title, description) => {
-    const itemsLength = this.items.length;
-    const item = {
-      id: itemsLength > 0 ? itemsLength : 0,
-      itemTitle: title,
-      itemDescription: description,
+  addNoteModel = (noteTitle, noteDescription) => {
+    const notesLength = this.notes.length;
+
+    const note = {
+      id: notesLength > 0 ? notesLength : 0,
+      title: noteTitle,
+      description: noteDescription,
       isTrash: false,
     };
-    const noteModel = new NoteModel(item);
-    this.items.push(noteModel);
 
-    return item;
+    const noteModel = new NoteModel(note);
+    this.notes.push(noteModel);
+
+    return note;
   };
 }
