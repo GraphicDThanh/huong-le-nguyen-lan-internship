@@ -1,6 +1,6 @@
 /**
  * @class noteController
- * @description link model and view
+ * @description Controller is an intermediary for views and models
  *
  * @param model
  * @param view
