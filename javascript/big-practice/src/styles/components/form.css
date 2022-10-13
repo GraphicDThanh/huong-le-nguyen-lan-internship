@@ -66,6 +66,9 @@
 
 .form-add-note .form-title,
 .form-add-note .form-utilities {
-  display: none;
   animation: fadeIn linear 0.3s;
+}
+
+.hide {
+  display: none;
 }

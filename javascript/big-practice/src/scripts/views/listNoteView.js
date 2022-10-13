@@ -54,8 +54,8 @@ export default class ListNoteView {
    */
   showInputForm = () => {
     this.inputAddElement.addEventListener('focus', () => {
-      this.formUtilitiesElement.style.display = 'block';
-      this.formTitleElement.style.display = 'block';
+      this.formUtilitiesElement.classList.remove('hide');
+      this.formTitleElement.classList.remove('hide');
     });
   };
 
@@ -71,8 +71,8 @@ export default class ListNoteView {
       this.descriptionValue = selectDOMClass('.note-description').value;
 
       if ((this.titleValue === '') && (this.descriptionValue === '')) {
-        this.formUtilitiesElement.style.display = 'none';
-        this.formTitleElement.style.display = 'none';
+        this.formUtilitiesElement.classList.add('hide');
+        this.formTitleElement.classList.add('hide');
       } else {
         handle(this.titleValue, this.descriptionValue);
         this.formElement.reset();
