@@ -70,7 +70,7 @@ export default class ListNoteView {
       this.titleValue = selectDOMClass('.note-title').value;
       this.descriptionValue = selectDOMClass('.note-description').value;
 
-      if ((this.titleValue === '') && (this.descriptionValue === '')) {
+      if (!this.titleValue && !this.descriptionValue) {
         this.formUtilitiesElement.classList.add('hide');
         this.formTitleElement.classList.add('hide');
       } else {
