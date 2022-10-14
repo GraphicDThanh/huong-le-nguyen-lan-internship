@@ -1,14 +1,12 @@
 import selectDOMClass from '../utils/selectDOMByClass';
+import NoteView from './noteView';
 
 /**
  * @class listNoteView
  * @description manage view of listNote
  */
 export default class ListNoteView {
-  constructor(noteView) {
-    this.noteView = noteView;
-    this.listNoteElement = selectDOMClass('.list-notes');
-
+  constructor() {
     // input form
     this.formElement = selectDOMClass('.form-add-note');
     this.formTitleElement = selectDOMClass('.form-title');
@@ -22,31 +20,27 @@ export default class ListNoteView {
    *
    * @param {Array} listNote is a list of notes from data
    */
-  renderListNotes = (listNotes) => {
+  static renderListNotes = (listNotes) => {
     listNotes.forEach((note) => {
-      const noteItem = {
-        id: note.id,
-        title: note.title,
-        description: note.description,
-        isTrash: note.isTrash,
-      };
-      this.listNoteElement.appendChild(this.noteView.constructor.renderNote(noteItem));
+      if (!note.isTrash) {
+        const noteItem = {
+          id: note.id,
+          title: note.title,
+          description: note.description,
+          isTrash: note.isTrash,
+        };
+        const noteView = new NoteView(noteItem);
+        noteView.renderNote();
+      }
     });
   };
 
-  /**
-   * @description function render a note
-   *
-   * @param {Object} note is a data of a note
-   */
-  renderNote = (note) => {
-    const noteItem = {
-      id: note.id,
-      title: note.title,
-      description: note.description,
-      isTrash: note.isTrash,
-    };
-    this.listNoteElement.appendChild(this.noteView.constructor.renderNote(noteItem));
+  static deleteAllNotes = (notes) => {
+    const listNotes = document.querySelectorAll('.note');
+    listNotes.forEach((element) => {
+      element.remove();
+    });
+    ListNoteView.renderListNotes(notes);
   };
 
   /**

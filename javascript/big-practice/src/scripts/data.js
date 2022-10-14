@@ -17,6 +17,12 @@ const notes = [
     description: 'nam aspernatur! Nobis placeat qui obcaecati commodi.',
     isTrash: false,
   },
+  {
+    id: 3,
+    title: 'today is the good day!',
+    description: 'nam aspernatur! Nobis placeat qui obcaecati commodi.',
+    isTrash: true,
+  },
 ];
 
 export default notes;
