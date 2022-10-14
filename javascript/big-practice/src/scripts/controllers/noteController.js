@@ -20,7 +20,7 @@ export default class NoteController {
    * @description render all the notes
    */
   renderAllNotes = () => {
-    this.view.constructor.renderListNotes(this.model.notes);
+    this.view.renderListNotes(this.model.notes);
   };
 
   /**
@@ -31,6 +31,6 @@ export default class NoteController {
    */
   addNote = (title, description) => {
     const note = this.model.addNoteModel(title, description);
-    this.view.constructor.deleteAllNotes(note);
+    this.view.displayNotes(note);
   };
 }
