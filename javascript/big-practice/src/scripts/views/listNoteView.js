@@ -81,13 +81,13 @@ export default class ListNoteView {
    * @description events show header bulk actions and count notes selected
    */
   bindShowHeader() {
-    const checkSelected = selectDOMClassAll('.select-note');
-    const checkIconCheck = selectDOMClassAll('.icon-check');
+    const listCheckbox = selectDOMClassAll('.select-note');
+    const listIconCheck = selectDOMClassAll('.icon-check');
 
-    checkIconCheck.forEach((element, index) => {
+    listIconCheck.forEach((element, index) => {
       element.addEventListener('click', (e) => {
         e.preventDefault();
-        this.showHideHeader(checkSelected, index);
+        this.showHideHeader(listCheckbox, index);
         ListNoteView.countNoteSelected(e);
       });
     });
@@ -122,9 +122,9 @@ export default class ListNoteView {
    * @description function count notes selected
    */
   static countNoteSelected() {
-    const checkSelected = selectDOMClassAll('.select-note:checked');
-    const countSelected = selectDOMClass('.count-selected');
-    countSelected.innerHTML = `${checkSelected.length} Selected`;
+    const noteSelected = selectDOMClassAll('.select-note:checked');
+    const countNotesSelected = selectDOMClass('.count-selected');
+    countNotesSelected.innerHTML = `${noteSelected.length} Selected`;
   }
 
   /**
@@ -160,14 +160,14 @@ export default class ListNoteView {
    *  title and description
    */
   addNewNote(handler) {
-    const titleValue = selectDOMClass('.note-title').value;
-    const descriptionValue = selectDOMClass('.note-description').value;
+    const title = selectDOMClass('.note-title').value;
+    const description = selectDOMClass('.note-description').value;
 
-    if (!titleValue && !descriptionValue) {
+    if (!title && !description) {
       this.formUtilitiesElement.classList.add('hide');
       this.formTitleElement.classList.add('hide');
     } else {
-      handler(titleValue, descriptionValue);
+      handler(title, description);
       this.formElement.reset();
       this.formUtilitiesElement.classList.add('hide');
       this.formTitleElement.classList.add('hide');
