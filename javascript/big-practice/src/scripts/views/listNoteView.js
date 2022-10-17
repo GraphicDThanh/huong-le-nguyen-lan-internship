@@ -177,7 +177,7 @@ export default class ListNoteView {
   /**
    * @description function events to show or hide input form
    *
-   * @param {*} handler is a function transmitted from from the model
+   * @param {*} handler is a function add transmitted from from the model
    */
   bindShowAndAddInput(handler) {
     this.showInputForm();
@@ -194,7 +194,7 @@ export default class ListNoteView {
   /**
    * @description function event delete note
    *
-   * @param {function} handler is function transmitted from from the model
+   * @param {function} handler is function delete transmitted from from the model
    */
   static bindDeleteNotes(handler) {
     const deleteButtonElements = selectDOMClassAll('.btn-delete');
@@ -214,6 +214,10 @@ export default class ListNoteView {
     });
   }
 
+  /**
+   * @description function delete selected notes
+   * @param {function} handler is function delete transmitted from from the model
+   */
   bindDeleteListNotes(handler) {
     this.deleteButtonElementsBulkActions.addEventListener('click', () => {
       const noteSelected = selectDOMClassAll('.selected');
