@@ -19,7 +19,7 @@ export default class ListNoteView {
     this.inputTitleElement = selectDOMClass('.note-title');
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
-    this.deleteButtonElementsBulkActions = selectDOMClass('.btn-delete-bulk-actions');
+    this.btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
   }
 
   /**
@@ -219,7 +219,7 @@ export default class ListNoteView {
    * @param {function} handler is function delete transmitted from from the model
    */
   bindDeleteListNotes(handler) {
-    this.deleteButtonElementsBulkActions.addEventListener('click', () => {
+    this.btnDeleteBulkActions.addEventListener('click', () => {
       const noteSelected = selectDOMClassAll('.selected');
 
       noteSelected.forEach((note) => {
