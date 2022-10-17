@@ -9,6 +9,7 @@
 }
 
 .note .icon-check {
+  cursor: pointer;
   width: 22px;
   height: 22px;
   position: absolute;
@@ -41,10 +42,6 @@
   background-color: #6f6f6f;
 }
 
-.select-note {
-  visibility: hidden;
-}
-
 .note-content {
   padding: 10px;
   min-height: 60px;
@@ -70,4 +67,8 @@
 
 .note .note-utilities {
   visibility: hidden;
+}
+
+.selected {
+  border: 2px solid var(--dark-color);
 }
