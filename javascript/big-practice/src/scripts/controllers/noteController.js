@@ -13,11 +13,11 @@ export default class NoteController {
 
   init() {
     this.renderAllNotes();
-    this.view.constructor.bindDeleteNotes(this.deleteNote);
     this.view.bindInputBreakDown();
     this.view.bindShowHeader();
-    this.view.bindDeleteListNotes(this.deleteNote);
     this.view.bindShowAndAddInput(this.addNote);
+    this.view.constructor.bindDeleteNotes(this.deleteNote);
+    this.view.bindDeleteListNotes(this.deleteNote);
   }
 
   /**
@@ -27,6 +27,12 @@ export default class NoteController {
     this.view.renderListNotes(this.model.notes);
   };
 
+  addAfterRender = () => {
+    this.view.bindShowHeader();
+    this.view.constructor.bindDeleteNotes(this.deleteNote);
+    this.view.bindDeleteListNotes(this.deleteListNotes);
+  };
+
   /**
    * @description function add note
    *
@@ -34,7 +40,7 @@ export default class NoteController {
    * @param {String} description is description from input
    */
   addNote = (title, description) => {
-    const note = this.model.addNoteModel(title, description);
+    const note = this.model.addNote(title, description);
     this.view.displayNotes(note);
     this.view.bindShowHeader();
     this.view.constructor.bindDeleteNotes(this.deleteNote);
@@ -46,6 +52,8 @@ export default class NoteController {
    * @param {String} index is index of note
    */
   deleteNote = (index) => {
-    this.model.deleteNoteModel(index);
+    const listNotes = this.model.deleteNote(index);
+    this.view.displayNotes(listNotes);
+    this.addAfterRender();
   };
 }
