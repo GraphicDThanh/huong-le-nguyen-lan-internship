@@ -19,7 +19,7 @@ export default class ListNoteModel {
    *
    * @returns {Object} note
    */
-  addNoteModel(title, description) {
+  addNote(title, description) {
     const notesLength = this.notes.length;
 
     const noteItem = {
@@ -39,8 +39,10 @@ export default class ListNoteModel {
    * @description function delete note in data
    * @param {String} index is index of note
    */
-  deleteNoteModel(index) {
+  deleteNote(index) {
     const noteIndex = this.notes.findIndex((element) => element.id === Number(index));
     this.notes[noteIndex].isTrash = true;
+
+    return this.notes;
   }
 }
