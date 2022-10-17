@@ -1,7 +1,5 @@
-import selectDOMClass from '../utils/selectDOMByClass';
-import selectDOMClassAll from '../utils/selectAllDOMByClass';
 import NoteView from './noteView';
-
+import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectClass';
 /**
  * @class listNoteView
  * @description manage view of listNote
@@ -109,7 +107,9 @@ export default class ListNoteView {
     if (noteItemSelected.checked) {
       this.headerAfterSelect.style.transform = 'translateY(-100%)';
       noteElement[index].classList.add('selected');
-    } else if (!listItemChecked.length) {
+    }
+
+    if (!listItemChecked.length) {
       this.headerAfterSelect.style.transform = 'translateY(-200%)';
     }
 
@@ -163,14 +163,11 @@ export default class ListNoteView {
     const title = selectDOMClass('.note-title').value;
     const description = selectDOMClass('.note-description').value;
 
-    if (!title && !description) {
-      this.formUtilitiesElement.classList.add('hide');
-      this.formTitleElement.classList.add('hide');
-    } else {
+    this.formUtilitiesElement.classList.add('hide');
+    this.formTitleElement.classList.add('hide');
+    if (title || description) {
       handler(title, description);
       this.formElement.reset();
-      this.formUtilitiesElement.classList.add('hide');
-      this.formTitleElement.classList.add('hide');
     }
   }
 
@@ -200,16 +197,9 @@ export default class ListNoteView {
     const deleteButtonElements = selectDOMClassAll('.btn-delete');
 
     deleteButtonElements.forEach((btn) => {
-      btn.addEventListener('click', (element) => {
-        const noteId = element.target.getAttribute('id');
-        const noteElement = selectDOMClassAll('.note');
-
-        noteElement.forEach((note) => {
-          if (note.id === noteId) {
-            note.remove();
-            handler(noteId);
-          }
-        });
+      btn.addEventListener('click', (e) => {
+        const noteId = e.target.getAttribute('id');
+        handler(noteId);
       });
     });
   }
@@ -221,11 +211,11 @@ export default class ListNoteView {
   bindDeleteListNotes(handler) {
     this.btnDeleteBulkActions.addEventListener('click', () => {
       const noteSelected = selectDOMClassAll('.selected');
-
       noteSelected.forEach((note) => {
-        note.remove();
         handler(note.id);
       });
+
+      this.headerAfterSelect.style.transform = 'translateY(-200%)';
     });
   }
 }
