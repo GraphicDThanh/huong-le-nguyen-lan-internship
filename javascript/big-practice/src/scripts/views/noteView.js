@@ -1,5 +1,3 @@
-import selectDOMClass from '../utils/selectDOMByClass';
-
 /**
  * @class noteView
  * @description manage view of a note
@@ -7,7 +5,6 @@ import selectDOMClass from '../utils/selectDOMByClass';
 export default class NoteView {
   constructor(noteItem) {
     this.noteItem = noteItem;
-    this.listNoteElement = selectDOMClass('.list-notes');
   }
 
   /**
@@ -17,10 +14,10 @@ export default class NoteView {
    *
    * @returns {Object} noteElement is a element note
    */
-  renderNote = () => {
+  renderNote() {
     const noteElement = document.createElement('div');
     noteElement.classList.add('note');
-    noteElement.setAttribute('id', this.id);
+    noteElement.setAttribute('id', this.noteItem.id);
 
     noteElement.innerHTML = `
       <label class="icon-check">
@@ -35,6 +32,6 @@ export default class NoteView {
           <button class="btn btn-delete" type="button" id="${this.noteItem.id}">Delete</button>
         </div>
       </div>`;
-    this.listNoteElement.appendChild(noteElement);
-  };
+    return noteElement;
+  }
 }
