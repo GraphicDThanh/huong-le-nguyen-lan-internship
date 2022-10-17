@@ -13,6 +13,10 @@ export default class NoteController {
 
   init() {
     this.renderAllNotes();
+    this.view.constructor.bindDeleteNotes(this.deleteNote);
+    this.view.bindInputBreakDown();
+    this.view.bindShowHeader();
+    this.view.bindDeleteListNotes(this.deleteNote);
     this.view.bindShowAndAddInput(this.addNote);
   }
 
@@ -32,5 +36,16 @@ export default class NoteController {
   addNote = (title, description) => {
     const note = this.model.addNoteModel(title, description);
     this.view.displayNotes(note);
+    this.view.bindShowHeader();
+    this.view.constructor.bindDeleteNotes(this.deleteNote);
+  };
+
+  /**
+   * @description function delete note in model
+   *
+   * @param {String} index is index of note
+   */
+  deleteNote = (index) => {
+    this.model.deleteNoteModel(index);
   };
 }
