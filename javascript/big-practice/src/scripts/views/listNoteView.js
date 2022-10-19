@@ -8,7 +8,6 @@ export default class ListNoteView {
   constructor() {
     this.listNoteElement = selectDOMClass('.list-notes');
 
-    // input form
     this.formElement = selectDOMClass('.form-add-note');
     this.formTitleElement = selectDOMClass('.form-title');
     this.formUtilitiesElement = selectDOMClass('.form-utilities');
@@ -18,6 +17,8 @@ export default class ListNoteView {
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
     this.btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
+
+    this.overlay = selectDOMClass('.overlay');
   }
 
   /**
@@ -26,31 +27,18 @@ export default class ListNoteView {
    * @param {Array} listNote is a list of notes from data
    */
   renderListNotes(listNotes) {
-    listNotes.forEach((note) => {
-      if (!note.isTrash) {
-        const noteItem = {
-          id: note.id,
-          title: note.title,
-          description: note.description,
-          isTrash: note.isTrash,
-        };
-        const noteView = new NoteView(noteItem);
-        this.listNoteElement.appendChild(noteView.renderNote());
-      }
-    });
-  }
+    this.listNoteElement.innerHTML = '';
 
-  /**
-   * @description function render after remove all elements
-   *
-   * @param {Array} notes is a list of notes
-   */
-  displayNotes(notes) {
-    const listNotes = selectDOMClassAll('.note');
-    listNotes.forEach((element) => {
-      element.remove();
+    listNotes.forEach((note) => {
+      const noteItem = {
+        id: note.id,
+        title: note.title,
+        description: note.description,
+        isTrash: note.isTrash,
+      };
+      const noteView = new NoteView(noteItem);
+      this.listNoteElement.appendChild(noteView.renderNote());
     });
-    this.renderListNotes(notes);
   }
 
   /**
@@ -107,14 +95,12 @@ export default class ListNoteView {
     if (noteItemSelected.checked) {
       this.headerAfterSelect.style.transform = 'translateY(-100%)';
       noteElement[index].classList.add('selected');
+    } else {
+      noteElement[index].classList.remove('selected');
     }
 
     if (!listItemChecked.length) {
       this.headerAfterSelect.style.transform = 'translateY(-200%)';
-    }
-
-    if (!noteItemSelected.checked) {
-      noteElement[index].classList.remove('selected');
     }
   }
 
@@ -195,10 +181,9 @@ export default class ListNoteView {
    */
   static bindDeleteNotes(handler) {
     const deleteButtonElements = selectDOMClassAll('.btn-delete');
-
     deleteButtonElements.forEach((btn) => {
       btn.addEventListener('click', (e) => {
-        const noteId = e.target.getAttribute('id');
+        const noteId = e.target.getAttribute('data-id');
         handler(noteId);
       });
     });

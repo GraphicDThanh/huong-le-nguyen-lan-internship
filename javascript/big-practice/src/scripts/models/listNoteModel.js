@@ -36,13 +36,22 @@ export default class ListNoteModel {
   }
 
   /**
+   * @description function filter list notes with isTrash = false
+   *
+   * @returns {Array} listNotes
+   */
+  filterListNotes() {
+    const listNotes = this.notes.filter((note) => !note.isTrash);
+
+    return listNotes;
+  }
+
+  /**
    * @description function delete note in data
    * @param {String} index is index of note
    */
   deleteNote(index) {
-    const noteIndex = this.notes.findIndex((element) => element.id === Number(index));
+    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
     this.notes[noteIndex].isTrash = true;
-
-    return this.notes;
   }
 }

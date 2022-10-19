@@ -13,24 +13,34 @@ export default class NoteController {
 
   init() {
     this.renderAllNotes();
-    this.view.bindInputBreakDown();
-    this.view.bindShowHeader();
-    this.view.bindShowAndAddInput(this.addNote);
-    this.view.constructor.bindDeleteNotes(this.deleteNote);
-    this.view.bindDeleteListNotes(this.deleteNote);
   }
 
-  /**
-   * @description render all the notes
-   */
   renderAllNotes = () => {
-    this.view.renderListNotes(this.model.notes);
-  };
+    const listNotes = this.model.filterListNotes();
 
-  addAfterRender = () => {
+    // function render list notes
+    this.view.renderListNotes(listNotes);
+
+    // function increase textarea
+    this.view.bindInputBreakDown();
+
+    // function show header
     this.view.bindShowHeader();
+
+    // function show input form
+    this.view.bindShowAndAddInput(this.addNote);
+
+    // function show note form
+    this.view.showNoteForm(this.findNote);
+
+    // function delete
     this.view.constructor.bindDeleteNotes(this.deleteNote);
-    this.view.bindDeleteListNotes(this.deleteListNotes);
+
+    // function edit
+    this.view.editNote(this.editNote);
+
+    // function delete list notes
+    this.view.bindDeleteListNotes(this.deleteNote);
   };
 
   /**
@@ -40,10 +50,8 @@ export default class NoteController {
    * @param {String} description is description from input
    */
   addNote = (title, description) => {
-    const note = this.model.addNote(title, description);
-    this.view.displayNotes(note);
-    this.view.bindShowHeader();
-    this.view.constructor.bindDeleteNotes(this.deleteNote);
+    this.model.addNote(title, description);
+    this.renderAllNotes();
   };
 
   /**
@@ -52,8 +60,30 @@ export default class NoteController {
    * @param {String} index is index of note
    */
   deleteNote = (index) => {
-    const listNotes = this.model.deleteNote(index);
-    this.view.displayNotes(listNotes);
-    this.addAfterRender();
+    this.model.deleteNote(index);
+    this.renderAllNotes();
+  };
+
+  /**
+   * @description function edit note
+   *
+   * @param {String} id is a id of note
+   * @param {String} title is title of note
+   * @param {String} description is description of note
+   */
+  editNote = (id, title, description) => {
+    this.model.editNote(id, title, description);
+    this.renderAllNotes();
+  };
+
+  /**
+   * @description function find note
+   *
+   * @param {String} id is a id of note
+   */
+  findNote = (id) => {
+    const note = this.model.findNote(id);
+    this.view.renderFormNote(note);
+    this.view.buttonDeleteForm(this.deleteNote);
   };
 }

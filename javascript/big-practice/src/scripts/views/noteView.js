@@ -1,3 +1,6 @@
+import iconPin from '../../assets/icons/icon-pin.svg';
+import iconColorBoard from '../../assets/icons/icon-color-board.svg';
+
 /**
  * @class noteView
  * @description manage view of a note
@@ -21,17 +24,17 @@ export default class NoteView {
 
     noteElement.innerHTML = `
       <label class="icon-check">
-        <input type="checkbox" hidden class="select-note" id="${this.noteItem.id}">
+        <input type="checkbox" hidden class="select-note" data-id="${this.noteItem.id}">
       </label>
-      <div class="note-content">
-        <p class="note-title">${this.noteItem.title}</p>
-        <p class="note-description">${this.noteItem.description}</p>
-      </div>
-      <div class="note-utilities">
-        <div class="note-btn">
-          <button class="btn btn-delete" type="button" id="${this.noteItem.id}">Delete</button>
+        <div class="note-content" data-id="${this.noteItem.id}">
+          <p class="note-title">${this.noteItem.title}</p>
+          <p class="note-description">${this.noteItem.description}</p>
         </div>
-      </div>`;
+        <div class="note-utilities">
+          <div class="note-btn">
+            <button class="btn btn-delete" type="button" data-id="${this.noteItem.id}">Delete</button>
+          </div>
+        </div>`;
     return noteElement;
   }
 }
