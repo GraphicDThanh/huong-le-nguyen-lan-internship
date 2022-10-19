@@ -1,9 +1,9 @@
 const notes = [
   {
     id: 0,
-    title: 'id perspiciatis nemo natus exercitationem ipsam ducimus, nam aspernatur! Nobis placeat qui obcaecati commodi.',
+    title: 'id nam aspernatur! Nobis placeat qui obcaecati commodi.',
     description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fuga incidunt autem praesentium necessitatibus corporis laudantium alias, ',
-    isTrash: false,
+    isTrash: true,
   },
   {
     id: 1,
@@ -13,15 +13,27 @@ const notes = [
   },
   {
     id: 2,
-    title: 'natus exercitationem ipsam ducimus, nam aspernatur!',
+    title: '1natus exercitationem ipsam ducimus, nam aspernatur!',
     description: 'nam aspernatur! Nobis placeat qui obcaecati commodi.',
     isTrash: false,
   },
   {
     id: 3,
-    title: 'today is the good day!',
+    title: '2natus exercitationem ipsam ducimus, nam aspernatur!',
     description: 'nam aspernatur! Nobis placeat qui obcaecati commodi.',
-    isTrash: true,
+    isTrash: false,
+  },
+  {
+    id: 4,
+    title: '3natus exercitationem ipsam ducimus, nam aspernatur!',
+    description: 'nam aspernatur! Nobis placeat qui obcaecati commodi.',
+    isTrash: false,
+  },
+  {
+    id: 5,
+    title: '4natus exercitationem ipsam ducimus, nam aspernatur!',
+    description: 'nam aspernatur! Nobis placeat qui obcaecati commodi.',
+    isTrash: false,
   },
 ];
 
