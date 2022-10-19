@@ -31,13 +31,10 @@ export default class NoteController {
     this.view.bindShowAndAddInput(this.addNote);
 
     // function show note form
-    this.view.showNoteForm(this.findNote);
+    this.view.constructor.showNoteForm(this.findNote);
 
     // function delete
     this.view.constructor.bindDeleteNotes(this.deleteNote);
-
-    // function edit
-    this.view.editNote(this.editNote);
 
     // function delete list notes
     this.view.bindDeleteListNotes(this.deleteNote);
@@ -52,6 +49,7 @@ export default class NoteController {
   addNote = (title, description) => {
     this.model.addNote(title, description);
     this.renderAllNotes();
+    this.view.inputOverlayNote();
   };
 
   /**
@@ -84,6 +82,9 @@ export default class NoteController {
   findNote = (id) => {
     const note = this.model.findNote(id);
     this.view.renderFormNote(note);
+    this.view.constructor.inputBreakDownOverlay();
+    this.view.btnCloseAndSave(this.editNote);
+    this.view.closeOverlayAndSave(this.editNote);
     this.view.buttonDeleteForm(this.deleteNote);
   };
 }
