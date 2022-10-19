@@ -37,5 +37,4 @@
   left: 0;
   background-color: var(--background-opacity);
   animation: fadeInOut linear 0.2s;
-  display: none;
 }

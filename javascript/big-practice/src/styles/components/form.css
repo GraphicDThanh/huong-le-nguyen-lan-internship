@@ -15,7 +15,6 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--light-color);
-  display: none;
 }
 
 .form-add-note {

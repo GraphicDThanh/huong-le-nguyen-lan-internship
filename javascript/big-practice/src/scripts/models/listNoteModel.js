@@ -19,7 +19,7 @@ export default class ListNoteModel {
    *
    * @returns {Object} note
    */
-  addNoteModel = (title, description) => {
+  addNote(title, description) {
     const notesLength = this.notes.length;
 
     const noteItem = {
@@ -33,5 +33,25 @@ export default class ListNoteModel {
     this.notes.push(note);
 
     return this.notes;
-  };
+  }
+
+  /**
+   * @description function filter list notes with isTrash = false
+   *
+   * @returns {Array} listNotes
+   */
+  filterListNotes() {
+    const listNotes = this.notes.filter((note) => !note.isTrash);
+
+    return listNotes;
+  }
+
+  /**
+   * @description function delete note in data
+   * @param {String} index is index of note
+   */
+  deleteNote(index) {
+    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    this.notes[noteIndex].isTrash = true;
+  }
 }
