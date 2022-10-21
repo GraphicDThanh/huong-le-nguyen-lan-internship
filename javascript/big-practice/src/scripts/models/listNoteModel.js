@@ -7,6 +7,7 @@ import data from '../data';
  */
 export default class ListNoteModel {
   constructor(noteModel) {
+    console.log(localStorage.getItem('a'));
     this.notes = data;
     this.noteModel = noteModel;
   }
@@ -31,7 +32,7 @@ export default class ListNoteModel {
 
     const note = new NoteModel(noteItem);
     this.notes.push(note);
-
+    localStorage.setItem('listNotes', JSON.stringify(this.notes));
     return this.notes;
   }
 
@@ -53,6 +54,8 @@ export default class ListNoteModel {
   deleteNote(index) {
     const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
     this.notes[noteIndex].isTrash = true;
+
+    localStorage.setItem('listNotes', JSON.stringify(this.notes));
   }
 
   /**
@@ -82,6 +85,7 @@ export default class ListNoteModel {
     this.notes[noteIndex].title = title;
     this.notes[noteIndex].description = description;
 
+    localStorage.setItem('listNotes', JSON.stringify(this.notes));
     return this.notes;
   }
 }
