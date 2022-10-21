@@ -3,6 +3,7 @@
     "browser": true,
     "es2021": true
   },
+  "extends": "airbnb-base",
   "overrides": [
   ],
   "parserOptions": {
@@ -10,5 +11,6 @@
     "sourceType": "module"
   },
   "rules": {
+    
   }
 }
