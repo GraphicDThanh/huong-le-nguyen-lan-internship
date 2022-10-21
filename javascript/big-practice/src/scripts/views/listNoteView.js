@@ -164,7 +164,7 @@ export default class ListNoteView {
    *
    * @param {function} findNote is function transmitted from model
    */
-  static showNoteForm(findNote) {
+  showNoteForm(findNote) {
     const listNotes = selectDOMClassAll('.note-content');
 
     listNotes.forEach((note) => {
