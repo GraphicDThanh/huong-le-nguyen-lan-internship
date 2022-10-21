@@ -38,7 +38,7 @@ export default class NoteController {
     this.view.bindShowHeader();
 
     // function show note form
-    this.view.constructor.showNoteForm(this.findNote);
+    this.view.showNoteForm(this.findNote);
 
     // function delete
     this.view.constructor.bindDeleteNotes(this.deleteNote);
