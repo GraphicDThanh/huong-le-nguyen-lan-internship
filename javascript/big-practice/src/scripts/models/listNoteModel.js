@@ -7,7 +7,6 @@ import data from '../data';
  */
 export default class ListNoteModel {
   constructor(noteModel) {
-    console.log(localStorage.getItem('a'));
     this.notes = data;
     this.noteModel = noteModel;
   }
@@ -33,7 +32,8 @@ export default class ListNoteModel {
     const note = new NoteModel(noteItem);
     this.notes.push(note);
     localStorage.setItem('listNotes', JSON.stringify(this.notes));
-    return this.notes;
+
+    return note;
   }
 
   /**
