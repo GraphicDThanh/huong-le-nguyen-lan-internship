@@ -16,28 +16,32 @@ export default class NoteController {
   }
 
   renderAllNotes = () => {
+    this.listEvents();
+
+    // function increase textarea
+    this.view.bindInputBreakDown();
+
+    // function show input form
+    this.view.bindShowAndAddInput(this.addNote);
+
+    // function delete list notes
+    this.view.bindDeleteListNotes(this.deleteNote);
+  };
+
+  listEvents = () => {
     const listNotes = this.model.filterListNotes();
 
     // function render list notes
     this.view.renderListNotes(listNotes);
 
-    // function increase textarea
-    this.view.bindInputBreakDown();
-
     // function show header
     this.view.bindShowHeader();
-
-    // function show input form
-    this.view.bindShowAndAddInput(this.addNote);
 
     // function show note form
     this.view.constructor.showNoteForm(this.findNote);
 
     // function delete
     this.view.constructor.bindDeleteNotes(this.deleteNote);
-
-    // function delete list notes
-    this.view.bindDeleteListNotes(this.deleteNote);
   };
 
   /**
@@ -48,8 +52,7 @@ export default class NoteController {
    */
   addNote = (title, description) => {
     this.model.addNote(title, description);
-    this.renderAllNotes();
-    this.view.inputOverlayNote();
+    this.listEvents();
   };
 
   /**
@@ -59,7 +62,7 @@ export default class NoteController {
    */
   deleteNote = (index) => {
     this.model.deleteNote(index);
-    this.renderAllNotes();
+    this.listEvents();
   };
 
   /**
@@ -71,7 +74,7 @@ export default class NoteController {
    */
   editNote = (id, title, description) => {
     this.model.editNote(id, title, description);
-    this.renderAllNotes();
+    this.listEvents();
   };
 
   /**
