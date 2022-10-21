@@ -9,6 +9,7 @@
 }
 
 .note .icon-check {
+  cursor: pointer;
   width: 22px;
   height: 22px;
   position: absolute;
@@ -37,14 +38,6 @@
   border: 2px solid var(--text-color);
 }
 
-.note-selected .icon-check {
-  background-color: #6f6f6f;
-}
-
-.select-note {
-  visibility: hidden;
-}
-
 .note-content {
   padding: 10px;
   min-height: 60px;
@@ -55,6 +48,8 @@
 .note-content .note-title,
 .note-content .note-description {
   line-height: 25px;
+  max-height: 180px;
+  overflow: hidden;
 }
 
 .note-content .note-description {
@@ -70,4 +65,8 @@
 
 .note .note-utilities {
   visibility: hidden;
+}
+
+.selected {
+  border: 2px solid var(--dark-color);
 }

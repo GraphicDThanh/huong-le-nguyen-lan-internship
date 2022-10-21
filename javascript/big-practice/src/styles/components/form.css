@@ -9,17 +9,17 @@
 
 .note-form-overlay {
   width: 600px;
-  max-height: 850px;
+  height: fit-content;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--light-color);
-  display: none;
 }
 
 .form-add-note {
   width: 600px;
+  max-height: 650px;
 }
 
 .form-title .form-group {
@@ -66,6 +66,9 @@
 
 .form-add-note .form-title,
 .form-add-note .form-utilities {
-  display: none;
   animation: fadeIn linear 0.3s;
+}
+
+.hide {
+  display: none;
 }
