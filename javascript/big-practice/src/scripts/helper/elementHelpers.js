@@ -1,7 +1,7 @@
 export default class ElementHelpers {
   /**
    * @description common events of textarea to increase the length
-   * @param {Object} element is title and description element ()
+   * @param {Object} element is title and description element
    */
   static commonInputBreakDown(element) {
     element.addEventListener('input', () => {
@@ -11,7 +11,7 @@ export default class ElementHelpers {
 
   /**
    * @description function increase the length of the textarea by the length of the text
-   * @param {Object} e is a event (DOM Helper)
+   * @param {Object} e is a event
    */
   static inputBreakDown(e) {
     e.style.height = '1px';
