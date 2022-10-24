@@ -1,4 +1,6 @@
 import NoteView from './noteView';
+import InputBreakDown from '../helper/inputBreakDown';
+import PreventEvents from '../helper/preventEvents';
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 /**
  * @class listNoteView
@@ -62,20 +64,11 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function increase the length of the textarea by the length of the text
-   * @param {Object} e is a event
-   */
-  static inputBreakDown(e) {
-    e.style.height = '1px';
-    e.style.height = `${e.scrollHeight < '250' ? e.scrollHeight : '250'}px`;
-  }
-
-  /**
    * @description events of textarea to increase the length of input note
    */
   bindInputBreakDown() {
-    ListNoteView.commonInputBreakDown(this.inputAddElement);
-    ListNoteView.commonInputBreakDown(this.inputTitleElement);
+    InputBreakDown.commonInputBreakDown(this.inputAddElement);
+    InputBreakDown.commonInputBreakDown(this.inputTitleElement);
   }
 
   /**
@@ -85,18 +78,8 @@ export default class ListNoteView {
     const title = selectDOMClass('.note-form-overlay .note-title');
     const description = selectDOMClass('.note-form-overlay .note-description');
 
-    ListNoteView.commonInputBreakDown(title);
-    ListNoteView.commonInputBreakDown(description);
-  }
-
-  /**
-   * @description common events of textarea to increase the length
-   * @param {Object} element is title and description element
-   */
-  static commonInputBreakDown(element) {
-    element.addEventListener('input', () => {
-      ListNoteView.inputBreakDown(element);
-    });
+    InputBreakDown.commonInputBreakDown(title);
+    InputBreakDown.commonInputBreakDown(description);
   }
 
   /**
@@ -171,7 +154,12 @@ export default class ListNoteView {
       note.addEventListener('click', (e) => {
         e.stopPropagation();
         findNote(note.getAttribute('data-id'));
-        ListNoteView.inputOverlayFormNote();
+
+        const title = selectDOMClass('.note-form-overlay .note-title');
+        const description = selectDOMClass('.note-form-overlay .note-description');
+
+        PreventEvents.stopEvents(title);
+        PreventEvents.stopEvents(description);
       });
     });
   }
@@ -210,22 +198,6 @@ export default class ListNoteView {
     const overlay = document.querySelector('.overlay');
     overlay.addEventListener('click', () => {
       this.editNoteForm(editNote);
-    });
-  }
-
-  /**
-   * @description function stop overlay bubbling event of 2 input note form
-   */
-  static inputOverlayFormNote() {
-    const title = selectDOMClass('.note-form-overlay .note-title');
-    const description = selectDOMClass('.note-form-overlay .note-description');
-
-    title.addEventListener('click', (e) => {
-      e.stopPropagation();
-    });
-
-    description.addEventListener('click', (e) => {
-      e.stopPropagation();
     });
   }
 
