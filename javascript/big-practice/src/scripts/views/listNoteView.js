@@ -1,6 +1,6 @@
 import NoteView from './noteView';
 import ElementHelpers from '../helper/elementHelpers';
-import EventsHelpers from '../helper/eventHelpers';
+import EventHelpers from '../helper/eventHelpers';
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 /**
  * @class listNoteView
@@ -158,8 +158,8 @@ export default class ListNoteView {
         const title = selectDOMClass('.note-form-overlay .note-title');
         const description = selectDOMClass('.note-form-overlay .note-description');
 
-        EventsHelpers.stopEvents(title);
-        EventsHelpers.stopEvents(description);
+        EventHelpers.stopEvents(title);
+        EventHelpers.stopEvents(description);
       });
     });
   }
