@@ -164,14 +164,14 @@ export default class ListNoteView {
    *
    * @param {function} findNote is function transmitted from model
    */
-  showNoteForm(findNote) {
+  static showNoteForm(findNote) {
     const listNotes = selectDOMClassAll('.note-content');
 
     listNotes.forEach((note) => {
       note.addEventListener('click', (e) => {
         e.stopPropagation();
         findNote(note.getAttribute('data-id'));
-        this.inputOverlayFormNote();
+        ListNoteView.inputOverlayFormNote();
       });
     });
   }
