@@ -1,6 +1,6 @@
 import NoteView from './noteView';
 import ElementHelpers from '../helper/elementHelpers';
-import EventsHelpers from '../helper/eventsHelpers';
+import EventsHelpers from '../helper/eventHelpers';
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 /**
  * @class listNoteView
