@@ -1,5 +1,5 @@
 import NoteView from './noteView';
-import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectClass';
+import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 /**
  * @class listNoteView
  * @description manage view of listNote
@@ -14,11 +14,13 @@ export default class ListNoteView {
     this.closeButtonElement = selectDOMClass('.form-add-note .btn-close');
     this.inputAddElement = selectDOMClass('.form-add-note .form-group-input .input-note');
     this.inputTitleElement = selectDOMClass('.note-title');
+    this.inputDescriptionElement = selectDOMClass('.note-description');
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
     this.btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
 
-    this.overlay = selectDOMClass('.overlay');
+    this.sectionWrapper = selectDOMClass('.section-wrapper');
+    this.noteOverlay = selectDOMClass('.note-overlay');
   }
 
   /**
@@ -42,6 +44,24 @@ export default class ListNoteView {
   }
 
   /**
+   * @description render form note of each note
+   * @param {Object} note is a note
+   */
+  renderFormNote(note) {
+    const noteItem = {
+      id: note.id,
+      title: note.title,
+      description: note.description,
+      isTrash: note.isTrash,
+    };
+
+    this.noteOverlay.innerHTML = '';
+
+    const noteView = new NoteView(noteItem);
+    this.noteOverlay.appendChild(noteView.renderNoteForm());
+  }
+
+  /**
    * @description function increase the length of the textarea by the length of the text
    * @param {Object} e is a event
    */
@@ -51,15 +71,31 @@ export default class ListNoteView {
   }
 
   /**
-   * @description events of textarea to increase the length
+   * @description events of textarea to increase the length of input note
    */
   bindInputBreakDown() {
-    this.inputAddElement.addEventListener('input', () => {
-      ListNoteView.inputBreakDown(this.inputAddElement);
-    });
+    ListNoteView.commonInputBreakDown(this.inputAddElement);
+    ListNoteView.commonInputBreakDown(this.inputTitleElement);
+  }
 
-    this.inputTitleElement.addEventListener('input', () => {
-      ListNoteView.inputBreakDown(this.inputTitleElement);
+  /**
+   * @description function input break down of form note of form note
+   */
+  static inputBreakDownOverlay() {
+    const title = selectDOMClass('.note-form-overlay .note-title');
+    const description = selectDOMClass('.note-form-overlay .note-description');
+
+    ListNoteView.commonInputBreakDown(title);
+    ListNoteView.commonInputBreakDown(description);
+  }
+
+  /**
+   * @description common events of textarea to increase the length
+   * @param {Object} element is title and description element
+   */
+  static commonInputBreakDown(element) {
+    element.addEventListener('input', () => {
+      ListNoteView.inputBreakDown(element);
     });
   }
 
@@ -114,28 +150,97 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function hide input form when click every where outside input form
-   *
-   * @param {Object} e is event of button
-   * @param {function} handler is fis a function with 2 values are
-   *  title and description
-   */
-  handleClickOut(e, handler) {
-    const note = selectDOMClass('.form-input');
-    if (e.target.contains(note)) {
-      this.addNewNote(handler);
-      this.inputAddElement.style.height = '1px';
-      this.inputTitleElement.style.height = '1px';
-    }
-  }
-
-  /**
    * @description function show input form
    */
   showInputForm() {
     this.inputAddElement.addEventListener('focus', () => {
       this.formUtilitiesElement.classList.remove('hide');
       this.formTitleElement.classList.remove('hide');
+    });
+  }
+
+  /**
+   * @description function show form of each note
+   *
+   * @param {function} findNote is function transmitted from model
+   */
+  static showNoteForm(findNote) {
+    const listNotes = selectDOMClassAll('.note-content');
+
+    listNotes.forEach((note) => {
+      note.addEventListener('click', (e) => {
+        e.stopPropagation();
+        findNote(note.getAttribute('data-id'));
+        ListNoteView.inputOverlayFormNote();
+      });
+    });
+  }
+
+  /**
+   * @description function edit note
+   * @param {function} editNote is function transmitted from model
+   */
+  editNoteForm(editNote) {
+    const formNoteId = selectDOMClass('.note-form-overlay').id;
+    const title = selectDOMClass('.note-form-overlay .note-title').value;
+    const description = selectDOMClass('.note-form-overlay .note-description').value;
+
+    editNote(formNoteId, title, description);
+    this.noteOverlay.innerHTML = '';
+  }
+
+  /**
+   * @description function close and save form note when click button close
+   * @param {function} editNote is function transmitted from model
+   */
+  btnCloseAndSave(editNote) {
+    const closeBtn = selectDOMClass('.note-form-overlay .btn-close');
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      this.editNoteForm(editNote);
+    });
+  }
+
+  /**
+   * @description function close and save form note when click overlay
+   * @param {function} editNote is function transmitted from model
+   */
+  closeOverlayAndSave(editNote) {
+    const overlay = document.querySelector('.overlay');
+    overlay.addEventListener('click', () => {
+      this.editNoteForm(editNote);
+    });
+  }
+
+  /**
+   * @description function stop overlay bubbling event of 2 input note form
+   */
+  static inputOverlayFormNote() {
+    const title = selectDOMClass('.note-form-overlay .note-title');
+    const description = selectDOMClass('.note-form-overlay .note-description');
+
+    title.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    description.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+  }
+
+  /**
+   * @description is function of button delete of note form
+   *
+   * @param {function} deleteNote is function transmitted from model
+   */
+  buttonDeleteForm(deleteNote) {
+    const buttonDelete = selectDOMClass('.note-form-overlay .btn-delete-form');
+    buttonDelete.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = e.target.getAttribute('data-id');
+      deleteNote(id);
+      this.noteOverlay.innerHTML = '';
     });
   }
 
@@ -151,6 +256,7 @@ export default class ListNoteView {
 
     this.formUtilitiesElement.classList.add('hide');
     this.formTitleElement.classList.add('hide');
+
     if (title || description) {
       handler(title, description);
       this.formElement.reset();
@@ -164,10 +270,6 @@ export default class ListNoteView {
    */
   bindShowAndAddInput(handler) {
     this.showInputForm();
-
-    window.addEventListener('click', (e) => {
-      this.handleClickOut(e, handler);
-    });
 
     this.closeButtonElement.addEventListener('click', () => {
       this.addNewNote(handler);

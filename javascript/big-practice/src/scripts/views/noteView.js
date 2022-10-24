@@ -37,4 +37,36 @@ export default class NoteView {
         </div>`;
     return noteElement;
   }
+
+  renderNoteForm() {
+    const formElement = document.createElement('div');
+    formElement.setAttribute('class', 'overlay');
+
+    formElement.innerHTML = `
+      <form class="form-note note-form-overlay" id="${this.noteItem.id}">
+        <div class="form-title">
+          <div class="form-group">
+            <textarea class="input-note note-title" rows="1" placeholder="Title">${this.noteItem.title}</textarea>
+            <figure class="icon-pin-cover">
+              <img src="${iconPin}" alt="icon pin">
+            </figure>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea class="input-note note-description" rows="1" placeholder="Take a note...">${this.noteItem.description}</textarea>
+        </div>
+        <div class="form-utilities">
+          <div class="form-group">
+            <div class="items-utilities">
+              <img src="${iconColorBoard}" alt="icon color board">
+            </div>
+            <div class="form-buttons">
+              <button class="btn btn-delete-form" type="button" data-id="${this.noteItem.id}">Delete</button>
+              <button class="btn btn-close" type="button" data-id="${this.noteItem.id}">Close</button>
+            </div>
+          </div>
+        </div>
+      </form>`;
+    return formElement;
+  }
 }

@@ -54,4 +54,34 @@ export default class ListNoteModel {
     const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
     this.notes[noteIndex].isTrash = true;
   }
+
+  /**
+   * @description is a function find note
+   *
+   * @param {String} index is index of note
+   *
+   *  @returns {Object} this.notes[noteIndex]
+   */
+  findNote(index) {
+    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+
+    return this.notes[noteIndex];
+  }
+
+  /**
+   * @description function edit note
+   *
+   * @param {String} index is index of note
+   * @param {String} title is title of note
+   * @param {String} description is description of note
+   *
+   * @returns {Array} this.notes
+   */
+  editNote(index, title, description) {
+    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    this.notes[noteIndex].title = title;
+    this.notes[noteIndex].description = description;
+
+    return this.notes;
+  }
 }
