@@ -1,6 +1,6 @@
 import NoteView from './noteView';
-import InputBreakDown from '../helper/inputBreakDown';
-import PreventEvents from '../helper/preventEvents';
+import InputBreakDown from '../helper/DOMHelpers';
+import PreventEvents from '../helper/EventsHelpers';
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 /**
  * @class listNoteView

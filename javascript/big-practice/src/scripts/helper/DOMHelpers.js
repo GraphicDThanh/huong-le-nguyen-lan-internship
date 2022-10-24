@@ -1,4 +1,4 @@
-export default class InputBreakDown {
+export default class DOMHelpers {
   /**
    * @description common events of textarea to increase the length
    * @param {Object} element is title and description element ()
