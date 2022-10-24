@@ -32,8 +32,6 @@ export default class ListNoteModel {
     const note = new NoteModel(noteItem);
     this.notes.push(note);
     localStorage.setItem('listNotes', JSON.stringify(this.notes));
-
-    return note;
   }
 
   /**

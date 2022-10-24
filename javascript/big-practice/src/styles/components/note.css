@@ -53,7 +53,6 @@
 }
 
 .note-content .note-description {
-  margin-top: 5px;
   font-size: 18px;
   font-family: var(--font-light), var(--font-default);
 }

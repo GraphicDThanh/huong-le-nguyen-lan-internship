@@ -1,4 +1,4 @@
-export default class DOMHelpers {
+export default class ElementHelpers {
   /**
    * @description common events of textarea to increase the length
    * @param {Object} element is title and description element ()

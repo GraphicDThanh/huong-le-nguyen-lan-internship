@@ -1,6 +1,6 @@
 import NoteView from './noteView';
-import InputBreakDown from '../helper/DOMHelpers';
-import PreventEvents from '../helper/EventsHelpers';
+import ElementHelpers from '../helper/elementHelpers';
+import EventsHelpers from '../helper/eventsHelpers';
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 /**
  * @class listNoteView
@@ -67,8 +67,8 @@ export default class ListNoteView {
    * @description events of textarea to increase the length of input note
    */
   bindInputBreakDown() {
-    InputBreakDown.commonInputBreakDown(this.inputAddElement);
-    InputBreakDown.commonInputBreakDown(this.inputTitleElement);
+    ElementHelpers.commonInputBreakDown(this.inputAddElement);
+    ElementHelpers.commonInputBreakDown(this.inputTitleElement);
   }
 
   /**
@@ -78,8 +78,8 @@ export default class ListNoteView {
     const title = selectDOMClass('.note-form-overlay .note-title');
     const description = selectDOMClass('.note-form-overlay .note-description');
 
-    InputBreakDown.commonInputBreakDown(title);
-    InputBreakDown.commonInputBreakDown(description);
+    ElementHelpers.commonInputBreakDown(title);
+    ElementHelpers.commonInputBreakDown(description);
   }
 
   /**
@@ -158,8 +158,8 @@ export default class ListNoteView {
         const title = selectDOMClass('.note-form-overlay .note-title');
         const description = selectDOMClass('.note-form-overlay .note-description');
 
-        PreventEvents.stopEvents(title);
-        PreventEvents.stopEvents(description);
+        EventsHelpers.stopEvents(title);
+        EventsHelpers.stopEvents(description);
       });
     });
   }
