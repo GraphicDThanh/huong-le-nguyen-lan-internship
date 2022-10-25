@@ -13,8 +13,6 @@ export default class NoteView {
   /**
    * @description function create a note
    *
-   * @param {Object} note is object of a note
-   *
    * @returns {Object} noteElement is a element note
    */
   renderNote() {
@@ -38,6 +36,10 @@ export default class NoteView {
     return noteElement;
   }
 
+  /**
+   * @description function create a note form
+   * @returns {Object} formElement
+   */
   renderNoteForm() {
     const formElement = document.createElement('div');
     formElement.setAttribute('class', 'overlay');

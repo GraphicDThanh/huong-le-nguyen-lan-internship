@@ -1,5 +1,6 @@
 import NoteModel from './noteModel';
-import data from '../data';
+import LocalStorage from '../utils/localStorage';
+import STORAGE_KEYS from '../constants/storageKeys';
 
 /**
  * @class listNoteModel
@@ -7,7 +8,8 @@ import data from '../data';
  */
 export default class ListNoteModel {
   constructor(noteModel) {
-    this.notes = data;
+    this.notes = LocalStorage.getItems(STORAGE_KEYS.LIST_NOTE)
+      || LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, []);
     this.noteModel = noteModel;
   }
 
@@ -32,7 +34,7 @@ export default class ListNoteModel {
     const note = new NoteModel(noteItem);
     this.notes.push(note);
 
-    return this.notes;
+    LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
   }
 
   /**
@@ -53,6 +55,8 @@ export default class ListNoteModel {
   deleteNote(index) {
     const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
     this.notes[noteIndex].isTrash = true;
+
+    LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
   }
 
   /**
@@ -82,6 +86,6 @@ export default class ListNoteModel {
     this.notes[noteIndex].title = title;
     this.notes[noteIndex].description = description;
 
-    return this.notes;
+    LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
   }
 }

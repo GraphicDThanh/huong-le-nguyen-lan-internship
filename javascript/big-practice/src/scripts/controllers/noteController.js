@@ -22,7 +22,7 @@ export default class NoteController {
     this.view.bindInputBreakDown();
 
     // function show input form
-    this.view.bindShowAndAddInput(this.addNote);
+    this.view.bindShowInput(this.addNote);
 
     // function delete list notes
     this.view.bindDeleteListNotes(this.deleteNote);
@@ -84,10 +84,16 @@ export default class NoteController {
    */
   findNote = (id) => {
     const note = this.model.findNote(id);
+    // function render form note
     this.view.renderFormNote(note);
-    this.view.constructor.inputBreakDownOverlay();
-    this.view.btnCloseAndSave(this.editNote);
-    this.view.closeOverlayAndSave(this.editNote);
-    this.view.buttonDeleteForm(this.deleteNote);
+
+    // function input break down of form note
+    this.view.constructor.inputBreakDownNoteForm();
+
+    // function save form note by click out or button close
+    this.view.saveNoteForm(this.editNote);
+
+    // function delete note
+    this.view.deleteNoteForm(this.deleteNote);
   };
 }
