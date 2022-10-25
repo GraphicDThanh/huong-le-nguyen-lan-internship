@@ -1,7 +1,9 @@
 export default class LocalStorage {
   /**
    * @description function set items to localStorage
-   * @param {Array}
+   *
+   * @param {String} key
+   * @param {Array} value
    */
   static setItems(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -9,7 +11,9 @@ export default class LocalStorage {
 
   /**
    * @description function get items from localStorage
-   * @returns {Array} listNotes
+   *
+   * @param {String} key
+   * @returns {Array}
    */
   static getItems(key) {
     return JSON.parse(localStorage.getItem(key));
