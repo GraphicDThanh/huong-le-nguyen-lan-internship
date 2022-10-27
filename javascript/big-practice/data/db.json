@@ -1,0 +1,43 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "lorem",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing quod obcaecati dolorum quidem aliquam placeat totam consequuntur, nobis dolore nam ipsam laborum hic reiciendis, harum a voluptas velit deleniti?",
+      "isTrash": "false"
+    },
+    {
+      "title": "ád",
+      "description": "123",
+      "isTrash": "fasle",
+      "id": 2
+    },
+    {
+      "title": "1323acs",
+      "description": "aaa",
+      "id": 14
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "username": "user01",
+      "password": "123456"
+    },
+    {
+      "id": 1,
+      "username": "user02",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "username": "user03",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "username": "user04",
+      "password": "123456"
+    }
+  ]
+}

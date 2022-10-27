@@ -11,6 +11,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
+    "json": "json-server --watch data/db.json",
     "lint:eslint": "eslint --ignore-path .gitignore . --ext .js,.jsx,.ts,.tsx",
     "fix:eslint": "eslint --fix --ignore-path .gitignore . --ext .js,.jsx,.ts,.tsx"
   }
