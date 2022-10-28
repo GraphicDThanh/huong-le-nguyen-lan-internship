@@ -39,7 +39,7 @@ export default class ListNoteView {
    *
    * @param {function} handler is function transmitted from model
    */
-  changePage(handler) {
+  changePage() {
     this.showHidePage();
     this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
@@ -52,7 +52,6 @@ export default class ListNoteView {
           this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
           this.showHidePage();
-          handler();
         }
       });
     });

@@ -18,7 +18,7 @@ export default class NoteController {
   renderAllNotes = () => {
     this.listEvents();
 
-    this.view.changePage(this.trashNote);
+    this.view.changePage();
 
     // function increase textarea
     this.view.bindInputBreakDown();
@@ -32,11 +32,9 @@ export default class NoteController {
 
   listEvents = async () => {
     const listNotes = await this.model.filterListNotes();
-    const trashNotes = this.model.filterTrashNotes();
 
     // function render list notes
     this.view.renderListNotes(listNotes);
-    this.view.renderTrashNote(trashNotes);
 
     this.trashNotes();
 
@@ -51,6 +49,8 @@ export default class NoteController {
   };
 
   trashNotes = () => {
+    this.view.renderTrashNote(this.model.filterTrashNotes());
+
     // function show confirm message
     this.view.constructor.bindDeleteNotInTrash((index) => {
       const note = this.model.findNote(index);
