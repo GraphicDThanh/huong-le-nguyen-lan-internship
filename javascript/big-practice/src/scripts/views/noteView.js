@@ -71,4 +71,25 @@ export default class NoteView {
       </form>`;
     return formElement;
   }
+
+  /**
+   * @description function create confirm message
+   *
+   * @returns {Object} confirmMessage
+   */
+  renderConfirmDelete() {
+    const confirmMessage = document.createElement('div');
+    confirmMessage.setAttribute('class', 'overlay');
+
+    confirmMessage.innerHTML = `
+      <div class="confirm-message">
+        <p>Delete note forever ?</p>
+        <div class="group-buttons">
+          <button class="btn btn-close-trash" type="button" data-id="${this.noteItem.id}">Close</button>
+          <button class="btn btn-delete-trash" type="button" data-id="${this.noteItem.id}">Delete</button>
+        </div>
+      </div>
+      `;
+    return confirmMessage;
+  }
 }

@@ -59,7 +59,7 @@
       <aside class="menu-aside">
         <nav class="nav-wrapper">
           <ul class="nav">
-            <li class="nav-item">
+            <li class="nav-item" data-id="0">
               <a href="" class="nav-link"> <img src="../assets/icons/icon-notes.svg" alt="icon notes"> Notes</a>
             </li>
             <li class="nav-item">
@@ -71,7 +71,7 @@
             <li class="nav-item">
               <a href="" class="nav-link"> <img src="../assets/icons/icon-archive.svg" alt="icon archive"> Archive</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" data-id="4">
               <a href="" class="nav-link"> <img src="../assets/icons/icon-trash.svg" alt="icon trash"> Trash</a>
             </li>
           </ul>
@@ -79,36 +79,45 @@
       </aside>
 
       <section class="section-wrapper">
-        <div class="form-input">
-          <form class="form-note form-add-note">
-            <div class="form-title hide">
-              <div class="form-group">
-                <textarea class="input-note note-title" rows="1" placeholder="Title"></textarea>
-                <figure class="icon-pin-cover">
-                  <img src="../assets/icons/icon-pin.svg" alt="icon pin">
-                </figure>
-              </div>
-            </div>
-            <div class="form-group form-group-input">
-              <textarea class="input-note note-description" rows="1" placeholder="Take a note..."></textarea>
-            </div>
-            <div class="form-utilities hide">
-              <div class="form-group">
-                <div class="items-utilities">
-                  <img src="../assets/icons/icon-color-board.svg" alt="icon color board">
-                </div>
-                <div class="form-buttons">
-                  <button class="btn btn-close" type="button">Close</button>
+        <div class="note-wrapper">
+          <div class="form-input">
+            <form class="form-note form-add-note">
+              <div class="form-title hide">
+                <div class="form-group">
+                  <textarea class="input-note note-title" rows="1" placeholder="Title"></textarea>
+                  <figure class="icon-pin-cover">
+                    <img src="../assets/icons/icon-pin.svg" alt="icon pin">
+                  </figure>
                 </div>
               </div>
-            </div>
-          </form>
+              <div class="form-group form-group-input">
+                <textarea class="input-note note-description" rows="1" placeholder="Take a note..."></textarea>
+              </div>
+              <div class="form-utilities hide">
+                <div class="form-group">
+                  <div class="items-utilities">
+                    <img src="../assets/icons/icon-color-board.svg" alt="icon color board">
+                  </div>
+                  <div class="form-buttons">
+                    <button class="btn btn-close" type="button">Close</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+  
+          <div class="list-notes">
+          </div>
+  
+          <div class="note-overlay">
+          </div>
         </div>
+        <div class="trash-wrapper hide">
+          <div class="list-notes">
+          </div>
 
-        <div class="list-notes">
-        </div>
-
-        <div class="note-overlay">
+          <div class="trash-overlay">
+          </div>
         </div>
       </section>
     </main>
