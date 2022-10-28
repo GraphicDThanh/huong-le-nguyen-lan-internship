@@ -18,6 +18,8 @@ export default class NoteController {
   renderAllNotes = () => {
     this.listEvents();
 
+    this.view.changePage(this.trashNote);
+
     // function increase textarea
     this.view.bindInputBreakDown();
 
@@ -28,11 +30,15 @@ export default class NoteController {
     this.view.bindDeleteListNotes(this.deleteNote);
   };
 
-  listEvents = () => {
-    const listNotes = this.model.filterListNotes();
+  listEvents = async () => {
+    const listNotes = await this.model.filterListNotes();
+    const trashNotes = this.model.filterTrashNotes();
 
     // function render list notes
     this.view.renderListNotes(listNotes);
+    this.view.renderTrashNote(trashNotes);
+
+    this.trashNotes();
 
     // function show header
     this.view.bindShowHeader();
@@ -42,6 +48,21 @@ export default class NoteController {
 
     // function delete
     this.view.constructor.bindDeleteNotes(this.deleteNote);
+  };
+
+  trashNotes = () => {
+    // function show confirm message
+    this.view.constructor.bindDeleteNotInTrash((index) => {
+      const note = this.model.findNote(index);
+      // function render confirm message
+      this.view.renderConfirmMessage(note);
+
+      this.view.closeConfirmMessage((id) => {
+        this.model.deleteNoteInTrash(id);
+
+        this.view.renderTrashNote(this.model.filterTrashNotes());
+      });
+    });
   };
 
   /**

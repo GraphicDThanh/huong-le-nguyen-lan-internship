@@ -2,13 +2,16 @@ import NoteView from './noteView';
 import ElementHelpers from '../helper/elementHelpers';
 import EventHelpers from '../helper/eventHelpers';
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
+import STORAGE_KEYS from '../constants/storageKeys';
+
 /**
  * @class listNoteView
  * @description manage view of listNote
  */
 export default class ListNoteView {
   constructor() {
-    this.listNoteElement = selectDOMClass('.list-notes');
+    this.listNoteElement = selectDOMClass('.note-wrapper .list-notes');
+    this.listTrashElement = selectDOMClass('.trash-wrapper .list-notes');
 
     this.formElement = selectDOMClass('.form-add-note');
     this.formTitleElement = selectDOMClass('.form-title');
@@ -23,6 +26,53 @@ export default class ListNoteView {
 
     this.sectionWrapper = selectDOMClass('.section-wrapper');
     this.noteOverlay = selectDOMClass('.note-overlay');
+
+    this.menu = selectDOMClassAll('.nav li');
+    this.noteWrapper = selectDOMClass('.note-wrapper');
+    this.trashWrapper = selectDOMClass('.trash-wrapper');
+
+    this.confirmMessage = selectDOMClass('.trash-overlay');
+  }
+
+  /**
+   * @description function change note page or trash page
+   *
+   * @param {function} handler is function transmitted from model
+   */
+  changePage(handler) {
+    this.showHidePage();
+    this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
+
+    this.menu.forEach((element) => {
+      element.addEventListener('click', (e) => {
+        if (e.target.hasAttribute('data-id')) {
+          this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.remove('menu-color');
+
+          sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
+          this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
+
+          this.showHidePage();
+          handler();
+        }
+      });
+    });
+  }
+
+  /**
+   * @description function check page which is opening
+   */
+  showHidePage() {
+    if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+    }
+
+    if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
+      this.trashWrapper.classList.add('hide');
+      this.noteWrapper.classList.remove('hide');
+    } else {
+      this.trashWrapper.classList.remove('hide');
+      this.noteWrapper.classList.add('hide');
+    }
   }
 
   /**
@@ -46,6 +96,45 @@ export default class ListNoteView {
   }
 
   /**
+   * @description function render trash page
+   *
+   * @param {Array} listNotes is a list of notes from data
+   */
+  renderTrashNote(listNotes) {
+    this.listTrashElement.innerHTML = '';
+
+    listNotes.forEach((note) => {
+      const noteItem = {
+        id: note.id,
+        title: note.title,
+        description: note.description,
+        isTrash: note.isTrash,
+      };
+      const noteView = new NoteView(noteItem);
+      this.listTrashElement.appendChild(noteView.renderNote());
+    });
+  }
+
+  /**
+   * @description function render confirm message
+   *
+   * @param {Object} note is a note
+   */
+  renderConfirmMessage(note) {
+    const noteItem = {
+      id: note.id,
+      title: note.title,
+      description: note.description,
+      isTrash: note.isTrash,
+    };
+
+    this.confirmMessage.innerHTML = '';
+
+    const noteView = new NoteView(noteItem);
+    this.confirmMessage.appendChild(noteView.renderConfirmDelete());
+  }
+
+  /**
    * @description render form note of each note
    * @param {Object} note is a note
    */
@@ -61,6 +150,47 @@ export default class ListNoteView {
 
     const noteView = new NoteView(noteItem);
     this.noteOverlay.appendChild(noteView.renderNoteForm());
+  }
+
+  /**
+   * @description function open confirm message
+   *
+   * @param {function} handler is function transmitted
+   */
+  static bindDeleteNotInTrash(handler) {
+    const btnDeletes = selectDOMClassAll('.trash-wrapper .btn-delete');
+    btnDeletes.forEach((button) => {
+      button.addEventListener('click', (e) => {
+        const index = e.target.getAttribute('data-id');
+        handler(index);
+      });
+    });
+  }
+
+  /**
+   * @description function close confirm message and delete
+   *
+   * @param {funciton} handler is function transmitted
+   */
+  closeConfirmMessage(handler) {
+    const overlayConfirmMessage = selectDOMClass('.trash-overlay .overlay');
+    overlayConfirmMessage.addEventListener('click', () => {
+      this.confirmMessage.innerHTML = '';
+    });
+
+    const btnClose = selectDOMClass('.btn-close-trash');
+    btnClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.confirmMessage.innerHTML = '';
+    });
+
+    const deleteTrash = selectDOMClass('.btn-delete-trash');
+    deleteTrash.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const index = e.target.getAttribute('data-id');
+      handler(index);
+      this.confirmMessage.innerHTML = '';
+    });
   }
 
   /**
@@ -243,7 +373,7 @@ export default class ListNoteView {
    * @param {function} handler is function delete transmitted from from the model
    */
   static bindDeleteNotes(handler) {
-    const deleteButtonElements = selectDOMClassAll('.btn-delete');
+    const deleteButtonElements = selectDOMClassAll('.note-wrapper .btn-delete');
     deleteButtonElements.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');

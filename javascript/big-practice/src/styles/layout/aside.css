@@ -10,7 +10,8 @@
   border-radius: 0 25px 25px 0;
 }
 
-.nav .nav-item:hover {
+.nav .nav-item:hover,
+.menu-color {
   background-color: var(--primary-color);
 }
 
