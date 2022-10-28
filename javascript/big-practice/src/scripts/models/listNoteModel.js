@@ -72,7 +72,7 @@ export default class ListNoteModel {
   /**
    * @description function remove note in array
    *
-   * @param {String} index is index of note 
+   * @param {String} index is index of note
    */
   deleteNoteInTrash(index) {
     const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
