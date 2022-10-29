@@ -2,7 +2,18 @@ const URL = 'http://localhost:3000/notes';
 
 export const getData = async (user) => {
   try {
-    const response = await fetch(`${URL}?&owner=${user}`);
+    const response = await fetch(`${URL}?&owner=${user}&isTrash=false`);
+    const notes = await response.json();
+    return notes;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getDataTrash = async (user) => {
+  try {
+    const response = await fetch(`${URL}?&owner=${user}&isTrash=true`);
     const notes = await response.json();
     return notes;
   } catch (error) {

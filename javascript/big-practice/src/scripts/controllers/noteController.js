@@ -48,8 +48,8 @@ export default class NoteController {
     this.view.constructor.bindDeleteNotes(this.deleteNote);
   };
 
-  trashNotes = () => {
-    this.view.renderTrashNote(this.model.filterTrashNotes());
+  trashNotes = async () => {
+    this.view.renderTrashNote(await this.model.filterTrashNotes());
 
     // function show confirm message
     this.view.constructor.bindDeleteNotInTrash((index) => {
@@ -57,10 +57,10 @@ export default class NoteController {
       // function render confirm message
       this.view.renderConfirmMessage(note);
 
-      this.view.closeConfirmMessage((id) => {
+      this.view.closeConfirmMessage(async (id) => {
         this.model.deleteNoteInTrash(id);
 
-        this.view.renderTrashNote(this.model.filterTrashNotes());
+        this.view.renderTrashNote(await this.model.filterTrashNotes());
       });
     });
   };

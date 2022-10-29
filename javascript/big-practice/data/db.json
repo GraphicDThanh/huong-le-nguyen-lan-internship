@@ -9,21 +9,24 @@
     },
     {
       "title": "123",
-      "description": "123",
-      "id": 2
+      "description": "2",
+      "id": 2,
+      "isTrash": "false",
+      "owner": "user01"
     },
     {
       "id": 3,
       "title": "3lorem",
       "description": "Lorem ipsum dolor sit amet, consectetur adipisicing quod obcaecati dolorum quidem aliquam placeat totam consequuntur, nobis dolore nam ipsam laborum hic reiciendis, harum a voluptas velit deleniti?",
-      "isTrash": "false",
-      "owner": "user03"
+      "isTrash": "true",
+      "owner": "user01"
     },
     {
       "id": 4,
-      "title": "123",
-      "description": "123",
-      "isTrash": false
+      "title": "4",
+      "description": "4",
+      "isTrash": "true",
+      "owner": "user01"
     }
   ],
   "users": [

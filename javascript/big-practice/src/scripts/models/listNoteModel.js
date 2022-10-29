@@ -1,6 +1,7 @@
 import NoteModel from './noteModel';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
+import { getData, postData, deleteData, putData, getDataTrash } from '../utils/fetchAPI';
 
 /**
  * @class listNoteModel
@@ -8,8 +9,10 @@ import STORAGE_KEYS from '../constants/storageKeys';
  */
 export default class ListNoteModel {
   constructor(noteModel) {
-    this.notes = LocalStorage.getItems(STORAGE_KEYS.LIST_NOTE)
+    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      this.notes = LocalStorage.getItems(STORAGE_KEYS.LIST_NOTE)
       || LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, []);
+    }
     this.noteModel = noteModel;
   }
 
@@ -41,8 +44,14 @@ export default class ListNoteModel {
    *
    * @returns {Array} listNotes
    */
-  filterListNotes() {
-    const listNotes = this.notes.filter((note) => !note.isTrash);
+  async filterListNotes() {
+    let listNotes;
+
+    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      listNotes = await getData('user01');
+    } else {
+      listNotes = this.notes.filter((note) => !note.isTrash);
+    }
 
     return listNotes;
   }
@@ -52,8 +61,14 @@ export default class ListNoteModel {
    *
    * @returns {Array} listNotes
    */
-  filterTrashNotes() {
-    const listNotes = this.notes.filter((note) => note.isTrash);
+  async filterTrashNotes() {
+    let listNotes;
+
+    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      listNotes = await getDataTrash('user01');
+    } else {
+      listNotes = this.notes.filter((note) => note.isTrash);
+    }
 
     return listNotes;
   }
@@ -89,6 +104,9 @@ export default class ListNoteModel {
    */
   findNote(index) {
     const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    console.log(index);
+    console.log(noteIndex);
+    console.log(this.notes[noteIndex]);
 
     return this.notes[noteIndex];
   }
