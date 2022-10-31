@@ -22,10 +22,8 @@ export default class ListNoteModel {
    * @returns {Object} note
    */
   addNote(title, description) {
-    const notesLength = this.notes.length;
-
     const noteItem = {
-      id: notesLength > 0 ? notesLength : 0,
+      id: new Date().getTime().toString(),
       title,
       description,
       isTrash: false,
@@ -34,6 +32,8 @@ export default class ListNoteModel {
     const note = new NoteModel(noteItem);
     this.notes.push(note);
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+    return note;
   }
 
   /**
@@ -63,10 +63,11 @@ export default class ListNoteModel {
    * @param {String} index is index of note
    */
   deleteNote(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    const noteIndex = this.notes.findIndex((note) => note.id === index);
     this.notes[noteIndex].isTrash = true;
-
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+    return this.notes[noteIndex];
   }
 
   /**
@@ -75,7 +76,7 @@ export default class ListNoteModel {
    * @param {String} index is index of note
    */
   deleteNoteInTrash(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    const noteIndex = this.notes.findIndex((note) => note.id === index);
     this.notes.splice(noteIndex, 1);
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
   }
@@ -88,7 +89,7 @@ export default class ListNoteModel {
    *  @returns {Object} this.notes[noteIndex]
    */
   findNote(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    const noteIndex = this.notes.findIndex((note) => note.id === index);
 
     return this.notes[noteIndex];
   }
@@ -103,10 +104,12 @@ export default class ListNoteModel {
    * @returns {Array} this.notes
    */
   editNote(index, title, description) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    const noteIndex = this.notes.findIndex((note) => note.id === index);
     this.notes[noteIndex].title = title;
     this.notes[noteIndex].description = description;
 
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+    return this.notes[noteIndex];
   }
 }

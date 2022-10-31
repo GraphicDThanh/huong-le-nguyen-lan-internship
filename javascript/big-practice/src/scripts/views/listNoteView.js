@@ -74,13 +74,41 @@ export default class ListNoteView {
     }
   }
 
+  renderNote(note, handlers) {
+    const { handleDeleteNote, handleShowNoteForm } = handlers;
+
+    const noteItem = {
+      id: note.id,
+      title: note.title,
+      description: note.description,
+      isTrash: note.isTrash,
+    };
+    const noteView = new NoteView(noteItem);
+    const noteElement = noteView.renderNote();
+
+    this.listNoteElement.appendChild(noteView.renderNote());
+    ListNoteView.bindDeleteNotes(noteElement, handleDeleteNote);
+    ListNoteView.showNoteForm(noteElement, handleShowNoteForm);
+  }
+
+  static removeNote(id) {
+    const listNotes = selectDOMClassAll('.note');
+    listNotes.forEach((note) => {
+      if (note.id === id) {
+        note.remove();
+      }
+    });
+  }
+
   /**
    * @description function render all notes
    *
    * @param {Array} listNote is a list of notes from data
    */
-  renderListNotes(listNotes) {
+  renderListNotes(listNotes, handlers) {
     this.listNoteElement.innerHTML = '';
+
+    const { handleDeleteNote, handleShowNoteForm } = handlers;
 
     listNotes.forEach((note) => {
       const noteItem = {
@@ -90,7 +118,12 @@ export default class ListNoteView {
         isTrash: note.isTrash,
       };
       const noteView = new NoteView(noteItem);
+      const noteElement = noteView.renderNote();
+
       this.listNoteElement.appendChild(noteView.renderNote());
+      ListNoteView.bindDeleteNotes(noteElement, handleDeleteNote);
+      ListNoteView.showNoteForm(noteElement, handleShowNoteForm);
+      this.bindShowHeader(noteElement);
     });
   }
 
@@ -137,7 +170,7 @@ export default class ListNoteView {
    * @description render form note of each note
    * @param {Object} note is a note
    */
-  renderFormNote(note) {
+  renderFormNote(note, handlers) {
     const noteItem = {
       id: note.id,
       title: note.title,
@@ -145,10 +178,17 @@ export default class ListNoteView {
       isTrash: note.isTrash,
     };
 
+    const { handleEditNote, handleDeleteNote } = handlers;
+
     this.noteOverlay.innerHTML = '';
 
     const noteView = new NoteView(noteItem);
-    this.noteOverlay.appendChild(noteView.renderNoteForm());
+    const noteElement = noteView.renderNoteForm();
+    this.noteOverlay.appendChild(noteElement);
+
+    this.saveNoteForm(handleEditNote);
+    ListNoteView.inputBreakDownNoteForm();
+    this.deleteNoteForm(handleDeleteNote);
   }
 
   /**
@@ -214,19 +254,32 @@ export default class ListNoteView {
   /**
    * @description events show header bulk actions and count notes selected
    */
-  bindShowHeader() {
-    const listCheckbox = selectDOMClassAll('.select-note');
-    const listIconCheck = selectDOMClassAll('.icon-check');
+  bindShowHeader(noteElement) {
+    const note = document.getElementById(`${noteElement.id}`);
+    const listIconCheck = note.querySelector('.icon-check');
 
-    listIconCheck.forEach((element, index) => {
-      element.addEventListener('click', (e) => {
-        e.preventDefault();
-        this.showHideHeader(listCheckbox, index);
+    listIconCheck.addEventListener('click', (e) => {
+      e.preventDefault();
+      const selectedElement = e.target.parentElement.classList.contains('selected');
+      // const listCheckbox = selectDOMClassAll('.select-note');
+      if (!selectedElement) {
+        this.headerAfterSelect.style.transform = 'translateY(-100%)';
+        e.target.parentElement.classList.add('selected');
+        const selected = selectDOMClassAll('.selected');
 
-        const noteSelected = selectDOMClassAll('.select-note:checked');
         const countNotesSelected = selectDOMClass('.count-selected');
-        countNotesSelected.innerHTML = `${noteSelected.length} Selected`;
-      });
+        // const text = countNotesSelected.textContent.trim();
+        // const splitString = text.split(' ');
+        // const numberNotes = Number(splitString[0]) + 1;
+        countNotesSelected.innerHTML = `${selected.length} Selected`;
+      } else {
+        // this.headerAfterSelect.style.transform = 'translateY(-200%)';
+        e.target.parentElement.classList.remove('selected');
+
+        const countNotesSelected = selectDOMClass('.count-selected');
+        const selected = selectDOMClassAll('.selected');
+        countNotesSelected.innerHTML = `${selected.length} Selected`;
+      }
     });
   }
 
@@ -260,8 +313,9 @@ export default class ListNoteView {
    *
    * @param {function} findNote is function transmitted from model
    */
-  static showNoteForm(findNote) {
-    const listNotes = selectDOMClassAll('.note-content');
+  static showNoteForm(noteElement, findNote) {
+    const noteItem = document.getElementById(`${noteElement.id}`);
+    const listNotes = noteItem.querySelectorAll('.note-content');
 
     listNotes.forEach((note) => {
       note.addEventListener('click', (e) => {
@@ -371,8 +425,10 @@ export default class ListNoteView {
    *
    * @param {function} handler is function delete transmitted from from the model
    */
-  static bindDeleteNotes(handler) {
-    const deleteButtonElements = selectDOMClassAll('.note-wrapper .btn-delete');
+  static bindDeleteNotes(noteElement, handler) {
+    const note = document.getElementById(`${noteElement.id}`);
+    const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
+
     deleteButtonElements.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');
