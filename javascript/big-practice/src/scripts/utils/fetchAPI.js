@@ -22,6 +22,25 @@ export const getDataTrash = async (user) => {
   }
 };
 
+export const getDataById = async (id, isTrash) => {
+  try {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify(isTrash),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const response = await fetch(`${URL}/${id}`, options);
+    const notes = await response.json();
+    return notes;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
 export const postData = async (note) => {
   try {
     const options = {

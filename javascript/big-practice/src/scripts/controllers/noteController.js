@@ -32,7 +32,7 @@ export default class NoteController {
 
   listEvents = async () => {
     const listNotes = await this.model.filterListNotes();
-    const listTrash = this.model.filterTrashNotes();
+    const listTrash = await this.model.filterTrashNotes();
 
     // function render list notes
     this.view.renderListNotes(listNotes);
@@ -72,8 +72,8 @@ export default class NoteController {
    * @param {String} title is title from input
    * @param {String} description is description from input
    */
-  addNote = (title, description) => {
-    this.model.addNote(title, description);
+  addNote = async (title, description) => {
+    await this.model.addNote(title, description);
     this.listEvents();
   };
 

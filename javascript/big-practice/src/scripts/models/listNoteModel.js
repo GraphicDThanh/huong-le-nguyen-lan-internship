@@ -1,7 +1,7 @@
 import NoteModel from './noteModel';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
-import { getData, postData, deleteData, putData, getDataTrash } from '../utils/fetchAPI';
+import { getData, postData, deleteData, putData, getDataTrash, getDataById } from '../utils/fetchAPI';
 
 /**
  * @class listNoteModel
@@ -24,19 +24,31 @@ export default class ListNoteModel {
    *
    * @returns {Object} note
    */
-  addNote(title, description) {
-    const notesLength = this.notes.length;
+  async addNote(title, description) {
+    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      const noteItem = {
+        title,
+        description,
+        isTrash: false,
+        owner: LocalStorage.getItems(STORAGE_KEYS.USERNAME),
+      };
 
-    const noteItem = {
-      id: notesLength > 0 ? notesLength : 0,
-      title,
-      description,
-      isTrash: false,
-    };
+      await postData(noteItem);
+    } else {
+      const notesLength = this.notes.length;
 
-    const note = new NoteModel(noteItem);
-    this.notes.push(note);
-    LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+      const noteItem = {
+        id: notesLength > 0 ? notesLength : 0,
+        title,
+        description,
+        isTrash: false,
+      };
+
+      const note = new NoteModel(noteItem);
+
+      this.notes.push(note);
+      LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+    }
   }
 
   /**
@@ -77,11 +89,17 @@ export default class ListNoteModel {
    * @description function move note to trash
    * @param {String} index is index of note
    */
-  deleteNote(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
-    this.notes[noteIndex].isTrash = true;
+  async deleteNote(index) {
+    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+      this.notes[noteIndex].isTrash = true;
 
-    LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+      LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+    } else {
+      const note = await getDataById(index);
+      note.isTrash = true;
+      console.log(note);
+    }
   }
 
   /**
