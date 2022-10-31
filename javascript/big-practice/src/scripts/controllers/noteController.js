@@ -32,11 +32,13 @@ export default class NoteController {
 
   listEvents = async () => {
     const listNotes = await this.model.filterListNotes();
+    const listTrash = this.model.filterTrashNotes();
 
     // function render list notes
     this.view.renderListNotes(listNotes);
 
-    this.trashNotes();
+    // function render trash notes
+    this.view.renderTrashNote(listTrash);
 
     // function show header
     this.view.bindShowHeader();
@@ -46,22 +48,21 @@ export default class NoteController {
 
     // function delete
     this.view.constructor.bindDeleteNotes(this.deleteNote);
+
+    this.view.constructor.bindDeleteNotInTrash(this.removeTrash);
   };
 
-  trashNotes = async () => {
-    this.view.renderTrashNote(await this.model.filterTrashNotes());
+  removeTrash = (index) => {
+    const note = this.model.findNote(index);
+    // function render confirm message
+    this.view.renderConfirmMessage(note);
 
-    // function show confirm message
-    this.view.constructor.bindDeleteNotInTrash((index) => {
-      const note = this.model.findNote(index);
-      // function render confirm message
-      this.view.renderConfirmMessage(note);
+    // function close and remove trash
+    this.view.closeConfirmMessage((id) => {
+      this.model.deleteNoteInTrash(id);
 
-      this.view.closeConfirmMessage(async (id) => {
-        this.model.deleteNoteInTrash(id);
-
-        this.view.renderTrashNote(await this.model.filterTrashNotes());
-      });
+      this.view.renderTrashNote(this.model.filterTrashNotes());
+      this.listEvents();
     });
   };
 
