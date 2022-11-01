@@ -44,12 +44,7 @@ export default class NoteController {
     this.view.renderListNotes(listNotes, handlers);
 
     // function render trash notes
-    this.view.renderTrashNote(listTrash);
-
-    // function show header
-    // this.view.bindShowHeader();
-
-    this.view.constructor.bindDeleteNotInTrash(this.removeTrash);
+    this.view.renderListTrashNotes(listTrash, this.removeTrash);
   };
 
   removeTrash = (index) => {
@@ -59,10 +54,8 @@ export default class NoteController {
 
     // function close and remove trash
     this.view.closeConfirmMessage((id) => {
-      this.model.deleteNoteInTrash(id);
-
-      this.view.renderTrashNote(this.model.filterTrashNotes());
-      this.listEvents();
+      const noteItem = this.model.deleteNoteInTrash(id);
+      this.view.constructor.removeNote(noteItem.id);
     });
   };
 
@@ -75,12 +68,7 @@ export default class NoteController {
   addNote = (title, description) => {
     const note = this.model.addNote(title, description);
 
-    const handlers = {
-      handleDeleteNote: this.deleteNote,
-      handleShowNoteForm: this.findNote,
-    };
-
-    this.view.renderNote(note, handlers);
+    this.view.renderNote(note, this.deleteNote, this.findNote);
   };
 
   /**
@@ -90,8 +78,9 @@ export default class NoteController {
    */
   deleteNote = (index) => {
     const note = this.model.deleteNote(index);
+
     this.view.constructor.removeNote(note.id);
-    this.view.renderTrashNote(this.model.filterTrashNotes());
+    this.view.renderTrashNote(note, this.removeTrash);
   };
 
   /**
@@ -103,13 +92,8 @@ export default class NoteController {
    */
   editNote = (id, title, description) => {
     const note = this.model.editNote(id, title, description);
-    const handlers = {
-      handleDeleteNote: this.deleteNote,
-      handleShowNoteForm: this.findNote,
-    };
 
-    this.view.constructor.removeNote(note.id);
-    this.view.renderNote(note, handlers);
+    this.view.constructor.editNote(note.id, note.title, note.description);
   };
 
   /**

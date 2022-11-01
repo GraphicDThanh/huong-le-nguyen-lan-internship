@@ -60,7 +60,10 @@ export default class ListNoteModel {
 
   /**
    * @description function move note to trash
+   *
    * @param {String} index is index of note
+   *
+   * @return {Object} this.notes[noteIndex]
    */
   deleteNote(index) {
     const noteIndex = this.notes.findIndex((note) => note.id === index);
@@ -74,11 +77,16 @@ export default class ListNoteModel {
    * @description function remove note in array
    *
    * @param {String} index is index of note
+   *
+   * @return {Object} note
    */
   deleteNoteInTrash(index) {
     const noteIndex = this.notes.findIndex((note) => note.id === index);
+    const note = this.notes[noteIndex];
     this.notes.splice(noteIndex, 1);
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+    return note;
   }
 
   /**
@@ -101,7 +109,7 @@ export default class ListNoteModel {
    * @param {String} title is title of note
    * @param {String} description is description of note
    *
-   * @returns {Array} this.notes
+   * @returns {Object} this.notes[noteIndex]
    */
   editNote(index, title, description) {
     const noteIndex = this.notes.findIndex((note) => note.id === index);
