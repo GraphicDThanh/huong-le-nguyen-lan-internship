@@ -330,9 +330,9 @@ export default class ListNoteView {
     const noteItem = selectDOMId(`${noteElement.id}`);
     const listNotes = noteItem.querySelector('.note-content');
 
-    listNotes.addEventListener('click', (e) => {
+    listNotes.addEventListener('click', async (e) => {
       e.stopPropagation();
-      findNote(listNotes.getAttribute('data-id'));
+      await findNote(listNotes.getAttribute('data-id'));
 
       const title = selectDOMClass('.note-form-overlay .note-title');
       const description = selectDOMClass('.note-form-overlay .note-description');

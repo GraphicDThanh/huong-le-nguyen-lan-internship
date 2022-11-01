@@ -1,7 +1,9 @@
 import NoteModel from './noteModel';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
-import { getData, postData, deleteData, putData, getDataTrash, getDataById } from '../utils/fetchAPI';
+import {
+  getData, postData, deleteData, putData, getDataTrash, getDataById,
+} from '../utils/fetchAPI';
 
 /**
  * @class listNoteModel
@@ -25,28 +27,34 @@ export default class ListNoteModel {
    * @returns {Object} note
    */
   async addNote(title, description) {
+    let note;
+
     if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
       const noteItem = {
+        id: new Date().getTime().toString(),
         title,
         description,
         isTrash: false,
         owner: LocalStorage.getItems(STORAGE_KEYS.USERNAME),
       };
+      note = noteItem;
 
       await postData(noteItem);
-    } else {
+    }
+
+    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
       const noteItem = {
         id: new Date().getTime().toString(),
         title,
         description,
         isTrash: false,
       };
-      const note = new NoteModel(noteItem);
+      note = new NoteModel(noteItem);
       this.notes.push(note);
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
-
-      // return note;
     }
+
+    return note;
   }
 
   /**
@@ -91,18 +99,24 @@ export default class ListNoteModel {
    * @return {Object} this.notes[noteIndex]
    */
   async deleteNote(index) {
+    let noteItem;
+
     if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
       const noteIndex = this.notes.findIndex((note) => note.id === index);
       this.notes[noteIndex].isTrash = true;
 
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
 
-      // return this.notes[noteIndex];
+      noteItem = this.notes[noteIndex];
     } else {
       const note = await getDataById(index);
       note.isTrash = true;
-      console.log(note);
+
+      putData(index, note);
+      noteItem = note;
     }
+
+    return noteItem;
   }
 
   /**
@@ -112,13 +126,22 @@ export default class ListNoteModel {
    *
    * @return {Object} note
    */
-  deleteNoteInTrash(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === index);
-    const note = this.notes[noteIndex];
-    this.notes.splice(noteIndex, 1);
-    LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+  async deleteNoteInTrash(index) {
+    let noteItem;
 
-    return note;
+    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      const noteIndex = this.notes.findIndex((note) => note.id === index);
+
+      noteItem = this.notes[noteIndex];
+      this.notes.splice(noteIndex, 1);
+      LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+    } else {
+      const note = await getDataById(index);
+
+      deleteData(index);
+      noteItem = note;
+    }
+    return noteItem;
   }
 
   /**
@@ -128,10 +151,18 @@ export default class ListNoteModel {
    *
    *  @returns {Object} this.notes[noteIndex]
    */
-  findNote(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === index);
+  async findNote(index) {
+    let noteItem;
 
-    return this.notes[noteIndex];
+    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      noteItem = this.notes[noteIndex];
+    } else {
+      const note = await getDataById(index);
+      noteItem = note;
+    }
+
+    return noteItem;
   }
 
   /**
@@ -143,13 +174,25 @@ export default class ListNoteModel {
    *
    * @returns {Object} this.notes[noteIndex]
    */
-  editNote(index, title, description) {
-    const noteIndex = this.notes.findIndex((note) => note.id === index);
-    this.notes[noteIndex].title = title;
-    this.notes[noteIndex].description = description;
+  async editNote(index, title, description) {
+    let noteItem;
 
-    LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      this.notes[noteIndex].title = title;
+      this.notes[noteIndex].description = description;
 
-    return this.notes[noteIndex];
+      LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+      noteItem = this.notes[noteIndex];
+    } else {
+      const note = await getDataById(index);
+      note.title = title;
+      note.description = description;
+
+      putData(index, note);
+      noteItem = note;
+    }
+
+    return noteItem;
   }
 }

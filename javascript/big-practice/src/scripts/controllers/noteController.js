@@ -47,14 +47,14 @@ export default class NoteController {
     this.view.renderListTrashNotes(listTrash, this.removeTrash);
   };
 
-  removeTrash = (index) => {
-    const note = this.model.findNote(index);
+  removeTrash = async (index) => {
+    const note = await this.model.findNote(index);
     // function render confirm message
     this.view.renderConfirmMessage(note);
 
     // function close and remove trash
-    this.view.closeConfirmMessage((id) => {
-      const noteItem = this.model.deleteNoteInTrash(id);
+    this.view.closeConfirmMessage(async (id) => {
+      const noteItem = await this.model.deleteNoteInTrash(id);
       this.view.constructor.removeNote(noteItem.id);
     });
   };
@@ -76,8 +76,8 @@ export default class NoteController {
    *
    * @param {String} index is index of note
    */
-  deleteNote = (index) => {
-    const note = this.model.deleteNote(index);
+  deleteNote = async (index) => {
+    const note = await this.model.deleteNote(index);
 
     this.view.constructor.removeNote(note.id);
     this.view.renderTrashNote(note, this.removeTrash);
@@ -90,8 +90,8 @@ export default class NoteController {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  editNote = (id, title, description) => {
-    const note = this.model.editNote(id, title, description);
+  editNote = async (id, title, description) => {
+    const note = await this.model.editNote(id, title, description);
 
     this.view.constructor.editNote(note.id, note.title, note.description);
   };
@@ -101,8 +101,8 @@ export default class NoteController {
    *
    * @param {String} id is a id of note
    */
-  findNote = (id) => {
-    const note = this.model.findNote(id);
+  findNote = async (id) => {
+    const note = await this.model.findNote(id);
 
     const handlers = {
       handleEditNote: this.editNote,

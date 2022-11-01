@@ -1,5 +1,12 @@
 const URL = 'http://localhost:3000/notes';
 
+/**
+ * @description function get list notes with id of user
+ *
+ * @param {String} user is owner of note
+ *
+ * @returns {Object} notes
+ */
 export const getData = async (user) => {
   try {
     const response = await fetch(`${URL}?&owner=${user}&isTrash=false`);
@@ -11,6 +18,12 @@ export const getData = async (user) => {
   }
 };
 
+/**
+ * @description function get list trash notes with id of user
+ * @param {String} user is owner of note
+ *
+ * @returns {Object} notes
+ */
 export const getDataTrash = async (user) => {
   try {
     const response = await fetch(`${URL}?&owner=${user}&isTrash=true`);
@@ -22,11 +35,17 @@ export const getDataTrash = async (user) => {
   }
 };
 
-export const getDataById = async (id, isTrash) => {
+/**
+ * @description function get note with id of note
+ *
+ * @param {String} id of note
+ *
+ * @returns {Object} notes
+ */
+export const getDataById = async (id) => {
   try {
     const options = {
-      method: 'POST',
-      body: JSON.stringify(isTrash),
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -41,6 +60,11 @@ export const getDataById = async (id, isTrash) => {
   }
 };
 
+/**
+ * @description function add new note to api
+ *
+ * @param {Object} note is a note
+ */
 export const postData = async (note) => {
   try {
     const options = {
@@ -51,14 +75,18 @@ export const postData = async (note) => {
       },
     };
 
-    const response = await fetch(URL, options);
-    return response;
+    await fetch(URL, options);
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
+/**
+ * @description function delete note in api
+ *
+ * @param {String} id is id of note
+ */
 export const deleteData = async (id) => {
   try {
     const options = {
@@ -68,26 +96,30 @@ export const deleteData = async (id) => {
       },
     };
 
-    const response = await fetch(`${URL}/${id}`, options);
-    return response;
+    await fetch(`${URL}/${id}`, options);
   } catch (error) {
     console.error(error);
     throw error;
   }
 };
 
+/**
+ * @description function update note with id
+ *
+ * @param {String} id is id of note
+ * @param {Object} note is note
+ */
 export const putData = async (id, note) => {
   try {
     const options = {
-      method: 'PUT',
+      method: 'PATCH',
       body: JSON.stringify(note),
       headers: {
         'Content-Type': 'application/json',
       },
     };
 
-    const response = await fetch(`${URL}/${id}`, options);
-    return response;
+    await fetch(`${URL}/${id}`, options);
   } catch (error) {
     console.error(error);
     throw error;
