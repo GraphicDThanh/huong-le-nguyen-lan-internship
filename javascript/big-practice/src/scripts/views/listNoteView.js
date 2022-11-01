@@ -1,7 +1,7 @@
 import NoteView from './noteView';
 import ElementHelpers from '../helper/elementHelpers';
 import EventHelpers from '../helper/eventHelpers';
-import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
+import { selectDOMClass, selectDOMClassAll, selectDOMId } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 
 /**
@@ -74,9 +74,30 @@ export default class ListNoteView {
     }
   }
 
-  renderNote(note, handlers) {
+  /**
+   * @description function render all notes
+   *
+   * @param {Array} listNote is a list of notes from data
+   * @param {Object} handlers is a list function events
+   */
+  renderListNotes(listNotes, handlers) {
+    this.listNoteElement.innerHTML = '';
+
     const { handleDeleteNote, handleShowNoteForm } = handlers;
 
+    listNotes.forEach((note) => {
+      this.renderNote(note, handleDeleteNote, handleShowNoteForm);
+    });
+  }
+
+  /**
+   * @description function render a note
+   *
+   * @param {Object} note is a note
+   * @param {function} handleDeleteNote is a function transmitted from model
+   * @param {function} handleShowNoteForm is a function transmitted from model
+   */
+  renderNote(note, handleDeleteNote, handleShowNoteForm) {
     const noteItem = {
       id: note.id,
       title: note.title,
@@ -89,8 +110,14 @@ export default class ListNoteView {
     this.listNoteElement.appendChild(noteView.renderNote());
     ListNoteView.bindDeleteNotes(noteElement, handleDeleteNote);
     ListNoteView.showNoteForm(noteElement, handleShowNoteForm);
+    this.bindShowHeader(noteElement);
   }
 
+  /**
+   * @description function remove note in view
+   *
+   * @param {String} id is id of note
+   */
   static removeNote(id) {
     const listNotes = selectDOMClassAll('.note');
     listNotes.forEach((note) => {
@@ -101,29 +128,22 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function render all notes
+   * @description function edit note
    *
-   * @param {Array} listNote is a list of notes from data
+   * @param {String} id is id of note
+   * @param {String} title is title of note
+   * @param {String} description is description of note
    */
-  renderListNotes(listNotes, handlers) {
-    this.listNoteElement.innerHTML = '';
-
-    const { handleDeleteNote, handleShowNoteForm } = handlers;
-
+  static editNote(id, title, description) {
+    const listNotes = selectDOMClassAll('.note');
     listNotes.forEach((note) => {
-      const noteItem = {
-        id: note.id,
-        title: note.title,
-        description: note.description,
-        isTrash: note.isTrash,
-      };
-      const noteView = new NoteView(noteItem);
-      const noteElement = noteView.renderNote();
+      if (note.id === id) {
+        const titleElement = note.querySelector('.note-title');
+        const descriptionElement = note.querySelector('.note-description');
 
-      this.listNoteElement.appendChild(noteView.renderNote());
-      ListNoteView.bindDeleteNotes(noteElement, handleDeleteNote);
-      ListNoteView.showNoteForm(noteElement, handleShowNoteForm);
-      this.bindShowHeader(noteElement);
+        titleElement.textContent = title;
+        descriptionElement.textContent = description;
+      }
     });
   }
 
@@ -131,20 +151,34 @@ export default class ListNoteView {
    * @description function render trash page
    *
    * @param {Array} listNotes is a list of notes from data
+   * @param {function} handler is a function transmitted from model
    */
-  renderTrashNote(listNotes) {
+  renderListTrashNotes(listNotes, handler) {
     this.listTrashElement.innerHTML = '';
 
     listNotes.forEach((note) => {
-      const noteItem = {
-        id: note.id,
-        title: note.title,
-        description: note.description,
-        isTrash: note.isTrash,
-      };
-      const noteView = new NoteView(noteItem);
-      this.listTrashElement.appendChild(noteView.renderNote());
+      this.renderTrashNote(note, handler);
     });
+  }
+
+  /**
+   * @description function render a trash note
+   *
+   * @param {Object} note is a note
+   * @param {function} handler is a function transmitted from model
+   */
+  renderTrashNote(note, handler) {
+    const noteItem = {
+      id: note.id,
+      title: note.title,
+      description: note.description,
+      isTrash: note.isTrash,
+    };
+
+    const noteView = new NoteView(noteItem);
+    const trashNote = noteView.renderNote();
+    this.listTrashElement.appendChild(trashNote);
+    ListNoteView.bindDeleteNoteInTrash(trashNote, handler);
   }
 
   /**
@@ -168,7 +202,9 @@ export default class ListNoteView {
 
   /**
    * @description render form note of each note
+   *
    * @param {Object} note is a note
+   * @param {Object} handlers is a list of function
    */
   renderFormNote(note, handlers) {
     const noteItem = {
@@ -195,21 +231,21 @@ export default class ListNoteView {
    * @description function open confirm message
    *
    * @param {function} handler is function transmitted
+   * @param {Object} trashNote is trash note element
    */
-  static bindDeleteNotInTrash(handler) {
-    const btnDeletes = selectDOMClassAll('.trash-wrapper .btn-delete');
-    btnDeletes.forEach((button) => {
-      button.addEventListener('click', (e) => {
-        const index = e.target.getAttribute('data-id');
-        handler(index);
-      });
+  static bindDeleteNoteInTrash(trashNote, handler) {
+    const btnDeletes = trashNote.querySelector('.trash-wrapper .btn-delete');
+
+    btnDeletes.addEventListener('click', (e) => {
+      const index = e.target.getAttribute('data-id');
+      handler(index);
     });
   }
 
   /**
    * @description function close confirm message and delete
    *
-   * @param {funciton} handler is function transmitted
+   * @param {function} handler is function transmitted
    */
   closeConfirmMessage(handler) {
     const overlayConfirmMessage = selectDOMClass('.trash-overlay .overlay');
@@ -253,104 +289,81 @@ export default class ListNoteView {
 
   /**
    * @description events show header bulk actions and count notes selected
+   *
+   * @param {Object} noteElement is note element
    */
   bindShowHeader(noteElement) {
-    const note = document.getElementById(`${noteElement.id}`);
+    const note = selectDOMId(`${noteElement.id}`);
     const listIconCheck = note.querySelector('.icon-check');
+    const countNotesSelected = selectDOMClass('.count-selected');
 
     listIconCheck.addEventListener('click', (e) => {
       e.preventDefault();
       const selectedElement = e.target.parentElement.classList.contains('selected');
-      // const listCheckbox = selectDOMClassAll('.select-note');
       if (!selectedElement) {
         this.headerAfterSelect.style.transform = 'translateY(-100%)';
         e.target.parentElement.classList.add('selected');
-        const selected = selectDOMClassAll('.selected');
+        const listSelected = selectDOMClassAll('.selected');
 
-        const countNotesSelected = selectDOMClass('.count-selected');
-        // const text = countNotesSelected.textContent.trim();
-        // const splitString = text.split(' ');
-        // const numberNotes = Number(splitString[0]) + 1;
-        countNotesSelected.innerHTML = `${selected.length} Selected`;
+        countNotesSelected.innerHTML = `${listSelected.length} Selected`;
       } else {
-        // this.headerAfterSelect.style.transform = 'translateY(-200%)';
         e.target.parentElement.classList.remove('selected');
 
-        const countNotesSelected = selectDOMClass('.count-selected');
-        const selected = selectDOMClassAll('.selected');
-        countNotesSelected.innerHTML = `${selected.length} Selected`;
+        const listSelected = selectDOMClassAll('.selected');
+        countNotesSelected.innerHTML = `${listSelected.length} Selected`;
+      }
+
+      const listSelected = selectDOMClassAll('.selected');
+      if (listSelected.length < 1) {
+        this.headerAfterSelect.style.transform = 'translateY(-200%)';
       }
     });
-  }
-
-  /**
-   * @description function show or hide header bulk actions
-   *
-   * @param {Object} checkSelected is a list of notes checked
-   * @param {Number} index is index of note selected
-   */
-  showHideHeader(checkSelected, index) {
-    const noteElement = selectDOMClassAll('.note');
-    const noteItemSelected = checkSelected[index];
-
-    noteItemSelected.checked = !noteItemSelected.checked;
-    const listItemChecked = selectDOMClassAll('.select-note:checked');
-
-    if (noteItemSelected.checked) {
-      this.headerAfterSelect.style.transform = 'translateY(-100%)';
-      noteElement[index].classList.add('selected');
-    } else {
-      noteElement[index].classList.remove('selected');
-    }
-
-    if (!listItemChecked.length) {
-      this.headerAfterSelect.style.transform = 'translateY(-200%)';
-    }
   }
 
   /**
    * @description function show form of each note
    *
    * @param {function} findNote is function transmitted from model
+   * @param {Object} noteElement is note element
    */
   static showNoteForm(noteElement, findNote) {
-    const noteItem = document.getElementById(`${noteElement.id}`);
-    const listNotes = noteItem.querySelectorAll('.note-content');
+    const noteItem = selectDOMId(`${noteElement.id}`);
+    const listNotes = noteItem.querySelector('.note-content');
 
-    listNotes.forEach((note) => {
-      note.addEventListener('click', (e) => {
-        e.stopPropagation();
-        findNote(note.getAttribute('data-id'));
+    listNotes.addEventListener('click', (e) => {
+      e.stopPropagation();
+      findNote(listNotes.getAttribute('data-id'));
 
-        const title = selectDOMClass('.note-form-overlay .note-title');
-        const description = selectDOMClass('.note-form-overlay .note-description');
+      const title = selectDOMClass('.note-form-overlay .note-title');
+      const description = selectDOMClass('.note-form-overlay .note-description');
 
-        EventHelpers.stopEvents(title);
-        EventHelpers.stopEvents(description);
-      });
+      EventHelpers.stopEvents(title);
+      EventHelpers.stopEvents(description);
     });
   }
 
   /**
    * @description function edit note
+   *
    * @param {function} editNote is function transmitted from model
    */
   editNoteForm(editNote) {
     const formNoteId = selectDOMClass('.note-form-overlay').id;
-    const title = selectDOMClass('.note-form-overlay .note-title').value;
-    const description = selectDOMClass('.note-form-overlay .note-description').value;
+    const titleCurrent = selectDOMClass('.note-form-overlay .note-title').value;
+    const descriptionCurrent = selectDOMClass('.note-form-overlay .note-description').value;
 
-    editNote(formNoteId, title, description);
+    editNote(formNoteId, titleCurrent, descriptionCurrent);
     this.noteOverlay.innerHTML = '';
   }
 
   /**
    * @description function close and save form note when click button close
+   *
    * @param {function} editNote is function transmitted from model
    */
   saveNoteForm(editNote) {
     const closeBtn = selectDOMClass('.note-form-overlay .btn-close');
-    const overlay = document.querySelector('.overlay');
+    const overlay = selectDOMClass('.overlay');
 
     closeBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -426,7 +439,7 @@ export default class ListNoteView {
    * @param {function} handler is function delete transmitted from from the model
    */
   static bindDeleteNotes(noteElement, handler) {
-    const note = document.getElementById(`${noteElement.id}`);
+    const note = selectDOMId(`${noteElement.id}`);
     const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
 
     deleteButtonElements.forEach((btn) => {
@@ -439,6 +452,7 @@ export default class ListNoteView {
 
   /**
    * @description function delete selected notes
+   *
    * @param {function} handler is function delete transmitted from from the model
    */
   bindDeleteListNotes(handler) {
