@@ -37,8 +37,8 @@ export default class NoteController {
       handleShowNoteForm: this.findNote,
     };
 
-    const listNotes = await this.model.filterListNotes();
-    const listTrash = this.model.filterTrashNotes();
+    const listNotes = await this.model.filterNotes('listNotes');
+    const listTrash = await this.model.filterNotes('trashNotes');
 
     // function render list notes
     this.view.renderListNotes(listNotes, handlers);
@@ -53,9 +53,9 @@ export default class NoteController {
     this.view.renderConfirmMessage(note);
 
     // function close and remove trash
-    this.view.closeConfirmMessage((id) => {
+    this.view.closePopupAndDelete((id) => {
       const noteItem = this.model.deleteNoteInTrash(id);
-      this.view.constructor.removeNote(noteItem.id);
+      this.view.constructor.removeNoteElement(noteItem.id);
     });
   };
 
@@ -79,7 +79,7 @@ export default class NoteController {
   deleteNote = (index) => {
     const note = this.model.deleteNote(index);
 
-    this.view.constructor.removeNote(note.id);
+    this.view.constructor.removeNoteElement(note.id);
     this.view.renderTrashNote(note, this.removeTrash);
   };
 

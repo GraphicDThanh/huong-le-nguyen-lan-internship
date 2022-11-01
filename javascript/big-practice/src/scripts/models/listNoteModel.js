@@ -37,23 +37,20 @@ export default class ListNoteModel {
   }
 
   /**
-   * @description function filter list notes with isTrash = false
+   * @description function filter list notes or trash notes
    *
    * @returns {Array} listNotes
    */
-  filterListNotes() {
-    const listNotes = this.notes.filter((note) => !note.isTrash);
+  filterNotes(type) {
+    let listNotes;
 
-    return listNotes;
-  }
+    if (type === 'listNotes') {
+      listNotes = this.notes.filter((note) => !note.isTrash);
+    }
 
-  /**
-   * @description function filter list trash
-   *
-   * @returns {Array} listNotes
-   */
-  filterTrashNotes() {
-    const listNotes = this.notes.filter((note) => note.isTrash);
+    if (type === 'trashNotes') {
+      listNotes = this.notes.filter((note) => note.isTrash);
+    }
 
     return listNotes;
   }
@@ -61,12 +58,12 @@ export default class ListNoteModel {
   /**
    * @description function move note to trash
    *
-   * @param {String} index is index of note
+   * @param {String} id is index of note
    *
    * @return {Object} this.notes[noteIndex]
    */
-  deleteNote(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === index);
+  deleteNote(id) {
+    const noteIndex = this.notes.findIndex((note) => note.id === id);
     this.notes[noteIndex].isTrash = true;
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
 
@@ -80,8 +77,8 @@ export default class ListNoteModel {
    *
    * @return {Object} note
    */
-  deleteNoteInTrash(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === index);
+  deleteNoteInTrash(id) {
+    const noteIndex = this.notes.findIndex((note) => note.id === id);
     const note = this.notes[noteIndex];
     this.notes.splice(noteIndex, 1);
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
@@ -96,8 +93,8 @@ export default class ListNoteModel {
    *
    *  @returns {Object} this.notes[noteIndex]
    */
-  findNote(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === index);
+  findNote(id) {
+    const noteIndex = this.notes.findIndex((note) => note.id === id);
 
     return this.notes[noteIndex];
   }
@@ -111,8 +108,8 @@ export default class ListNoteModel {
    *
    * @returns {Object} this.notes[noteIndex]
    */
-  editNote(index, title, description) {
-    const noteIndex = this.notes.findIndex((note) => note.id === index);
+  editNote(id, title, description) {
+    const noteIndex = this.notes.findIndex((note) => note.id === id);
     this.notes[noteIndex].title = title;
     this.notes[noteIndex].description = description;
 

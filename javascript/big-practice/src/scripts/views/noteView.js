@@ -18,19 +18,20 @@ export default class NoteView {
   renderNote() {
     const noteElement = document.createElement('div');
     noteElement.classList.add('note');
-    noteElement.setAttribute('id', this.noteItem.id);
+    const note = this.noteItem;
+    noteElement.setAttribute('id', note.id);
 
     noteElement.innerHTML = `
-      <label class="icon-check" data-id="${this.noteItem.id}">
-        <input type="checkbox" hidden class="select-note" data-id="${this.noteItem.id}">
+      <label class="icon-check" data-id="${note.id}">
+        <input type="checkbox" hidden class="select-note" data-id="${note.id}">
       </label>
-        <div class="note-content" data-id="${this.noteItem.id}">
-          <p class="note-title">${this.noteItem.title}</p>
-          <p class="note-description">${this.noteItem.description}</p>
+        <div class="note-content" data-id="${note.id}">
+          <p class="note-title">${note.title}</p>
+          <p class="note-description">${note.description}</p>
         </div>
         <div class="note-utilities">
           <div class="note-btn">
-            <button class="btn btn-delete" type="button" data-id="${this.noteItem.id}">Delete</button>
+            <button class="btn btn-delete" type="button" data-id="${note.id}">Delete</button>
           </div>
         </div>`;
     return noteElement;
@@ -43,19 +44,20 @@ export default class NoteView {
   renderNoteForm() {
     const formElement = document.createElement('div');
     formElement.setAttribute('class', 'overlay');
+    const note = this.noteItem;
 
     formElement.innerHTML = `
-      <form class="form-note note-form-overlay" id="${this.noteItem.id}">
+      <form class="form-note note-form-overlay" id="${note.id}">
         <div class="form-title">
           <div class="form-group">
-            <textarea class="input-note note-title" rows="1" placeholder="Title">${this.noteItem.title}</textarea>
+            <textarea class="input-note note-title" rows="1" placeholder="Title">${note.title}</textarea>
             <figure class="icon-pin-cover">
               <img src="${iconPin}" alt="icon pin">
             </figure>
           </div>
         </div>
         <div class="form-group">
-          <textarea class="input-note note-description" rows="1" placeholder="Take a note...">${this.noteItem.description}</textarea>
+          <textarea class="input-note note-description" rows="1" placeholder="Take a note...">${note.description}</textarea>
         </div>
         <div class="form-utilities">
           <div class="form-group">
@@ -63,8 +65,8 @@ export default class NoteView {
               <img src="${iconColorBoard}" alt="icon color board">
             </div>
             <div class="form-buttons">
-              <button class="btn btn-delete-form" type="button" data-id="${this.noteItem.id}">Delete</button>
-              <button class="btn btn-close" type="button" data-id="${this.noteItem.id}">Close</button>
+              <button class="btn btn-delete-form" type="button" data-id="${note.id}">Delete</button>
+              <button class="btn btn-close" type="button" data-id="${note.id}">Close</button>
             </div>
           </div>
         </div>
@@ -77,16 +79,17 @@ export default class NoteView {
    *
    * @returns {Object} confirmMessage
    */
-  renderConfirmDelete() {
+  renderConfirmPopup() {
     const confirmMessage = document.createElement('div');
     confirmMessage.setAttribute('class', 'overlay');
+    const note = this.noteItem;
 
     confirmMessage.innerHTML = `
       <div class="confirm-message">
         <p>Delete note forever ?</p>
         <div class="group-buttons">
-          <button class="btn btn-close-trash" type="button" data-id="${this.noteItem.id}">Close</button>
-          <button class="btn btn-delete-trash" type="button" data-id="${this.noteItem.id}">Delete</button>
+          <button class="btn btn-close-trash" type="button" data-id="${note.id}">Close</button>
+          <button class="btn btn-delete-trash" type="button" data-id="${note.id}">Delete</button>
         </div>
       </div>
       `;

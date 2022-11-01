@@ -1,7 +1,7 @@
 import NoteView from './noteView';
 import ElementHelpers from '../helper/elementHelpers';
 import EventHelpers from '../helper/eventHelpers';
-import { selectDOMClass, selectDOMClassAll, selectDOMId } from '../utils/querySelectDOM';
+import { selectDOMClass, selectDOMClassAll, selectDOMById } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 
 /**
@@ -118,7 +118,7 @@ export default class ListNoteView {
    *
    * @param {String} id is id of note
    */
-  static removeNote(id) {
+  static removeNoteElement(id) {
     const listNotes = selectDOMClassAll('.note');
     listNotes.forEach((note) => {
       if (note.id === id) {
@@ -197,7 +197,7 @@ export default class ListNoteView {
     this.confirmMessage.innerHTML = '';
 
     const noteView = new NoteView(noteItem);
-    this.confirmMessage.appendChild(noteView.renderConfirmDelete());
+    this.confirmMessage.appendChild(noteView.renderConfirmPopup());
   }
 
   /**
@@ -247,7 +247,7 @@ export default class ListNoteView {
    *
    * @param {function} handler is function transmitted
    */
-  closeConfirmMessage(handler) {
+  closePopupAndDelete(handler) {
     const overlayConfirmMessage = selectDOMClass('.trash-overlay .overlay');
     overlayConfirmMessage.addEventListener('click', () => {
       this.confirmMessage.innerHTML = '';
@@ -293,7 +293,7 @@ export default class ListNoteView {
    * @param {Object} noteElement is note element
    */
   bindShowHeader(noteElement) {
-    const note = selectDOMId(`${noteElement.id}`);
+    const note = selectDOMById(`${noteElement.id}`);
     const listIconCheck = note.querySelector('.icon-check');
     const countNotesSelected = selectDOMClass('.count-selected');
 
@@ -327,7 +327,7 @@ export default class ListNoteView {
    * @param {Object} noteElement is note element
    */
   static showNoteForm(noteElement, findNote) {
-    const noteItem = selectDOMId(`${noteElement.id}`);
+    const noteItem = selectDOMById(`${noteElement.id}`);
     const listNotes = noteItem.querySelector('.note-content');
 
     listNotes.addEventListener('click', (e) => {
@@ -439,7 +439,7 @@ export default class ListNoteView {
    * @param {function} handler is function delete transmitted from from the model
    */
   static bindDeleteNotes(noteElement, handler) {
-    const note = selectDOMId(`${noteElement.id}`);
+    const note = selectDOMById(`${noteElement.id}`);
     const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
 
     deleteButtonElements.forEach((btn) => {
