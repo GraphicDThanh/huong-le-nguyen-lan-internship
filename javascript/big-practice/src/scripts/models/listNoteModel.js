@@ -35,19 +35,17 @@ export default class ListNoteModel {
 
       await postData(noteItem);
     } else {
-      const notesLength = this.notes.length;
-
       const noteItem = {
-        id: notesLength > 0 ? notesLength : 0,
+        id: new Date().getTime().toString(),
         title,
         description,
         isTrash: false,
       };
-
       const note = new NoteModel(noteItem);
-
       this.notes.push(note);
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+      // return note;
     }
   }
 
@@ -87,14 +85,19 @@ export default class ListNoteModel {
 
   /**
    * @description function move note to trash
+   *
    * @param {String} index is index of note
+   *
+   * @return {Object} this.notes[noteIndex]
    */
   async deleteNote(index) {
     if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+      const noteIndex = this.notes.findIndex((note) => note.id === index);
       this.notes[noteIndex].isTrash = true;
 
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+      // return this.notes[noteIndex];
     } else {
       const note = await getDataById(index);
       note.isTrash = true;
@@ -106,11 +109,16 @@ export default class ListNoteModel {
    * @description function remove note in array
    *
    * @param {String} index is index of note
+   *
+   * @return {Object} note
    */
   deleteNoteInTrash(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    const noteIndex = this.notes.findIndex((note) => note.id === index);
+    const note = this.notes[noteIndex];
     this.notes.splice(noteIndex, 1);
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+    return note;
   }
 
   /**
@@ -121,10 +129,7 @@ export default class ListNoteModel {
    *  @returns {Object} this.notes[noteIndex]
    */
   findNote(index) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
-    console.log(index);
-    console.log(noteIndex);
-    console.log(this.notes[noteIndex]);
+    const noteIndex = this.notes.findIndex((note) => note.id === index);
 
     return this.notes[noteIndex];
   }
@@ -136,13 +141,15 @@ export default class ListNoteModel {
    * @param {String} title is title of note
    * @param {String} description is description of note
    *
-   * @returns {Array} this.notes
+   * @returns {Object} this.notes[noteIndex]
    */
   editNote(index, title, description) {
-    const noteIndex = this.notes.findIndex((note) => note.id === Number(index));
+    const noteIndex = this.notes.findIndex((note) => note.id === index);
     this.notes[noteIndex].title = title;
     this.notes[noteIndex].description = description;
 
     LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+
+    return this.notes[noteIndex];
   }
 }

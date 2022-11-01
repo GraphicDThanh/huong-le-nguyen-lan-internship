@@ -18,6 +18,7 @@ export default class NoteController {
   renderAllNotes = () => {
     this.listEvents();
 
+    // function change page
     this.view.changePage();
 
     // function increase textarea
@@ -31,25 +32,19 @@ export default class NoteController {
   };
 
   listEvents = async () => {
+    const handlers = {
+      handleDeleteNote: this.deleteNote,
+      handleShowNoteForm: this.findNote,
+    };
+
     const listNotes = await this.model.filterListNotes();
     const listTrash = await this.model.filterTrashNotes();
 
     // function render list notes
-    this.view.renderListNotes(listNotes);
+    this.view.renderListNotes(listNotes, handlers);
 
     // function render trash notes
-    this.view.renderTrashNote(listTrash);
-
-    // function show header
-    this.view.bindShowHeader();
-
-    // function show note form
-    this.view.constructor.showNoteForm(this.findNote);
-
-    // function delete
-    this.view.constructor.bindDeleteNotes(this.deleteNote);
-
-    this.view.constructor.bindDeleteNotInTrash(this.removeTrash);
+    this.view.renderListTrashNotes(listTrash, this.removeTrash);
   };
 
   removeTrash = (index) => {
@@ -59,10 +54,8 @@ export default class NoteController {
 
     // function close and remove trash
     this.view.closeConfirmMessage((id) => {
-      this.model.deleteNoteInTrash(id);
-
-      this.view.renderTrashNote(this.model.filterTrashNotes());
-      this.listEvents();
+      const noteItem = this.model.deleteNoteInTrash(id);
+      this.view.constructor.removeNote(noteItem.id);
     });
   };
 
@@ -73,8 +66,9 @@ export default class NoteController {
    * @param {String} description is description from input
    */
   addNote = async (title, description) => {
-    await this.model.addNote(title, description);
-    this.listEvents();
+    const note = await this.model.addNote(title, description);
+
+    this.view.renderNote(note, this.deleteNote, this.findNote);
   };
 
   /**
@@ -83,8 +77,10 @@ export default class NoteController {
    * @param {String} index is index of note
    */
   deleteNote = (index) => {
-    this.model.deleteNote(index);
-    this.listEvents();
+    const note = this.model.deleteNote(index);
+
+    this.view.constructor.removeNote(note.id);
+    this.view.renderTrashNote(note, this.removeTrash);
   };
 
   /**
@@ -95,8 +91,9 @@ export default class NoteController {
    * @param {String} description is description of note
    */
   editNote = (id, title, description) => {
-    this.model.editNote(id, title, description);
-    this.listEvents();
+    const note = this.model.editNote(id, title, description);
+
+    this.view.constructor.editNote(note.id, note.title, note.description);
   };
 
   /**
@@ -106,16 +103,13 @@ export default class NoteController {
    */
   findNote = (id) => {
     const note = this.model.findNote(id);
+
+    const handlers = {
+      handleEditNote: this.editNote,
+      handleDeleteNote: this.deleteNote,
+    };
+
     // function render form note
-    this.view.renderFormNote(note);
-
-    // function input break down of form note
-    this.view.constructor.inputBreakDownNoteForm();
-
-    // function save form note by click out or button close
-    this.view.saveNoteForm(this.editNote);
-
-    // function delete note
-    this.view.deleteNoteForm(this.deleteNote);
+    this.view.renderFormNote(note, handlers);
   };
 }

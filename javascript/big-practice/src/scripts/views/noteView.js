@@ -21,7 +21,7 @@ export default class NoteView {
     noteElement.setAttribute('id', this.noteItem.id);
 
     noteElement.innerHTML = `
-      <label class="icon-check">
+      <label class="icon-check" data-id="${this.noteItem.id}">
         <input type="checkbox" hidden class="select-note" data-id="${this.noteItem.id}">
       </label>
         <div class="note-content" data-id="${this.noteItem.id}">
