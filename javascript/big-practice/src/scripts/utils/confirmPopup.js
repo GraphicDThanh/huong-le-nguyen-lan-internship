@@ -3,7 +3,7 @@
  *
  * @param {String} message of popup
  * @param {String} typeButton type of button
- * @param {Object} note is a note
+ * @param {Object} note get when click on the note you want to choose
  *
  * @returns {Object} confirmMessage
  */

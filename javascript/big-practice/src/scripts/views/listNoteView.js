@@ -4,7 +4,7 @@ import EventHelpers from '../helper/eventHelpers';
 import { selectDOMClass, selectDOMClassAll, selectDOMById } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
-import POPUP from '../constants/message';
+import POPUP_MESSAGE from '../constants/message';
 
 /**
  * @class listNoteView
@@ -194,7 +194,7 @@ export default class ListNoteView {
 
     this.confirmMessage.innerHTML = '';
 
-    this.confirmMessage.appendChild(renderConfirmPopup(POPUP.DELETE_NOTE, 'Delete', noteItem));
+    this.confirmMessage.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', noteItem));
   }
 
   /**
@@ -257,7 +257,7 @@ export default class ListNoteView {
     });
   }
 
-  binDeleteTrashInPopup(handler) {
+  bindDeleteTrashNoteInPopup(handler) {
     const deleteTrash = selectDOMClass('.btn-submit-action');
     deleteTrash.addEventListener('click', (e) => {
       e.stopPropagation();

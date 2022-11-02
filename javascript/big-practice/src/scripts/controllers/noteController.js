@@ -56,7 +56,7 @@ export default class NoteController {
     // function close and remove trash
     this.view.bindClosePopup();
 
-    this.view.binDeleteTrashInPopup((id) => {
+    this.view.bindDeleteTrashNoteInPopup((id) => {
       const noteItem = this.model.deleteNoteInTrash(id);
       this.view.constructor.removeNoteElement(noteItem.id);
     });
