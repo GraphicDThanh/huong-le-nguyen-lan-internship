@@ -43,6 +43,7 @@
 .icon-logo-cover {
   display: flex;
   align-items: center;
+  padding: 0 90px 0 40px;
   padding-right: 90px;
 }
 
@@ -91,7 +92,7 @@
 }
 
 .avatar-user-cover {
-  padding-right: 10px;
+  padding-right: 20px;
 }
 
 .avatar-user-cover .avatar-user {
