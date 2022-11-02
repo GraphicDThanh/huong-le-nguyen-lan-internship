@@ -61,7 +61,7 @@ export default class NoteView {
         </div>
         <div class="form-utilities">
           <div class="form-group">
-            <div class="items-utilities">
+            <div class="item-utilities">
               <img src="${iconColorBoard}" alt="icon color board">
             </div>
             <div class="form-buttons">
@@ -72,27 +72,5 @@ export default class NoteView {
         </div>
       </form>`;
     return formElement;
-  }
-
-  /**
-   * @description function create confirm message
-   *
-   * @returns {Object} confirmMessage
-   */
-  renderConfirmPopup() {
-    const confirmMessage = document.createElement('div');
-    confirmMessage.setAttribute('class', 'overlay');
-    const note = this.noteItem;
-
-    confirmMessage.innerHTML = `
-      <div class="confirm-message">
-        <p>Delete note forever ?</p>
-        <div class="group-buttons">
-          <button class="btn btn-close-trash" type="button" data-id="${note.id}">Close</button>
-          <button class="btn btn-delete-trash" type="button" data-id="${note.id}">Delete</button>
-        </div>
-      </div>
-      `;
-    return confirmMessage;
   }
 }

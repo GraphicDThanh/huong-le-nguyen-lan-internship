@@ -1,0 +1,26 @@
+/**
+ * @description function create confirm message
+ *
+ * @param {String} message of popup
+ * @param {String} typeButton type of button
+ * @param {Object} note is a note
+ *
+ * @returns {Object} confirmMessage
+ */
+const renderConfirmPopup = (message, typeButton, note) => {
+  const confirmMessage = document.createElement('div');
+  confirmMessage.setAttribute('class', 'overlay');
+
+  confirmMessage.innerHTML = `
+    <div class="confirm-message">
+      <p>${message}</p>
+      <div class="group-buttons">
+        <button class="btn btn-close-popup" type="button" data-id="${note.id}">Close</button>
+        <button class="btn btn-submit-action" type="button" data-id="${note.id}">${typeButton}</button>
+      </div>
+    </div>
+    `;
+  return confirmMessage;
+};
+
+export default renderConfirmPopup;
