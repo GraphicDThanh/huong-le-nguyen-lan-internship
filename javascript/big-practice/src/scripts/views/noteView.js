@@ -28,6 +28,7 @@ export default class NoteView {
         <div class="note-content" data-id="${note.id}">
           <p class="note-title">${note.title}</p>
           <p class="note-description">${note.description}</p>
+          <p class="note-empty ${(!note.title && !note.description) ? '' : 'hide'}">Empty note</p>
         </div>
         <div class="note-utilities">
           <div class="note-btn">

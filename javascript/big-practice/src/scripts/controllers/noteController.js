@@ -34,6 +34,7 @@ export default class NoteController {
 
     // function render trash notes
     this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup);
+    this.view.showHideEmpty(listTrash, 'trashNotes');
   };
 
   renderTabNote = async () => {
@@ -46,6 +47,7 @@ export default class NoteController {
 
     // function render list notes
     this.view.renderListNotes(listNotes, handlers);
+    this.view.showHideEmpty(listNotes, 'listNotes');
   };
 
   handleConfirmPopup = async (index) => {

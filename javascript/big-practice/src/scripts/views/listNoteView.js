@@ -36,6 +36,7 @@ export default class ListNoteView {
     this.confirmMessage = selectDOMClass('.trash-overlay');
 
     this.listNotesEmpty = selectDOMClass('.list-notes-empty-content');
+    this.listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
   }
 
   /**
@@ -85,6 +86,34 @@ export default class ListNoteView {
   }
 
   /**
+   * @description function show empty note if that note is empty
+   *
+   * @param {Array} list is a list of note or list of trash note
+   * @param {String} type is a type if we need to use in listNotes or trashNotes
+   */
+  showHideEmpty(list, type) {
+    if (type === 'listNotes') {
+      if (!list.length) {
+        this.listNotesEmpty.classList.remove('hide');
+        this.listNoteElement.classList.add('hide');
+      } else {
+        this.listNotesEmpty.classList.add('hide');
+        this.listNoteElement.classList.remove('hide');
+      }
+    }
+
+    if (type === 'trashNotes') {
+      if (!list.length) {
+        this.listTrashElement.classList.add('hide');
+        this.listTrashEmpty.classList.remove('hide');
+      } else {
+        this.listTrashElement.classList.remove('hide');
+        this.listTrashEmpty.classList.add('hide');
+      }
+    }
+  }
+
+  /**
    * @description function render all notes
    *
    * @param {Array} listNote is a list of notes from data
@@ -118,7 +147,7 @@ export default class ListNoteView {
     const noteElement = noteView.renderNote();
 
     this.listNoteElement.appendChild(noteView.renderNote());
-    ListNoteView.bindDeleteNote(noteElement, handleDeleteNote);
+    this.bindDeleteNote(noteElement, handleDeleteNote);
     ListNoteView.bindShowNoteForm(noteElement, handleShowNoteForm);
     this.bindShowHeader(noteElement);
   }
@@ -150,9 +179,17 @@ export default class ListNoteView {
       if (note.id === id) {
         const titleElement = note.querySelector('.note-title');
         const descriptionElement = note.querySelector('.note-description');
+        const emptyNoteElement = selectDOMClass('.note-content .note-empty');
 
-        titleElement.textContent = title;
-        descriptionElement.textContent = description;
+        if (!title && !description) {
+          emptyNoteElement.classList.remove('hide');
+          titleElement.textContent = '';
+          descriptionElement.textContent = '';
+        } else {
+          emptyNoteElement.classList.add('hide');
+          titleElement.textContent = title;
+          descriptionElement.textContent = description;
+        }
       }
     });
   }
@@ -259,13 +296,24 @@ export default class ListNoteView {
     });
   }
 
+  /**
+   * @description function delete note forever
+   *
+   * @param {function} handler is function transmitted from model
+   */
   bindDeleteNoteInTrash(handler) {
     const deleteTrash = selectDOMClass('.btn-submit-action');
     deleteTrash.addEventListener('click', (e) => {
       e.stopPropagation();
       const index = e.target.getAttribute('data-id');
+      const listTrash = selectDOMClass('.trash-wrapper .list-notes');
+
       handler(index);
+
       this.confirmMessage.innerHTML = '';
+      if (listTrash.childNodes.length === 1) {
+        this.listTrashEmpty.classList.remove('hide');
+      }
     });
   }
 
@@ -389,6 +437,7 @@ export default class ListNoteView {
       const id = e.target.getAttribute('data-id');
       deleteNote(id);
       this.noteOverlay.innerHTML = '';
+      this.listNotesEmpty.classList.remove('hide');
     });
   }
 
@@ -424,6 +473,7 @@ export default class ListNoteView {
 
     this.closeButtonElement.addEventListener('click', () => {
       this.addNewNote(handler);
+      this.listNotesEmpty.classList.add('hide');
     });
   }
 
@@ -432,13 +482,18 @@ export default class ListNoteView {
    *
    * @param {function} handler is function delete transmitted from from the model
    */
-  static bindDeleteNote(noteElement, handler) {
+  bindDeleteNote(noteElement, handler) {
     const note = selectDOMById(`${noteElement.id}`);
     const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
 
     deleteButtonElements.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');
+        const listNotes = selectDOMClass('.list-notes');
+
+        if (listNotes.childNodes.length === 1) {
+          this.listNotesEmpty.classList.remove('hide');
+        }
         handler(noteId);
       });
     });
@@ -457,6 +512,7 @@ export default class ListNoteView {
       });
 
       this.headerAfterSelect.style.transform = 'translateY(-200%)';
+      this.listNotesEmpty.classList.remove('hide');
     });
   }
 }
