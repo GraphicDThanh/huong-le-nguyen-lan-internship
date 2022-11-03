@@ -58,34 +58,27 @@ export default class ListNoteModel {
   }
 
   /**
-   * @description function filter list notes with isTrash = false
+   * @description function filter list notes or trash notes
    *
    * @returns {Array} listNotes
    */
-  async filterListNotes() {
+  async filterListNotes(type) {
     let listNotes;
 
-    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      listNotes = await getData('user01');
-    } else {
-      listNotes = this.notes.filter((note) => !note.isTrash);
+    if (type === 'listNotes') {
+      if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+        listNotes = await getData('user01');
+      } else {
+        listNotes = this.notes.filter((note) => !note.isTrash);
+      }
     }
 
-    return listNotes;
-  }
-
-  /**
-   * @description function filter list trash
-   *
-   * @returns {Array} listNotes
-   */
-  async filterTrashNotes() {
-    let listNotes;
-
-    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      listNotes = await getDataTrash('user01');
-    } else {
-      listNotes = this.notes.filter((note) => note.isTrash);
+    if (type === 'trashNotes') {
+      if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+        listNotes = await getDataTrash('user01');
+      } else {
+        listNotes = this.notes.filter((note) => note.isTrash);
+      }
     }
 
     return listNotes;
@@ -94,15 +87,15 @@ export default class ListNoteModel {
   /**
    * @description function move note to trash
    *
-   * @param {String} index is index of note
+   * @param {String} id is index of note
    *
    * @return {Object} this.notes[noteIndex]
    */
-  async deleteNote(index) {
+   async deleteNote(id) {
     let noteItem;
 
     if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
       this.notes[noteIndex].isTrash = true;
 
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
@@ -126,11 +119,11 @@ export default class ListNoteModel {
    *
    * @return {Object} note
    */
-  async deleteNoteInTrash(index) {
+  async deleteNoteInTrash(id) {
     let noteItem;
 
     if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
 
       noteItem = this.notes[noteIndex];
       this.notes.splice(noteIndex, 1);
@@ -147,18 +140,18 @@ export default class ListNoteModel {
   /**
    * @description is a function find note
    *
-   * @param {String} index is index of note
+   * @param {String} id is id of note
    *
    *  @returns {Object} this.notes[noteIndex]
    */
-  async findNote(index) {
+  async findNote(id) {
     let noteItem;
 
     if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
       noteItem = note;
     }
 
@@ -174,22 +167,22 @@ export default class ListNoteModel {
    *
    * @returns {Object} this.notes[noteIndex]
    */
-  async editNote(index, title, description) {
+  async editNote(id, title, description) {
     let noteItem;
 
     if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
       this.notes[noteIndex].title = title;
       this.notes[noteIndex].description = description;
 
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
       note.title = title;
       note.description = description;
 
-      putData(index, note);
+      putData(id, note);
       noteItem = note;
     }
 
