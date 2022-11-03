@@ -62,7 +62,7 @@ export default class ListNoteModel {
    *
    * @returns {Array} listNotes
    */
-  async filterListNotes(type) {
+  async filterNotes(type) {
     let listNotes;
 
     if (type === 'listNotes') {
@@ -91,7 +91,7 @@ export default class ListNoteModel {
    *
    * @return {Object} this.notes[noteIndex]
    */
-   async deleteNote(id) {
+  async deleteNote(id) {
     let noteItem;
 
     if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
@@ -102,10 +102,10 @@ export default class ListNoteModel {
 
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
       note.isTrash = true;
 
-      putData(index, note);
+      putData(id, note);
       noteItem = note;
     }
 
@@ -129,9 +129,9 @@ export default class ListNoteModel {
       this.notes.splice(noteIndex, 1);
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
 
-      deleteData(index);
+      deleteData(id);
       noteItem = note;
     }
     return noteItem;

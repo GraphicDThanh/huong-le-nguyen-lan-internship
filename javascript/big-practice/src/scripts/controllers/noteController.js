@@ -17,7 +17,7 @@ export default class NoteController {
 
   bindEvents = () => {
     // function change page
-    this.view.changePage(this.renderTabTrash, this.renderTabNote);
+    this.view.bindChangePage(this.renderTabTrash, this.renderTabNote);
 
     // function increase textarea
     this.view.bindInputBreakDown();
@@ -56,7 +56,7 @@ export default class NoteController {
     // function close and remove trash
     this.view.bindClosePopup();
 
-    this.view.bindDeleteTrashNoteInPopup(async (id) => {
+    this.view.bindDeleteNoteInTrash(async (id) => {
       const noteItem = await this.model.deleteNoteInTrash(id);
       this.view.constructor.removeNoteElement(noteItem.id);
     });

@@ -34,6 +34,8 @@ export default class ListNoteView {
     this.trashWrapper = selectDOMClass('.trash-wrapper');
 
     this.confirmMessage = selectDOMClass('.trash-overlay');
+
+    this.listNotesEmpty = selectDOMClass('.list-notes-empty-content');
   }
 
   /**
@@ -42,7 +44,7 @@ export default class ListNoteView {
    * @param {function} handlerTrash is function transmitted from model
    * @param {function} handlerNote is function transmitted from model
    */
-  changePage(handlerTrash, handlerNote) {
+  bindChangePage(handlerTrash, handlerNote) {
     this.showHidePage(handlerTrash, handlerNote);
     this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
@@ -116,7 +118,7 @@ export default class ListNoteView {
     const noteElement = noteView.renderNote();
 
     this.listNoteElement.appendChild(noteView.renderNote());
-    ListNoteView.bindDeleteNotes(noteElement, handleDeleteNote);
+    ListNoteView.bindDeleteNote(noteElement, handleDeleteNote);
     ListNoteView.bindShowNoteForm(noteElement, handleShowNoteForm);
     this.bindShowHeader(noteElement);
   }
@@ -175,7 +177,7 @@ export default class ListNoteView {
       const noteView = new NoteView(noteItem);
       const trashNote = noteView.renderNote();
       this.listTrashElement.appendChild(trashNote);
-      ListNoteView.bindDeleteNoteInTrash(trashNote, handler);
+      ListNoteView.bindShowPopup(trashNote, handler);
     });
   }
 
@@ -230,7 +232,7 @@ export default class ListNoteView {
    * @param {function} handler is function transmitted
    * @param {Object} trashNote is trash note element
    */
-  static bindDeleteNoteInTrash(trashNote, handler) {
+  static bindShowPopup(trashNote, handler) {
     const btnDeletes = trashNote.querySelector('.trash-wrapper .btn-delete');
 
     btnDeletes.addEventListener('click', (e) => {
@@ -257,7 +259,7 @@ export default class ListNoteView {
     });
   }
 
-  bindDeleteTrashNoteInPopup(handler) {
+  bindDeleteNoteInTrash(handler) {
     const deleteTrash = selectDOMClass('.btn-submit-action');
     deleteTrash.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -430,7 +432,7 @@ export default class ListNoteView {
    *
    * @param {function} handler is function delete transmitted from from the model
    */
-  static bindDeleteNotes(noteElement, handler) {
+  static bindDeleteNote(noteElement, handler) {
     const note = selectDOMById(`${noteElement.id}`);
     const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
 
