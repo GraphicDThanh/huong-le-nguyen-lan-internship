@@ -28,6 +28,23 @@
   gap: 18px;
 }
 
+.list-notes-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 480px;
+}
+
+.list-notes-empty-content {
+  text-align: center;
+}
+.list-notes-empty .description {
+  color: var(--text-note-color);
+  font-family: var(--font-regular), var(--font-default);
+  font-size: 22px;
+  padding-top: 20px;
+}
+
 .overlay,
 .overlay-trash {
   position: fixed;
