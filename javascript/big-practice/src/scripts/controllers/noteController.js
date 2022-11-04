@@ -34,6 +34,8 @@ export default class NoteController {
 
     // function render trash notes
     this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup);
+
+    // function show Empty Note if note is empty
     this.view.showHideEmpty(listTrash, 'trashNotes');
   };
 
@@ -47,6 +49,8 @@ export default class NoteController {
 
     // function render list notes
     this.view.renderListNotes(listNotes, handlers);
+
+    // function show Empty Note if note is empty
     this.view.showHideEmpty(listNotes, 'listNotes');
   };
 
@@ -55,9 +59,10 @@ export default class NoteController {
     // function render confirm message
     this.view.renderConfirmMessage(note);
 
-    // function close and remove trash
+    // function close popup
     this.view.bindClosePopup();
 
+    // function delete trash forever
     this.view.bindDeleteNoteInTrash(async (id) => {
       const noteItem = await this.model.deleteNoteInTrash(id);
       this.view.constructor.removeNoteElement(noteItem.id);
