@@ -1,4 +1,43 @@
 const URL = 'http://localhost:3000/notes';
+const userURL = 'http://localhost:3000/users';
+
+/**
+ * @description function get list notes with username of user
+ *
+ * @param {String} username get from input login
+ *
+ * @returns {Object} user
+ */
+export const getUsersByUsername = async (username) => {
+  try {
+    const response = await fetch(`${userURL}?&username=${username}`);
+    const users = await response.json();
+
+    return users;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+/**
+ * @description function get list notes with username of user
+ *
+ * @param {String} id is id user get from local
+ *
+ * @returns {Object} user
+ */
+export const getUsersById = async (id) => {
+  try {
+    const response = await fetch(`${userURL}/${id}`);
+    const users = await response.json();
+
+    return users;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
 
 /**
  * @description function get list notes with id of user
@@ -7,9 +46,9 @@ const URL = 'http://localhost:3000/notes';
  *
  * @returns {Object} notes
  */
-export const getData = async (user) => {
+export const getData = async (id) => {
   try {
-    const response = await fetch(`${URL}?&owner=${user}&isTrash=false`);
+    const response = await fetch(`${URL}?&owner=${id}&isTrash=false`);
     const notes = await response.json();
     return notes;
   } catch (error) {
@@ -24,9 +63,9 @@ export const getData = async (user) => {
  *
  * @returns {Object} notes
  */
-export const getDataTrash = async (user) => {
+export const getDataTrash = async (id) => {
   try {
-    const response = await fetch(`${URL}?&owner=${user}&isTrash=true`);
+    const response = await fetch(`${URL}?&owner=${id}&isTrash=true`);
     const notes = await response.json();
     return notes;
   } catch (error) {
