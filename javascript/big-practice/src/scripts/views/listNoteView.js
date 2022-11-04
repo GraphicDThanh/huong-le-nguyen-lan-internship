@@ -4,7 +4,7 @@ import EventHelpers from '../helper/eventHelpers';
 import { selectDOMClass, selectDOMClassAll, selectDOMById } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
-import POPUP_MESSAGE from '../constants/message';
+import { POPUP_MESSAGE } from '../constants/message';
 
 /**
  * @class listNoteView
@@ -58,6 +58,8 @@ export default class ListNoteView {
           this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
           this.showHidePage(handlerTrash, handlerNote);
+        } else {
+          console.log('page number is not found');
         }
       });
     });
@@ -92,24 +94,29 @@ export default class ListNoteView {
    * @param {String} type is a type if we need to use in listNotes or trashNotes
    */
   showHideEmpty(list, type) {
-    if (type === 'listNotes') {
-      if (!list.length) {
-        this.listNotesEmpty.classList.remove('hide');
-        this.listNoteElement.classList.add('hide');
-      } else {
-        this.listNotesEmpty.classList.add('hide');
-        this.listNoteElement.classList.remove('hide');
-      }
-    }
+    switch (type) {
+      case 'listNotes':
+        if (!list.length) {
+          this.listNotesEmpty.classList.remove('hide');
+          this.listNoteElement.classList.add('hide');
+        } else {
+          this.listNotesEmpty.classList.add('hide');
+          this.listNoteElement.classList.remove('hide');
+        }
 
-    if (type === 'trashNotes') {
-      if (!list.length) {
-        this.listTrashElement.classList.add('hide');
-        this.listTrashEmpty.classList.remove('hide');
-      } else {
-        this.listTrashElement.classList.remove('hide');
-        this.listTrashEmpty.classList.add('hide');
-      }
+        break;
+      case 'trashNotes':
+        if (!list.length) {
+          this.listTrashElement.classList.add('hide');
+          this.listTrashEmpty.classList.remove('hide');
+        } else {
+          this.listTrashElement.classList.remove('hide');
+          this.listTrashEmpty.classList.add('hide');
+        }
+
+        break;
+      default:
+        console.log('Enter listNotes or trashNotes');
     }
   }
 
@@ -190,6 +197,8 @@ export default class ListNoteView {
           titleElement.textContent = title;
           descriptionElement.textContent = description;
         }
+      } else {
+        console.log('Cant get id of note');
       }
     });
   }
@@ -313,6 +322,8 @@ export default class ListNoteView {
       this.confirmMessage.innerHTML = '';
       if (listTrash.childNodes.length === 1) {
         this.listTrashEmpty.classList.remove('hide');
+      } else {
+        this.listTrashEmpty.classList.add('hide');
       }
     });
   }

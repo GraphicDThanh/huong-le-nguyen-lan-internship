@@ -28,26 +28,25 @@ export default class ListNoteModel {
    */
   async addNote(title, description) {
     let note;
+    const username = LocalStorage.getItems(STORAGE_KEYS.USERNAME);
+    const patternNote = {
+      id: new Date().getTime().toString(),
+      title,
+      description,
+      isTrash: false,
+    };
 
-    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    if (username) {
       const noteItem = {
-        id: new Date().getTime().toString(),
-        title,
-        description,
-        isTrash: false,
-        owner: LocalStorage.getItems(STORAGE_KEYS.USERNAME),
+        ...patternNote,
+        owner: username,
       };
       note = noteItem;
 
       await postData(noteItem);
-    }
-
-    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    } else {
       const noteItem = {
-        id: new Date().getTime().toString(),
-        title,
-        description,
-        isTrash: false,
+        ...patternNote,
       };
       note = new NoteModel(noteItem);
       this.notes.push(note);
@@ -64,21 +63,27 @@ export default class ListNoteModel {
    */
   async filterNotes(type) {
     let listNotes;
+    const username = LocalStorage.getItems(STORAGE_KEYS.USERNAME);
 
-    if (type === 'listNotes') {
-      if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-        listNotes = await getData('user01');
-      } else {
-        listNotes = this.notes.filter((note) => !note.isTrash);
-      }
-    }
+    switch (type) {
+      case 'listNotes':
+        if (username) {
+          listNotes = await getData('user01');
+        } else {
+          listNotes = this.notes.filter((note) => !note.isTrash);
+        }
 
-    if (type === 'trashNotes') {
-      if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-        listNotes = await getDataTrash('user01');
-      } else {
-        listNotes = this.notes.filter((note) => note.isTrash);
-      }
+        break;
+      case 'trashNotes':
+        if (username) {
+          listNotes = await getDataTrash('user01');
+        } else {
+          listNotes = this.notes.filter((note) => note.isTrash);
+        }
+
+        break;
+      default:
+        console.log('must enter a listNotes or trashNotes');
     }
 
     return listNotes;
