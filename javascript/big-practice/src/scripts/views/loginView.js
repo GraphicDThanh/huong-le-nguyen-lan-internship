@@ -1,9 +1,9 @@
-import { selectDOMId, selectDOMClass } from '../utils/querySelectDOM';
+import { selectDOMById, selectDOMClass } from '../utils/querySelectDOM';
 import { EMAIL, PASSWORD } from '../constants/message';
 
 export default class LoginView {
   constructor() {
-    this.loginForm = selectDOMId('login-form');
+    this.loginForm = selectDOMById('login-form');
     this.btn = selectDOMClass('.btn');
     this.emailElement = selectDOMClass('.email');
     this.passwordElement = selectDOMClass('.password');
