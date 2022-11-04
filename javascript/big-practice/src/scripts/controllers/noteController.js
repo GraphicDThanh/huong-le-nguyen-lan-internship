@@ -1,3 +1,5 @@
+import ModelLogin from '../models/loginModel';
+
 /**
  * @class noteController
  * @description Controller is an intermediary for views and models
@@ -29,6 +31,18 @@ export default class NoteController {
 
     // function delete list notes
     this.view.bindDeleteListNotes(this.deleteNote);
+
+    // function show hide menu hidden
+    this.view.bindShowMenuHidden();
+
+    // function logout user
+    this.view.bindLogOut();
+
+    // function change to login page
+    this.view.bindLogin();
+
+    // function set username to menu user
+    this.getUser();
   };
 
   listEvents = async () => {
@@ -57,6 +71,11 @@ export default class NoteController {
       const noteItem = await this.model.deleteNoteInTrash(id);
       this.view.constructor.removeNote(noteItem.id);
     });
+  };
+
+  getUser = async () => {
+    const user = await ModelLogin.findUsernameById();
+    this.view.showUsername(user);
   };
 
   /**
