@@ -42,39 +42,39 @@
   font-family: var(--font-regular), var(--font-default);
 }
 
-.form-group {
+.form-cover .form-group {
   display: flex;
   flex-direction: column;
 }
 
-.form-group input {
+.form-cover .form-group input {
   padding: 15px;
   outline: none;
   border: 1px solid var(--fade-color);
   border-radius: 5px;
 }
 
-.form-group input:focus {
+.form-cover .form-group input:focus {
   border-color: var(--info-color);
 }
 
-.form-group .valid {
+.form-cover .form-group .valid {
   box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   border-color: var(--danger-color);
 }
 
-.form-group .message {
+.form-cover .form-group .message {
   padding: 7px 5px;
 }
 
-.form-group .message-error {
+.form-cover .form-group .message-error {
   font-size: 14px;
   color: var(--text-danger-color);
   font-family: var(--font-light), var(--font-default);
   padding-left: 5px;
 }
 
-.form-group .message .error-icon {
+.form-cover .form-group .message .error-icon {
   width: 15px;
   height: 15px;
   vertical-align: bottom;
