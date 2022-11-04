@@ -117,6 +117,7 @@ export default class ListNoteView {
         break;
       default:
         console.log('Enter listNotes or trashNotes');
+        break;
     }
   }
 
@@ -197,8 +198,6 @@ export default class ListNoteView {
           titleElement.textContent = title;
           descriptionElement.textContent = description;
         }
-      } else {
-        console.log('Cant get id of note');
       }
     });
   }
