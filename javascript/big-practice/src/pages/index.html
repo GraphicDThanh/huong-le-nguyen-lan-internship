@@ -8,7 +8,7 @@
     <link rel="icon" href="../assets/icons/logo-google-keep-small.png" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="../styles/main.css">
   </head>
-  <body>
+  <body class="indexPage">
     <header class="header-wrapper">
       <div class="header-default">
         <div class="header-menu-search">
@@ -35,6 +35,20 @@
         </div>
 
         <div class="header-avatar">
+          <div class="menu-user-hidden hide">
+            <div class="menu-user-info">
+              <figure class="avatar-user">
+                <img src="../assets/images/avatar.png" alt="avatar">
+              </figure>
+              <p class="menu-username"></p>
+            </div>
+            
+            <div class="menu-user-actions">
+              <button class="btn btn-login">Login</button>
+              <button class="btn btn-logout">Sign out</button>
+            </div>
+          </div>
+
           <figure class="avatar-user-cover">
             <img class="avatar-user" src="../assets/images/avatar.png" alt="avatar">
           </figure>

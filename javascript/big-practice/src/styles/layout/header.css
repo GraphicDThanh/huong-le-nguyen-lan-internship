@@ -90,7 +90,56 @@
   padding: 8px;
 }
 
+.header-avatar {
+  position: relative;
+}
+
+.menu-user-hidden {
+  position: absolute;
+  right: 10px;
+  top: 42px;
+  background-color: var(--light-color);
+  border: 1px solid var(--fade-color);
+  border-radius: 8px;
+  padding-top: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.menu-user-info {
+  padding: 0 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-user-hidden .avatar-user img {
+  width: 80px;
+  height: 80px;
+}
+
+.menu-user-hidden .menu-username {
+  font-family: var(--font-regular), var(--font-default);
+  padding: 15px 0;
+}
+
+.menu-user-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--fade-color);
+  padding: 10px 0;
+}
+
+.btn-login,
+.btn-logout {
+  border: 1px solid var(--hover-utilities-color);
+  font-family: var(--font-regular), var(--font-default);
+  border-radius: 4px;
+  color: var(--text-button-color);
+}
+
 .avatar-user-cover {
+  cursor: pointer;
   padding-right: 10px;
 }
 
