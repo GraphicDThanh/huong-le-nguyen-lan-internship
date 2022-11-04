@@ -1,0 +1,68 @@
+{
+  "notes": [
+    {
+      "id": "1667272636423",
+      "title": "",
+      "description": "asd",
+      "isTrash": true,
+      "owner": "user01"
+    },
+    {
+      "id": "1667275212353",
+      "title": "",
+      "description": "asd",
+      "isTrash": true,
+      "owner": "user01"
+    },
+    {
+      "id": "1667275270559",
+      "title": "@@@@",
+      "description": "123",
+      "isTrash": true,
+      "owner": "user01"
+    },
+    {
+      "id": "1667275288244",
+      "title": "",
+      "description": "asd",
+      "isTrash": true,
+      "owner": "user01"
+    },
+    {
+      "id": "1667275682680",
+      "title": "",
+      "description": "asd",
+      "isTrash": false,
+      "owner": "user01"
+    },
+    {
+      "id": "1667275685974",
+      "title": "",
+      "description": "@@@",
+      "isTrash": false,
+      "owner": "user01"
+    }
+  ],
+  "users": [
+    {
+      "id": 0,
+      "username": "user01",
+      "password": "123456"
+    },
+    {
+      "id": 1,
+      "username": "user02",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "username": "user03",
+      "password": "123456"
+    },
+    {
+      "id": 3,
+      "username": "user04",
+      "password": "123456"
+    }
+  ]
+}

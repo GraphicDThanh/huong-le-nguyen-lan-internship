@@ -4,7 +4,7 @@ import EventHelpers from '../helper/eventHelpers';
 import { selectDOMClass, selectDOMClassAll, selectDOMById } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
-import POPUP_MESSAGE from '../constants/message';
+import { POPUP_MESSAGE } from '../constants/message';
 
 /**
  * @class listNoteView
@@ -34,6 +34,9 @@ export default class ListNoteView {
     this.trashWrapper = selectDOMClass('.trash-wrapper');
 
     this.confirmMessage = selectDOMClass('.trash-overlay');
+
+    this.listNotesEmpty = selectDOMClass('.list-notes-empty-content');
+    this.listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
   }
 
   /**
@@ -42,7 +45,7 @@ export default class ListNoteView {
    * @param {function} handlerTrash is function transmitted from model
    * @param {function} handlerNote is function transmitted from model
    */
-  changePage(handlerTrash, handlerNote) {
+  bindChangePage(handlerTrash, handlerNote) {
     this.showHidePage(handlerTrash, handlerNote);
     this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
@@ -55,6 +58,8 @@ export default class ListNoteView {
           this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
           this.showHidePage(handlerTrash, handlerNote);
+        } else {
+          console.log('page number is not found');
         }
       });
     });
@@ -79,6 +84,40 @@ export default class ListNoteView {
       this.trashWrapper.classList.remove('hide');
       this.noteWrapper.classList.add('hide');
       handlerTrash();
+    }
+  }
+
+  /**
+   * @description function show empty note if that note is empty
+   *
+   * @param {Array} list is a list of note or list of trash note
+   * @param {String} type is a type if we need to use in listNotes or trashNotes
+   */
+  showHideEmpty(list, type) {
+    switch (type) {
+      case 'listNotes':
+        if (!list.length) {
+          this.listNotesEmpty.classList.remove('hide');
+          this.listNoteElement.classList.add('hide');
+        } else {
+          this.listNotesEmpty.classList.add('hide');
+          this.listNoteElement.classList.remove('hide');
+        }
+
+        break;
+      case 'trashNotes':
+        if (!list.length) {
+          this.listTrashElement.classList.add('hide');
+          this.listTrashEmpty.classList.remove('hide');
+        } else {
+          this.listTrashElement.classList.remove('hide');
+          this.listTrashEmpty.classList.add('hide');
+        }
+
+        break;
+      default:
+        console.log('Enter listNotes or trashNotes');
+        break;
     }
   }
 
@@ -116,7 +155,7 @@ export default class ListNoteView {
     const noteElement = noteView.renderNote();
 
     this.listNoteElement.appendChild(noteView.renderNote());
-    ListNoteView.bindDeleteNotes(noteElement, handleDeleteNote);
+    this.bindDeleteNote(noteElement, handleDeleteNote);
     ListNoteView.bindShowNoteForm(noteElement, handleShowNoteForm);
     this.bindShowHeader(noteElement);
   }
@@ -148,9 +187,17 @@ export default class ListNoteView {
       if (note.id === id) {
         const titleElement = note.querySelector('.note-title');
         const descriptionElement = note.querySelector('.note-description');
+        const emptyNoteElement = selectDOMClass('.note-content .note-empty');
 
-        titleElement.textContent = title;
-        descriptionElement.textContent = description;
+        if (!title && !description) {
+          emptyNoteElement.classList.remove('hide');
+          titleElement.textContent = '';
+          descriptionElement.textContent = '';
+        } else {
+          emptyNoteElement.classList.add('hide');
+          titleElement.textContent = title;
+          descriptionElement.textContent = description;
+        }
       }
     });
   }
@@ -175,7 +222,7 @@ export default class ListNoteView {
       const noteView = new NoteView(noteItem);
       const trashNote = noteView.renderNote();
       this.listTrashElement.appendChild(trashNote);
-      ListNoteView.bindDeleteNoteInTrash(trashNote, handler);
+      ListNoteView.bindShowPopup(trashNote, handler);
     });
   }
 
@@ -230,7 +277,7 @@ export default class ListNoteView {
    * @param {function} handler is function transmitted
    * @param {Object} trashNote is trash note element
    */
-  static bindDeleteNoteInTrash(trashNote, handler) {
+  static bindShowPopup(trashNote, handler) {
     const btnDeletes = trashNote.querySelector('.trash-wrapper .btn-delete');
 
     btnDeletes.addEventListener('click', (e) => {
@@ -257,13 +304,26 @@ export default class ListNoteView {
     });
   }
 
-  bindDeleteTrashNoteInPopup(handler) {
+  /**
+   * @description function delete note forever
+   *
+   * @param {function} handler is function transmitted from model
+   */
+  bindDeleteNoteInTrash(handler) {
     const deleteTrash = selectDOMClass('.btn-submit-action');
     deleteTrash.addEventListener('click', (e) => {
       e.stopPropagation();
       const index = e.target.getAttribute('data-id');
+      const listTrash = selectDOMClass('.trash-wrapper .list-notes');
+
       handler(index);
+
       this.confirmMessage.innerHTML = '';
+      if (listTrash.childNodes.length === 1) {
+        this.listTrashEmpty.classList.remove('hide');
+      } else {
+        this.listTrashEmpty.classList.add('hide');
+      }
     });
   }
 
@@ -329,9 +389,9 @@ export default class ListNoteView {
     const noteItem = selectDOMById(`${noteElement.id}`);
     const listNotes = noteItem.querySelector('.note-content');
 
-    listNotes.addEventListener('click', (e) => {
+    listNotes.addEventListener('click', async (e) => {
       e.stopPropagation();
-      findNote(listNotes.getAttribute('data-id'));
+      await findNote(listNotes.getAttribute('data-id'));
 
       const title = selectDOMClass('.note-form-overlay .note-title');
       const description = selectDOMClass('.note-form-overlay .note-description');
@@ -387,6 +447,7 @@ export default class ListNoteView {
       const id = e.target.getAttribute('data-id');
       deleteNote(id);
       this.noteOverlay.innerHTML = '';
+      this.listNotesEmpty.classList.remove('hide');
     });
   }
 
@@ -422,6 +483,7 @@ export default class ListNoteView {
 
     this.closeButtonElement.addEventListener('click', () => {
       this.addNewNote(handler);
+      this.listNotesEmpty.classList.add('hide');
     });
   }
 
@@ -430,13 +492,18 @@ export default class ListNoteView {
    *
    * @param {function} handler is function delete transmitted from from the model
    */
-  static bindDeleteNotes(noteElement, handler) {
+  bindDeleteNote(noteElement, handler) {
     const note = selectDOMById(`${noteElement.id}`);
     const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
 
     deleteButtonElements.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');
+        const listNotes = selectDOMClass('.list-notes');
+
+        if (listNotes.childNodes.length === 1) {
+          this.listNotesEmpty.classList.remove('hide');
+        }
         handler(noteId);
       });
     });
@@ -455,6 +522,7 @@ export default class ListNoteView {
       });
 
       this.headerAfterSelect.style.transform = 'translateY(-200%)';
+      this.listNotesEmpty.classList.remove('hide');
     });
   }
 }
