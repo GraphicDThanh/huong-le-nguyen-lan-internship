@@ -585,12 +585,17 @@ export default class ListNoteView {
   bindDeleteListNotes(handler) {
     this.btnDeleteBulkActions.addEventListener('click', () => {
       const noteSelected = selectDOMClassAll('.selected');
+      const listNotes = selectDOMClass('.list-notes');
+
       noteSelected.forEach((note) => {
         handler(note.id);
       });
 
       this.headerAfterSelect.style.transform = 'translateY(-200%)';
-      this.listNotesEmpty.classList.remove('hide');
+
+      if (listNotes.childNodes.length === 1) {
+        this.listNotesEmpty.classList.remove('hide');
+      }
     });
   }
 }

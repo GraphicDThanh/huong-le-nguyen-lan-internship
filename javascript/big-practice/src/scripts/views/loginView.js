@@ -69,12 +69,12 @@ export default class LoginView {
       value: password,
     };
 
-    const isLength = LoginView.isLength(infoPassword, PASSWORD.PASSWORD_LENGTH);
     const isRules = LoginView.isRules(
       infoPassword,
       this.rulesPassword,
       PASSWORD.PASSWORD_VALID,
     );
+    const isLength = LoginView.isLength(infoPassword, PASSWORD.PASSWORD_LENGTH);
     const isEmpty = LoginView.isEmpty(infoPassword, PASSWORD.PASSWORD_EMPTY);
     if (!isRules && !isEmpty && !isLength) {
       LoginView.hideError(this.passwordElement);
