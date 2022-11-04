@@ -84,7 +84,8 @@ export default class ListNoteModel {
 
         break;
       default:
-        console.log('must enter a listNotes or trashNotes');
+        console.log('Must enter a listNotes or trashNotes');
+        break;
     }
 
     return listNotes;
@@ -113,11 +114,10 @@ export default class ListNoteModel {
 
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(id);
-      note.isTrash = true;
+      noteItem = await getDataById(id);
+      noteItem.isTrash = true;
 
-      putData(id, note);
-      noteItem = note;
+      putData(id, noteItem);
     }
 
     return noteItem;
@@ -145,10 +145,9 @@ export default class ListNoteModel {
       this.notes.splice(noteIndex, 1);
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
     } else {
-      const note = await getDataById(id);
+      noteItem = await getDataById(id);
 
       deleteData(id);
-      noteItem = note;
     }
     return noteItem;
   }
@@ -172,8 +171,7 @@ export default class ListNoteModel {
       const noteIndex = this.notes.findIndex((note) => note.id === id);
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(id);
-      noteItem = note;
+      noteItem = await getDataById(id);
     }
 
     return noteItem;
@@ -204,12 +202,11 @@ export default class ListNoteModel {
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(id);
-      note.title = title;
-      note.description = description;
+      noteItem = await getDataById(id);
+      noteItem.title = title;
+      noteItem.description = description;
 
-      putData(id, note);
-      noteItem = note;
+      putData(id, noteItem);
     }
 
     return noteItem;
