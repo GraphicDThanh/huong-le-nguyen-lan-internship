@@ -14,14 +14,12 @@ export default class NoteController {
   }
 
   init() {
-    this.renderAllNotes();
+    this.bindEvents();
   }
 
-  renderAllNotes = () => {
-    this.listEvents();
-
+  bindEvents = () => {
     // function change page
-    this.view.changePage();
+    this.view.bindChangePage(this.renderTabTrash, this.renderTabNote);
 
     // function increase textarea
     this.view.bindInputBreakDown();
@@ -45,31 +43,43 @@ export default class NoteController {
     this.getUser();
   };
 
-  listEvents = async () => {
+  renderTabTrash = async () => {
+    const listTrash = await this.model.filterNotes('trashNotes');
+
+    // function render trash notes
+    this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup);
+
+    // function show Empty Note if note is empty
+    this.view.showHideEmpty(listTrash, 'trashNotes');
+  };
+
+  renderTabNote = async () => {
     const handlers = {
       handleDeleteNote: this.deleteNote,
       handleShowNoteForm: this.findNote,
     };
 
-    const listNotes = await this.model.filterListNotes();
-    const listTrash = await this.model.filterTrashNotes();
+    const listNotes = await this.model.filterNotes('listNotes');
 
     // function render list notes
     this.view.renderListNotes(listNotes, handlers);
 
-    // function render trash notes
-    this.view.renderListTrashNotes(listTrash, this.removeTrash);
+    // function show Empty Note if note is empty
+    this.view.showHideEmpty(listNotes, 'listNotes');
   };
 
-  removeTrash = async (index) => {
+  handleConfirmPopup = async (index) => {
     const note = await this.model.findNote(index);
     // function render confirm message
     this.view.renderConfirmMessage(note);
 
-    // function close and remove trash
-    this.view.closeConfirmMessage(async (id) => {
+    // function close popup
+    this.view.bindClosePopup();
+
+    // function delete trash forever
+    this.view.bindDeleteNoteInTrash(async (id) => {
       const noteItem = await this.model.deleteNoteInTrash(id);
-      this.view.constructor.removeNote(noteItem.id);
+      this.view.constructor.removeNoteElement(noteItem.id);
     });
   };
 
@@ -98,8 +108,7 @@ export default class NoteController {
   deleteNote = async (index) => {
     const note = await this.model.deleteNote(index);
 
-    this.view.constructor.removeNote(note.id);
-    this.view.renderTrashNote(note, this.removeTrash);
+    this.view.constructor.removeNoteElement(note.id);
   };
 
   /**

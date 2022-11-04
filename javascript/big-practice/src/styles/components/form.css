@@ -27,7 +27,7 @@
 }
 
 .icon-pin-cover,
-.items-utilities {
+.item-utilities {
   padding: 8px;
   cursor: pointer;
   border-radius: 45px;
@@ -53,12 +53,12 @@
   justify-content: space-between;
 }
 
-.items-utilities:hover,
+.item-utilities:hover,
 .icon-pin-cover:hover {
   background-color: var(--hover-utilities-color);
 }
 
-.items-utilities img,
+.item-utilities img,
 .icon-pin-cover img {
   width: 18px;
   height: 18px;

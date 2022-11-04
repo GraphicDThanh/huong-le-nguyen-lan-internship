@@ -1,3 +1,5 @@
+import { API_MESSAGE } from '../constants/message';
+
 const URL = 'http://localhost:3000/notes';
 const userURL = 'http://localhost:3000/users';
 
@@ -52,8 +54,8 @@ export const getData = async (id) => {
     const notes = await response.json();
     return notes;
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.GET} ${error}`;
+    throw message;
   }
 };
 
@@ -69,8 +71,8 @@ export const getDataTrash = async (id) => {
     const notes = await response.json();
     return notes;
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.GET} ${error}`;
+    throw message;
   }
 };
 
@@ -94,8 +96,8 @@ export const getDataById = async (id) => {
     const notes = await response.json();
     return notes;
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.GET} ${error}`;
+    throw message;
   }
 };
 
@@ -116,8 +118,8 @@ export const postData = async (note) => {
 
     await fetch(URL, options);
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.POST} ${error}`;
+    throw message;
   }
 };
 
@@ -137,8 +139,8 @@ export const deleteData = async (id) => {
 
     await fetch(`${URL}/${id}`, options);
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.DELETE} ${error}`;
+    throw message;
   }
 };
 
@@ -160,7 +162,7 @@ export const putData = async (id, note) => {
 
     await fetch(`${URL}/${id}`, options);
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.PATCH} ${error}`;
+    throw message;
   }
 };

@@ -57,34 +57,34 @@ export default class ListNoteModel {
   }
 
   /**
-   * @description function filter list notes with isTrash = false
+   * @description function filter list notes or trash notes
    *
    * @returns {Array} listNotes
    */
-  async filterListNotes() {
+  async filterNotes(type) {
     let listNotes;
+    const username = LocalStorage.getItems(STORAGE_KEYS.ID);
 
-    if (LocalStorage.getItems(STORAGE_KEYS.ID)) {
-      listNotes = await getData(LocalStorage.getItems(STORAGE_KEYS.ID));
-    } else {
-      listNotes = this.notes.filter((note) => !note.isTrash);
-    }
+    // This condition filter that we can use this function for trashNotes and listNotes
+    switch (type) {
+      case 'listNotes':
+        if (username) {
+          listNotes = await getData(username);
+        } else {
+          listNotes = this.notes.filter((note) => !note.isTrash);
+        }
 
-    return listNotes;
-  }
+        break;
+      case 'trashNotes':
+        if (username) {
+          listNotes = await getDataTrash(username);
+        } else {
+          listNotes = this.notes.filter((note) => note.isTrash);
+        }
 
-  /**
-   * @description function filter list trash
-   *
-   * @returns {Array} listNotes
-   */
-  async filterTrashNotes() {
-    let listNotes;
-
-    if (LocalStorage.getItems(STORAGE_KEYS.ID)) {
-      listNotes = await getDataTrash(LocalStorage.getItems(STORAGE_KEYS.ID));
-    } else {
-      listNotes = this.notes.filter((note) => note.isTrash);
+        break;
+      default:
+        console.log('must enter a listNotes or trashNotes');
     }
 
     return listNotes;
@@ -93,25 +93,30 @@ export default class ListNoteModel {
   /**
    * @description function move note to trash
    *
-   * @param {String} index is index of note
+   * @param {String} id is index of note
    *
    * @return {Object} this.notes[noteIndex]
    */
-  async deleteNote(index) {
+  async deleteNote(id) {
     let noteItem;
 
+    /**
+     * This condition check if username is available in localStorage.
+     * It will change field of note in JSON
+     * if username is not available, it will change field in localStorage
+     */
     if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
       this.notes[noteIndex].isTrash = true;
 
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
 
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
       note.isTrash = true;
 
-      putData(index, note);
+      putData(id, note);
       noteItem = note;
     }
 
@@ -125,19 +130,24 @@ export default class ListNoteModel {
    *
    * @return {Object} note
    */
-  async deleteNoteInTrash(index) {
+  async deleteNoteInTrash(id) {
     let noteItem;
 
+    /**
+     * This condition check if username is available in localStorage.
+     * It will delete note in JSON
+     * if username is not available, it will delete in localStorage
+     */
     if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
 
       noteItem = this.notes[noteIndex];
       this.notes.splice(noteIndex, 1);
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
 
-      deleteData(index);
+      deleteData(id);
       noteItem = note;
     }
     return noteItem;
@@ -146,18 +156,23 @@ export default class ListNoteModel {
   /**
    * @description is a function find note
    *
-   * @param {String} index is index of note
+   * @param {String} id is id of note
    *
    *  @returns {Object} this.notes[noteIndex]
    */
-  async findNote(index) {
+  async findNote(id) {
     let noteItem;
 
+    /**
+     * This condition check if username is available in localStorage.
+     * It will find note in JSON
+     * if username is not available, it will find array
+     */
     if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
       noteItem = note;
     }
 
@@ -173,22 +188,27 @@ export default class ListNoteModel {
    *
    * @returns {Object} this.notes[noteIndex]
    */
-  async editNote(index, title, description) {
+  async editNote(id, title, description) {
     let noteItem;
 
+    /**
+     * This condition check if username is available in localStorage.
+     * It will update note in JSON
+     * if username is not available, it will update in localStorage
+     */
     if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === index);
+      const noteIndex = this.notes.findIndex((note) => note.id === id);
       this.notes[noteIndex].title = title;
       this.notes[noteIndex].description = description;
 
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
       noteItem = this.notes[noteIndex];
     } else {
-      const note = await getDataById(index);
+      const note = await getDataById(id);
       note.title = title;
       note.description = description;
 
-      putData(index, note);
+      putData(id, note);
       noteItem = note;
     }
 

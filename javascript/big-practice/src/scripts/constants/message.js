@@ -1,3 +1,14 @@
+const POPUP_MESSAGE = {
+  DELETE_NOTE: 'Delete note forever ?',
+};
+
+const API_MESSAGE = {
+  GET: 'Can\'t get data from API',
+  POST: 'Can\'t post data to API',
+  DELETE: 'Can\'t delete data',
+  PATCH: 'Can\'t update data',
+};
+
 const EMAIL = {
   EMAIL_EMPTY: 'Email is empty',
   EMAIL_VALID: 'Email is valid',
@@ -11,4 +22,4 @@ const PASSWORD = {
   PASSWORD_INCORRECT: 'Password incorrect',
 };
 
-export { EMAIL, PASSWORD };
+export { EMAIL, PASSWORD, POPUP_MESSAGE, API_MESSAGE };
