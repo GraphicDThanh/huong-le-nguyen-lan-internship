@@ -6,8 +6,8 @@ function selectDOMClassAll(classes) {
   return document.querySelectorAll(classes);
 }
 
-function selectDOMId(id) {
+function selectDOMById(id) {
   return document.getElementById(id);
 }
 
-export { selectDOMClass, selectDOMClassAll, selectDOMId };
+export { selectDOMClass, selectDOMClassAll, selectDOMById };
