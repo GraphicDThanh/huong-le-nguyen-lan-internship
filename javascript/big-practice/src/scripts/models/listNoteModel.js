@@ -28,26 +28,25 @@ export default class ListNoteModel {
    */
   async addNote(title, description) {
     let note;
+    const username = LocalStorage.getItems(STORAGE_KEYS.ID);
+    const patternNote = {
+      id: new Date().getTime().toString(),
+      title,
+      description,
+      isTrash: false,
+    };
 
-    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    if (username) {
       const noteItem = {
-        id: new Date().getTime().toString(),
-        title,
-        description,
-        isTrash: false,
-        owner: LocalStorage.getItems(STORAGE_KEYS.USERNAME),
+        ...patternNote,
+        owner: username,
       };
       note = noteItem;
 
       await postData(noteItem);
-    }
-
-    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    } else {
       const noteItem = {
-        id: new Date().getTime().toString(),
-        title,
-        description,
-        isTrash: false,
+        ...patternNote,
       };
       note = new NoteModel(noteItem);
       this.notes.push(note);
@@ -65,8 +64,8 @@ export default class ListNoteModel {
   async filterListNotes() {
     let listNotes;
 
-    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      listNotes = await getData('user01');
+    if (LocalStorage.getItems(STORAGE_KEYS.ID)) {
+      listNotes = await getData(LocalStorage.getItems(STORAGE_KEYS.ID));
     } else {
       listNotes = this.notes.filter((note) => !note.isTrash);
     }
@@ -82,8 +81,8 @@ export default class ListNoteModel {
   async filterTrashNotes() {
     let listNotes;
 
-    if (LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      listNotes = await getDataTrash('user01');
+    if (LocalStorage.getItems(STORAGE_KEYS.ID)) {
+      listNotes = await getDataTrash(LocalStorage.getItems(STORAGE_KEYS.ID));
     } else {
       listNotes = this.notes.filter((note) => note.isTrash);
     }
@@ -101,7 +100,7 @@ export default class ListNoteModel {
   async deleteNote(index) {
     let noteItem;
 
-    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
       const noteIndex = this.notes.findIndex((note) => note.id === index);
       this.notes[noteIndex].isTrash = true;
 
@@ -129,7 +128,7 @@ export default class ListNoteModel {
   async deleteNoteInTrash(index) {
     let noteItem;
 
-    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
       const noteIndex = this.notes.findIndex((note) => note.id === index);
 
       noteItem = this.notes[noteIndex];
@@ -154,7 +153,7 @@ export default class ListNoteModel {
   async findNote(index) {
     let noteItem;
 
-    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
       const noteIndex = this.notes.findIndex((note) => note.id === index);
       noteItem = this.notes[noteIndex];
     } else {
@@ -177,7 +176,7 @@ export default class ListNoteModel {
   async editNote(index, title, description) {
     let noteItem;
 
-    if (!LocalStorage.getItems(STORAGE_KEYS.USERNAME)) {
+    if (!LocalStorage.getItems(STORAGE_KEYS.ID)) {
       const noteIndex = this.notes.findIndex((note) => note.id === index);
       this.notes[noteIndex].title = title;
       this.notes[noteIndex].description = description;
