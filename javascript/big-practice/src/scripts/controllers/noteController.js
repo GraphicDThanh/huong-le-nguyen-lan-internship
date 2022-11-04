@@ -1,4 +1,4 @@
-import ModelLogin from '../models/loginModel';
+import LoginModel from '../models/loginModel';
 
 /**
  * @class noteController
@@ -74,7 +74,7 @@ export default class NoteController {
   };
 
   getUser = async () => {
-    const user = await ModelLogin.findUsernameById();
+    const user = await LoginModel.findUsernameById();
     this.view.showUsername(user);
   };
 

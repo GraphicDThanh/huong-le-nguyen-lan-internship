@@ -3,6 +3,7 @@ import ElementHelpers from '../helper/elementHelpers';
 import EventHelpers from '../helper/eventHelpers';
 import { selectDOMClass, selectDOMClassAll, selectDOMId } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
+import LocalStorage from '../utils/localStorage';
 
 /**
  * @class listNoteView
@@ -32,6 +33,68 @@ export default class ListNoteView {
     this.trashWrapper = selectDOMClass('.trash-wrapper');
 
     this.confirmMessage = selectDOMClass('.trash-overlay');
+
+    this.menuHidden = selectDOMClass('.menu-user-hidden');
+    this.avatarUser = selectDOMClass('.avatar-user-cover');
+    this.menuHiddenLogIn = selectDOMClass('.btn-login');
+    this.menuHiddenLogOut = selectDOMClass('.btn-logout');
+    this.menuUsername = selectDOMClass('.menu-username');
+  }
+
+  /**
+   * @description function show hide menu hidden
+   */
+  bindShowMenuHidden() {
+    this.avatarUser.addEventListener('click', () => {
+      if (this.menuHidden.classList.contains('hide')) {
+        this.menuHidden.classList.remove('hide');
+      } else {
+        this.menuHidden.classList.add('hide');
+      }
+
+      if (localStorage.getItem(STORAGE_KEYS.ID)) {
+        this.menuHiddenLogOut.classList.remove('hide');
+        this.menuHiddenLogIn.classList.add('hide');
+      } else {
+        this.menuHiddenLogOut.classList.add('hide');
+        this.menuHiddenLogIn.classList.remove('hide');
+      }
+    });
+  }
+
+  /**
+   * @description function handle logout
+   */
+  bindLogOut() {
+    this.menuHiddenLogOut.addEventListener('click', () => {
+      window.location.href = 'login.html';
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      LocalStorage.removeItems(STORAGE_KEYS.ID);
+    });
+  }
+
+  /**
+   * @function function handle login
+   */
+  bindLogin() {
+    this.menuHiddenLogIn.addEventListener('click', () => {
+      window.location.href = 'login.html';
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      LocalStorage.setItems(STORAGE_KEYS.ID);
+    });
+  }
+
+  /**
+   * @description set username to menu user
+   *
+   * @param {String} username is username of user take from data
+   */
+  showUsername(username) {
+    if (username) {
+      this.menuUsername.textContent = username;
+    } else {
+      this.menuUsername.textContent = 'Unknown';
+    }
   }
 
   /**
