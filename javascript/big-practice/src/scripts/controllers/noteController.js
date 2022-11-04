@@ -17,7 +17,7 @@ export default class NoteController {
 
   bindEvents = () => {
     // function change page
-    this.view.changePage(this.renderTabTrash, this.renderTabNote);
+    this.view.bindChangePage(this.renderTabTrash, this.renderTabNote);
 
     // function increase textarea
     this.view.bindInputBreakDown();
@@ -34,6 +34,9 @@ export default class NoteController {
 
     // function render trash notes
     this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup);
+
+    // function show Empty Note if note is empty
+    this.view.showHideEmpty(listTrash, 'trashNotes');
   };
 
   renderTabNote = async () => {
@@ -46,18 +49,22 @@ export default class NoteController {
 
     // function render list notes
     this.view.renderListNotes(listNotes, handlers);
+
+    // function show Empty Note if note is empty
+    this.view.showHideEmpty(listNotes, 'listNotes');
   };
 
-  handleConfirmPopup = (index) => {
-    const note = this.model.findNote(index);
+  handleConfirmPopup = async (index) => {
+    const note = await this.model.findNote(index);
     // function render confirm message
     this.view.renderConfirmMessage(note);
 
-    // function close and remove trash
+    // function close popup
     this.view.bindClosePopup();
 
-    this.view.bindDeleteTrashNoteInPopup((id) => {
-      const noteItem = this.model.deleteNoteInTrash(id);
+    // function delete trash forever
+    this.view.bindDeleteNoteInTrash(async (id) => {
+      const noteItem = await this.model.deleteNoteInTrash(id);
       this.view.constructor.removeNoteElement(noteItem.id);
     });
   };
@@ -68,8 +75,8 @@ export default class NoteController {
    * @param {String} title is title from input
    * @param {String} description is description from input
    */
-  addNote = (title, description) => {
-    const note = this.model.addNote(title, description);
+  addNote = async (title, description) => {
+    const note = await this.model.addNote(title, description);
 
     this.view.renderNote(note, this.deleteNote, this.findNote);
   };
@@ -79,8 +86,8 @@ export default class NoteController {
    *
    * @param {String} index is index of note
    */
-  deleteNote = (index) => {
-    const note = this.model.deleteNote(index);
+  deleteNote = async (index) => {
+    const note = await this.model.deleteNote(index);
 
     this.view.constructor.removeNoteElement(note.id);
   };
@@ -92,8 +99,8 @@ export default class NoteController {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  editNote = (id, title, description) => {
-    const note = this.model.editNote(id, title, description);
+  editNote = async (id, title, description) => {
+    const note = await this.model.editNote(id, title, description);
 
     this.view.constructor.editNote(note.id, note.title, note.description);
   };
@@ -103,8 +110,8 @@ export default class NoteController {
    *
    * @param {String} id is a id of note
    */
-  findNote = (id) => {
-    const note = this.model.findNote(id);
+  findNote = async (id) => {
+    const note = await this.model.findNote(id);
 
     const handlers = {
       handleEditNote: this.editNote,
