@@ -250,7 +250,7 @@ export default class ListNoteView {
       if (note.id === id) {
         const titleElement = note.querySelector('.note-title');
         const descriptionElement = note.querySelector('.note-description');
-        const emptyNoteElement = selectDOMClass('.note-content .note-empty');
+        const emptyNoteElement = note.querySelector('.note-content .note-empty');
 
         if (!title && !description) {
           emptyNoteElement.classList.remove('hide');
@@ -508,9 +508,14 @@ export default class ListNoteView {
     buttonDelete.addEventListener('click', (e) => {
       e.stopPropagation();
       const id = e.target.getAttribute('data-id');
+      const listNotes = selectDOMClass('.list-notes');
+
       deleteNote(id);
+
       this.noteOverlay.innerHTML = '';
-      this.listNotesEmpty.classList.remove('hide');
+      if (listNotes.childNodes.length === 1) {
+        this.listNotesEmpty.classList.remove('hide');
+      }
     });
   }
 
