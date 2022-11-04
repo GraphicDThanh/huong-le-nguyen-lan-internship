@@ -12,11 +12,12 @@ export default class NoteController {
   }
 
   init() {
-    this.renderAllNotes();
+    this.bindEvents();
   }
 
-  renderAllNotes = () => {
-    this.listEvents();
+  bindEvents = () => {
+    // function change page
+    this.view.changePage(this.renderTabTrash, this.renderTabNote);
 
     // function increase textarea
     this.view.bindInputBreakDown();
@@ -28,20 +29,37 @@ export default class NoteController {
     this.view.bindDeleteListNotes(this.deleteNote);
   };
 
-  listEvents = () => {
-    const listNotes = this.model.filterListNotes();
+  renderTabTrash = async () => {
+    const listTrash = await this.model.filterNotes('trashNotes');
+
+    // function render trash notes
+    this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup);
+  };
+
+  renderTabNote = async () => {
+    const handlers = {
+      handleDeleteNote: this.deleteNote,
+      handleShowNoteForm: this.findNote,
+    };
+
+    const listNotes = await this.model.filterNotes('listNotes');
 
     // function render list notes
-    this.view.renderListNotes(listNotes);
+    this.view.renderListNotes(listNotes, handlers);
+  };
 
-    // function show header
-    this.view.bindShowHeader();
+  handleConfirmPopup = (index) => {
+    const note = this.model.findNote(index);
+    // function render confirm message
+    this.view.renderConfirmMessage(note);
 
-    // function show note form
-    this.view.constructor.showNoteForm(this.findNote);
+    // function close and remove trash
+    this.view.bindClosePopup();
 
-    // function delete
-    this.view.constructor.bindDeleteNotes(this.deleteNote);
+    this.view.bindDeleteTrashNoteInPopup((id) => {
+      const noteItem = this.model.deleteNoteInTrash(id);
+      this.view.constructor.removeNoteElement(noteItem.id);
+    });
   };
 
   /**
@@ -51,8 +69,9 @@ export default class NoteController {
    * @param {String} description is description from input
    */
   addNote = (title, description) => {
-    this.model.addNote(title, description);
-    this.listEvents();
+    const note = this.model.addNote(title, description);
+
+    this.view.renderNote(note, this.deleteNote, this.findNote);
   };
 
   /**
@@ -61,8 +80,9 @@ export default class NoteController {
    * @param {String} index is index of note
    */
   deleteNote = (index) => {
-    this.model.deleteNote(index);
-    this.listEvents();
+    const note = this.model.deleteNote(index);
+
+    this.view.constructor.removeNoteElement(note.id);
   };
 
   /**
@@ -73,8 +93,9 @@ export default class NoteController {
    * @param {String} description is description of note
    */
   editNote = (id, title, description) => {
-    this.model.editNote(id, title, description);
-    this.listEvents();
+    const note = this.model.editNote(id, title, description);
+
+    this.view.constructor.editNote(note.id, note.title, note.description);
   };
 
   /**
@@ -84,16 +105,13 @@ export default class NoteController {
    */
   findNote = (id) => {
     const note = this.model.findNote(id);
+
+    const handlers = {
+      handleEditNote: this.editNote,
+      handleDeleteNote: this.deleteNote,
+    };
+
     // function render form note
-    this.view.renderFormNote(note);
-
-    // function input break down of form note
-    this.view.constructor.inputBreakDownNoteForm();
-
-    // function save form note by click out or button close
-    this.view.saveNoteForm(this.editNote);
-
-    // function delete note
-    this.view.deleteNoteForm(this.deleteNote);
+    this.view.renderFormNote(note, handlers);
   };
 }

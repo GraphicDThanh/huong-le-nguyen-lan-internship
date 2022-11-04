@@ -11,6 +11,10 @@
 }
 
 .nav .nav-item:hover {
+  background-color: var(--secondary-color);
+}
+
+.menu-color {
   background-color: var(--primary-color);
 }
 
