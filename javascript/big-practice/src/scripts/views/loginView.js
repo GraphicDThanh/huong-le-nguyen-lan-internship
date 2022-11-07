@@ -1,5 +1,6 @@
 import { selectDOMById, selectDOMClass } from '../utils/querySelectDOM';
 import { EMAIL, PASSWORD } from '../constants/message';
+import hideError from '../utils/hideError';
 
 export default class LoginView {
   constructor() {
@@ -54,7 +55,7 @@ export default class LoginView {
     const isRules = LoginView.isRules(infoEmail, this.rulesEmail, EMAIL.EMAIL_VALID);
     const isEmpty = LoginView.isEmpty(infoEmail, EMAIL.EMAIL_EMPTY);
     if (!isRules && !isEmpty) {
-      LoginView.hideError(this.emailElement);
+      hideError(this.emailElement);
     }
   }
 
@@ -77,7 +78,7 @@ export default class LoginView {
     const isLength = LoginView.isLength(infoPassword, PASSWORD.PASSWORD_LENGTH);
     const isEmpty = LoginView.isEmpty(infoPassword, PASSWORD.PASSWORD_EMPTY);
     if (!isRules && !isEmpty && !isLength) {
-      LoginView.hideError(this.passwordElement);
+      hideError(this.passwordElement);
     }
   }
 
@@ -192,19 +193,5 @@ export default class LoginView {
     }
 
     return isError;
-  }
-
-  /**
-   * @description function hide error
-   *
-   * @param {Object} element of input
-   */
-  static hideError(element) {
-    const error = element.parentElement.querySelector('.message .message-error');
-    const errorIcon = element.parentElement.querySelector('.message .error-icon');
-
-    error.innerText = '';
-    errorIcon.classList.add('hide');
-    element.classList.remove('valid');
   }
 }

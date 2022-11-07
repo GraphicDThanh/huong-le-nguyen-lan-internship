@@ -19,7 +19,7 @@ const authenticationController = new AuthenticationController(loginModel, loginV
 (() => {
   const page = document.body.className;
 
-  if (page === 'loginPage') {
+  if (page === 'login-page') {
     authenticationController.init();
   } else {
     listNoteController.init();

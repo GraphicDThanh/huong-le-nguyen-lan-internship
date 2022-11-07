@@ -1,67 +1,74 @@
 {
   "notes": [
     {
-      "id": "1667272636423",
-      "title": "",
-      "description": "asd",
-      "isTrash": false,
-      "owner": 1
-    },
-    {
-      "id": "1667275212353",
-      "title": "",
-      "description": "asd",
-      "isTrash": true,
-      "owner": 1
-    },
-    {
-      "id": "1667275270559",
-      "title": "@@@@",
-      "description": "123",
-      "isTrash": false,
-      "owner": 1
-    },
-    {
       "id": "1667275288244",
       "title": "",
       "description": "asd",
       "isTrash": false,
-      "owner": 2
+      "ownerId": 2
     },
     {
       "id": "1667275682680",
       "title": "",
       "description": "asd",
       "isTrash": true,
-      "owner": 2
+      "ownerId": 2
     },
     {
       "id": "1667275685974",
       "title": "",
       "description": "@@@",
       "isTrash": false,
-      "owner": 2
+      "ownerId": 2
+    },
+    {
+      "id": "1667787177388",
+      "title": "",
+      "description": "ád",
+      "isTrash": true,
+      "owner": 1
+    },
+    {
+      "id": "1667791415371",
+      "title": "",
+      "description": "ád",
+      "isTrash": false,
+      "owner": 1
+    },
+    {
+      "id": "1667791417343",
+      "title": "",
+      "description": "ádasd1231",
+      "isTrash": true,
+      "owner": 1
+    },
+    {
+      "id": "1667791425412",
+      "title": "",
+      "description": "123",
+      "isTrash": false,
+      "owner": 1
     }
   ],
   "users": [
     {
       "id": 1,
-      "username": "huong@gmail.com",
+      "email": "huong@gmail.com",
       "password": "taeyeon27"
     },
     {
       "id": 2,
-      "username": "lan@gmail.com",
+      "email": "lan@gmail.com",
       "password": "adadad1"
     },
     {
       "id": 3,
-      "username": "abc@gmail.com",
+      "email": "abc@gmail.com",
       "password": "adadad1"
     },
     {
       "id": 4,
-      "username": "lanhuong@gmail.com",
+      "email": "lanhuong@gmail.com",
       "password": "adadad1"
     }
   ]
