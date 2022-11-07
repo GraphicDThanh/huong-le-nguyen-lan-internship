@@ -95,7 +95,7 @@
   position: relative;
 }
 
-.menu-user-hidden {
+.menu-user {
   position: absolute;
   right: 10px;
   top: 42px;
@@ -113,12 +113,12 @@
   align-items: center;
 }
 
-.menu-user-hidden .avatar-user img {
+.menu-user .avatar-user img {
   width: 80px;
   height: 80px;
 }
 
-.menu-user-hidden .menu-username {
+.menu-user .menu-user-email {
   font-family: var(--font-regular), var(--font-default);
   padding: 15px 0;
 }
