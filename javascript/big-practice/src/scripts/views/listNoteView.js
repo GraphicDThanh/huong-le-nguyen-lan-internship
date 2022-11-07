@@ -39,17 +39,17 @@ export default class ListNoteView {
     this.listNotesEmpty = selectDOMClass('.list-notes-empty-content');
     this.listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
 
-    this.menuHidden = selectDOMClass('.menu-user-hidden');
+    this.menuHidden = selectDOMClass('.menu-user');
     this.avatarUser = selectDOMClass('.avatar-user-cover');
     this.menuHiddenLogIn = selectDOMClass('.btn-login');
     this.menuHiddenLogOut = selectDOMClass('.btn-logout');
-    this.menuUsername = selectDOMClass('.menu-username');
+    this.menuUsername = selectDOMClass('.menu-user-email');
   }
 
   /**
    * @description function show hide menu hidden
    */
-  bindShowMenuHidden() {
+  bindShowMenuUser() {
     this.avatarUser.addEventListener('click', () => {
       if (this.menuHidden.classList.contains('hide')) {
         this.menuHidden.classList.remove('hide');
@@ -57,7 +57,7 @@ export default class ListNoteView {
         this.menuHidden.classList.add('hide');
       }
 
-      if (localStorage.getItem(STORAGE_KEYS.ID)) {
+      if (localStorage.getItem(STORAGE_KEYS.USER_ID)) {
         this.menuHiddenLogOut.classList.remove('hide');
         this.menuHiddenLogIn.classList.add('hide');
       } else {
@@ -74,7 +74,7 @@ export default class ListNoteView {
     this.menuHiddenLogOut.addEventListener('click', () => {
       window.location.href = 'login.html';
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      LocalStorage.removeItems(STORAGE_KEYS.ID);
+      LocalStorage.removeItems(STORAGE_KEYS.USER_ID);
     });
   }
 
@@ -85,18 +85,18 @@ export default class ListNoteView {
     this.menuHiddenLogIn.addEventListener('click', () => {
       window.location.href = 'login.html';
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      LocalStorage.setItems(STORAGE_KEYS.ID);
+      LocalStorage.setItems(STORAGE_KEYS.USER_ID);
     });
   }
 
   /**
-   * @description set username to menu user
+   * @description set email to menu user
    *
-   * @param {String} username is username of user take from data
+   * @param {String} email is email of user take from data
    */
-  showUsername(username) {
-    if (username) {
-      this.menuUsername.textContent = username;
+  showUsername(email) {
+    if (email) {
+      this.menuUsername.textContent = email;
     } else {
       this.menuUsername.textContent = 'Unknown';
     }
@@ -422,6 +422,7 @@ export default class ListNoteView {
     listIconCheck.addEventListener('click', (e) => {
       e.preventDefault();
       const selectedElement = e.target.parentElement.classList.contains('selected');
+
       if (!selectedElement) {
         this.headerAfterSelect.style.transform = 'translateY(-100%)';
         e.target.parentElement.classList.add('selected');
@@ -505,6 +506,7 @@ export default class ListNoteView {
    */
   bindDeleteNoteForm(deleteNote) {
     const buttonDelete = selectDOMClass('.note-form-overlay .btn-delete-form');
+
     buttonDelete.addEventListener('click', (e) => {
       e.stopPropagation();
       const id = e.target.getAttribute('data-id');
@@ -535,6 +537,7 @@ export default class ListNoteView {
     if (title || description) {
       handler(title, description);
       this.formElement.reset();
+      this.listNotesEmpty.classList.add('hide');
     }
   }
 
@@ -551,7 +554,6 @@ export default class ListNoteView {
 
     this.closeButtonElement.addEventListener('click', () => {
       this.addNewNote(handler);
-      this.listNotesEmpty.classList.add('hide');
     });
   }
 

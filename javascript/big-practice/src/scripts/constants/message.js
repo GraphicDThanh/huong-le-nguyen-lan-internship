@@ -22,4 +22,9 @@ const PASSWORD = {
   PASSWORD_INCORRECT: 'Password incorrect',
 };
 
-export { EMAIL, PASSWORD, POPUP_MESSAGE, API_MESSAGE };
+export {
+  EMAIL,
+  PASSWORD,
+  POPUP_MESSAGE,
+  API_MESSAGE,
+};

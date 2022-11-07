@@ -31,7 +31,7 @@ export default class NoteController {
     this.view.bindDeleteListNotes(this.deleteNote);
 
     // function show hide menu hidden
-    this.view.bindShowMenuHidden();
+    this.view.bindShowMenuUser();
 
     // function logout user
     this.view.bindLogOut();
