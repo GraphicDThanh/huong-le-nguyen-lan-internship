@@ -11,7 +11,7 @@ export default class AuthenticationController {
   }
 
   async checkUser(email, password) {
-    const message = this.model.constructor.checkUserByEmail(email, password);
-    this.view.isUser(await message);
+    const message = await this.model.constructor.checkUserByEmail(email, password);
+    this.view.checkUser(message);
   }
 }

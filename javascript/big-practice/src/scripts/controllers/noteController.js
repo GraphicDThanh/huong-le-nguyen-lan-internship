@@ -1,4 +1,4 @@
-import LoginModel from '../models/loginModel';
+import AuthenticationModel from '../models/authenticationModel';
 
 /**
  * @class noteController
@@ -84,8 +84,8 @@ export default class NoteController {
   };
 
   getUser = async () => {
-    const user = await LoginModel.findUsernameById();
-    this.view.showUsername(user);
+    const email = await AuthenticationModel.findUsernameById();
+    this.view.showInformationUser(email);
   };
 
   /**
