@@ -2,19 +2,19 @@ import ListNoteView from './views/listNoteView';
 import ListNoteModel from './models/listNoteModel';
 import NoteController from './controllers/noteController';
 import AuthenticationController from './controllers/authenticationController';
-import LoginModel from './models/loginModel';
+import AuthenticationModel from './models/authenticationModel';
 import LoginView from './views/loginView';
 
 const listNoteModel = new ListNoteModel();
 
 const listNoteView = new ListNoteView();
 
-const loginModel = new LoginModel();
+const authenticationModel = new AuthenticationModel();
 
 const loginView = new LoginView();
 
 const listNoteController = new NoteController(listNoteModel, listNoteView);
-const authenticationController = new AuthenticationController(loginModel, loginView);
+const authenticationController = new AuthenticationController(authenticationModel, loginView);
 
 (() => {
   const page = document.body.className;

@@ -18,8 +18,8 @@ export const getUserByUsername = async (email) => {
 
     return users;
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.GET} ${error}`;
+    throw message;
   }
 };
 
@@ -30,15 +30,15 @@ export const getUserByUsername = async (email) => {
  *
  * @returns {Object} user
  */
-export const getUsersById = async (id) => {
+export const getUserById = async (id) => {
   try {
     const response = await fetch(`${usersURL}/${id}`);
     const users = await response.json();
 
     return users;
   } catch (error) {
-    console.error(error);
-    throw error;
+    const message = `${API_MESSAGE.GET} ${error}`;
+    throw message;
   }
 };
 

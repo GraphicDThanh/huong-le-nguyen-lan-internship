@@ -94,7 +94,7 @@ export default class ListNoteView {
    *
    * @param {String} email is email of user take from data
    */
-  showUsername(email) {
+  showInformationUser(email) {
     if (email) {
       this.menuUsername.textContent = email;
     } else {
