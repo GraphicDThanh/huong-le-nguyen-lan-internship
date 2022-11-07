@@ -26,28 +26,21 @@
       "title": "",
       "description": "ád",
       "isTrash": true,
-      "owner": 1
+      "ownerId": 1
     },
     {
       "id": "1667791415371",
       "title": "",
       "description": "ád",
-      "isTrash": false,
-      "owner": 1
-    },
-    {
-      "id": "1667791417343",
-      "title": "",
-      "description": "ádasd1231",
       "isTrash": true,
-      "owner": 1
+      "ownerId": 1
     },
     {
       "id": "1667791425412",
       "title": "",
       "description": "123",
       "isTrash": false,
-      "owner": 1
+      "ownerId": 1
     }
   ],
   "users": [
@@ -59,17 +52,17 @@
     {
       "id": 2,
       "email": "lan@gmail.com",
-      "password": "adadad1"
+      "password": "lanhuong142002"
     },
     {
       "id": 3,
       "email": "abc@gmail.com",
-      "password": "adadad1"
+      "password": "lanhuong142002"
     },
     {
       "id": 4,
       "email": "lanhuong@gmail.com",
-      "password": "adadad1"
+      "password": "lanhuong142002"
     }
   ]
 }

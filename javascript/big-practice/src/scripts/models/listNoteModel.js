@@ -44,7 +44,7 @@ export default class ListNoteModel {
     if (username) {
       const noteItem = {
         ...patternNote,
-        owner: username,
+        ownerId: username,
       };
       note = noteItem;
 
