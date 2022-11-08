@@ -1,7 +1,6 @@
 import { getUserByUsername, getUserById } from '../utils/fetchAPI';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
-import { ERROR_MESSAGE } from '../constants/message';
 
 export default class AuthenticationModel {
   /**
@@ -13,20 +12,24 @@ export default class AuthenticationModel {
    * @returns {String} message
    */
   static async checkUserByEmail(email, password) {
-    const users = await getUserByUsername(email);
-    let message;
+    const user = await getUserByUsername(email);
+    let isEmail;
+    let isPassword;
 
-    if (users.length) {
-      if (users[0].password === password) {
-        LocalStorage.setItems(STORAGE_KEYS.USER_ID, users[0].id);
+    if (user.length) {
+      if (user[0].password === password) {
+        LocalStorage.setItems(STORAGE_KEYS.USER_ID, user[0].id);
+        isPassword = true;
       } else {
-        message = ERROR_MESSAGE.PASSWORD_INCORRECT;
+        isPassword = false;
       }
+
+      isEmail = true;
     } else {
-      message = ERROR_MESSAGE.EMAIL_NOT_EXISTS;
+      isEmail = false;
     }
 
-    return message;
+    return { isEmail, isPassword };
   }
 
   /**

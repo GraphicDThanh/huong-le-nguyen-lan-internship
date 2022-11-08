@@ -1,5 +1,5 @@
 const URL_API = {
-  URL: 'http://localhost:3000',
+  BASE_URL: 'http://localhost:3000',
   USERS_URL: '/users',
   NOTES_URL: '/notes',
 };

@@ -1,8 +1,8 @@
 import { API_MESSAGE } from '../constants/message';
 import URL_API from '../constants/apiUrl';
 
-const notesURL = `${URL_API.URL}${URL_API.NOTES_URL}`;
-const usersURL = `${URL_API.URL}${URL_API.USERS_URL}`;
+const notesURL = `${URL_API.BASE_URL}${URL_API.NOTES_URL}`;
+const usersURL = `${URL_API.BASE_URL}${URL_API.USERS_URL}`;
 
 /**
  * @description function get list notes with email of user

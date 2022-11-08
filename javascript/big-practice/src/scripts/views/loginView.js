@@ -31,21 +31,21 @@ export default class LoginView {
    *
    * @param {*} message is error message of each field
    */
-  checkUser(message) {
-    if (message === ERROR_MESSAGE.PASSWORD_INCORRECT) {
-      showError(this.passwordElement, message);
+  checkUser(isErrors) {
+    if (!isErrors.isPassword) {
+      showError(this.passwordElement, ERROR_MESSAGE.PASSWORD_INCORRECT);
     } else {
       hideError(this.passwordElement);
     }
 
-    if (message === ERROR_MESSAGE.EMAIL_NOT_EXISTS) {
-      showError(this.emailElement, message);
+    if (!isErrors.isEmail) {
+      showError(this.emailElement, ERROR_MESSAGE.EMAIL_NOT_EXISTS);
     } else {
       hideError(this.emailElement);
     }
 
     if (!this.emailElement.classList.contains('valid') && !this.passwordElement.classList.contains('valid')) {
-      window.location.replace('index.html');
+      window.location.href = 'index.html';
     }
   }
 }
