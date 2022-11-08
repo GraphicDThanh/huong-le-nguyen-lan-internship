@@ -5,7 +5,7 @@
   padding: 35px 0 100px 30px;
 }
 
-.form-input {
+.form-control {
   display: flex;
   justify-content: center;
 }
@@ -19,9 +19,11 @@
   }
 }
 
-.list-notes {
-  width: 95%;
+.list-cover {
   padding-top: 50px;
+}
+
+.list-notes {
   display: grid;
   grid-template-columns: repeat(6, 240px);
   align-items: baseline;

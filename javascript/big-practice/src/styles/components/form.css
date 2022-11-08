@@ -87,20 +87,15 @@
   flex-direction: column;
 }
 
-.form-cover input {
+.form-input {
   padding: 15px;
   outline: none;
   border: 1px solid var(--fade-color);
   border-radius: 5px;
 }
 
-.form-cover input:focus {
+.form-input:focus {
   border-color: var(--info-color);
-}
-
-.form-cover .valid {
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-  border-color: var(--danger-color);
 }
 
 .form-button {
@@ -120,7 +115,6 @@
 }
 
 .form-button .btn:hover {
-  color: var(--light-color);
   background-color: var(--info-color-darker);
 }
 
@@ -143,4 +137,9 @@
   width: 15px;
   height: 15px;
   vertical-align: bottom;
+}
+
+.valid {
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border-color: var(--danger-color);
 }
