@@ -29,16 +29,16 @@ export default class LoginView {
   /**
    * @description function check email and password are exists in data
    *
-   * @param {Object} isErrors include isEmail and isPassword
+   * @param {Object} isValid include isEmail and isPassword
    */
-  handleInvalidUser(isErrors) {
-    if (!isErrors.isPassword) {
+  handleInvalidUser(isValid) {
+    if (!isValid.isPassword) {
       showError(this.passwordElement, ERROR_MESSAGE.PASSWORD_INCORRECT);
     } else {
       hideError(this.passwordElement);
     }
 
-    if (!isErrors.isEmail) {
+    if (!isValid.isEmail) {
       showError(this.emailElement, ERROR_MESSAGE.EMAIL_NOT_EXISTS);
     } else {
       hideError(this.emailElement);
