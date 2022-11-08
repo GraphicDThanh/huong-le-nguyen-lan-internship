@@ -40,23 +40,29 @@
   height: 15px;
 }
 
-.icon-logo-cover {
+.icon-logo {
   display: flex;
   align-items: center;
   padding: 0 90px 0 40px;
   padding-right: 90px;
 }
 
-.icon-logo-cover span {
+.icon-logo span {
   font-family: var(--font-logo), var(--font-default);
   color: var(--text-fade-color);
   font-size: 22px;
 }
 
-.icon-logo-cover img {
+.icon-logo-cover {
   height: 40px;
   width: 40px;
 }
+
+.icon-logo-cover img {
+  width: 100%;
+  height: 100%;
+}
+
 
 .form-search {
   width: 700px;
@@ -140,13 +146,15 @@
 }
 
 .avatar-user-cover {
+  width: 32px;
+  height: 32px;
   cursor: pointer;
   padding-right: 20px;
 }
 
 .avatar-user-cover .avatar-user {
-  width: 32px;
-  height: 32px;
+  width: 100%;
+  height: 100%;
 }
 
 .header-after-select {
