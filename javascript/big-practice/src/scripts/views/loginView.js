@@ -32,19 +32,14 @@ export default class LoginView {
    * @param {*} message is error message of each field
    */
   checkUser(message) {
-    const errorEmail = this.emailElement.parentElement.querySelector('.message .message-error');
-    const errorPassword = this.passwordElement.parentElement.querySelector('.message .message-error');
-
     if (message === ERROR_MESSAGE.PASSWORD_INCORRECT) {
-      errorPassword.textContent = message;
-      showError(this.passwordElement);
+      showError(this.passwordElement, message);
     } else {
       hideError(this.passwordElement);
     }
 
     if (message === ERROR_MESSAGE.EMAIL_NOT_EXISTS) {
-      errorEmail.textContent = message;
-      showError(this.emailElement);
+      showError(this.emailElement, message);
     } else {
       hideError(this.emailElement);
     }
