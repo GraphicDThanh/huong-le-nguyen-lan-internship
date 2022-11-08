@@ -457,6 +457,8 @@ export default class ListNoteView {
       const title = selectDOMClass('.note-form-overlay .note-title');
       const description = selectDOMClass('.note-form-overlay .note-description');
 
+      ElementHelpers.showInputBreakDown(title);
+      ElementHelpers.showInputBreakDown(description);
       EventHelpers.stopEvents(title);
       EventHelpers.stopEvents(description);
     });

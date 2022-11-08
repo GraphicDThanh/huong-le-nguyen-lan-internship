@@ -1,20 +1,24 @@
 export default class ElementHelpers {
   /**
-   * @description common events of textarea to increase the length
-   * @param {Object} element is title and description element
+   * @description function show textarea height base on
+   * length of text
+   *
+   * @param {Object} el is element textarea
    */
-  static commonInputBreakDown(element) {
-    element.addEventListener('input', () => {
-      this.inputBreakDown(element);
-    });
+  static showInputBreakDown(el) {
+    const element = el;
+    element.style.height = `${element.scrollHeight}px`;
   }
 
   /**
-   * @description function increase the length of the textarea by the length of the text
-   * @param {Object} e is a event
+   * @description common events of textarea to increase the length
+   * @param {Object} el is element textarea
    */
-  static inputBreakDown(e) {
-    e.style.height = '1px';
-    e.style.height = `${e.scrollHeight < '250' ? e.scrollHeight : '250'}px`;
+  static commonInputBreakDown(el) {
+    const element = el;
+    element.addEventListener('input', () => {
+      element.style.height = '1px';
+      element.style.height = `${element.scrollHeight < '250' ? element.scrollHeight : '250'}px`;
+    });
   }
 }
