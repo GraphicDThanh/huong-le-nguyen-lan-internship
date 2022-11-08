@@ -466,20 +466,6 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function edit note
-   *
-   * @param {function} editNote is function transmitted from model
-   */
-  editNoteForm(editNote) {
-    const formNoteId = selectDOMClass('.note-form-overlay').id;
-    const titleCurrent = selectDOMClass('.note-form-overlay .note-title').value;
-    const descriptionCurrent = selectDOMClass('.note-form-overlay .note-description').value;
-
-    editNote(formNoteId, titleCurrent, descriptionCurrent);
-    this.noteOverlay.innerHTML = '';
-  }
-
-  /**
    * @description function close and save form note when click button close
    *
    * @param {function} editNote is function transmitted from model
@@ -487,15 +473,30 @@ export default class ListNoteView {
   bindSaveNoteForm(editNote) {
     const closeBtn = selectDOMClass('.note-form-overlay .btn-close');
     const overlay = selectDOMClass('.overlay');
+    const formElement = selectDOMClass('.note-form-overlay');
+    const formNoteId = formElement.id;
 
-    closeBtn.addEventListener('click', (e) => {
+    EventHelpers.stopEvents(closeBtn);
+    EventHelpers.stopEvents(formElement);
+
+    formElement.addEventListener('submit', (e) => {
       e.stopPropagation();
+      e.preventDefault();
 
-      this.editNoteForm(editNote);
+      const formData = new FormData(formElement);
+      const title = formData.get('title');
+      const description = formData.get('description');
+
+      editNote(formNoteId, title, description);
+      this.noteOverlay.innerHTML = '';
     });
 
     overlay.addEventListener('click', () => {
-      this.editNoteForm(editNote);
+      const title = selectDOMClass('.note-form-overlay .note-title').value;
+      const description = selectDOMClass('.note-form-overlay .note-description').value;
+
+      editNote(formNoteId, title, description);
+      this.noteOverlay.innerHTML = '';
     });
   }
 
@@ -522,38 +523,35 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function add element note and hide input after adding
-   *
-   * @param {function} handler is a function with 2 values are
-   *  title and description
+   * @description function events to show input form
    */
-  addNewNote(handler) {
-    const title = selectDOMClass('.note-title').value;
-    const description = selectDOMClass('.note-description').value;
-
-    this.formUtilitiesElement.classList.add('hide');
-    this.formTitleElement.classList.add('hide');
-
-    if (title || description) {
-      handler(title, description);
-      this.formElement.reset();
-      this.listNotesEmpty.classList.add('hide');
-    }
-  }
-
-  /**
-   * @description function events to show or hide input form
-   *
-   * @param {*} handler is a function add transmitted from from the model
-   */
-  bindShowInput(handler) {
+  bindShowInput() {
     this.inputAddElement.addEventListener('focus', () => {
       this.formUtilitiesElement.classList.remove('hide');
       this.formTitleElement.classList.remove('hide');
     });
+  }
 
-    this.closeButtonElement.addEventListener('click', () => {
-      this.addNewNote(handler);
+  /**
+   * @description function add new note and hide input form
+   *
+   * @param {function} handler is function transmitted from model
+   */
+  bindAddNote(handler) {
+    this.formElement.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(this.formElement);
+      const title = formData.get('title');
+      const description = formData.get('description');
+
+      this.formUtilitiesElement.classList.add('hide');
+      this.formTitleElement.classList.add('hide');
+
+      if (title || description) {
+        handler(title, description);
+        this.formElement.reset();
+        this.listNotesEmpty.classList.add('hide');
+      }
     });
   }
 

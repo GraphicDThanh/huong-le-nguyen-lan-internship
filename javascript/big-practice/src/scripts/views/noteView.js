@@ -51,14 +51,14 @@ export default class NoteView {
       <form class="form-note note-form-overlay" id="${note.id}">
         <div class="form-title">
           <div class="form-group">
-            <textarea class="input-note note-title" rows="1" placeholder="Title">${note.title}</textarea>
+            <textarea name="title" class="input-note note-title" rows="1" placeholder="Title">${note.title}</textarea>
             <figure class="icon-pin-cover">
               <img src="${iconPin}" alt="icon pin">
             </figure>
           </div>
         </div>
         <div class="form-group">
-          <textarea class="input-note note-description" rows="1" placeholder="Take a note...">${note.description}</textarea>
+          <textarea name="description" class="input-note note-description" rows="1" placeholder="Take a note...">${note.description}</textarea>
         </div>
         <div class="form-utilities">
           <div class="form-group">
@@ -67,7 +67,7 @@ export default class NoteView {
             </div>
             <div class="form-buttons">
               <button class="btn btn-delete-form" type="button" data-id="${note.id}">Delete</button>
-              <button class="btn btn-close" type="button" data-id="${note.id}">Close</button>
+              <button class="btn btn-close" type="submit" data-id="${note.id}">Close</button>
             </div>
           </div>
         </div>

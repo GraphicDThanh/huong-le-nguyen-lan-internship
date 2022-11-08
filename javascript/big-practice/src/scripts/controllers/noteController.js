@@ -25,7 +25,10 @@ export default class NoteController {
     this.view.bindInputBreakDown();
 
     // function show input form
-    this.view.bindShowInput(this.addNote);
+    this.view.bindShowInput();
+
+    // function add new note
+    this.view.bindAddNote(this.addNote);
 
     // function delete list notes
     this.view.bindDeleteListNotes(this.deleteNote);
