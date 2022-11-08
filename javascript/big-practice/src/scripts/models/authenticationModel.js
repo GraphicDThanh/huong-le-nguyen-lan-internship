@@ -14,20 +14,16 @@ export default class AuthenticationModel {
    */
   static async verifyCredential(email, password) {
     const user = await getUserByUsername(email);
-    let isEmail;
-    let isPassword;
+    let isEmail = false;
+    let isPassword = false;
 
     if (user.length) {
       if (user[0].password === password) {
         LocalStorage.setItems(STORAGE_KEYS.USER_ID, user[0].id);
         isPassword = true;
-      } else {
-        isPassword = false;
       }
 
       isEmail = true;
-    } else {
-      isEmail = false;
     }
 
     return { isEmail, isPassword };

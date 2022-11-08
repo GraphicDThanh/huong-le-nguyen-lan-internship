@@ -291,7 +291,7 @@ export default class ListNoteView {
   /**
    * @description function render confirm message
    *
-   * @param {Object} note is a note
+   * @param {Object} note is a note take from data
    */
   renderConfirmMessage(note) {
     const noteItem = {
@@ -309,7 +309,7 @@ export default class ListNoteView {
   /**
    * @description render form note of each note
    *
-   * @param {Object} note is a note
+   * @param {Object} note is a note take from data
    * @param {Object} handlers is a list of function
    */
   renderFormNote(note, handlers) {
@@ -423,14 +423,12 @@ export default class ListNoteView {
       const selectedElement = e.target.parentElement.classList.contains('selected');
 
       if (!selectedElement) {
-        this.headerAfterSelect.style.transform = 'translateY(-100%)';
         e.target.parentElement.classList.add('selected');
         const listSelected = selectDOMClassAll('.selected');
-
         countNotesSelected.innerHTML = `${listSelected.length} Selected`;
+        this.headerAfterSelect.style.transform = 'translateY(-100%)';
       } else {
         e.target.parentElement.classList.remove('selected');
-
         const listSelected = selectDOMClassAll('.selected');
         countNotesSelected.innerHTML = `${listSelected.length} Selected`;
       }

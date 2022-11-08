@@ -29,9 +29,9 @@ export default class LoginView {
   /**
    * @description function check email and password are exists in data
    *
-   * @param {*} message is error message of each field
+   * @param {Object} isErrors include isEmail and isPassword
    */
-  checkUser(isErrors) {
+  handleInvalidUser(isErrors) {
     if (!isErrors.isPassword) {
       showError(this.passwordElement, ERROR_MESSAGE.PASSWORD_INCORRECT);
     } else {

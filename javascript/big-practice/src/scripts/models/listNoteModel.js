@@ -32,7 +32,7 @@ export default class ListNoteModel {
    * @returns {Object} note
    */
   async addNote(title, description) {
-    let note;
+    let note = {};
     const userId = LocalStorage.getItems(STORAGE_KEYS.USER_ID);
     const patternNote = {
       id: new Date().getTime().toString(),
@@ -67,7 +67,7 @@ export default class ListNoteModel {
    * @returns {Array} listNotes
    */
   async filterNotes(type) {
-    let listNotes;
+    let listNotes = [];
     const userId = LocalStorage.getItems(STORAGE_KEYS.USER_ID);
 
     // This condition filter that we can use this function for trashNotes and listNotes
@@ -104,7 +104,7 @@ export default class ListNoteModel {
    * @return {Object} this.notes[noteIndex]
    */
   async deleteNote(id) {
-    let noteItem;
+    let noteItem = {};
 
     /**
      * This condition check if userId is available in localStorage.
@@ -116,7 +116,6 @@ export default class ListNoteModel {
       this.notes[noteIndex].isTrash = true;
 
       LocalStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
-
       noteItem = this.notes[noteIndex];
     } else {
       noteItem = await getDataById(id);
@@ -136,7 +135,7 @@ export default class ListNoteModel {
    * @return {Object} note
    */
   async deleteNoteInTrash(id) {
-    let noteItem;
+    let noteItem = {};
 
     /**
      * This condition check if userId is available in localStorage.
@@ -165,7 +164,7 @@ export default class ListNoteModel {
    *  @returns {Object} this.notes[noteIndex]
    */
   async findNote(id) {
-    let noteItem;
+    let noteItem = {};
 
     /**
      * This condition check if userId is available in localStorage.
@@ -192,7 +191,7 @@ export default class ListNoteModel {
    * @returns {Object} this.notes[noteIndex]
    */
   async editNote(id, title, description) {
-    let noteItem;
+    let noteItem = {};
 
     /**
      * This condition check if userId is available in localStorage.
