@@ -45,7 +45,7 @@ export default class LoginView {
     }
 
     if (!this.emailElement.classList.contains('valid') && !this.passwordElement.classList.contains('valid')) {
-      window.location.href = 'index.html';
+      window.location.replace('index.html');
     }
   }
 }
