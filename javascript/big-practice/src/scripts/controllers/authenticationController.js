@@ -11,7 +11,7 @@ export default class AuthenticationController {
   }
 
   async checkUser(email, password) {
-    const isErrors = await this.model.constructor.checkUserByEmail(email, password);
+    const isErrors = await this.model.constructor.verifyCredential(email, password);
     this.view.checkUser(isErrors);
   }
 }

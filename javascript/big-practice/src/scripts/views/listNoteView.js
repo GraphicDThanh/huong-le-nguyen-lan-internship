@@ -85,7 +85,6 @@ export default class ListNoteView {
     this.menuHiddenLogIn.addEventListener('click', () => {
       window.location.href = 'login.html';
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      LocalStorage.setItems(STORAGE_KEYS.USER_ID);
     });
   }
 

@@ -4,14 +4,15 @@ import STORAGE_KEYS from '../constants/storageKeys';
 
 export default class AuthenticationModel {
   /**
-   * @description function check email and password is exists in data
+   * @description function get user by email. Check email is available or not
+   * and if user is available it will check password is correct or not
    *
    * @param {String} email is email take from input email login
    * @param {String} password is password take from input password login
    *
-   * @returns {String} message
+   * @returns {Boolean, Boolean} isEmail, isPassword
    */
-  static async checkUserByEmail(email, password) {
+  static async verifyCredential(email, password) {
     const user = await getUserByUsername(email);
     let isEmail;
     let isPassword;
