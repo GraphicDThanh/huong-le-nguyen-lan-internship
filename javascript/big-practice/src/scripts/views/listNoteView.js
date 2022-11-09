@@ -39,11 +39,11 @@ export default class ListNoteView {
     this.listNotesEmpty = selectDOMClass('.list-notes-empty-content');
     this.listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
 
-    this.menuHidden = selectDOMClass('.menu-user');
+    this.menuUser = selectDOMClass('.menu-user');
     this.avatarUser = selectDOMClass('.avatar-user-cover');
-    this.menuHiddenLogIn = selectDOMClass('.btn-login');
-    this.menuHiddenLogOut = selectDOMClass('.btn-logout');
-    this.menuUsername = selectDOMClass('.menu-user-email');
+    this.btnLogin = selectDOMClass('.btn-login');
+    this.btnLogout = selectDOMClass('.btn-logout');
+    this.emailUser = selectDOMClass('.menu-user-email');
   }
 
   /**
@@ -51,18 +51,18 @@ export default class ListNoteView {
    */
   bindShowMenuUser() {
     this.avatarUser.addEventListener('click', () => {
-      if (this.menuHidden.classList.contains('hide')) {
-        this.menuHidden.classList.remove('hide');
+      if (this.menuUser.classList.contains('hide')) {
+        this.menuUser.classList.remove('hide');
       } else {
-        this.menuHidden.classList.add('hide');
+        this.menuUser.classList.add('hide');
       }
 
       if (localStorage.getItem(STORAGE_KEYS.USER_ID)) {
-        this.menuHiddenLogOut.classList.remove('hide');
-        this.menuHiddenLogIn.classList.add('hide');
+        this.btnLogout.classList.remove('hide');
+        this.btnLogin.classList.add('hide');
       } else {
-        this.menuHiddenLogOut.classList.add('hide');
-        this.menuHiddenLogIn.classList.remove('hide');
+        this.btnLogout.classList.add('hide');
+        this.btnLogin.classList.remove('hide');
       }
     });
   }
@@ -71,7 +71,7 @@ export default class ListNoteView {
    * @description function handle logout
    */
   bindLogOut() {
-    this.menuHiddenLogOut.addEventListener('click', () => {
+    this.btnLogout.addEventListener('click', () => {
       window.location.href = 'login.html';
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       LocalStorage.removeItems(STORAGE_KEYS.USER_ID);
@@ -82,7 +82,7 @@ export default class ListNoteView {
    * @function function handle login
    */
   bindLogin() {
-    this.menuHiddenLogIn.addEventListener('click', () => {
+    this.btnLogin.addEventListener('click', () => {
       window.location.href = 'login.html';
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     });
@@ -95,9 +95,9 @@ export default class ListNoteView {
    */
   showInformationUser(email) {
     if (email) {
-      this.menuUsername.textContent = email;
+      this.emailUser.textContent = email;
     } else {
-      this.menuUsername.textContent = 'Unknown';
+      this.emailUser.textContent = 'Unknown';
     }
   }
 
