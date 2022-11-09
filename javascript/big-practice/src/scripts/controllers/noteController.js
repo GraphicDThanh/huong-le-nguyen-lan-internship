@@ -1,3 +1,5 @@
+import AuthenticationModel from '../models/authenticationModel';
+
 /**
  * @class noteController
  * @description Controller is an intermediary for views and models
@@ -23,10 +25,25 @@ export default class NoteController {
     this.view.bindInputBreakDown();
 
     // function show input form
-    this.view.bindShowInput(this.addNote);
+    this.view.bindShowInput();
+
+    // function add new note
+    this.view.bindAddNote(this.addNote);
 
     // function delete list notes
     this.view.bindDeleteListNotes(this.deleteNote);
+
+    // function show hide menu hidden
+    this.view.bindShowMenuUser();
+
+    // function logout user
+    this.view.bindLogOut();
+
+    // function change to login page
+    this.view.bindLogin();
+
+    // function set username to menu user
+    this.getUser();
   };
 
   renderTabTrash = async () => {
@@ -67,6 +84,11 @@ export default class NoteController {
       const noteItem = await this.model.deleteNoteInTrash(id);
       this.view.constructor.removeNoteElement(noteItem.id);
     });
+  };
+
+  getUser = async () => {
+    const email = await AuthenticationModel.findUsernameById();
+    this.view.showInformationUser(email);
   };
 
   /**

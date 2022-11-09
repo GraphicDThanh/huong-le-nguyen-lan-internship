@@ -9,4 +9,13 @@ const API_MESSAGE = {
   PATCH: 'Can\'t update data',
 };
 
-export { POPUP_MESSAGE, API_MESSAGE };
+const ERROR_MESSAGE = {
+  EMAIL_NOT_EXISTS: 'Email is not exists',
+  PASSWORD_INCORRECT: 'Password incorrect',
+};
+
+export {
+  ERROR_MESSAGE,
+  POPUP_MESSAGE,
+  API_MESSAGE,
+};
