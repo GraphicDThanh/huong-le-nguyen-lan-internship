@@ -24,6 +24,8 @@
 
 .icon-menu-cover {
   padding: 13px 12px;
+  width: 20px;
+  height: 15px;
 }
 
 .icon-menu-cover:hover,
@@ -35,25 +37,29 @@
   background-color: var(--hover-utilities-color);
 }
 
-.icon-menu-cover img {
-  width: 20px;
-  height: 15px;
+.icon-menu-cover img,
+.icon-logo-cover img,
+.icon-search-cover img,
+.menu-avatar,
+.avatar-user-cover .avatar-user {
+  width: 100%;
+  height: 100%;
 }
 
-.icon-logo-cover {
+.icon-logo {
   display: flex;
   align-items: center;
   padding: 0 90px 0 40px;
   padding-right: 90px;
 }
 
-.icon-logo-cover span {
+.icon-logo span {
   font-family: var(--font-logo), var(--font-default);
   color: var(--text-fade-color);
   font-size: 22px;
 }
 
-.icon-logo-cover img {
+.icon-logo-cover {
   height: 40px;
   width: 40px;
 }
@@ -72,15 +78,12 @@
 
 .form-search .icon-search-cover {
   padding: 7px 8px;
-}
-
-.form-search .icon-search-cover img {
   width: 18px;
   height: 18px;
 }
 
 .form-search .search {
-  width: 600px;
+  width: 580px;
   font-size: 17px;
   background-color: var(--secondary-color);
   outline: none;
@@ -91,13 +94,59 @@
   padding: 8px;
 }
 
-.avatar-user-cover {
-  padding-right: 20px;
+.header-avatar {
+  position: relative;
 }
 
-.avatar-user-cover .avatar-user {
+.menu-user {
+  position: absolute;
+  right: 10px;
+  top: 42px;
+  background-color: var(--light-color);
+  border: 1px solid var(--fade-color);
+  border-radius: 8px;
+  padding-top: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.menu-user-info {
+  padding: 0 33px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.menu-user .avatar-user {
+  width: 80px;
+  height: 80px;
+}
+
+.menu-user .menu-user-email {
+  font-family: var(--font-regular), var(--font-default);
+  padding: 15px 0;
+}
+
+.menu-user-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid var(--fade-color);
+  padding: 10px 0;
+}
+
+.btn-login,
+.btn-logout {
+  border: 1px solid var(--hover-utilities-color);
+  font-family: var(--font-regular), var(--font-default);
+  border-radius: 4px;
+  color: var(--text-button-color);
+}
+
+.avatar-user-cover {
   width: 32px;
   height: 32px;
+  cursor: pointer;
+  padding-right: 20px;
 }
 
 .header-after-select {

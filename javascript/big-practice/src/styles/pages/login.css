@@ -1,0 +1,38 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  width: 370px;
+  padding: 50px 40px;
+  border: 1px solid var(--fade-color);
+  border-radius: 8px;
+  background-color: var(--light-color);
+}
+
+.login .logo {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
+  width: 75px;
+  height: 60px;
+}
+
+.login .logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.login-title {
+  font-size: 25px;
+  color: var(--text-color);
+  font-family: var(--font-light), var(--font-default);
+  text-align: center;
+}
