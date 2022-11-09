@@ -1,6 +1,6 @@
 import NoteView from './noteView';
-import ElementHelpers from '../helper/elementHelpers';
-import EventHelpers from '../helper/eventHelpers';
+import ElementHelpers from '../helpers/elementHelpers';
+import EventHelpers from '../helpers/eventHelpers';
 import { selectDOMClass, selectDOMClassAll, selectDOMById } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
@@ -424,13 +424,11 @@ export default class ListNoteView {
 
       if (!selectedElement) {
         e.target.parentElement.classList.add('selected');
-        const listSelected = selectDOMClassAll('.selected');
-        countNotesSelected.innerHTML = `${listSelected.length} Selected`;
+        ElementHelpers.countAndShowSelected(countNotesSelected);
         this.headerAfterSelect.style.transform = 'translateY(-100%)';
       } else {
         e.target.parentElement.classList.remove('selected');
-        const listSelected = selectDOMClassAll('.selected');
-        countNotesSelected.innerHTML = `${listSelected.length} Selected`;
+        ElementHelpers.countAndShowSelected(countNotesSelected);
       }
 
       const listSelected = selectDOMClassAll('.selected');

@@ -1,3 +1,5 @@
+import { selectDOMClassAll } from '../utils/querySelectDOM';
+
 export default class ElementHelpers {
   /**
    * @description function show textarea height base on
@@ -20,5 +22,15 @@ export default class ElementHelpers {
       element.style.height = '1px';
       element.style.height = `${element.scrollHeight < '250' ? element.scrollHeight : '250'}px`;
     });
+  }
+
+  /**
+   * @description function count note selected and show total
+   * @param {Object} el is element text count note
+   */
+  static countAndShowSelected(el) {
+    const element = el;
+    const listSelected = selectDOMClassAll('.selected');
+    element.innerHTML = `${listSelected.length} Selected`;
   }
 }
