@@ -1,4 +1,4 @@
-import AuthenticationModel from '../models/authenticationModel';
+import UserModel from '../models/userModel';
 
 /**
  * @class noteController
@@ -11,15 +11,16 @@ export default class NoteController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.userModel = new UserModel();
   }
 
   init() {
     this.bindEvents();
   }
 
-  bindEvents = () => {
+  bindEvents() {
     // function change page
-    this.view.bindChangePage(this.renderTabTrash, this.renderTabNote);
+    this.view.bindChangePage(this.renderTabTrash.bind(this), this.renderTabNote.bind(this));
 
     // function increase textarea
     this.view.bindInputBreakDown();
@@ -28,10 +29,10 @@ export default class NoteController {
     this.view.bindShowInput();
 
     // function add new note
-    this.view.bindAddNote(this.addNote);
+    this.view.bindAddNote(this.addNote.bind(this));
 
     // function delete list notes
-    this.view.bindDeleteListNotes(this.deleteNote);
+    this.view.bindDeleteListNotes(this.deleteNote.bind(this));
 
     // function show hide menu hidden
     this.view.bindShowMenuUser();
@@ -44,22 +45,21 @@ export default class NoteController {
 
     // function set username to menu user
     this.getUser();
-  };
+  }
 
-  renderTabTrash = async () => {
+  async renderTabTrash() {
     const listTrash = await this.model.filterNotes('trashNotes');
-
     // function render trash notes
-    this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup);
+    this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup.bind(this));
 
     // function show Empty Note if note is empty
     this.view.showHideEmpty(listTrash, 'trashNotes');
-  };
+  }
 
-  renderTabNote = async () => {
+  async renderTabNote() {
     const handlers = {
-      handleDeleteNote: this.deleteNote,
-      handleShowNoteForm: this.findNote,
+      handleDeleteNote: this.deleteNote.bind(this),
+      handleShowNoteForm: this.findNote.bind(this),
     };
 
     const listNotes = await this.model.filterNotes('listNotes');
@@ -69,9 +69,9 @@ export default class NoteController {
 
     // function show Empty Note if note is empty
     this.view.showHideEmpty(listNotes, 'listNotes');
-  };
+  }
 
-  handleConfirmPopup = async (index) => {
+  async handleConfirmPopup(index) {
     const note = await this.model.findNote(index);
     // function render confirm message
     this.view.renderConfirmMessage(note);
@@ -82,14 +82,14 @@ export default class NoteController {
     // function delete trash forever
     this.view.bindDeleteNoteInTrash(async (id) => {
       const noteItem = await this.model.deleteNoteInTrash(id);
-      this.view.constructor.removeNoteElement(noteItem.id);
+      this.view.removeNoteElement(noteItem.id);
     });
-  };
+  }
 
-  getUser = async () => {
-    const email = await AuthenticationModel.findUsernameById();
+  async getUser() {
+    const email = await this.userModel.findUsernameById();
     this.view.showInformationUser(email);
-  };
+  }
 
   /**
    * @description function add note
@@ -97,22 +97,21 @@ export default class NoteController {
    * @param {String} title is title from input
    * @param {String} description is description from input
    */
-  addNote = async (title, description) => {
+  async addNote(title, description) {
     const note = await this.model.addNote(title, description);
-
-    this.view.renderNote(note, this.deleteNote, this.findNote);
-  };
+    this.view.renderNote(note, this.deleteNote.bind(this), this.findNote.bind(this));
+  }
 
   /**
    * @description function delete note in model
    *
    * @param {String} index is index of note
    */
-  deleteNote = async (index) => {
+  async deleteNote(index) {
     const note = await this.model.deleteNote(index);
 
-    this.view.constructor.removeNoteElement(note.id);
-  };
+    this.view.removeNoteElement(note.id);
+  }
 
   /**
    * @description function edit note
@@ -121,26 +120,26 @@ export default class NoteController {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  editNote = async (id, title, description) => {
+  async editNote(id, title, description) {
     const note = await this.model.editNote(id, title, description);
 
-    this.view.constructor.editNote(note.id, note.title, note.description);
-  };
+    this.view.editNote(note.id, note.title, note.description);
+  }
 
   /**
    * @description function find note
    *
    * @param {String} id is a id of note
    */
-  findNote = async (id) => {
+  async findNote(id) {
     const note = await this.model.findNote(id);
 
     const handlers = {
-      handleEditNote: this.editNote,
-      handleDeleteNote: this.deleteNote,
+      handleEditNote: this.editNote.bind(this),
+      handleDeleteNote: this.deleteNote.bind(this),
     };
 
     // function render form note
     this.view.renderFormNote(note, handlers);
-  };
+  }
 }

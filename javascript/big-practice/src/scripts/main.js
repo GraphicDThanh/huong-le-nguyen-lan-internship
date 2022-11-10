@@ -1,11 +1,11 @@
 import ListNoteView from './views/listNoteView';
-import ListNoteModel from './models/listNoteModel';
+import NoteModel from './models/noteModel';
 import NoteController from './controllers/noteController';
 import AuthenticationController from './controllers/authenticationController';
 import AuthenticationModel from './models/authenticationModel';
 import LoginView from './views/loginView';
 
-const listNoteModel = new ListNoteModel();
+const listNoteModel = new NoteModel();
 
 const listNoteView = new ListNoteView();
 

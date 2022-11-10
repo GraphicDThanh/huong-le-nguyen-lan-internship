@@ -5,13 +5,11 @@ export default class AuthenticationController {
   }
 
   init() {
-    this.view.bindLogin((email, password) => {
-      this.validateUserInfo(email, password);
-    });
+    this.view.bindLogin(this.validateUserInfo.bind(this));
   }
 
   async validateUserInfo(email, password) {
-    const isValid = await this.model.constructor.verifyCredential(email, password);
+    const isValid = await this.model.verifyCredential(email, password);
     this.view.handleInvalidUser(isValid);
   }
 }
