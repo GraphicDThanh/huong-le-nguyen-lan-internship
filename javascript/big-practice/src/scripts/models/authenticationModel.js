@@ -1,8 +1,12 @@
-import { getUserByUsername, getUserById } from '../utils/fetchAPI';
-import LocalStorage from '../utils/localStorage';
+import { getUser } from '../utils/fetchAPI';
 import STORAGE_KEYS from '../constants/storageKeys';
+import LocalStorage from '../utils/localStorage';
 
 export default class AuthenticationModel {
+  constructor() {
+    this.localStorage = new LocalStorage();
+  }
+
   /**
    * @description function get user by email. Check email is available or not
    * and if user is available it will check password is correct or not
@@ -12,14 +16,14 @@ export default class AuthenticationModel {
    *
    * @returns {Boolean, Boolean} isEmail, isPassword
    */
-  static async verifyCredential(email, password) {
-    const user = await getUserByUsername(email);
+  async verifyCredential(email, password) {
+    const users = await getUser(email, 'email');
     let isEmail = false;
     let isPassword = false;
 
-    if (user.length) {
-      if (user[0].password === password) {
-        LocalStorage.setItems(STORAGE_KEYS.USER_ID, user[0].id);
+    if (users.length) {
+      if (users[0].password === password) {
+        this.localStorage.setItems(STORAGE_KEYS.USER_ID, users[0].id);
         isPassword = true;
       }
 
@@ -27,19 +31,5 @@ export default class AuthenticationModel {
     }
 
     return { isEmail, isPassword };
-  }
-
-  /**
-   * @description find user by id
-   *
-   * @returns {String} email or Unknown
-   */
-  static async findUsernameById() {
-    if (LocalStorage.getItems(STORAGE_KEYS.USER_ID)) {
-      const user = await getUserById(LocalStorage.getItems(STORAGE_KEYS.USER_ID));
-      return user.email;
-    }
-
-    return null;
   }
 }

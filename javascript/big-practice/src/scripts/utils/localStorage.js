@@ -6,7 +6,7 @@ export default class LocalStorage {
    *
    * @param {Array} value
    */
-  static setItems(key, value) {
+  setItems(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
@@ -17,7 +17,7 @@ export default class LocalStorage {
    *
    * @returns {Array}
    */
-  static getItems(key) {
+  getItems(key) {
     return JSON.parse(localStorage.getItem(key));
   }
 
@@ -26,7 +26,7 @@ export default class LocalStorage {
    *
    * @param {String} key is name of key in localStorage
    */
-  static removeItems(key) {
+  removeItems(key) {
     localStorage.removeItem(key);
   }
 }
