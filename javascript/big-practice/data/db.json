@@ -1,66 +1,45 @@
 {
   "notes": [
     {
-      "id": "1667275288244",
+      "id": "1668076593890",
       "title": "",
-      "description": "asd",
-      "isTrash": false,
-      "ownerId": 2
+      "description": "213123\n",
+      "deleteAt": "",
+      "ownerId": "1"
     },
     {
-      "id": "1667275682680",
+      "id": "1668076596031",
       "title": "",
-      "description": "asd",
-      "isTrash": true,
-      "ownerId": 2
+      "description": "ádasd",
+      "deleteAt": "",
+      "ownerId": "1"
     },
     {
-      "id": "1667275685974",
+      "id": "1668076597504",
       "title": "",
-      "description": "@@@",
-      "isTrash": false,
-      "ownerId": 2
-    },
-    {
-      "id": "1667787177388",
-      "title": "",
-      "description": "ád",
-      "isTrash": true,
-      "ownerId": 1
-    },
-    {
-      "id": "1667791415371",
-      "title": "",
-      "description": "ád",
-      "isTrash": true,
-      "ownerId": 1
-    },
-    {
-      "id": "1667791425412",
-      "title": "",
-      "description": "123",
-      "isTrash": false,
-      "ownerId": 1
+      "description": "1231",
+      "deleteAt": "",
+      "ownerId": "1"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "huong@gmail.com",
       "password": "taeyeon27"
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "lan@gmail.com",
       "password": "lanhuong142002"
     },
     {
-      "id": 3,
+      "id": "3",
       "email": "abc@gmail.com",
       "password": "lanhuong142002"
     },
     {
-      "id": 4,
+      "id": "4",
       "email": "lanhuong@gmail.com",
       "password": "lanhuong142002"
     }
