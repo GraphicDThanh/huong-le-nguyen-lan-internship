@@ -5,72 +5,18 @@ const notesURL = `${URL_API.BASE_URL}${URL_API.NOTES_URL}`;
 const usersURL = `${URL_API.BASE_URL}${URL_API.USERS_URL}`;
 
 /**
- * @description function get list notes with email of user
+ * @description function get list user or get user by key
  *
  * @param {String} email get from input login
  *
  * @returns {Object} user
  */
-export const getUserByUsername = async (email) => {
+export const getUser = async (key, param) => {
   try {
-    const response = await fetch(`${usersURL}?&email=${email}`);
+    const response = await fetch(key && param ? `${usersURL}?&${param}=${key}` : `${usersURL}`);
     const users = await response.json();
 
     return users;
-  } catch (error) {
-    const message = `${API_MESSAGE.GET} ${error}`;
-    throw message;
-  }
-};
-
-/**
- * @description function get list notes with email of user
- *
- * @param {String} id is id user get from local
- *
- * @returns {Object} user
- */
-export const getUserById = async (id) => {
-  try {
-    const response = await fetch(`${usersURL}/${id}`);
-    const users = await response.json();
-
-    return users;
-  } catch (error) {
-    const message = `${API_MESSAGE.GET} ${error}`;
-    throw message;
-  }
-};
-
-/**
- * @description function get list notes with id of user
- *
- * @param {String} id is owner's id of note
- *
- * @returns {Object} notes
- */
-export const getData = async (id) => {
-  try {
-    const response = await fetch(`${notesURL}?&ownerId=${id}&isTrash=false`);
-    const notes = await response.json();
-    return notes;
-  } catch (error) {
-    const message = `${API_MESSAGE.GET} ${error}`;
-    throw message;
-  }
-};
-
-/**
- * @description function get list trash notes with id of user
- * @param {String} id is owner's id of note
- *
- * @returns {Object} notes
- */
-export const getDataTrash = async (id) => {
-  try {
-    const response = await fetch(`${notesURL}?&ownerId=${id}&isTrash=true`);
-    const notes = await response.json();
-    return notes;
   } catch (error) {
     const message = `${API_MESSAGE.GET} ${error}`;
     throw message;
@@ -86,19 +32,29 @@ export const getDataTrash = async (id) => {
  */
 export const getDataById = async (id) => {
   try {
-    const options = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    };
-
-    const response = await fetch(`${notesURL}/${id}`, options);
+    const response = await fetch(`${notesURL}/${id}`);
     const notes = await response.json();
     return notes;
-  } catch (error) {
-    const message = `${API_MESSAGE.GET} ${error}`;
-    throw message;
+  } catch (e) {
+    const error = e;
+    throw error;
+  }
+};
+
+/**
+ * @description function get data by user id
+ * @param {String} id is user id
+ *
+ * @returns {Array} notes
+ */
+export const getDataByUserId = async (id) => {
+  try {
+    const response = await fetch(`${notesURL}?&ownerId=${id}`);
+    const notes = await response.json();
+    return notes;
+  } catch (e) {
+    const error = e;
+    throw error;
   }
 };
 
@@ -118,9 +74,9 @@ export const postData = async (note) => {
     };
 
     await fetch(notesURL, options);
-  } catch (error) {
-    const message = `${API_MESSAGE.POST} ${error}`;
-    throw message;
+  } catch (e) {
+    const error = e;
+    throw error;
   }
 };
 
@@ -139,9 +95,9 @@ export const deleteData = async (id) => {
     };
 
     await fetch(`${notesURL}/${id}`, options);
-  } catch (error) {
-    const message = `${API_MESSAGE.DELETE} ${error}`;
-    throw message;
+  } catch (e) {
+    const error = e;
+    throw error;
   }
 };
 
@@ -162,8 +118,8 @@ export const putData = async (id, note) => {
     };
 
     await fetch(`${notesURL}/${id}`, options);
-  } catch (error) {
-    const message = `${API_MESSAGE.PATCH} ${error}`;
-    throw message;
+  } catch (e) {
+    const error = e;
+    throw error;
   }
 };
