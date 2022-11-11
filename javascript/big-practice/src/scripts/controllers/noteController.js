@@ -19,20 +19,15 @@ export default class NoteController {
   }
 
   bindEvents() {
+    const handlers = {
+      renderTabNotes: this.renderTabNote.bind(this),
+      renderTabTrash: this.renderTabTrash.bind(this),
+      addNote: this.addNote.bind(this),
+      deleteNote: this.deleteNote.bind(this),
+    };
+
     // function change page
-    this.view.bindChangePage(this.renderTabTrash.bind(this), this.renderTabNote.bind(this));
-
-    // function increase textarea
-    this.view.bindInputBreakDown();
-
-    // function show input form
-    this.view.bindShowInput();
-
-    // function add new note
-    this.view.bindAddNote(this.addNote.bind(this));
-
-    // function delete list notes
-    this.view.bindDeleteListNotes(this.deleteNote.bind(this));
+    this.view.bindChangePage(handlers);
 
     // function show hide menu hidden
     this.view.bindShowMenuUser();
