@@ -1,5 +1,6 @@
 const POPUP_MESSAGE = {
   DELETE_NOTE: 'Delete note forever ?',
+  ERRORS_MSG: 'Sorry! Something went wrong: ',
 };
 
 const API_MESSAGE = {

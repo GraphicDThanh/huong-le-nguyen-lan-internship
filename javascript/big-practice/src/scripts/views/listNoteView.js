@@ -32,13 +32,11 @@ export default class ListNoteView {
     this.btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
 
     this.sectionWrapper = selectDOMClass('.section-wrapper');
-    this.noteOverlay = selectDOMClass('.note-overlay');
+    this.overlayCover = selectDOMClass('.overlay-cover');
 
     this.menu = selectDOMClassAll('.nav li');
     this.noteWrapper = selectDOMClass('.note-wrapper');
     this.trashWrapper = selectDOMClass('.trash-wrapper');
-
-    this.confirmMessage = selectDOMClass('.trash-overlay');
 
     this.listNotesEmpty = selectDOMClass('.list-notes-empty-content');
     this.listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
@@ -48,6 +46,8 @@ export default class ListNoteView {
     this.btnLogin = selectDOMClass('.btn-login');
     this.btnLogout = selectDOMClass('.btn-logout');
     this.emailUser = selectDOMClass('.menu-user-email');
+
+    this.mainWrapper = selectDOMClass('.main-wrapper');
   }
 
   /**
@@ -293,9 +293,9 @@ export default class ListNoteView {
       isTrash: note.isTrash,
     };
 
-    this.confirmMessage.innerHTML = '';
+    this.overlayCover.innerHTML = '';
 
-    this.confirmMessage.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', noteItem));
+    this.overlayCover.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', noteItem));
   }
 
   /**
@@ -314,15 +314,29 @@ export default class ListNoteView {
 
     const { handleEditNote, handleDeleteNote } = handlers;
 
-    this.noteOverlay.innerHTML = '';
+    this.overlayCover.innerHTML = '';
 
     const noteView = new NoteView(noteItem);
     const noteElement = noteView.renderNoteForm();
-    this.noteOverlay.appendChild(noteElement);
+    this.overlayCover.appendChild(noteElement);
 
     this.bindSaveNoteForm(handleEditNote);
     this.inputBreakDownNoteForm();
     this.bindDeleteNoteForm(handleDeleteNote);
+  }
+
+  /**
+   * @description function render popup error message
+   *
+   * @param {String} errorMessage is message error
+   */
+  renderPopupError(errorMessage) {
+    this.overlayCover.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
+
+    const btnClose = selectDOMClass('.btn-close-popup');
+    btnClose.addEventListener('click', () => {
+      this.overlayCover.innerHTML = '';
+    });
   }
 
   /**
@@ -346,15 +360,15 @@ export default class ListNoteView {
    * @param {function} handler is function transmitted
    */
   bindClosePopup() {
-    const overlayConfirmMessage = selectDOMClass('.trash-overlay .overlay');
+    const overlayConfirmMessage = selectDOMClass('.overlay-cover');
     overlayConfirmMessage.addEventListener('click', () => {
-      this.confirmMessage.innerHTML = '';
+      this.overlayCover.innerHTML = '';
     });
 
     const btnClose = selectDOMClass('.btn-close-popup');
     btnClose.addEventListener('click', (e) => {
       e.stopPropagation();
-      this.confirmMessage.innerHTML = '';
+      this.overlayCover.innerHTML = '';
     });
   }
 
@@ -372,7 +386,7 @@ export default class ListNoteView {
 
       handler(index);
 
-      this.confirmMessage.innerHTML = '';
+      this.overlayCover.innerHTML = '';
       if (listTrash.childNodes.length === 1) {
         this.listTrashEmpty.classList.remove('hide');
       } else {
@@ -477,7 +491,7 @@ export default class ListNoteView {
       const description = formData.get('description');
 
       editNote(formNoteId, title, description);
-      this.noteOverlay.innerHTML = '';
+      this.overlayCover.innerHTML = '';
     });
 
     overlay.addEventListener('click', () => {
@@ -485,7 +499,7 @@ export default class ListNoteView {
       const description = selectDOMClass('.note-form-overlay .note-description').value;
 
       editNote(formNoteId, title, description);
-      this.noteOverlay.innerHTML = '';
+      this.overlayCover.innerHTML = '';
     });
   }
 
@@ -504,7 +518,7 @@ export default class ListNoteView {
 
       deleteNote(id);
 
-      this.noteOverlay.innerHTML = '';
+      this.overlayCover.innerHTML = '';
       if (listNotes.childNodes.length === 1) {
         this.listNotesEmpty.classList.remove('hide');
       }
