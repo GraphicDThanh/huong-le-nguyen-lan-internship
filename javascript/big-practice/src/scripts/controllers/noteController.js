@@ -44,7 +44,7 @@ export default class NoteController {
     this.view.bindLogin();
 
     // function set username to menu user
-    this.getUser();
+    this.showUsername();
   }
 
   async renderTabTrash() {
@@ -98,7 +98,7 @@ export default class NoteController {
     }
   }
 
-  async getUser() {
+  async showUsername() {
     try {
       const id = await this.userModel.findUsernameById();
       this.view.showInformationUser(id);
