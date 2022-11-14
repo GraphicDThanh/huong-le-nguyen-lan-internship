@@ -8,6 +8,7 @@ import { POPUP_MESSAGE } from '../constants/message';
 import LocalStorage from '../utils/localStorage';
 import notes from '../templates/notes';
 import noteTrash from '../templates/noteTrash';
+import user from '../constants/mockUser';
 
 /**
  * @class listNoteView
@@ -35,6 +36,15 @@ export default class ListNoteView {
   }
 
   /**
+   * @description if have still note logged in, it will move to login page
+   */
+  checkUserLoggedIn() {
+    if (!this.localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
+      window.location.href = 'index.html';
+    }
+  }
+
+  /**
    * @description function show hide menu hidden
    */
   bindShowMenuUser() {
@@ -45,7 +55,7 @@ export default class ListNoteView {
         this.menuUser.classList.add('hide');
       }
 
-      if (localStorage.getItem(STORAGE_KEYS.USER_ID)) {
+      if (this.localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
         this.elementHelpers.showHideElement(this.btnLogout, this.btnLogin);
       } else {
         this.elementHelpers.showHideElement(this.btnLogin, this.btnLogout);
@@ -58,30 +68,28 @@ export default class ListNoteView {
    */
   bindLogOut() {
     this.btnLogout.addEventListener('click', () => {
-      window.location.href = 'login.html';
+      window.location.href = 'index.html';
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      this.localStorage.removeItems(STORAGE_KEYS.USER_ID);
+      this.localStorage.removeItems(STORAGE_KEYS.IS_USER_LOGGED_IN);
     });
   }
 
   /**
-   * @function function handle login
+   * @description handle login
    */
   bindLogin() {
     this.btnLogin.addEventListener('click', () => {
-      window.location.href = 'login.html';
+      window.location.href = 'index.html';
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     });
   }
 
   /**
    * @description set email to menu user
-   *
-   * @param {String} email is email of user take from data
    */
-  showInformationUser(email) {
-    if (email) {
-      this.emailUser.textContent = email;
+  showInformationUser() {
+    if (STORAGE_KEYS.IS_USER_LOGGED_IN) {
+      this.emailUser.textContent = user.email;
     } else {
       this.emailUser.textContent = 'Unknown';
     }
@@ -107,7 +115,7 @@ export default class ListNoteView {
 
           this.showHidePage(handlerTrash, handlerNote);
         } else {
-          console.log('page number is not found');
+          this.renderPopupError('Page number is not found');
         }
       });
     });
@@ -116,7 +124,9 @@ export default class ListNoteView {
   /**
    * @description function check page which is opening
    *
-   * @param {function} handlerTrash is function transmitted from model
+   * @param {function} handlers includes functions
+   * renderTabNotes, renderTabTrash, addNote, deleteNote
+   *
    * @param {function} handlerNote is function transmitted from model
    */
   showHidePage(handlers) {
@@ -139,12 +149,12 @@ export default class ListNoteView {
       this.bindInputBreakDown();
       this.bindShowInput();
       this.bindAddNote(addNote);
+      this.bindDeleteListNotes(deleteNote);
     } else {
       this.sectionWrapper.innerHTML = '';
       this.sectionWrapper.appendChild(noteTrash());
 
       renderTabTrash();
-      this.bindDeleteListNotes(deleteNote);
     }
   }
 
@@ -178,7 +188,7 @@ export default class ListNoteView {
 
         break;
       default:
-        console.log('Enter listNotes or trashNotes');
+        this.renderPopupError('Please enter listNotes or trashNotes');
         break;
     }
   }
@@ -228,11 +238,32 @@ export default class ListNoteView {
    * @description function remove note in view
    *
    * @param {String} id is id of note
+   * @param {String} type enter listNotes or trashNotes
    */
-  removeNoteElement(id) {
+  removeNoteElement(id, type) {
     const note = selectDOMById(id);
+
     if (note) {
       note.remove();
+    }
+    switch (type) {
+      case 'listNotes': {
+        const listNotes = selectDOMClass('.list-notes');
+        const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
+
+        this.elementHelpers.showEmptyList(listNotes, listNotesEmpty);
+        break;
+      }
+      case 'trashNotes': {
+        const listTrash = selectDOMClass('.trash-wrapper .list-notes');
+        const listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
+
+        this.elementHelpers.showEmptyList(listTrash, listTrashEmpty);
+        break;
+      }
+      default:
+        this.renderPopupError('Please enter listNotes or trashNotes');
+        break;
     }
   }
 
@@ -386,21 +417,13 @@ export default class ListNoteView {
    */
   bindDeleteNoteInTrash(handler) {
     const deleteTrash = selectDOMClass('.btn-submit-action');
-    const listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
 
     deleteTrash.addEventListener('click', (e) => {
       e.stopPropagation();
       const index = e.target.getAttribute('data-id');
-      const listTrash = selectDOMClass('.trash-wrapper .list-notes');
 
       handler(index);
-
       this.overlayCover.innerHTML = '';
-      if (listTrash.childNodes.length === 1) {
-        listTrashEmpty.classList.remove('hide');
-      } else {
-        listTrashEmpty.classList.add('hide');
-      }
     });
   }
 
@@ -522,18 +545,12 @@ export default class ListNoteView {
    */
   bindDeleteNoteForm(deleteNote) {
     const buttonDelete = selectDOMClass('.note-form-overlay .btn-delete-form');
-    const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
     buttonDelete.addEventListener('click', (e) => {
       e.stopPropagation();
       const id = e.target.getAttribute('data-id');
-      const listNotes = selectDOMClass('.list-notes');
 
       deleteNote(id);
-
       this.overlayCover.innerHTML = '';
-      if (listNotes.childNodes.length === 1) {
-        listNotesEmpty.classList.remove('hide');
-      }
     });
   }
 
@@ -583,20 +600,16 @@ export default class ListNoteView {
    * @description function event delete note
    *
    * @param {function} handler is function delete transmitted from from the model
+   * @param {Object} noteElement is note element
    */
   bindDeleteNote(noteElement, handler) {
     const note = selectDOMById(`${noteElement.id}`);
     const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
-    const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
 
     deleteButtonElements.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');
-        const listNotes = selectDOMClass('.list-notes');
 
-        if (listNotes.childNodes.length === 1) {
-          listNotesEmpty.classList.remove('hide');
-        }
         handler(noteId);
       });
     });
@@ -610,17 +623,12 @@ export default class ListNoteView {
   bindDeleteListNotes(handler) {
     this.btnDeleteBulkActions.addEventListener('click', () => {
       const noteSelected = selectDOMClassAll('.selected');
-      const listNotes = selectDOMClass('.list-notes');
 
       noteSelected.forEach((note) => {
         handler(note.id);
       });
 
       this.headerAfterSelect.style.transform = 'translateY(-200%)';
-
-      if (listNotes.childNodes.length === 1) {
-        this.listNotesEmpty.classList.remove('hide');
-      }
     });
   }
 }
