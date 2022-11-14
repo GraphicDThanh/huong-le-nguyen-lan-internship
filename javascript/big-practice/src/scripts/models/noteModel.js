@@ -1,4 +1,3 @@
-import LocalStorage from '../utils/localStorage';
 import {
   postData,
   deleteData,
@@ -12,10 +11,6 @@ import {
  * @description manage data of note list
  */
 export default class NoteModel {
-  constructor() {
-    this.localStorage = new LocalStorage();
-  }
-
   /**
    * @description function add note
    *

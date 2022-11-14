@@ -16,6 +16,9 @@ export default class NoteController {
   }
 
   bindEvents() {
+    // function check if user still not logged in, it will move to login page
+    this.view.checkUserLoggedIn();
+
     const handlers = {
       renderTabNotes: this.renderTabNote.bind(this),
       renderTabTrash: this.renderTabTrash.bind(this),
@@ -37,9 +40,6 @@ export default class NoteController {
 
     // function set username to menu user
     this.view.showInformationUser();
-
-    // function check if user still not logged in, it will move to login page
-    this.view.checkUserLoggedIn();
   }
 
   async renderTabTrash() {
