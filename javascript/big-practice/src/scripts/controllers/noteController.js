@@ -1,5 +1,3 @@
-import UserModel from '../models/userModel';
-
 /**
  * @class noteController
  * @description Controller is an intermediary for views and models
@@ -11,7 +9,6 @@ export default class NoteController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.userModel = new UserModel();
   }
 
   init() {
@@ -39,7 +36,10 @@ export default class NoteController {
     this.view.bindLogin();
 
     // function set username to menu user
-    this.showUsername();
+    this.view.showInformationUser();
+
+    // function check if user still not logged in, it will move to login page
+    this.view.checkUserLoggedIn();
   }
 
   async renderTabTrash() {
@@ -86,17 +86,8 @@ export default class NoteController {
       // function delete trash forever
       this.view.bindDeleteNoteInTrash(async (id) => {
         const noteItem = await this.model.deleteNoteInTrash(id);
-        this.view.removeNoteElement(noteItem.id);
+        this.view.removeNoteElement(noteItem.id, 'trashNotes');
       });
-    } catch (error) {
-      this.view.renderPopupError(error.message);
-    }
-  }
-
-  async showUsername() {
-    try {
-      const id = await this.userModel.findUsernameById();
-      this.view.showInformationUser(id);
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
@@ -126,7 +117,7 @@ export default class NoteController {
     try {
       const note = await this.model.deleteNote(index);
 
-      this.view.removeNoteElement(note.id);
+      this.view.removeNoteElement(note.id, 'listNotes');
     } catch (error) {
       this.view.renderPopupError(error.message);
     }

@@ -43,4 +43,18 @@ export default class ElementHelpers {
     elementShow.classList.remove('hide');
     elementHide.classList.add('hide');
   }
+
+  /**
+   * @description function show hide empty list
+   *
+   * @param {Object} list is list
+   * @param {Object} listEmpty is empty list
+   */
+  showEmptyList(list, listEmpty) {
+    if (list.children.length < 1) {
+      listEmpty.classList.remove('hide');
+    } else {
+      listEmpty.classList.add('hide');
+    }
+  }
 }
