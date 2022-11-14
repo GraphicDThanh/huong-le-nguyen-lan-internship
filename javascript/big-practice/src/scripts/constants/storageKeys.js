@@ -1,7 +1,6 @@
 const STORAGE_KEYS = {
-  LIST_NOTE: 'listNotes',
   PAGE_NUMBER: 'pageNumber',
-  USER_ID: 'userId',
+  IS_USER_LOGGED_IN: 'isUserLoggedIn',
 };
 
 export default STORAGE_KEYS;
