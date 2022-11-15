@@ -20,6 +20,11 @@ export const getDataById = async (id) => {
   }
 };
 
+/**
+ * @description function get all data
+ *
+ * @returns {Object} notes
+ */
 export const getAllData = async () => {
   try {
     const response = await fetch(`${notesURL}`);
