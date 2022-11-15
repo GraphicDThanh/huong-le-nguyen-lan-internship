@@ -43,17 +43,18 @@ export default class NoteModel {
    */
   async filterNotes(type) {
     let listNotes = [];
+    const notes = await getAllData();
 
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
-        const notes = await getAllData();
         listNotes = notes.filter((note) => !note.deleteAt);
+        console.log(listNotes.length);
         break;
       }
       case 'trashNotes': {
-        const notes = await getAllData();
         listNotes = notes.filter((note) => note.deleteAt);
+        console.log(listNotes.length);
         break;
       }
       default:
@@ -78,7 +79,6 @@ export default class NoteModel {
 
       noteItem.deleteAt = date;
       putData(id, noteItem);
-
       return noteItem;
     } catch (error) {
       console.log(error);
@@ -130,7 +130,7 @@ export default class NoteModel {
    * @param {String} title is title of note
    * @param {String} description is description of note
    *
-   * @returns {Object} this.notes[noteIndex]
+   * @returns {Object} noteItem
    */
   async editNote(id, title, description) {
     try {

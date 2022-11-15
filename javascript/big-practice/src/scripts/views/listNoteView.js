@@ -36,7 +36,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description if have still note logged in, it will move to login page
+   * @description if user still note logged in, it will move to login page
    */
   checkUserLoggedIn() {
     if (!this.localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
@@ -45,7 +45,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function show hide menu hidden
+   * @description function show hide menu user
    */
   bindShowMenuUser() {
     this.avatarUser.addEventListener('click', () => {
@@ -122,7 +122,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function check page which is opening
+   * @description function render tab note or tab trash based on user click
    *
    * @param {function} handlers includes functions
    * renderTabNotes, renderTabTrash, addNote, deleteNote
@@ -246,6 +246,7 @@ export default class ListNoteView {
     if (note) {
       note.remove();
     }
+
     switch (type) {
       case 'listNotes': {
         const listNotes = selectDOMClass('.list-notes');
