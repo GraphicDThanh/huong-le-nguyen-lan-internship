@@ -97,7 +97,9 @@ export const putNote = async (id, note) => {
       },
     };
 
-    await fetch(`${notesURL}/${id}`, options);
+    const noteItem = await fetch(`${notesURL}/${id}`, options);
+
+    return noteItem.json();
   } catch (e) {
     const error = e;
     throw error;
