@@ -102,7 +102,7 @@ export default class ListNoteView {
    * @param {function} handlerNote is function transmitted from model
    */
   bindChangePage(handlerTrash, handlerNote) {
-    this.showHidePage(handlerTrash, handlerNote);
+    this.renderTabs(handlerTrash, handlerNote);
     this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
     this.menu.forEach((element) => {
@@ -113,7 +113,7 @@ export default class ListNoteView {
           sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
           this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
 
-          this.showHidePage(handlerTrash, handlerNote);
+          this.renderTabs(handlerTrash, handlerNote);
         } else {
           this.renderPopupError('Page number is not found');
         }
@@ -129,7 +129,7 @@ export default class ListNoteView {
    *
    * @param {function} handlerNote is function transmitted from model
    */
-  showHidePage(handlers) {
+  renderTabs(handlers) {
     const {
       renderTabNotes,
       renderTabTrash,

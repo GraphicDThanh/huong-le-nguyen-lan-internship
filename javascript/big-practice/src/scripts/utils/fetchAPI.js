@@ -3,24 +3,6 @@ import URL_API from '../constants/apiUrl';
 const notesURL = `${URL_API.BASE_URL}${URL_API.NOTES_URL}`;
 
 /**
- * @description function get note with id of note
- *
- * @param {String} id of note
- *
- * @returns {Object} notes
- */
-export const getNoteById = async (id) => {
-  try {
-    const response = await fetch(`${notesURL}/${id}`);
-    const notes = await response.json();
-    return notes;
-  } catch (e) {
-    const error = e;
-    throw error;
-  }
-};
-
-/**
  * @description function get all data
  *
  * @returns {Object} notes
