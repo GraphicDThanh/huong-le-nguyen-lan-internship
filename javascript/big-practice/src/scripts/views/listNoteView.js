@@ -6,8 +6,8 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
 import { POPUP_MESSAGE } from '../constants/message';
 import LocalStorage from '../utils/localStorage';
-import notes from '../templates/notes';
-import noteTrash from '../templates/noteTrash';
+import formTemplate from '../templates/formTemplate';
+import noteTemplate from '../templates/noteTemplate';
 
 /**
  * @class listNoteView
@@ -127,13 +127,26 @@ export default class ListNoteView {
       deleteNote,
     } = handlers;
 
+    const trashNotes = {
+      type: 'trashNotes',
+      message: 'No notes in Trash',
+    };
+
+    const listNotes = {
+      type: 'listNotes',
+      message: 'Notes you add appear here',
+    };
+
     if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     }
 
     if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
       this.sectionWrapper.innerHTML = '';
-      this.sectionWrapper.appendChild(notes());
+      this.sectionWrapper.appendChild(formTemplate());
+
+      const formElement = selectDOMClass('.note-wrapper');
+      formElement.appendChild(noteTemplate(listNotes));
 
       renderTabNotes();
       this.bindInputBreakDown();
@@ -141,7 +154,7 @@ export default class ListNoteView {
       this.bindAddNote(addNote);
     } else {
       this.sectionWrapper.innerHTML = '';
-      this.sectionWrapper.appendChild(noteTrash());
+      this.sectionWrapper.appendChild(noteTemplate(trashNotes));
 
       renderTabTrash();
       this.bindDeleteListNotes(deleteNote);
