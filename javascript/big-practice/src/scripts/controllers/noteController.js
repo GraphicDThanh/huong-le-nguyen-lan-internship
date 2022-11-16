@@ -85,9 +85,9 @@ export default class NoteController {
 
       // function delete trash forever
       this.view.bindDeleteNoteInTrash(async (id) => {
-        const noteItem = await this.model.deleteNoteInTrash(id);
+        await this.model.deleteNoteInTrash(id);
 
-        this.view.removeNoteElement(noteItem.id);
+        this.view.removeNoteElement(id);
         this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
       });
     } catch (error) {
