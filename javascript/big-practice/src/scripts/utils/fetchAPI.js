@@ -9,7 +9,7 @@ const notesURL = `${URL_API.BASE_URL}${URL_API.NOTES_URL}`;
  *
  * @returns {Object} notes
  */
-export const getDataById = async (id) => {
+export const getNoteById = async (id) => {
   try {
     const response = await fetch(`${notesURL}/${id}`);
     const notes = await response.json();
@@ -25,7 +25,7 @@ export const getDataById = async (id) => {
  *
  * @returns {Object} notes
  */
-export const getAllData = async () => {
+export const getAllNotes = async () => {
   try {
     const response = await fetch(`${notesURL}`);
     const notes = await response.json();
@@ -41,7 +41,7 @@ export const getAllData = async () => {
  *
  * @param {Object} note is a note
  */
-export const postData = async (note) => {
+export const postNote = async (note) => {
   try {
     const options = {
       method: 'POST',
@@ -51,7 +51,9 @@ export const postData = async (note) => {
       },
     };
 
-    await fetch(notesURL, options);
+    const noteItem = await fetch(notesURL, options);
+
+    return noteItem.json();
   } catch (e) {
     const error = e;
     throw error;
@@ -63,7 +65,7 @@ export const postData = async (note) => {
  *
  * @param {String} id is id of note
  */
-export const deleteData = async (id) => {
+export const deleteNote = async (id) => {
   try {
     const options = {
       method: 'DELETE',
@@ -85,7 +87,7 @@ export const deleteData = async (id) => {
  * @param {String} id is id of note
  * @param {Object} note is note
  */
-export const putData = async (id, note) => {
+export const putNote = async (id, note) => {
   try {
     const options = {
       method: 'PATCH',

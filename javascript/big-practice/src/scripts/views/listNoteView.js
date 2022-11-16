@@ -240,31 +240,11 @@ export default class ListNoteView {
    * @param {String} id is id of note
    * @param {String} type enter listNotes or trashNotes
    */
-  removeNoteElement(id, type) {
+  removeNoteElement(id) {
     const note = selectDOMById(id);
 
     if (note) {
       note.remove();
-    }
-
-    switch (type) {
-      case 'listNotes': {
-        const listNotes = selectDOMClass('.list-notes');
-        const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
-
-        this.elementHelpers.showEmptyList(listNotes, listNotesEmpty);
-        break;
-      }
-      case 'trashNotes': {
-        const listTrash = selectDOMClass('.trash-wrapper .list-notes');
-        const listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
-
-        this.elementHelpers.showEmptyList(listTrash, listTrashEmpty);
-        break;
-      }
-      default:
-        this.renderPopupError('Please enter listNotes or trashNotes');
-        break;
     }
   }
 
