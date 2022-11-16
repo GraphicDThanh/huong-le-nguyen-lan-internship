@@ -34,7 +34,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 480px;
+  padding-top: 160px;
 }
 
 .list-notes-empty-content {
@@ -45,6 +45,10 @@
   font-family: var(--font-regular), var(--font-default);
   font-size: 22px;
   padding-top: 20px;
+}
+
+.trash-wrapper {
+  padding-top: 40px;
 }
 
 .overlay,
