@@ -2,7 +2,6 @@ import {
   postNote,
   deleteNote,
   putNote,
-  getNoteById,
   getAllNotes,
 } from '../utils/fetchAPI';
 
@@ -79,13 +78,11 @@ export default class NoteModel {
     try {
       const date = new Date().toISOString().slice(0, 10);
       const noteItem = this.listNotes.find((note) => note.id === id);
-      this.listNotes = this.listNotes.filter((note) => note.id !== id);
-      const notes = this.listNotes;
 
       noteItem.deleteAt = date;
-      putNote(id, noteItem);
+      await putNote(id, noteItem);
 
-      return { noteItem, notes };
+      return noteItem;
     } catch (error) {
       console.log(error);
       throw error;
@@ -101,13 +98,8 @@ export default class NoteModel {
    */
   async deleteNoteInTrash(id) {
     try {
-      const noteItem = await getNoteById(id);
+      await deleteNote(id);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
-      const notes = this.listNotes;
-
-      deleteNote(id);
-
-      return { noteItem, notes };
     } catch (error) {
       console.log(error);
       throw error;
@@ -121,9 +113,9 @@ export default class NoteModel {
    *
    *  @returns {Object} this.notes[noteIndex]
    */
-  async findNote(id) {
+  findNote(id) {
     try {
-      const noteItem = await getNoteById(id);
+      const noteItem = this.listNotes.find((note) => note.id === id);
 
       return noteItem;
     } catch (error) {
@@ -143,11 +135,11 @@ export default class NoteModel {
    */
   async editNote(id, title, description) {
     try {
-      const noteItem = await getNoteById(id);
+      const noteItem = this.listNotes.find((note) => note.id === id);
+
       noteItem.title = title;
       noteItem.description = description;
-
-      const note = putNote(id, noteItem);
+      const note = await putNote(id, noteItem);
 
       return note;
     } catch (error) {
