@@ -1,8 +1,7 @@
 import iconPin from '../../assets/icons/icon-pin.svg';
 import iconColorBoard from '../../assets/icons/icon-color-board.svg';
-import iconLight from '../../assets/icons/icon-light.svg';
 
-const notes = () => {
+const formTemplate = () => {
   const formControl = document.createElement('div');
   formControl.setAttribute('class', 'note-wrapper');
 
@@ -32,20 +31,9 @@ const notes = () => {
         </div>
       </form>
     </div>
-
-    <div class="list-cover">
-      <div class="list-notes">
-      </div>
-      <div class="list-notes-empty">
-        <div class="list-notes-empty-content hide">
-          <img src="${iconLight}" alt="icon light">
-          <p class="description">Notes you add appear here</p>
-        </div>
-      </div>
-    </div>
   `;
 
   return formControl;
 };
 
-export default notes;
+export default formTemplate;
