@@ -85,8 +85,10 @@ export default class NoteController {
 
       // function delete trash forever
       this.view.bindDeleteNoteInTrash(async (id) => {
-        const noteItem = await this.model.deleteNoteInTrash(id);
-        this.view.removeNoteElement(noteItem.id, 'trashNotes');
+        const patternNotes = await this.model.deleteNoteInTrash(id);
+
+        this.view.removeNoteElement(patternNotes.noteItem.id);
+        this.view.showHideEmpty(patternNotes.notes, 'trashNotes');
       });
     } catch (error) {
       this.view.renderPopupError(error.message);
@@ -115,9 +117,10 @@ export default class NoteController {
    */
   async deleteNote(index) {
     try {
-      const note = await this.model.deleteNote(index);
+      const patternNotes = await this.model.deleteNote(index);
 
-      this.view.removeNoteElement(note.id, 'listNotes');
+      this.view.removeNoteElement(patternNotes.noteItem.id);
+      this.view.showHideEmpty(patternNotes.notes, 'listNotes');
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
