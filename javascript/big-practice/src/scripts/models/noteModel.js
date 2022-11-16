@@ -1,9 +1,9 @@
 import {
-  postData,
-  deleteData,
-  putData,
-  getDataById,
-  getAllData,
+  postNote,
+  deleteNote,
+  putNote,
+  getNoteById,
+  getAllNotes,
 } from '../utils/fetchAPI';
 
 /**
@@ -11,6 +11,10 @@ import {
  * @description manage data of note list
  */
 export default class NoteModel {
+  constructor() {
+    this.listNotes = [];
+  }
+
   /**
    * @description function add note
    *
@@ -28,8 +32,10 @@ export default class NoteModel {
         deleteAt: '',
       };
 
-      await postData(noteItem);
-      return noteItem;
+      const note = await postNote(noteItem);
+      this.listNotes.push(note);
+
+      return note;
     } catch (error) {
       console.log(error);
       throw error;
@@ -42,19 +48,16 @@ export default class NoteModel {
    * @returns {Array} listNotes
    */
   async filterNotes(type) {
-    let listNotes = [];
-    const notes = await getAllData();
+    const notes = await getAllNotes();
 
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
-        listNotes = notes.filter((note) => !note.deleteAt);
-        console.log(listNotes.length);
+        this.listNotes = notes.filter((note) => !note.deleteAt);
         break;
       }
       case 'trashNotes': {
-        listNotes = notes.filter((note) => note.deleteAt);
-        console.log(listNotes.length);
+        this.listNotes = notes.filter((note) => note.deleteAt);
         break;
       }
       default:
@@ -62,7 +65,7 @@ export default class NoteModel {
         break;
     }
 
-    return listNotes;
+    return this.listNotes;
   }
 
   /**
@@ -75,11 +78,14 @@ export default class NoteModel {
   async deleteNote(id) {
     try {
       const date = new Date().toISOString().slice(0, 10);
-      const noteItem = await getDataById(id);
+      const noteItem = this.listNotes.find((note) => note.id === id);
+      this.listNotes = this.listNotes.filter((note) => note.id !== id);
+      const notes = this.listNotes;
 
       noteItem.deleteAt = date;
-      putData(id, noteItem);
-      return noteItem;
+      putNote(id, noteItem);
+
+      return { noteItem, notes };
     } catch (error) {
       console.log(error);
       throw error;
@@ -95,10 +101,13 @@ export default class NoteModel {
    */
   async deleteNoteInTrash(id) {
     try {
-      const noteItem = await getDataById(id);
-      deleteData(id);
+      const noteItem = await getNoteById(id);
+      this.listNotes = this.listNotes.filter((note) => note.id !== id);
+      const notes = this.listNotes;
 
-      return noteItem;
+      deleteNote(id);
+
+      return { noteItem, notes };
     } catch (error) {
       console.log(error);
       throw error;
@@ -114,7 +123,7 @@ export default class NoteModel {
    */
   async findNote(id) {
     try {
-      const noteItem = await getDataById(id);
+      const noteItem = await getNoteById(id);
 
       return noteItem;
     } catch (error) {
@@ -134,13 +143,13 @@ export default class NoteModel {
    */
   async editNote(id, title, description) {
     try {
-      const noteItem = await getDataById(id);
+      const noteItem = await getNoteById(id);
       noteItem.title = title;
       noteItem.description = description;
 
-      putData(id, noteItem);
+      const note = putNote(id, noteItem);
 
-      return noteItem;
+      return note;
     } catch (error) {
       console.log(error);
       throw error;
