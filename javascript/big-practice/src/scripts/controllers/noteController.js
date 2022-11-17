@@ -20,10 +20,10 @@ export default class NoteController {
     this.view.checkUserLoggedIn();
 
     const handlers = {
-      renderTabNotes: this.renderTabNote.bind(this),
-      renderTabTrash: this.renderTabTrash.bind(this),
-      addNote: this.addNote.bind(this),
-      deleteNote: this.deleteNote.bind(this),
+      renderTabNotes: () => this.renderTabNote(),
+      renderTabTrash: () => this.renderTabTrash(),
+      addNote: (title, description) => this.addNote(title, description),
+      deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
     // function change page
@@ -46,7 +46,7 @@ export default class NoteController {
     try {
       const listTrash = await this.model.filterNotes('trashNotes');
       // function render trash notes
-      this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup.bind(this));
+      this.view.renderListTrashNotes(listTrash, (noteId) => this.handleConfirmPopup(noteId));
 
       // function show Empty Note if note is empty
       this.view.showHideEmpty(listTrash, 'trashNotes');
@@ -58,8 +58,8 @@ export default class NoteController {
   async renderTabNote() {
     try {
       const handlers = {
-        handleDeleteNote: this.deleteNote.bind(this),
-        handleShowNoteForm: this.findNote.bind(this),
+        handleDeleteNote: (noteId) => this.deleteNote(noteId),
+        handleShowNoteForm: (id) => this.findNote(id),
       };
 
       const listNotes = await this.model.filterNotes('listNotes');
@@ -74,9 +74,9 @@ export default class NoteController {
     }
   }
 
-  async handleConfirmPopup(index) {
+  async handleConfirmPopup(noteId) {
     try {
-      const note = await this.model.findNote(index);
+      const note = await this.model.findNote(noteId);
       // function render confirm message
       this.view.renderConfirmMessage(note);
 
@@ -104,7 +104,7 @@ export default class NoteController {
   async addNote(title, description) {
     try {
       const note = await this.model.addNote(title, description);
-      this.view.renderNote(note, this.deleteNote.bind(this), this.findNote.bind(this));
+      this.view.renderNote(note, (noteId) => this.deleteNote(noteId), (id) => this.findNote(id));
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
@@ -113,11 +113,11 @@ export default class NoteController {
   /**
    * @description function delete note in model
    *
-   * @param {String} index is index of note
+   * @param {String} noteId is id of note
    */
-  async deleteNote(index) {
+  async deleteNote(noteId) {
     try {
-      const noteItem = await this.model.deleteNote(index);
+      const noteItem = await this.model.deleteNote(noteId);
 
       this.view.removeNoteElement(noteItem.id);
       this.view.showHideEmpty(this.model.listNotes, 'listNotes');
@@ -153,8 +153,8 @@ export default class NoteController {
       const note = await this.model.findNote(id);
 
       const handlers = {
-        handleEditNote: this.editNote.bind(this),
-        handleDeleteNote: this.deleteNote.bind(this),
+        handleEditNote: (noteId, title, description) => this.editNote(noteId, title, description),
+        handleDeleteNote: (noteId) => this.deleteNote(noteId),
       };
 
       // function render form note
