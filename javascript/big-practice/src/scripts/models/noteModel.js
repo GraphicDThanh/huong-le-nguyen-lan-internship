@@ -81,6 +81,7 @@ export default class NoteModel {
 
       noteItem.deleteAt = date;
       await putNote(id, noteItem);
+      this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
       return noteItem;
     } catch (error) {
