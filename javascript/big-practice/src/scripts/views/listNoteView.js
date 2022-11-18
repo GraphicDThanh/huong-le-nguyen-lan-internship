@@ -252,21 +252,21 @@ export default class ListNoteView {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  editNote(id, title, description) {
-    const note = selectDOMById(id);
+  editNote(noteItem) {
+    const note = selectDOMById(noteItem.id);
     if (note) {
       const titleElement = note.querySelector('.note-title');
       const descriptionElement = note.querySelector('.note-description');
       const emptyNoteElement = note.querySelector('.note-content .note-empty');
 
-      if (!title && !description) {
+      if (!noteItem.title && !noteItem.description) {
         this.elementHelpers.showElement(emptyNoteElement);
         titleElement.textContent = '';
         descriptionElement.textContent = '';
       } else {
         this.elementHelpers.hideElement(emptyNoteElement);
-        titleElement.textContent = title;
-        descriptionElement.textContent = description;
+        titleElement.textContent = noteItem.title;
+        descriptionElement.textContent = noteItem.description;
       }
     }
   }
@@ -490,7 +490,9 @@ export default class ListNoteView {
     const closeBtn = selectDOMClass('.note-form-overlay .btn-close');
     const overlay = selectDOMClass('.overlay');
     const formElement = selectDOMClass('.note-form-overlay');
-    const formNoteId = formElement.id;
+    const noteItem = {
+      id: formElement.id,
+    };
 
     this.eventHelpers.stopEvents(closeBtn);
     this.eventHelpers.stopEvents(formElement);
@@ -500,18 +502,24 @@ export default class ListNoteView {
       e.preventDefault();
 
       const formData = new FormData(formElement);
-      const title = formData.get('title');
-      const description = formData.get('description');
+      const patternNote = {
+        ...noteItem,
+        title: formData.get('title'),
+        description: formData.get('description'),
+      };
 
-      editNote(formNoteId, title, description);
+      editNote(patternNote);
       this.overlayCover.innerHTML = '';
     });
 
     overlay.addEventListener('click', () => {
-      const title = selectDOMClass('.note-form-overlay .note-title').value;
-      const description = selectDOMClass('.note-form-overlay .note-description').value;
+      const patternNote = {
+        ...noteItem,
+        title: selectDOMClass('.note-form-overlay .note-title').value,
+        description: selectDOMClass('.note-form-overlay .note-description').value,
+      };
 
-      editNote(formNoteId, title, description);
+      editNote(patternNote);
       this.overlayCover.innerHTML = '';
     });
   }
@@ -560,14 +568,16 @@ export default class ListNoteView {
     formElement.addEventListener('submit', (e) => {
       e.preventDefault();
       const formData = new FormData(formElement);
-      const title = formData.get('title');
-      const description = formData.get('description');
+      const patternNote = {
+        title: formData.get('title'),
+        description: formData.get('description'),
+      };
 
       this.elementHelpers.hideElement(formUtilitiesElement);
       this.elementHelpers.hideElement(formTitleElement);
 
-      if (title || description) {
-        handler(title, description);
+      if (patternNote.title || patternNote.description) {
+        handler(patternNote);
         formElement.reset();
         this.elementHelpers.hideElement(listNotesEmpty);
       }

@@ -22,12 +22,12 @@ export default class NoteModel {
    *
    * @returns {Object} note
    */
-  async addNote(title, description) {
+  async addNote(patternNote) {
     try {
       const noteItem = {
         id: new Date().getTime().toString(),
-        title,
-        description,
+        title: patternNote.title,
+        description: patternNote.description,
         deleteAt: '',
       };
 
@@ -134,13 +134,12 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async editNote(id, title, description) {
+  async editNote(patternNote) {
     try {
-      const noteItem = this.listNotes.find((note) => note.id === id);
-
-      noteItem.title = title;
-      noteItem.description = description;
-      const note = await putNote(id, noteItem);
+      const noteItem = this.listNotes.find((note) => note.id === patternNote.id);
+      noteItem.title = patternNote.title;
+      noteItem.description = patternNote.description;
+      const note = await putNote(patternNote.id, noteItem);
 
       return note;
     } catch (error) {

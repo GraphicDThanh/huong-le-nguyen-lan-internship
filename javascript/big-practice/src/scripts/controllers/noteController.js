@@ -22,7 +22,7 @@ export default class NoteController {
     const handlers = {
       renderTabNotes: () => this.renderTabNote(),
       renderTabTrash: () => this.renderTabTrash(),
-      addNote: (title, description) => this.addNote(title, description),
+      addNote: (patternNote) => this.addNote(patternNote),
       deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
@@ -98,9 +98,9 @@ export default class NoteController {
    * @param {String} title is title from input
    * @param {String} description is description from input
    */
-  async addNote(title, description) {
+  async addNote(patternNote) {
     try {
-      const note = await this.model.addNote(title, description);
+      const note = await this.model.addNote(patternNote);
       this.view.renderNote(note, (noteId) => this.deleteNote(noteId), (id) => this.findNote(id));
     } catch (error) {
       this.view.renderPopupError(error.message);
@@ -130,11 +130,11 @@ export default class NoteController {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  async editNote(id, title, description) {
+  async editNote(patternNote) {
     try {
-      const note = await this.model.editNote(id, title, description);
+      const note = await this.model.editNote(patternNote);
 
-      this.view.editNote(note.id, note.title, note.description);
+      this.view.editNote(note);
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
@@ -150,7 +150,7 @@ export default class NoteController {
       const note = await this.model.findNote(id);
 
       const handlers = {
-        handleEditNote: (noteId, title, description) => this.editNote(noteId, title, description),
+        handleEditNote: (patternNote) => this.editNote(patternNote),
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
       };
 
