@@ -39,9 +39,9 @@ export default class ElementHelpers {
    * @param {Object} elementShow is DOM element
    * @param {Object} elementHide is DOM element
    */
-  showHideTwoElements(elementShow, elementHide) {
-    this.showElement(elementShow);
-    this.hideElement(elementHide);
+  showHideTwoElements(elementShow, elementHide, className) {
+    this.removeClass(elementShow, className);
+    this.addClass(elementHide, className);
   }
 
   /**
@@ -49,8 +49,8 @@ export default class ElementHelpers {
    *
    * @param {Object} element is element you want to hide
    */
-  hideElement(element) {
-    element.classList.add('hide');
+  addClass(element, className) {
+    element.classList.add(className);
   }
 
   /**
@@ -59,8 +59,8 @@ export default class ElementHelpers {
    *
    * @param {Object} element is element you want to remove class
    */
-  showElement(element) {
-    element.classList.remove('hide');
+  removeClass(element, className) {
+    element.classList.remove(className);
   }
 
   /**

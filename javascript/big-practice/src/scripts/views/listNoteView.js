@@ -9,7 +9,7 @@ import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
 import user from '../constants/mockUser';
-import changeHref from '../utils/navigatePage';
+import navigatePage from '../utils/navigatePage';
 
 /**
  * @class listNoteView
@@ -36,11 +36,12 @@ export default class ListNoteView {
   }
 
   /**
-   * @description if user still note logged in, it will move to login page
+   * @description navigate page to index page if isLogin from
+   * localStorage is false
    */
-  checkUserLoggedIn() {
+  navigatePageWithLoginStatus() {
     if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-      changeHref('index.html');
+      navigatePage('index.html');
     }
   }
 
@@ -50,9 +51,9 @@ export default class ListNoteView {
   bindShowMenuUser() {
     this.avatarUser.addEventListener('click', () => {
       if (this.menuUser.classList.contains('hide')) {
-        this.elementHelpers.showElement(this.menuUser);
+        this.elementHelpers.removeClass(this.menuUser, 'hide');
       } else {
-        this.elementHelpers.hideElement(this.menuUser);
+        this.elementHelpers.addClass(this.menuUser, 'hide');
       }
     });
   }
@@ -62,7 +63,7 @@ export default class ListNoteView {
    */
   bindLogOut() {
     this.btnLogout.addEventListener('click', () => {
-      changeHref('index.html');
+      navigatePage('index.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       this.localStorage.removeItems(STORAGE_KEYS.IS_USER_LOGGED_IN);
     });
@@ -87,15 +88,15 @@ export default class ListNoteView {
    */
   bindChangePage(handlerTrash, handlerNote) {
     this.renderTabs(handlerTrash, handlerNote);
-    this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
+    this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
     this.menu.forEach((element) => {
       element.addEventListener('click', (e) => {
         if (e.target.hasAttribute('data-id')) {
-          this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.remove('menu-color');
+          this.elementHelpers.removeClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
           sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
-          this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
+          this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
           this.renderTabs(handlerTrash, handlerNote);
         } else {
@@ -170,17 +171,17 @@ export default class ListNoteView {
     switch (type) {
       case 'listNotes':
         if (!list.length) {
-          this.elementHelpers.showHideTwoElements(listNotesEmpty, listNoteElement);
+          this.elementHelpers.showHideTwoElements(listNotesEmpty, listNoteElement, 'hide');
         } else {
-          this.elementHelpers.showHideTwoElements(listNoteElement, listNotesEmpty);
+          this.elementHelpers.showHideTwoElements(listNoteElement, listNotesEmpty, 'hide');
         }
 
         break;
       case 'trashNotes':
         if (!list.length) {
-          this.elementHelpers.showHideTwoElements(listTrashEmpty, listTrashElement);
+          this.elementHelpers.showHideTwoElements(listTrashEmpty, listTrashElement, 'hide');
         } else {
-          this.elementHelpers.showHideTwoElements(listTrashElement, listTrashEmpty);
+          this.elementHelpers.showHideTwoElements(listTrashElement, listTrashEmpty, 'hide');
         }
 
         break;
@@ -260,11 +261,11 @@ export default class ListNoteView {
       const emptyNoteElement = note.querySelector('.note-content .note-empty');
 
       if (!noteItem.title && !noteItem.description) {
-        this.elementHelpers.showElement(emptyNoteElement);
+        this.elementHelpers.removeClass(emptyNoteElement, 'hide');
         titleElement.textContent = '';
         descriptionElement.textContent = '';
       } else {
-        this.elementHelpers.hideElement(emptyNoteElement);
+        this.elementHelpers.addClass(emptyNoteElement, 'hide');
         titleElement.textContent = noteItem.title;
         descriptionElement.textContent = noteItem.description;
       }
@@ -442,11 +443,12 @@ export default class ListNoteView {
       const selectedElement = e.target.parentElement.classList.contains('selected');
 
       if (!selectedElement) {
-        e.target.parentElement.classList.add('selected');
+        this.elementHelpers.addClass(e.target.parentElement, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
         this.elementHelpers.translateYElement(this.headerAfterSelect, '-100');
       } else {
-        e.target.parentElement.classList.remove('selected');
+        this.elementHelpers.removeClass(e.target.parentElement, 'selected');
+
         this.elementHelpers.countAndShowSelected(countNotesSelected);
       }
 
@@ -549,8 +551,8 @@ export default class ListNoteView {
 
     const inputAddElement = selectDOMClass('.form-add-note .form-group-input .input-note');
     inputAddElement.addEventListener('focus', () => {
-      this.elementHelpers.showElement(formUtilitiesElement);
-      this.elementHelpers.showElement(formTitleElement);
+      this.elementHelpers.removeClass(formUtilitiesElement, 'hide');
+      this.elementHelpers.removeClass(formTitleElement, 'hide');
     });
   }
 
@@ -573,13 +575,13 @@ export default class ListNoteView {
         description: formData.get('description'),
       };
 
-      this.elementHelpers.hideElement(formUtilitiesElement);
-      this.elementHelpers.hideElement(formTitleElement);
+      this.elementHelpers.addClass(formUtilitiesElement, 'hide');
+      this.elementHelpers.addClass(formTitleElement, 'hide');
 
       if (patternNote.title || patternNote.description) {
         handler(patternNote);
         formElement.reset();
-        this.elementHelpers.hideElement(listNotesEmpty);
+        this.elementHelpers.addClass(listNotesEmpty, 'hide');
       }
     });
   }
