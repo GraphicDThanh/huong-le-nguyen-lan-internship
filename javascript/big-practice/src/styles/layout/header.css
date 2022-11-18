@@ -17,9 +17,8 @@
   align-items: center;
 }
 
-.header-menu-search {
+.header-menu {
   display: flex;
-  align-items: center;
 }
 
 .icon-menu-cover {

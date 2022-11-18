@@ -76,18 +76,14 @@
 }
 
 .form-cover {
-  padding: 30px 0;
   display: flex;
   flex-direction: column;
   font-family: var(--font-regular), var(--font-default);
 }
 
-.form-cover .form-group {
-  display: flex;
-  flex-direction: column;
-}
-
 .form-input {
+  width: 100%;
+  box-sizing: border-box;
   padding: 15px;
   outline: none;
   border: 1px solid var(--fade-color);
@@ -99,18 +95,15 @@
 }
 
 .form-button {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  text-align: center;
 }
 
-.form-button .btn {
+.form-button .btn-login {
   padding: 12px 25px;
   color: var(--light-color);
   font-weight: bold;
   cursor: pointer;
   border-radius: 4px;
-  outline: none;
   background-color: var(--info-color);
 }
 
