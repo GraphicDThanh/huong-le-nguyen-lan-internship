@@ -9,6 +9,7 @@ import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
 import user from '../constants/mockUser';
+import changeHref from '../utils/navigatePage';
 
 /**
  * @class listNoteView
@@ -30,7 +31,6 @@ export default class ListNoteView {
 
     this.menuUser = selectDOMClass('.menu-user');
     this.avatarUser = selectDOMClass('.avatar-user-cover');
-    this.btnLogin = selectDOMClass('.btn-login');
     this.btnLogout = selectDOMClass('.btn-logout');
     this.emailUser = selectDOMClass('.menu-user-email');
   }
@@ -39,8 +39,8 @@ export default class ListNoteView {
    * @description if user still note logged in, it will move to login page
    */
   checkUserLoggedIn() {
-    if (!this.localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
-      window.location.href = 'index.html';
+    if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+      changeHref('index.html');
     }
   }
 
@@ -50,15 +50,9 @@ export default class ListNoteView {
   bindShowMenuUser() {
     this.avatarUser.addEventListener('click', () => {
       if (this.menuUser.classList.contains('hide')) {
-        this.menuUser.classList.remove('hide');
+        this.elementHelpers.showElement(this.menuUser);
       } else {
-        this.menuUser.classList.add('hide');
-      }
-
-      if (this.localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
-        this.elementHelpers.showHideElement(this.btnLogout, this.btnLogin);
-      } else {
-        this.elementHelpers.showHideElement(this.btnLogin, this.btnLogout);
+        this.elementHelpers.hideElement(this.menuUser);
       }
     });
   }
@@ -68,19 +62,9 @@ export default class ListNoteView {
    */
   bindLogOut() {
     this.btnLogout.addEventListener('click', () => {
-      window.location.href = 'index.html';
+      changeHref('index.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       this.localStorage.removeItems(STORAGE_KEYS.IS_USER_LOGGED_IN);
-    });
-  }
-
-  /**
-   * @description handle login
-   */
-  bindLogin() {
-    this.btnLogin.addEventListener('click', () => {
-      window.location.href = 'index.html';
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     });
   }
 
@@ -88,7 +72,7 @@ export default class ListNoteView {
    * @description set email to menu user
    */
   showInformationUser() {
-    if (STORAGE_KEYS.IS_USER_LOGGED_IN) {
+    if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
       this.emailUser.textContent = user.email;
     } else {
       this.emailUser.textContent = 'Unknown';
@@ -186,17 +170,17 @@ export default class ListNoteView {
     switch (type) {
       case 'listNotes':
         if (!list.length) {
-          this.elementHelpers.showHideElement(listNotesEmpty, listNoteElement);
+          this.elementHelpers.showHideTwoElements(listNotesEmpty, listNoteElement);
         } else {
-          this.elementHelpers.showHideElement(listNoteElement, listNotesEmpty);
+          this.elementHelpers.showHideTwoElements(listNoteElement, listNotesEmpty);
         }
 
         break;
       case 'trashNotes':
         if (!list.length) {
-          this.elementHelpers.showHideElement(listTrashEmpty, listTrashElement);
+          this.elementHelpers.showHideTwoElements(listTrashEmpty, listTrashElement);
         } else {
-          this.elementHelpers.showHideElement(listTrashElement, listTrashEmpty);
+          this.elementHelpers.showHideTwoElements(listTrashElement, listTrashEmpty);
         }
 
         break;
@@ -276,11 +260,11 @@ export default class ListNoteView {
       const emptyNoteElement = note.querySelector('.note-content .note-empty');
 
       if (!title && !description) {
-        emptyNoteElement.classList.remove('hide');
+        this.elementHelpers.showElement(emptyNoteElement);
         titleElement.textContent = '';
         descriptionElement.textContent = '';
       } else {
-        emptyNoteElement.classList.add('hide');
+        this.elementHelpers.hideElement(emptyNoteElement);
         titleElement.textContent = title;
         descriptionElement.textContent = description;
       }
@@ -460,7 +444,7 @@ export default class ListNoteView {
       if (!selectedElement) {
         e.target.parentElement.classList.add('selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.headerAfterSelect.style.transform = 'translateY(-100%)';
+        this.elementHelpers.translateYElement(this.headerAfterSelect, '-100');
       } else {
         e.target.parentElement.classList.remove('selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
@@ -468,7 +452,7 @@ export default class ListNoteView {
 
       const listSelected = selectDOMClassAll('.selected');
       if (listSelected.length < 1) {
-        this.headerAfterSelect.style.transform = 'translateY(-200%)';
+        this.elementHelpers.translateYElement(this.headerAfterSelect, '-200');
       }
     });
   }
@@ -557,8 +541,8 @@ export default class ListNoteView {
 
     const inputAddElement = selectDOMClass('.form-add-note .form-group-input .input-note');
     inputAddElement.addEventListener('focus', () => {
-      formUtilitiesElement.classList.remove('hide');
-      formTitleElement.classList.remove('hide');
+      this.elementHelpers.showElement(formUtilitiesElement);
+      this.elementHelpers.showElement(formTitleElement);
     });
   }
 
@@ -579,13 +563,13 @@ export default class ListNoteView {
       const title = formData.get('title');
       const description = formData.get('description');
 
-      formUtilitiesElement.classList.add('hide');
-      formTitleElement.classList.add('hide');
+      this.elementHelpers.hideElement(formUtilitiesElement);
+      this.elementHelpers.hideElement(formTitleElement);
 
       if (title || description) {
         handler(title, description);
         formElement.reset();
-        listNotesEmpty.classList.add('hide');
+        this.elementHelpers.hideElement(listNotesEmpty);
       }
     });
   }
@@ -622,7 +606,7 @@ export default class ListNoteView {
         handler(note.id);
       });
 
-      this.headerAfterSelect.style.transform = 'translateY(-200%)';
+      this.elementHelpers.translateYElement(this.headerAfterSelect, '-200');
     });
   }
 }
