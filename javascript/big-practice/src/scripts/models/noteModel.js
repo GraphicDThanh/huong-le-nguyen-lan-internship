@@ -17,19 +17,19 @@ export default class NoteModel {
    *
    * @returns {Object} note
    */
-  async addNote(patternNote) {
+  async addNote(note) {
     try {
-      const noteItem = {
+      const patternNote = {
         id: new Date().getTime().toString(),
-        title: patternNote.title,
-        description: patternNote.description,
+        title: note.title,
+        description: note.description,
         deleteAt: '',
       };
 
-      const note = await fetchAPI.postNote(noteItem);
-      this.listNotes.push(note);
+      const noteItem = await fetchAPI.postNote(patternNote);
+      this.listNotes.push(noteItem);
 
-      return note;
+      return noteItem;
     } catch (error) {
       console.log(error);
       throw error;
@@ -72,7 +72,7 @@ export default class NoteModel {
   async deleteNote(id) {
     try {
       const date = new Date().toISOString().slice(0, 10);
-      const noteItem = this.listNotes.find((note) => note.id === id);
+      const noteItem = this.findNote(id);
 
       noteItem.deleteAt = date;
       await fetchAPI.putNote(id, noteItem);
@@ -129,14 +129,15 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async editNote(patternNote) {
+  async editNote(note) {
     try {
-      const noteItem = this.listNotes.find((note) => note.id === patternNote.id);
-      noteItem.title = patternNote.title;
-      noteItem.description = patternNote.description;
-      const note = await fetchAPI.putNote(patternNote.id, noteItem);
+      let noteItem = this.findNote(note.id);
+      noteItem.title = note.title;
+      noteItem.description = note.description;
 
-      return note;
+      noteItem = await fetchAPI.putNote(note.id, noteItem);
+
+      return noteItem;
     } catch (error) {
       console.log(error);
       throw error;
