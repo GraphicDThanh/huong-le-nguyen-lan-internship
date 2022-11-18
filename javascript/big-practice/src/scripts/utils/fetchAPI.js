@@ -1,9 +1,7 @@
 import URL_API from '../constants/apiUrl';
 
-export default class FetchAPI {
-  constructor() {
-    this.notesURL = `${URL_API.BASE_URL}${URL_API.NOTES_URL}`;
-  }
+const fetchAPI = {
+  notesURL: `${URL_API.BASE_URL}${URL_API.NOTES_URL}`,
 
   /**
    * @description function get all data
@@ -19,7 +17,7 @@ export default class FetchAPI {
       const error = e;
       throw error;
     }
-  }
+  },
 
   /**
    * @description function add new note to api
@@ -43,7 +41,7 @@ export default class FetchAPI {
       const error = e;
       throw error;
     }
-  }
+  },
 
   /**
    * @description function delete note in api
@@ -64,7 +62,7 @@ export default class FetchAPI {
       const error = e;
       throw error;
     }
-  }
+  },
 
   /**
    * @description function update note with id
@@ -89,5 +87,7 @@ export default class FetchAPI {
       const error = e;
       throw error;
     }
-  }
-}
+  },
+};
+
+export default fetchAPI;

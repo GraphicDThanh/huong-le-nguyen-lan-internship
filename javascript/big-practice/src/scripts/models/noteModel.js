@@ -1,4 +1,4 @@
-import FetchAPI from '../utils/fetchAPI';
+import fetchAPI from '../utils/fetchAPI';
 
 /**
  * @class listNoteModel
@@ -6,7 +6,6 @@ import FetchAPI from '../utils/fetchAPI';
  */
 export default class NoteModel {
   constructor() {
-    this.API = new FetchAPI();
     this.listNotes = [];
   }
 
@@ -27,7 +26,7 @@ export default class NoteModel {
         deleteAt: '',
       };
 
-      const note = await this.API.postNote(noteItem);
+      const note = await fetchAPI.postNote(noteItem);
       this.listNotes.push(note);
 
       return note;
@@ -43,7 +42,7 @@ export default class NoteModel {
    * @returns {Array} listNotes
    */
   async filterNotes(type) {
-    const notes = await this.API.getAllNotes();
+    const notes = await fetchAPI.getAllNotes();
 
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
@@ -76,7 +75,7 @@ export default class NoteModel {
       const noteItem = this.listNotes.find((note) => note.id === id);
 
       noteItem.deleteAt = date;
-      await this.API.putNote(id, noteItem);
+      await fetchAPI.putNote(id, noteItem);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
       return noteItem;
@@ -95,7 +94,7 @@ export default class NoteModel {
    */
   async deleteNoteInTrash(id) {
     try {
-      await this.API.deleteNote(id);
+      await fetchAPI.deleteNote(id);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
     } catch (error) {
       console.log(error);
@@ -135,7 +134,7 @@ export default class NoteModel {
       const noteItem = this.listNotes.find((note) => note.id === patternNote.id);
       noteItem.title = patternNote.title;
       noteItem.description = patternNote.description;
-      const note = await this.API.putNote(patternNote.id, noteItem);
+      const note = await fetchAPI.putNote(patternNote.id, noteItem);
 
       return note;
     } catch (error) {
