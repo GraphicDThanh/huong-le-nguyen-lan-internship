@@ -16,8 +16,8 @@ export default class NoteController {
   }
 
   bindEvents() {
-    // function check if user still not logged in, it will move to login page
-    this.view.checkUserLoggedIn();
+    // Navigate page to index page if isLogin from localStorage is false
+    this.view.navigatePageWithLoginStatus();
 
     const handlers = {
       renderTabNotes: () => this.renderTabNote(),

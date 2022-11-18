@@ -1,5 +1,5 @@
-const changeHref = (href) => {
+const navigatePage = (href) => {
   window.location.href = href;
 };
 
-export default changeHref;
+export default navigatePage;
