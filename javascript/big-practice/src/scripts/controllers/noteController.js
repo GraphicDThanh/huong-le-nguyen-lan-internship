@@ -35,9 +35,6 @@ export default class NoteController {
     // function logout user
     this.view.bindLogOut();
 
-    // function change to login page
-    this.view.bindLogin();
-
     // function set username to menu user
     this.view.showInformationUser();
   }
