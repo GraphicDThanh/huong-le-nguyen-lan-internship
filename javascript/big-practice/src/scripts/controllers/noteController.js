@@ -16,13 +16,13 @@ export default class NoteController {
   }
 
   bindEvents() {
-    // function check if user still not logged in, it will move to login page
-    this.view.checkUserLoggedIn();
+    // Navigate page to index page if isLogin from localStorage is false
+    this.view.navigatePageWithLoginStatus();
 
     const handlers = {
       renderTabNotes: () => this.renderTabNote(),
       renderTabTrash: () => this.renderTabTrash(),
-      addNote: (patternNote) => this.addNote(patternNote),
+      addNote: (note) => this.addNote(note),
       deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
@@ -98,10 +98,14 @@ export default class NoteController {
    * @param {String} title is title from input
    * @param {String} description is description from input
    */
-  async addNote(patternNote) {
+  async addNote(note) {
     try {
-      const note = await this.model.addNote(patternNote);
-      this.view.renderNote(note, (noteId) => this.deleteNote(noteId), (id) => this.findNote(id));
+      const noteItem = await this.model.addNote(note);
+      this.view.renderNote(
+        noteItem,
+        (noteId) => this.deleteNote(noteId),
+        (id) => this.findNote(id),
+      );
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
@@ -130,11 +134,11 @@ export default class NoteController {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  async editNote(patternNote) {
+  async editNote(note) {
     try {
-      const note = await this.model.editNote(patternNote);
+      const noteItem = await this.model.editNote(note);
 
-      this.view.editNote(note);
+      this.view.editNote(noteItem);
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
@@ -147,15 +151,15 @@ export default class NoteController {
    */
   async findNote(id) {
     try {
-      const note = await this.model.findNote(id);
+      const noteItem = await this.model.findNote(id);
 
       const handlers = {
-        handleEditNote: (patternNote) => this.editNote(patternNote),
+        handleEditNote: (note) => this.editNote(note),
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
       };
 
       // function render form note
-      this.view.renderFormNote(note, handlers);
+      this.view.renderFormNote(noteItem, handlers);
     } catch (error) {
       this.view.renderPopupError(error.message);
     }

@@ -4,7 +4,7 @@ import { hideError, showError } from '../utils/handleError';
 import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
-import changeHref from '../utils/navigatePage';
+import navigatePage from '../utils/navigatePage';
 
 export default class LoginView {
   constructor() {
@@ -50,7 +50,7 @@ export default class LoginView {
 
     if (!this.emailElement.classList.contains('valid') && !this.passwordElement.classList.contains('valid')) {
       this.localStorage.setItems(STORAGE_KEYS.IS_LOGIN, true);
-      changeHref('home.html');
+      navigatePage('home.html');
     }
   }
 }
