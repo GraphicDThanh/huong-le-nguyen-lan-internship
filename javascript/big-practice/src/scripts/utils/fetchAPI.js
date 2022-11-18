@@ -1,7 +1,7 @@
 import URL_API from '../constants/apiUrl';
 
 const fetchAPI = {
-  notesURL: `${URL_API.BASE_URL}${URL_API.NOTES_URL}`,
+  baseURL: `${URL_API.BASE_URL}`,
 
   /**
    * @description function get all data
@@ -10,7 +10,7 @@ const fetchAPI = {
    */
   async getAllNotes() {
     try {
-      const response = await fetch(`${this.notesURL}`);
+      const response = await fetch(`${this.baseURL}${URL_API.NOTES_URL}`);
       const notes = await response.json();
       return notes;
     } catch (e) {
@@ -34,7 +34,7 @@ const fetchAPI = {
         },
       };
 
-      const noteItem = await fetch(this.notesURL, options);
+      const noteItem = await fetch(`${this.baseURL}${URL_API.NOTES_URL}`, options);
 
       return noteItem.json();
     } catch (e) {
@@ -57,7 +57,7 @@ const fetchAPI = {
         },
       };
 
-      await fetch(`${this.notesURL}/${id}`, options);
+      await fetch(`${this.baseURL}${URL_API.NOTES_URL}/${id}`, options);
     } catch (e) {
       const error = e;
       throw error;
@@ -80,7 +80,7 @@ const fetchAPI = {
         },
       };
 
-      const noteItem = await fetch(`${this.notesURL}/${id}`, options);
+      const noteItem = await fetch(`${this.baseURL}${URL_API.NOTES_URL}/${id}`, options);
 
       return noteItem.json();
     } catch (e) {
