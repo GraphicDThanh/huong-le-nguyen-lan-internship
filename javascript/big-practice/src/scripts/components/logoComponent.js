@@ -1,21 +1,19 @@
 import STORAGE_KEYS from '../constants/storageKeys';
 import iconLogo from '../../assets/icons/google-keep.svg';
 
-const logo = (tab) => {
+const logoComponent = (tab) => {
   const logoElement = document.createElement('div');
-  logoElement.classList.add('header-menu');
+  logoElement.classList.add('icon-logo');
 
   logoElement.innerHTML = `
-    <div class="icon-logo">
+    <figure class="icon-logo-cover">
       ${sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
-    ? `<figure class="icon-logo-cover">
-          <img class="logo" src="${iconLogo}" alt="icon logo">
-        </figure>` : ''} 
-      <span>${tab}</span>
-    </div>
+    ? `<img class="logo" src="${iconLogo}" alt="icon logo">` : ''} 
+    </figure>
+    <span>${tab}</span>
   `;
 
   return logoElement;
 };
 
-export default logo;
+export default logoComponent;

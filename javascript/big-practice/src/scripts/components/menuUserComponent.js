@@ -1,6 +1,6 @@
 import avatar from '../../assets/images/avatar.png';
 
-const menuUser = () => {
+const menuUserComponent = () => {
   const menuUserElement = document.createElement('div');
   menuUserElement.classList.add('header-avatar');
 
@@ -26,4 +26,4 @@ const menuUser = () => {
   return menuUserElement;
 };
 
-export default menuUser;
+export default menuUserComponent;

@@ -19,6 +19,7 @@ export default class NoteController {
   bindEvents() {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
+
     this.headerView.renderHeader();
 
     const handlers = {
@@ -29,7 +30,9 @@ export default class NoteController {
     };
 
     // function change page
-    this.view.bindChangePage(handlers);
+    this.view.bindChangePage(handlers, (tab) => this.headerView.changeLogoByTab(tab));
+
+    this.headerView.closeSelected();
 
     // function show hide menu hidden
     this.headerView.bindShowMenuUser();
@@ -59,6 +62,7 @@ export default class NoteController {
       const handlers = {
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
         handleShowNoteForm: (id) => this.findNote(id),
+        bindShowHeader: (noteElement) => this.headerView.bindShowHeader(noteElement),
       };
 
       const listNotes = await this.model.filterNotes('listNotes');

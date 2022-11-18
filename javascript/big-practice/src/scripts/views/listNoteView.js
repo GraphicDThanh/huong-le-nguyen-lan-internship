@@ -21,14 +21,9 @@ export default class ListNoteView {
     this.localStorage = new LocalStorage();
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
-
     this.sectionWrapper = selectDOMClass('.section-wrapper');
     this.overlayCover = selectDOMClass('.overlay-cover');
-
     this.menu = selectDOMClassAll('.nav li');
-
-    this.btnLogout = selectDOMClass('.btn-logout');
-    this.emailUser = selectDOMClass('.menu-user-email');
   }
 
   /**
@@ -47,8 +42,8 @@ export default class ListNoteView {
    * @param {function} handlerTrash is function transmitted from model
    * @param {function} handlerNote is function transmitted from model
    */
-  bindChangePage(handlerTrash, handlerNote) {
-    this.renderTabs(handlerTrash, handlerNote);
+  bindChangePage(handlers, changeLogoFollowTab) {
+    this.renderTabs(handlers);
     this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
     this.menu.forEach((element) => {
@@ -59,7 +54,8 @@ export default class ListNoteView {
           sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
           this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
-          this.renderTabs(handlerTrash, handlerNote);
+          this.renderTabs(handlers);
+          changeLogoFollowTab(e.target.textContent.trim());
         } else {
           this.renderPopupError('Page number is not found');
         }
@@ -162,10 +158,8 @@ export default class ListNoteView {
     const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
     listNoteElement.innerHTML = '';
 
-    const { handleDeleteNote, handleShowNoteForm } = handlers;
-
     listNotes.forEach((note) => {
-      this.renderNote(note, handleDeleteNote, handleShowNoteForm);
+      this.renderNote(note, handlers);
     });
   }
 
@@ -176,7 +170,7 @@ export default class ListNoteView {
    * @param {function} handleDeleteNote is a function transmitted from model
    * @param {function} handleShowNoteForm is a function transmitted from model
    */
-  renderNote(note, handleDeleteNote, handleShowNoteForm) {
+  renderNote(note, handlers) {
     const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
     const noteItem = {
       id: note.id,
@@ -186,11 +180,12 @@ export default class ListNoteView {
     };
     const noteView = new NoteView(noteItem);
     const noteElement = noteView.renderNote();
+    const { handleDeleteNote, handleShowNoteForm, bindShowHeader } = handlers;
 
     listNoteElement.appendChild(noteView.renderNote());
     this.bindDeleteNote(noteElement, handleDeleteNote);
     this.bindShowNoteForm(noteElement, handleShowNoteForm);
-    this.bindShowHeader(noteElement);
+    bindShowHeader(noteElement);
   }
 
   /**
@@ -387,38 +382,6 @@ export default class ListNoteView {
 
     this.elementHelpers.commonInputBreakDown(title);
     this.elementHelpers.commonInputBreakDown(description);
-  }
-
-  /**
-   * @description events show header bulk actions and count notes selected
-   *
-   * @param {Object} noteElement is note element
-   */
-  bindShowHeader(noteElement) {
-    const note = selectDOMById(`${noteElement.id}`);
-    const listIconCheck = note.querySelector('.icon-check');
-    const countNotesSelected = selectDOMClass('.count-selected');
-    const headerAfterSelect = selectDOMClass('.header-after-select');
-
-    listIconCheck.addEventListener('click', (e) => {
-      e.preventDefault();
-      const selectedElement = e.target.parentElement.classList.contains('selected');
-
-      if (!selectedElement) {
-        this.elementHelpers.addClass(e.target.parentElement, 'selected');
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.elementHelpers.translateYElement(headerAfterSelect, '-100');
-      } else {
-        this.elementHelpers.removeClass(e.target.parentElement, 'selected');
-
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-      }
-
-      const listSelected = selectDOMClassAll('.selected');
-      if (listSelected.length < 1) {
-        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
-      }
-    });
   }
 
   /**

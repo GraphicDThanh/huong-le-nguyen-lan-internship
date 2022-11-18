@@ -1,7 +1,7 @@
 import iconSearch from '../../assets/icons/icon-search.svg';
 import iconClose from '../../assets/icons/icon-close.svg';
 
-const inputSearch = () => {
+const inputSearchComponent = () => {
   const inputSearchElement = document.createElement('form');
   inputSearchElement.classList.add('form-search');
 
@@ -20,4 +20,4 @@ const inputSearch = () => {
   return inputSearchElement;
 };
 
-export default inputSearch;
+export default inputSearchComponent;
