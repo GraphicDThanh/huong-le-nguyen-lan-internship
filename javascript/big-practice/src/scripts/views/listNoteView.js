@@ -504,24 +504,24 @@ export default class ListNoteView {
       e.preventDefault();
 
       const formData = new FormData(formElement);
-      const patternNote = {
+      const note = {
         ...noteItem,
         title: formData.get('title'),
         description: formData.get('description'),
       };
 
-      editNote(patternNote);
+      editNote(note);
       this.overlayCover.innerHTML = '';
     });
 
     overlay.addEventListener('click', () => {
-      const patternNote = {
+      const note = {
         ...noteItem,
         title: selectDOMClass('.note-form-overlay .note-title').value,
         description: selectDOMClass('.note-form-overlay .note-description').value,
       };
 
-      editNote(patternNote);
+      editNote(note);
       this.overlayCover.innerHTML = '';
     });
   }
@@ -570,7 +570,7 @@ export default class ListNoteView {
     formElement.addEventListener('submit', (e) => {
       e.preventDefault();
       const formData = new FormData(formElement);
-      const patternNote = {
+      const note = {
         title: formData.get('title'),
         description: formData.get('description'),
       };
@@ -578,8 +578,8 @@ export default class ListNoteView {
       this.elementHelpers.addClass(formUtilitiesElement, 'hide');
       this.elementHelpers.addClass(formTitleElement, 'hide');
 
-      if (patternNote.title || patternNote.description) {
-        handler(patternNote);
+      if (note.title || note.description) {
+        handler(note);
         formElement.reset();
         this.elementHelpers.addClass(listNotesEmpty, 'hide');
       }
