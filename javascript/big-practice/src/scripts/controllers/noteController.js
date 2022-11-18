@@ -6,9 +6,10 @@
  * @param view
  */
 export default class NoteController {
-  constructor(model, view) {
+  constructor(model, view, headerView) {
     this.model = model;
     this.view = view;
+    this.headerView = headerView;
   }
 
   init() {
@@ -18,6 +19,7 @@ export default class NoteController {
   bindEvents() {
     // function check if user still not logged in, it will move to login page
     this.view.checkUserLoggedIn();
+    this.headerView.renderHeader();
 
     const handlers = {
       renderTabNotes: () => this.renderTabNote(),
@@ -30,13 +32,13 @@ export default class NoteController {
     this.view.bindChangePage(handlers);
 
     // function show hide menu hidden
-    this.view.bindShowMenuUser();
+    this.headerView.bindShowMenuUser();
 
     // function logout user
-    this.view.bindLogOut();
+    this.headerView.bindLogOut();
 
     // function set username to menu user
-    this.view.showInformationUser();
+    this.headerView.showInformationUser();
   }
 
   async renderTabTrash() {

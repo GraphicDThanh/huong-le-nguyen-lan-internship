@@ -8,7 +8,6 @@ import { POPUP_MESSAGE } from '../constants/message';
 import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
-import user from '../constants/mockUser';
 import changeHref from '../utils/navigatePage';
 
 /**
@@ -22,15 +21,12 @@ export default class ListNoteView {
     this.localStorage = new LocalStorage();
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
-    this.btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
 
     this.sectionWrapper = selectDOMClass('.section-wrapper');
     this.overlayCover = selectDOMClass('.overlay-cover');
 
     this.menu = selectDOMClassAll('.nav li');
 
-    this.menuUser = selectDOMClass('.menu-user');
-    this.avatarUser = selectDOMClass('.avatar-user-cover');
     this.btnLogout = selectDOMClass('.btn-logout');
     this.emailUser = selectDOMClass('.menu-user-email');
   }
@@ -41,41 +37,6 @@ export default class ListNoteView {
   checkUserLoggedIn() {
     if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
       changeHref('index.html');
-    }
-  }
-
-  /**
-   * @description function show hide menu user
-   */
-  bindShowMenuUser() {
-    this.avatarUser.addEventListener('click', () => {
-      if (this.menuUser.classList.contains('hide')) {
-        this.elementHelpers.showElement(this.menuUser);
-      } else {
-        this.elementHelpers.hideElement(this.menuUser);
-      }
-    });
-  }
-
-  /**
-   * @description function handle logout
-   */
-  bindLogOut() {
-    this.btnLogout.addEventListener('click', () => {
-      changeHref('index.html');
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      this.localStorage.removeItems(STORAGE_KEYS.IS_USER_LOGGED_IN);
-    });
-  }
-
-  /**
-   * @description set email to menu user
-   */
-  showInformationUser() {
-    if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-      this.emailUser.textContent = user.email;
-    } else {
-      this.emailUser.textContent = 'Unknown';
     }
   }
 
@@ -436,6 +397,7 @@ export default class ListNoteView {
     const note = selectDOMById(`${noteElement.id}`);
     const listIconCheck = note.querySelector('.icon-check');
     const countNotesSelected = selectDOMClass('.count-selected');
+    const headerAfterSelect = selectDOMClass('.header-after-select');
 
     listIconCheck.addEventListener('click', (e) => {
       e.preventDefault();
@@ -444,7 +406,7 @@ export default class ListNoteView {
       if (!selectedElement) {
         e.target.parentElement.classList.add('selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.elementHelpers.translateYElement(this.headerAfterSelect, '-100');
+        this.elementHelpers.translateYElement(headerAfterSelect, '-100');
       } else {
         e.target.parentElement.classList.remove('selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
@@ -452,7 +414,7 @@ export default class ListNoteView {
 
       const listSelected = selectDOMClassAll('.selected');
       if (listSelected.length < 1) {
-        this.elementHelpers.translateYElement(this.headerAfterSelect, '-200');
+        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
       }
     });
   }
@@ -609,14 +571,17 @@ export default class ListNoteView {
    * @param {function} handler is function delete transmitted from from the model
    */
   bindDeleteListNotes(handler) {
-    this.btnDeleteBulkActions.addEventListener('click', () => {
+    const btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
+    const headerAfterSelect = selectDOMClass('.header-after-select');
+
+    btnDeleteBulkActions.addEventListener('click', () => {
       const noteSelected = selectDOMClassAll('.selected');
 
       noteSelected.forEach((note) => {
         handler(note.id);
       });
 
-      this.elementHelpers.translateYElement(this.headerAfterSelect, '-200');
+      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     });
   }
 }
