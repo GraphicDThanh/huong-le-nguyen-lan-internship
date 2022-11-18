@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "concurrently \"npm start\" \"npm run start-db\"",
-    "start": "parcel",
+    "start": "parcel ./src/pages/index.html ./src/pages/home.html",
     "build": "parcel build",
     "start-db": "json-server --watch data/db.json",
     "lint:eslint": "eslint --ignore-path .gitignore . --ext .js,.jsx,.ts,.tsx",
