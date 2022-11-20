@@ -3,6 +3,7 @@ export default class LocalStorage {
    * @description function set items to localStorage
    *
    * @param {String} key is name of key in localStorage
+   *
    * @param {Array} value
    */
   setItems(key, value) {

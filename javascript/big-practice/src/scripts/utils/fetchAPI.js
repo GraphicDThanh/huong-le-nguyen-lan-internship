@@ -4,7 +4,7 @@ const fetchAPI = {
   baseURL: `${URL_API.BASE_URL}`,
 
   /**
-   * @description function get all notes
+   * @description function get all data
    *
    * @returns {Object} notes
    */

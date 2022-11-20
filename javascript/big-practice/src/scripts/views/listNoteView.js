@@ -9,7 +9,6 @@ import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
-import { renderPopupError } from '../utils/handleError';
 
 /**
  * @class listNoteView
@@ -28,7 +27,7 @@ export default class ListNoteView {
 
   /**
    * @description navigate page to index page if isLogin from
-   * localStorage is null
+   * localStorage is false
    */
   navigatePageWithLoginStatus() {
     if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
@@ -41,6 +40,7 @@ export default class ListNoteView {
    *
    * @param {function} handlers includes functions
    * renderTabNotes, renderTabTrash, addNote, deleteNote
+   *
    * @param {function} handlerNote is function transmitted from model
    */
   renderTabs(handlers) {
@@ -86,8 +86,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function show empty note if the list is empty
-   * with the type of listNotes or trashNotes
+   * @description function show empty note if that note is empty
    *
    * @param {Array} list is a list of note or list of trash note
    * @param {String} type is a type if we need to use in listNotes or trashNotes
@@ -116,14 +115,13 @@ export default class ListNoteView {
 
         break;
       default:
-        renderPopupError('Please enter listNotes or trashNotes');
+        this.renderPopupError('Please enter listNotes or trashNotes');
         break;
     }
   }
 
   /**
-   * @description function render all notes and bind events for each
-   * note just created
+   * @description function render all notes
    *
    * @param {Array} listNote is a list of notes from data
    * @param {Object} handlers is a list function events
@@ -138,9 +136,9 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function render a note and bind events for a note just created
+   * @description function render a note
    *
-   * @param {Object} note is information of note
+   * @param {Object} note is a note
    * @param {function} handleDeleteNote is a function transmitted from model
    * @param {function} handleShowNoteForm is a function transmitted from model
    */
@@ -163,9 +161,10 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function remove note element in view
+   * @description function remove note in view
    *
    * @param {String} id is id of note
+   * @param {String} type enter listNotes or trashNotes
    */
   removeNoteElement(id) {
     const note = selectDOMById(id);
@@ -176,9 +175,11 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function edit note with information of note is selected
+   * @description function edit note
    *
-   * @param {Object} noteItem is information of note take from model returned
+   * @param {String} id is id of note
+   * @param {String} title is title of note
+   * @param {String} description is description of note
    */
   editNote(noteItem) {
     const note = selectDOMById(noteItem.id);
@@ -200,10 +201,9 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function render trash page and bind events for
-   * each note in trash
+   * @description function render trash page
    *
-   * @param {Array} listNotes is a list of trash notes from data
+   * @param {Array} listNotes is a list of notes from data
    * @param {function} handler is a function transmitted from model
    */
   renderListTrashNotes(listNotes, handler) {
@@ -231,17 +231,23 @@ export default class ListNoteView {
    * @param {Object} note is a note take from data
    */
   renderConfirmMessage(note) {
+    const noteItem = {
+      id: note.id,
+      title: note.title,
+      description: note.description,
+      isTrash: note.isTrash,
+    };
+
     this.overlayCover.innerHTML = '';
 
-    this.overlayCover.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', note));
+    this.overlayCover.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', noteItem));
   }
 
   /**
-   * @description render form note with information of note is selected
-   * and bind events for form note
+   * @description render form note of each note
    *
-   * @param {Object} note is information of note get from data
-   * @param {Object} handlers is a list of functions events
+   * @param {Object} note is a note take from data
+   * @param {Object} handlers is a list of function
    */
   renderFormNote(note, handlers) {
     const noteItem = {
@@ -265,14 +271,27 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function open confirm popup when click button delete
-   * of note in trash
+   * @description function render popup error message
+   *
+   * @param {String} errorMessage is message error
+   */
+  renderPopupError(errorMessage) {
+    this.overlayCover.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
+
+    const btnClose = selectDOMClass('.btn-close-popup');
+    btnClose.addEventListener('click', () => {
+      this.overlayCover.innerHTML = '';
+    });
+  }
+
+  /**
+   * @description function open confirm message
    *
    * @param {function} handler is function transmitted
-   * @param {Object} note is trash note element is selected
+   * @param {Object} trashNote is trash note element
    */
-  bindShowPopup(note, handler) {
-    const btnDeletes = note.querySelector('.trash-wrapper .btn-delete');
+  bindShowPopup(trashNote, handler) {
+    const btnDeletes = trashNote.querySelector('.trash-wrapper .btn-delete');
 
     btnDeletes.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-id');
@@ -281,7 +300,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function close confirm popup
+   * @description function close confirm message and delete
    *
    * @param {function} handler is function transmitted
    */
@@ -338,10 +357,10 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function show note form of note is selected
+   * @description function show form of each note
    *
    * @param {function} findNote is function transmitted from model
-   * @param {Object} noteElement is note element is selected
+   * @param {Object} noteElement is note element
    */
   bindShowNoteForm(noteElement, findNote) {
     const noteItem = selectDOMById(`${noteElement.id}`);
@@ -362,8 +381,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function close and save form note when click button close or
-   * click out of the form
+   * @description function close and save form note when click button close
    *
    * @param {function} editNote is function transmitted from model
    */
@@ -406,7 +424,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function delete note of button in note form
+   * @description is function of button delete of note form
    *
    * @param {function} deleteNote is function transmitted from model
    */
@@ -466,7 +484,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function delete note of each note
+   * @description function event delete note
    *
    * @param {function} handler is function delete transmitted from from the model
    * @param {Object} noteElement is note element
@@ -485,7 +503,7 @@ export default class ListNoteView {
   }
 
   /**
-   * @description function delete of button in header by selected notes
+   * @description function delete selected notes
    *
    * @param {function} handler is function delete transmitted from from the model
    */

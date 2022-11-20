@@ -15,7 +15,9 @@ export default class LoginView {
   }
 
   /**
-   * @description function check valid email and password
+   * @description function check valid and check user
+   *
+   * @param {function} handler is transmitted from model
    */
   bindLogin() {
     this.loginForm.addEventListener('submit', (e) => {
@@ -31,8 +33,7 @@ export default class LoginView {
   /**
    * @description function check email and password are exists in data
    *
-   * @param {String} password is value of input that user enters
-   * @param {String} email is value of input that user enters
+   * @param {Object} isValid include isEmail and isPassword
    */
   handleInvalidUser(password, email) {
     if (password === user.password) {

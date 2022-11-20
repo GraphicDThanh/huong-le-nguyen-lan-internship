@@ -14,7 +14,6 @@ export default class ElementHelpers {
 
   /**
    * @description common events of textarea to increase the length
-   *
    * @param {Object} el is element textarea
    */
   commonInputBreakDown(el) {
@@ -27,7 +26,6 @@ export default class ElementHelpers {
 
   /**
    * @description function count note selected and show total
-   *
    * @param {Object} el is element text count note
    */
   countAndShowSelected(el) {
@@ -37,12 +35,9 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description function show and hide two elements with class
-   * have CSS property is display none
-   *
-   * @param {Object} elementShow is DOM element you wanna show it
-   * @param {Object} elementHide is DOM element you wanna hide it
-   * @param {String} className is class has CSS property is display none
+   * @description function show and hide element
+   * @param {Object} elementShow is DOM element
+   * @param {Object} elementHide is DOM element
    */
   showHideTwoElements(elementShow, elementHide, className) {
     this.removeClass(elementShow, className);
@@ -50,23 +45,36 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description add class is defined CSS properties to element
+   * @description hide element with class has CSS property is display none
    *
-   * @param {Object} element is element you want to add class
-   * @param {String} className is class has been defined CSS properties
+   * @param {Object} element is element you want to hide
    */
   addClass(element, className) {
     element.classList.add(className);
   }
 
   /**
-   * @description remove is defined CSS properties to element
+   * @description show element when element has already assigned
+   * class, which has CSS property is display none
    *
    * @param {Object} element is element you want to remove class
-   * @param {String} className is class has been defined CSS properties
    */
   removeClass(element, className) {
     element.classList.remove(className);
+  }
+
+  /**
+   * @description function show hide empty list
+   *
+   * @param {Object} list is list
+   * @param {Object} listEmpty is empty list
+   */
+  showEmptyList(list, listEmpty) {
+    if (list.children.length < 1) {
+      listEmpty.classList.remove('hide');
+    } else {
+      listEmpty.classList.add('hide');
+    }
   }
 
   /**

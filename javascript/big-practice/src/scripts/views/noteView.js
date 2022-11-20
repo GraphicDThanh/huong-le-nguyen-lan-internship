@@ -40,7 +40,6 @@ export default class NoteView {
 
   /**
    * @description function create a note form
-   *
    * @returns {Object} formElement
    */
   renderNoteForm() {

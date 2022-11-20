@@ -12,9 +12,10 @@ export default class NoteModel {
   /**
    * @description function add note
    *
-   * @param {Object} note is information of note
+   * @param {String} title transmitted from the outside in
+   * @param {String} description transmitted from the outside in
    *
-   * @returns {Object} noteItem
+   * @returns {Object} note
    */
   async addNote(note) {
     try {
@@ -36,14 +37,9 @@ export default class NoteModel {
   }
 
   /**
-   * @description function filter list notes or trash notes with
-   * type is listNotes or trashNote. that we can use this function
-   * to two tabs is notes and trash
+   * @description function filter list notes or trash notes
    *
-   * @param {String} type is listNotes or trashNotes to distinguishing
-   * function use for
-   *
-   * @returns {Array} this.listNotes
+   * @returns {Array} listNotes
    */
   async filterNotes(type) {
     const notes = await fetchAPI.getAllNotes();
@@ -67,13 +63,11 @@ export default class NoteModel {
   }
 
   /**
-   * @description function change value of field deletedAt that mean
-   * it will move to trash if field deletedAt have value because default
-   * value of deletedAt is null
+   * @description function move note to trash
    *
-   * @param {String} id is id of note is selected
+   * @param {String} id is index of note
    *
-   * @return {Object} noteItem
+   * @return {Object} this.notes[noteIndex]
    */
   async deleteNote(id) {
     try {
@@ -92,9 +86,11 @@ export default class NoteModel {
   }
 
   /**
-   * @description function remove note with id of note is selected
+   * @description function remove note in array
    *
-   * @param {String} id is id of note is selected
+   * @param {String} index is index of note
+   *
+   * @return {Object} note
    */
   async deleteNoteInTrash(id) {
     try {
@@ -107,11 +103,11 @@ export default class NoteModel {
   }
 
   /**
-   * @description is a function find note with id of note is selected
+   * @description is a function find note
    *
-   * @param {String} id is id of note is selected
+   * @param {String} id is id of note
    *
-   *  @returns {Object} noteItem
+   *  @returns {Object} this.notes[noteIndex]
    */
   findNote(id) {
     try {
@@ -125,9 +121,11 @@ export default class NoteModel {
   }
 
   /**
-   * @description function edit note with information of note is selected
+   * @description function edit note
    *
-   * @param {Object} note is information of note is selected
+   * @param {String} index is index of note
+   * @param {String} title is title of note
+   * @param {String} description is description of note
    *
    * @returns {Object} noteItem
    */

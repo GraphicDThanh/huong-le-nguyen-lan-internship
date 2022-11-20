@@ -1,5 +1,3 @@
-import { renderPopupError } from '../utils/handleError';
-
 /**
  * @class noteController
  * @description Controller is an intermediary for views and models
@@ -23,10 +21,8 @@ export default class NoteController {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
 
-    // Render menu component in the left site
     this.menuView.renderMenu();
 
-    // Render header component
     this.headerView.renderHeader();
 
     const handlers = {
@@ -36,16 +32,15 @@ export default class NoteController {
       deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
-    // function tab when click to menu
+    // function change page
     this.menuView.bindChangePage(
       () => this.view.renderTabs(handlers),
       (tab) => this.headerView.changeLogoByTab(tab),
     );
 
-    // function close header when click the close button in header
     this.headerView.closeSelected();
 
-    // function show hide menu user in the header
+    // function show hide menu hidden
     this.headerView.bindShowMenuUser();
 
     // function logout user
@@ -64,7 +59,7 @@ export default class NoteController {
       // function show Empty Note if note is empty
       this.view.showHideEmpty(listTrash, 'trashNotes');
     } catch (error) {
-      renderPopupError(error.message);
+      this.view.renderPopupError(error.message);
     }
   }
 
@@ -72,9 +67,10 @@ export default class NoteController {
     try {
       const handlers = {
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
-        handleShowNoteForm: (id) => this.handleNoteForm(id),
+        handleShowNoteForm: (id) => this.findNote(id),
         bindShowHeader: (noteElement) => this.headerView.bindShowHeader(noteElement),
       };
+
       const listNotes = await this.model.filterNotes('listNotes');
 
       // function render list notes
@@ -83,27 +79,20 @@ export default class NoteController {
       // function show Empty Note if note is empty
       this.view.showHideEmpty(listNotes, 'listNotes');
     } catch (error) {
-      renderPopupError(error.message);
+      this.view.renderPopupError(error.message);
     }
   }
 
-  /**
-   * @description handle event of confirm popup in Trash tab
-   * with id of note
-   *
-   * @param {String} noteId is id of note is selected
-   */
   async handleConfirmPopup(noteId) {
     try {
       const note = await this.model.findNote(noteId);
-
       // function render confirm message
       this.view.renderConfirmMessage(note);
 
       // function close popup
       this.view.bindClosePopup();
 
-      // function delete trash in tab trash
+      // function delete trash forever
       this.view.bindDeleteNoteInTrash(async (id) => {
         await this.model.deleteNoteInTrash(id);
 
@@ -111,14 +100,15 @@ export default class NoteController {
         this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
       });
     } catch (error) {
-      renderPopupError(error.message);
+      this.view.renderPopupError(error.message);
     }
   }
 
   /**
-   * @description function add note with param is a note
+   * @description function add note
    *
-   * @param {Object} note is a information of note
+   * @param {String} title is title from input
+   * @param {String} description is description from input
    */
   async addNote(note) {
     try {
@@ -126,18 +116,17 @@ export default class NoteController {
       this.view.renderNote(
         noteItem,
         (noteId) => this.deleteNote(noteId),
-        (id) => this.handleNoteForm(id),
+        (id) => this.findNote(id),
       );
     } catch (error) {
-      renderPopupError(error.message);
+      this.view.renderPopupError(error.message);
     }
   }
 
   /**
-   * @description function delete note in tab note with id of note selected
-   * and check if that note is empty or not. If it is empty, show text empty
+   * @description function delete note in model
    *
-   * @param {String} noteId is id of note is selected
+   * @param {String} noteId is id of note
    */
   async deleteNote(noteId) {
     try {
@@ -146,14 +135,16 @@ export default class NoteController {
       this.view.removeNoteElement(noteItem.id);
       this.view.showHideEmpty(this.model.listNotes, 'listNotes');
     } catch (error) {
-      renderPopupError(error.message);
+      this.view.renderPopupError(error.message);
     }
   }
 
   /**
-   * @description function edit note with information of note is selected
+   * @description function edit note
    *
-   * @param {Object} note is information of note
+   * @param {String} id is a id of note
+   * @param {String} title is title of note
+   * @param {String} description is description of note
    */
   async editNote(note) {
     try {
@@ -161,17 +152,16 @@ export default class NoteController {
 
       this.view.editNote(noteItem);
     } catch (error) {
-      renderPopupError(error.message);
+      this.view.renderPopupError(error.message);
     }
   }
 
   /**
-   * @description function show information of note form by finding note with id
-   * and bind events related to note
+   * @description function find note
    *
    * @param {String} id is a id of note
    */
-  async handleNoteForm(id) {
+  async findNote(id) {
     try {
       const noteItem = await this.model.findNote(id);
 
@@ -183,7 +173,7 @@ export default class NoteController {
       // function render form note
       this.view.renderFormNote(noteItem, handlers);
     } catch (error) {
-      renderPopupError(error.message);
+      this.view.renderPopupError(error.message);
     }
   }
 }
