@@ -10,7 +10,7 @@ const logoComponent = (tab) => {
       ${sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
     ? `<img class="logo" src="${iconLogo}" alt="icon logo">` : ''} 
     </figure>
-    <span>${tab}</span>
+    <h1>${tab}</h1>
   `;
 
   return logoElement;

@@ -68,7 +68,6 @@ export default class NoteController {
       const handlers = {
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
         handleShowNoteForm: (id) => this.findNote(id),
-        bindShowHeader: (noteElement) => this.headerView.bindShowHeader(noteElement),
       };
 
       const listNotes = await this.model.filterNotes('listNotes');

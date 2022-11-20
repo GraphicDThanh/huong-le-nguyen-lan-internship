@@ -52,6 +52,7 @@ export default class HeaderView {
     headerMenu.appendChild(logoComponent('Keep'));
     headerMenu.appendChild(inputSearchComponent());
     headerDefault.appendChild(menuUserComponent());
+    this.bindNavigateHomePage();
   }
 
   /**
@@ -148,6 +149,24 @@ export default class HeaderView {
       });
 
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+    });
+  }
+
+  /**
+   * @description event of logo and title logo in header, when
+   * user click, it will go to home page
+   */
+  bindNavigateHomePage() {
+    const logo = selectDOMClass('.logo');
+    const logoName = selectDOMClass('.icon-logo h1');
+    logo.addEventListener('click', () => {
+      navigatePage('home.html');
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+    });
+
+    logoName.addEventListener('click', () => {
+      navigatePage('home.html');
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     });
   }
 }
