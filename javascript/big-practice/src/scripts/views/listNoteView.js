@@ -9,6 +9,7 @@ import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
+import HeaderView from './headerView';
 import { renderPopupError } from '../utils/handleError';
 
 /**
@@ -20,6 +21,7 @@ export default class ListNoteView {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
     this.localStorage = new LocalStorage();
+    this.headerView = new HeaderView();
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
     this.sectionWrapper = selectDOMClass('.section-wrapper');
@@ -154,12 +156,12 @@ export default class ListNoteView {
     };
     const noteView = new NoteView(noteItem);
     const noteElement = noteView.renderNote();
-    const { handleDeleteNote, handleShowNoteForm, bindShowHeader } = handlers;
+    const { handleDeleteNote, handleShowNoteForm } = handlers;
 
     listNoteElement.appendChild(noteView.renderNote());
     this.bindDeleteNote(noteElement, handleDeleteNote);
     this.bindShowNoteForm(noteElement, handleShowNoteForm);
-    bindShowHeader(noteElement);
+    this.headerView.bindShowHeader(noteElement);
   }
 
   /**

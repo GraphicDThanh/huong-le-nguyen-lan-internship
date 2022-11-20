@@ -40,7 +40,7 @@ export default class MenuView {
           this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
           renderTabs();
-          changeLogoFollowTab(e.target.querySelector('span').textContent);
+          changeLogoFollowTab(e.target.querySelector('h1').textContent);
         } else {
           renderPopupError('Page number is not found');
         }
