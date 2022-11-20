@@ -2,6 +2,7 @@ import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 import menuComponent from '../components/menuComponent';
 import ElementHelpers from '../helpers/elementHelpers';
 import STORAGE_KEYS from '../constants/storageKeys';
+import { renderPopupError } from '../utils/handleError';
 
 export default class MenuView {
   constructor() {
@@ -18,10 +19,11 @@ export default class MenuView {
   }
 
   /**
-   * @description function change note page or trash page
+   * @description function change note page or trash page when click to
+   * menu in the left. And after click, it will render out the corresponding interface
    *
-   * @param {function} handlerTrash is function transmitted from model
-   * @param {function} handlerNote is function transmitted from model
+   * @param {function} renderTabs is function transmitted in controller
+   * @param {function} changeLogoFollowTab is function transmitted in controller
    */
   bindChangePage(renderTabs, changeLogoFollowTab) {
     const menu = selectDOMClassAll('.nav li');
@@ -40,7 +42,7 @@ export default class MenuView {
           renderTabs();
           changeLogoFollowTab(e.target.querySelector('span').textContent);
         } else {
-          this.renderPopupError('Page number is not found');
+          renderPopupError('Page number is not found');
         }
       });
     });
