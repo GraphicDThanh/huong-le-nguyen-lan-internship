@@ -17,6 +17,11 @@ export default class HeaderView {
     this.elementHelpers = new ElementHelpers();
   }
 
+  /**
+   * @description create header element
+   *
+   * @returns headerElement
+   */
   headerPattern() {
     const headerElement = document.createElement('header');
     headerElement.classList.add('header-wrapper');
@@ -44,6 +49,10 @@ export default class HeaderView {
     return headerElement;
   }
 
+  /**
+   * @description render header with some components in header
+   * like menu user, logo and input search
+   */
   renderHeader() {
     this.homePage.insertBefore(this.headerPattern(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
@@ -55,7 +64,8 @@ export default class HeaderView {
   }
 
   /**
-   * @description function show hide menu user
+   * @description function show hide menu user when click
+   * to icon avatar
    */
   bindShowMenuUser() {
     const avatarUser = selectDOMClass('.avatar-user-cover');
@@ -71,7 +81,8 @@ export default class HeaderView {
   }
 
   /**
-   * @description function handle logout
+   * @description function handle logout, when user click
+   * it will move to login page
    */
   bindLogOut() {
     const btnLogout = selectDOMClass('.btn-logout');
