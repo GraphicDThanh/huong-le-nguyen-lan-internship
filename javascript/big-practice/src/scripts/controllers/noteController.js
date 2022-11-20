@@ -6,10 +6,11 @@
  * @param view
  */
 export default class NoteController {
-  constructor(model, view, headerView) {
+  constructor(model, view, headerView, menuView) {
     this.model = model;
     this.view = view;
     this.headerView = headerView;
+    this.menuView = menuView;
   }
 
   init() {
@@ -19,6 +20,8 @@ export default class NoteController {
   bindEvents() {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
+
+    this.menuView.renderMenu();
 
     this.headerView.renderHeader();
 
@@ -30,7 +33,10 @@ export default class NoteController {
     };
 
     // function change page
-    this.view.bindChangePage(handlers, (tab) => this.headerView.changeLogoByTab(tab));
+    this.menuView.bindChangePage(
+      () => this.view.renderTabs(handlers),
+      (tab) => this.headerView.changeLogoByTab(tab),
+    );
 
     this.headerView.closeSelected();
 

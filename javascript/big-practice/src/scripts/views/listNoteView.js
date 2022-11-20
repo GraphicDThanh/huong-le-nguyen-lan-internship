@@ -23,7 +23,6 @@ export default class ListNoteView {
     this.headerAfterSelect = selectDOMClass('.header-after-select');
     this.sectionWrapper = selectDOMClass('.section-wrapper');
     this.overlayCover = selectDOMClass('.overlay-cover');
-    this.menu = selectDOMClassAll('.nav li');
   }
 
   /**
@@ -34,33 +33,6 @@ export default class ListNoteView {
     if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
       navigatePage('index.html');
     }
-  }
-
-  /**
-   * @description function change note page or trash page
-   *
-   * @param {function} handlerTrash is function transmitted from model
-   * @param {function} handlerNote is function transmitted from model
-   */
-  bindChangePage(handlers, changeLogoFollowTab) {
-    this.renderTabs(handlers);
-    this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
-
-    this.menu.forEach((element) => {
-      element.addEventListener('click', (e) => {
-        if (e.target.hasAttribute('data-id')) {
-          this.elementHelpers.removeClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
-
-          sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
-          this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
-
-          this.renderTabs(handlers);
-          changeLogoFollowTab(e.target.textContent.trim());
-        } else {
-          this.renderPopupError('Page number is not found');
-        }
-      });
-    });
   }
 
   /**
