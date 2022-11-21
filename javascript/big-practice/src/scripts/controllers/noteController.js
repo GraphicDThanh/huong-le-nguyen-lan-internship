@@ -112,11 +112,12 @@ export default class NoteController {
   async addNote(note) {
     try {
       const noteItem = await this.model.addNote(note);
-      this.view.renderNote(
-        noteItem,
-        (noteId) => this.deleteNote(noteId),
-        (id) => this.findNote(id),
-      );
+      const handlers = {
+        handleDeleteNote: (noteId) => this.deleteNote(noteId),
+        handleShowNoteForm: (id) => this.findNote(id),
+      };
+
+      this.view.renderNote(noteItem, handlers);
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
