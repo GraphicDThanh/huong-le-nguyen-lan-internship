@@ -1,5 +1,4 @@
 import { selectDOMClass, selectDOMById, selectDOMClassAll } from '../utils/querySelectDOM';
-import iconClose from '../../assets/icons/icon-close.svg';
 import logoComponent from '../components/logoComponent';
 import inputSearchComponent from '../components/inputSearchComponent';
 import menuUserComponent from '../components/menuUserComponent';
@@ -8,6 +7,7 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
+import headerComponent from '../components/headerComponent';
 
 export default class HeaderView {
   constructor() {
@@ -18,47 +18,19 @@ export default class HeaderView {
   }
 
   /**
-   * @description create header element
-   *
-   * @returns headerElement
-   */
-  headerPattern() {
-    const headerElement = document.createElement('header');
-    headerElement.classList.add('header-wrapper');
-
-    headerElement.innerHTML = `
-      <div class="header-default">
-        <div class="header-menu">
-        </div>
-      </div>
-
-      <div class="header-after-select">
-        <div class="count-and-close">
-          <figure class="icon-close-cover">
-            <img class="icon-close" src="${iconClose}" alt="icon close">
-          </figure>
-          <p class="count-selected">0 Selected</p>
-        </div>
-
-        <div class="header-utilities">
-          <button type="button" class="btn btn-delete-bulk-actions">Delete</button>
-        </div>
-      </div>
-    `;
-
-    return headerElement;
-  }
-
-  /**
    * @description render header with some components in header
    * like menu user, logo and input search
-   */
+    */
   renderHeader() {
-    this.homePage.insertBefore(this.headerPattern(), this.mainWrapper);
+    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
     const headerMenu = selectDOMClass('.header-menu');
+    let tab = 'Keep';
 
-    headerMenu.appendChild(logoComponent('Keep'));
+    if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '4') {
+      tab = 'Trash';
+    }
+    headerMenu.appendChild(logoComponent(tab));
     headerMenu.appendChild(inputSearchComponent());
     headerDefault.appendChild(menuUserComponent());
     this.bindNavigateHomePage();
@@ -114,6 +86,7 @@ export default class HeaderView {
 
     iconLogo.remove();
     headerMenu.insertBefore(logoComponent(tab), inputSearch);
+    this.bindNavigateHomePage();
   }
 
   /**
@@ -168,12 +141,16 @@ export default class HeaderView {
    * user click, it will go to home page
    */
   bindNavigateHomePage() {
-    const logo = selectDOMClass('.logo');
     const logoName = selectDOMClass('.icon-logo h1');
-    logo.addEventListener('click', () => {
-      navigatePage('home.html');
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-    });
+
+    if (selectDOMClass('.logo')) {
+      const logo = selectDOMClass('.logo');
+
+      logo.addEventListener('click', () => {
+        navigatePage('home.html');
+        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      });
+    }
 
     logoName.addEventListener('click', () => {
       navigatePage('home.html');
