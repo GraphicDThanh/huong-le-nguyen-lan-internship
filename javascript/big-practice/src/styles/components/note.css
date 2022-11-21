@@ -25,13 +25,25 @@
 .note-selected .icon-check {
   background-color: var(--light-color);
   border-radius: 45px;
-  animation: fadeInOut linear 0.2s;
+  animation: opacityAnimation linear 0.5s;
   background-image: url("../../assets/icons/icon-checked.svg");
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .note:hover .note-utilities {
   visibility: visible;
-  animation: fadeIn linear 0.2s;
+  animation: opacityAnimation linear 1s;
 }
 
 .note-selected {
@@ -54,6 +66,9 @@
 .note-content .note-description {
   font-size: 18px;
   font-family: var(--font-light), var(--font-default);
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
 }
 
 .note-content .note-empty {
