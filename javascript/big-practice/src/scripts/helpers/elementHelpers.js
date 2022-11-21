@@ -44,7 +44,7 @@ export default class ElementHelpers {
    * @param {Object} elementHide is DOM element you wanna hide it
    * @param {String} className is class has CSS property is display none
    */
-  showHideTwoElements(elementShow, elementHide, className) {
+  showHideElements(elementShow, elementHide, className) {
     this.removeClass(elementShow, className);
     this.addClass(elementHide, className);
   }

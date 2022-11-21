@@ -103,17 +103,17 @@ export default class ListNoteView {
     switch (type) {
       case 'listNotes':
         if (!list.length) {
-          this.elementHelpers.showHideTwoElements(listNotesEmpty, listNoteElement, 'hide');
+          this.elementHelpers.showHideElements(listNotesEmpty, listNoteElement, 'hide');
         } else {
-          this.elementHelpers.showHideTwoElements(listNoteElement, listNotesEmpty, 'hide');
+          this.elementHelpers.showHideElements(listNoteElement, listNotesEmpty, 'hide');
         }
 
         break;
       case 'trashNotes':
         if (!list.length) {
-          this.elementHelpers.showHideTwoElements(listTrashEmpty, listTrashElement, 'hide');
+          this.elementHelpers.showHideElements(listTrashEmpty, listTrashElement, 'hide');
         } else {
-          this.elementHelpers.showHideTwoElements(listTrashElement, listTrashEmpty, 'hide');
+          this.elementHelpers.showHideElements(listTrashElement, listTrashEmpty, 'hide');
         }
 
         break;

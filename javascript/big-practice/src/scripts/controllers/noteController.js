@@ -36,7 +36,11 @@ export default class NoteController {
       deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
-    // function tab when click to menu
+    /**
+     * function change tab. When the user clicks on the tab,
+     * it will render the corresponding tab-based interface. And
+     * it also change logo title
+     */
     this.menuView.bindChangePage(
       () => this.view.renderTabs(handlers),
       (tab) => this.headerView.changeLogoByTab(tab),
@@ -102,7 +106,7 @@ export default class NoteController {
       // function close popup
       this.view.bindClosePopup();
 
-      // function delete trash in tab trash
+      // function delete note in tab trash
       this.view.bindDeleteNoteInTrash(async (id) => {
         await this.model.deleteNoteInTrash(id);
 
