@@ -4,11 +4,11 @@
  *
  * @param {String} message is message of popup
  * @param {String} typeButton type of button
- * @param {Object} note get when click on the note you want to choose
+ * @param {Object} item is information of item is selected
  *
  * @returns {Object} confirmMessage
  */
-const renderConfirmPopup = (message, typeButton, note) => {
+const renderConfirmPopup = (message, typeButton, item) => {
   const confirmMessage = document.createElement('div');
   confirmMessage.setAttribute('class', 'overlay');
 
@@ -16,8 +16,8 @@ const renderConfirmPopup = (message, typeButton, note) => {
     <div class="confirm-message">
       <p>${message}</p>
       <div class="group-buttons">
-        <button class="btn btn-close-popup" type="button" ${note ? `data-id="${note.id}"` : ''}>Close</button>
-        ${typeButton ? `<button class="btn btn-submit-action" type="button" data-id="${note.id}">${typeButton}</button>` : ''} 
+        <button class="btn btn-close-popup" type="button" ${item ? `data-id="${item.id}"` : ''}>Close</button>
+        ${typeButton ? `<button class="btn btn-submit-action" type="button" data-id="${item.id}">${typeButton}</button>` : ''} 
       </div>
     </div>
     `;

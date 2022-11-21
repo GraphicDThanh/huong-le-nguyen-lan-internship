@@ -3,7 +3,8 @@ import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
 
 /**
- * @description function hide error of field you want to hide
+ * @description function hide error of field you want to hide by
+ * adding a class have properties hide and remove class valid
  *
  * @param {Object} element of input you want to hide message
  */
@@ -18,7 +19,8 @@ const hideError = (element) => {
 
 /**
  * @description function show error of field you want to
- * show and message error of this field
+ * show and message error of this field by remove class
+ * hide and add class valid
  *
  * @param {Object} element of input you want to show message
  * @param {String} message is message error of field
@@ -33,7 +35,8 @@ const showError = (element, message) => {
 };
 
 /**
- * @description function render popup error message with custom message
+ * @description function render popup error message with message.
+ * And bind event to popup, if user click close. It will disappear
  *
  * @param {String} errorMessage is message error
  */

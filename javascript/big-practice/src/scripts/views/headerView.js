@@ -79,6 +79,11 @@ export default class HeaderView {
     }
   }
 
+  /**
+   * @description function change logo title according to each current tab
+   *
+   * @param {String} tab is according to each current tab
+   */
   changeLogoByTab(tab) {
     const headerMenu = selectDOMClass('.header-menu');
     const inputSearch = selectDOMClass('.form-search');
@@ -121,6 +126,10 @@ export default class HeaderView {
     });
   }
 
+  /**
+   * @description function close header bulk actions of the
+   * icon close in header when selected notes
+   */
   closeSelected() {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');

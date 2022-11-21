@@ -37,7 +37,7 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description function show and hide two elements with class
+   * @description function show and hide elements with class
    * have CSS property is display none
    *
    * @param {Object} elementShow is DOM element you wanna show it
@@ -50,7 +50,7 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description add class is defined CSS properties to element
+   * @description add class which is defined CSS properties to element
    *
    * @param {Object} element is element you want to add class
    * @param {String} className is class has been defined CSS properties
@@ -60,7 +60,7 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description remove is defined CSS properties to element
+   * @description remove class of element
    *
    * @param {Object} element is element you want to remove class
    * @param {String} className is class has been defined CSS properties

@@ -1,5 +1,5 @@
 /**
- * @description function navigate page with corresponding  href
+ * @description function navigate page with corresponding href
  *
  * @param {String} href is href of page or url
  */
