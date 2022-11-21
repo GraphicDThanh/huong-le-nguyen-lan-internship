@@ -6,17 +6,9 @@
 }
 
 .form-control {
+  width: 100%;
   display: flex;
   justify-content: center;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .list-cover {
@@ -59,5 +51,5 @@
   bottom: 0;
   left: 0;
   background-color: var(--background-opacity);
-  animation: fadeInOut linear 0.2s;
+  animation: opacityAnimation linear 0.2s;
 }
