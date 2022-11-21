@@ -16,13 +16,13 @@ export default class NoteController {
   }
 
   bindEvents() {
-    // function check if user still not logged in, it will move to login page
-    this.view.checkUserLoggedIn();
+    // Navigate page to index page if isLogin from localStorage is false
+    this.view.navigatePageWithLoginStatus();
 
     const handlers = {
       renderTabNotes: () => this.renderTabNote(),
       renderTabTrash: () => this.renderTabTrash(),
-      addNote: (title, description) => this.addNote(title, description),
+      addNote: (note) => this.addNote(note),
       deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
@@ -34,9 +34,6 @@ export default class NoteController {
 
     // function logout user
     this.view.bindLogOut();
-
-    // function change to login page
-    this.view.bindLogin();
 
     // function set username to menu user
     this.view.showInformationUser();
@@ -101,10 +98,14 @@ export default class NoteController {
    * @param {String} title is title from input
    * @param {String} description is description from input
    */
-  async addNote(title, description) {
+  async addNote(note) {
     try {
-      const note = await this.model.addNote(title, description);
-      this.view.renderNote(note, (noteId) => this.deleteNote(noteId), (id) => this.findNote(id));
+      const noteItem = await this.model.addNote(note);
+      this.view.renderNote(
+        noteItem,
+        (noteId) => this.deleteNote(noteId),
+        (id) => this.findNote(id),
+      );
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
@@ -133,11 +134,11 @@ export default class NoteController {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  async editNote(id, title, description) {
+  async editNote(note) {
     try {
-      const note = await this.model.editNote(id, title, description);
+      const noteItem = await this.model.editNote(note);
 
-      this.view.editNote(note.id, note.title, note.description);
+      this.view.editNote(noteItem);
     } catch (error) {
       this.view.renderPopupError(error.message);
     }
@@ -150,15 +151,15 @@ export default class NoteController {
    */
   async findNote(id) {
     try {
-      const note = await this.model.findNote(id);
+      const noteItem = await this.model.findNote(id);
 
       const handlers = {
-        handleEditNote: (noteId, title, description) => this.editNote(noteId, title, description),
+        handleEditNote: (note) => this.editNote(note),
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
       };
 
       // function render form note
-      this.view.renderFormNote(note, handlers);
+      this.view.renderFormNote(noteItem, handlers);
     } catch (error) {
       this.view.renderPopupError(error.message);
     }

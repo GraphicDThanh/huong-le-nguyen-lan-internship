@@ -39,9 +39,28 @@ export default class ElementHelpers {
    * @param {Object} elementShow is DOM element
    * @param {Object} elementHide is DOM element
    */
-  showHideElement(elementShow, elementHide) {
-    elementShow.classList.remove('hide');
-    elementHide.classList.add('hide');
+  showHideTwoElements(elementShow, elementHide, className) {
+    this.removeClass(elementShow, className);
+    this.addClass(elementHide, className);
+  }
+
+  /**
+   * @description hide element with class has CSS property is display none
+   *
+   * @param {Object} element is element you want to hide
+   */
+  addClass(element, className) {
+    element.classList.add(className);
+  }
+
+  /**
+   * @description show element when element has already assigned
+   * class, which has CSS property is display none
+   *
+   * @param {Object} element is element you want to remove class
+   */
+  removeClass(element, className) {
+    element.classList.remove(className);
   }
 
   /**
@@ -56,5 +75,16 @@ export default class ElementHelpers {
     } else {
       listEmpty.classList.add('hide');
     }
+  }
+
+  /**
+   * @description move an element follow Y-axis with numbers corresponding
+   *
+   * @param {Object} e is element you want to move
+   * @param {String} number is numbers corresponding you want to move to
+   */
+  translateYElement(e, number) {
+    const element = e;
+    element.style.transform = `translateY(${number}%)`;
   }
 }

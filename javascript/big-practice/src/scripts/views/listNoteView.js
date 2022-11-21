@@ -9,6 +9,7 @@ import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
 import user from '../constants/mockUser';
+import navigatePage from '../utils/navigatePage';
 
 /**
  * @class listNoteView
@@ -30,17 +31,17 @@ export default class ListNoteView {
 
     this.menuUser = selectDOMClass('.menu-user');
     this.avatarUser = selectDOMClass('.avatar-user-cover');
-    this.btnLogin = selectDOMClass('.btn-login');
     this.btnLogout = selectDOMClass('.btn-logout');
     this.emailUser = selectDOMClass('.menu-user-email');
   }
 
   /**
-   * @description if user still note logged in, it will move to login page
+   * @description navigate page to index page if isLogin from
+   * localStorage is false
    */
-  checkUserLoggedIn() {
-    if (!this.localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
-      window.location.href = 'index.html';
+  navigatePageWithLoginStatus() {
+    if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+      navigatePage('index.html');
     }
   }
 
@@ -50,15 +51,9 @@ export default class ListNoteView {
   bindShowMenuUser() {
     this.avatarUser.addEventListener('click', () => {
       if (this.menuUser.classList.contains('hide')) {
-        this.menuUser.classList.remove('hide');
+        this.elementHelpers.removeClass(this.menuUser, 'hide');
       } else {
-        this.menuUser.classList.add('hide');
-      }
-
-      if (this.localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
-        this.elementHelpers.showHideElement(this.btnLogout, this.btnLogin);
-      } else {
-        this.elementHelpers.showHideElement(this.btnLogin, this.btnLogout);
+        this.elementHelpers.addClass(this.menuUser, 'hide');
       }
     });
   }
@@ -68,19 +63,9 @@ export default class ListNoteView {
    */
   bindLogOut() {
     this.btnLogout.addEventListener('click', () => {
-      window.location.href = 'index.html';
+      navigatePage('index.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       this.localStorage.removeItems(STORAGE_KEYS.IS_USER_LOGGED_IN);
-    });
-  }
-
-  /**
-   * @description handle login
-   */
-  bindLogin() {
-    this.btnLogin.addEventListener('click', () => {
-      window.location.href = 'index.html';
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     });
   }
 
@@ -88,7 +73,7 @@ export default class ListNoteView {
    * @description set email to menu user
    */
   showInformationUser() {
-    if (STORAGE_KEYS.IS_USER_LOGGED_IN) {
+    if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
       this.emailUser.textContent = user.email;
     } else {
       this.emailUser.textContent = 'Unknown';
@@ -103,15 +88,15 @@ export default class ListNoteView {
    */
   bindChangePage(handlerTrash, handlerNote) {
     this.renderTabs(handlerTrash, handlerNote);
-    this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
+    this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
     this.menu.forEach((element) => {
       element.addEventListener('click', (e) => {
         if (e.target.hasAttribute('data-id')) {
-          this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.remove('menu-color');
+          this.elementHelpers.removeClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
           sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
-          this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)].classList.add('menu-color');
+          this.elementHelpers.addClass(this.menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
           this.renderTabs(handlerTrash, handlerNote);
         } else {
@@ -186,17 +171,17 @@ export default class ListNoteView {
     switch (type) {
       case 'listNotes':
         if (!list.length) {
-          this.elementHelpers.showHideElement(listNotesEmpty, listNoteElement);
+          this.elementHelpers.showHideTwoElements(listNotesEmpty, listNoteElement, 'hide');
         } else {
-          this.elementHelpers.showHideElement(listNoteElement, listNotesEmpty);
+          this.elementHelpers.showHideTwoElements(listNoteElement, listNotesEmpty, 'hide');
         }
 
         break;
       case 'trashNotes':
         if (!list.length) {
-          this.elementHelpers.showHideElement(listTrashEmpty, listTrashElement);
+          this.elementHelpers.showHideTwoElements(listTrashEmpty, listTrashElement, 'hide');
         } else {
-          this.elementHelpers.showHideElement(listTrashElement, listTrashEmpty);
+          this.elementHelpers.showHideTwoElements(listTrashElement, listTrashEmpty, 'hide');
         }
 
         break;
@@ -268,21 +253,21 @@ export default class ListNoteView {
    * @param {String} title is title of note
    * @param {String} description is description of note
    */
-  editNote(id, title, description) {
-    const note = selectDOMById(id);
+  editNote(noteItem) {
+    const note = selectDOMById(noteItem.id);
     if (note) {
       const titleElement = note.querySelector('.note-title');
       const descriptionElement = note.querySelector('.note-description');
       const emptyNoteElement = note.querySelector('.note-content .note-empty');
 
-      if (!title && !description) {
-        emptyNoteElement.classList.remove('hide');
+      if (!noteItem.title && !noteItem.description) {
+        this.elementHelpers.removeClass(emptyNoteElement, 'hide');
         titleElement.textContent = '';
         descriptionElement.textContent = '';
       } else {
-        emptyNoteElement.classList.add('hide');
-        titleElement.textContent = title;
-        descriptionElement.textContent = description;
+        this.elementHelpers.addClass(emptyNoteElement, 'hide');
+        titleElement.textContent = noteItem.title;
+        descriptionElement.textContent = noteItem.description;
       }
     }
   }
@@ -458,17 +443,18 @@ export default class ListNoteView {
       const selectedElement = e.target.parentElement.classList.contains('selected');
 
       if (!selectedElement) {
-        e.target.parentElement.classList.add('selected');
+        this.elementHelpers.addClass(e.target.parentElement, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.headerAfterSelect.style.transform = 'translateY(-100%)';
+        this.elementHelpers.translateYElement(this.headerAfterSelect, '-100');
       } else {
-        e.target.parentElement.classList.remove('selected');
+        this.elementHelpers.removeClass(e.target.parentElement, 'selected');
+
         this.elementHelpers.countAndShowSelected(countNotesSelected);
       }
 
       const listSelected = selectDOMClassAll('.selected');
       if (listSelected.length < 1) {
-        this.headerAfterSelect.style.transform = 'translateY(-200%)';
+        this.elementHelpers.translateYElement(this.headerAfterSelect, '-200');
       }
     });
   }
@@ -506,7 +492,9 @@ export default class ListNoteView {
     const closeBtn = selectDOMClass('.note-form-overlay .btn-close');
     const overlay = selectDOMClass('.overlay');
     const formElement = selectDOMClass('.note-form-overlay');
-    const formNoteId = formElement.id;
+    const noteItem = {
+      id: formElement.id,
+    };
 
     this.eventHelpers.stopEvents(closeBtn);
     this.eventHelpers.stopEvents(formElement);
@@ -516,18 +504,24 @@ export default class ListNoteView {
       e.preventDefault();
 
       const formData = new FormData(formElement);
-      const title = formData.get('title');
-      const description = formData.get('description');
+      const note = {
+        ...noteItem,
+        title: formData.get('title'),
+        description: formData.get('description'),
+      };
 
-      editNote(formNoteId, title, description);
+      editNote(note);
       this.overlayCover.innerHTML = '';
     });
 
     overlay.addEventListener('click', () => {
-      const title = selectDOMClass('.note-form-overlay .note-title').value;
-      const description = selectDOMClass('.note-form-overlay .note-description').value;
+      const note = {
+        ...noteItem,
+        title: selectDOMClass('.note-form-overlay .note-title').value,
+        description: selectDOMClass('.note-form-overlay .note-description').value,
+      };
 
-      editNote(formNoteId, title, description);
+      editNote(note);
       this.overlayCover.innerHTML = '';
     });
   }
@@ -557,8 +551,8 @@ export default class ListNoteView {
 
     const inputAddElement = selectDOMClass('.form-add-note .form-group-input .input-note');
     inputAddElement.addEventListener('focus', () => {
-      formUtilitiesElement.classList.remove('hide');
-      formTitleElement.classList.remove('hide');
+      this.elementHelpers.removeClass(formUtilitiesElement, 'hide');
+      this.elementHelpers.removeClass(formTitleElement, 'hide');
     });
   }
 
@@ -576,16 +570,18 @@ export default class ListNoteView {
     formElement.addEventListener('submit', (e) => {
       e.preventDefault();
       const formData = new FormData(formElement);
-      const title = formData.get('title');
-      const description = formData.get('description');
+      const note = {
+        title: formData.get('title'),
+        description: formData.get('description'),
+      };
 
-      formUtilitiesElement.classList.add('hide');
-      formTitleElement.classList.add('hide');
+      this.elementHelpers.addClass(formUtilitiesElement, 'hide');
+      this.elementHelpers.addClass(formTitleElement, 'hide');
 
-      if (title || description) {
-        handler(title, description);
+      if (note.title || note.description) {
+        handler(note);
         formElement.reset();
-        listNotesEmpty.classList.add('hide');
+        this.elementHelpers.addClass(listNotesEmpty, 'hide');
       }
     });
   }
@@ -622,7 +618,7 @@ export default class ListNoteView {
         handler(note.id);
       });
 
-      this.headerAfterSelect.style.transform = 'translateY(-200%)';
+      this.elementHelpers.translateYElement(this.headerAfterSelect, '-200');
     });
   }
 }
