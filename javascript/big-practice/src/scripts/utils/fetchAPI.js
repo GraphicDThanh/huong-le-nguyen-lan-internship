@@ -8,9 +8,9 @@ const fetchAPI = {
    *
    * @returns {Object} notes
    */
-  async getAllNotes() {
+  async getAllNotes(url) {
     try {
-      const response = await fetch(`${this.baseURL}${URL_API.NOTES_URL}`);
+      const response = await fetch(`${this.baseURL}${url}`);
       const notes = await response.json();
       return notes;
     } catch (e) {
@@ -24,7 +24,7 @@ const fetchAPI = {
    *
    * @param {Object} note is a note
    */
-  async postNote(note) {
+  async postNote(note, url) {
     try {
       const options = {
         method: 'POST',
@@ -34,7 +34,7 @@ const fetchAPI = {
         },
       };
 
-      const noteItem = await fetch(`${this.baseURL}${URL_API.NOTES_URL}`, options);
+      const noteItem = await fetch(`${this.baseURL}${url}`, options);
 
       return noteItem.json();
     } catch (e) {
@@ -48,7 +48,7 @@ const fetchAPI = {
    *
    * @param {String} id is id of note
    */
-  async deleteNote(id) {
+  async deleteNote(id, url) {
     try {
       const options = {
         method: 'DELETE',
@@ -57,7 +57,7 @@ const fetchAPI = {
         },
       };
 
-      await fetch(`${this.baseURL}${URL_API.NOTES_URL}/${id}`, options);
+      await fetch(`${this.baseURL}${url}/${id}`, options);
     } catch (e) {
       const error = e;
       throw error;
@@ -70,7 +70,7 @@ const fetchAPI = {
    * @param {String} id is id of note
    * @param {Object} note is note
    */
-  async putNote(id, note) {
+  async putNote(id, note, url) {
     try {
       const options = {
         method: 'PATCH',
@@ -80,7 +80,7 @@ const fetchAPI = {
         },
       };
 
-      const noteItem = await fetch(`${this.baseURL}${URL_API.NOTES_URL}/${id}`, options);
+      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
 
       return noteItem.json();
     } catch (e) {

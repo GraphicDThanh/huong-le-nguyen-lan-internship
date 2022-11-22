@@ -11,6 +11,7 @@ import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/handleError';
+import user from '../../../data/mockUser';
 
 /**
  * @class listNoteView
@@ -25,7 +26,7 @@ export default class ListNoteView {
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
     this.sectionWrapper = selectDOMClass('.section-wrapper');
-    this.overlayCover = selectDOMClass('.overlay-cover');
+    this.overlayWrapper = selectDOMClass('.overlay-wrapper');
   }
 
   /**
@@ -229,9 +230,9 @@ export default class ListNoteView {
    * @param {Object} note is a note take from data
    */
   renderConfirmMessage(note) {
-    this.overlayCover.innerHTML = '';
+    this.overlayWrapper.innerHTML = '';
 
-    this.overlayCover.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', note));
+    this.overlayWrapper.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', note));
   }
 
   /**
@@ -251,11 +252,11 @@ export default class ListNoteView {
 
     const { handleEditNote, handleDeleteNote } = handlers;
 
-    this.overlayCover.innerHTML = '';
+    this.overlayWrapper.innerHTML = '';
 
     const noteView = new NoteView(noteItem);
     const noteElement = noteView.renderNoteForm();
-    this.overlayCover.appendChild(noteElement);
+    this.overlayWrapper.appendChild(noteElement);
 
     this.bindSaveNoteForm(handleEditNote);
     this.inputBreakDownNoteForm();
@@ -284,15 +285,15 @@ export default class ListNoteView {
    * @param {function} handler is function transmitted
    */
   bindClosePopup() {
-    const overlayConfirmMessage = selectDOMClass('.overlay-cover');
+    const overlayConfirmMessage = selectDOMClass('.overlay-wrapper');
     overlayConfirmMessage.addEventListener('click', () => {
-      this.overlayCover.innerHTML = '';
+      this.overlayWrapper.innerHTML = '';
     });
 
     const btnClose = selectDOMClass('.btn-close-popup');
     btnClose.addEventListener('click', (e) => {
       e.stopPropagation();
-      this.overlayCover.innerHTML = '';
+      this.overlayWrapper.innerHTML = '';
     });
   }
 
@@ -341,7 +342,7 @@ export default class ListNoteView {
       const index = e.target.getAttribute('data-id');
 
       handler(index);
-      this.overlayCover.innerHTML = '';
+      this.overlayWrapper.innerHTML = '';
     });
   }
 
@@ -420,7 +421,7 @@ export default class ListNoteView {
       };
 
       editNote(note);
-      this.overlayCover.innerHTML = '';
+      this.overlayWrapper.innerHTML = '';
     });
 
     overlay.addEventListener('click', () => {
@@ -431,7 +432,7 @@ export default class ListNoteView {
       };
 
       editNote(note);
-      this.overlayCover.innerHTML = '';
+      this.overlayWrapper.innerHTML = '';
     });
   }
 
@@ -447,7 +448,7 @@ export default class ListNoteView {
       const id = e.target.getAttribute('data-id');
 
       deleteNote(id);
-      this.overlayCover.innerHTML = '';
+      this.overlayWrapper.innerHTML = '';
     });
   }
 

@@ -1,4 +1,5 @@
 import fetchAPI from '../utils/fetchAPI';
+import URL_API from '../constants/apiUrl';
 
 /**
  * @class listNoteModel
@@ -25,7 +26,7 @@ export default class NoteModel {
         deleteAt: '',
       };
 
-      const noteItem = await fetchAPI.postNote(patternNote);
+      const noteItem = await fetchAPI.postNote(patternNote, URL_API.NOTES_URL);
       this.listNotes.push(noteItem);
 
       return noteItem;
@@ -43,10 +44,10 @@ export default class NoteModel {
    * @param {String} type is listNotes or trashNote to distinguishing
    * function use for
    *
-   * @returns {Array} this.listNotes
+   * @returns {Array} listNotes after filter
    */
   async filterNotes(type) {
-    const notes = await fetchAPI.getAllNotes();
+    const notes = await fetchAPI.getAllNotes(URL_API.NOTES_URL);
 
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
@@ -81,7 +82,7 @@ export default class NoteModel {
       const noteItem = this.findNote(id);
 
       noteItem.deleteAt = date;
-      await fetchAPI.putNote(id, noteItem);
+      await fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
       return noteItem;
@@ -98,7 +99,7 @@ export default class NoteModel {
    */
   async deleteNoteInTrash(id) {
     try {
-      await fetchAPI.deleteNote(id);
+      await fetchAPI.deleteNote(id, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
     } catch (error) {
       console.log(error);
@@ -137,7 +138,7 @@ export default class NoteModel {
       noteItem.title = note.title;
       noteItem.description = note.description;
 
-      noteItem = await fetchAPI.putNote(note.id, noteItem);
+      noteItem = await fetchAPI.putNote(note.id, noteItem, URL_API.NOTES_URL);
 
       return noteItem;
     } catch (error) {

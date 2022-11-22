@@ -41,12 +41,12 @@ const showError = (element, message) => {
  * @param {String} errorMessage is message error
  */
 const renderPopupError = (errorMessage) => {
-  const overlayCover = selectDOMClass('.overlay-cover');
-  overlayCover.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
+  const overlayWrapper = selectDOMClass('.overlay-wrapper');
+  overlayWrapper.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
 
   const btnClose = selectDOMClass('.btn-close-popup');
   btnClose.addEventListener('click', () => {
-    overlayCover.innerHTML = '';
+    overlayWrapper.innerHTML = '';
   });
 };
 
