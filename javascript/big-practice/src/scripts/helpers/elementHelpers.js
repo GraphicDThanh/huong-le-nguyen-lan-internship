@@ -3,7 +3,8 @@ import { selectDOMClassAll } from '../utils/querySelectDOM';
 export default class ElementHelpers {
   /**
    * @description function show textarea height base on
-   * length of text
+   * length of text and if height of textarea more than
+   * 500. It will stop in 400px
    *
    * @param {Object} el is element textarea
    */
@@ -21,6 +22,7 @@ export default class ElementHelpers {
 
   /**
    * @description common events of textarea to increase the length
+   *
    * @param {Object} el is element textarea
    */
   commonInputBreakDown(el) {
@@ -32,7 +34,8 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description function count note selected and show total
+   * @description function count element and show total
+   *
    * @param {Object} el is element text count note
    */
   countAndShowSelected(el) {
@@ -42,46 +45,36 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description function show and hide element
-   * @param {Object} elementShow is DOM element
-   * @param {Object} elementHide is DOM element
+   * @description function show and hide elements with class
+   * have CSS property is display none
+   *
+   * @param {Object} elementShow is DOM element you wanna show it
+   * @param {Object} elementHide is DOM element you wanna hide it
+   * @param {String} className is class has CSS property is display none
    */
-  showHideTwoElements(elementShow, elementHide, className) {
+  showHideElements(elementShow, elementHide, className) {
     this.removeClass(elementShow, className);
     this.addClass(elementHide, className);
   }
 
   /**
-   * @description hide element with class has CSS property is display none
+   * @description add class which is defined CSS properties to element
    *
-   * @param {Object} element is element you want to hide
+   * @param {Object} element is element you want to add class
+   * @param {String} className is class has been defined CSS properties
    */
   addClass(element, className) {
     element.classList.add(className);
   }
 
   /**
-   * @description show element when element has already assigned
-   * class, which has CSS property is display none
+   * @description remove class of element
    *
    * @param {Object} element is element you want to remove class
+   * @param {String} className is class has been defined CSS properties
    */
   removeClass(element, className) {
     element.classList.remove(className);
-  }
-
-  /**
-   * @description function show hide empty list
-   *
-   * @param {Object} list is list
-   * @param {Object} listEmpty is empty list
-   */
-  showEmptyList(list, listEmpty) {
-    if (list.children.length < 1) {
-      listEmpty.classList.remove('hide');
-    } else {
-      listEmpty.classList.add('hide');
-    }
   }
 
   /**

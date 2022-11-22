@@ -19,6 +19,10 @@ export default class HeaderView {
     this.eventHelpers = new EventHelpers();
   }
 
+  /**
+   * @description render header with some components in header
+   * like menu user, logo and input search
+    */
   renderHeader() {
     this.homePage.insertBefore(HeaderComponent(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
@@ -35,7 +39,8 @@ export default class HeaderView {
   }
 
   /**
-   * @description function show hide menu user
+   * @description function show hide menu user when click
+   * to icon avatar
    */
   bindShowMenuUser() {
     const avatarUser = selectDOMClass('.avatar-user-cover');
@@ -51,7 +56,8 @@ export default class HeaderView {
   }
 
   /**
-   * @description function handle logout
+   * @description function handle logout, when user click
+   * it will move to login page
    */
   bindLogOut() {
     const btnLogout = selectDOMClass('.btn-logout');
@@ -75,6 +81,11 @@ export default class HeaderView {
     }
   }
 
+  /**
+   * @description function change logo title according to each current tab
+   *
+   * @param {String} tab is according to each current tab
+   */
   changeLogoByTab(tab) {
     const headerMenu = selectDOMClass('.header-menu');
     const inputSearch = selectDOMClass('.form-search');
@@ -85,6 +96,11 @@ export default class HeaderView {
     this.bindNavigateHomePage();
   }
 
+  
+  /**
+   * @description function close header bulk actions of the
+   * icon close in header when selected notes
+   */
   closeSelected() {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');

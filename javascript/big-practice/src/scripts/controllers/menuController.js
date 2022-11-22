@@ -15,7 +15,7 @@ export default class MenuController {
 
     /**
      * Render to the corresponding interface when clicking to
-     * change tab and logo
+     * change tab and it also change logo
      */
     this.view.bindChangePage(
       () => this.noteController.renderTabs(),
