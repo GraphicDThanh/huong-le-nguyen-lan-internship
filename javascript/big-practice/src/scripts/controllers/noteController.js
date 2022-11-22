@@ -102,7 +102,7 @@ export default class NoteController {
       const noteItem = await this.model.addNote(note);
       const handlers = {
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
-        handleShowNoteForm: (id) => this.findNote(id),
+        handleShowNoteForm: (id) => this.handleNoteForm(id),
       };
 
       this.view.renderNote(noteItem, handlers);

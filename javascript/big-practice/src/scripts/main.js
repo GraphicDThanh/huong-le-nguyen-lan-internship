@@ -23,7 +23,9 @@ const authenController = new AuthenController(loginView);
 const menuController = new MenuController(menuView, noteController, headerController);
 
 (() => {
-  if (!localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
+  const localStorage = new LocalStorage();
+
+  if (!localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
     authenController.init();
   } else {
     headerController.init();
