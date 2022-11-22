@@ -144,9 +144,7 @@ export default class NoteController {
    */
   async findNote(id) {
     try {
-      console.log(id);
       const noteItem = await this.model.findNote(id);
-      console.log(noteItem);
       const handlers = {
         handleEditNote: (note) => this.editNote(note),
         handleDeleteNote: (noteId) => this.deleteNote(noteId),

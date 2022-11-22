@@ -1,8 +1,6 @@
 export default class HeaderController {
-  constructor(headerView, menuView, listNoteController) {
+  constructor(headerView) {
     this.headerView = headerView;
-    this.menuView = menuView;
-    this.noteController = listNoteController;
   }
 
   init() {
@@ -10,16 +8,8 @@ export default class HeaderController {
   }
 
   bindEvents() {
-    // Render menu component in the left site
-    this.menuView.renderMenu();
-
     // Render header component
     this.headerView.renderHeader();
-
-    this.menuView.bindChangePage(
-      () => this.noteController.renderTabs(),
-      (tab) => this.headerView.changeLogoByTab(tab),
-    );
 
     // function close header when click the close button in header
     this.headerView.closeSelected();
