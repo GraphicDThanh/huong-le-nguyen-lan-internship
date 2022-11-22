@@ -7,7 +7,7 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
-import headerComponent from '../components/headerComponent';
+import HeaderComponent from '../components/headerComponent';
 import EventHelpers from '../helpers/eventHelpers';
 
 export default class HeaderView {
@@ -20,7 +20,7 @@ export default class HeaderView {
   }
 
   renderHeader() {
-    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
+    this.homePage.insertBefore(HeaderComponent(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
     const headerMenu = selectDOMClass('.header-menu');
     let tab = 'Keep';

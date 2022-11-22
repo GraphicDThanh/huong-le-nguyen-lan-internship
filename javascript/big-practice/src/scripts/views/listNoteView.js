@@ -9,6 +9,7 @@ import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
+import HeaderView from './headerView';
 
 /**
  * @class listNoteView
@@ -19,6 +20,7 @@ export default class ListNoteView {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
     this.localStorage = new LocalStorage();
+    this.headerView = new HeaderView();
 
     this.headerAfterSelect = selectDOMClass('.header-after-select');
     this.sectionWrapper = selectDOMClass('.section-wrapper');
