@@ -43,7 +43,7 @@ export default class NoteModel {
    * @param {String} type is listNotes or trashNote to distinguishing
    * function use for
    *
-   * @returns {Array} this.listNotes
+   * @returns {Array} listNotes after filter
    */
   async filterNotes(type) {
     const notes = await fetchAPI.getAllNotes();
