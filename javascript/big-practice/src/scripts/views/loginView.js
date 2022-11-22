@@ -1,12 +1,16 @@
 import { selectDOMById, selectDOMClass } from '../utils/querySelectDOM';
 import { ERROR_MESSAGE } from '../constants/message';
 import { hideError, showError } from '../utils/handleError';
+import user from '../../../data/mockUser';
+import LocalStorage from '../utils/localStorage';
+import STORAGE_KEYS from '../constants/storageKeys';
 
 export default class LoginView {
   constructor() {
     this.loginForm = selectDOMById('login-form');
     this.emailElement = selectDOMClass('.email');
     this.passwordElement = selectDOMClass('.password');
+    this.localStorage = new LocalStorage();
   }
 
   /**
@@ -14,15 +18,14 @@ export default class LoginView {
    *
    * @param {function} handler is transmitted from model
    */
-  bindLogin(handler) {
+  bindLogin() {
     this.loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
 
       const formData = new FormData(this.loginForm);
       const email = formData.get('email');
       const password = formData.get('password');
-
-      handler(email, password);
+      this.handleInvalidUser(password, email);
     });
   }
 
@@ -31,21 +34,22 @@ export default class LoginView {
    *
    * @param {Object} isValid include isEmail and isPassword
    */
-  handleInvalidUser(isValid) {
-    if (!isValid.isPassword) {
-      showError(this.passwordElement, ERROR_MESSAGE.PASSWORD_INCORRECT);
-    } else {
+  handleInvalidUser(password, email) {
+    if (password === user.password) {
       hideError(this.passwordElement);
+    } else {
+      showError(this.passwordElement, ERROR_MESSAGE.PASSWORD_INCORRECT);
     }
 
-    if (!isValid.isEmail) {
-      showError(this.emailElement, ERROR_MESSAGE.EMAIL_NOT_EXISTS);
-    } else {
+    if (email === user.email) {
       hideError(this.emailElement);
+    } else {
+      showError(this.emailElement, ERROR_MESSAGE.EMAIL_NOT_EXISTS);
     }
 
     if (!this.emailElement.classList.contains('valid') && !this.passwordElement.classList.contains('valid')) {
-      window.location.href = 'index.html';
+      this.localStorage.setItems(STORAGE_KEYS.IS_USER_LOGGED_IN, true);
+      window.location.href = 'home.html';
     }
   }
 }

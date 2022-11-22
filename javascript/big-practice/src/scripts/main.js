@@ -1,8 +1,10 @@
 import ListNoteView from './views/listNoteView';
 import NoteModel from './models/noteModel';
 import NoteController from './controllers/noteController';
-import UserController from './controllers/userController';
+import AuthenController from './controllers/authenController';
 import LoginView from './views/loginView';
+import STORAGE_KEYS from './constants/storageKeys';
+import LocalStorage from './utils/localStorage';
 
 const listNoteModel = new NoteModel();
 
@@ -11,13 +13,13 @@ const listNoteView = new ListNoteView();
 const loginView = new LoginView();
 
 const listNoteController = new NoteController(listNoteModel, listNoteView);
-const userController = new UserController(loginView);
+const authenController = new AuthenController(loginView);
 
 (() => {
-  const page = document.body.className;
+  const localStorage = new LocalStorage();
 
-  if (page === 'login-page') {
-    userController.init();
+  if (!localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
+    authenController.init();
   } else {
     listNoteController.init();
   }

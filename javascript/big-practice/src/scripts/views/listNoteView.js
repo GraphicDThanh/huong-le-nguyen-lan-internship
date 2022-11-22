@@ -8,6 +8,7 @@ import { POPUP_MESSAGE } from '../constants/message';
 import LocalStorage from '../utils/localStorage';
 import formTemplate from '../templates/formTemplate';
 import noteTemplate from '../templates/noteTemplate';
+import user from '../../../data/mockUser';
 
 /**
  * @class listNoteView
