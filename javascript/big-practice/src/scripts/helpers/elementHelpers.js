@@ -10,6 +10,13 @@ export default class ElementHelpers {
   showInputBreakDown(el) {
     const element = el;
     element.style.height = `${element.scrollHeight}px`;
+    const height = element.style.height.split('px')[0];
+
+    if (Number(height) > 500) {
+      element.style.height = '400px';
+    } else {
+      element.style.height = `${element.scrollHeight}px`;
+    }
   }
 
   /**
