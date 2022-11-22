@@ -32,10 +32,11 @@ export default class HeaderView {
     if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '4') {
       tab = 'Trash';
     }
+
+    this.setDefaultPageNumber();
     headerMenu.appendChild(logoComponent(tab));
     headerMenu.appendChild(inputSearchComponent());
     headerDefault.appendChild(menuUserComponent());
-    this.bindNavigateHomePage();
   }
 
   /**
@@ -96,7 +97,6 @@ export default class HeaderView {
     this.bindNavigateHomePage();
   }
 
-  
   /**
    * @description function close header bulk actions of the
    * icon close in header when selected notes
@@ -124,14 +124,21 @@ export default class HeaderView {
     const logoName = selectDOMClass('.icon-logo h1');
     const logo = selectDOMClass('.logo');
 
-    if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-    }
-
     if (logo) {
       this.eventHelpers.navigateHomePage(logo);
     }
 
     this.eventHelpers.navigateHomePage(logoName);
+  }
+
+  /**
+   * @description function check sessionStorage, if
+   * in sessionStorage don't have key page_number. It
+   * will set to session a key page_number with value is 0
+   */
+  setDefaultPageNumber() {
+    if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+    }
   }
 }
