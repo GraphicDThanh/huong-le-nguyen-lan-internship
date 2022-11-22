@@ -3,7 +3,7 @@
  *
  * @param {String} classes is class of element want to select
  *
- * @returns {Object} element
+ * @returns {Object} element after query
  */
 function selectDOMClass(classes) {
   return document.querySelector(classes);
@@ -14,7 +14,7 @@ function selectDOMClass(classes) {
  *
  * @param {String} classes is class of element want to select
  *
- * @returns {Object} element
+ * @returns {Object} element after query
  */
 function selectDOMClassAll(classes) {
   return document.querySelectorAll(classes);
@@ -25,7 +25,7 @@ function selectDOMClassAll(classes) {
  *
  * @param {String} id is id of element want to select
  *
- * @returns {Object} element
+ * @returns {Object} element after query
  */
 function selectDOMById(id) {
   return document.getElementById(id);
