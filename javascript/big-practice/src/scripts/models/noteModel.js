@@ -1,9 +1,4 @@
-import {
-  postNote,
-  deleteNote,
-  putNote,
-  getAllNotes,
-} from '../utils/fetchAPI';
+import fetchAPI from '../utils/fetchAPI';
 
 /**
  * @class listNoteModel
@@ -17,24 +12,23 @@ export default class NoteModel {
   /**
    * @description function add note
    *
-   * @param {String} title transmitted from the outside in
-   * @param {String} description transmitted from the outside in
+   * @param {Object} note is information of note
    *
-   * @returns {Object} note
+   * @returns {Object} noteItem
    */
-  async addNote(title, description) {
+  async addNote(note) {
     try {
-      const noteItem = {
+      const patternNote = {
         id: new Date().getTime().toString(),
-        title,
-        description,
+        title: note.title,
+        description: note.description,
         deleteAt: '',
       };
 
-      const note = await postNote(noteItem);
-      this.listNotes.push(note);
+      const noteItem = await fetchAPI.postNote(patternNote);
+      this.listNotes.push(noteItem);
 
-      return note;
+      return noteItem;
     } catch (error) {
       console.log(error);
       throw error;
@@ -42,12 +36,17 @@ export default class NoteModel {
   }
 
   /**
-   * @description function filter list notes or trash notes
+   * @description function filter list notes or trash notes with
+   * type is listNotes or trashNote. that we can use this function
+   * to two tabs is notes and trash
    *
-   * @returns {Array} listNotes
+   * @param {String} type is listNotes or trashNote to distinguishing
+   * function use for
+   *
+   * @returns {Array} this.listNotes
    */
   async filterNotes(type) {
-    const notes = await getAllNotes();
+    const notes = await fetchAPI.getAllNotes();
 
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
@@ -68,19 +67,21 @@ export default class NoteModel {
   }
 
   /**
-   * @description function move note to trash
+   * @description function change value of field deletedAt that mean
+   * it will move to trash if field deletedAt have value because default
+   * value of deletedAt is null
    *
-   * @param {String} id is index of note
+   * @param {String} id is id of note is selected
    *
-   * @return {Object} this.notes[noteIndex]
+   * @return {Object} noteItem
    */
   async deleteNote(id) {
     try {
       const date = new Date().toISOString().slice(0, 10);
-      const noteItem = this.listNotes.find((note) => note.id === id);
+      const noteItem = this.findNote(id);
 
       noteItem.deleteAt = date;
-      await putNote(id, noteItem);
+      await fetchAPI.putNote(id, noteItem);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
       return noteItem;
@@ -91,15 +92,13 @@ export default class NoteModel {
   }
 
   /**
-   * @description function remove note in array
+   * @description function remove note with id of note is selected
    *
-   * @param {String} index is index of note
-   *
-   * @return {Object} note
+   * @param {String} id is id of note is selected
    */
   async deleteNoteInTrash(id) {
     try {
-      await deleteNote(id);
+      await fetchAPI.deleteNote(id);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
     } catch (error) {
       console.log(error);
@@ -108,11 +107,11 @@ export default class NoteModel {
   }
 
   /**
-   * @description is a function find note
+   * @description is a function find note with id of note is selected
    *
-   * @param {String} id is id of note
+   * @param {String} id is id of note is selected
    *
-   *  @returns {Object} this.notes[noteIndex]
+   *  @returns {Object} noteItem
    */
   findNote(id) {
     try {
@@ -126,23 +125,21 @@ export default class NoteModel {
   }
 
   /**
-   * @description function edit note
+   * @description function edit note with information of note is selected
    *
-   * @param {String} index is index of note
-   * @param {String} title is title of note
-   * @param {String} description is description of note
+   * @param {Object} note is information of note is selected
    *
    * @returns {Object} noteItem
    */
-  async editNote(id, title, description) {
+  async editNote(note) {
     try {
-      const noteItem = this.listNotes.find((note) => note.id === id);
+      let noteItem = this.findNote(note.id);
+      noteItem.title = note.title;
+      noteItem.description = note.description;
 
-      noteItem.title = title;
-      noteItem.description = description;
-      const note = await putNote(id, noteItem);
+      noteItem = await fetchAPI.putNote(note.id, noteItem);
 
-      return note;
+      return noteItem;
     } catch (error) {
       console.log(error);
       throw error;
