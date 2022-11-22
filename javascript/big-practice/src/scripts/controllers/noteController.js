@@ -8,11 +8,9 @@ import { renderPopupError } from '../utils/handleError';
  * @param view
  */
 export default class NoteController {
-  constructor(model, view, headerView, menuView) {
+  constructor(model, view) {
     this.model = model;
     this.view = view;
-    this.headerView = headerView;
-    this.menuView = menuView;
   }
 
   init() {
@@ -22,13 +20,9 @@ export default class NoteController {
   bindEvents() {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
+  }
 
-    // Render menu component in the left site
-    this.menuView.renderMenu();
-
-    // Render header component
-    this.headerView.renderHeader();
-
+  renderTabs() {
     const handlers = {
       renderTabNotes: () => this.renderTabNote(),
       renderTabTrash: () => this.renderTabTrash(),
@@ -36,27 +30,7 @@ export default class NoteController {
       deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
-    /**
-     * function change tab. When the user clicks on the tab,
-     * it will render the corresponding tab-based interface. And
-     * it also change logo title
-     */
-    this.menuView.bindChangePage(
-      () => this.view.renderTabs(handlers),
-      (tab) => this.headerView.changeLogoByTab(tab),
-    );
-
-    // function close header when click the close button in header
-    this.headerView.closeSelected();
-
-    // function show hide menu user in the header
-    this.headerView.bindShowMenuUser();
-
-    // function logout user
-    this.headerView.bindLogOut();
-
-    // function set username to menu user
-    this.headerView.showInformationUser();
+    this.view.renderTabs(handlers);
   }
 
   async renderTabTrash() {
@@ -126,11 +100,12 @@ export default class NoteController {
   async addNote(note) {
     try {
       const noteItem = await this.model.addNote(note);
-      this.view.renderNote(
-        noteItem,
-        (noteId) => this.deleteNote(noteId),
-        (id) => this.handleNoteForm(id),
-      );
+      const handlers = {
+        handleDeleteNote: (noteId) => this.deleteNote(noteId),
+        handleShowNoteForm: (id) => this.findNote(id),
+      };
+
+      this.view.renderNote(noteItem, handlers);
     } catch (error) {
       renderPopupError(error.message);
     }
@@ -177,7 +152,6 @@ export default class NoteController {
   async handleNoteForm(id) {
     try {
       const noteItem = await this.model.findNote(id);
-
       const handlers = {
         handleEditNote: (note) => this.editNote(note),
         handleDeleteNote: (noteId) => this.deleteNote(noteId),

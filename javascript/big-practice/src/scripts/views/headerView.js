@@ -1,4 +1,4 @@
-import { selectDOMClass, selectDOMById, selectDOMClassAll } from '../utils/querySelectDOM';
+import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 import logoComponent from '../components/logoComponent';
 import inputSearchComponent from '../components/inputSearchComponent';
 import menuUserComponent from '../components/menuUserComponent';
@@ -7,7 +7,8 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
-import headerComponent from '../components/headerComponent';
+import HeaderComponent from '../components/headerComponent';
+import EventHelpers from '../helpers/eventHelpers';
 
 export default class HeaderView {
   constructor() {
@@ -15,6 +16,7 @@ export default class HeaderView {
     this.homePage = selectDOMClass('.home-page');
     this.localStorage = new LocalStorage();
     this.elementHelpers = new ElementHelpers();
+    this.eventHelpers = new EventHelpers();
   }
 
   /**
@@ -22,7 +24,7 @@ export default class HeaderView {
    * like menu user, logo and input search
     */
   renderHeader() {
-    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
+    this.homePage.insertBefore(HeaderComponent(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
     const headerMenu = selectDOMClass('.header-menu');
     let tab = 'Keep';
@@ -94,38 +96,7 @@ export default class HeaderView {
     this.bindNavigateHomePage();
   }
 
-  /**
-   * @description events show header bulk actions and count notes selected
-   *
-   * @param {Object} noteElement is note element
-   */
-  bindShowHeader(noteElement) {
-    const note = selectDOMById(`${noteElement.id}`);
-    const listIconCheck = note.querySelector('.icon-check');
-    const countNotesSelected = selectDOMClass('.count-selected');
-    const headerAfterSelect = selectDOMClass('.header-after-select');
-
-    listIconCheck.addEventListener('click', (e) => {
-      e.preventDefault();
-      const selectedElement = e.target.parentElement.classList.contains('selected');
-
-      if (!selectedElement) {
-        this.elementHelpers.addClass(e.target.parentElement, 'selected');
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.elementHelpers.translateYElement(headerAfterSelect, '-100');
-      } else {
-        this.elementHelpers.removeClass(e.target.parentElement, 'selected');
-
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-      }
-
-      const listSelected = selectDOMClassAll('.selected');
-      if (listSelected.length < 1) {
-        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
-      }
-    });
-  }
-
+  
   /**
    * @description function close header bulk actions of the
    * icon close in header when selected notes
@@ -151,19 +122,16 @@ export default class HeaderView {
    */
   bindNavigateHomePage() {
     const logoName = selectDOMClass('.icon-logo h1');
+    const logo = selectDOMClass('.logo');
 
-    if (selectDOMClass('.logo')) {
-      const logo = selectDOMClass('.logo');
-
-      logo.addEventListener('click', () => {
-        navigatePage('home.html');
-        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      });
+    if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     }
 
-    logoName.addEventListener('click', () => {
-      navigatePage('home.html');
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-    });
+    if (logo) {
+      this.eventHelpers.navigateHomePage(logo);
+    }
+
+    this.eventHelpers.navigateHomePage(logoName);
   }
 }
