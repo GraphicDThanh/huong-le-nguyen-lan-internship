@@ -3,6 +3,8 @@ import NoteModel from './models/noteModel';
 import NoteController from './controllers/noteController';
 import AuthenController from './controllers/authenController';
 import LoginView from './views/loginView';
+import STORAGE_KEYS from './constants/storageKeys';
+import LocalStorage from './utils/localStorage';
 import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
@@ -21,19 +23,13 @@ const authenController = new AuthenController(loginView);
 const menuController = new MenuController(menuView, noteController, headerController);
 
 (() => {
-  const page = document.body.className;
+  const localStorage = new LocalStorage();
 
-  switch (page) {
-    case 'index-page':
-      authenController.init();
-      break;
-    case 'home-page':
-      headerController.init();
-      menuController.init();
-      noteController.init();
-      break;
-    default:
-      console.log('Oops! Have something went wrong');
-      break;
+  if (!localStorage.getItems(STORAGE_KEYS.IS_USER_LOGGED_IN)) {
+    authenController.init();
+  } else {
+    headerController.init();
+    menuController.init();
+    noteController.init();
   }
 })();
