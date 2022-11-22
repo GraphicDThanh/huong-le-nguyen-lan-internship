@@ -5,16 +5,20 @@ import AuthenController from './controllers/authenController';
 import LoginView from './views/loginView';
 import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
+import HeaderController from './controllers/headerController';
+import MenuController from './controllers/menuController';
 
-const listNoteModel = new NoteModel();
+const noteModel = new NoteModel();
+
 const listNoteView = new ListNoteView();
 const headerView = new HeaderView();
 const menuView = new MenuView();
-
 const loginView = new LoginView();
 
-const listNoteController = new NoteController(listNoteModel, listNoteView, headerView, menuView);
+const headerController = new HeaderController(headerView);
+const noteController = new NoteController(noteModel, listNoteView);
 const authenController = new AuthenController(loginView);
+const menuController = new MenuController(menuView, noteController, headerController);
 
 (() => {
   const page = document.body.className;
@@ -24,7 +28,9 @@ const authenController = new AuthenController(loginView);
       authenController.init();
       break;
     case 'home-page':
-      listNoteController.init();
+      headerController.init();
+      menuController.init();
+      noteController.init();
       break;
     default:
       console.log('Oops! Have something went wrong');
