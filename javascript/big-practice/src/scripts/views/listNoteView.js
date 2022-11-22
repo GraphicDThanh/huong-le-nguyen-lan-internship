@@ -61,10 +61,6 @@ export default class ListNoteView {
       message: 'Notes you add appear here',
     };
 
-    if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-    }
-
     if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
       this.sectionWrapper.innerHTML = '';
       this.sectionWrapper.appendChild(formTemplate());
@@ -152,12 +148,12 @@ export default class ListNoteView {
     };
     const noteView = new NoteView(noteItem);
     const noteElement = noteView.renderNote();
-    const { handleDeleteNote, handleShowNoteForm, bindShowHeader } = handlers;
+    const { handleDeleteNote, handleShowNoteForm } = handlers;
 
     listNoteElement.appendChild(noteView.renderNote());
     this.bindDeleteNote(noteElement, handleDeleteNote);
     this.bindShowNoteForm(noteElement, handleShowNoteForm);
-    bindShowHeader(noteElement);
+    this.bindSelectedNote(noteElement);
   }
 
   /**
@@ -314,6 +310,38 @@ export default class ListNoteView {
     btnClose.addEventListener('click', (e) => {
       e.stopPropagation();
       this.overlayCover.innerHTML = '';
+    });
+  }
+
+  /**
+   * @description events show header bulk actions and count notes selected
+   *
+   * @param {Object} noteElement is note element
+   */
+  bindSelectedNote(noteElement) {
+    const note = selectDOMById(`${noteElement.id}`);
+    const listIconCheck = note.querySelector('.icon-check');
+    const countNotesSelected = selectDOMClass('.count-selected');
+    const headerAfterSelect = selectDOMClass('.header-after-select');
+
+    listIconCheck.addEventListener('click', (e) => {
+      e.preventDefault();
+      const selectedElement = e.target.parentElement.classList.contains('selected');
+
+      if (!selectedElement) {
+        this.elementHelpers.addClass(e.target.parentElement, 'selected');
+        this.elementHelpers.countAndShowSelected(countNotesSelected);
+        this.elementHelpers.translateYElement(headerAfterSelect, '-100');
+      } else {
+        this.elementHelpers.removeClass(e.target.parentElement, 'selected');
+
+        this.elementHelpers.countAndShowSelected(countNotesSelected);
+      }
+
+      const listSelected = selectDOMClassAll('.selected');
+      if (listSelected.length < 1) {
+        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+      }
     });
   }
 

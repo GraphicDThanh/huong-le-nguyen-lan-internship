@@ -1,5 +1,4 @@
-import { selectDOMClass, selectDOMById, selectDOMClassAll } from '../utils/querySelectDOM';
-import iconClose from '../../assets/icons/icon-close.svg';
+import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 import logoComponent from '../components/logoComponent';
 import inputSearchComponent from '../components/inputSearchComponent';
 import menuUserComponent from '../components/menuUserComponent';
@@ -8,6 +7,8 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
+import headerComponent from '../components/headerComponent';
+import EventHelpers from '../helpers/eventHelpers';
 
 export default class HeaderView {
   constructor() {
@@ -15,43 +16,22 @@ export default class HeaderView {
     this.homePage = selectDOMClass('.home-page');
     this.localStorage = new LocalStorage();
     this.elementHelpers = new ElementHelpers();
-  }
-
-  headerPattern() {
-    const headerElement = document.createElement('header');
-    headerElement.classList.add('header-wrapper');
-
-    headerElement.innerHTML = `
-      <div class="header-default">
-        <div class="header-menu">
-        </div>
-      </div>
-
-      <div class="header-after-select">
-        <div class="count-and-close">
-          <figure class="icon-close-cover">
-            <img class="icon-close" src="${iconClose}" alt="icon close">
-          </figure>
-          <p class="count-selected">0 Selected</p>
-        </div>
-
-        <div class="header-utilities">
-          <button type="button" class="btn btn-delete-bulk-actions">Delete</button>
-        </div>
-      </div>
-    `;
-
-    return headerElement;
+    this.eventHelpers = new EventHelpers();
   }
 
   renderHeader() {
-    this.homePage.insertBefore(this.headerPattern(), this.mainWrapper);
+    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
     const headerMenu = selectDOMClass('.header-menu');
+    let tab = 'Keep';
 
-    headerMenu.appendChild(logoComponent('Keep'));
+    if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '4') {
+      tab = 'Trash';
+    }
+    headerMenu.appendChild(logoComponent(tab));
     headerMenu.appendChild(inputSearchComponent());
     headerDefault.appendChild(menuUserComponent());
+    this.bindNavigateHomePage();
   }
 
   /**
@@ -102,38 +82,7 @@ export default class HeaderView {
 
     iconLogo.remove();
     headerMenu.insertBefore(logoComponent(tab), inputSearch);
-  }
-
-  /**
-   * @description events show header bulk actions and count notes selected
-   *
-   * @param {Object} noteElement is note element
-   */
-  bindShowHeader(noteElement) {
-    const note = selectDOMById(`${noteElement.id}`);
-    const listIconCheck = note.querySelector('.icon-check');
-    const countNotesSelected = selectDOMClass('.count-selected');
-    const headerAfterSelect = selectDOMClass('.header-after-select');
-
-    listIconCheck.addEventListener('click', (e) => {
-      e.preventDefault();
-      const selectedElement = e.target.parentElement.classList.contains('selected');
-
-      if (!selectedElement) {
-        this.elementHelpers.addClass(e.target.parentElement, 'selected');
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.elementHelpers.translateYElement(headerAfterSelect, '-100');
-      } else {
-        this.elementHelpers.removeClass(e.target.parentElement, 'selected');
-
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-      }
-
-      const listSelected = selectDOMClassAll('.selected');
-      if (listSelected.length < 1) {
-        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
-      }
-    });
+    this.bindNavigateHomePage();
   }
 
   closeSelected() {
@@ -149,5 +98,24 @@ export default class HeaderView {
 
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     });
+  }
+
+  /**
+   * @description event of logo and title logo in header, when
+   * user click, it will go to home page
+   */
+  bindNavigateHomePage() {
+    const logoName = selectDOMClass('.icon-logo h1');
+    const logo = selectDOMClass('.logo');
+
+    if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+    }
+
+    if (logo) {
+      this.eventHelpers.navigateHomePage(logo);
+    }
+
+    this.eventHelpers.navigateHomePage(logoName);
   }
 }
