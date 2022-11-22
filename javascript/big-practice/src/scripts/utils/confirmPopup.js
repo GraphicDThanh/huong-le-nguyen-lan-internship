@@ -1,6 +1,6 @@
 /**
  * @description function create confirm message with design message, type of button
- * and note's id (options)
+ * and item
  *
  * @param {String} message is message of popup
  * @param {String} typeButton type of button

@@ -3,7 +3,8 @@ import { selectDOMClassAll } from '../utils/querySelectDOM';
 export default class ElementHelpers {
   /**
    * @description function show textarea height base on
-   * length of text
+   * length of text and if height of textarea more than
+   * 500. It will stop in 400px
    *
    * @param {Object} el is element textarea
    */
@@ -33,7 +34,7 @@ export default class ElementHelpers {
   }
 
   /**
-   * @description function count note selected and show total
+   * @description function count element and show total
    *
    * @param {Object} el is element text count note
    */
