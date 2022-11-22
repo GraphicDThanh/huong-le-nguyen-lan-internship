@@ -44,7 +44,6 @@
 }
 
 .icon-logo {
-  cursor: pointer;
   display: flex;
   align-items: center;
   min-width: 180px;
@@ -59,6 +58,11 @@
 .icon-logo-cover {
   height: 40px;
   width: 40px;
+}
+
+.icon-logo-cover,
+.icon-logo h1 {
+  cursor: pointer;
 }
 
 .form-search {
@@ -104,6 +108,7 @@
   border-radius: 8px;
   padding-top: 20px;
   z-index: 2;
+  animation: opacityAnimation linear 0.5s;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
