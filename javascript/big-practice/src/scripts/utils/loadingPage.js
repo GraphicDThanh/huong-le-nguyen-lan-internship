@@ -17,7 +17,7 @@ export default class LoadingPage {
     this.elementHelpers.addClass(loadingElement, 'overlay');
 
     loadingElement.innerHTML = `
-      <div class="loader">
+      <div class="loading">
       </div>
     `;
 
