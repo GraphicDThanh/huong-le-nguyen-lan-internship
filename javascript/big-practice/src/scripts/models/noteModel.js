@@ -1,12 +1,5 @@
-import LocalStorage from '../utils/localStorage';
-import STORAGE_KEYS from '../constants/storageKeys';
-import {
-  postData,
-  deleteData,
-  putData,
-  getDataById,
-  getDataByUserId,
-} from '../utils/fetchAPI';
+import fetchAPI from '../utils/fetchAPI';
+import URL_API from '../constants/apiUrl';
 
 /**
  * @class listNoteModel
@@ -14,208 +7,143 @@ import {
  */
 export default class NoteModel {
   constructor() {
-    this.localStorage = new LocalStorage();
-
-    if (!this.localStorage.getItems(STORAGE_KEYS.USERNAME)) {
-      this.notes = this.localStorage.getItems(STORAGE_KEYS.LIST_NOTE)
-      || this.localStorage.setItems(STORAGE_KEYS.LIST_NOTE, []);
-    }
+    this.listNotes = [];
   }
 
   /**
    * @description function add note
    *
-   * @param {String} title transmitted from the outside in
-   * @param {String} description transmitted from the outside in
+   * @param {Object} note is information of note
    *
-   * @returns {Object} note
+   * @returns {Object} noteItem
    */
-  async addNote(title, description) {
-    let note = {};
-    const userId = this.localStorage.getItems(STORAGE_KEYS.USER_ID);
-    const patternNote = {
-      id: new Date().getTime().toString(),
-      title,
-      description,
-      deleteAt: '',
-    };
-
-    if (userId) {
-      const noteItem = {
-        ...patternNote,
-        ownerId: userId,
+  async addNote(note) {
+    try {
+      const patternNote = {
+        id: new Date().getTime().toString(),
+        title: note.title,
+        description: note.description,
+        deleteAt: '',
       };
-      note = noteItem;
 
-      await postData(noteItem);
-    } else {
-      const noteItem = {
-        ...patternNote,
-      };
-      note = noteItem;
+      const noteItem = await fetchAPI.postNote(patternNote, URL_API.NOTES_URL);
+      this.listNotes.push(noteItem);
 
-      this.notes.push(note);
-      this.localStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
+      return noteItem;
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-
-    return note;
   }
 
   /**
-   * @description function filter list notes or trash notes
+   * @description function filter list notes or trash notes with
+   * type is listNotes or trashNote. that we can use this function
+   * to two tabs is notes and trash
    *
-   * @returns {Array} listNotes
+   * @param {String} type is listNotes or trashNote to distinguishing
+   * function use for
+   *
+   * @returns {Array} listNotes after filter
    */
   async filterNotes(type) {
-    let listNotes = [];
-    const userId = this.localStorage.getItems(STORAGE_KEYS.USER_ID);
+    const notes = await fetchAPI.getAllNotes(URL_API.NOTES_URL);
 
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
-      case 'listNotes':
-        if (userId) {
-          const notes = await getDataByUserId(userId);
-          listNotes = notes.filter((note) => !note.deleteAt);
-        } else {
-          listNotes = this.notes.filter((note) => !note.deleteAt);
-        }
-
+      case 'listNotes': {
+        this.listNotes = notes.filter((note) => !note.deleteAt);
         break;
-      case 'trashNotes':
-        if (userId) {
-          const notes = await getDataByUserId(userId);
-          listNotes = notes.filter((note) => note.deleteAt);
-        } else {
-          listNotes = this.notes.filter((note) => note.deleteAt);
-        }
-
+      }
+      case 'trashNotes': {
+        this.listNotes = notes.filter((note) => note.deleteAt);
         break;
+      }
       default:
         console.log('Must enter a listNotes or trashNotes');
         break;
     }
 
-    return listNotes;
+    return this.listNotes;
   }
 
   /**
-   * @description function move note to trash
+   * @description function change value of field deletedAt that mean
+   * it will move to trash if field deletedAt have value because default
+   * value of deletedAt is null
    *
-   * @param {String} id is index of note
+   * @param {String} id is id of note is selected
    *
-   * @return {Object} this.notes[noteIndex]
+   * @return {Object} noteItem
    */
   async deleteNote(id) {
-    let noteItem = {};
-    const date = new Date().toISOString().slice(0, 10);
+    try {
+      const date = new Date().toISOString().slice(0, 10);
+      const noteItem = this.findNote(id);
 
-    /**
-     * This condition check if userId is available in localStorage.
-     * It will change field of note in JSON
-     * if userId is not available, it will change field in localStorage
-     */
-    if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === id);
-      this.notes[noteIndex].deleteAt = date;
-
-      this.localStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
-      noteItem = this.notes[noteIndex];
-    } else {
-      noteItem = await getDataById(id);
       noteItem.deleteAt = date;
+      await fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
+      this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
-      putData(id, noteItem);
+      return noteItem;
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-
-    return noteItem;
   }
 
   /**
-   * @description function remove note in array
+   * @description function remove note with id of note is selected
    *
-   * @param {String} index is index of note
-   *
-   * @return {Object} note
+   * @param {String} id is id of note is selected
    */
   async deleteNoteInTrash(id) {
-    let noteItem = {};
-
-    /**
-     * This condition check if userId is available in localStorage.
-     * It will delete note in JSON
-     * if userId is not available, it will delete in localStorage
-     */
-    if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === id);
-
-      noteItem = this.notes[noteIndex];
-      this.notes.splice(noteIndex, 1);
-      this.localStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
-    } else {
-      noteItem = await getDataById(id);
-
-      deleteData(id);
+    try {
+      await fetchAPI.deleteNote(id, URL_API.NOTES_URL);
+      this.listNotes = this.listNotes.filter((note) => note.id !== id);
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-    return noteItem;
   }
 
   /**
-   * @description is a function find note
+   * @description is a function find note with id of note is selected
    *
-   * @param {String} id is id of note
+   * @param {String} id is id of note is selected
    *
-   *  @returns {Object} this.notes[noteIndex]
+   *  @returns {Object} noteItem
    */
-  async findNote(id) {
-    let noteItem = {};
+  findNote(id) {
+    try {
+      const noteItem = this.listNotes.find((note) => note.id === id);
 
-    /**
-     * This condition check if userId is available in localStorage.
-     * It will find note in JSON
-     * if userId is not available, it will find array
-     */
-    if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === id);
-      noteItem = this.notes[noteIndex];
-    } else {
-      noteItem = await getDataById(id);
+      return noteItem;
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-
-    return noteItem;
   }
 
   /**
-   * @description function edit note
+   * @description function edit note with information of note is selected
    *
-   * @param {String} index is index of note
-   * @param {String} title is title of note
-   * @param {String} description is description of note
+   * @param {Object} note is information of note is selected
    *
-   * @returns {Object} this.notes[noteIndex]
+   * @returns {Object} noteItem
    */
-  async editNote(id, title, description) {
-    let noteItem = {};
+  async editNote(note) {
+    try {
+      let noteItem = this.findNote(note.id);
+      noteItem.title = note.title;
+      noteItem.description = note.description;
 
-    /**
-     * This condition check if userId is available in localStorage.
-     * It will update note in JSON
-     * if userId is not available, it will update in localStorage
-     */
-    if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
-      const noteIndex = this.notes.findIndex((note) => note.id === id);
-      this.notes[noteIndex].title = title;
-      this.notes[noteIndex].description = description;
+      noteItem = await fetchAPI.putNote(note.id, noteItem, URL_API.NOTES_URL);
 
-      this.localStorage.setItems(STORAGE_KEYS.LIST_NOTE, this.notes);
-      noteItem = this.notes[noteIndex];
-    } else {
-      noteItem = await getDataById(id);
-      noteItem.title = title;
-      noteItem.description = description;
-
-      putData(id, noteItem);
+      return noteItem;
+    } catch (error) {
+      console.log(error);
+      throw error;
     }
-
-    return noteItem;
   }
 }

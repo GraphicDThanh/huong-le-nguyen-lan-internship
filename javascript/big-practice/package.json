@@ -1,6 +1,5 @@
 {
   "name": "my-project",
-  "source": "./src/pages/index.html",
   "devDependencies": {
     "concurrently": "^7.5.0",
     "eslint": "^8.23.1",
