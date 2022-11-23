@@ -1,7 +1,12 @@
+import { POPUP_MESSAGE } from '../constants/message';
+import renderConfirmPopup from './confirmPopup';
+import { selectDOMClass } from './querySelectDOM';
+
 /**
- * @description function hide error
+ * @description function hide error of field you want to hide by
+ * adding a class have properties hide and remove class valid
  *
- * @param {Object} element of input
+ * @param {Object} element of input you want to hide message
  */
 const hideError = (element) => {
   const error = element.parentElement.querySelector('.message .message-error');
@@ -13,9 +18,12 @@ const hideError = (element) => {
 };
 
 /**
- * @description function show error
+ * @description function show error of field you want to
+ * show and message error of this field by remove class
+ * hide and add class valid
  *
- * @param {Object} element of input
+ * @param {Object} element of input you want to show message
+ * @param {String} message is message error of field
  */
 const showError = (element, message) => {
   const error = element.parentElement.querySelector('.message .message-error');
@@ -26,4 +34,20 @@ const showError = (element, message) => {
   element.classList.add('valid');
 };
 
-export { hideError, showError };
+/**
+ * @description function render popup error message with message.
+ * And bind event to popup, if user click close. It will disappear
+ *
+ * @param {String} errorMessage is message error
+ */
+const renderPopupError = (errorMessage) => {
+  const overlayWrapper = selectDOMClass('.overlay-wrapper');
+  overlayWrapper.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
+
+  const btnClose = selectDOMClass('.btn-close-popup');
+  btnClose.addEventListener('click', () => {
+    overlayWrapper.innerHTML = '';
+  });
+};
+
+export { hideError, showError, renderPopupError };
