@@ -543,7 +543,7 @@ export default class ListNoteView {
     });
   }
 
-  deleteNotesTrash(notesSelected, handler) {
-    handler(notesSelected);
+  deleteNotesTrash(noteSelected, handler) {
+    handler(noteSelected);
   }
 }

@@ -23,7 +23,7 @@ export default class NoteController {
 
     this.view.bindDeleteListNotes(
       (noteId) => this.deleteNote(noteId),
-      (notesSelected) => this.deleteNotesTrash(notesSelected),
+      (noteSelected) => this.deleteNotesTrash(noteSelected),
     );
   }
 
@@ -168,12 +168,20 @@ export default class NoteController {
     }
   }
 
-  deleteNotesTrash() {
+  deleteNotesTrash(noteSelected) {
     this.view.renderConfirmMessage();
 
     // function close popup
     this.view.bindClosePopup();
 
-    
+    // function delete all the notes selected
+    this.view.bindDeleteNoteInTrash(() => {
+      noteSelected.forEach(async (note) => {
+        await this.model.deleteNoteInTrash(note.id);
+
+        this.view.removeNoteElement(note.id);
+        this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+      });
+    });
   }
 }
