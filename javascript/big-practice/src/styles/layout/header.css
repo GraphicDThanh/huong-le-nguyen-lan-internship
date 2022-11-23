@@ -28,7 +28,7 @@
 }
 
 .icon-menu-cover:hover,
-.count-and-close .icon-close-cover:hover {
+.icon-close-cover:hover {
   cursor: pointer;
   border-radius: 45px;
   background-color: var(--hover-utilities-color);
