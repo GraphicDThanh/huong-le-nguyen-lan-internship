@@ -146,4 +146,28 @@ export default class NoteModel {
       throw error;
     }
   }
+
+  /**
+   * @description function find note if the note contains characters
+   * that match the entered characters
+   *
+   * @param {String} inputValue is value of input entered
+   *
+   * @returns {Array} listFound after filter if note includes
+   */
+  searchNote(inputValue) {
+    let list = [];
+
+    if (inputValue.length) {
+      this.listNotes.forEach((note) => {
+        if (note.title.includes(inputValue) || note.description.includes(inputValue)) {
+          list.push(note);
+        }
+      });
+    } else {
+      list = [];
+    }
+
+    return list;
+  }
 }
