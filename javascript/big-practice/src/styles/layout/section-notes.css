@@ -2,21 +2,13 @@
   width: 85%;
   display: flex;
   flex-direction: column;
-  padding: 35px 0 100px 30px;
+  padding: 35px 0 0 30px;
 }
 
 .form-control {
+  width: 100%;
   display: flex;
   justify-content: center;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .list-cover {
@@ -28,6 +20,7 @@
   grid-template-columns: repeat(6, 240px);
   align-items: baseline;
   gap: 18px;
+  animation: opacityAnimation linear 0.5s;
 }
 
 .list-notes-empty {
@@ -59,5 +52,5 @@
   bottom: 0;
   left: 0;
   background-color: var(--background-opacity);
-  animation: fadeInOut linear 0.2s;
+  animation: opacityAnimation linear 0.2s;
 }

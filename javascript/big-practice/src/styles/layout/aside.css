@@ -21,10 +21,11 @@
 .nav .nav-item .nav-link {
   font-size: 14px;
   text-decoration: none;
+  display: flex;
+  align-items: center;
   color: var(--text-color);
 }
 
 .nav .nav-item .nav-link img {
-  vertical-align: sub;
   margin-right: 20px;
 }
