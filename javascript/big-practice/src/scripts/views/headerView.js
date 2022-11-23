@@ -141,4 +141,20 @@ export default class HeaderView {
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     }
   }
+
+  /**
+   * @description function clear input search and render
+   * tab note
+   *
+   * @param {function} renderTabs function render tab transmitted
+   * from controller
+   */
+  clearSearch(renderTabs) {
+    const clearElement = selectDOMClass('.icon-close-cover');
+
+    clearElement.addEventListener('click', () => {
+      selectDOMClass('.search').value = '';
+      renderTabs();
+    });
+  }
 }
