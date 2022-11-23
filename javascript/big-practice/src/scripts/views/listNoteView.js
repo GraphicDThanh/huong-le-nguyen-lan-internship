@@ -11,7 +11,6 @@ import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/handleError';
-import user from '../../../data/mockUser';
 
 /**
  * @class listNoteView
@@ -36,6 +35,69 @@ export default class ListNoteView {
   navigatePageWithLoginStatus() {
     if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
       navigatePage('index.html');
+    }
+  }
+
+  /**
+   * @description function bind events search notes
+   *
+   * @param {function} handler function transmitted
+   * from controller
+   */
+  bindSearchNotes(handler) {
+    const formSearch = selectDOMClass('.form-search');
+
+    formSearch.addEventListener('input', (e) => {
+      this.searchNote(e, handler, formSearch);
+    });
+
+    formSearch.addEventListener('submit', (e) => {
+      this.searchNote(e, handler, formSearch);
+    });
+  }
+
+  /**
+   * @description function search notes with
+   * value of input entered and remove formElement
+   *
+   * @param {Object} e is event of element
+   * @param {function} handler function transmitted from controller
+   * @param {Object} formSearch is form of input
+   */
+  searchNote(e, handler, formSearch) {
+    const formElement = selectDOMClass('.form-add-note');
+
+    e.preventDefault();
+    const formData = new FormData(formSearch);
+    const inputValue = formData.get('search');
+
+    handler(inputValue);
+
+    if (formElement) {
+      formElement.remove();
+    }
+  }
+
+  /**
+   * @description function show message if list contains notes
+   * which have the same character as the input value
+   *
+   * @param {Array} listNotes is list of notes have the same
+   * character as the input value
+   */
+  searchNotFound(listNotes) {
+    const formElement = selectDOMClass('.form-control');
+    const inputValue = selectDOMClass('.search').value;
+
+    if (!listNotes && inputValue) {
+      const messageNotFound = document.createElement('p');
+      this.elementHelpers.addClass(messageNotFound, 'not-found-message');
+      messageNotFound.innerHTML = 'No matching results.';
+
+      formElement.innerHTML = '';
+      formElement.appendChild(messageNotFound);
+    } else {
+      formElement.innerHTML = '';
     }
   }
 
