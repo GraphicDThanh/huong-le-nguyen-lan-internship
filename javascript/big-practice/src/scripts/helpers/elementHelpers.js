@@ -87,4 +87,16 @@ export default class ElementHelpers {
     const element = e;
     element.style.transform = `translateY(${number}%)`;
   }
+
+  /**
+   * @description remove all elements have class
+   * selected
+   */
+  removeSelected() {
+    const noteSelected = selectDOMClassAll('.selected');
+
+    noteSelected.forEach((note) => {
+      this.removeClass(note, 'selected');
+    });
+  }
 }

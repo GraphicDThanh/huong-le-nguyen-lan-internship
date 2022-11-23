@@ -1,4 +1,4 @@
-import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
+import { selectDOMClass } from '../utils/querySelectDOM';
 import logoComponent from '../components/logoComponent';
 import inputSearchComponent from '../components/inputSearchComponent';
 import menuUserComponent from '../components/menuUserComponent';
@@ -106,12 +106,7 @@ export default class HeaderView {
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');
 
     btnClose.addEventListener('click', () => {
-      const noteSelected = selectDOMClassAll('.selected');
-
-      noteSelected.forEach((note) => {
-        this.elementHelpers.removeClass(note, 'selected');
-      });
-
+      this.elementHelpers.removeSelected();
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     });
   }

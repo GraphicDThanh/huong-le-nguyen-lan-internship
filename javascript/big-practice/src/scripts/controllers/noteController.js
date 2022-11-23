@@ -20,6 +20,11 @@ export default class NoteController {
   bindEvents() {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
+
+    this.view.bindDeleteListNotes(
+      (noteId) => this.deleteNote(noteId),
+      (notesSelected) => this.deleteNotesTrash(notesSelected),
+    );
   }
 
   renderTabs() {
@@ -27,7 +32,6 @@ export default class NoteController {
       renderTabNotes: () => this.renderTabNote(),
       renderTabTrash: () => this.renderTabTrash(),
       addNote: (note) => this.addNote(note),
-      deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
     this.view.renderTabs(handlers);
@@ -162,5 +166,14 @@ export default class NoteController {
     } catch (error) {
       renderPopupError(error.message);
     }
+  }
+
+  deleteNotesTrash() {
+    this.view.renderConfirmMessage();
+
+    // function close popup
+    this.view.bindClosePopup();
+
+    
   }
 }
