@@ -7,12 +7,9 @@
 
 .form-control {
   width: 100%;
+  padding-bottom: 50px;
   display: flex;
   justify-content: center;
-}
-
-.list-cover {
-  padding-top: 50px;
 }
 
 .list-notes {
@@ -21,6 +18,11 @@
   align-items: baseline;
   gap: 18px;
   animation: opacityAnimation linear 0.5s;
+}
+
+.not-found-message {
+  text-align: center;
+  font-family: var(--font-light), var(--font-default);
 }
 
 .list-notes-empty {
