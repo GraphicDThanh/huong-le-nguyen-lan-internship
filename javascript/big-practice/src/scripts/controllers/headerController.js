@@ -26,5 +26,8 @@ export default class HeaderController {
 
     // function clear search and render tab note
     this.headerView.clearSearch(() => this.noteController.renderTabs());
+
+    // function search note by value of input
+    this.headerView.bindSearchNotes((inputValue) => this.noteController.searchNote(inputValue));
   }
 }

@@ -157,4 +157,44 @@ export default class HeaderView {
       renderTabs();
     });
   }
+
+  /**
+   * @description function bind events search notes
+   *
+   * @param {function} handler function transmitted
+   * from controller
+   */
+  bindSearchNotes(handler) {
+    const formSearch = selectDOMClass('.form-search');
+
+    formSearch.addEventListener('input', (e) => {
+      this.searchNote(e, handler, formSearch);
+    });
+
+    formSearch.addEventListener('submit', (e) => {
+      this.searchNote(e, handler, formSearch);
+    });
+  }
+
+  /**
+   * @description function search notes with
+   * value of input entered and remove formElement
+   *
+   * @param {Object} e is event of element
+   * @param {function} handler function transmitted from controller
+   * @param {Object} formSearch is form of input
+   */
+  searchNote(e, handler, formSearch) {
+    const formElement = selectDOMClass('.form-add-note');
+
+    e.preventDefault();
+    const formData = new FormData(formSearch);
+    const inputValue = formData.get('search');
+
+    handler(inputValue);
+
+    if (formElement) {
+      formElement.remove();
+    }
+  }
 }

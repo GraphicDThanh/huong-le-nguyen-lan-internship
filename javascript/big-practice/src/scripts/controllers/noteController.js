@@ -57,9 +57,6 @@ export default class NoteController {
       // function render list notes
       this.view.renderListNotes(listNotes, handlers);
 
-      // function search note by value of input
-      this.view.bindSearchNotes((inputValue) => this.searchNote(inputValue));
-
       // function show Empty Note if note is empty
       this.view.showHideEmpty(listNotes, 'listNotes');
     } catch (error) {
