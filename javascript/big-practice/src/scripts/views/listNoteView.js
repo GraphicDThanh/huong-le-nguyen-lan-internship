@@ -473,9 +473,6 @@ export default class ListNoteView {
    */
   bindAddNote(handler) {
     const formElement = selectDOMClass('.form-add-note');
-    const formTitleElement = selectDOMClass('.form-title');
-    const formUtilitiesElement = selectDOMClass('.form-utilities');
-    const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
 
     formElement.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -485,15 +482,34 @@ export default class ListNoteView {
         description: formData.get('description'),
       };
 
-      this.elementHelpers.addClass(formUtilitiesElement, 'hide');
-      this.elementHelpers.addClass(formTitleElement, 'hide');
+      this.addNote(note, handler, formElement);
+    });
 
-      if (note.title || note.description) {
-        handler(note);
-        formElement.reset();
-        this.elementHelpers.addClass(listNotesEmpty, 'hide');
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.form-add-note')) {
+        const note = {
+          title: selectDOMClass('.note-title').value,
+          description: selectDOMClass('.note-description').value,
+        };
+
+        this.addNote(note, handler, formElement);
       }
     });
+  }
+
+  addNote(note, handler, formElement) {
+    const formTitleElement = selectDOMClass('.form-title');
+    const formUtilitiesElement = selectDOMClass('.form-utilities');
+    const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
+
+    this.elementHelpers.addClass(formUtilitiesElement, 'hide');
+    this.elementHelpers.addClass(formTitleElement, 'hide');
+
+    if (note.title || note.description) {
+      handler(note);
+      formElement.reset();
+      this.elementHelpers.addClass(listNotesEmpty, 'hide');
+    }
   }
 
   /**

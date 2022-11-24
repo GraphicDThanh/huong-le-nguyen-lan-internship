@@ -1,6 +1,6 @@
 const user = {
   email: 'huong@gmail.com',
-  password: 'lanhuong142002',
+  password: '123456789a',
 };
 
 export default user;
