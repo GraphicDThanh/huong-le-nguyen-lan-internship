@@ -80,7 +80,7 @@ export default class NoteModel {
     try {
       const date = new Date().toISOString().slice(0, 10);
       const noteItem = this.findNote(id);
-
+      console.log(noteItem);
       noteItem.deleteAt = date;
       await fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
@@ -99,7 +99,9 @@ export default class NoteModel {
    */
   async deleteNoteInTrash(id) {
     try {
-      await fetchAPI.deleteNote(id, URL_API.NOTES_URL);
+      const noteItem = this.findNote(id);
+      console.log(noteItem);
+      await fetchAPI.deleteNote(noteItem.id, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
     } catch (error) {
       console.log(error);

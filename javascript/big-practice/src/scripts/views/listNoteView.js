@@ -11,7 +11,6 @@ import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/handleError';
-import user from '../../../data/mockUser';
 
 /**
  * @class listNoteView
@@ -275,10 +274,14 @@ export default class ListNoteView {
    */
   bindShowPopup(note, handler) {
     const btnDeletes = note.querySelector('.trash-wrapper .btn-delete');
+    const headerAfterSelect = selectDOMClass('.header-after-select');
 
     btnDeletes.addEventListener('click', (e) => {
       const index = e.target.getAttribute('data-id');
       handler(index);
+
+      this.elementHelpers.removeSelected();
+      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     });
   }
 
@@ -509,12 +512,16 @@ export default class ListNoteView {
   bindDeleteNote(noteElement, handler) {
     const note = selectDOMById(`${noteElement.id}`);
     const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
+    const headerAfterSelect = selectDOMClass('.header-after-select');
 
     deleteButtonElements.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');
 
         handler(noteId);
+
+        this.elementHelpers.removeSelected();
+        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
       });
     });
   }
@@ -536,14 +543,10 @@ export default class ListNoteView {
           deleteNotes(note.id);
         });
       } else {
-        this.deleteNotesTrash(noteSelected, deleteNotesTrash);
+        deleteNotesTrash(noteSelected);
       }
 
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     });
-  }
-
-  deleteNotesTrash(noteSelected, handler) {
-    handler(noteSelected);
   }
 }

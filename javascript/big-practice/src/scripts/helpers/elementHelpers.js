@@ -95,8 +95,10 @@ export default class ElementHelpers {
   removeSelected() {
     const noteSelected = selectDOMClassAll('.selected');
 
-    noteSelected.forEach((note) => {
-      this.removeClass(note, 'selected');
-    });
+    if (noteSelected) {
+      noteSelected.forEach((note) => {
+        this.removeClass(note, 'selected');
+      });
+    }
   }
 }
