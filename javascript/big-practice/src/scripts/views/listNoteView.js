@@ -11,7 +11,6 @@ import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/handleError';
-import user from '../../../data/mockUser';
 
 /**
  * @class listNoteView
@@ -152,10 +151,10 @@ export default class ListNoteView {
       isTrash: note.isTrash,
     };
     const noteView = new NoteView(noteItem);
-    const noteElement = noteView.renderNote();
+    const noteElement = noteView.renderNote('listNotes');
     const { handleDeleteNote, handleShowNoteForm } = handlers;
 
-    listNoteElement.appendChild(noteView.renderNote());
+    listNoteElement.appendChild(noteElement);
     this.bindDeleteNote(noteElement, handleDeleteNote);
     this.bindShowNoteForm(noteElement, handleShowNoteForm);
     this.bindSelectedNote(noteElement);
@@ -218,7 +217,7 @@ export default class ListNoteView {
       };
 
       const noteView = new NoteView(noteItem);
-      const trashNote = noteView.renderNote();
+      const trashNote = noteView.renderNote('trashNotes');
       listTrashElement.appendChild(trashNote);
       this.bindShowPopup(trashNote, handler);
     });
@@ -486,10 +485,13 @@ export default class ListNoteView {
     });
 
     document.addEventListener('click', (e) => {
-      if (!e.target.closest('.form-add-note')) {
+      const title = selectDOMClass('.note-title').value;
+      const description = selectDOMClass('.note-description').value;
+
+      if (!e.target.closest('.form-add-note') && (title || description)) {
         const note = {
-          title: selectDOMClass('.note-title').value,
-          description: selectDOMClass('.note-description').value,
+          title,
+          description,
         };
 
         this.addNote(note, handler, formElement);
@@ -520,9 +522,9 @@ export default class ListNoteView {
    */
   bindDeleteNote(noteElement, handler) {
     const note = selectDOMById(`${noteElement.id}`);
-    const deleteButtonElements = note.querySelectorAll('.note-wrapper .btn-delete');
+    const iconDeleteElement = note.querySelectorAll('.note-btn .icon-delete');
 
-    deleteButtonElements.forEach((btn) => {
+    iconDeleteElement.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');
 
