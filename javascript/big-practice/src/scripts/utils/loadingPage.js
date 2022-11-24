@@ -36,7 +36,7 @@ export default class LoadingPage {
    * after 1s
    */
   setTimeoutLoading() {
-    setTimeout(() => this.removeLoading(), 1000);
+    setTimeout(() => this.removeLoading(), 800);
   }
 
   /**

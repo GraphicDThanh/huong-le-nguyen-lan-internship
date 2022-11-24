@@ -1,4 +1,5 @@
 import { renderPopupError } from '../utils/handleError';
+import LoadingPage from '../utils/loadingPage';
 
 /**
  * @class noteController
@@ -11,6 +12,7 @@ export default class NoteController {
   constructor(model, view) {
     this.model = model;
     this.view = view;
+    this.loadingPage = new LoadingPage();
   }
 
   init() {
@@ -35,7 +37,10 @@ export default class NoteController {
 
   async renderTabTrash() {
     try {
+      this.loadingPage.addLoading();
+      this.loadingPage.setTimeoutLoading();
       const listTrash = await this.model.filterNotes('trashNotes');
+
       // function render trash notes
       this.view.renderListTrashNotes(listTrash, (noteId) => this.handleConfirmPopup(noteId));
 
@@ -52,6 +57,8 @@ export default class NoteController {
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
         handleShowNoteForm: (id) => this.handleNoteForm(id),
       };
+      this.loadingPage.addLoading();
+      this.loadingPage.setTimeoutLoading();
       const listNotes = await this.model.filterNotes('listNotes');
 
       // function render list notes
@@ -72,7 +79,9 @@ export default class NoteController {
    */
   async handleConfirmPopup(noteId) {
     try {
+      this.loadingPage.addLoading();
       const note = await this.model.findNote(noteId);
+      this.loadingPage.removeLoading();
 
       // function render confirm message
       this.view.renderConfirmMessage(note);
@@ -82,7 +91,9 @@ export default class NoteController {
 
       // function delete note in tab trash
       this.view.bindDeleteNoteInTrash(async (id) => {
+        this.loadingPage.addLoading();
         await this.model.deleteNoteInTrash(id);
+        this.loadingPage.removeLoading();
 
         this.view.removeNoteElement(id);
         this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
@@ -99,7 +110,10 @@ export default class NoteController {
    */
   async addNote(note) {
     try {
+      this.loadingPage.addLoading();
       const noteItem = await this.model.addNote(note);
+      this.loadingPage.removeLoading();
+
       const handlers = {
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
         handleShowNoteForm: (id) => this.handleNoteForm(id),
@@ -119,7 +133,9 @@ export default class NoteController {
    */
   async deleteNote(noteId) {
     try {
+      this.loadingPage.addLoading();
       const noteItem = await this.model.deleteNote(noteId);
+      this.loadingPage.removeLoading();
 
       this.view.removeNoteElement(noteItem.id);
       this.view.showHideEmpty(this.model.listNotes, 'listNotes');
@@ -135,7 +151,9 @@ export default class NoteController {
    */
   async editNote(note) {
     try {
+      this.loadingPage.addLoading();
       const noteItem = await this.model.editNote(note);
+      this.loadingPage.removeLoading();
 
       this.view.editNote(noteItem);
     } catch (error) {
@@ -151,7 +169,10 @@ export default class NoteController {
    */
   async handleNoteForm(id) {
     try {
+      this.loadingPage.addLoading();
       const noteItem = await this.model.findNote(id);
+      this.loadingPage.removeLoading();
+
       const handlers = {
         handleEditNote: (note) => this.editNote(note),
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
