@@ -11,7 +11,6 @@ import noteTemplate from '../templates/noteTemplate';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/handleError';
-import user from '../../../data/mockUser';
 
 /**
  * @class listNoteView
