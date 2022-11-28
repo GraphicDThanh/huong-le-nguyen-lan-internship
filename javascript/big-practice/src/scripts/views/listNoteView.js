@@ -518,6 +518,14 @@ export default class ListNoteView {
     this.eventHelpers.addEvent(document, 'click', handleClickOut);
   }
 
+  /**
+   * @description function add note if title and description
+   * have value. And after add, form will clear
+   *
+   * @param {Object} note is note information
+   * @param {function} addNote function transmitted from controller
+   * @param {Object} formElement form add note to clear input
+   */
   addNote(note, addNote, formElement) {
     const formTitleElement = selectDOMClass('.form-title');
     const formUtilitiesElement = selectDOMClass('.form-utilities');
