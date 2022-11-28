@@ -23,7 +23,7 @@ export default class NoteModel {
         id: new Date().getTime().toString(),
         title: note.title,
         description: note.description,
-        deleteAt: '',
+        deletedAt: '',
       };
 
       const noteItem = await fetchAPI.postNote(patternNote, URL_API.NOTES_URL);
@@ -52,11 +52,11 @@ export default class NoteModel {
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
-        this.listNotes = notes.filter((note) => !note.deleteAt);
+        this.listNotes = notes.filter((note) => !note.deletedAt);
         break;
       }
       case 'trashNotes': {
-        this.listNotes = notes.filter((note) => note.deleteAt);
+        this.listNotes = notes.filter((note) => note.deletedAt);
         break;
       }
       default:
@@ -81,7 +81,7 @@ export default class NoteModel {
       const date = new Date().toISOString().slice(0, 10);
       const noteItem = this.findNote(id);
 
-      noteItem.deleteAt = date;
+      noteItem.deletedAt = date;
       await fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
