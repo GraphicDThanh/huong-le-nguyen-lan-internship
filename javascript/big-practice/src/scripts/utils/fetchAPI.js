@@ -33,7 +33,6 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-
       const noteItem = await fetch(`${this.baseURL}${url}`, options);
 
       return noteItem.json();
@@ -56,7 +55,6 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-
       await fetch(`${this.baseURL}${url}/${id}`, options);
     } catch (e) {
       const error = e;
@@ -79,7 +77,6 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-
       const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
 
       return noteItem.json();
