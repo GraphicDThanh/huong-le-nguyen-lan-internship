@@ -3,10 +3,12 @@ import menuComponent from '../components/menuComponent';
 import ElementHelpers from '../helpers/elementHelpers';
 import STORAGE_KEYS from '../constants/storageKeys';
 import { renderPopupError } from '../utils/handleError';
+import EventHelpers from '../helpers/eventHelpers';
 
 export default class MenuView {
   constructor() {
     this.elementHelpers = new ElementHelpers();
+    this.eventHelpers = new EventHelpers();
     this.mainWrapper = selectDOMClass('.main-wrapper');
     this.sectionWrapper = selectDOMClass('.section-wrapper');
   }
@@ -30,21 +32,22 @@ export default class MenuView {
 
     renderTabs();
     this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+    const handler = (e) => {
+      if (e.target.hasAttribute('data-id')) {
+        this.elementHelpers.removeClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+
+        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
+        this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+
+        renderTabs();
+        changeLogoFollowTab(e.target.querySelector('span').textContent);
+      } else {
+        renderPopupError('Page number is not found');
+      }
+    };
 
     menu.forEach((element) => {
-      element.addEventListener('click', (e) => {
-        if (e.target.hasAttribute('data-id')) {
-          this.elementHelpers.removeClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
-
-          sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
-          this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
-
-          renderTabs();
-          changeLogoFollowTab(e.target.querySelector('span').textContent);
-        } else {
-          renderPopupError('Page number is not found');
-        }
-      });
+      this.eventHelpers.addEvent(element, 'click', handler);
     });
   }
 }

@@ -46,14 +46,15 @@ export default class HeaderView {
   bindShowMenuUser() {
     const avatarUser = selectDOMClass('.avatar-user-cover');
     const menuUserElement = selectDOMClass('.menu-user');
-
-    avatarUser.addEventListener('click', () => {
+    const handler = () => {
       if (menuUserElement.classList.contains('hide')) {
         this.elementHelpers.removeClass(menuUserElement, 'hide');
       } else {
         this.elementHelpers.addClass(menuUserElement, 'hide');
       }
-    });
+    };
+
+    this.eventHelpers.addEvent(avatarUser, 'click', handler);
   }
 
   /**
@@ -62,12 +63,13 @@ export default class HeaderView {
    */
   bindLogOut() {
     const btnLogout = selectDOMClass('.btn-logout');
-
-    btnLogout.addEventListener('click', () => {
+    const handler = () => {
       navigatePage('index.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       this.localStorage.removeItems(STORAGE_KEYS.IS_LOGIN);
-    });
+    };
+
+    this.eventHelpers.addEvent(btnLogout, 'click', handler);
   }
 
   /**
@@ -104,8 +106,7 @@ export default class HeaderView {
   closeSelected() {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');
-
-    btnClose.addEventListener('click', () => {
+    const handler = () => {
       const noteSelected = selectDOMClassAll('.selected');
 
       noteSelected.forEach((note) => {
@@ -113,7 +114,9 @@ export default class HeaderView {
       });
 
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
-    });
+    };
+
+    this.eventHelpers.addEvent(btnClose, 'click', handler);
   }
 
   /**
@@ -151,50 +154,37 @@ export default class HeaderView {
    */
   clearSearch(renderTabs) {
     const clearElement = selectDOMClass('.icon-close-cover');
-
-    clearElement.addEventListener('click', () => {
+    const handler = () => {
       selectDOMClass('.search').value = '';
       renderTabs();
-    });
-  }
+    };
 
-  /**
-   * @description function bind events search notes
-   *
-   * @param {function} handler function transmitted
-   * from controller
-   */
-  bindSearchNotes(handler) {
-    const formSearch = selectDOMClass('.form-search');
-
-    formSearch.addEventListener('input', (e) => {
-      this.searchNote(e, handler, formSearch);
-    });
-
-    formSearch.addEventListener('submit', (e) => {
-      this.searchNote(e, handler, formSearch);
-    });
+    this.eventHelpers.addEvent(clearElement, 'click', handler);
   }
 
   /**
    * @description function search notes with
    * value of input entered and remove formElement
    *
-   * @param {Object} e is event of element
-   * @param {function} handler function transmitted from controller
-   * @param {Object} formSearch is form of input
+   * @param {function} searchNote function transmitted
+   * from controller
    */
-  searchNote(e, handler, formSearch) {
+  bindSearchNotes(searchNote) {
+    const formSearch = selectDOMClass('.form-search');
     const formElement = selectDOMClass('.form-add-note');
+    const handler = (e) => {
+      e.preventDefault();
+      const formData = new FormData(formSearch);
+      const inputValue = formData.get('search');
 
-    e.preventDefault();
-    const formData = new FormData(formSearch);
-    const inputValue = formData.get('search');
+      searchNote(inputValue);
 
-    handler(inputValue);
+      if (formElement) {
+        formElement.remove();
+      }
+    };
 
-    if (formElement) {
-      formElement.remove();
-    }
+    this.eventHelpers.addEvent(formSearch, 'input', handler);
+    this.eventHelpers.addEvent(formSearch, 'submit', handler);
   }
 }

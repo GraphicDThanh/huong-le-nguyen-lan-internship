@@ -156,7 +156,7 @@ export default class NoteModel {
    * @returns {Array} listFound after filter if note includes
    */
   searchNote(inputValue) {
-    let list = [];
+    const list = [];
 
     if (inputValue.length) {
       this.listNotes.forEach((note) => {
@@ -164,8 +164,6 @@ export default class NoteModel {
           list.push(note);
         }
       });
-    } else {
-      list = [];
     }
 
     return list;

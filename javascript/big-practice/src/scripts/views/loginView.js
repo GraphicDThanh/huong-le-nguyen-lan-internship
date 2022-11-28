@@ -5,6 +5,7 @@ import user from '../../../data/mockUser';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
 import navigatePage from '../utils/navigatePage';
+import EventHelpers from '../helpers/eventHelpers';
 
 export default class LoginView {
   constructor() {
@@ -12,20 +13,23 @@ export default class LoginView {
     this.emailElement = selectDOMClass('.email');
     this.passwordElement = selectDOMClass('.password');
     this.localStorage = new LocalStorage();
+    this.eventHelpers = new EventHelpers();
   }
 
   /**
    * @description function check valid email and password
    */
   bindLogin() {
-    this.loginForm.addEventListener('submit', (e) => {
+    const handler = (e) => {
       e.preventDefault();
 
       const formData = new FormData(this.loginForm);
       const email = formData.get('email');
       const password = formData.get('password');
       this.handleInvalidUser(password, email);
-    });
+    };
+
+    this.eventHelpers.addEvent(this.loginForm, 'submit', handler);
   }
 
   /**
