@@ -5,11 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
+  <link rel="icon" href="../assets/icons/logo-google-keep-small.png" type="image/gif" sizes="16x16">
   <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body class="index-page">
   <div class="container">
-    <form class="login" id="login-form">
+    <form class="login-wrapper" id="login-form">
       <figure class="logo">
         <img src="../assets/icons/google-keep.svg" alt="logo google keep">
       </figure>
@@ -19,12 +20,12 @@
           <input type="email" 
             name="email"
             class="email form-input"
-            placeholder="Email" 
+            placeholder="&nbsp;"
             required 
             pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"
             title="Email is valid"
             autocomplete="off">
-
+          <label class="form-label label-email">Email</label>
           <div class="message">
             <img src="../assets/icons/error-icon.svg" alt="error icon" class="error-icon hide">
             <span class="message-error"></span>
@@ -35,13 +36,13 @@
           <input type="password" 
             name="password" 
             class="password form-input" 
-            placeholder="Enter your password" 
+            placeholder="&nbsp;"
             minlength="8" 
             required
             pattern="^(?=.*?[a-z])(?=.*?[0-9]).{0,}$"
             title="Password must contain letters and at least one digit"
             autocomplete="off">
-
+          <label class="form-label label-password">Password</label>
           <div class="message">
             <img src="../assets/icons/error-icon.svg" alt="error icon" class="error-icon hide">
             <span class="message-error"></span>
@@ -50,7 +51,7 @@
       </div>
 
       <div class="form-button">
-        <button type="submit" class="btn">Log in</button>
+        <button type="submit" class="btn-login">Log in</button>
       </div>
     </form>
   </div>
