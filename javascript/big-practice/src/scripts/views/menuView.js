@@ -41,8 +41,6 @@ export default class MenuView {
 
           renderTabs();
           changeLogoFollowTab(e.target.querySelector('span').textContent);
-        } else {
-          renderPopupError('Page number is not found');
         }
       });
     });

@@ -1,4 +1,6 @@
 import iconClose from '../../assets/icons/icon-close.svg';
+import STORAGE_KEYS from '../constants/storageKeys';
+import iconTrash from '../../assets/icons/icon-trash-blue.svg';
 
 const headerComponent = () => {
   const headerElement = document.createElement('header');
@@ -19,7 +21,11 @@ const headerComponent = () => {
       </div>
 
       <div class="header-utilities">
-        <button type="button" class="btn btn-delete-bulk-actions">Delete</button>
+        ${sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
+    ? `<figure class="item-utilities btn-delete-bulk-actions">
+          <img src="${iconTrash}" alt="icon trash">
+        </figure>`
+    : '<button type="button" class="btn btn-delete-bulk-actions">Delete</button>'}
       </div>
     </div>
   `;
