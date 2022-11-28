@@ -73,7 +73,6 @@ export default class ListNoteView {
       renderTabNotes,
       renderTabTrash,
       addNote,
-      deleteNote,
     } = handlers;
 
     const trashNotes = {
@@ -97,7 +96,6 @@ export default class ListNoteView {
       this.bindInputBreakDown();
       this.bindShowInput();
       this.bindAddNote(addNote);
-      this.bindDeleteListNotes(deleteNote);
     } else {
       this.sectionWrapper.innerHTML = '';
       this.sectionWrapper.appendChild(noteTemplate(trashNotes));
@@ -243,6 +241,7 @@ export default class ListNoteView {
       const trashNote = noteView.renderNote('trashNotes');
       listTrashElement.appendChild(trashNote);
       this.bindShowPopup(trashNote, handler);
+      this.bindSelectedNote(trashNote);
     });
   }
 
@@ -254,7 +253,11 @@ export default class ListNoteView {
   renderConfirmMessage(note) {
     this.overlayWrapper.innerHTML = '';
 
-    this.overlayWrapper.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', note));
+    if (note) {
+      this.overlayWrapper.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', note));
+    } else {
+      this.overlayWrapper.appendChild(renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete'));
+    }
   }
 
   /**
@@ -294,9 +297,12 @@ export default class ListNoteView {
    */
   bindShowPopup(note, handlePopup) {
     const btnDeletes = note.querySelector('.trash-wrapper .btn-delete');
+    const headerAfterSelect = selectDOMClass('.header-after-select');
     const handler = (e) => {
       const index = e.target.getAttribute('data-id');
       handlePopup(index);
+      this.elementHelpers.removeSelected();
+      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     };
 
     this.eventHelpers.addEvent(btnDeletes, 'click', handler);
@@ -310,6 +316,7 @@ export default class ListNoteView {
     const btnClose = selectDOMClass('.btn-close-popup');
     const handler = (e) => {
       e.stopPropagation();
+      this.elementHelpers.removeSelected();
       this.overlayWrapper.innerHTML = '';
     };
 
@@ -549,11 +556,14 @@ export default class ListNoteView {
    */
   bindDeleteNote(noteElement, deleteNote) {
     const note = selectDOMById(`${noteElement.id}`);
+    const headerAfterSelect = selectDOMClass('.header-after-select');
     const iconDeleteElement = note.querySelectorAll('.note-btn .icon-delete');
     const handler = (e) => {
       const noteId = e.target.getAttribute('data-id');
 
       deleteNote(noteId);
+      this.elementHelpers.removeSelected();
+      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     };
 
     iconDeleteElement.forEach((btn) => {
@@ -566,15 +576,20 @@ export default class ListNoteView {
    *
    * @param {function} deleteListNote is function delete transmitted from from the model
    */
-  bindDeleteListNotes(deleteListNote) {
+  bindDeleteListNotes(deleteListNote, deleteNotesTrash) {
     const btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const handler = () => {
       const noteSelected = selectDOMClassAll('.selected');
 
-      noteSelected.forEach((note) => {
-        deleteListNote(note.id);
-      });
+      if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
+        noteSelected.forEach((note) => {
+          deleteListNote(note.id);
+        });
+      } else {
+        deleteNotesTrash(noteSelected);
+      }
+
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
     };
 

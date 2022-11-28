@@ -99,7 +99,9 @@ export default class NoteModel {
    */
   async deleteNoteInTrash(id) {
     try {
-      await fetchAPI.deleteNote(id, URL_API.NOTES_URL);
+      const noteItem = this.findNote(id);
+
+      await fetchAPI.deleteNote(noteItem.id, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
     } catch (error) {
       console.log(error);

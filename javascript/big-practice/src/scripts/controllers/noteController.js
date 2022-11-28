@@ -22,6 +22,15 @@ export default class NoteController {
   bindEvents() {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
+
+    this.deleteListNotes();
+  }
+
+  deleteListNotes() {
+    this.view.bindDeleteListNotes(
+      (noteId) => this.deleteNote(noteId),
+      (noteSelected) => this.deleteNotesTrash(noteSelected),
+    );
   }
 
   renderTabs() {
@@ -29,7 +38,6 @@ export default class NoteController {
       renderTabNotes: () => this.renderTabNote(),
       renderTabTrash: () => this.renderTabTrash(),
       addNote: (note) => this.addNote(note),
-      deleteNote: (noteId) => this.deleteNote(noteId),
     };
 
     this.view.renderTabs(handlers);
@@ -198,5 +206,28 @@ export default class NoteController {
 
     this.view.renderListNotes(listNotes, handlers);
     this.view.searchNotFound(listNotes.length);
+  }
+
+  /**
+   * @description function delete note in trash with list notes
+   * selected
+   *
+   * @param {Array} noteSelected is list notes selected
+   */
+  deleteNotesTrash(noteSelected) {
+    this.view.renderConfirmMessage();
+
+    // function close popup
+    this.view.bindClosePopup();
+
+    // function delete all the notes selected
+    this.view.bindDeleteNoteInTrash(() => {
+      noteSelected.forEach(async (note) => {
+        await this.model.deleteNoteInTrash(note.id);
+
+        this.view.removeNoteElement(note.id);
+        this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+      });
+    });
   }
 }

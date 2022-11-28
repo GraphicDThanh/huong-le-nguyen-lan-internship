@@ -4,6 +4,7 @@ import ElementHelpers from '../helpers/elementHelpers';
 import STORAGE_KEYS from '../constants/storageKeys';
 import { renderPopupError } from '../utils/handleError';
 import EventHelpers from '../helpers/eventHelpers';
+import { buttonBulkActionsComponent } from '../components/headerComponent';
 
 export default class MenuView {
   constructor() {
@@ -26,8 +27,9 @@ export default class MenuView {
    *
    * @param {function} renderTabs is function transmitted in controller
    * @param {function} changeLogoFollowTab is function transmitted in controller
+   * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  bindChangePage(renderTabs, changeLogoFollowTab) {
+  bindChangePage(renderTabs, changeLogoFollowTab, changeButtonBulkActions) {
     const menu = selectDOMClassAll('.nav li');
 
     renderTabs();
@@ -39,15 +41,31 @@ export default class MenuView {
         sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
         this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
-        renderTabs();
-        changeLogoFollowTab(e.target.querySelector('span').textContent);
-      } else {
-        renderPopupError('Page number is not found');
+          renderTabs();
+          changeLogoFollowTab(e.target.querySelector('span').textContent);
+          this.changeButtonBulkActions(changeButtonBulkActions);
       }
     };
 
     menu.forEach((element) => {
       this.eventHelpers.addEvent(element, 'click', handler);
     });
+  }
+
+  /**
+   * @description function change button delete in header selected
+   *
+   * @param {function} changeButtonBulkActions is function transmitted from
+   * controller
+   */
+  changeButtonBulkActions(changeButtonBulkActions) {
+    const headerSelected = selectDOMClass('.header-after-select');
+    const headerBulkActions = selectDOMClass('.header-utilities');
+
+    if (headerBulkActions) {
+      headerBulkActions.remove();
+    }
+    headerSelected.appendChild(buttonBulkActionsComponent());
+    changeButtonBulkActions();
   }
 }
