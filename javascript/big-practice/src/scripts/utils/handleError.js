@@ -1,4 +1,5 @@
 import { POPUP_MESSAGE } from '../constants/message';
+import EventHelpers from '../helpers/eventHelpers';
 import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
@@ -46,12 +47,14 @@ const showError = (element, message, label) => {
  */
 const renderPopupError = (errorMessage) => {
   const overlayWrapper = selectDOMClass('.overlay-wrapper');
+  const handler = () => {
+    overlayWrapper.innerHTML = '';
+  };
   overlayWrapper.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
 
   const btnClose = selectDOMClass('.btn-close-popup');
-  btnClose.addEventListener('click', () => {
-    overlayWrapper.innerHTML = '';
-  });
+  const eventHelpers = new EventHelpers();
+  eventHelpers.addEvent(btnClose, 'click', handler);
 };
 
 export { hideError, showError, renderPopupError };

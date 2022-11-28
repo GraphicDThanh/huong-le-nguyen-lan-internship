@@ -6,6 +6,7 @@ import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
 import navigatePage from '../utils/navigatePage';
 import ElementHelpers from '../helpers/elementHelpers';
+import EventHelpers from '../helpers/eventHelpers';
 
 export default class LoginView {
   constructor() {
@@ -17,13 +18,14 @@ export default class LoginView {
 
     this.localStorage = new LocalStorage();
     this.elementHelpers = new ElementHelpers();
+    this.eventHelpers = new EventHelpers();
   }
 
   /**
    * @description function check valid email and password
    */
   bindLogin() {
-    this.loginForm.addEventListener('submit', (e) => {
+    const handler = (e) => {
       e.preventDefault();
 
       const formData = new FormData(this.loginForm);
@@ -33,7 +35,9 @@ export default class LoginView {
       this.handleInvalidUser(password, email);
       this.passwordElement.blur();
       this.emailElement.blur();
-    });
+    };
+
+    this.eventHelpers.addEvent(this.loginForm, 'submit', handler);
   }
 
   /**
@@ -78,7 +82,7 @@ export default class LoginView {
    * @param {Object} element is input your want to show hide error of label
    */
   showHideInputError(element) {
-    element.addEventListener('focus', () => {
+    const handler = () => {
       const message = element.parentNode.querySelector('.message-error').textContent;
       const ev = element;
 
@@ -87,6 +91,8 @@ export default class LoginView {
       } else {
         ev.style.outlineColor = 'var(--info-color)';
       }
-    });
+    };
+
+    this.eventHelpers.addEvent(element, 'focus', handler);
   }
 }

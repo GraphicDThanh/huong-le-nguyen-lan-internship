@@ -17,8 +17,8 @@ const headerView = new HeaderView();
 const menuView = new MenuView();
 const loginView = new LoginView();
 
-const headerController = new HeaderController(headerView);
 const noteController = new NoteController(noteModel, listNoteView);
+const headerController = new HeaderController(headerView, noteController);
 const authenController = new AuthenController(loginView);
 const menuController = new MenuController(menuView, noteController, headerController);
 

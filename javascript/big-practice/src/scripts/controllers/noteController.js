@@ -182,4 +182,21 @@ export default class NoteController {
       renderPopupError(error.message);
     }
   }
+
+  /**
+   * @description function search note by value of input
+   * and if no note matches. It will show message
+   *
+   * @param {String} inputValue is value of input
+   */
+  searchNote(inputValue) {
+    const handlers = {
+      handleDeleteNote: (noteId) => this.deleteNote(noteId),
+      handleShowNoteForm: (id) => this.handleNoteForm(id),
+    };
+    const listNotes = this.model.searchNote(inputValue);
+
+    this.view.renderListNotes(listNotes, handlers);
+    this.view.searchNotFound(listNotes.length);
+  }
 }

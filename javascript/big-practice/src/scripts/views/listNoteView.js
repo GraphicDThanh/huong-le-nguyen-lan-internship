@@ -39,6 +39,29 @@ export default class ListNoteView {
   }
 
   /**
+   * @description function shows a message if list doesn't have notes
+   * which have the same character as the input value
+   *
+   * @param {Array} listNotes is list of notes have the same
+   * character as the input value
+   */
+  searchNotFound(listNotes) {
+    const formElement = selectDOMClass('.form-control');
+    const inputValue = selectDOMClass('.search').value;
+
+    if (!listNotes && inputValue) {
+      const messageNotFound = document.createElement('p');
+      this.elementHelpers.addClass(messageNotFound, 'not-found-message');
+      messageNotFound.innerHTML = 'No matching results.';
+
+      formElement.innerHTML = '';
+      formElement.appendChild(messageNotFound);
+    } else {
+      formElement.innerHTML = '';
+    }
+  }
+
+  /**
    * @description function render tab note or tab trash based on user click
    *
    * @param {function} handlers includes functions
@@ -266,34 +289,32 @@ export default class ListNoteView {
    * @description function open confirm popup when click button delete
    * of note in trash
    *
-   * @param {function} handler is function transmitted
+   * @param {function} handlePopup is function transmitted
    * @param {Object} note is trash note element is selected
    */
-  bindShowPopup(note, handler) {
+  bindShowPopup(note, handlePopup) {
     const btnDeletes = note.querySelector('.trash-wrapper .btn-delete');
-
-    btnDeletes.addEventListener('click', (e) => {
+    const handler = (e) => {
       const index = e.target.getAttribute('data-id');
-      handler(index);
-    });
+      handlePopup(index);
+    };
+
+    this.eventHelpers.addEvent(btnDeletes, 'click', handler);
   }
 
   /**
    * @description function close confirm popup
-   *
-   * @param {function} handler is function transmitted
    */
   bindClosePopup() {
     const overlayConfirmMessage = selectDOMClass('.overlay-wrapper');
-    overlayConfirmMessage.addEventListener('click', () => {
-      this.overlayWrapper.innerHTML = '';
-    });
-
     const btnClose = selectDOMClass('.btn-close-popup');
-    btnClose.addEventListener('click', (e) => {
+    const handler = (e) => {
       e.stopPropagation();
       this.overlayWrapper.innerHTML = '';
-    });
+    };
+
+    this.eventHelpers.addEvent(overlayConfirmMessage, 'click', handler);
+    this.eventHelpers.addEvent(btnClose, 'click', handler);
   }
 
   /**
@@ -306,8 +327,7 @@ export default class ListNoteView {
     const listIconCheck = note.querySelector('.icon-check');
     const countNotesSelected = selectDOMClass('.count-selected');
     const headerAfterSelect = selectDOMClass('.header-after-select');
-
-    listIconCheck.addEventListener('click', (e) => {
+    const handler = (e) => {
       e.preventDefault();
       const selectedElement = e.target.parentElement.classList.contains('selected');
 
@@ -325,24 +345,27 @@ export default class ListNoteView {
       if (listSelected.length < 1) {
         this.elementHelpers.translateYElement(headerAfterSelect, '-200');
       }
-    });
+    };
+
+    this.eventHelpers.addEvent(listIconCheck, 'click', handler);
   }
 
   /**
    * @description function delete note forever
    *
-   * @param {function} handler is function transmitted from model
+   * @param {function} deleteNoteTrash is function transmitted from model
    */
-  bindDeleteNoteInTrash(handler) {
+  bindDeleteNoteInTrash(deleteNoteTrash) {
     const deleteTrash = selectDOMClass('.btn-submit-action');
-
-    deleteTrash.addEventListener('click', (e) => {
+    const handler = (e) => {
       e.stopPropagation();
       const index = e.target.getAttribute('data-id');
 
-      handler(index);
+      deleteNoteTrash(index);
       this.overlayWrapper.innerHTML = '';
-    });
+    };
+
+    this.eventHelpers.addEvent(deleteTrash, 'click', handler);
   }
 
   /**
@@ -370,14 +393,13 @@ export default class ListNoteView {
   /**
    * @description function show note form of note is selected
    *
-   * @param {function} findNote is function transmitted from model
    * @param {Object} noteElement is note element is selected
+   * @param {function} findNote is function transmitted from model
    */
   bindShowNoteForm(noteElement, findNote) {
     const noteItem = selectDOMById(`${noteElement.id}`);
     const listNotes = noteItem.querySelector('.note-content');
-
-    listNotes.addEventListener('click', async (e) => {
+    const handler = async (e) => {
       e.stopPropagation();
       await findNote(listNotes.getAttribute('data-id'));
 
@@ -388,7 +410,9 @@ export default class ListNoteView {
       this.elementHelpers.showInputBreakDown(description);
       this.eventHelpers.stopEvents(title);
       this.eventHelpers.stopEvents(description);
-    });
+    };
+
+    this.eventHelpers.addEvent(listNotes, 'click', handler);
   }
 
   /**
@@ -405,10 +429,7 @@ export default class ListNoteView {
       id: formElement.id,
     };
 
-    this.eventHelpers.stopEvents(closeBtn);
-    this.eventHelpers.stopEvents(formElement);
-
-    formElement.addEventListener('submit', (e) => {
+    const handler = (e) => {
       e.stopPropagation();
       e.preventDefault();
 
@@ -421,18 +442,12 @@ export default class ListNoteView {
 
       editNote(note);
       this.overlayWrapper.innerHTML = '';
-    });
+    };
 
-    overlay.addEventListener('click', () => {
-      const note = {
-        ...noteItem,
-        title: selectDOMClass('.note-form-overlay .note-title').value,
-        description: selectDOMClass('.note-form-overlay .note-description').value,
-      };
-
-      editNote(note);
-      this.overlayWrapper.innerHTML = '';
-    });
+    this.eventHelpers.stopEvents(closeBtn);
+    this.eventHelpers.stopEvents(formElement);
+    this.eventHelpers.addEvent(formElement, 'submit', handler);
+    this.eventHelpers.addEvent(overlay, 'click', handler);
   }
 
   /**
@@ -442,13 +457,15 @@ export default class ListNoteView {
    */
   bindDeleteNoteForm(deleteNote) {
     const buttonDelete = selectDOMClass('.note-form-overlay .btn-delete-form');
-    buttonDelete.addEventListener('click', (e) => {
+    const handler = (e) => {
       e.stopPropagation();
       const id = e.target.getAttribute('data-id');
 
       deleteNote(id);
       this.overlayWrapper.innerHTML = '';
-    });
+    };
+
+    this.eventHelpers.addEvent(buttonDelete, 'click', handler);
   }
 
   /**
@@ -457,49 +474,59 @@ export default class ListNoteView {
   bindShowInput() {
     const formTitleElement = selectDOMClass('.form-title');
     const formUtilitiesElement = selectDOMClass('.form-utilities');
-
     const inputAddElement = selectDOMClass('.form-add-note .form-group-input .input-note');
-    inputAddElement.addEventListener('focus', () => {
+    const handler = () => {
       this.elementHelpers.removeClass(formUtilitiesElement, 'hide');
       this.elementHelpers.removeClass(formTitleElement, 'hide');
-    });
+    };
+
+    this.eventHelpers.addEvent(inputAddElement, 'focus', handler);
   }
 
   /**
    * @description function add new note and hide input form
    *
-   * @param {function} handler is function transmitted from model
+   * @param {function} addNote is function transmitted from model
    */
-  bindAddNote(handler) {
+  bindAddNote(addNote) {
     const formElement = selectDOMClass('.form-add-note');
-
-    formElement.addEventListener('submit', (e) => {
-      e.preventDefault();
+    const handler = () => {
       const formData = new FormData(formElement);
       const note = {
         title: formData.get('title'),
         description: formData.get('description'),
       };
 
-      this.addNote(note, handler, formElement);
-    });
+      return note;
+    };
 
-    document.addEventListener('click', (e) => {
-      const title = selectDOMClass('.note-title').value;
-      const description = selectDOMClass('.note-description').value;
+    const handleForm = (e) => {
+      e.preventDefault();
+      const note = handler(e);
+      this.addNote(note, addNote, formElement);
+    };
 
-      if (!e.target.closest('.form-add-note') && (title || description)) {
-        const note = {
-          title,
-          description,
-        };
+    const handleClickOut = (e) => {
+      const note = handler();
 
-        this.addNote(note, handler, formElement);
+      if (!e.target.closest('.form-add-note') && (note.title || note.description)) {
+        this.addNote(note, addNote, formElement);
       }
-    });
+    };
+
+    this.eventHelpers.addEvent(formElement, 'submit', handleForm);
+    this.eventHelpers.addEvent(document, 'click', handleClickOut);
   }
 
-  addNote(note, handler, formElement) {
+  /**
+   * @description function add note if title and description
+   * have value. And after add, form will clear
+   *
+   * @param {Object} note is note information
+   * @param {function} addNote function transmitted from controller
+   * @param {Object} formElement form add note to clear input
+   */
+  addNote(note, addNote, formElement) {
     const formTitleElement = selectDOMClass('.form-title');
     const formUtilitiesElement = selectDOMClass('.form-utilities');
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
@@ -508,7 +535,7 @@ export default class ListNoteView {
     this.elementHelpers.addClass(formTitleElement, 'hide');
 
     if (note.title || note.description) {
-      handler(note);
+      addNote(note);
       formElement.reset();
       this.elementHelpers.addClass(listNotesEmpty, 'hide');
     }
@@ -517,39 +544,40 @@ export default class ListNoteView {
   /**
    * @description function delete note of each note
    *
-   * @param {function} handler is function delete transmitted from from the model
    * @param {Object} noteElement is note element
+   * @param {function} deleteNote is function delete transmitted from from the model
    */
-  bindDeleteNote(noteElement, handler) {
+  bindDeleteNote(noteElement, deleteNote) {
     const note = selectDOMById(`${noteElement.id}`);
     const iconDeleteElement = note.querySelectorAll('.note-btn .icon-delete');
+    const handler = (e) => {
+      const noteId = e.target.getAttribute('data-id');
+
+      deleteNote(noteId);
+    };
 
     iconDeleteElement.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        const noteId = e.target.getAttribute('data-id');
-
-        handler(noteId);
-      });
+      this.eventHelpers.addEvent(btn, 'click', handler);
     });
   }
 
   /**
    * @description function delete of button in header by selected notes
    *
-   * @param {function} handler is function delete transmitted from from the model
+   * @param {function} deleteListNote is function delete transmitted from from the model
    */
-  bindDeleteListNotes(handler) {
+  bindDeleteListNotes(deleteListNote) {
     const btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
     const headerAfterSelect = selectDOMClass('.header-after-select');
-
-    btnDeleteBulkActions.addEventListener('click', () => {
+    const handler = () => {
       const noteSelected = selectDOMClassAll('.selected');
 
       noteSelected.forEach((note) => {
-        handler(note.id);
+        deleteListNote(note.id);
       });
-
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
-    });
+    };
+
+    this.eventHelpers.addEvent(btnDeleteBulkActions, 'click', handler);
   }
 }
