@@ -82,7 +82,7 @@ export default class LoginView {
    * @param {Object} element is input your want to show hide error of label
    */
   showHideInputError(element) {
-    element.addEventListener('focus', () => {
+    const handler = () => {
       const message = element.parentNode.querySelector('.message-error').textContent;
       const ev = element;
 
@@ -91,6 +91,8 @@ export default class LoginView {
       } else {
         ev.style.outlineColor = 'var(--info-color)';
       }
-    });
+    };
+
+    this.eventHelpers.addEvent(element, 'focus', handler);
   }
 }

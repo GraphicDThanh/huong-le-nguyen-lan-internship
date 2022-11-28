@@ -490,31 +490,32 @@ export default class ListNoteView {
    */
   bindAddNote(addNote) {
     const formElement = selectDOMClass('.form-add-note');
-
-    formElement.addEventListener('submit', (e) => {
-      e.preventDefault();
+    const handler = () => {
       const formData = new FormData(formElement);
       const note = {
         title: formData.get('title'),
         description: formData.get('description'),
       };
 
+      return note;
+    };
+
+    const handleForm = (e) => {
+      e.preventDefault();
+      const note = handler(e);
       this.addNote(note, addNote, formElement);
-    });
+    };
 
-    document.addEventListener('click', (e) => {
-      const title = selectDOMClass('.note-title').value;
-      const description = selectDOMClass('.note-description').value;
+    const handleClickOut = (e) => {
+      const note = handler();
 
-      if (!e.target.closest('.form-add-note') && (title || description)) {
-        const note = {
-          title,
-          description,
-        };
-
+      if (!e.target.closest('.form-add-note') && (note.title || note.description)) {
         this.addNote(note, addNote, formElement);
       }
-    });
+    };
+
+    this.eventHelpers.addEvent(formElement, 'submit', handleForm);
+    this.eventHelpers.addEvent(document, 'click', handleClickOut);
   }
 
   addNote(note, addNote, formElement) {
