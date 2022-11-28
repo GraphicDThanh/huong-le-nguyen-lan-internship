@@ -7,7 +7,7 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
-import HeaderComponent from '../components/headerComponent';
+import { headerComponent, buttonBulkActionsComponent } from '../components/headerComponent';
 import EventHelpers from '../helpers/eventHelpers';
 
 export default class HeaderView {
@@ -24,16 +24,17 @@ export default class HeaderView {
    * like menu user, logo and input search
     */
   renderHeader() {
-    this.homePage.insertBefore(HeaderComponent(), this.mainWrapper);
+    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
     const headerMenu = selectDOMClass('.header-menu');
+    const headerSelected = selectDOMClass('.header-after-select');
     let tab = 'Keep';
 
     if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '4') {
       tab = 'Trash';
     }
-
     this.setDefaultPageNumber();
+    headerSelected.appendChild(buttonBulkActionsComponent());
     headerMenu.appendChild(logoComponent(tab));
     headerMenu.appendChild(inputSearchComponent());
     headerDefault.appendChild(menuUserComponent());

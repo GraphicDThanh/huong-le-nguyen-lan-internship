@@ -533,7 +533,6 @@ export default class ListNoteView {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const iconDeleteElement = note.querySelectorAll('.note-btn .icon-delete');
 
-
     iconDeleteElement.forEach((btn) => {
       btn.addEventListener('click', (e) => {
         const noteId = e.target.getAttribute('data-id');

@@ -2,7 +2,7 @@ import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 import menuComponent from '../components/menuComponent';
 import ElementHelpers from '../helpers/elementHelpers';
 import STORAGE_KEYS from '../constants/storageKeys';
-import { renderPopupError } from '../utils/handleError';
+import { buttonBulkActionsComponent } from '../components/headerComponent';
 
 export default class MenuView {
   constructor() {
@@ -24,8 +24,9 @@ export default class MenuView {
    *
    * @param {function} renderTabs is function transmitted in controller
    * @param {function} changeLogoFollowTab is function transmitted in controller
+   * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  bindChangePage(renderTabs, changeLogoFollowTab) {
+  bindChangePage(renderTabs, changeLogoFollowTab, changeButtonBulkActions) {
     const menu = selectDOMClassAll('.nav li');
 
     renderTabs();
@@ -41,8 +42,26 @@ export default class MenuView {
 
           renderTabs();
           changeLogoFollowTab(e.target.querySelector('span').textContent);
+          this.changeButtonBulkActions(changeButtonBulkActions);
         }
       });
     });
+  }
+
+  /**
+   * @description function change button delete in header selected
+   *
+   * @param {function} changeButtonBulkActions is function transmitted from
+   * controller
+   */
+  changeButtonBulkActions(changeButtonBulkActions) {
+    const headerSelected = selectDOMClass('.header-after-select');
+    const headerBulkActions = selectDOMClass('.header-utilities');
+
+    if (headerBulkActions) {
+      headerBulkActions.remove();
+    }
+    headerSelected.appendChild(buttonBulkActionsComponent());
+    changeButtonBulkActions();
   }
 }
