@@ -1,6 +1,11 @@
 import { selectDOMClassAll } from '../utils/querySelectDOM';
+import EventHelpers from './eventHelpers';
 
 export default class ElementHelpers {
+  constructor() {
+    this.eventHelpers = new EventHelpers();
+  }
+
   /**
    * @description function show textarea height base on
    * length of text and if height of textarea more than
@@ -27,10 +32,12 @@ export default class ElementHelpers {
    */
   commonInputBreakDown(el) {
     const element = el;
-    element.addEventListener('input', () => {
+    const handler = () => {
       element.style.height = '1px';
       element.style.height = `${element.scrollHeight < '250' ? element.scrollHeight : '250'}px`;
-    });
+    };
+
+    this.eventHelpers.addEvent(element, 'input', handler);
   }
 
   /**

@@ -1,20 +1,24 @@
 import { POPUP_MESSAGE } from '../constants/message';
+import EventHelpers from '../helpers/eventHelpers';
 import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
+import ElementHelpers from '../helpers/elementHelpers';
 
+const elementHelpers = new ElementHelpers();
 /**
  * @description function hide error of field you want to hide by
  * adding a class have properties hide and remove class valid
  *
  * @param {Object} element of input you want to hide message
  */
-const hideError = (element) => {
+const hideError = (element, label) => {
   const error = element.parentElement.querySelector('.message .message-error');
   const errorIcon = element.parentElement.querySelector('.message .error-icon');
 
   error.innerText = '';
-  errorIcon.classList.add('hide');
-  element.classList.remove('valid');
+  elementHelpers.addClass(errorIcon, 'hide');
+  elementHelpers.removeClass(label, 'error');
+  elementHelpers.removeClass(element, 'valid');
 };
 
 /**
@@ -25,13 +29,14 @@ const hideError = (element) => {
  * @param {Object} element of input you want to show message
  * @param {String} message is message error of field
  */
-const showError = (element, message) => {
+const showError = (element, message, label) => {
   const error = element.parentElement.querySelector('.message .message-error');
   const errorIcon = element.parentElement.querySelector('.message .error-icon');
 
   error.textContent = message;
-  errorIcon.classList.remove('hide');
-  element.classList.add('valid');
+  elementHelpers.removeClass(errorIcon, 'hide');
+  elementHelpers.addClass(element, 'valid');
+  elementHelpers.addClass(label, 'error');
 };
 
 /**
@@ -42,12 +47,14 @@ const showError = (element, message) => {
  */
 const renderPopupError = (errorMessage) => {
   const overlayWrapper = selectDOMClass('.overlay-wrapper');
+  const handler = () => {
+    overlayWrapper.innerHTML = '';
+  };
   overlayWrapper.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
 
   const btnClose = selectDOMClass('.btn-close-popup');
-  btnClose.addEventListener('click', () => {
-    overlayWrapper.innerHTML = '';
-  });
+  const eventHelpers = new EventHelpers();
+  eventHelpers.addEvent(btnClose, 'click', handler);
 };
 
 export { hideError, showError, renderPopupError };

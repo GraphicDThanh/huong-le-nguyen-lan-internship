@@ -1,6 +1,7 @@
 export default class HeaderController {
-  constructor(headerView) {
+  constructor(headerView, noteController) {
     this.headerView = headerView;
+    this.noteController = noteController;
   }
 
   init() {
@@ -14,13 +15,19 @@ export default class HeaderController {
     // function close header when click the close button in header
     this.headerView.closeSelected();
 
-    // // function show hide menu hidden
+    // function show hide menu hidden
     this.headerView.bindShowMenuUser();
 
-    // // function logout user
+    // function logout user
     this.headerView.bindLogOut();
 
-    // // function set username to menu user
+    // function set username to menu user
     this.headerView.showInformationUser();
+
+    // function clear search and render tab note
+    this.headerView.clearSearch(() => this.noteController.renderTabs());
+
+    // function search note by value of input
+    this.headerView.bindSearchNotes((inputValue) => this.noteController.searchNote(inputValue));
   }
 }
