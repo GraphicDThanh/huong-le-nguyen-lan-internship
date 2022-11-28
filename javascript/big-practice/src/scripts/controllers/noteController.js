@@ -168,6 +168,12 @@ export default class NoteController {
     }
   }
 
+  /**
+   * @description function delete note in trash with list notes
+   * selected
+   *
+   * @param {Array} noteSelected is list notes selected
+   */
   deleteNotesTrash(noteSelected) {
     this.view.renderConfirmMessage();
 
