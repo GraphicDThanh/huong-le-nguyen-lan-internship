@@ -29,7 +29,6 @@
 .icon-pin-cover,
 .item-utilities {
   padding: 8px;
-  cursor: pointer;
   border-radius: 45px;
 }
 
@@ -48,14 +47,13 @@
   font-family: var(--font-light), var(--font-default);
 }
 
+.form-note .form-group .note-description::placeholder {
+  font-weight: 600;
+}
+
 .form-utilities .form-group {
   display: flex;
   justify-content: space-between;
-}
-
-.item-utilities:hover,
-.icon-pin-cover:hover {
-  background-color: var(--hover-utilities-color);
 }
 
 .item-utilities,
@@ -72,45 +70,66 @@
 
 .form-add-note .form-title,
 .form-add-note .form-utilities {
-  animation: fadeIn linear 0.3s;
+  animation: opacityAnimation linear 0.4s;
 }
 
 .form-cover {
-  padding: 30px 0;
   display: flex;
   flex-direction: column;
+  gap: 6px;
+  padding-bottom: 5px;
   font-family: var(--font-regular), var(--font-default);
 }
 
 .form-cover .form-group {
-  display: flex;
-  flex-direction: column;
+  position: relative;
 }
 
 .form-input {
-  padding: 15px;
-  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px 14px;
   border: 1px solid var(--fade-color);
-  border-radius: 5px;
+  border-radius: 4px;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label {
+  top: -12px;
+  left: 10px;
+  padding: 5px;
+  z-index: 20;
+  font-size: 14px;
+  color: var(--info-color);
+  background-color: var(--light-color);
+}
+
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label {
+  color: var(--text-fade-color);
+}
+
+.form-label {
+  position: absolute;
+  left: 15px;
+  top: 18px;
+  font-family: var(--font-light), var(--font-default);
+  color: var(--text-fade-color);
+  transition: 0.3s;
 }
 
 .form-input:focus {
-  border-color: var(--info-color);
+  outline-color: var(--info-color);
 }
 
 .form-button {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
+  text-align: center;
 }
 
-.form-button .btn {
+.form-button .btn-login {
   padding: 12px 25px;
   color: var(--light-color);
-  font-weight: bold;
   cursor: pointer;
   border-radius: 4px;
-  outline: none;
   background-color: var(--info-color);
 }
 
@@ -123,7 +142,7 @@
 }
 
 .message {
-  padding: 7px 5px;
+  padding: 7px 5px 10px 5px;
 }
 
 .message-error {
@@ -139,7 +158,11 @@
   vertical-align: bottom;
 }
 
+.form-cover .form-input:focus + .error,
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .error {
+  color: var(--text-danger-color);
+}
+
 .valid {
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   border-color: var(--danger-color);
 }
