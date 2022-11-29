@@ -47,7 +47,6 @@ export default class NoteController {
     try {
       this.loadingPage.addLoading();
       const listTrash = await this.model.filterNotes('trashNotes');
-
       // function render trash notes
       this.view.renderListTrashNotes(listTrash, (noteId) => this.handleConfirmPopup(noteId));
 

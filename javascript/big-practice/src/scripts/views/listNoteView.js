@@ -119,7 +119,6 @@ export default class ListNoteView {
           break;
         case 'trashNotes':
           this.commonEmptyList(list, listTrashEmpty, listTrashElement);
-
           break;
         default:
           renderPopupError('Please enter listNotes or trashNotes');

@@ -48,15 +48,14 @@ export default class NoteModel {
    */
   async filterNotes(type) {
     const allNotes = await fetchAPI.getAllNotes(URL_API.NOTES_URL);
-
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
-        this.listNotes = allNotes.filter((note) => !note.deleteAt);
+        this.listNotes = allNotes.filter((note) => !note.deletedAt);
         break;
       }
       case 'trashNotes': {
-        this.listNotes = allNotes.filter((note) => note.deleteAt);
+        this.listNotes = allNotes.filter((note) => note.deletedAt);
         break;
       }
       default:

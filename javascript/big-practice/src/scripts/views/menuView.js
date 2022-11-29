@@ -45,9 +45,9 @@ export default class MenuView {
         sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
         this.elementHelpers.showMenuActive();
 
-          renderTabs();
-          changeLogoFollowTab(e.target.querySelector('span').textContent);
-          this.changeButtonBulkActions(changeButtonBulkActions);
+        renderTabs();
+        changeLogoFollowTab(e.target.querySelector('span').textContent);
+        this.changeButtonBulkActions(changeButtonBulkActions);
       }
     };
 
