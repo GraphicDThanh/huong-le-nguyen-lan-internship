@@ -32,14 +32,18 @@ export default class MenuView {
     const menu = selectDOMClassAll('.nav li');
 
     renderTabs();
-    this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+    this.elementHelpers.showMenuActive();
     const handler = (e) => {
+      const searchInput = selectDOMClass('.search');
+      if (searchInput.value) {
+        searchInput.value = '';
+      }
+
       if (e.target.hasAttribute('data-id')) {
         const logoName = e.target.querySelector('span').textContent;
-        this.elementHelpers.removeClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
-
+        this.elementHelpers.removeMenuActive();
         sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
-        this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+        this.elementHelpers.showMenuActive();
 
         renderTabs();
         this.changeButtonBulkActions(changeButtonBulkActions);

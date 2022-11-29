@@ -46,18 +46,13 @@ export default class ListNoteView {
    * character as the input value
    */
   searchNotFound(listNotes) {
-    const formElement = selectDOMClass('.form-control');
     const inputValue = selectDOMClass('.search').value;
+    const message = selectDOMClass('.not-found-message');
 
     if (!listNotes && inputValue) {
-      const messageNotFound = document.createElement('p');
-      this.elementHelpers.addClass(messageNotFound, 'not-found-message');
-      messageNotFound.innerHTML = 'No matching results.';
-
-      formElement.innerHTML = '';
-      formElement.appendChild(messageNotFound);
+      this.elementHelpers.removeClass(message, 'hide');
     } else {
-      formElement.innerHTML = '';
+      this.elementHelpers.addClass(message, 'hide');
     }
   }
 
@@ -116,26 +111,34 @@ export default class ListNoteView {
     const listTrashElement = selectDOMClass('.trash-wrapper .list-notes');
     const listTrashEmpty = selectDOMClass('.trash-wrapper .list-notes-empty-content');
 
-    switch (type) {
-      case 'listNotes':
-        if (!list.length) {
-          this.elementHelpers.showHideElements(listNotesEmpty, listNoteElement, 'hide');
-        } else {
-          this.elementHelpers.showHideElements(listNoteElement, listNotesEmpty, 'hide');
-        }
+    if ((listNotesEmpty && listNoteElement) || (listTrashEmpty && listTrashElement)) {
+      switch (type) {
+        case 'listNotes':
+          this.commonEmptyList(list, listNotesEmpty, listNoteElement);
+          break;
+        case 'trashNotes':
+          this.commonEmptyList(list, listTrashEmpty, listTrashElement);
+          break;
+        default:
+          renderPopupError('Please enter listNotes or trashNotes');
+          break;
+      }
+    }
+  }
 
-        break;
-      case 'trashNotes':
-        if (!list.length) {
-          this.elementHelpers.showHideElements(listTrashEmpty, listTrashElement, 'hide');
-        } else {
-          this.elementHelpers.showHideElements(listTrashElement, listTrashEmpty, 'hide');
-        }
-
-        break;
-      default:
-        renderPopupError('Please enter listNotes or trashNotes');
-        break;
+  /**
+   * @description common condition of show hide empty list, it will
+   * check list empty or not to show or hide message
+   *
+   * @param {Array} list is list of note or list of note trash
+   * @param {Object} listEmpty is element has message empty list
+   * @param {Object} listElement is element has list of note or trash
+   */
+  commonEmptyList(list, listEmpty, listElement) {
+    if (!list.length) {
+      this.elementHelpers.showHideElements(listEmpty, listElement, 'hide');
+    } else {
+      this.elementHelpers.showHideElements(listElement, listEmpty, 'hide');
     }
   }
 
@@ -147,7 +150,7 @@ export default class ListNoteView {
    * @param {Object} handlers is a list function events
    */
   renderListNotes(listNotes, handlers) {
-    const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
+    const listNoteElement = selectDOMClass('.list-notes');
     listNoteElement.innerHTML = '';
 
     listNotes.forEach((note) => {
@@ -162,7 +165,7 @@ export default class ListNoteView {
    * @param {function} handlers is a function transmitted from model
    */
   renderNote(note, handlers) {
-    const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
+    const listNoteElement = selectDOMClass('.list-notes');
     const noteItem = {
       id: note.id,
       title: note.title,
@@ -224,7 +227,7 @@ export default class ListNoteView {
    * @param {function} handler is a function transmitted from model
    */
   renderListTrashNotes(listNotes, handler) {
-    const listTrashElement = selectDOMClass('.trash-wrapper .list-notes');
+    const listTrashElement = selectDOMClass('.list-notes');
     listTrashElement.innerHTML = '';
 
     listNotes.forEach((note) => {

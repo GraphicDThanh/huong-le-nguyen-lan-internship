@@ -9,6 +9,7 @@ import ElementHelpers from '../helpers/elementHelpers';
 import { headerComponent, buttonBulkActionsComponent } from '../components/headerComponent';
 import EventHelpers from '../helpers/eventHelpers';
 import user from '../../../data/mockUser';
+import searchTemplate from '../templates/searchTemplate';
 
 export default class HeaderView {
   constructor() {
@@ -151,8 +152,14 @@ export default class HeaderView {
   clearSearch(renderTabs) {
     const clearElement = selectDOMClass('.icon-close-cover');
     const handler = () => {
-      selectDOMClass('.search').value = '';
-      renderTabs();
+      const search = selectDOMClass('.search');
+      if (search.value) {
+        search.value = '';
+        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+        this.elementHelpers.removeMenuActive();
+        this.elementHelpers.showMenuActive();
+        renderTabs();
+      }
     };
 
     this.eventHelpers.addEvent(clearElement, 'click', handler);
@@ -165,22 +172,23 @@ export default class HeaderView {
    * @param {function} searchNote function transmitted
    * from controller
    */
-  bindSearchNotes(searchNote) {
+  bindSearchNotes(renderTab) {
     const formSearch = selectDOMClass('.form-search');
-    const formElement = selectDOMClass('.form-add-note');
+    const iconSearch = selectDOMClass('.icon-search-cover');
+
     const handler = (e) => {
       e.preventDefault();
       const formData = new FormData(formSearch);
       const inputValue = formData.get('search');
+      const sectionWrapper = selectDOMClass('.section-wrapper');
 
-      searchNote(inputValue);
-
-      if (formElement) {
-        formElement.remove();
-      }
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      sectionWrapper.innerHTML = '';
+      sectionWrapper.appendChild(searchTemplate());
+      renderTab(inputValue);
     };
 
-    this.eventHelpers.addEvent(formSearch, 'input', handler);
     this.eventHelpers.addEvent(formSearch, 'submit', handler);
+    this.eventHelpers.addEvent(iconSearch, 'click', handler);
   }
 }
