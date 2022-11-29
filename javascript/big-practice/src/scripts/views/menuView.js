@@ -35,14 +35,19 @@ export default class MenuView {
     this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
     const handler = (e) => {
       if (e.target.hasAttribute('data-id')) {
+        const logoName = e.target.querySelector('span').textContent;
         this.elementHelpers.removeClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
         sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
         this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
         renderTabs();
-        changeLogoFollowTab(e.target.querySelector('span').textContent);
         this.changeButtonBulkActions(changeButtonBulkActions);
+        if (logoName === 'Notes') {
+          changeLogoFollowTab('Keep');
+        } else {
+          changeLogoFollowTab(logoName);
+        }
       }
     };
 

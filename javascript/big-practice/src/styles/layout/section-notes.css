@@ -55,7 +55,3 @@
   background-color: var(--background-opacity);
   animation: opacityAnimation linear 0.2s;
 }
-
-.not-found-message {
-  text-align: center;
-}
