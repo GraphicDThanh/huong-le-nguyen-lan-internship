@@ -66,7 +66,6 @@ export default class ListNoteView {
    *
    * @param {function} handlers includes functions
    * renderTabNotes, renderTabTrash, addNote, deleteNote
-   * @param {function} handlerNote is function transmitted from model
    */
   renderTabs(handlers) {
     const {
@@ -160,8 +159,7 @@ export default class ListNoteView {
    * @description function render a note and bind events for a note just created
    *
    * @param {Object} note is information of note
-   * @param {function} handleDeleteNote is a function transmitted from model
-   * @param {function} handleShowNoteForm is a function transmitted from model
+   * @param {function} handlers is a function transmitted from model
    */
   renderNote(note, handlers) {
     const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
@@ -292,8 +290,8 @@ export default class ListNoteView {
    * @description function open confirm popup when click button delete
    * of note in trash
    *
-   * @param {function} handlePopup is function transmitted
    * @param {Object} note is trash note element is selected
+   * @param {function} handlePopup is function transmitted
    */
   bindShowPopup(note, handlePopup) {
     const btnDeletes = note.querySelector('.trash-wrapper .btn-delete');
@@ -338,16 +336,23 @@ export default class ListNoteView {
       e.preventDefault();
       const selectedElement = e.target.parentElement.classList.contains('selected');
 
+      /**
+       * condition if note doesn't have class selected it will add class
+       * and count note, it also turn on the header bulk actions
+       */
       if (!selectedElement) {
         this.elementHelpers.addClass(e.target.parentElement, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
         this.elementHelpers.translateYElement(headerAfterSelect, '-100');
       } else {
         this.elementHelpers.removeClass(e.target.parentElement, 'selected');
-
         this.elementHelpers.countAndShowSelected(countNotesSelected);
       }
 
+      /**
+       * condition if list don't have any note have class selected. It will
+       * close header bulk actions
+       */
       const listSelected = selectDOMClassAll('.selected');
       if (listSelected.length < 1) {
         this.elementHelpers.translateYElement(headerAfterSelect, '-200');
@@ -583,6 +588,7 @@ export default class ListNoteView {
    * @description function delete of button in header by selected notes
    *
    * @param {function} deleteListNote is function delete transmitted from from the model
+   * @param {function} deleteNotesTrash is function delete transmitted from from the model
    */
   bindDeleteListNotes(deleteListNote, deleteNotesTrash) {
     const btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');

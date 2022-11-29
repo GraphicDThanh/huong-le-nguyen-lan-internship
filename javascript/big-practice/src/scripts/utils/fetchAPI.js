@@ -6,12 +6,15 @@ const fetchAPI = {
   /**
    * @description function get all notes
    *
+   * @param {String} url is endpoint
+   *
    * @returns {Object} notes
    */
   async getAllNotes(url) {
     try {
       const response = await fetch(`${this.baseURL}${url}`);
       const notes = await response.json();
+
       return notes;
     } catch (e) {
       const error = e;
@@ -23,6 +26,9 @@ const fetchAPI = {
    * @description function add new note to api
    *
    * @param {Object} note is a note
+   * @param {String} url is endpoint
+   *
+   * @return {Object} noteItem is returned after calling api
    */
   async postNote(note, url) {
     try {
@@ -46,6 +52,7 @@ const fetchAPI = {
    * @description function delete note in api
    *
    * @param {String} id is id of note
+   * @param {String} url is endpoint
    */
   async deleteNote(id, url) {
     try {
@@ -67,6 +74,9 @@ const fetchAPI = {
    *
    * @param {String} id is id of note
    * @param {Object} note is note
+   * @param {String} url is endpoint
+   *
+   * @return {Object} noteItem is returned after calling api
    */
   async putNote(id, note, url) {
     try {

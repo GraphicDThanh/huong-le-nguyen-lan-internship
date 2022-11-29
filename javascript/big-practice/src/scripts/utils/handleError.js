@@ -10,6 +10,7 @@ const elementHelpers = new ElementHelpers();
  * adding a class have properties hide and remove class valid
  *
  * @param {Object} element of input you want to hide message
+ * @param {Object} label is label of input
  */
 const hideError = (element, label) => {
   const error = element.parentElement.querySelector('.message .message-error');
@@ -28,6 +29,7 @@ const hideError = (element, label) => {
  *
  * @param {Object} element of input you want to show message
  * @param {String} message is message error of field
+ * @param {Object} label is label of input
  */
 const showError = (element, message, label) => {
   const error = element.parentElement.querySelector('.message .message-error');
