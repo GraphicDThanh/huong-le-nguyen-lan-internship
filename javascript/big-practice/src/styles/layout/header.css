@@ -19,7 +19,6 @@
 
 .header-menu {
   display: flex;
-  align-items: center;
 }
 
 .icon-menu-cover {
@@ -29,9 +28,7 @@
 }
 
 .icon-menu-cover:hover,
-.form-search .icon-close:hover,
-.form-search .icon-search-cover:hover,
-.count-and-close .icon-close-cover:hover {
+.icon-close-cover:hover {
   cursor: pointer;
   border-radius: 45px;
   background-color: var(--hover-utilities-color);
@@ -49,11 +46,10 @@
 .icon-logo {
   display: flex;
   align-items: center;
-  padding: 0 90px 0 40px;
-  padding-right: 90px;
+  min-width: 180px;
 }
 
-.icon-logo span {
+.icon-logo h1 {
   font-family: var(--font-logo), var(--font-default);
   color: var(--text-fade-color);
   font-size: 22px;
@@ -62,6 +58,11 @@
 .icon-logo-cover {
   height: 40px;
   width: 40px;
+}
+
+.icon-logo-cover,
+.icon-logo h1 {
+  cursor: pointer;
 }
 
 .form-search {
@@ -106,6 +107,8 @@
   border: 1px solid var(--fade-color);
   border-radius: 8px;
   padding-top: 20px;
+  z-index: 2;
+  animation: opacityAnimation linear 0.5s;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
@@ -169,6 +172,7 @@
 
 .count-selected {
   font-size: 20px;
+  font-family: var(--font-light), var(--font-default);
 }
 
 .header-utilities {
