@@ -152,11 +152,14 @@ export default class HeaderView {
   clearSearch(renderTabs) {
     const clearElement = selectDOMClass('.icon-close-cover');
     const handler = () => {
-      selectDOMClass('.search').value = '';
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      this.elementHelpers.removeMenuActive();
-      this.elementHelpers.showMenuActive();
-      renderTabs();
+      const search = selectDOMClass('.search');
+      if (search.value) {
+        search.value = '';
+        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+        this.elementHelpers.removeMenuActive();
+        this.elementHelpers.showMenuActive();
+        renderTabs();
+      }
     };
 
     this.eventHelpers.addEvent(clearElement, 'click', handler);
@@ -171,6 +174,7 @@ export default class HeaderView {
    */
   bindSearchNotes(renderTab) {
     const formSearch = selectDOMClass('.form-search');
+    const iconSearch = selectDOMClass('.icon-search-cover');
 
     const handler = (e) => {
       e.preventDefault();
@@ -185,5 +189,6 @@ export default class HeaderView {
     };
 
     this.eventHelpers.addEvent(formSearch, 'submit', handler);
+    this.eventHelpers.addEvent(iconSearch, 'click', handler);
   }
 }
