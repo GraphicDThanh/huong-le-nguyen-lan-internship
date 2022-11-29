@@ -1,9 +1,7 @@
 import URL_API from '../constants/apiUrl';
-import LoadingPage from './loadingPage';
 
 const fetchAPI = {
   baseURL: `${URL_API.BASE_URL}`,
-  loadingPage: new LoadingPage(),
 
   /**
    * @description function get all notes
@@ -12,8 +10,6 @@ const fetchAPI = {
    */
   async getAllNotes(url) {
     try {
-      this.loadingPage.addLoading();
-      this.loadingPage.setTimeoutLoading();
       const response = await fetch(`${this.baseURL}${url}`);
       const notes = await response.json();
       return notes;
@@ -37,9 +33,7 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-      this.loadingPage.addLoading();
       const noteItem = await fetch(`${this.baseURL}${url}`, options);
-      this.loadingPage.removeLoading();
 
       return noteItem.json();
     } catch (e) {
@@ -61,9 +55,7 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-      this.loadingPage.addLoading();
       await fetch(`${this.baseURL}${url}/${id}`, options);
-      this.loadingPage.removeLoading();
     } catch (e) {
       const error = e;
       throw error;
@@ -85,9 +77,7 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-      this.loadingPage.addLoading();
       const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
-      this.loadingPage.removeLoading();
 
       return noteItem.json();
     } catch (e) {

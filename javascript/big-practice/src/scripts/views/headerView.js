@@ -1,4 +1,4 @@
-import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
+import { selectDOMClass } from '../utils/querySelectDOM';
 import logoComponent from '../components/logoComponent';
 import inputSearchComponent from '../components/inputSearchComponent';
 import menuUserComponent from '../components/menuUserComponent';
@@ -7,7 +7,7 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
-import HeaderComponent from '../components/headerComponent';
+import { headerComponent, buttonBulkActionsComponent } from '../components/headerComponent';
 import EventHelpers from '../helpers/eventHelpers';
 
 export default class HeaderView {
@@ -24,16 +24,17 @@ export default class HeaderView {
    * like menu user, logo and input search
     */
   renderHeader() {
-    this.homePage.insertBefore(HeaderComponent(), this.mainWrapper);
+    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
     const headerDefault = selectDOMClass('.header-default');
     const headerMenu = selectDOMClass('.header-menu');
+    const headerSelected = selectDOMClass('.header-after-select');
     let tab = 'Keep';
 
     if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '4') {
       tab = 'Trash';
     }
-
     this.setDefaultPageNumber();
+    headerSelected.appendChild(buttonBulkActionsComponent());
     headerMenu.appendChild(logoComponent(tab));
     headerMenu.appendChild(inputSearchComponent());
     headerDefault.appendChild(menuUserComponent());
@@ -46,14 +47,15 @@ export default class HeaderView {
   bindShowMenuUser() {
     const avatarUser = selectDOMClass('.avatar-user-cover');
     const menuUserElement = selectDOMClass('.menu-user');
-
-    avatarUser.addEventListener('click', () => {
+    const handler = () => {
       if (menuUserElement.classList.contains('hide')) {
         this.elementHelpers.removeClass(menuUserElement, 'hide');
       } else {
         this.elementHelpers.addClass(menuUserElement, 'hide');
       }
-    });
+    };
+
+    this.eventHelpers.addEvent(avatarUser, 'click', handler);
   }
 
   /**
@@ -62,12 +64,13 @@ export default class HeaderView {
    */
   bindLogOut() {
     const btnLogout = selectDOMClass('.btn-logout');
-
-    btnLogout.addEventListener('click', () => {
+    const handler = () => {
       navigatePage('index.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       this.localStorage.removeItems(STORAGE_KEYS.IS_LOGIN);
-    });
+    };
+
+    this.eventHelpers.addEvent(btnLogout, 'click', handler);
   }
 
   /**
@@ -104,16 +107,12 @@ export default class HeaderView {
   closeSelected() {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');
-
-    btnClose.addEventListener('click', () => {
-      const noteSelected = selectDOMClassAll('.selected');
-
-      noteSelected.forEach((note) => {
-        this.elementHelpers.removeClass(note, 'selected');
-      });
-
+    const handler = () => {
+      this.elementHelpers.removeSelected();
       this.elementHelpers.translateYElement(headerAfterSelect, '-200');
-    });
+    };
+
+    this.eventHelpers.addEvent(btnClose, 'click', handler);
   }
 
   /**
@@ -140,5 +139,48 @@ export default class HeaderView {
     if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     }
+  }
+
+  /**
+   * @description function clear input search and render
+   * tab note
+   *
+   * @param {function} renderTabs function render tab transmitted
+   * from controller
+   */
+  clearSearch(renderTabs) {
+    const clearElement = selectDOMClass('.icon-close-cover');
+    const handler = () => {
+      selectDOMClass('.search').value = '';
+      renderTabs();
+    };
+
+    this.eventHelpers.addEvent(clearElement, 'click', handler);
+  }
+
+  /**
+   * @description function search notes with
+   * value of input entered and remove formElement
+   *
+   * @param {function} searchNote function transmitted
+   * from controller
+   */
+  bindSearchNotes(searchNote) {
+    const formSearch = selectDOMClass('.form-search');
+    const formElement = selectDOMClass('.form-add-note');
+    const handler = (e) => {
+      e.preventDefault();
+      const formData = new FormData(formSearch);
+      const inputValue = formData.get('search');
+
+      searchNote(inputValue);
+
+      if (formElement) {
+        formElement.remove();
+      }
+    };
+
+    this.eventHelpers.addEvent(formSearch, 'input', handler);
+    this.eventHelpers.addEvent(formSearch, 'submit', handler);
   }
 }

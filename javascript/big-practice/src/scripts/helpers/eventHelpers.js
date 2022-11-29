@@ -8,8 +8,23 @@ export default class EventHelpers {
    * @param {Object} element is element want to avoid bubbling event
    */
   stopEvents(element) {
-    element.addEventListener('click', (e) => {
+    const handler = (e) => {
       e.stopPropagation();
+    };
+
+    this.addEvent(element, 'click', handler);
+  }
+
+  /**
+   * @description function bind event for element
+   *
+   * @param {Object} element is element you want to bind event
+   * @param {String} events is type of event
+   * @param {function} handler is a function to handle event you just already bound
+   */
+  addEvent(element, events, handler) {
+    element.addEventListener(events, (e) => {
+      handler(e);
     });
   }
 
@@ -21,9 +36,11 @@ export default class EventHelpers {
    * add event click move to home page
    */
   navigateHomePage(element) {
-    element.addEventListener('click', () => {
+    const handler = () => {
       navigatePage('home.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-    });
+    };
+
+    this.addEvent(element, 'click', handler);
   }
 }
