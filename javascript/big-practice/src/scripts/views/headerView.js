@@ -9,6 +9,7 @@ import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
 import HeaderComponent from '../components/headerComponent';
 import EventHelpers from '../helpers/eventHelpers';
+import searchTemplate from '../templates/searchTemplate';
 
 export default class HeaderView {
   constructor() {
@@ -156,6 +157,9 @@ export default class HeaderView {
     const clearElement = selectDOMClass('.icon-close-cover');
     const handler = () => {
       selectDOMClass('.search').value = '';
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      this.elementHelpers.removeMenuActive();
+      this.elementHelpers.showMenuActive();
       renderTabs();
     };
 
@@ -169,22 +173,21 @@ export default class HeaderView {
    * @param {function} searchNote function transmitted
    * from controller
    */
-  bindSearchNotes(searchNote) {
+  bindSearchNotes(renderTab) {
     const formSearch = selectDOMClass('.form-search');
-    const formElement = selectDOMClass('.form-add-note');
+
     const handler = (e) => {
       e.preventDefault();
       const formData = new FormData(formSearch);
       const inputValue = formData.get('search');
+      const sectionWrapper = selectDOMClass('.section-wrapper');
 
-      searchNote(inputValue);
-
-      if (formElement) {
-        formElement.remove();
-      }
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      sectionWrapper.innerHTML = '';
+      sectionWrapper.appendChild(searchTemplate());
+      renderTab(inputValue);
     };
 
-    this.eventHelpers.addEvent(formSearch, 'input', handler);
     this.eventHelpers.addEvent(formSearch, 'submit', handler);
   }
 }

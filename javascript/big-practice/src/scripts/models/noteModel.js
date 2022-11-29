@@ -47,16 +47,16 @@ export default class NoteModel {
    * @returns {Array} listNotes after filter
    */
   async filterNotes(type) {
-    const notes = await fetchAPI.getAllNotes(URL_API.NOTES_URL);
+    const allNotes = await fetchAPI.getAllNotes(URL_API.NOTES_URL);
 
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
-        this.listNotes = notes.filter((note) => !note.deleteAt);
+        this.listNotes = allNotes.filter((note) => !note.deleteAt);
         break;
       }
       case 'trashNotes': {
-        this.listNotes = notes.filter((note) => note.deleteAt);
+        this.listNotes = allNotes.filter((note) => note.deleteAt);
         break;
       }
       default:
@@ -155,11 +155,11 @@ export default class NoteModel {
    *
    * @returns {Array} listFound after filter if note includes
    */
-  searchNote(inputValue) {
+  searchNote(inputValue, listNotes) {
     const list = [];
 
     if (inputValue.length) {
-      this.listNotes.forEach((note) => {
+      listNotes.forEach((note) => {
         if (note.title.includes(inputValue) || note.description.includes(inputValue)) {
           list.push(note);
         }

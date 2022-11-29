@@ -1,3 +1,4 @@
+import STORAGE_KEYS from '../constants/storageKeys';
 import { selectDOMClassAll } from '../utils/querySelectDOM';
 import EventHelpers from './eventHelpers';
 
@@ -93,5 +94,30 @@ export default class ElementHelpers {
   translateYElement(e, number) {
     const element = e;
     element.style.transform = `translateY(${number}%)`;
+  }
+
+  /**
+   * @description function removes all menu tab is active
+   * that means remove all the element have class
+   * menu-color
+   */
+  removeMenuActive() {
+    const menu = selectDOMClassAll('.nav li');
+
+    menu.forEach((element) => {
+      if (element.classList.contains('menu-color')) {
+        this.removeClass(element, 'menu-color');
+      }
+    });
+  }
+
+  /**
+   * @description function show which menu is active by
+   * getting information from session
+   */
+  showMenuActive() {
+    const menu = selectDOMClassAll('.nav li');
+
+    this.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
   }
 }

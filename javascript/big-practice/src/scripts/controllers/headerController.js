@@ -28,6 +28,8 @@ export default class HeaderController {
     this.headerView.clearSearch(() => this.noteController.renderTabs());
 
     // function search note by value of input
-    this.headerView.bindSearchNotes((inputValue) => this.noteController.searchNote(inputValue));
+    this.headerView.bindSearchNotes(
+      (inputValue) => this.noteController.searchNote(inputValue),
+    );
   }
 }

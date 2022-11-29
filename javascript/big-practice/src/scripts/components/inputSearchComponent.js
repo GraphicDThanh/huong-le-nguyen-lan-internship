@@ -10,7 +10,7 @@ const inputSearchComponent = () => {
       <img class="icon-search" src="${iconSearch}" alt="icon search">
     </figure>
     
-    <input type="text" name="search" class="search" placeholder="Search">
+    <input type="text" name="search" class="search" placeholder="Search" autocomplete="off">
 
     <figure class="icon-close-cover">
       <img class="icon-close" src="${iconClose}" alt="icon close">

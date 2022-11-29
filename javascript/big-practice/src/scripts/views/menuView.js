@@ -31,13 +31,17 @@ export default class MenuView {
     const menu = selectDOMClassAll('.nav li');
 
     renderTabs();
-    this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+    this.elementHelpers.showMenuActive();
     const handler = (e) => {
-      if (e.target.hasAttribute('data-id')) {
-        this.elementHelpers.removeClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+      const searchInput = selectDOMClass('.search');
+      if (searchInput.value) {
+        searchInput.value = '';
+      }
 
+      if (e.target.hasAttribute('data-id')) {
+        this.elementHelpers.removeMenuActive();
         sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
-        this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
+        this.elementHelpers.showMenuActive();
 
         renderTabs();
         changeLogoFollowTab(e.target.querySelector('span').textContent);
