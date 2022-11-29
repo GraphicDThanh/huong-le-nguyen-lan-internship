@@ -2,7 +2,6 @@ import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 import menuComponent from '../components/menuComponent';
 import ElementHelpers from '../helpers/elementHelpers';
 import STORAGE_KEYS from '../constants/storageKeys';
-import { renderPopupError } from '../utils/handleError';
 import EventHelpers from '../helpers/eventHelpers';
 import { buttonBulkActionsComponent } from '../components/headerComponent';
 
@@ -41,9 +40,9 @@ export default class MenuView {
         sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
         this.elementHelpers.addClass(menu[sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)], 'menu-color');
 
-          renderTabs();
-          changeLogoFollowTab(e.target.querySelector('span').textContent);
-          this.changeButtonBulkActions(changeButtonBulkActions);
+        renderTabs();
+        changeLogoFollowTab(e.target.querySelector('span').textContent);
+        this.changeButtonBulkActions(changeButtonBulkActions);
       }
     };
 
