@@ -97,6 +97,20 @@ export default class ElementHelpers {
   }
 
   /**
+   * @description remove all elements have class
+   * selected
+   */
+  removeSelected() {
+    const noteSelected = selectDOMClassAll('.selected');
+
+    if (noteSelected) {
+      noteSelected.forEach((note) => {
+        this.removeClass(note, 'selected');
+      });
+    }
+  }
+
+  /**
    * @description function removes all menu tab is active
    * that means remove all the element have class
    * menu-color

@@ -23,7 +23,7 @@ export default class NoteModel {
         id: new Date().getTime().toString(),
         title: note.title,
         description: note.description,
-        deleteAt: '',
+        deletedAt: '',
       };
 
       const noteItem = await fetchAPI.postNote(patternNote, URL_API.NOTES_URL);
@@ -81,7 +81,7 @@ export default class NoteModel {
       const date = new Date().toISOString().slice(0, 10);
       const noteItem = this.findNote(id);
 
-      noteItem.deleteAt = date;
+      noteItem.deletedAt = date;
       await fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
@@ -99,7 +99,9 @@ export default class NoteModel {
    */
   async deleteNoteInTrash(id) {
     try {
-      await fetchAPI.deleteNote(id, URL_API.NOTES_URL);
+      const noteItem = this.findNote(id);
+
+      await fetchAPI.deleteNote(noteItem.id, URL_API.NOTES_URL);
       this.listNotes = this.listNotes.filter((note) => note.id !== id);
     } catch (error) {
       console.log(error);
