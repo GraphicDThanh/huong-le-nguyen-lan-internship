@@ -4,11 +4,11 @@ import inputSearchComponent from '../components/inputSearchComponent';
 import menuUserComponent from '../components/menuUserComponent';
 import navigatePage from '../utils/navigatePage';
 import STORAGE_KEYS from '../constants/storageKeys';
-import user from '../constants/mockUser';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
 import { headerComponent, buttonBulkActionsComponent } from '../components/headerComponent';
 import EventHelpers from '../helpers/eventHelpers';
+import user from '../../../data/mockUser';
 import searchTemplate from '../templates/searchTemplate';
 
 export default class HeaderView {

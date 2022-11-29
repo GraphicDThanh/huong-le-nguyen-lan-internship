@@ -82,14 +82,14 @@
   justify-content: end;
 }
 
-.note-btn .icon-cover {
+.note-btn .item-utilities {
   width: 20px;
   height: 20px;
   padding: 8px;
   border-radius: 45px;
 }
 
-.note-btn .icon-cover:hover {
+.note-btn .item-utilities:hover {
   background-color: var(--hover-utilities-color);
 }
 

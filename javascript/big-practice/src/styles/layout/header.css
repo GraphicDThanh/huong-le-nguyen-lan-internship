@@ -27,6 +27,7 @@
   height: 15px;
 }
 
+.icon-search-cover:hover,
 .icon-menu-cover:hover,
 .icon-close-cover:hover {
   cursor: pointer;
@@ -78,7 +79,7 @@
 }
 
 .form-search .icon-search-cover {
-  padding: 7px 8px;
+  padding: 12px;
   width: 18px;
   height: 18px;
 }
@@ -184,4 +185,9 @@
   height: 25px;
   padding: 14px;
   color: var(--fade-color);
+  cursor: pointer;
+}
+
+.header-utilities .item-utilities:hover {
+  background-color: var(--fade-color);
 }
