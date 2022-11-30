@@ -20,8 +20,8 @@
 
 ### Information
 - Timeline
-  - Estimate day: 21 days
-  - Actual day: 22 days
+  - Estimate day: 28 days
+  - Actual day: 36 days
 - Techniques: 
   - HTML5/CSS3
   - JavaScript
@@ -60,14 +60,15 @@
      - `$ git clone https://github.com/GraphicDThanh/huong-le-nguyen-lan-internship.git`
   - With SSH: 
      - `$ git clone git@github.com:GraphicDThanh/huong-le-nguyen-lan-internship.git`
- - Step 2: Move to branch feat/reduce-feature
-   -  `git checkout feat/reduce-feature`
- - Step 3: `cd huong-le-nguyen-lan-internship\javascript\big-practice` 
- - Step 4: Now you need to install packages
+ - Step 2: `cd huong-le-nguyen-lan-internship` 
+ - Step 3: Move to branch feat/reduce-feature
+   -  `git checkout feat/big-practice-new-version`
+- Step 4: `cd  javascript/big-practice`
+ - Step 5: Now you need to install packages
    - `$ npm i`
- - Step 5: After installing the packages
+ - Step 6: After installing the packages
    - `$ npm run dev`
- - Step 6: Open [localhost](http://localhost:1234) to see the website
- - Step 7: User information to login this app
+ - Step 7: Open [localhost](http://localhost:1234) to see the website
+ - Step 8: User information to login this app
    - email: abc@gmail.com
    - password: 123456789a
