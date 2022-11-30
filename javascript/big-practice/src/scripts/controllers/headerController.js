@@ -31,5 +31,7 @@ export default class HeaderController {
     this.headerView.bindSearchNotes(
       (inputValue) => this.noteController.searchNote(inputValue),
     );
+
+    this.headerView.showHideCloseIcon();
   }
 }

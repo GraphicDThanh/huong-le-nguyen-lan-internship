@@ -151,15 +151,18 @@ export default class HeaderView {
    */
   clearSearch(renderTabs) {
     const clearElement = selectDOMClass('.icon-close-cover');
+    const iconClose = selectDOMClass('.icon-close');
     const handler = () => {
       const search = selectDOMClass('.search');
-      if (search.value) {
-        search.value = '';
-        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-        this.elementHelpers.removeMenuActive();
-        this.elementHelpers.showMenuActive();
-        renderTabs();
-      }
+      // if (search.value) {
+      search.value = '';
+      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      this.elementHelpers.removeMenuActive();
+      this.elementHelpers.showMenuActive();
+      renderTabs();
+      this.elementHelpers.addClass(iconClose, 'hide');
+
+      // }
     };
 
     this.eventHelpers.addEvent(clearElement, 'click', handler);
@@ -190,5 +193,32 @@ export default class HeaderView {
 
     this.eventHelpers.addEvent(formSearch, 'submit', handler);
     this.eventHelpers.addEvent(iconSearch, 'click', handler);
+  }
+
+  showHideCloseIcon() {
+    const inputSearch = selectDOMClass('.search');
+    const formSearch = selectDOMClass('.form-search');
+    const handlerFocus = () => {
+      this.elementHelpers.addClass(formSearch, 'focus-search');
+      this.elementHelpers.removeClass(formSearch, 'blur-search');
+    };
+
+    const handleBlur = () => {
+      this.elementHelpers.addClass(formSearch, 'blur-search');
+      this.elementHelpers.removeClass(formSearch, 'focus-search');
+    };
+
+    const handlerInput = () => {
+      const formData = new FormData(formSearch);
+      const inputValue = formData.get('search');
+      if (inputValue) {
+        const iconClose = selectDOMClass('.icon-close');
+        this.elementHelpers.removeClass(iconClose, 'hide');
+      }
+    };
+
+    this.eventHelpers.addEvent(inputSearch, 'focus', handlerFocus);
+    this.eventHelpers.addEvent(inputSearch, 'blur', handleBlur);
+    this.eventHelpers.addEvent(inputSearch, 'input', handlerInput);
   }
 }

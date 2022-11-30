@@ -35,6 +35,7 @@ export default class MenuView {
     this.elementHelpers.showMenuActive();
     const handler = (e) => {
       const searchInput = selectDOMClass('.search');
+      const iconClose = selectDOMClass('.icon-close');
       if (searchInput.value) {
         searchInput.value = '';
       }
@@ -53,6 +54,7 @@ export default class MenuView {
           changeLogoFollowTab(logoName);
         }
       }
+      this.elementHelpers.addClass(iconClose, 'hide');
     };
 
     menu.forEach((element) => {
