@@ -337,6 +337,7 @@ export default class ListNoteView {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const handler = (e) => {
       e.preventDefault();
+      e.stopPropagation();
       const selectedElement = e.target.parentElement.classList.contains('selected');
 
       /**
@@ -413,21 +414,28 @@ export default class ListNoteView {
    */
   bindShowNoteForm(noteElement, findNote) {
     const noteItem = selectDOMById(`${noteElement.id}`);
-    const listNotes = noteItem.querySelector('.note-content');
+    const countNotesSelected = selectDOMClass('.count-selected');
     const handler = async (e) => {
-      e.stopPropagation();
-      await findNote(listNotes.getAttribute('data-id'));
+      const selected = selectDOMClassAll('.selected');
+      if (selected.length) {
+        const note = selectDOMById(e.target.parentElement.getAttribute('data-id'));
+        this.elementHelpers.addClass(note, 'selected');
+        this.elementHelpers.countAndShowSelected(countNotesSelected);
+      } else {
+        e.stopPropagation();
+        await findNote(noteItem.getAttribute('data-id'));
 
-      const title = selectDOMClass('.note-form-overlay .note-title');
-      const description = selectDOMClass('.note-form-overlay .note-description');
+        const title = selectDOMClass('.note-form-overlay .note-title');
+        const description = selectDOMClass('.note-form-overlay .note-description');
 
-      this.elementHelpers.showInputBreakDown(title);
-      this.elementHelpers.showInputBreakDown(description);
-      this.eventHelpers.stopEvents(title);
-      this.eventHelpers.stopEvents(description);
+        this.elementHelpers.showInputBreakDown(title);
+        this.elementHelpers.showInputBreakDown(description);
+        this.eventHelpers.stopEvents(title);
+        this.eventHelpers.stopEvents(description);
+      }
     };
 
-    this.eventHelpers.addEvent(listNotes, 'click', handler);
+    this.eventHelpers.addEvent(noteItem, 'click', handler);
   }
 
   /**
@@ -575,6 +583,7 @@ export default class ListNoteView {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const iconDeleteElement = note.querySelectorAll('.note-btn .icon-delete');
     const handler = (e) => {
+      e.stopPropagation();
       const noteId = e.target.getAttribute('data-id');
 
       deleteNote(noteId);

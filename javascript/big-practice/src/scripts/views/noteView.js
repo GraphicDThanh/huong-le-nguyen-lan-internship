@@ -31,7 +31,7 @@ export default class NoteView {
           <p class="note-description">${note.description}</p>
           <p class="note-empty ${(!note.title && !note.description) ? '' : 'hide'}">Empty note</p>
         </div>
-        <div class="note-utilities">
+        <div class="note-utilities" data-id="${note.id}">
           <div class="note-btn">
             ${type === 'trashNotes'
     ? `<button class="btn btn-delete" type="button" data-id="${note.id}">Delete</button>`
