@@ -9,7 +9,7 @@ import ElementHelpers from '../helpers/elementHelpers';
 import { headerComponent, buttonBulkActionsComponent } from '../components/headerComponent';
 import EventHelpers from '../helpers/eventHelpers';
 import user from '../../../data/mockUser';
-import searchTemplate from '../templates/searchTemplate';
+import searchTemplate from '../components/searchTemplate';
 
 export default class HeaderView {
   constructor() {
