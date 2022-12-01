@@ -197,15 +197,18 @@ export default class NoteController {
    * @param {String} inputValue is value of input
    */
   async searchNote(inputValue) {
-    const handlers = {
-      handleDeleteNote: (noteId) => this.deleteNote(noteId),
-      handleShowNoteForm: (id) => this.handleNoteForm(id),
-    };
-    const listNotes = await this.model.filterNotes('listNotes');
-    const list = this.model.searchNote(inputValue, listNotes);
+    try {
+      const handlers = {
+        handleDeleteNote: (noteId) => this.deleteNote(noteId),
+        handleShowNoteForm: (id) => this.handleNoteForm(id),
+      };
+      const list = await this.model.searchNote(inputValue);
 
-    this.view.renderListNotes(list, handlers);
-    this.view.searchNotFound(list.length);
+      this.view.renderListNotes(list, handlers);
+      this.view.searchNotFound(list.length);
+    } catch (error) {
+      renderPopupError(error.message);
+    }
   }
 
   /**

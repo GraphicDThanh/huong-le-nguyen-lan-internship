@@ -23,6 +23,26 @@ const fetchAPI = {
   },
 
   /**
+   * @description function find notes by key
+   *
+   * @param {String} url is resource
+   * @param {String} key is endpoint of url
+   *
+   * @returns {Object} notes
+   */
+  async getByKey(url, key) {
+    try {
+      const response = await fetch(`${this.baseURL}${url}${key}`);
+      const notes = await response.json();
+
+      return notes;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  },
+
+  /**
    * @description function add new note to api
    *
    * @param {Object} note is a note
