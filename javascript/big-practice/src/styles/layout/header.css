@@ -73,9 +73,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--secondary-color);
   gap: 20px;
   border-radius: 8px;
-  background-color: var(--secondary-color);
 }
 
 .form-search .icon-search-cover {
@@ -87,9 +87,25 @@
 .form-search .search {
   width: 580px;
   font-size: 17px;
-  background-color: var(--secondary-color);
+  background-color: transparent;
   outline: none;
   border: none;
+}
+
+.focus-search {
+  background-color: var(--light-color);
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 5px 0px;
+}
+
+.blur-search {
+  background-color: var(--secondary-color);
+  box-shadow: none;
+}
+
+.form-search .icon-close-cover {
+  visibility: hidden;
+  width: 40px;
+  height: 40px;
 }
 
 .form-search .icon-close {

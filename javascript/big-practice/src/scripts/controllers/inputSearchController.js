@@ -16,5 +16,8 @@ export default class InputSearchController {
     this.inputSearchView.bindSearchNotes(
       (inputValue) => this.noteController.searchNote(inputValue),
     );
+
+    // function show hide icon close in input search
+    this.inputSearchView.handleInputSearch();
   }
 }
