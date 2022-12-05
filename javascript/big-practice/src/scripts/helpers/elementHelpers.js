@@ -7,7 +7,7 @@ export default class ElementHelpers {
    *
    * @param {Object} el is element textarea
    */
-  static showInputBreakDown(el) {
+  showInputBreakDown(el) {
     const element = el;
     element.style.height = `${element.scrollHeight}px`;
   }
@@ -16,7 +16,7 @@ export default class ElementHelpers {
    * @description common events of textarea to increase the length
    * @param {Object} el is element textarea
    */
-  static commonInputBreakDown(el) {
+  commonInputBreakDown(el) {
     const element = el;
     element.addEventListener('input', () => {
       element.style.height = '1px';
@@ -28,9 +28,19 @@ export default class ElementHelpers {
    * @description function count note selected and show total
    * @param {Object} el is element text count note
    */
-  static countAndShowSelected(el) {
+  countAndShowSelected(el) {
     const element = el;
     const listSelected = selectDOMClassAll('.selected');
     element.innerHTML = `${listSelected.length} Selected`;
+  }
+
+  /**
+   * @description function show and hide element
+   * @param {Object} elementShow is DOM element
+   * @param {Object} elementHide is DOM element
+   */
+  showHideElement(elementShow, elementHide) {
+    elementShow.classList.remove('hide');
+    elementHide.classList.add('hide');
   }
 }

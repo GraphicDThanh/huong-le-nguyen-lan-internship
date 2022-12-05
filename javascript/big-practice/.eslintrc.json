@@ -12,6 +12,6 @@
     "sourceType": "module"
   },
   "rules": {
-    
+    "class-methods-use-this": "off"
   }
 }
