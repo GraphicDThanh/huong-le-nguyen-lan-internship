@@ -202,8 +202,7 @@ export default class NoteController {
         handleDeleteNote: (noteId) => this.deleteNote(noteId),
         handleShowNoteForm: (id) => this.handleNoteForm(id),
       };
-      const listNotes = await this.model.filterNotes('listNotes');
-      const list = this.model.searchNote(inputValue, listNotes);
+      const list = await this.model.searchNote(inputValue);
 
       this.view.renderListNotes(list, handlers);
       this.view.searchNotFound(list.length);
