@@ -1,9 +1,9 @@
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
-import menuComponent from '../components/menuComponent';
+import menuComponent from '../components/menu';
 import ElementHelpers from '../helpers/elementHelpers';
 import STORAGE_KEYS from '../constants/storageKeys';
 import EventHelpers from '../helpers/eventHelpers';
-import { buttonBulkActionsComponent } from '../components/headerComponent';
+import { buttonBulkActionsComponent } from '../components/header';
 
 export default class MenuView {
   constructor() {

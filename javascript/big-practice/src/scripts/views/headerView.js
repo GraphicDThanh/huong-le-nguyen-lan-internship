@@ -1,15 +1,14 @@
 import { selectDOMClass } from '../utils/querySelectDOM';
-import logoComponent from '../components/logoComponent';
-import inputSearchComponent from '../components/inputSearchComponent';
-import menuUserComponent from '../components/menuUserComponent';
+import logoComponent from '../components/logo';
+import inputSearchComponent from '../components/inputSearch';
+import menuUserComponent from '../components/menuUser';
 import navigatePage from '../utils/navigatePage';
 import STORAGE_KEYS from '../constants/storageKeys';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
-import { headerComponent, buttonBulkActionsComponent } from '../components/headerComponent';
+import { headerComponent, buttonBulkActionsComponent } from '../components/header';
 import EventHelpers from '../helpers/eventHelpers';
 import user from '../../../data/mockUser';
-import searchTemplate from '../templates/searchTemplate';
 
 export default class HeaderView {
   constructor() {
@@ -140,85 +139,5 @@ export default class HeaderView {
     if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     }
-  }
-
-  /**
-   * @description function clear input search and render
-   * tab note
-   *
-   * @param {function} renderTabs function render tab transmitted
-   * from controller
-   */
-  clearSearch(renderTabs) {
-    const clearElement = selectDOMClass('.icon-close-cover');
-    const iconClose = selectDOMClass('.icon-close');
-    const handler = () => {
-      const search = selectDOMClass('.search');
-      // if (search.value) {
-      search.value = '';
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      this.elementHelpers.removeMenuActive();
-      this.elementHelpers.showMenuActive();
-      renderTabs();
-      this.elementHelpers.addClass(iconClose, 'hide');
-
-      // }
-    };
-
-    this.eventHelpers.addEvent(clearElement, 'click', handler);
-  }
-
-  /**
-   * @description function search notes with
-   * value of input entered and remove formElement
-   *
-   * @param {function} searchNote function transmitted
-   * from controller
-   */
-  bindSearchNotes(renderTab) {
-    const formSearch = selectDOMClass('.form-search');
-    const iconSearch = selectDOMClass('.icon-search-cover');
-
-    const handler = (e) => {
-      e.preventDefault();
-      const formData = new FormData(formSearch);
-      const inputValue = formData.get('search');
-      const sectionWrapper = selectDOMClass('.section-wrapper');
-
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      sectionWrapper.innerHTML = '';
-      sectionWrapper.appendChild(searchTemplate());
-      renderTab(inputValue);
-    };
-
-    this.eventHelpers.addEvent(formSearch, 'submit', handler);
-    this.eventHelpers.addEvent(iconSearch, 'click', handler);
-  }
-
-  showHideCloseIcon() {
-    const inputSearch = selectDOMClass('.search');
-    const formSearch = selectDOMClass('.form-search');
-    const handlerFocus = () => {
-      this.elementHelpers.addClass(formSearch, 'focus-search');
-      this.elementHelpers.removeClass(formSearch, 'blur-search');
-    };
-
-    const handleBlur = () => {
-      this.elementHelpers.addClass(formSearch, 'blur-search');
-      this.elementHelpers.removeClass(formSearch, 'focus-search');
-    };
-
-    const handlerInput = () => {
-      const formData = new FormData(formSearch);
-      const inputValue = formData.get('search');
-      if (inputValue) {
-        const iconClose = selectDOMClass('.icon-close');
-        this.elementHelpers.removeClass(iconClose, 'hide');
-      }
-    };
-
-    this.eventHelpers.addEvent(inputSearch, 'focus', handlerFocus);
-    this.eventHelpers.addEvent(inputSearch, 'blur', handleBlur);
-    this.eventHelpers.addEvent(inputSearch, 'input', handlerInput);
   }
 }
