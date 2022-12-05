@@ -16,9 +16,29 @@ const fetchAPI = {
       const notes = await response.json();
 
       return notes;
-    } catch (e) {
-      const error = e;
-      throw error;
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  },
+
+  /**
+   * @description function find notes by key
+   *
+   * @param {String} url is resource
+   * @param {String} key is endpoint of url
+   *
+   * @returns {Object} notes
+   */
+  async getByKey(url, key) {
+    try {
+      const response = await fetch(`${this.baseURL}${url}${key}`);
+      const notes = await response.json();
+
+      return notes;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
   },
 
@@ -42,9 +62,9 @@ const fetchAPI = {
       const noteItem = await fetch(`${this.baseURL}${url}`, options);
 
       return noteItem.json();
-    } catch (e) {
-      const error = e;
-      throw error;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
   },
 
@@ -62,10 +82,12 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-      await fetch(`${this.baseURL}${url}/${id}`, options);
-    } catch (e) {
-      const error = e;
-      throw error;
+      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
+
+      return noteItem;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
   },
 
@@ -90,9 +112,9 @@ const fetchAPI = {
       const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
 
       return noteItem.json();
-    } catch (e) {
-      const error = e;
-      throw error;
+    } catch (error) {
+      console.log(error);
+      return error;
     }
   },
 };

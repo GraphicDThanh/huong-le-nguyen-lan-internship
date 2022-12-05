@@ -1,4 +1,4 @@
-const searchTemplate = () => {
+const listNotesSearch = () => {
   const template = document.createElement('div');
   template.setAttribute('class', 'search-wrapper');
 
@@ -11,4 +11,4 @@ const searchTemplate = () => {
   return template;
 };
 
-export default searchTemplate;
+export default listNotesSearch;
