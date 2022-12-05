@@ -197,15 +197,19 @@ export default class NoteController {
    * @param {String} inputValue is value of input
    */
   async searchNote(inputValue) {
-    const handlers = {
-      handleDeleteNote: (noteId) => this.deleteNote(noteId),
-      handleShowNoteForm: (id) => this.handleNoteForm(id),
-    };
-    const listNotes = await this.model.filterNotes('listNotes');
-    const list = this.model.searchNote(inputValue, listNotes);
+    try {
+      const handlers = {
+        handleDeleteNote: (noteId) => this.deleteNote(noteId),
+        handleShowNoteForm: (id) => this.handleNoteForm(id),
+      };
+      const listNotes = await this.model.filterNotes('listNotes');
+      const list = this.model.searchNote(inputValue, listNotes);
 
-    this.view.renderListNotes(list, handlers);
-    this.view.searchNotFound(list.length);
+      this.view.renderListNotes(list, handlers);
+      this.view.searchNotFound(list.length);
+    } catch (error) {
+      renderPopupError(error.message);
+    }
   }
 
   /**
@@ -215,19 +219,23 @@ export default class NoteController {
    * @param {Array} noteSelected is list notes selected
    */
   deleteNotesTrash(noteSelected) {
-    this.view.renderConfirmMessage();
+    try {
+      this.view.renderConfirmMessage();
 
-    // function close popup
-    this.view.bindClosePopup();
+      // function close popup
+      this.view.bindClosePopup();
 
-    // function delete all the notes selected
-    this.view.bindDeleteNoteInTrash(() => {
-      noteSelected.forEach(async (note) => {
-        await this.model.deleteNoteInTrash(note.id);
+      // function delete all the notes selected
+      this.view.bindDeleteNoteInTrash(() => {
+        noteSelected.forEach(async (note) => {
+          await this.model.deleteNoteInTrash(note.id);
 
-        this.view.removeNoteElement(note.id);
-        this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+          this.view.removeNoteElement(note.id);
+          this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+        });
       });
-    });
+    } catch (error) {
+      renderPopupError(error.message);
+    }
   }
 }
