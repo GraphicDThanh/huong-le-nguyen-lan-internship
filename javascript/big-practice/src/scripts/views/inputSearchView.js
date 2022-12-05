@@ -19,6 +19,7 @@ export default class InputSearchView {
    */
   clearSearch(renderTabs) {
     const clearElement = selectDOMClass('.icon-close-cover');
+    const iconClose = selectDOMClass('.icon-close');
     const handler = () => {
       const search = selectDOMClass('.search');
       if (search.value) {
@@ -27,6 +28,7 @@ export default class InputSearchView {
         this.elementHelpers.removeMenuActive();
         this.elementHelpers.showMenuActive();
         renderTabs();
+        this.elementHelpers.addClass(iconClose, 'hide');
       }
     };
 
@@ -58,5 +60,39 @@ export default class InputSearchView {
 
     this.eventHelpers.addEvent(formSearch, 'submit', handler);
     this.eventHelpers.addEvent(iconSearch, 'click', handler);
+  }
+
+  /**
+   * @description function show hide icon close in input search when focusing,
+   * click out of input and input events
+   */
+  handleInputSearch() {
+    const inputSearch = selectDOMClass('.search');
+    const formSearch = selectDOMClass('.form-search');
+    // Change color input search when focusing
+    const focusInputSearch = () => {
+      this.elementHelpers.addClass(formSearch, 'focus-search');
+      this.elementHelpers.removeClass(formSearch, 'blur-search');
+    };
+
+    // Change color input search when click out of input
+    const blurInputSearch = () => {
+      this.elementHelpers.addClass(formSearch, 'blur-search');
+      this.elementHelpers.removeClass(formSearch, 'focus-search');
+    };
+
+    // If input have value, icon close input search will appear
+    const showIconCloseInput = () => {
+      const formData = new FormData(formSearch);
+      const inputValue = formData.get('search');
+      if (inputValue) {
+        const iconClose = selectDOMClass('.icon-close');
+        this.elementHelpers.removeClass(iconClose, 'hide');
+      }
+    };
+
+    this.eventHelpers.addEvent(inputSearch, 'focus', focusInputSearch);
+    this.eventHelpers.addEvent(inputSearch, 'blur', blurInputSearch);
+    this.eventHelpers.addEvent(inputSearch, 'input', showIconCloseInput);
   }
 }

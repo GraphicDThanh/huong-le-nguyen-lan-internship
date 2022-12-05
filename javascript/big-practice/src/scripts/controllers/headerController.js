@@ -22,7 +22,5 @@ export default class HeaderController {
 
     // function set username to menu user
     this.headerView.showInformationUser();
-
-    this.headerView.showHideCloseIcon();
   }
 }
