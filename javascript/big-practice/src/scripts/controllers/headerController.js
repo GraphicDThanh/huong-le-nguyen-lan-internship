@@ -1,7 +1,6 @@
 export default class HeaderController {
-  constructor(headerView, noteController) {
+  constructor(headerView) {
     this.headerView = headerView;
-    this.noteController = noteController;
   }
 
   init() {
@@ -23,13 +22,5 @@ export default class HeaderController {
 
     // function set username to menu user
     this.headerView.showInformationUser();
-
-    // function clear search and render tab note
-    this.headerView.clearSearch(() => this.noteController.renderTabs());
-
-    // function search note by value of input
-    this.headerView.bindSearchNotes(
-      (inputValue) => this.noteController.searchNote(inputValue),
-    );
   }
 }
