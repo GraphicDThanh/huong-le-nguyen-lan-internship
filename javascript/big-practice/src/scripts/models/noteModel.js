@@ -129,16 +129,16 @@ export default class NoteModel {
    *
    * @param {String} inputValue is value of input entered
    *
-   * @returns {Array} listFound after filter if note includes
+   * @returns {Array} listSearchNotes after filter if note includes
    */
   async searchNote(inputValue) {
-    let list = [];
+    let listSearchNotes = [];
 
     if (inputValue.length) {
       const listNotes = await fetchAPI.getByKey(URL_API.NOTES_URL, `?description_like=${inputValue}|title_like=${inputValue}`);
-      list = listNotes.filter((note) => !note.deletedAt);
+      listSearchNotes = listNotes.filter((note) => !note.deletedAt);
     }
 
-    return list;
+    return listSearchNotes;
   }
 }
