@@ -6,8 +6,8 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
 import { POPUP_MESSAGE } from '../constants/message';
 import LocalStorage from '../utils/localStorage';
-import formTemplate from '../templates/formTemplate';
-import noteTemplate from '../templates/noteTemplate';
+import formAddNote from '../components/formAddNote';
+import listNotesWrapper from '../components/listNotes';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/handleError';
@@ -81,10 +81,10 @@ export default class ListNoteView {
 
     if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
       this.sectionWrapper.innerHTML = '';
-      this.sectionWrapper.appendChild(formTemplate());
+      this.sectionWrapper.appendChild(formAddNote());
 
       const formElement = selectDOMClass('.note-wrapper');
-      formElement.appendChild(noteTemplate(listNotes));
+      formElement.appendChild(listNotesWrapper(listNotes));
 
       renderTabNotes();
       this.bindInputBreakDown();
@@ -92,7 +92,7 @@ export default class ListNoteView {
       this.bindAddNote(addNote);
     } else {
       this.sectionWrapper.innerHTML = '';
-      this.sectionWrapper.appendChild(noteTemplate(trashNotes));
+      this.sectionWrapper.appendChild(listNotesWrapper(trashNotes));
 
       renderTabTrash();
     }

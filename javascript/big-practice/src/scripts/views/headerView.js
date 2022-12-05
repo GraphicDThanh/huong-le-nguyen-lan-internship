@@ -1,15 +1,15 @@
 import { selectDOMClass } from '../utils/querySelectDOM';
-import logoComponent from '../components/logoComponent';
-import inputSearchComponent from '../components/inputSearchComponent';
-import menuUserComponent from '../components/menuUserComponent';
+import logoComponent from '../components/logo';
+import inputSearchComponent from '../components/inputSearch';
+import menuUserComponent from '../components/menuUser';
 import navigatePage from '../utils/navigatePage';
 import STORAGE_KEYS from '../constants/storageKeys';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
-import { headerComponent, buttonBulkActionsComponent } from '../components/headerComponent';
+import { headerComponent, buttonBulkActionsComponent } from '../components/header';
 import EventHelpers from '../helpers/eventHelpers';
 import user from '../../../data/mockUser';
-import searchTemplate from '../templates/searchTemplate';
+import listNotesSearch from '../components/listNotesSearch';
 
 export default class HeaderView {
   constructor() {
@@ -184,7 +184,7 @@ export default class HeaderView {
 
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       sectionWrapper.innerHTML = '';
-      sectionWrapper.appendChild(searchTemplate());
+      sectionWrapper.appendChild(listNotesSearch());
       renderTab(inputValue);
     };
 
