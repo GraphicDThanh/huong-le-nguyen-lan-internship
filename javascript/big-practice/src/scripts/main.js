@@ -9,6 +9,8 @@ import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
 import MenuController from './controllers/menuController';
+import InputSearchController from './controllers/inputSearchController';
+import InputSearchView from './views/inputSearchView';
 
 const noteModel = new NoteModel();
 
@@ -16,9 +18,11 @@ const listNoteView = new ListNoteView();
 const headerView = new HeaderView();
 const menuView = new MenuView();
 const loginView = new LoginView();
+const inputSearchView = new InputSearchView();
 
 const noteController = new NoteController(noteModel, listNoteView);
-const headerController = new HeaderController(headerView, noteController);
+const inputSearchController = new InputSearchController(inputSearchView, noteController);
+const headerController = new HeaderController(headerView);
 const authenController = new AuthenController(loginView);
 const menuController = new MenuController(menuView, noteController, headerController);
 
@@ -29,6 +33,7 @@ const menuController = new MenuController(menuView, noteController, headerContro
     authenController.init();
   } else {
     headerController.init();
+    inputSearchController.init();
     menuController.init();
     noteController.init();
   }
