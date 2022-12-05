@@ -1,4 +1,4 @@
-import searchTemplate from '../components/searchTemplate';
+import listNotesSearch from '../components/listNotesSearch';
 import { selectDOMClass } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 import ElementHelpers from '../helpers/elementHelpers';
@@ -52,7 +52,7 @@ export default class InputSearchView {
 
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
       sectionWrapper.innerHTML = '';
-      sectionWrapper.appendChild(searchTemplate());
+      sectionWrapper.appendChild(listNotesSearch());
       renderTab(inputValue);
     };
 
