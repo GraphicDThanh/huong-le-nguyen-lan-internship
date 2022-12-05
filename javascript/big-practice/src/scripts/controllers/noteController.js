@@ -218,19 +218,23 @@ export default class NoteController {
    * @param {Array} noteSelected is list notes selected
    */
   deleteNotesTrash(noteSelected) {
-    this.view.renderConfirmMessage();
+    try {
+      this.view.renderConfirmMessage();
 
-    // function close popup
-    this.view.bindClosePopup();
+      // function close popup
+      this.view.bindClosePopup();
 
-    // function delete all the notes selected
-    this.view.bindDeleteNoteInTrash(() => {
-      noteSelected.forEach(async (note) => {
-        await this.model.deleteNoteInTrash(note.id);
+      // function delete all the notes selected
+      this.view.bindDeleteNoteInTrash(() => {
+        noteSelected.forEach(async (note) => {
+          await this.model.deleteNoteInTrash(note.id);
 
-        this.view.removeNoteElement(note.id);
-        this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+          this.view.removeNoteElement(note.id);
+          this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+        });
       });
-    });
+    } catch (error) {
+      renderPopupError(error.message);
+    }
   }
 }
