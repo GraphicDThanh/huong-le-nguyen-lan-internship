@@ -13,7 +13,7 @@ const inputSearchComponent = () => {
     <input type="text" name="search" class="search" placeholder="Search" autocomplete="off">
 
     <figure class="icon-close-cover">
-      <img class="icon-close hide" src="${iconClose}" alt="icon close">
+      <img class="icon-close" src="${iconClose}" alt="icon close">
     </figure>
   `;
 

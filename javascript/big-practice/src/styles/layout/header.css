@@ -103,6 +103,7 @@
 }
 
 .form-search .icon-close-cover {
+  visibility: hidden;
   width: 40px;
   height: 40px;
 }

@@ -28,7 +28,7 @@ export default class InputSearchView {
         this.elementHelpers.removeMenuActive();
         this.elementHelpers.showMenuActive();
         renderTabs();
-        this.elementHelpers.addClass(iconClose, 'hide');
+        iconClose.style.visibility = 'hidden';
       }
     };
 
@@ -87,7 +87,7 @@ export default class InputSearchView {
       const inputValue = formData.get('search');
       if (inputValue) {
         const iconClose = selectDOMClass('.icon-close');
-        this.elementHelpers.removeClass(iconClose, 'hide');
+        iconClose.style.visibility = 'visible';
       }
     };
 

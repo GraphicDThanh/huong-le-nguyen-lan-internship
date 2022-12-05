@@ -54,7 +54,7 @@ export default class MenuView {
           changeLogoFollowTab(logoName);
         }
       }
-      this.elementHelpers.addClass(iconClose, 'hide');
+      iconClose.style.visibility = 'hidden';
     };
 
     menu.forEach((element) => {
