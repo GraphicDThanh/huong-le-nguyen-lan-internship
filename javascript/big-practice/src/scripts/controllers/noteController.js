@@ -19,20 +19,15 @@ export default class NoteController {
   }
 
   bindEvents() {
+    const handlers = {
+      renderTabNotes: this.renderTabNote.bind(this),
+      renderTabTrash: this.renderTabTrash.bind(this),
+      addNote: this.addNote.bind(this),
+      deleteNote: this.deleteNote.bind(this),
+    };
+
     // function change page
-    this.view.bindChangePage(this.renderTabTrash.bind(this), this.renderTabNote.bind(this));
-
-    // function increase textarea
-    this.view.bindInputBreakDown();
-
-    // function show input form
-    this.view.bindShowInput();
-
-    // function add new note
-    this.view.bindAddNote(this.addNote.bind(this));
-
-    // function delete list notes
-    this.view.bindDeleteListNotes(this.deleteNote.bind(this));
+    this.view.bindChangePage(handlers);
 
     // function show hide menu hidden
     this.view.bindShowMenuUser();
@@ -44,51 +39,67 @@ export default class NoteController {
     this.view.bindLogin();
 
     // function set username to menu user
-    this.getUser();
+    this.showUsername();
   }
 
   async renderTabTrash() {
-    const listTrash = await this.model.filterNotes('trashNotes');
-    // function render trash notes
-    this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup.bind(this));
+    try {
+      const listTrash = await this.model.filterNotes('trashNotes');
+      // function render trash notes
+      this.view.renderListTrashNotes(listTrash, this.handleConfirmPopup.bind(this));
 
-    // function show Empty Note if note is empty
-    this.view.showHideEmpty(listTrash, 'trashNotes');
+      // function show Empty Note if note is empty
+      this.view.showHideEmpty(listTrash, 'trashNotes');
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 
   async renderTabNote() {
-    const handlers = {
-      handleDeleteNote: this.deleteNote.bind(this),
-      handleShowNoteForm: this.findNote.bind(this),
-    };
+    try {
+      const handlers = {
+        handleDeleteNote: this.deleteNote.bind(this),
+        handleShowNoteForm: this.findNote.bind(this),
+      };
 
-    const listNotes = await this.model.filterNotes('listNotes');
+      const listNotes = await this.model.filterNotes('listNotes');
 
-    // function render list notes
-    this.view.renderListNotes(listNotes, handlers);
+      // function render list notes
+      this.view.renderListNotes(listNotes, handlers);
 
-    // function show Empty Note if note is empty
-    this.view.showHideEmpty(listNotes, 'listNotes');
+      // function show Empty Note if note is empty
+      this.view.showHideEmpty(listNotes, 'listNotes');
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 
   async handleConfirmPopup(index) {
-    const note = await this.model.findNote(index);
-    // function render confirm message
-    this.view.renderConfirmMessage(note);
+    try {
+      const note = await this.model.findNote(index);
+      // function render confirm message
+      this.view.renderConfirmMessage(note);
 
-    // function close popup
-    this.view.bindClosePopup();
+      // function close popup
+      this.view.bindClosePopup();
 
-    // function delete trash forever
-    this.view.bindDeleteNoteInTrash(async (id) => {
-      const noteItem = await this.model.deleteNoteInTrash(id);
-      this.view.removeNoteElement(noteItem.id);
-    });
+      // function delete trash forever
+      this.view.bindDeleteNoteInTrash(async (id) => {
+        const noteItem = await this.model.deleteNoteInTrash(id);
+        this.view.removeNoteElement(noteItem.id);
+      });
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 
-  async getUser() {
-    const email = await this.userModel.findUsernameById();
-    this.view.showInformationUser(email);
+  async showUsername() {
+    try {
+      const id = await this.userModel.findUsernameById();
+      this.view.showInformationUser(id);
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 
   /**
@@ -98,8 +109,12 @@ export default class NoteController {
    * @param {String} description is description from input
    */
   async addNote(title, description) {
-    const note = await this.model.addNote(title, description);
-    this.view.renderNote(note, this.deleteNote.bind(this), this.findNote.bind(this));
+    try {
+      const note = await this.model.addNote(title, description);
+      this.view.renderNote(note, this.deleteNote.bind(this), this.findNote.bind(this));
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 
   /**
@@ -108,9 +123,13 @@ export default class NoteController {
    * @param {String} index is index of note
    */
   async deleteNote(index) {
-    const note = await this.model.deleteNote(index);
+    try {
+      const note = await this.model.deleteNote(index);
 
-    this.view.removeNoteElement(note.id);
+      this.view.removeNoteElement(note.id);
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 
   /**
@@ -121,9 +140,13 @@ export default class NoteController {
    * @param {String} description is description of note
    */
   async editNote(id, title, description) {
-    const note = await this.model.editNote(id, title, description);
+    try {
+      const note = await this.model.editNote(id, title, description);
 
-    this.view.editNote(note.id, note.title, note.description);
+      this.view.editNote(note.id, note.title, note.description);
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 
   /**
@@ -132,14 +155,18 @@ export default class NoteController {
    * @param {String} id is a id of note
    */
   async findNote(id) {
-    const note = await this.model.findNote(id);
+    try {
+      const note = await this.model.findNote(id);
 
-    const handlers = {
-      handleEditNote: this.editNote.bind(this),
-      handleDeleteNote: this.deleteNote.bind(this),
-    };
+      const handlers = {
+        handleEditNote: this.editNote.bind(this),
+        handleDeleteNote: this.deleteNote.bind(this),
+      };
 
-    // function render form note
-    this.view.renderFormNote(note, handlers);
+      // function render form note
+      this.view.renderFormNote(note, handlers);
+    } catch (error) {
+      this.view.renderPopupError(error.message);
+    }
   }
 }

@@ -15,8 +15,8 @@ const renderConfirmPopup = (message, typeButton, note) => {
     <div class="confirm-message">
       <p>${message}</p>
       <div class="group-buttons">
-        <button class="btn btn-close-popup" type="button" data-id="${note.id}">Close</button>
-        <button class="btn btn-submit-action" type="button" data-id="${note.id}">${typeButton}</button>
+        <button class="btn btn-close-popup" type="button" data-id="${note ? note.id : ''}">Close</button>
+        ${typeButton ? `<button class="btn btn-submit-action" type="button" data-id="${note.id}">${typeButton}</button>` : ''} 
       </div>
     </div>
     `;
