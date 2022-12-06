@@ -1,0 +1,168 @@
+.form-note {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note-form-overlay {
+  width: 600px;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--light-color);
+}
+
+.form-add-note {
+  width: 600px;
+  max-height: 650px;
+}
+
+.form-title .form-group {
+  display: flex;
+}
+
+.icon-pin-cover,
+.item-utilities {
+  padding: 8px;
+  border-radius: 45px;
+}
+
+.form-note .input-note {
+  width: 95%;
+  font-size: 16px;
+  font-family: var(--font-regular), var(--font-default);
+  min-height: 20px;
+  word-break: break-word;
+  resize: none;
+  border: none;
+  outline: none;
+}
+
+.form-note .form-group .note-description {
+  font-family: var(--font-light), var(--font-default);
+}
+
+.form-note .form-group .note-description::placeholder {
+  font-weight: 600;
+}
+
+.form-utilities .form-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-utilities,
+.icon-pin-cover {
+  width: 18px;
+  height: 18px;
+}
+
+.item-utilities img,
+.icon-pin-cover img {
+  width: 100%;
+  height: 100%;
+}
+
+.form-add-note .form-title,
+.form-add-note .form-utilities {
+  animation: opacityAnimation linear 0.4s;
+}
+
+.form-cover {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 5px;
+  font-family: var(--font-regular), var(--font-default);
+}
+
+.form-cover .form-group {
+  position: relative;
+}
+
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18px 14px;
+  border: 1px solid var(--fade-color);
+  border-radius: 4px;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label {
+  top: -12px;
+  left: 10px;
+  padding: 5px;
+  z-index: 20;
+  font-size: 14px;
+  color: var(--info-color);
+  background-color: var(--light-color);
+}
+
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label {
+  color: var(--text-fade-color);
+}
+
+.form-label {
+  position: absolute;
+  left: 15px;
+  top: 18px;
+  font-family: var(--font-light), var(--font-default);
+  color: var(--text-fade-color);
+  transition: 0.3s;
+}
+
+.form-input:focus {
+  outline-color: var(--info-color);
+}
+
+.form-button {
+  text-align: center;
+}
+
+.form-button .btn-login {
+  padding: 12px 25px;
+  color: var(--light-color);
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: var(--info-color);
+}
+
+.form-button .btn:hover {
+  background-color: var(--info-color-darker);
+}
+
+.hide {
+  display: none;
+}
+
+.message {
+  padding: 7px 5px 10px 5px;
+}
+
+.message-error {
+  font-size: 14px;
+  color: var(--text-danger-color);
+  font-family: var(--font-light), var(--font-default);
+  padding-left: 5px;
+}
+
+.error-icon {
+  width: 15px;
+  height: 15px;
+  vertical-align: bottom;
+}
+
+.form-cover .form-input:focus + .error,
+.form-input:not(:placeholder-shown).form-input:not(:focus) + .error {
+  color: var(--text-danger-color);
+}
+
+.valid {
+  border-color: var(--danger-color);
+}

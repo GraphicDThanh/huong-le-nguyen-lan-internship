@@ -1,0 +1,107 @@
+.note {
+  cursor: pointer;
+  width: 220px;
+  max-height: fit-content;
+  padding: 10px;
+  border: 1px solid var(--fade-color);
+  border-radius: 8px;
+  position: relative;
+}
+
+.note .icon-check {
+  width: 22px;
+  height: 22px;
+  position: absolute;
+  top: -10px;
+  left: -12px;
+  cursor: pointer;
+}
+
+.note:hover {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.note:hover .icon-check,
+.note-selected .icon-check {
+  background-color: var(--light-color);
+  border-radius: 45px;
+  animation: opacityAnimation linear 0.5s;
+  background-image: url("../../assets/icons/icon-checked.svg");
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.note:hover .note-utilities {
+  visibility: visible;
+  animation: opacityAnimation linear 0.8s;
+}
+
+.note-selected {
+  border: 2px solid var(--text-color);
+}
+
+.note-content {
+  padding: 10px;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.note-content .note-title,
+.note-content .note-description {
+  line-height: 25px;
+  max-height: 180px;
+  overflow: hidden;
+}
+
+.note-content .note-description {
+  font-size: 18px;
+  font-family: var(--font-light), var(--font-default);
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+}
+
+.note-content .note-empty {
+  font-size: 22px;
+  color: var(--text-note-color);
+  font-family: var(--font-light), var(--font-default);
+}
+
+.note-btn {
+  display: flex;
+  justify-content: end;
+}
+
+.note-btn .item-utilities {
+  width: 20px;
+  height: 20px;
+  padding: 8px;
+  border-radius: 45px;
+}
+
+.note-btn .item-utilities:hover {
+  background-color: var(--hover-utilities-color);
+}
+
+.icon-delete {
+  width: 100%;
+  height: 100%;
+}
+
+.note .note-utilities {
+  visibility: hidden;
+}
+
+.selected {
+  border: 2px solid var(--dark-color);
+}

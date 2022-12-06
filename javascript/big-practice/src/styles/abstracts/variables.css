@@ -1,0 +1,29 @@
+:root {
+  /* Color */
+  --light-color: #fff;
+  --primary-color: #feefc3;
+  --secondary-color: #f1f3f4;
+  --info-color: #1a73e8;
+  --fade-color: #e0e2e5;
+  --dark-color: #000;
+  --danger-color: #d93025;
+  --info-color-darker: #1566d1;
+  --hover-utilities-color: #e6e7e7;
+  --hover-button-color: #faf9f9;
+  
+  /* Font-color */
+  --text-color: #202124;
+  --text-fade-color: #5f6368;
+  --text-note-color: #80868b;
+  --text-danger-color: #f33;
+  --text-button-color: #3c4043;
+
+  /* Background color */
+  --background-opacity: rgba(14, 14, 15, 0.4);
+
+  /* Font-family */
+  --font-regular: "openSans-regular";
+  --font-light: "openSans-light";
+  --font-logo: "PTsans-regular";
+  --font-default: "Arial, sans-serif";
+}

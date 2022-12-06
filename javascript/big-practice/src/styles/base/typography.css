@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "openSans-regular"; /*font-weight: 400*/
+  src: url("../../assets/fonts/ProductSans-Medium.ttf");
+}
+
+@font-face {
+  font-family: "openSans-light"; /*font-weight: 300*/
+  src: url("../../assets/fonts/ProductSans-Light.ttf");
+}
+
+@font-face {
+  font-family: "PTsans-regular"; /*font-weight: 400*/
+  src: url("../../assets/fonts/OpenSans-Regular.ttf");
+}
+
+body {
+  font-family: var(--font-regular), var(--font-default);
+}
+
+:root {
+  font-size: 16px;
+}
