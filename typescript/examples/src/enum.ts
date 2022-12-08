@@ -62,23 +62,3 @@ enum BooleanLikeHeterogeneousEnum {
 
 console.log(BooleanLikeHeterogeneousEnum.No);
 console.log(BooleanLikeHeterogeneousEnum.Yes);
-
-enum ShapeKind {
-  Circle,
-  Square,
-}
-
-interface Circles {
-  kind: ShapeKind.Circle;
-  radius: number;
-}
-
-interface Square {
-  kind: ShapeKind.Square;
-  radius: number;
-}
-
-let c: Circles = {
-  kind: ShapeKind.Square,
-  radius: 100,
-};
