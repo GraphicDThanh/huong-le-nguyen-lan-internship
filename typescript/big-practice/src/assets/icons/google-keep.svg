@@ -1,0 +1,6 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M74 92H22C18.685 92 16 89.315 16 86V10C16 6.685 18.685 4 22 4H58L80 26V86C80 89.315 77.315 92 74 92Z" fill="#FFBA00" />
+  <path d="M58 4L80 26H58V4Z" fill="#FF9500" />
+  <path d="M55 63H41V68H55V63Z" fill="white" />
+  <path d="M48 34C40.82 34 35 39.82 35 47C35 51.635 37.425 55.7 41.075 58H54.925C58.575 55.7 61 51.635 61 47C61 39.82 55.18 34 48 34Z" fill="white" />
+</svg>

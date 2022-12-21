@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="icon" href="../assets/icons/logo-google-keep-small.png" type="image/gif" sizes="16x16">
+  <link rel="stylesheet" href="../styles/main.css">
+</head>
+<body class="index-page">
+  <div class="container">
+    <form class="login-wrapper" id="login-form">
+      <figure class="logo">
+        <img src="../assets/icons/google-keep.svg" alt="logo google keep">
+      </figure>
+      <h1 class="login-title">Log in</h1>
+      <div class="form-cover">
+        <div class="form-group">
+          <input type="email" 
+            name="email"
+            class="email form-input"
+            placeholder="&nbsp;"
+            required 
+            pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}"
+            title="Email is valid"
+            autocomplete="off">
+          <label class="form-label label-email">Email</label>
+          <div class="message">
+            <img src="../assets/icons/error-icon.svg" alt="error icon" class="error-icon hide">
+            <span class="message-error"></span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="password" 
+            name="password" 
+            class="password form-input" 
+            placeholder="&nbsp;"
+            required
+            autocomplete="off">
+          <label class="form-label label-password">Password</label>
+          <div class="message">
+            <img src="../assets/icons/error-icon.svg" alt="error icon" class="error-icon hide">
+            <span class="message-error"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-button">
+        <button type="submit" class="btn-login">Log in</button>
+      </div>
+    </form>
+  </div>
+  <script type="module" src="../scripts/main.js"></script>
+</body>
+</html>
