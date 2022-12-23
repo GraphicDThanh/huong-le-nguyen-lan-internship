@@ -1,12 +1,7 @@
 import iconTrash from '../../assets/icons/icon-in-trash.svg';
 import iconLight from '../../assets/icons/icon-light.svg';
 
-interface Note {
-  type: string;
-  message: string;
-}
-
-const listNotesWrapper = (note: Note) => {
+const listNotesWrapper = (note) => {
   const wrapper = document.createElement('div');
   wrapper.setAttribute(
     'class',
