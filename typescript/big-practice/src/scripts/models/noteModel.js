@@ -47,7 +47,7 @@ export default class NoteModel {
    */
   async filterNotes(type) {
     const allNotes = await this.fetchAPI.getAllNotes(URL_API.NOTES_URL);
-    console.log(allNotes);
+
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
