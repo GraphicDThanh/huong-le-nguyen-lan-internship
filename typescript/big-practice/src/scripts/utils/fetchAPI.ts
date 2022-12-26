@@ -1,7 +1,11 @@
 import URL_API from '../constants/apiUrl';
 
-const fetchAPI = {
-  baseURL: `${URL_API.BASE_URL}`,
+export default class FetchAPI<T> {
+  baseURL: string;
+
+  constructor() {
+    this.baseURL = `${URL_API.BASE_URL}`;
+  }
 
   /**
    * @description function get all notes
@@ -10,17 +14,17 @@ const fetchAPI = {
    *
    * @returns {Object} notes
    */
-  async getAllNotes(url) {
+  async getAllNotes(url: string): Promise<unknown | T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}`);
-      const notes = await response.json();
+      const notes: T[] = await response.json();
 
       return notes;
     } catch (error) {
       console.log(error);
       return error;
     }
-  },
+  }
 
   /**
    * @description function find notes by key
@@ -30,17 +34,17 @@ const fetchAPI = {
    *
    * @returns {Object} notes
    */
-  async getByKey(url, key) {
+  async getByKey(url: string, key: string): Promise<unknown | T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}${key}`);
-      const notes = await response.json();
+      const notes: T[] = await response.json();
 
       return notes;
     } catch (error) {
       console.log(error);
       return error;
     }
-  },
+  }
 
   /**
    * @description function add new note to api
@@ -50,7 +54,7 @@ const fetchAPI = {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async postNote(note, url) {
+  async postNote(note: T, url: string): Promise<unknown | T> {
     try {
       const options = {
         method: 'POST',
@@ -60,13 +64,14 @@ const fetchAPI = {
         },
       };
       const noteItem = await fetch(`${this.baseURL}${url}`, options);
+      const notes: Promise<T> = noteItem.json();
 
-      return noteItem.json();
+      return await notes;
     } catch (error) {
       console.log(error);
       return error;
     }
-  },
+  }
 
   /**
    * @description function delete note in api
@@ -74,7 +79,7 @@ const fetchAPI = {
    * @param {String} id is id of note
    * @param {String} url is endpoint
    */
-  async deleteNote(id, url) {
+  async deleteNote(id: string, url: string): Promise<unknown | T> {
     try {
       const options = {
         method: 'DELETE',
@@ -89,7 +94,7 @@ const fetchAPI = {
       console.log(error);
       return error;
     }
-  },
+  }
 
   /**
    * @description function update note with id
@@ -100,7 +105,7 @@ const fetchAPI = {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async putNote(id, note, url) {
+  async putNote(id: string, note: T, url: string): Promise<unknown | T> {
     try {
       const options = {
         method: 'PATCH',
@@ -111,12 +116,10 @@ const fetchAPI = {
       };
       const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
 
-      return noteItem.json();
+      return await noteItem.json();
     } catch (error) {
       console.log(error);
       return error;
     }
-  },
-};
-
-export default fetchAPI;
+  }
+}

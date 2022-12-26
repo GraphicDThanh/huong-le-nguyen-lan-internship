@@ -12,14 +12,20 @@ const elementHelpers = new ElementHelpers();
  * @param {Object} element of input you want to hide message
  * @param {Object} label is label of input
  */
-const hideError = (element, label) => {
-  const error = element.parentElement.querySelector('.message .message-error');
-  const errorIcon = element.parentElement.querySelector('.message .error-icon');
+const hideError = (element: HTMLElement, label: HTMLElement) => {
+  const error = element.parentElement?.querySelector<HTMLElement>(
+    '.message .message-error'
+  );
+  const errorIcon = element.parentElement?.querySelector<HTMLElement>(
+    '.message .error-icon'
+  );
 
-  error.innerText = '';
-  elementHelpers.addClass(errorIcon, 'hide');
-  elementHelpers.removeClass(label, 'error');
-  elementHelpers.removeClass(element, 'valid');
+  if (error && errorIcon) {
+    error.innerText = '';
+    elementHelpers.addClass(errorIcon, 'hide');
+    elementHelpers.removeClass(label, 'error');
+    elementHelpers.removeClass(element, 'valid');
+  }
 };
 
 /**
@@ -31,14 +37,22 @@ const hideError = (element, label) => {
  * @param {String} message is message error of field
  * @param {Object} label is label of input
  */
-const showError = (element, message, label) => {
-  const error = element.parentElement.querySelector('.message .message-error');
-  const errorIcon = element.parentElement.querySelector('.message .error-icon');
+const showError = (
+  element: HTMLElement,
+  message: string,
+  label: HTMLElement
+) => {
+  const error = element.parentElement?.querySelector('.message .message-error');
+  const errorIcon = element.parentElement?.querySelector<HTMLElement>(
+    '.message .error-icon'
+  );
 
-  error.textContent = message;
-  elementHelpers.removeClass(errorIcon, 'hide');
-  elementHelpers.addClass(element, 'valid');
-  elementHelpers.addClass(label, 'error');
+  if (error && errorIcon) {
+    error.textContent = message;
+    elementHelpers.removeClass(errorIcon, 'hide');
+    elementHelpers.addClass(element, 'valid');
+    elementHelpers.addClass(label, 'error');
+  }
 };
 
 /**
@@ -47,16 +61,23 @@ const showError = (element, message, label) => {
  *
  * @param {String} errorMessage is message error
  */
-const renderPopupError = (errorMessage) => {
+const renderPopupError = (errorMessage: string) => {
   const overlayWrapper = selectDOMClass('.overlay-wrapper');
-  const handler = () => {
-    overlayWrapper.innerHTML = '';
-  };
-  overlayWrapper.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
-
-  const btnClose = selectDOMClass('.btn-close-popup');
   const eventHelpers = new EventHelpers();
-  eventHelpers.addEvent(btnClose, 'click', handler);
+
+  if (overlayWrapper) {
+    const handler = () => {
+      overlayWrapper.innerHTML = '';
+    };
+    overlayWrapper.appendChild(
+      renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`)
+    );
+
+    const btnClose = selectDOMClass('.btn-close-popup');
+    if (btnClose) {
+      eventHelpers.addEvent(btnClose, 'click', handler);
+    }
+  }
 };
 
 export { hideError, showError, renderPopupError };

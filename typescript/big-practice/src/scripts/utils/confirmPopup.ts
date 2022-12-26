@@ -1,3 +1,5 @@
+import Note from '../types/note';
+
 /**
  * @description function create confirm message with design message, type of button
  * and item
@@ -8,7 +10,11 @@
  *
  * @returns {Object} confirmMessage
  */
-const renderConfirmPopup = (message, typeButton, item) => {
+const renderConfirmPopup = (
+  message: string,
+  typeButton?: string,
+  item?: Note
+) => {
   const confirmMessage = document.createElement('div');
   confirmMessage.setAttribute('class', 'overlay');
 
@@ -16,8 +22,16 @@ const renderConfirmPopup = (message, typeButton, item) => {
     <div class="confirm-message">
       <p>${message}</p>
       <div class="group-buttons">
-        <button class="btn btn-close-popup" type="button" ${item ? `data-id="${item.id}"` : ''}>Close</button>
-        ${typeButton ? `<button class="btn btn-submit-action" type="button" ${item ? `data-id="${item.id}"` : ''}>${typeButton}</button>` : ''} 
+        <button class="btn btn-close-popup" type="button" ${
+          item ? `data-id="${item.id}"` : ''
+        }>Close</button>
+        ${
+          typeButton
+            ? `<button class="btn btn-submit-action" type="button" ${
+                item ? `data-id="${item.id}"` : ''
+              }>${typeButton}</button>`
+            : ''
+        } 
       </div>
     </div>
     `;
