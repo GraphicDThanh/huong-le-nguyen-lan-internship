@@ -6,11 +6,24 @@ import navigatePage from '../utils/navigatePage';
 import STORAGE_KEYS from '../constants/storageKeys';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
-import { headerComponent, buttonBulkActionsComponent } from '../components/header';
+import {
+  headerComponent,
+  buttonBulkActionsComponent,
+} from '../components/header';
 import EventHelpers from '../helpers/eventHelpers';
 import user from '../../../data/mockUser';
 
 export default class HeaderView {
+  mainWrapper: HTMLElement | null;
+
+  homePage: HTMLElement | null;
+
+  localStorage: LocalStorage<boolean>;
+
+  elementHelpers: ElementHelpers;
+
+  eventHelpers: EventHelpers;
+
   constructor() {
     this.mainWrapper = selectDOMClass('.main-wrapper');
     this.homePage = selectDOMClass('.home-page');
@@ -22,9 +35,11 @@ export default class HeaderView {
   /**
    * @description render header with some components in header
    * like menu user, logo and input search
-    */
+   */
   renderHeader() {
-    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
+    if (this.homePage) {
+      this.homePage.insertBefore(headerComponent(), this.mainWrapper);
+    }
     const headerDefault = selectDOMClass('.header-default');
     const headerMenu = selectDOMClass('.header-menu');
     const headerSelected = selectDOMClass('.header-after-select');
@@ -34,10 +49,13 @@ export default class HeaderView {
       tab = 'Trash';
     }
     this.setDefaultPageNumber();
-    headerSelected.appendChild(buttonBulkActionsComponent());
-    headerMenu.appendChild(logoComponent(tab));
-    headerMenu.appendChild(inputSearchComponent());
-    headerDefault.appendChild(menuUserComponent());
+
+    if (headerSelected && headerMenu && headerDefault) {
+      headerSelected.appendChild(buttonBulkActionsComponent());
+      headerMenu.appendChild(logoComponent(tab));
+      headerMenu.appendChild(inputSearchComponent());
+      headerDefault.appendChild(menuUserComponent());
+    }
   }
 
   /**
