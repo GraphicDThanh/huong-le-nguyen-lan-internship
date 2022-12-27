@@ -1,8 +1,8 @@
 interface Note {
-  id: string;
+  id?: string;
   title: string;
   description: string;
-  deletedAt: string;
+  deletedAt?: string;
 }
 
 export default Note;

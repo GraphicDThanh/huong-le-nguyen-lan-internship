@@ -578,34 +578,38 @@ export default class ListNoteView {
    *
    * @param {function} addNote is function transmitted from model
    */
-  bindAddNote(addNote) {
-    const formElement = selectDOMClass('.form-add-note');
+  bindAddNote(addNote: (note: Note) => void) {
+    const formElement = selectDOMClass('.form-add-note') as HTMLFormElement;
+    const homePage = selectDOMClass('.home-page');
+
     const handler = () => {
       const formData = new FormData(formElement);
       const note = {
         title: formData.get('title'),
         description: formData.get('description'),
-      };
+      } as Note;
 
       return note;
     };
 
-    const handleForm = (e) => {
+    const handleForm = (e: Event) => {
       e.preventDefault();
       const note = handler();
       this.addNote(note, addNote, formElement);
     };
 
-    const handleClickOut = (e) => {
+    const handleClickOut = (e: Event) => {
       const note = handler();
 
-      if (!e.target.closest('.form-add-note')) {
+      if (!(e.target as HTMLElement)?.closest('.form-add-note')) {
         this.addNote(note, addNote, formElement);
       }
     };
 
-    this.eventHelpers.addEvent(formElement, 'submit', handleForm);
-    this.eventHelpers.addEvent(document, 'click', handleClickOut);
+    if (homePage) {
+      this.eventHelpers.addEvent(formElement, 'submit', handleForm);
+      this.eventHelpers.addEvent(homePage, 'click', handleClickOut);
+    }
   }
 
   /**
@@ -616,7 +620,11 @@ export default class ListNoteView {
    * @param {function} addNote function transmitted from controller
    * @param {Object} formElement form add note to clear input
    */
-  addNote(note, addNote, formElement) {
+  addNote(
+    note: Note,
+    addNote: (note: Note) => void,
+    formElement: HTMLFormElement
+  ) {
     const formTitleElement = selectDOMClass('.form-title');
     const formUtilitiesElement = selectDOMClass('.form-utilities');
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
@@ -630,14 +638,20 @@ export default class ListNoteView {
       this.elementHelpers.addClass(formTitleElement, 'hide');
     }
 
-    if (note.title || note.description) {
+    if (
+      (note.title || note.description) &&
+      inputAddElement &&
+      inputTitleElement
+    ) {
       addNote(note);
       formElement.reset();
       inputAddElement.style.height = '1px';
       inputTitleElement.style.height = '1px';
 
-      this.elementHelpers.commonInputBreakDown(formTitleElement);
-      this.elementHelpers.addClass(listNotesEmpty, 'hide');
+      if (formTitleElement && listNotesEmpty) {
+        this.elementHelpers.commonInputBreakDown(formTitleElement);
+        this.elementHelpers.addClass(listNotesEmpty, 'hide');
+      }
     }
   }
 

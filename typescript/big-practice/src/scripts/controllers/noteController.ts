@@ -129,20 +129,22 @@ export default class NoteController {
    *
    * @param {Object} note is a information of note
    */
-  async addNote(note) {
+  async addNote(note: Note) {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.addNote(note);
 
       const handlers = {
-        handleDeleteNote: (noteId) => this.deleteNote(noteId),
-        handleShowNoteForm: (id) => this.handleNoteForm(id),
+        handleDeleteNote: (id: string) => this.deleteNote(id),
+        handleShowNoteForm: (id: string) => this.handleNoteForm(id),
       };
 
       this.view.renderNote(noteItem, handlers);
       this.loadingPage.removeLoading();
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
