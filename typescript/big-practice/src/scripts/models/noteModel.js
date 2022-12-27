@@ -26,7 +26,7 @@ export default class NoteModel {
       deletedAt: '',
     };
 
-    const noteItem = await this.fetchAPI.postNote(
+    const noteItem = await this.fetchAPI.postItem(
       patternNote,
       URL_API.NOTES_URL
     );
@@ -46,8 +46,8 @@ export default class NoteModel {
    * @returns {Array} listNotes after filter
    */
   async filterNotes(type) {
-    const allNotes = await this.fetchAPI.getAllNotes(URL_API.NOTES_URL);
-    console.log(allNotes);
+    const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
+
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
@@ -80,7 +80,7 @@ export default class NoteModel {
     const noteItem = this.findNote(id);
 
     noteItem.deletedAt = date;
-    await this.fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
+    await this.fetchAPI.putItem(id, noteItem, URL_API.NOTES_URL);
     this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
     return noteItem;
@@ -94,7 +94,7 @@ export default class NoteModel {
   async deleteNoteInTrash(id) {
     const noteItem = this.findNote(id);
 
-    await this.fetchAPI.deleteNote(noteItem.id, URL_API.NOTES_URL);
+    await this.fetchAPI.deleteItem(noteItem.id, URL_API.NOTES_URL);
     this.listNotes = this.listNotes.filter((note) => note.id !== id);
   }
 
@@ -123,7 +123,7 @@ export default class NoteModel {
     noteItem.title = note.title;
     noteItem.description = note.description;
 
-    noteItem = await this.fetchAPI.putNote(
+    noteItem = await this.fetchAPI.putItem(
       note.id,
       noteItem,
       URL_API.NOTES_URL
@@ -144,7 +144,7 @@ export default class NoteModel {
     let listSearchNotes = [];
 
     if (inputValue.length) {
-      const listNotes = await this.fetchAPI.getByKey(
+      const listNotes = await this.fetchAPI.getItemByKey(
         URL_API.NOTES_URL,
         `?description_like=${inputValue}|title_like=${inputValue}`
       );

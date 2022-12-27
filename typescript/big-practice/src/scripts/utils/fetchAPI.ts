@@ -1,4 +1,5 @@
 import URL_API from '../constants/apiUrl';
+import CustomError from '../types/customError';
 
 export default class FetchAPI<T> {
   baseURL: string;
@@ -14,14 +15,14 @@ export default class FetchAPI<T> {
    *
    * @returns {Object} notes
    */
-  async getAllNotes(url: string): Promise<T[]> {
+  async getAllItems(url: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}`);
       const notes: T[] = await response.json();
 
       return notes;
     } catch (error) {
-      throw new Error('Fail to get all notes');
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -33,14 +34,14 @@ export default class FetchAPI<T> {
    *
    * @returns {Object} notes
    */
-  async getByKey(url: string, key: string): Promise<T[]> {
+  async getItemByKey(url: string, key: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}${key}`);
       const notes: T[] = await response.json();
 
       return notes;
     } catch (error) {
-      throw new Error('Fail to get note by key');
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -52,7 +53,7 @@ export default class FetchAPI<T> {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async postNote(note: T, url: string): Promise<T> {
+  async postItem(note: T, url: string): Promise<T> {
     try {
       const options = {
         method: 'POST',
@@ -65,7 +66,7 @@ export default class FetchAPI<T> {
 
       return await noteItem.json();
     } catch (error) {
-      throw new Error('Fail to post note');
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -75,7 +76,7 @@ export default class FetchAPI<T> {
    * @param {String} id is id of note
    * @param {String} url is endpoint
    */
-  async deleteNote(id: string, url: string): Promise<T> {
+  async deleteItem(id: string, url: string): Promise<T> {
     try {
       const options = {
         method: 'DELETE',
@@ -87,7 +88,7 @@ export default class FetchAPI<T> {
 
       return await noteItem.json();
     } catch (error) {
-      throw new Error('Fail to delete note');
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -100,7 +101,7 @@ export default class FetchAPI<T> {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async putNote(id: string, note: T, url: string): Promise<T> {
+  async putItem(id: string, note: T, url: string): Promise<T> {
     try {
       const options = {
         method: 'PATCH',
@@ -113,7 +114,7 @@ export default class FetchAPI<T> {
 
       return await noteItem.json();
     } catch (error) {
-      throw new Error('Fail to put note');
+      throw new Error('Fail to fetch');
     }
   }
 }
