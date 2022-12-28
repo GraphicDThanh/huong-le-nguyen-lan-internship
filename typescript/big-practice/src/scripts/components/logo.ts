@@ -1,4 +1,4 @@
-import STORAGE_KEYS from '../constants/storageKeys.ts';
+import STORAGE_KEYS from '../constants/storageKeys';
 import iconLogo from '../../assets/icons/google-keep.svg';
 
 const logoComponent = (tab: string) => {
