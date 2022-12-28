@@ -52,7 +52,7 @@ export default class ElementHelpers {
    */
   countAndShowSelected(el: HTMLElement) {
     const element = el;
-    const listSelected: NodeList | null = selectDOMClassAll('.selected');
+    const listSelected = selectDOMClassAll('.selected');
 
     if (listSelected) {
       element.innerHTML = `${listSelected.length} Selected`;
