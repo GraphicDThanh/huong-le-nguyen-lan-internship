@@ -455,8 +455,10 @@ export default class ListNoteView {
     );
     const inputTitleElement = selectDOMClass('.note-title');
 
-    this.elementHelpers.commonInputBreakDown(inputAddElement);
-    this.elementHelpers.commonInputBreakDown(inputTitleElement);
+    if (inputAddElement && inputTitleElement) {
+      this.elementHelpers.commonInputBreakDown(inputAddElement);
+      this.elementHelpers.commonInputBreakDown(inputTitleElement);
+    }
   }
 
   /**
@@ -466,8 +468,10 @@ export default class ListNoteView {
     const title = selectDOMClass('.note-form-overlay .note-title');
     const description = selectDOMClass('.note-form-overlay .note-description');
 
-    this.elementHelpers.commonInputBreakDown(title);
-    this.elementHelpers.commonInputBreakDown(description);
+    if (title && description) {
+      this.elementHelpers.commonInputBreakDown(title);
+      this.elementHelpers.commonInputBreakDown(description);
+    }
   }
 
   /**
@@ -569,11 +573,15 @@ export default class ListNoteView {
       '.form-add-note .form-group-input .input-note'
     );
     const handler = () => {
-      this.elementHelpers.removeClass(formUtilitiesElement, 'hide');
-      this.elementHelpers.removeClass(formTitleElement, 'hide');
+      if (formUtilitiesElement && formTitleElement) {
+        this.elementHelpers.removeClass(formUtilitiesElement, 'hide');
+        this.elementHelpers.removeClass(formTitleElement, 'hide');
+      }
     };
 
-    this.eventHelpers.addEvent(inputAddElement, 'focus', handler);
+    if (inputAddElement) {
+      this.eventHelpers.addEvent(inputAddElement, 'focus', handler);
+    }
   }
 
   /**
