@@ -135,10 +135,7 @@ export default class NoteModel {
     let listSearchNotes = [];
 
     if (inputValue.length) {
-      const listNotes = await fetchAPI.getByKey(
-        URL_API.NOTES_URL,
-        `?description_like=${inputValue}|title_like=${inputValue}`
-      );
+      const listNotes = await fetchAPI.getByKey(URL_API.NOTES_URL, `?description_like=${inputValue}|title_like=${inputValue}`);
       listSearchNotes = listNotes.filter((note) => !note.deletedAt);
     }
 
