@@ -154,16 +154,20 @@ export default class NoteController {
    *
    * @param {String} noteId is id of note is selected
    */
-  async deleteNote(noteId) {
+  async deleteNote(noteId: string) {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.deleteNote(noteId);
 
-      this.view.removeNoteElement(noteItem.id);
+      if (noteItem && noteItem.id) {
+        this.view.removeNoteElement(noteItem.id);
+      }
       this.view.showHideEmpty(this.model.listNotes, 'listNotes');
       this.loadingPage.removeLoading();
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
@@ -190,20 +194,24 @@ export default class NoteController {
    *
    * @param {String} id is a id of note
    */
-  async handleNoteForm(id) {
+  async handleNoteForm(id: string) {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.findNote(id);
 
       const handlers = {
-        handleEditNote: (note) => this.editNote(note),
-        handleDeleteNote: (noteId) => this.deleteNote(noteId),
+        handleEditNote: (note: Note) => this.editNote(note),
+        handleDeleteNote: (noteId: string) => this.deleteNote(noteId),
       };
 
-      // function render form note
-      this.view.renderFormNote(noteItem, handlers);
+      if (noteItem) {
+        // function render form note
+        this.view.renderFormNote(noteItem, handlers);
+      }
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 

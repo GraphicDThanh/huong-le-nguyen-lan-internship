@@ -326,7 +326,10 @@ export default class ListNoteView {
    */
   renderFormNote(
     note: Note,
-    handlers: { handleEditNote: () => void; handleDeleteNote: () => void }
+    handlers: {
+      handleEditNote: (note: Note) => void;
+      handleDeleteNote: (noteId: string) => void;
+    }
   ) {
     const noteItem = {
       id: note.id,
@@ -433,17 +436,20 @@ export default class ListNoteView {
    *
    * @param {function} deleteNoteTrash is function transmitted from model
    */
-  bindDeleteNoteInTrash(deleteNoteTrash) {
+  bindDeleteNoteInTrash(deleteNoteTrash: (id: string) => void) {
     const deleteTrash = selectDOMClass('.btn-submit-action');
-    const handler = (e) => {
+    const handler = (e: Event) => {
       e.stopPropagation();
-      const index = e.target.getAttribute('data-id');
-
-      deleteNoteTrash(index);
-      this.overlayWrapper.innerHTML = '';
+      const id = (e.target as HTMLElement).getAttribute('data-id');
+      if (id && this.overlayWrapper) {
+        deleteNoteTrash(id);
+        this.overlayWrapper.innerHTML = '';
+      }
     };
 
-    this.eventHelpers.addEvent(deleteTrash, 'click', handler);
+    if (deleteTrash) {
+      this.eventHelpers.addEvent(deleteTrash, 'click', handler);
+    }
   }
 
   /**
@@ -550,17 +556,20 @@ export default class ListNoteView {
    *
    * @param {function} deleteNote is function transmitted from model
    */
-  bindDeleteNoteForm(deleteNote) {
+  bindDeleteNoteForm(deleteNote: (id: string) => void) {
     const buttonDelete = selectDOMClass('.note-form-overlay .btn-delete-form');
-    const handler = (e) => {
+    const handler = (e: Event) => {
       e.stopPropagation();
-      const id = e.target.getAttribute('data-id');
-
-      deleteNote(id);
-      this.overlayWrapper.innerHTML = '';
+      const id = (e.target as HTMLElement).getAttribute('data-id');
+      if (id && this.overlayWrapper) {
+        deleteNote(id);
+        this.overlayWrapper.innerHTML = '';
+      }
     };
 
-    this.eventHelpers.addEvent(buttonDelete, 'click', handler);
+    if (buttonDelete) {
+      this.eventHelpers.addEvent(buttonDelete, 'click', handler);
+    }
   }
 
   /**
@@ -672,22 +681,28 @@ export default class ListNoteView {
    * @param {Object} noteElement is note element
    * @param {function} deleteNote is function delete transmitted from from the model
    */
-  bindDeleteNote(noteElement, deleteNote) {
+  bindDeleteNote(noteElement: HTMLElement, deleteNote: (id: string) => void) {
     const note = selectDOMById(`${noteElement.id}`);
     const headerAfterSelect = selectDOMClass('.header-after-select');
-    const iconDeleteElement = note.querySelectorAll('.note-btn .icon-delete');
-    const handler = (e) => {
+
+    const handler = (e: Event) => {
       e.stopPropagation();
-      const noteId = e.target.getAttribute('data-id');
+      const noteId = (e.target as HTMLElement).getAttribute('data-id');
 
-      deleteNote(noteId);
-      this.elementHelpers.removeSelected();
-      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+      if (noteId && headerAfterSelect) {
+        deleteNote(noteId);
+        this.elementHelpers.removeSelected();
+        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+      }
     };
-
-    iconDeleteElement.forEach((btn) => {
-      this.eventHelpers.addEvent(btn, 'click', handler);
-    });
+    if (note) {
+      const iconDeleteElement: NodeListOf<HTMLElement> = note.querySelectorAll(
+        '.note-btn .icon-delete'
+      );
+      iconDeleteElement.forEach((btn) => {
+        this.eventHelpers.addEvent(btn, 'click', handler);
+      });
+    }
   }
 
   /**

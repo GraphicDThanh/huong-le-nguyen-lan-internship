@@ -79,13 +79,15 @@ export default class NoteModel {
    *
    * @return {Object} noteItem
    */
-  async deleteNote(id) {
+  async deleteNote(id: string) {
     const date = new Date().toISOString().slice(0, 10);
     const noteItem = this.findNote(id);
 
-    noteItem.deletedAt = date;
-    await this.fetchAPI.putItem(id, noteItem, URL_API.NOTES_URL);
-    this.listNotes = this.listNotes.filter((note) => note.id !== id);
+    if (noteItem) {
+      noteItem.deletedAt = date;
+      await this.fetchAPI.putItem(id, noteItem, URL_API.NOTES_URL);
+      this.listNotes = this.listNotes.filter((note) => note.id !== id);
+    }
 
     return noteItem;
   }
@@ -95,11 +97,13 @@ export default class NoteModel {
    *
    * @param {String} id is id of note is selected
    */
-  async deleteNoteInTrash(id) {
+  async deleteNoteInTrash(id: string) {
     const noteItem = this.findNote(id);
 
-    await this.fetchAPI.deleteItem(noteItem.id, URL_API.NOTES_URL);
-    this.listNotes = this.listNotes.filter((note) => note.id !== id);
+    if (noteItem && noteItem.id) {
+      await this.fetchAPI.deleteItem(noteItem.id, URL_API.NOTES_URL);
+      this.listNotes = this.listNotes.filter((note) => note.id !== id);
+    }
   }
 
   /**
@@ -109,7 +113,7 @@ export default class NoteModel {
    *
    *  @returns {Object} noteItem
    */
-  findNote(id) {
+  findNote(id: string): Note | undefined {
     const noteItem = this.listNotes.find((note) => note.id === id);
 
     return noteItem;
