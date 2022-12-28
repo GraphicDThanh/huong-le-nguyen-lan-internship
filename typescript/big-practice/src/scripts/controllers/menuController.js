@@ -20,7 +20,7 @@ export default class MenuController {
     this.view.bindChangePage(
       () => this.noteController.renderTabs(),
       (tab) => this.headerController.headerView.changeLogoByTab(tab),
-      () => this.noteController.deleteListNotes()
+      () => this.noteController.deleteListNotes(),
     );
   }
 }

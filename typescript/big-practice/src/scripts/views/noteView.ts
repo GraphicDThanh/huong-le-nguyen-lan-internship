@@ -23,7 +23,9 @@ export default class NoteView {
     const noteElement = document.createElement('div');
     noteElement.classList.add('note');
     const note = this.noteItem;
-    noteElement.setAttribute('id', note.id);
+    if (note.id) {
+      noteElement.setAttribute('id', note.id);
+    }
 
     noteElement.innerHTML = `
       <label class="icon-check" data-id="${note.id}">

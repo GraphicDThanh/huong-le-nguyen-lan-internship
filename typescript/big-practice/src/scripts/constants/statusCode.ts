@@ -1,0 +1,8 @@
+const STATUS_CODE = {
+  STATUS_200: 200,
+  STATUS_400: 400,
+  STATUS_404: 404,
+  STATUS_500: 500,
+};
+
+export default STATUS_CODE;
