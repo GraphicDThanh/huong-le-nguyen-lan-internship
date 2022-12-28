@@ -1,6 +1,6 @@
 {
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "src/**/*.spec.ts", "src/example-nested"],
+  "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es2016",
     "experimentalDecorators": true,
