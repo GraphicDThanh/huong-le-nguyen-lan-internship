@@ -53,15 +53,15 @@
 - Login:
   - Form login validate email format and password
   - Form login also check email and password if they correct with user's data available or not
+- SignUp:
+  - User can create a new account
+- Logout:
+  - User can logout
 - Home:
   - User can add a new note
-  - User can see a list notes
   - User can update a note
   - User can move a note to trash
-  - User can select a list notes and move them to trash
-  - User can see a list notes trash
-  - User can delete a note with confirm message
-  - User can select a list notes and delete them with confirm message
+  - User can delete a note with confirming message
 
 ### Getting Started
 

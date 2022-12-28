@@ -1,4 +1,6 @@
 import URL_API from '../constants/apiUrl';
+import CustomError from './customError';
+import { statusError } from './handleError';
 
 export default class FetchAPI<T> {
   baseURL: string;
@@ -14,14 +16,19 @@ export default class FetchAPI<T> {
    *
    * @returns {Object} notes
    */
-  async getAllNotes(url: string): Promise<T[]> {
+  async getAllItems(url: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}`);
-      const notes: T[] = await response.json();
+      const items: T[] = await response.json();
+      const listItems = statusError(response, items);
 
-      return notes;
+      return listItems;
     } catch (error) {
-      throw new Error('Fail to get all notes');
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -33,14 +40,19 @@ export default class FetchAPI<T> {
    *
    * @returns {Object} notes
    */
-  async getByKey(url: string, key: string): Promise<T[]> {
+  async getItemByKey(url: string, key: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}${key}`);
-      const notes: T[] = await response.json();
+      const items: T[] = await response.json();
+      const listItems = statusError(response, items);
 
-      return notes;
+      return listItems;
     } catch (error) {
-      throw new Error('Fail to get note by key');
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -52,7 +64,7 @@ export default class FetchAPI<T> {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async postNote(note: T, url: string): Promise<T> {
+  async postItem(note: T, url: string): Promise<T> {
     try {
       const options = {
         method: 'POST',
@@ -61,11 +73,17 @@ export default class FetchAPI<T> {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}`, options);
+      const response = await fetch(`${this.baseURL}${url}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return await noteItem.json();
+      return item;
     } catch (error) {
-      throw new Error('Fail to post note');
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -75,7 +93,7 @@ export default class FetchAPI<T> {
    * @param {String} id is id of note
    * @param {String} url is endpoint
    */
-  async deleteNote(id: string, url: string): Promise<T> {
+  async deleteItem(id: string, url: string): Promise<T> {
     try {
       const options = {
         method: 'DELETE',
@@ -83,11 +101,17 @@ export default class FetchAPI<T> {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const response = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return await noteItem.json();
+      return item;
     } catch (error) {
-      throw new Error('Fail to delete note');
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
+      throw new Error('Fail to fetch');
     }
   }
 
@@ -100,7 +124,7 @@ export default class FetchAPI<T> {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async putNote(id: string, note: T, url: string): Promise<T> {
+  async putItem(id: string, note: T, url: string): Promise<T> {
     try {
       const options = {
         method: 'PATCH',
@@ -109,11 +133,17 @@ export default class FetchAPI<T> {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const response = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return await noteItem.json();
+      return item;
     } catch (error) {
-      throw new Error('Fail to put note');
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
+      throw new Error('Fail to fetch');
     }
   }
 }

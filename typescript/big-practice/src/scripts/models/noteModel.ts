@@ -30,11 +30,7 @@ export default class NoteModel {
       description: note.description,
       deletedAt: '',
     };
-
-    const noteItem = await this.fetchAPI.postNote(
-      patternNote,
-      URL_API.NOTES_URL
-    );
+    const noteItem = await this.fetchAPI.postNote(patternNote, URL_API.NOTES_URL);
     this.listNotes.push(noteItem);
 
     return noteItem;

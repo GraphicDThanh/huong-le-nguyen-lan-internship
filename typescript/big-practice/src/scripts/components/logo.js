@@ -7,11 +7,8 @@ const logoComponent = (tab: string) => {
 
   logoElement.innerHTML = `
     <figure class="icon-logo-cover">
-      ${
-        sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
-          ? `<img class="logo" src="${iconLogo}" alt="icon logo">`
-          : ''
-      } 
+      ${sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
+    ? `<img class="logo" src="${iconLogo}" alt="icon logo">` : ''} 
     </figure>
     <h1>${tab}</h1>
   `;
