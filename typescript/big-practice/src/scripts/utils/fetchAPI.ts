@@ -1,5 +1,6 @@
 import URL_API from '../constants/apiUrl';
-import CustomError from '../types/customError';
+import CustomError from './customError';
+import { statusError } from './handleError';
 
 export default class FetchAPI<T> {
   baseURL: string;
@@ -18,10 +19,15 @@ export default class FetchAPI<T> {
   async getAllItems(url: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}`);
-      const notes: T[] = await response.json();
+      const items: T[] = await response.json();
+      const listItems = statusError(response, items);
 
-      return notes;
+      return listItems;
     } catch (error) {
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
       throw new Error('Fail to fetch');
     }
   }
@@ -37,10 +43,15 @@ export default class FetchAPI<T> {
   async getItemByKey(url: string, key: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}${key}`);
-      const notes: T[] = await response.json();
+      const items: T[] = await response.json();
+      const listItems = statusError(response, items);
 
-      return notes;
+      return listItems;
     } catch (error) {
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
       throw new Error('Fail to fetch');
     }
   }
@@ -62,10 +73,16 @@ export default class FetchAPI<T> {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}`, options);
+      const response = await fetch(`${this.baseURL}${url}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return await noteItem.json();
+      return item;
     } catch (error) {
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
       throw new Error('Fail to fetch');
     }
   }
@@ -84,10 +101,16 @@ export default class FetchAPI<T> {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const response = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return await noteItem.json();
+      return item;
     } catch (error) {
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
       throw new Error('Fail to fetch');
     }
   }
@@ -110,10 +133,16 @@ export default class FetchAPI<T> {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const response = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return await noteItem.json();
+      return item;
     } catch (error) {
+      if (error instanceof CustomError) {
+        throw Object.assign(error);
+      }
+
       throw new Error('Fail to fetch');
     }
   }

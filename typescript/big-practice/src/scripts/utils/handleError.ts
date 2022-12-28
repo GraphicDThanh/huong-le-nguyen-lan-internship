@@ -3,6 +3,8 @@ import EventHelpers from '../helpers/eventHelpers';
 import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
+import STATUS_CODE from '../constants/statusCode';
+import CodeError from './customError';
 
 const elementHelpers = new ElementHelpers();
 /**
@@ -80,4 +82,38 @@ const renderPopupError = (errorMessage: string) => {
   }
 };
 
-export { hideError, showError, renderPopupError };
+/**
+ * @description function custom error based on status code from
+ * response and item if this status is success
+ *
+ * @param {Object} response is response received after call api
+ * @param {Object} items is data received after call api
+ * @returns
+ */
+const statusError = <T>(response: Response, items: T) => {
+  switch (response.status) {
+    case STATUS_CODE.STATUS_200:
+      return items;
+    case STATUS_CODE.STATUS_400:
+      throw Object.assign(
+        new CodeError(`${response.status} Bad Request`, response.status)
+      );
+    case STATUS_CODE.STATUS_404:
+      throw Object.assign(
+        new CodeError(`${response.status} Page Not Found`, response.status)
+      );
+    case STATUS_CODE.STATUS_500:
+      throw Object.assign(
+        new CodeError(
+          `${response.status} Internal Server Error`,
+          response.status
+        )
+      );
+    default:
+      throw Object.assign(
+        new CodeError(`${response.status} Fail to fetch`, response.status)
+      );
+  }
+};
+
+export { hideError, showError, renderPopupError, statusError };
