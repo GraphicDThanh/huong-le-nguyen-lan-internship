@@ -136,21 +136,20 @@ export default class ListNoteView {
       '.trash-wrapper .list-notes-empty-content'
     );
 
-    if (
-      (listNotesEmpty && listNoteElement) ||
-      (listTrashEmpty && listTrashElement)
-    ) {
-      switch (type) {
-        case 'listNotes':
+    switch (type) {
+      case 'listNotes':
+        if (listNotesEmpty && listNoteElement) {
           this.commonEmptyList(list, listNotesEmpty, listNoteElement);
-          break;
-        case 'trashNotes':
+        }
+        break;
+      case 'trashNotes':
+        if (listTrashEmpty && listTrashElement) {
           this.commonEmptyList(list, listTrashEmpty, listTrashElement);
-          break;
-        default:
-          renderPopupError('Please enter listNotes or trashNotes');
-          break;
-      }
+        }
+        break;
+      default:
+        renderPopupError('Please enter listNotes or trashNotes');
+        break;
     }
   }
 
@@ -162,7 +161,11 @@ export default class ListNoteView {
    * @param {Object} listEmpty is element has message empty list
    * @param {Object} listElement is element has list of note or trash
    */
-  commonEmptyList(list, listEmpty, listElement) {
+  commonEmptyList(
+    list: Note[],
+    listEmpty: HTMLElement,
+    listElement: HTMLElement
+  ) {
     if (!list.length) {
       this.elementHelpers.showHideElements(listEmpty, listElement, 'hide');
     } else {
