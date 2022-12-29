@@ -1,4 +1,4 @@
-import FetchAPI from '../utils/fetchAPI';
+import fetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
 
 /**
@@ -7,7 +7,6 @@ import URL_API from '../constants/apiUrl';
  */
 export default class NoteModel {
   constructor() {
-    this.fetchAPI = new FetchAPI();
     this.listNotes = [];
   }
 
@@ -25,7 +24,8 @@ export default class NoteModel {
       description: note.description,
       deletedAt: '',
     };
-    const noteItem = await this.fetchAPI.postNote(patternNote, URL_API.NOTES_URL);
+
+    const noteItem = await fetchAPI.postNote(patternNote, URL_API.NOTES_URL);
     this.listNotes.push(noteItem);
 
     return noteItem;
@@ -42,8 +42,7 @@ export default class NoteModel {
    * @returns {Array} listNotes after filter
    */
   async filterNotes(type) {
-    const allNotes = await this.fetchAPI.getAllNotes(URL_API.NOTES_URL);
-
+    const allNotes = await fetchAPI.getAllNotes(URL_API.NOTES_URL);
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (type) {
       case 'listNotes': {
@@ -76,7 +75,7 @@ export default class NoteModel {
     const noteItem = this.findNote(id);
 
     noteItem.deletedAt = date;
-    await this.fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
+    await fetchAPI.putNote(id, noteItem, URL_API.NOTES_URL);
     this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
     return noteItem;
@@ -90,7 +89,7 @@ export default class NoteModel {
   async deleteNoteInTrash(id) {
     const noteItem = this.findNote(id);
 
-    await this.fetchAPI.deleteNote(noteItem.id, URL_API.NOTES_URL);
+    await fetchAPI.deleteNote(noteItem.id, URL_API.NOTES_URL);
     this.listNotes = this.listNotes.filter((note) => note.id !== id);
   }
 
@@ -119,11 +118,7 @@ export default class NoteModel {
     noteItem.title = note.title;
     noteItem.description = note.description;
 
-    noteItem = await this.fetchAPI.putNote(
-      note.id,
-      noteItem,
-      URL_API.NOTES_URL
-    );
+    noteItem = await fetchAPI.putNote(note.id, noteItem, URL_API.NOTES_URL);
 
     return noteItem;
   }
@@ -140,10 +135,7 @@ export default class NoteModel {
     let listSearchNotes = [];
 
     if (inputValue.length) {
-      const listNotes = await this.fetchAPI.getByKey(
-        URL_API.NOTES_URL,
-        `?description_like=${inputValue}|title_like=${inputValue}`
-      );
+      const listNotes = await fetchAPI.getByKey(URL_API.NOTES_URL, `?description_like=${inputValue}|title_like=${inputValue}`);
       listSearchNotes = listNotes.filter((note) => !note.deletedAt);
     }
 
