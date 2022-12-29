@@ -37,18 +37,18 @@ export default class NoteModel {
 
   /**
    * @description function filter list notes or trash notes with
-   * type is listNotes or trashNote. that we can use this function
+   * tab is listNotes or trashNote. that we can use this function
    * to two tabs is notes and trash
    *
-   * @param {String} type is listNotes or trashNote to distinguishing
+   * @param {String} tab is listNotes or trashNote to distinguishing
    * function use for
    *
    * @returns {Array} listNotes after filter
    */
-  async filterNotes(type) {
+  async filterNotes(tab) {
     const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
     // This condition filter that we can use this function for trashNotes and listNotes
-    switch (type) {
+    switch (tab) {
       case 'listNotes': {
         this.listNotes = allNotes.filter((note) => !note.deletedAt);
         break;
