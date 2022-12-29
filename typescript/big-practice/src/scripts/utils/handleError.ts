@@ -4,7 +4,7 @@ import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
 import STATUS_CODE from '../constants/statusCode';
-import CodeError from './customError';
+import CustomError from './customError';
 
 const elementHelpers = new ElementHelpers();
 /**
@@ -96,32 +96,47 @@ const statusError = <T>(response: Response, items: T) => {
       return items;
     case STATUS_CODE.STATUS_400:
       throw Object.assign(
-        new CodeError(`${response.status} Bad Request`, response.status)
+        new CustomError(`${response.status} Bad Request`, response.status)
       );
     case STATUS_CODE.STATUS_401:
       throw Object.assign(
-        new CodeError(`${response.status} Unauthorized`, response.status)
+        new CustomError(`${response.status} Unauthorized`, response.status)
       );
     case STATUS_CODE.STATUS_404:
       throw Object.assign(
-        new CodeError(`${response.status} Page Not Found`, response.status)
+        new CustomError(`${response.status} Page Not Found`, response.status)
       );
     case STATUS_CODE.STATUS_500:
       throw Object.assign(
-        new CodeError(
+        new CustomError(
           `${response.status} Internal Server Error`,
           response.status
         )
       );
     case STATUS_CODE.STATUS_503:
       throw Object.assign(
-        new CodeError(`${response.status} Service Unavailable`, response.status)
+        new CustomError(
+          `${response.status} Service Unavailable`,
+          response.status
+        )
       );
     default:
       throw Object.assign(
-        new CodeError(`${response.status} Fail to fetch`, response.status)
+        new CustomError(`${response.status} Fail to fetch`, response.status)
       );
   }
 };
 
-export { hideError, showError, renderPopupError, statusError };
+const checkCustomError = (error: unknown) => {
+  if (error instanceof CustomError) {
+    throw Object.assign(error);
+  }
+};
+
+export {
+  hideError,
+  showError,
+  renderPopupError,
+  statusError,
+  checkCustomError,
+};
