@@ -29,15 +29,19 @@ export default class NoteView {
         <div class="note-content" data-id="${note.id}">
           <p class="note-title">${note.title}</p>
           <p class="note-description">${note.description}</p>
-          <p class="note-empty ${(!note.title && !note.description) ? '' : 'hide'}">Empty note</p>
+          <p class="note-empty ${
+            !note.title && !note.description ? '' : 'hide'
+          }">Empty note</p>
         </div>
         <div class="note-utilities" data-id="${note.id}">
           <div class="note-btn">
-            ${type === 'trashNotes'
-    ? `<button class="btn btn-delete" type="button" data-id="${note.id}">Delete</button>`
-    : `<figure class="item-utilities icon-delete" data-id="${note.id}">
+            ${
+              type === 'trashNotes'
+                ? `<button class="btn btn-delete" type="button" data-id="${note.id}">Delete</button>`
+                : `<figure class="item-utilities icon-delete" data-id="${note.id}">
               <img src="${iconColorTrash}" alt="icon trash" data-id="${note.id}">
-            </figure>`}
+            </figure>`
+            }
             
           </div>
         </div>`;
