@@ -29,7 +29,7 @@ export default class NoteController {
   deleteListNotes() {
     this.view.bindDeleteListNotes(
       (noteId) => this.deleteNote(noteId),
-      (noteSelected) => this.deleteNotesTrash(noteSelected),
+      (noteSelected) => this.deleteNotesTrash(noteSelected)
     );
   }
 
@@ -48,7 +48,9 @@ export default class NoteController {
       this.loadingPage.addLoading();
       const listTrash = await this.model.filterNotes('trashNotes');
       // function render trash notes
-      this.view.renderListTrashNotes(listTrash, (noteId) => this.handleConfirmPopup(noteId));
+      this.view.renderListTrashNotes(listTrash, (noteId) =>
+        this.handleConfirmPopup(noteId)
+      );
 
       // function show Empty Note if note is empty
       this.view.showHideEmpty(listTrash, 'trashNotes');

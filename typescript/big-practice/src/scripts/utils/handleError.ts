@@ -52,7 +52,9 @@ const renderPopupError = (errorMessage) => {
   const handler = () => {
     overlayWrapper.innerHTML = '';
   };
-  overlayWrapper.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
+  overlayWrapper.appendChild(
+    renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`)
+  );
 
   const btnClose = selectDOMClass('.btn-close-popup');
   const eventHelpers = new EventHelpers();
