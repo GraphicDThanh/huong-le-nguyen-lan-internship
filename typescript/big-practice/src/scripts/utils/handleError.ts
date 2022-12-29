@@ -92,11 +92,15 @@ const renderPopupError = (errorMessage: string) => {
  */
 const statusError = <T>(response: Response, items: T) => {
   switch (response.status) {
-    case STATUS_CODE.STATUS_200:
+    case STATUS_CODE.STATUS_200 || STATUS_CODE.STATUS_201:
       return items;
     case STATUS_CODE.STATUS_400:
       throw Object.assign(
         new CodeError(`${response.status} Bad Request`, response.status)
+      );
+    case STATUS_CODE.STATUS_401:
+      throw Object.assign(
+        new CodeError(`${response.status} Unauthorized`, response.status)
       );
     case STATUS_CODE.STATUS_404:
       throw Object.assign(
@@ -108,6 +112,10 @@ const statusError = <T>(response: Response, items: T) => {
           `${response.status} Internal Server Error`,
           response.status
         )
+      );
+    case STATUS_CODE.STATUS_503:
+      throw Object.assign(
+        new CodeError(`${response.status} Service Unavailable`, response.status)
       );
     default:
       throw Object.assign(
