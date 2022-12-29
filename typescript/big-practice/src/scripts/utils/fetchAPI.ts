@@ -1,7 +1,12 @@
 import URL_API from '../constants/apiUrl';
+import { checkCustomError, statusError } from './handleError';
 
-const fetchAPI = {
-  baseURL: `${URL_API.BASE_URL}`,
+export default class FetchAPI<T> {
+  baseURL: string;
+
+  constructor() {
+    this.baseURL = `${URL_API.BASE_URL}`;
+  }
 
   /**
    * @description function get all notes
@@ -10,17 +15,19 @@ const fetchAPI = {
    *
    * @returns {Object} notes
    */
-  async getAllNotes(url) {
+  async getAllItems(url: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}`);
-      const notes = await response.json();
+      const items: T[] = await response.json();
+      const listItems = statusError(response, items);
 
-      return notes;
+      return listItems;
     } catch (error) {
-      console.log(error);
-      return error;
+      checkCustomError(error);
+
+      throw new Error('Fail to fetch');
     }
-  },
+  }
 
   /**
    * @description function find notes by key
@@ -30,17 +37,19 @@ const fetchAPI = {
    *
    * @returns {Object} notes
    */
-  async getByKey(url, key) {
+  async getItemByKey(url: string, key: string): Promise<T[]> {
     try {
       const response = await fetch(`${this.baseURL}${url}${key}`);
-      const notes = await response.json();
+      const items: T[] = await response.json();
+      const listItems = statusError(response, items);
 
-      return notes;
+      return listItems;
     } catch (error) {
-      console.log(error);
-      return error;
+      checkCustomError(error);
+
+      throw new Error('Fail to fetch');
     }
-  },
+  }
 
   /**
    * @description function add new note to api
@@ -50,7 +59,7 @@ const fetchAPI = {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async postNote(note, url) {
+  async postItem(note: T, url: string): Promise<T> {
     try {
       const options = {
         method: 'POST',
@@ -59,14 +68,17 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}`, options);
+      const response = await fetch(`${this.baseURL}${url}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return noteItem.json();
+      return item;
     } catch (error) {
-      console.log(error);
-      return error;
+      checkCustomError(error);
+
+      throw new Error('Fail to fetch');
     }
-  },
+  }
 
   /**
    * @description function delete note in api
@@ -74,7 +86,7 @@ const fetchAPI = {
    * @param {String} id is id of note
    * @param {String} url is endpoint
    */
-  async deleteNote(id, url) {
+  async deleteItem(id: string, url: string): Promise<T> {
     try {
       const options = {
         method: 'DELETE',
@@ -82,14 +94,17 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const response = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return noteItem;
+      return item;
     } catch (error) {
-      console.log(error);
-      return error;
+      checkCustomError(error);
+
+      throw new Error('Fail to fetch');
     }
-  },
+  }
 
   /**
    * @description function update note with id
@@ -100,7 +115,7 @@ const fetchAPI = {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async putNote(id, note, url) {
+  async putItem(id: string, note: T, url: string): Promise<T> {
     try {
       const options = {
         method: 'PATCH',
@@ -109,14 +124,15 @@ const fetchAPI = {
           'Content-Type': 'application/json',
         },
       };
-      const noteItem = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const response = await fetch(`${this.baseURL}${url}/${id}`, options);
+      const items: T = await response.json();
+      const item = statusError(response, items);
 
-      return noteItem.json();
+      return item;
     } catch (error) {
-      console.log(error);
-      return error;
-    }
-  },
-};
+      checkCustomError(error);
 
-export default fetchAPI;
+      throw new Error('Fail to fetch');
+    }
+  }
+}

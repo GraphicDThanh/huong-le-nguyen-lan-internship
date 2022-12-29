@@ -3,6 +3,8 @@ import EventHelpers from '../helpers/eventHelpers';
 import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
+import STATUS_CODE from '../constants/statusCode';
+import CustomError from './customError';
 
 const elementHelpers = new ElementHelpers();
 /**
@@ -12,14 +14,20 @@ const elementHelpers = new ElementHelpers();
  * @param {Object} element of input you want to hide message
  * @param {Object} label is label of input
  */
-const hideError = (element, label) => {
-  const error = element.parentElement.querySelector('.message .message-error');
-  const errorIcon = element.parentElement.querySelector('.message .error-icon');
+const hideError = (element: HTMLElement, label: HTMLElement) => {
+  const error = element.parentElement?.querySelector<HTMLElement>(
+    '.message .message-error'
+  );
+  const errorIcon = element.parentElement?.querySelector<HTMLElement>(
+    '.message .error-icon'
+  );
 
-  error.innerText = '';
-  elementHelpers.addClass(errorIcon, 'hide');
-  elementHelpers.removeClass(label, 'error');
-  elementHelpers.removeClass(element, 'valid');
+  if (error && errorIcon) {
+    error.innerText = '';
+    elementHelpers.addClass(errorIcon, 'hide');
+    elementHelpers.removeClass(label, 'error');
+    elementHelpers.removeClass(element, 'valid');
+  }
 };
 
 /**
@@ -31,14 +39,22 @@ const hideError = (element, label) => {
  * @param {String} message is message error of field
  * @param {Object} label is label of input
  */
-const showError = (element, message, label) => {
-  const error = element.parentElement.querySelector('.message .message-error');
-  const errorIcon = element.parentElement.querySelector('.message .error-icon');
+const showError = (
+  element: HTMLElement,
+  message: string,
+  label: HTMLElement
+) => {
+  const error = element.parentElement?.querySelector('.message .message-error');
+  const errorIcon = element.parentElement?.querySelector<HTMLElement>(
+    '.message .error-icon'
+  );
 
-  error.textContent = message;
-  elementHelpers.removeClass(errorIcon, 'hide');
-  elementHelpers.addClass(element, 'valid');
-  elementHelpers.addClass(label, 'error');
+  if (error && errorIcon) {
+    error.textContent = message;
+    elementHelpers.removeClass(errorIcon, 'hide');
+    elementHelpers.addClass(element, 'valid');
+    elementHelpers.addClass(label, 'error');
+  }
 };
 
 /**
@@ -47,16 +63,85 @@ const showError = (element, message, label) => {
  *
  * @param {String} errorMessage is message error
  */
-const renderPopupError = (errorMessage) => {
+const renderPopupError = (errorMessage: string) => {
   const overlayWrapper = selectDOMClass('.overlay-wrapper');
-  const handler = () => {
-    overlayWrapper.innerHTML = '';
-  };
-  overlayWrapper.appendChild(renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`));
-
-  const btnClose = selectDOMClass('.btn-close-popup');
   const eventHelpers = new EventHelpers();
-  eventHelpers.addEvent(btnClose, 'click', handler);
+
+  if (overlayWrapper) {
+    const handler = () => {
+      overlayWrapper.innerHTML = '';
+    };
+    overlayWrapper.appendChild(
+      renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`)
+    );
+
+    const btnClose = selectDOMClass('.btn-close-popup');
+    if (btnClose) {
+      eventHelpers.addEvent(btnClose, 'click', handler);
+    }
+  }
 };
 
-export { hideError, showError, renderPopupError };
+/**
+ * @description function custom error based on status code from
+ * response and item if this status is success
+ *
+ * @param {Object} response is response received after call api
+ * @param {Object} items is data received after call api
+ * @returns
+ */
+const statusError = <T>(response: Response, items: T) => {
+  switch (response.status) {
+    case STATUS_CODE.OK:
+    case STATUS_CODE.CREATED:
+      return items;
+    case STATUS_CODE.BAD_REQUEST:
+      throw Object.assign(
+        new CustomError(`${response.status} Bad Request`, response.status)
+      );
+    case STATUS_CODE.UNAUTHORIZED:
+      throw Object.assign(
+        new CustomError(`${response.status} Unauthorized`, response.status)
+      );
+    case STATUS_CODE.FORBIDDEN:
+      throw Object.assign(
+        new CustomError(`${response.status} Forbidden`, response.status)
+      );
+    case STATUS_CODE.NOT_FOUND:
+      throw Object.assign(
+        new CustomError(`${response.status} Page Not Found`, response.status)
+      );
+    case STATUS_CODE.INTERNAL_SERVER_ERROR:
+      throw Object.assign(
+        new CustomError(
+          `${response.status} Internal Server Error`,
+          response.status
+        )
+      );
+    case STATUS_CODE.SERVER_UNAVAILABLE:
+      throw Object.assign(
+        new CustomError(
+          `${response.status} Service Unavailable`,
+          response.status
+        )
+      );
+    default:
+      throw Object.assign(
+        new CustomError(`${response.status} Fail to fetch`, response.status)
+      );
+  }
+};
+
+const checkCustomError = (error: unknown) => {
+  if (error instanceof CustomError) {
+    throw Object.assign(error);
+  }
+};
+
+export {
+  hideError,
+  showError,
+  renderPopupError,
+  statusError,
+  checkCustomError,
+};
