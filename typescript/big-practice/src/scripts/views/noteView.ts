@@ -19,7 +19,7 @@ export default class NoteView {
    *
    * @returns {Object} noteElement is a element note
    */
-  renderNote(type: string) {
+  renderNote(tab: string) {
     const noteElement = document.createElement('div');
     noteElement.classList.add('note');
     const note = this.noteItem;
@@ -41,7 +41,7 @@ export default class NoteView {
         <div class="note-utilities" data-id="${note.id}">
           <div class="note-btn">
             ${
-              type === 'trashNotes'
+              tab === 'trashNotes'
                 ? `<button class="btn btn-delete" type="button" data-id="${note.id}">Delete</button>`
                 : `<figure class="item-utilities icon-delete" data-id="${note.id}">
               <img src="${iconColorTrash}" alt="icon trash" data-id="${note.id}">
