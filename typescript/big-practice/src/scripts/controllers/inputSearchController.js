@@ -13,8 +13,8 @@ export default class InputSearchController {
     this.inputSearchView.clearSearch(() => this.noteController.renderTabs());
 
     // function search note by value of input
-    this.inputSearchView.bindSearchNotes(
-      (inputValue) => this.noteController.searchNote(inputValue),
+    this.inputSearchView.bindSearchNotes((inputValue) =>
+      this.noteController.searchNote(inputValue)
     );
 
     // function show hide icon close in input search
