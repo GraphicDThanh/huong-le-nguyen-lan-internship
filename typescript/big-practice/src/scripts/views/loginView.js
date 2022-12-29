@@ -53,14 +53,25 @@ export default class LoginView {
       if (password === user.password) {
         hideError(this.passwordElement, this.labelPassword);
       } else {
-        showError(this.passwordElement, ERROR_MESSAGE.PASSWORD_INCORRECT, this.labelPassword);
+        showError(
+          this.passwordElement,
+          ERROR_MESSAGE.PASSWORD_INCORRECT,
+          this.labelPassword
+        );
       }
     } else {
-      showError(this.emailElement, ERROR_MESSAGE.EMAIL_NOT_EXISTS, this.labelEmail);
+      showError(
+        this.emailElement,
+        ERROR_MESSAGE.EMAIL_NOT_EXISTS,
+        this.labelEmail
+      );
       hideError(this.passwordElement, this.labelPassword);
     }
 
-    if (!this.emailElement.classList.contains('valid') && !this.passwordElement.classList.contains('valid')) {
+    if (
+      !this.emailElement.classList.contains('valid') &&
+      !this.passwordElement.classList.contains('valid')
+    ) {
       this.localStorage.setItems(STORAGE_KEYS.IS_LOGIN, true);
       navigatePage('home.html');
     }
@@ -83,7 +94,8 @@ export default class LoginView {
    */
   showHideInputError(element) {
     const handler = () => {
-      const message = element.parentNode.querySelector('.message-error').textContent;
+      const message =
+        element.parentNode.querySelector('.message-error').textContent;
       const ev = element;
 
       if (message) {

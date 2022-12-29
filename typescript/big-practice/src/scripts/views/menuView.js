@@ -43,7 +43,10 @@ export default class MenuView {
       if (e.target.hasAttribute('data-id')) {
         const logoName = e.target.querySelector('span').textContent;
         this.elementHelpers.removeMenuActive();
-        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, e.target.getAttribute('data-id'));
+        sessionStorage.setItem(
+          STORAGE_KEYS.PAGE_NUMBER,
+          e.target.getAttribute('data-id')
+        );
         this.elementHelpers.showMenuActive();
 
         renderTabs();
