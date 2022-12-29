@@ -92,28 +92,33 @@ const renderPopupError = (errorMessage: string) => {
  */
 const statusError = <T>(response: Response, items: T) => {
   switch (response.status) {
-    case STATUS_CODE.STATUS_200 || STATUS_CODE.STATUS_201:
+    case STATUS_CODE.OK:
+    case STATUS_CODE.CREATED:
       return items;
-    case STATUS_CODE.STATUS_400:
+    case STATUS_CODE.BAD_REQUEST:
       throw Object.assign(
         new CustomError(`${response.status} Bad Request`, response.status)
       );
-    case STATUS_CODE.STATUS_401:
+    case STATUS_CODE.UNAUTHORIZED:
       throw Object.assign(
         new CustomError(`${response.status} Unauthorized`, response.status)
       );
-    case STATUS_CODE.STATUS_404:
+    case STATUS_CODE.FORBIDDEN:
+      throw Object.assign(
+        new CustomError(`${response.status} Forbidden`, response.status)
+      );
+    case STATUS_CODE.NOT_FOUND:
       throw Object.assign(
         new CustomError(`${response.status} Page Not Found`, response.status)
       );
-    case STATUS_CODE.STATUS_500:
+    case STATUS_CODE.INTERNAL_SERVER_ERROR:
       throw Object.assign(
         new CustomError(
           `${response.status} Internal Server Error`,
           response.status
         )
       );
-    case STATUS_CODE.STATUS_503:
+    case STATUS_CODE.SERVER_UNAVAILABLE:
       throw Object.assign(
         new CustomError(
           `${response.status} Service Unavailable`,
