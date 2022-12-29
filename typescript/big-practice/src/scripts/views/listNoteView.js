@@ -70,12 +70,12 @@ export default class ListNoteView {
     const { renderTabNotes, renderTabTrash, addNote } = handlers;
 
     const trashNotes = {
-      type: 'trashNotes',
+      tab: 'trashNotes',
       message: 'No notes in Trash',
     };
 
     const listNotes = {
-      type: 'listNotes',
+      tab: 'listNotes',
       message: 'Notes you add appear here',
     };
 
@@ -100,12 +100,12 @@ export default class ListNoteView {
 
   /**
    * @description function show empty note if the list is empty
-   * with the type of listNotes or trashNotes
+   * with the tab of listNotes or trashNotes
    *
    * @param {Array} list is a list of note or list of trash note
-   * @param {String} type is a type if we need to use in listNotes or trashNotes
+   * @param {String} tab is a tab if we need to use in listNotes or trashNotes
    */
-  showHideEmpty(list, type) {
+  showHideEmpty(list, tab) {
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
     const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
     const listTrashElement = selectDOMClass('.trash-wrapper .list-notes');
@@ -117,7 +117,7 @@ export default class ListNoteView {
       (listNotesEmpty && listNoteElement) ||
       (listTrashEmpty && listTrashElement)
     ) {
-      switch (type) {
+      switch (tab) {
         case 'listNotes':
           this.commonEmptyList(list, listNotesEmpty, listNoteElement);
           break;
