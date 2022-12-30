@@ -31,15 +31,6 @@ export default class NoteController {
   bindEvents() {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
-
-    this.deleteListNotes();
-  }
-
-  deleteListNotes() {
-    this.view.bindDeleteListNotes(
-      (noteId) => this.deleteNote(noteId),
-      (noteSelected) => this.deleteNotesTrash(noteSelected)
-    );
   }
 
   renderTabs() {

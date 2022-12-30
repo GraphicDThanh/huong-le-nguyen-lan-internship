@@ -1,6 +1,5 @@
 import URL_API from '../constants/apiUrl';
-import CustomError from './customError';
-import { statusError } from './handleError';
+import { checkCustomError, statusError } from './handleError';
 
 export default class FetchAPI<T> {
   baseURL: string;
@@ -24,9 +23,7 @@ export default class FetchAPI<T> {
 
       return listItems;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw Object.assign(error);
-      }
+      checkCustomError(error);
 
       throw new Error('Fail to fetch');
     }
@@ -48,9 +45,7 @@ export default class FetchAPI<T> {
 
       return listItems;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw Object.assign(error);
-      }
+      checkCustomError(error);
 
       throw new Error('Fail to fetch');
     }
@@ -79,9 +74,7 @@ export default class FetchAPI<T> {
 
       return item;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw Object.assign(error);
-      }
+      checkCustomError(error);
 
       throw new Error('Fail to fetch');
     }
@@ -107,9 +100,7 @@ export default class FetchAPI<T> {
 
       return item;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw Object.assign(error);
-      }
+      checkCustomError(error);
 
       throw new Error('Fail to fetch');
     }
@@ -139,9 +130,7 @@ export default class FetchAPI<T> {
 
       return item;
     } catch (error) {
-      if (error instanceof CustomError) {
-        throw Object.assign(error);
-      }
+      checkCustomError(error);
 
       throw new Error('Fail to fetch');
     }

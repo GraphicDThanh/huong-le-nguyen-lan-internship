@@ -21,10 +21,17 @@ const loginView = new LoginView();
 const inputSearchView = new InputSearchView();
 
 const noteController = new NoteController(noteModel, listNoteView);
-const inputSearchController = new InputSearchController(inputSearchView, noteController);
+const inputSearchController = new InputSearchController(
+  inputSearchView,
+  noteController
+);
 const headerController = new HeaderController(headerView);
 const authenController = new AuthenController(loginView);
-const menuController = new MenuController(menuView, noteController, headerController);
+const menuController = new MenuController(
+  menuView,
+  noteController,
+  headerController
+);
 
 (() => {
   const localStorage = new LocalStorage();

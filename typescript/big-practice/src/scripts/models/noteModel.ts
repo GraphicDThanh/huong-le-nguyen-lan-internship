@@ -41,19 +41,19 @@ export default class NoteModel {
 
   /**
    * @description function filter list notes or trash notes with
-   * type is listNotes or trashNote. that we can use this function
+   * tab is listNotes or trashNote. that we can use this function
    * to two tabs is notes and trash
    *
-   * @param {String} type is listNotes or trashNote to distinguishing
+   * @param {String} tab is listNotes or trashNote to distinguishing
    * function use for
    *
    * @returns {Array} listNotes after filter
    */
-  async filterNotes(type: string) {
+  async filterNotes(tab: string) {
     const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
 
     // This condition filter that we can use this function for trashNotes and listNotes
-    switch (type) {
+    switch (tab) {
       case 'listNotes': {
         this.listNotes = allNotes.filter((note) => !note.deletedAt);
         break;
@@ -138,27 +138,5 @@ export default class NoteModel {
     );
 
     return noteItem;
-  }
-
-  /**
-   * @description function find note if the note contains characters
-   * that match the entered characters
-   *
-   * @param {String} inputValue is value of input entered
-   *
-   * @returns {Array} listSearchNotes after filter if note includes
-   */
-  async searchNote(inputValue) {
-    let listSearchNotes = [];
-
-    if (inputValue.length) {
-      const listNotes = await this.fetchAPI.getByKey(
-        URL_API.NOTES_URL,
-        `?description_like=${inputValue}|title_like=${inputValue}`
-      );
-      listSearchNotes = listNotes.filter((note) => !note.deletedAt);
-    }
-
-    return listSearchNotes;
   }
 }

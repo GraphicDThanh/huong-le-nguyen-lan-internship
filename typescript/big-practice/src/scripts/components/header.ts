@@ -7,11 +7,13 @@ const buttonBulkActionsComponent = () => {
   headerBulkActions.classList.add('header-utilities');
 
   headerBulkActions.innerHTML = `
-    ${sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
-    ? `<figure class="item-utilities btn-delete-bulk-actions">
+    ${
+      sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
+        ? `<figure class="item-utilities btn-delete-bulk-actions">
             <img src="${iconTrash}" alt="icon trash">
           </figure>`
-    : '<button type="button" class="btn btn-delete-bulk-actions">Delete</button>'}
+        : '<button type="button" class="btn btn-delete-bulk-actions">Delete</button>'
+    }
   `;
 
   return headerBulkActions;
