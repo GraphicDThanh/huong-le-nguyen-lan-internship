@@ -1,5 +1,19 @@
+import MenuView from '../views/menuView';
+import HeaderController from './headerController';
+import NoteController from './noteController';
+
 export default class MenuController {
-  constructor(view, noteController, headerController) {
+  view: MenuView;
+
+  noteController: NoteController;
+
+  headerController: HeaderController;
+
+  constructor(
+    view: MenuView,
+    noteController: NoteController,
+    headerController: HeaderController
+  ) {
     this.view = view;
     this.noteController = noteController;
     this.headerController = headerController;

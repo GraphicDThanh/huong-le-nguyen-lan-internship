@@ -5,6 +5,14 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import EventHelpers from '../helpers/eventHelpers';
 
 export default class MenuView {
+  elementHelpers: ElementHelpers;
+
+  eventHelpers: EventHelpers;
+
+  mainWrapper: HTMLElement | null;
+
+  sectionWrapper: HTMLElement | null;
+
   constructor() {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
@@ -16,7 +24,9 @@ export default class MenuView {
    * @description render menu in the left
    */
   renderMenu() {
-    this.mainWrapper.insertBefore(menuComponent(), this.sectionWrapper);
+    if (this.mainWrapper) {
+      this.mainWrapper.insertBefore(menuComponent(), this.sectionWrapper);
+    }
   }
 
   /**
@@ -27,39 +37,52 @@ export default class MenuView {
    * @param {function} changeLogoFollowTab is function transmitted in controller
    * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  bindChangePage(renderTabs, changeLogoFollowTab) {
+  bindChangePage(
+    renderTabs: () => void,
+    changeLogoFollowTab: (tab: string) => void
+  ) {
     const menu = selectDOMClassAll('.nav li');
 
     renderTabs();
     this.elementHelpers.showMenuActive();
-    const handler = (e) => {
-      const searchInput = selectDOMClass('.search');
+    const handler = (e: Event) => {
+      const searchInput = selectDOMClass('.search') as HTMLInputElement;
       const iconClose = selectDOMClass('.icon-close');
-      if (searchInput.value) {
+      if (searchInput && searchInput.value) {
         searchInput.value = '';
       }
 
-      if (e.target.hasAttribute('data-id')) {
-        const logoName = e.target.querySelector('span').textContent;
+      if ((e.target as HTMLElement).hasAttribute('data-id')) {
+        const logoName = (e.target as HTMLElement).querySelector(
+          'span'
+        )?.textContent;
+
         this.elementHelpers.removeMenuActive();
-        sessionStorage.setItem(
-          STORAGE_KEYS.PAGE_NUMBER,
-          e.target.getAttribute('data-id')
-        );
-        this.elementHelpers.showMenuActive();
+        const index = (e.target as HTMLElement).getAttribute('data-id');
+        if (index) {
+          sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, index);
+          this.elementHelpers.showMenuActive();
+        }
 
         renderTabs();
-        if (logoName === 'Notes') {
-          changeLogoFollowTab('Keep');
-        } else {
-          changeLogoFollowTab(logoName);
+        if (logoName) {
+          if (logoName === 'Notes') {
+            changeLogoFollowTab('Keep');
+          } else {
+            changeLogoFollowTab(logoName);
+          }
         }
       }
-      iconClose.style.visibility = 'hidden';
+
+      if (iconClose) {
+        iconClose.style.visibility = 'hidden';
+      }
     };
 
-    menu.forEach((element) => {
-      this.eventHelpers.addEvent(element, 'click', handler);
-    });
+    if (menu) {
+      menu.forEach((element) => {
+        this.eventHelpers.addEvent(element, 'click', handler);
+      });
+    }
   }
 }

@@ -1,5 +1,9 @@
+import HeaderView from '../views/headerView';
+
 export default class HeaderController {
-  constructor(headerView) {
+  headerView: HeaderView;
+
+  constructor(headerView: HeaderView) {
     this.headerView = headerView;
   }
 

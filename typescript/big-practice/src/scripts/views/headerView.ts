@@ -66,7 +66,7 @@ export default class HeaderView {
     const avatarUser = selectDOMClass('.avatar-user-cover');
     const menuUserElement = selectDOMClass('.menu-user');
     const handler = () => {
-      if (menuUserElement.classList.contains('hide')) {
+      if (menuUserElement && menuUserElement.classList.contains('hide')) {
         this.elementHelpers.removeClass(menuUserElement, 'hide');
       } else {
         this.elementHelpers.addClass(menuUserElement, 'hide');
@@ -96,10 +96,12 @@ export default class HeaderView {
    */
   showInformationUser() {
     const emailUser = selectDOMClass('.menu-user-email');
-    if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-      emailUser.textContent = user.email;
-    } else {
-      emailUser.textContent = 'Unknown';
+    if (emailUser) {
+      if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+        emailUser.textContent = user.email;
+      } else {
+        emailUser.textContent = 'Unknown';
+      }
     }
   }
 
@@ -108,14 +110,16 @@ export default class HeaderView {
    *
    * @param {String} tab is according to each current tab
    */
-  changeLogoByTab(tab) {
+  changeLogoByTab(tab: string) {
     const headerMenu = selectDOMClass('.header-menu');
     const inputSearch = selectDOMClass('.form-search');
     const iconLogo = selectDOMClass('.icon-logo');
 
-    iconLogo.remove();
-    headerMenu.insertBefore(logoComponent(tab), inputSearch);
-    this.bindNavigateHomePage();
+    if (iconLogo && headerMenu) {
+      iconLogo.remove();
+      headerMenu.insertBefore(logoComponent(tab), inputSearch);
+      this.bindNavigateHomePage();
+    }
   }
 
   /**
