@@ -4,10 +4,10 @@ const POPUP_MESSAGE = {
 };
 
 const API_MESSAGE = {
-  GET: 'Can\'t get data from API',
-  POST: 'Can\'t post data to API',
-  DELETE: 'Can\'t delete data',
-  PATCH: 'Can\'t update data',
+  GET: "Can't get data from API",
+  POST: "Can't post data to API",
+  DELETE: "Can't delete data",
+  PATCH: "Can't update data",
 };
 
 const ERROR_MESSAGE = {
@@ -15,8 +15,4 @@ const ERROR_MESSAGE = {
   PASSWORD_INCORRECT: 'Password incorrect',
 };
 
-export {
-  ERROR_MESSAGE,
-  POPUP_MESSAGE,
-  API_MESSAGE,
-};
+export { ERROR_MESSAGE, POPUP_MESSAGE, API_MESSAGE };
