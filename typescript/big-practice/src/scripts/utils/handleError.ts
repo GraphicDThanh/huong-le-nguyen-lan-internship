@@ -4,7 +4,7 @@ import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
 import STATUS_CODE from '../constants/statusCode';
-import CodeError from './customError';
+import CustomError from './customError';
 
 const elementHelpers = new ElementHelpers();
 /**
@@ -92,28 +92,56 @@ const renderPopupError = (errorMessage: string) => {
  */
 const statusError = <T>(response: Response, items: T) => {
   switch (response.status) {
-    case STATUS_CODE.STATUS_200:
+    case STATUS_CODE.OK:
+    case STATUS_CODE.CREATED:
       return items;
-    case STATUS_CODE.STATUS_400:
+    case STATUS_CODE.BAD_REQUEST:
       throw Object.assign(
-        new CodeError(`${response.status} Bad Request`, response.status)
+        new CustomError(`${response.status} Bad Request`, response.status)
       );
-    case STATUS_CODE.STATUS_404:
+    case STATUS_CODE.UNAUTHORIZED:
       throw Object.assign(
-        new CodeError(`${response.status} Page Not Found`, response.status)
+        new CustomError(`${response.status} Unauthorized`, response.status)
       );
-    case STATUS_CODE.STATUS_500:
+    case STATUS_CODE.FORBIDDEN:
       throw Object.assign(
-        new CodeError(
+        new CustomError(`${response.status} Forbidden`, response.status)
+      );
+    case STATUS_CODE.NOT_FOUND:
+      throw Object.assign(
+        new CustomError(`${response.status} Page Not Found`, response.status)
+      );
+    case STATUS_CODE.INTERNAL_SERVER_ERROR:
+      throw Object.assign(
+        new CustomError(
           `${response.status} Internal Server Error`,
+          response.status
+        )
+      );
+    case STATUS_CODE.SERVER_UNAVAILABLE:
+      throw Object.assign(
+        new CustomError(
+          `${response.status} Service Unavailable`,
           response.status
         )
       );
     default:
       throw Object.assign(
-        new CodeError(`${response.status} Fail to fetch`, response.status)
+        new CustomError(`${response.status} Fail to fetch`, response.status)
       );
   }
 };
 
-export { hideError, showError, renderPopupError, statusError };
+const checkCustomError = (error: unknown) => {
+  if (error instanceof CustomError) {
+    throw Object.assign(error);
+  }
+};
+
+export {
+  hideError,
+  showError,
+  renderPopupError,
+  statusError,
+  checkCustomError,
+};
