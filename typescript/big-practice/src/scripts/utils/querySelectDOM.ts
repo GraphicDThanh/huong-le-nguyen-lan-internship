@@ -5,7 +5,7 @@
  *
  * @returns {Object} element after query
  */
-function selectDOMClass(classes) {
+function selectDOMClass(classes: string): HTMLElement | null {
   return document.querySelector(classes);
 }
 
@@ -16,7 +16,7 @@ function selectDOMClass(classes) {
  *
  * @returns {Object} element after query
  */
-function selectDOMClassAll(classes) {
+function selectDOMClassAll(classes: string): NodeListOf<HTMLElement> | null {
   return document.querySelectorAll(classes);
 }
 
@@ -27,7 +27,7 @@ function selectDOMClassAll(classes) {
  *
  * @returns {Object} element after query
  */
-function selectDOMById(id) {
+function selectDOMById(id: string): HTMLElement | null {
   return document.getElementById(id);
 }
 
