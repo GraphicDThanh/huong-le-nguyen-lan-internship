@@ -58,6 +58,24 @@ export default class ListNoteView {
   }
 
   /**
+   * @description function shows a message if list doesn't have notes
+   * which have the same character as the input value
+   *
+   * @param {Array} listNotes is list of notes have the same
+   * character as the input value
+   */
+  searchNotFound(listNotes) {
+    const inputValue = selectDOMClass('.search').value;
+    const message = selectDOMClass('.not-found-message');
+
+    if (!listNotes && inputValue) {
+      this.elementHelpers.removeClass(message, 'hide');
+    } else {
+      this.elementHelpers.addClass(message, 'hide');
+    }
+  }
+
+  /**
    * @description function render tab note or tab trash based on user click
    *
    * @param {function} handlers includes functions
@@ -108,7 +126,7 @@ export default class ListNoteView {
    * with the tab of listNotes or trashNotes
    *
    * @param {Array} list is a list of note or list of trash note
-   * @param {String} tab is a tab if we need to use in listNotes or trashNotes
+   * @param {String} type is a tab if we need to use in listNotes or trashNotes
    */
   showHideEmpty(list: Note[], tab: string) {
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
@@ -685,5 +703,31 @@ export default class ListNoteView {
         this.eventHelpers.addEvent(btn, 'click', handler);
       });
     }
+  }
+
+  /**
+   * @description function delete of button in header by selected notes
+   *
+   * @param {function} deleteListNote is function delete transmitted from from the model
+   * @param {function} deleteNotesTrash is function delete transmitted from from the model
+   */
+  bindDeleteListNotes(deleteListNote, deleteNotesTrash) {
+    const btnDeleteBulkActions = selectDOMClass('.btn-delete-bulk-actions');
+    const headerAfterSelect = selectDOMClass('.header-after-select');
+    const handler = () => {
+      const noteSelected = selectDOMClassAll('.selected');
+
+      if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
+        noteSelected.forEach((note) => {
+          deleteListNote(note.id);
+        });
+      } else {
+        deleteNotesTrash(noteSelected);
+      }
+
+      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+    };
+
+    this.eventHelpers.addEvent(btnDeleteBulkActions, 'click', handler);
   }
 }
