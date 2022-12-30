@@ -22,15 +22,6 @@ export default class NoteController {
   bindEvents() {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
-
-    this.deleteListNotes();
-  }
-
-  deleteListNotes() {
-    this.view.bindDeleteListNotes(
-      (noteId) => this.deleteNote(noteId),
-      (noteSelected) => this.deleteNotesTrash(noteSelected)
-    );
   }
 
   renderTabs() {
@@ -187,54 +178,6 @@ export default class NoteController {
 
       // function render form note
       this.view.renderFormNote(noteItem, handlers);
-    } catch (error) {
-      renderPopupError(error.message);
-    }
-  }
-
-  /**
-   * @description function search note by value of input
-   * and if no note matches. It will show message
-   *
-   * @param {String} inputValue is value of input
-   */
-  async searchNote(inputValue) {
-    try {
-      const handlers = {
-        handleDeleteNote: (noteId) => this.deleteNote(noteId),
-        handleShowNoteForm: (id) => this.handleNoteForm(id),
-      };
-      const list = await this.model.searchNote(inputValue);
-
-      this.view.renderListNotes(list, handlers);
-      this.view.searchNotFound(list.length);
-    } catch (error) {
-      renderPopupError(error.message);
-    }
-  }
-
-  /**
-   * @description function delete note in trash with list notes
-   * selected
-   *
-   * @param {Array} noteSelected is list notes selected
-   */
-  deleteNotesTrash(noteSelected) {
-    try {
-      this.view.renderConfirmMessage();
-
-      // function close popup
-      this.view.bindClosePopup();
-
-      // function delete all the notes selected
-      this.view.bindDeleteNoteInTrash(() => {
-        noteSelected.forEach(async (note) => {
-          await this.model.deleteNoteInTrash(note.id);
-
-          this.view.removeNoteElement(note.id);
-          this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
-        });
-      });
     } catch (error) {
       renderPopupError(error.message);
     }
