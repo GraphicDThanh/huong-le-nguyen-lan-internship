@@ -1,3 +1,5 @@
+import Note from '../types/note';
+
 /**
  * @description function create confirm message with design message, type of button
  * and item
@@ -8,7 +10,11 @@
  *
  * @returns {Object} confirmMessage
  */
-const renderConfirmPopup = (message, typeButton, item) => {
+const renderConfirmPopup = (
+  message: string,
+  typeButton?: string,
+  item?: Note
+) => {
   const confirmMessage = document.createElement('div');
   confirmMessage.setAttribute('class', 'overlay');
 
