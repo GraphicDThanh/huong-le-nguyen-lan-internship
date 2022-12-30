@@ -126,16 +126,18 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async editNote(note) {
+  async editNote(note: Note) {
     let noteItem = this.findNote(note.id);
-    noteItem.title = note.title;
-    noteItem.description = note.description;
+    if (noteItem) {
+      noteItem.title = note.title;
+      noteItem.description = note.description;
 
-    noteItem = await this.fetchAPI.putItem(
-      note.id,
-      noteItem,
-      URL_API.NOTES_URL
-    );
+      noteItem = await this.fetchAPI.putItem(
+        note.id,
+        noteItem,
+        URL_API.NOTES_URL
+      );
+    }
 
     return noteItem;
   }

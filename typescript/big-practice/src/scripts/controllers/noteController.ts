@@ -99,28 +99,34 @@ export default class NoteController {
    *
    * @param {String} noteId is id of note is selected
    */
-  async handleConfirmPopup(noteId) {
+  async handleConfirmPopup(noteId: string) {
     try {
       this.loadingPage.addLoading();
       const note = await this.model.findNote(noteId);
 
-      // function render confirm message
-      this.view.renderConfirmMessage(note);
+      if (note) {
+        // function render confirm message
+        this.view.renderConfirmMessage(note);
+      }
 
       // function close popup
       this.view.bindClosePopup();
 
       // function delete note in tab trash
       this.view.bindDeleteNoteInTrash(async (id) => {
-        this.loadingPage.addLoading();
-        await this.model.deleteNoteInTrash(id);
+        if (id) {
+          this.loadingPage.addLoading();
+          await this.model.deleteNoteInTrash(id);
 
-        this.view.removeNoteElement(id);
-        this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
-        this.loadingPage.removeLoading();
+          this.view.removeNoteElement(id);
+          this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+          this.loadingPage.removeLoading();
+        }
       });
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
@@ -159,7 +165,7 @@ export default class NoteController {
       this.loadingPage.addLoading();
       const noteItem = await this.model.deleteNote(noteId);
 
-      if (noteItem && noteItem.id) {
+      if (noteItem) {
         this.view.removeNoteElement(noteItem.id);
       }
       this.view.showHideEmpty(this.model.listNotes, 'listNotes');
@@ -176,15 +182,19 @@ export default class NoteController {
    *
    * @param {Object} note is information of note
    */
-  async editNote(note) {
+  async editNote(note: Note) {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.editNote(note);
 
-      this.view.editNote(noteItem);
+      if (noteItem) {
+        this.view.editNote(noteItem);
+      }
       this.loadingPage.removeLoading();
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
