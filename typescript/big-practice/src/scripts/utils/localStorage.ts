@@ -1,11 +1,11 @@
-export default class LocalStorage {
+export default class LocalStorage<T> {
   /**
    * @description function set items to localStorage
    *
    * @param {String} key is name of key in localStorage
    * @param {Array} value
    */
-  setItems(key, value) {
+  setItems(key: string, value: T) {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
@@ -16,8 +16,14 @@ export default class LocalStorage {
    *
    * @returns {Array}
    */
-  getItems(key) {
-    return JSON.parse(localStorage.getItem(key));
+  getItems(key: string): T | undefined {
+    const value = localStorage.getItem(key);
+
+    if (value) {
+      return JSON.parse(value);
+    }
+
+    return undefined;
   }
 
   /**
@@ -25,7 +31,7 @@ export default class LocalStorage {
    *
    * @param {String} key is name of key in localStorage
    */
-  removeItems(key) {
+  removeItems(key: string) {
     localStorage.removeItem(key);
   }
 }

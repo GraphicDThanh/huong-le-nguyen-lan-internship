@@ -2,6 +2,10 @@ import { selectDOMClass } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
 
 export default class LoadingPage {
+  elementHelpers: ElementHelpers;
+
+  overlay: HTMLElement | null;
+
   constructor() {
     this.elementHelpers = new ElementHelpers();
     this.overlay = selectDOMClass('.overlay-wrapper');
@@ -28,7 +32,9 @@ export default class LoadingPage {
    * @description function render loading page
    */
   addLoading() {
-    this.overlay.appendChild(this.createLoading());
+    if (this.overlay) {
+      this.overlay.appendChild(this.createLoading());
+    }
   }
 
   /**
@@ -43,6 +49,8 @@ export default class LoadingPage {
    * @description function remove loading page
    */
   removeLoading() {
-    this.overlay.innerHTML = '';
+    if (this.overlay) {
+      this.overlay.innerHTML = '';
+    }
   }
 }
