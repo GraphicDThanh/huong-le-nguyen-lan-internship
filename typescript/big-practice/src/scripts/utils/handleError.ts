@@ -76,9 +76,7 @@ const renderPopupError = (errorMessage: string) => {
     );
 
     const btnClose = selectDOMClass('.btn-close-popup');
-    if (btnClose) {
-      eventHelpers.addEvent(btnClose, 'click', handler);
-    }
+    eventHelpers.addEvent(btnClose, 'click', handler);
   }
 };
 
@@ -90,7 +88,7 @@ const renderPopupError = (errorMessage: string) => {
  * @param {Object} items is data received after call api
  * @returns
  */
-const statusError = <T>(response: Response, items: T) => {
+const generateError = <T>(response: Response, items: T) => {
   switch (response.status) {
     case STATUS_CODE.OK:
     case STATUS_CODE.CREATED:
@@ -135,6 +133,8 @@ const statusError = <T>(response: Response, items: T) => {
 const checkCustomError = (error: unknown) => {
   if (error instanceof CustomError) {
     throw Object.assign(error);
+  } else {
+    throw new Error('Fail to fetch');
   }
 };
 
@@ -142,6 +142,6 @@ export {
   hideError,
   showError,
   renderPopupError,
-  statusError,
+  generateError,
   checkCustomError,
 };
