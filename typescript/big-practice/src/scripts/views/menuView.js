@@ -3,7 +3,6 @@ import menuComponent from '../components/menu';
 import ElementHelpers from '../helpers/elementHelpers';
 import STORAGE_KEYS from '../constants/storageKeys';
 import EventHelpers from '../helpers/eventHelpers';
-import { buttonBulkActionsComponent } from '../components/header';
 
 export default class MenuView {
   constructor() {
@@ -28,7 +27,7 @@ export default class MenuView {
    * @param {function} changeLogoFollowTab is function transmitted in controller
    * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  bindChangePage(renderTabs, changeLogoFollowTab, changeButtonBulkActions) {
+  bindChangePage(renderTabs, changeLogoFollowTab) {
     const menu = selectDOMClassAll('.nav li');
 
     renderTabs();
@@ -50,7 +49,6 @@ export default class MenuView {
         this.elementHelpers.showMenuActive();
 
         renderTabs();
-        this.changeButtonBulkActions(changeButtonBulkActions);
         if (logoName === 'Notes') {
           changeLogoFollowTab('Keep');
         } else {
@@ -63,22 +61,5 @@ export default class MenuView {
     menu.forEach((element) => {
       this.eventHelpers.addEvent(element, 'click', handler);
     });
-  }
-
-  /**
-   * @description function change button delete in header selected
-   *
-   * @param {function} changeButtonBulkActions is function transmitted from
-   * controller
-   */
-  changeButtonBulkActions(changeButtonBulkActions) {
-    const headerSelected = selectDOMClass('.header-after-select');
-    const headerBulkActions = selectDOMClass('.header-utilities');
-
-    if (headerBulkActions) {
-      headerBulkActions.remove();
-    }
-    headerSelected.appendChild(buttonBulkActionsComponent());
-    changeButtonBulkActions();
   }
 }
