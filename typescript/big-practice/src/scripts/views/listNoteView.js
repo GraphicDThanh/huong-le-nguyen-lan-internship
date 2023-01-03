@@ -14,7 +14,7 @@ import formAddNote from '../components/formAddNote';
 import listNotesWrapper from '../components/listNotes';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
-import { renderPopupError } from '../utils/handleError';
+import { renderPopupError } from '../utils/errorsDOM';
 
 /**
  * @class listNoteView

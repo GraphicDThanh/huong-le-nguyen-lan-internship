@@ -1,5 +1,5 @@
 import URL_API from '../constants/apiUrl';
-import { checkCustomError, generateError } from './handleError';
+import { checkCustomError, generateError } from './errorsAPI';
 
 export default class FetchAPI<T> {
   baseURL: string;
