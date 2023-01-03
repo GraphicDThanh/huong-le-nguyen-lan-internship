@@ -1,6 +1,6 @@
 import NoteModel from '../models/noteModel';
 import Note from '../types/note';
-import { renderPopupError } from '../utils/handleError';
+import { renderPopupError } from '../utils/errorsDOM';
 import LoadingPage from '../utils/loadingPage';
 import ListNoteView from '../views/listNoteView';
 
