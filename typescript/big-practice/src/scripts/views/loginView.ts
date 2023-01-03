@@ -20,6 +20,8 @@ export default class LoginView {
 
   labelPassword: HTMLElement | null;
 
+  createAccount: HTMLElement | null;
+
   localStorage: LocalStorage<boolean>;
 
   elementHelpers: ElementHelpers;
@@ -32,6 +34,7 @@ export default class LoginView {
     this.passwordElement = selectDOMClass('.password');
     this.labelEmail = selectDOMClass('.label-email');
     this.labelPassword = selectDOMClass('.label-password');
+    this.createAccount = selectDOMClass('.btn-create-account-form');
 
     this.localStorage = new LocalStorage();
     this.elementHelpers = new ElementHelpers();
@@ -59,6 +62,17 @@ export default class LoginView {
     };
 
     this.eventHelpers.addEvent(this.loginForm, 'submit', handler);
+  }
+
+  /**
+   * @description function change to sign up page
+   */
+  bindCreateAccount() {
+    const handler = () => {
+      navigatePage('signUp.html');
+    };
+
+    this.eventHelpers.addEvent(this.createAccount, 'click', handler);
   }
 
   /**

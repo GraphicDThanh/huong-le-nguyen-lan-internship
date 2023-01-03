@@ -10,5 +10,6 @@ export default class AuthenController {
   init() {
     this.view.bindLogin();
     this.view.bindShowHideInputError();
+    this.view.bindCreateAccount();
   }
 }
