@@ -1,5 +1,5 @@
 import URL_API from '../constants/apiUrl';
-import { checkCustomError, statusError } from './handleError';
+import { checkCustomError, generateError } from './errorsAPI';
 
 export default class FetchAPI<T> {
   baseURL: string;
@@ -15,17 +15,17 @@ export default class FetchAPI<T> {
    *
    * @returns {Object} notes
    */
-  async getAllItems(url: string): Promise<T[]> {
+  async getAllItems(url: string): Promise<T[] | undefined> {
     try {
       const response = await fetch(`${this.baseURL}${url}`);
       const items: T[] = await response.json();
-      const listItems = statusError(response, items);
+      const listItems = generateError(response, items);
 
       return listItems;
     } catch (error) {
       checkCustomError(error);
 
-      throw new Error('Fail to fetch');
+      return undefined;
     }
   }
 
@@ -37,17 +37,17 @@ export default class FetchAPI<T> {
    *
    * @returns {Object} notes
    */
-  async getItemByKey(url: string, key: string): Promise<T[]> {
+  async getItemByKey(url: string, key: string): Promise<T[] | undefined> {
     try {
       const response = await fetch(`${this.baseURL}${url}${key}`);
       const items: T[] = await response.json();
-      const listItems = statusError(response, items);
+      const listItems = generateError(response, items);
 
       return listItems;
     } catch (error) {
       checkCustomError(error);
 
-      throw new Error('Fail to fetch');
+      return undefined;
     }
   }
 
@@ -59,7 +59,7 @@ export default class FetchAPI<T> {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async postItem(note: T, url: string): Promise<T> {
+  async postItem(note: T, url: string): Promise<T | undefined> {
     try {
       const options = {
         method: 'POST',
@@ -70,13 +70,13 @@ export default class FetchAPI<T> {
       };
       const response = await fetch(`${this.baseURL}${url}`, options);
       const items: T = await response.json();
-      const item = statusError(response, items);
+      const item = generateError(response, items);
 
       return item;
     } catch (error) {
       checkCustomError(error);
 
-      throw new Error('Fail to fetch');
+      return undefined;
     }
   }
 
@@ -86,7 +86,7 @@ export default class FetchAPI<T> {
    * @param {String} id is id of note
    * @param {String} url is endpoint
    */
-  async deleteItem(id: string, url: string): Promise<T> {
+  async deleteItem(id: string, url: string): Promise<T | undefined> {
     try {
       const options = {
         method: 'DELETE',
@@ -96,13 +96,13 @@ export default class FetchAPI<T> {
       };
       const response = await fetch(`${this.baseURL}${url}/${id}`, options);
       const items: T = await response.json();
-      const item = statusError(response, items);
+      const item = generateError(response, items);
 
       return item;
     } catch (error) {
       checkCustomError(error);
 
-      throw new Error('Fail to fetch');
+      return undefined;
     }
   }
 
@@ -115,7 +115,7 @@ export default class FetchAPI<T> {
    *
    * @return {Object} noteItem is returned after calling api
    */
-  async putItem(id: string, note: T, url: string): Promise<T> {
+  async putItem(id: string, note: T, url: string): Promise<T | undefined> {
     try {
       const options = {
         method: 'PATCH',
@@ -126,13 +126,13 @@ export default class FetchAPI<T> {
       };
       const response = await fetch(`${this.baseURL}${url}/${id}`, options);
       const items: T = await response.json();
-      const item = statusError(response, items);
+      const item = generateError(response, items);
 
       return item;
     } catch (error) {
       checkCustomError(error);
 
-      throw new Error('Fail to fetch');
+      return undefined;
     }
   }
 }
