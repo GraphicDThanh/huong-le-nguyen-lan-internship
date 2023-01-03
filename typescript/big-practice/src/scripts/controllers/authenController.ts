@@ -1,5 +1,9 @@
+import LoginView from '../views/loginView';
+
 export default class AuthenController {
-  constructor(view) {
+  view: LoginView;
+
+  constructor(view: LoginView) {
     this.view = view;
   }
 
