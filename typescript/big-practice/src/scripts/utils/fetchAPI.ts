@@ -24,6 +24,8 @@ export default class FetchAPI<T> {
       return listItems;
     } catch (error) {
       checkCustomError(error);
+
+      return undefined;
     }
   }
 
@@ -44,6 +46,8 @@ export default class FetchAPI<T> {
       return listItems;
     } catch (error) {
       checkCustomError(error);
+
+      return undefined;
     }
   }
 
@@ -71,6 +75,8 @@ export default class FetchAPI<T> {
       return item;
     } catch (error) {
       checkCustomError(error);
+
+      return undefined;
     }
   }
 
@@ -95,6 +101,8 @@ export default class FetchAPI<T> {
       return item;
     } catch (error) {
       checkCustomError(error);
+
+      return undefined;
     }
   }
 
@@ -123,6 +131,8 @@ export default class FetchAPI<T> {
       return item;
     } catch (error) {
       checkCustomError(error);
+
+      return undefined;
     }
   }
 }
