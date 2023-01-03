@@ -52,12 +52,11 @@ const generateError = <T>(response: Response, items: T) => {
 };
 
 /**
+ * @description check error transmitted is class CustomError or not
  *
- * @param error
+ * @param {Object} error is custom error message
  */
 const checkCustomError = (error: unknown) => {
-  console.log(typeof error);
-
   if (error instanceof CustomError) {
     throw Object.assign(error);
   } else {
