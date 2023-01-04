@@ -12,19 +12,21 @@ const elementHelpers = new ElementHelpers();
  * @param {Object} element of input you want to hide message
  * @param {Object} label is label of input
  */
-const hideError = (element: HTMLElement, label: HTMLElement) => {
-  const error = element.parentElement?.querySelector<HTMLElement>(
-    '.message .message-error'
-  );
-  const errorIcon = element.parentElement?.querySelector<HTMLElement>(
-    '.message .error-icon'
-  );
+const hideError = (element: HTMLElement | null, label: HTMLElement | null) => {
+  if (element && label) {
+    const error = element.parentElement?.querySelector<HTMLElement>(
+      '.message .message-error'
+    );
+    const errorIcon = element.parentElement?.querySelector<HTMLElement>(
+      '.message .error-icon'
+    );
 
-  if (error && errorIcon) {
-    error.innerText = '';
-    elementHelpers.addClass(errorIcon, 'hide');
-    elementHelpers.removeClass(label, 'error');
-    elementHelpers.removeClass(element, 'valid');
+    if (error && errorIcon) {
+      error.innerText = '';
+      elementHelpers.addClass(errorIcon, 'hide');
+      elementHelpers.removeClass(label, 'error');
+      elementHelpers.removeClass(element, 'valid');
+    }
   }
 };
 
@@ -38,20 +40,24 @@ const hideError = (element: HTMLElement, label: HTMLElement) => {
  * @param {Object} label is label of input
  */
 const showError = (
-  element: HTMLElement,
+  element: HTMLElement | null,
   message: string,
-  label: HTMLElement
+  label: HTMLElement | null
 ) => {
-  const error = element.parentElement?.querySelector('.message .message-error');
-  const errorIcon = element.parentElement?.querySelector<HTMLElement>(
-    '.message .error-icon'
-  );
+  if (element && label) {
+    const error = element.parentElement?.querySelector(
+      '.message .message-error'
+    );
+    const errorIcon = element.parentElement?.querySelector<HTMLElement>(
+      '.message .error-icon'
+    );
 
-  if (error && errorIcon) {
-    error.textContent = message;
-    elementHelpers.removeClass(errorIcon, 'hide');
-    elementHelpers.addClass(element, 'valid');
-    elementHelpers.addClass(label, 'error');
+    if (error && errorIcon) {
+      error.textContent = message;
+      elementHelpers.removeClass(errorIcon, 'hide');
+      elementHelpers.addClass(element, 'valid');
+      elementHelpers.addClass(label, 'error');
+    }
   }
 };
 
