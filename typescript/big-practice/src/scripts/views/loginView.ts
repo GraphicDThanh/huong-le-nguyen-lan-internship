@@ -1,6 +1,6 @@
 import { selectDOMById, selectDOMClass } from '../utils/querySelectDOM';
 import { ERROR_MESSAGE } from '../constants/message';
-import { hideError, showError } from '../utils/handleError';
+import { hideError, showError } from '../utils/errorsDOM';
 import userData from '../../../data/mockUser';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
@@ -68,12 +68,7 @@ export default class LoginView {
    * @param {String} email is value of input that user enters
    */
   handleInvalidUser(user: User) {
-    if (
-      this.emailElement &&
-      this.labelEmail &&
-      this.passwordElement &&
-      this.labelPassword
-    ) {
+    if (this.emailElement && this.passwordElement) {
       if (user.email === userData.email) {
         hideError(this.emailElement, this.labelEmail);
 
