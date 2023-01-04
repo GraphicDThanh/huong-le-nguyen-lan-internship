@@ -34,7 +34,10 @@ export default class NoteModel {
       patternNote,
       URL_API.NOTES_URL
     );
-    this.listNotes.push(noteItem);
+
+    if (noteItem) {
+      this.listNotes.push(noteItem);
+    }
 
     return noteItem;
   }
@@ -52,19 +55,21 @@ export default class NoteModel {
   async filterNotes(tab: string) {
     const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
 
-    // This condition filter that we can use this function for trashNotes and listNotes
-    switch (tab) {
-      case 'listNotes': {
-        this.listNotes = allNotes.filter((note) => !note.deletedAt);
-        break;
+    if (Array.isArray(allNotes)) {
+      // This condition filter that we can use this function for trashNotes and listNotes
+      switch (tab) {
+        case 'listNotes': {
+          this.listNotes = allNotes.filter((note) => !note.deletedAt);
+          break;
+        }
+        case 'trashNotes': {
+          this.listNotes = allNotes.filter((note) => note.deletedAt);
+          break;
+        }
+        default:
+          console.log('Must enter a listNotes or trashNotes');
+          break;
       }
-      case 'trashNotes': {
-        this.listNotes = allNotes.filter((note) => note.deletedAt);
-        break;
-      }
-      default:
-        console.log('Must enter a listNotes or trashNotes');
-        break;
     }
 
     return this.listNotes;
