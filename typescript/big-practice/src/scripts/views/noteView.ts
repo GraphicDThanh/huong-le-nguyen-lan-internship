@@ -1,13 +1,16 @@
 import iconPin from '../../assets/icons/icon-pin.svg';
 import iconColorBoard from '../../assets/icons/icon-color-board.svg';
 import iconColorTrash from '../../assets/icons/icon-trash.svg';
+import Note from '../types/note';
 
 /**
  * @class noteView
  * @description manage view of a note
  */
 export default class NoteView {
-  constructor(noteItem) {
+  noteItem: Note;
+
+  constructor(noteItem: Note) {
     this.noteItem = noteItem;
   }
 
@@ -16,11 +19,13 @@ export default class NoteView {
    *
    * @returns {Object} noteElement is a element note
    */
-  renderNote(tab) {
+  renderNote(tab: string) {
     const noteElement = document.createElement('div');
     noteElement.classList.add('note');
     const note = this.noteItem;
-    noteElement.setAttribute('id', note.id);
+    if (note.id) {
+      noteElement.setAttribute('id', note.id);
+    }
 
     noteElement.innerHTML = `
       <label class="icon-check" data-id="${note.id}">

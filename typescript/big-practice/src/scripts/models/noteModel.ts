@@ -1,11 +1,16 @@
 import FetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
+import Note from '../types/note';
 
 /**
  * @class listNoteModel
  * @description manage data of note list
  */
 export default class NoteModel {
+  fetchAPI: FetchAPI<Note>;
+
+  listNotes: Note[];
+
   constructor() {
     this.fetchAPI = new FetchAPI();
     this.listNotes = [];
@@ -18,14 +23,13 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async addNote(note) {
+  async addNote(note: Note) {
     const patternNote = {
       id: new Date().getTime().toString(),
       title: note.title,
       description: note.description,
       deletedAt: '',
     };
-
     const noteItem = await this.fetchAPI.postItem(
       patternNote,
       URL_API.NOTES_URL
@@ -45,8 +49,9 @@ export default class NoteModel {
    *
    * @returns {Array} listNotes after filter
    */
-  async filterNotes(tab) {
+  async filterNotes(tab: string) {
     const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
+
     // This condition filter that we can use this function for trashNotes and listNotes
     switch (tab) {
       case 'listNotes': {

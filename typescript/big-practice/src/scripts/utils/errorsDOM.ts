@@ -80,9 +80,7 @@ const renderPopupError = (errorMessage: string) => {
     );
 
     const btnClose = selectDOMClass('.btn-close-popup');
-    if (btnClose) {
-      eventHelpers.addEvent(btnClose, 'click', handler);
-    }
+    eventHelpers.addEvent(btnClose, 'click', handler);
   }
 };
 
