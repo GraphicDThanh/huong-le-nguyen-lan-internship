@@ -13,5 +13,6 @@ export default class SignUpController {
 
   init() {
     this.view.bindChangeLoginPage();
+    this.view.bindSignUp();
   }
 }
