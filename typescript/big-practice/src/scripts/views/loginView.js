@@ -1,6 +1,6 @@
 import { selectDOMById, selectDOMClass } from '../utils/querySelectDOM';
 import { ERROR_MESSAGE } from '../constants/message';
-import { hideError, showError } from '../utils/handleError';
+import { hideError, showError } from '../utils/errorsDOM';
 import user from '../../../data/mockUser';
 import LocalStorage from '../utils/localStorage';
 import STORAGE_KEYS from '../constants/storageKeys';
