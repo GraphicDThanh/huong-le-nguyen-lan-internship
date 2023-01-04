@@ -1,6 +1,6 @@
 import NoteModel from '../models/noteModel';
 import Note from '../types/note';
-import { renderPopupError } from '../utils/handleError';
+import { renderPopupError } from '../utils/errorsDOM';
 import LoadingPage from '../utils/loadingPage';
 import ListNoteView from '../views/listNoteView';
 
@@ -120,20 +120,22 @@ export default class NoteController {
    *
    * @param {Object} note is a information of note
    */
-  async addNote(note) {
+  async addNote(note: Note) {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.addNote(note);
 
       const handlers = {
-        handleDeleteNote: (noteId) => this.deleteNote(noteId),
-        handleShowNoteForm: (id) => this.handleNoteForm(id),
+        handleDeleteNote: (id: string) => this.deleteNote(id),
+        handleShowNoteForm: (id: string) => this.handleNoteForm(id),
       };
 
       this.view.renderNote(noteItem, handlers);
       this.loadingPage.removeLoading();
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
@@ -191,54 +193,6 @@ export default class NoteController {
 
       // function render form note
       this.view.renderFormNote(noteItem, handlers);
-    } catch (error) {
-      renderPopupError(error.message);
-    }
-  }
-
-  /**
-   * @description function search note by value of input
-   * and if no note matches. It will show message
-   *
-   * @param {String} inputValue is value of input
-   */
-  async searchNote(inputValue) {
-    try {
-      const handlers = {
-        handleDeleteNote: (noteId) => this.deleteNote(noteId),
-        handleShowNoteForm: (id) => this.handleNoteForm(id),
-      };
-      const list = await this.model.searchNote(inputValue);
-
-      this.view.renderListNotes(list, handlers);
-      this.view.searchNotFound(list.length);
-    } catch (error) {
-      renderPopupError(error.message);
-    }
-  }
-
-  /**
-   * @description function delete note in trash with list notes
-   * selected
-   *
-   * @param {Array} noteSelected is list notes selected
-   */
-  deleteNotesTrash(noteSelected) {
-    try {
-      this.view.renderConfirmMessage();
-
-      // function close popup
-      this.view.bindClosePopup();
-
-      // function delete all the notes selected
-      this.view.bindDeleteNoteInTrash(() => {
-        noteSelected.forEach(async (note) => {
-          await this.model.deleteNoteInTrash(note.id);
-
-          this.view.removeNoteElement(note.id);
-          this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
-        });
-      });
     } catch (error) {
       renderPopupError(error.message);
     }
