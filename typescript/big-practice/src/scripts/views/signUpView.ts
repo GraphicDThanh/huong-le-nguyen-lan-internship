@@ -1,4 +1,3 @@
-import userData from '../../../data/mockUser';
 import { ERROR_MESSAGE } from '../constants/message';
 import EventHelpers from '../helpers/eventHelpers';
 import User from '../types/user';
@@ -41,14 +40,15 @@ export default class SignUpView {
    * @description function move to login page
    */
   bindChangeLoginPage() {
-    const handler = () => {
+    const handler = (e: Event) => {
+      e.preventDefault();
       navigatePage('index.html');
     };
 
     this.eventHelpers.addEvent(this.signUp, 'click', handler);
   }
 
-  bindSignUp() {
+  bindSignUp(users: User[], createAccount: (user: User) => void) {
     const handler = (e: Event) => {
       e.preventDefault();
 
@@ -60,37 +60,41 @@ export default class SignUpView {
         } as User;
         const confirmPassword = formData.get('confirm-password') as string;
 
-        this.handleInvalid(user, confirmPassword);
+        this.handleInvalid(user, users, confirmPassword, createAccount);
       }
     };
 
     this.eventHelpers.addEvent(this.signUpForm, 'submit', handler);
   }
 
-  handleInvalid(user: User, confirmPassword: string) {
-    if (user.email === userData.email) {
-      showError(
-        this.emailElement,
-        ERROR_MESSAGE.EMAIL_ALREADY_EXISTS,
-        this.labelEmail
-      );
+  handleInvalid(
+    user: User,
+    users: User[],
+    confirmPassword: string,
+    createAccount: (user: User) => void
+  ) {
+    users.forEach((account) => {
+      if (user.email !== account.email) {
+        hideError(this.emailElement, this.labelEmail);
 
-      if (user.password === confirmPassword) {
-        hideError(this.confirmPasswordElement, this.labelConfirmPassword);
+        if (user.password === confirmPassword) {
+          hideError(this.confirmPasswordElement, this.labelConfirmPassword);
+          createAccount(user);
+        } else {
+          showError(
+            this.confirmPasswordElement,
+            ERROR_MESSAGE.PASSWORD_NOT_MATCH,
+            this.labelConfirmPassword
+          );
+        }
       } else {
         showError(
-          this.confirmPasswordElement,
-          ERROR_MESSAGE.PASSWORD_NOT_MATCH,
-          this.labelConfirmPassword
+          this.emailElement,
+          ERROR_MESSAGE.EMAIL_ALREADY_EXISTS,
+          this.labelEmail
         );
+        hideError(this.confirmPasswordElement, this.labelConfirmPassword);
       }
-    } else {
-      showError(
-        this.emailElement,
-        ERROR_MESSAGE.EMAIL_NOT_EXISTS,
-        this.labelEmail
-      );
-      hideError(this.confirmPasswordElement, this.labelConfirmPassword);
-    }
+    });
   }
 }
