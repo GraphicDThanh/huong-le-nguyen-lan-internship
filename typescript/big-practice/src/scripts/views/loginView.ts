@@ -68,12 +68,7 @@ export default class LoginView {
    * @param {String} email is value of input that user enters
    */
   handleInvalidUser(user: User) {
-    if (
-      this.emailElement &&
-      this.labelEmail &&
-      this.passwordElement &&
-      this.labelPassword
-    ) {
+    if (this.emailElement && this.passwordElement) {
       if (user.email === userData.email) {
         hideError(this.emailElement, this.labelEmail);
 
