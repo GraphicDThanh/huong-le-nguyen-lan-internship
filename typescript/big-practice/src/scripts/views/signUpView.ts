@@ -2,7 +2,7 @@ import userData from '../../../data/mockUser';
 import { ERROR_MESSAGE } from '../constants/message';
 import EventHelpers from '../helpers/eventHelpers';
 import User from '../types/user';
-import { hideError, showError } from '../utils/handleError';
+import { hideError, showError } from '../utils/errorsDOM';
 import navigatePage from '../utils/navigatePage';
 import { selectDOMById, selectDOMClass } from '../utils/querySelectDOM';
 
