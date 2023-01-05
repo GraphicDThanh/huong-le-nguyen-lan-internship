@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
 import Note from '../types/note';
@@ -25,7 +26,7 @@ export default class NoteModel {
    */
   async addNote(note: Note) {
     const patternNote = {
-      id: new Date().getTime().toString(),
+      id: uuidv4(),
       title: note.title,
       description: note.description,
       deletedAt: '',
