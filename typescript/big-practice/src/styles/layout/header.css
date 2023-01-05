@@ -210,10 +210,6 @@
   background-color: var(--fade-color);
 }
 
-.translateShow {
-  transform: translateY(-200%);
-}
-
-.translateHide {
+.header-wrapper .show {
   transform: translateY(-100%);
 }
