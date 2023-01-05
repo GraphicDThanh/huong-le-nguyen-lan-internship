@@ -43,31 +43,31 @@ export default class NoteController {
     this.view.renderTabs(handlers);
   }
 
-  async renderTab(tab: string) {
+  async renderTab(tab = '') {
     try {
       this.loadingPage.addLoading();
 
       if (tab === 'trashNotes') {
-        const listTrash: Note[] = await this.model.filterNotes('trashNotes');
+        const listTrash: Note[] = await this.model.filterNotes(tab);
         // function render trash notes
         this.view.renderListTrashNotes(listTrash, (noteId: string) =>
           this.handleConfirmPopup(noteId)
         );
 
         // function show Empty Note if note is empty
-        this.view.showHideEmpty(listTrash, 'trashNotes');
+        this.view.showHideEmpty(listTrash, tab);
       } else {
         const handlers = {
           handleDeleteNote: (id: string) => this.deleteNote(id),
           handleShowNoteForm: (id: string) => this.handleNoteForm(id),
         };
-        const listNotes: Note[] = await this.model.filterNotes('listNotes');
+        const listNotes: Note[] = await this.model.filterNotes(tab);
 
         // function render list notes
         this.view.renderListNotes(listNotes, handlers);
 
         // function show Empty Note if note is empty
-        this.view.showHideEmpty(listNotes, 'listNotes');
+        this.view.showHideEmpty(listNotes, tab);
       }
 
       this.loadingPage.setTimeoutLoading();
