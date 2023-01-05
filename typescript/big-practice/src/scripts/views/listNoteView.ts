@@ -349,7 +349,7 @@ export default class ListNoteView {
       const index = e.target.getAttribute('data-id');
       handlePopup(index);
       this.elementHelpers.removeSelected();
-      this.elementHelpers.addClass(headerAfterSelect, 'translateShow');
+      this.elementHelpers.removeClass(headerAfterSelect, 'show');
     };
 
     this.eventHelpers.addEvent(btnDeletes, 'click', handler);
@@ -394,7 +394,8 @@ export default class ListNoteView {
       if (!selectedElement) {
         this.elementHelpers.addClass(e.target.parentElement, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.elementHelpers.addClass(headerAfterSelect, 'translateHide');
+
+        this.elementHelpers.addClass(headerAfterSelect, 'show');
       } else {
         this.elementHelpers.removeClass(e.target.parentElement, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
@@ -406,7 +407,7 @@ export default class ListNoteView {
        */
       const listSelected = selectDOMClassAll('.selected');
       if (listSelected.length < 1) {
-        this.elementHelpers.addClass(headerAfterSelect, 'translateShow');
+        this.elementHelpers.removeClass(headerAfterSelect, 'show');
       }
     };
 
@@ -674,7 +675,7 @@ export default class ListNoteView {
       if (noteId && headerAfterSelect) {
         deleteNote(noteId);
         this.elementHelpers.removeSelected();
-        this.elementHelpers.addClass(headerAfterSelect, 'translateShow');
+        this.elementHelpers.removeClass(headerAfterSelect, 'show');
       }
     };
     if (note) {
