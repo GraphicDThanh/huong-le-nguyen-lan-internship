@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
 import Note from '../types/note';
@@ -25,7 +26,7 @@ export default class NoteModel {
    */
   async addNote(note: Note) {
     const patternNote = {
-      id: new Date().getTime().toString(),
+      id: uuidv4(),
       title: note.title,
       description: note.description,
       deletedAt: '',
@@ -88,11 +89,9 @@ export default class NoteModel {
     const date = new Date().toISOString().slice(0, 10);
     const noteItem = this.findNote(id);
 
-    if (noteItem) {
-      noteItem.deletedAt = date;
-      await this.fetchAPI.putItem(id, noteItem, URL_API.NOTES_URL);
-      this.listNotes = this.listNotes.filter((note) => note.id !== id);
-    }
+    noteItem.deletedAt = date;
+    await this.fetchAPI.putItem(id, noteItem, URL_API.NOTES_URL);
+    this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
     return noteItem;
   }
@@ -103,12 +102,8 @@ export default class NoteModel {
    * @param {String} id is id of note is selected
    */
   async deleteNoteInTrash(id: string) {
-    const noteItem = this.findNote(id);
-
-    if (noteItem && noteItem.id) {
-      await this.fetchAPI.deleteItem(noteItem.id, URL_API.NOTES_URL);
-      this.listNotes = this.listNotes.filter((note) => note.id !== id);
-    }
+    await this.fetchAPI.deleteItem(id, URL_API.NOTES_URL);
+    this.listNotes = this.listNotes.filter((note) => note.id !== id);
   }
 
   /**
@@ -118,8 +113,8 @@ export default class NoteModel {
    *
    *  @returns {Object} noteItem
    */
-  findNote(id: string): Note | undefined {
-    const noteItem = this.listNotes.find((note) => note.id === id);
+  findNote(id: string): Note {
+    const noteItem = this.listNotes.find((note) => note.id === id) as Note;
 
     return noteItem;
   }
@@ -132,17 +127,11 @@ export default class NoteModel {
    * @returns {Object} noteItem
    */
   async editNote(note: Note) {
-    let noteItem = this.findNote(note.id);
-    if (noteItem) {
-      noteItem.title = note.title;
-      noteItem.description = note.description;
-
-      noteItem = await this.fetchAPI.putItem(
-        note.id,
-        noteItem,
-        URL_API.NOTES_URL
-      );
-    }
+    const noteItem = await this.fetchAPI.putItem(
+      note.id,
+      note,
+      URL_API.NOTES_URL
+    );
 
     return noteItem;
   }

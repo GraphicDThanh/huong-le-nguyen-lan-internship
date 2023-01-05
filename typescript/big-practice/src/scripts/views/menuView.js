@@ -32,6 +32,17 @@ export default class MenuView {
 
     renderTabs();
     this.elementHelpers.showMenuActive();
+    this.handleClickMenu(menu, changeLogoFollowTab, renderTabs);
+  }
+
+  /**
+   * @description function handle click change page
+   *
+   * @param {function} renderTabs is function transmitted in controller
+   * @param {function} changeLogoFollowTab is function transmitted in controller
+   * @param {function} changeButtonBulkActions is function transmitted in controller
+   */
+  handleClickMenu(menu, changeLogoFollowTab, renderTabs) {
     const handler = (e) => {
       const searchInput = selectDOMClass('.search');
       const iconClose = selectDOMClass('.icon-close');
