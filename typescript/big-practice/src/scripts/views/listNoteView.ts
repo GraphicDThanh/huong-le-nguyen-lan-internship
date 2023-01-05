@@ -357,7 +357,7 @@ export default class ListNoteView {
       if (index) {
         handlePopup(index);
         this.elementHelpers.removeSelected();
-        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+        this.elementHelpers.addClass(headerAfterSelect, 'translateShow');
       }
     };
 
@@ -412,7 +412,7 @@ export default class ListNoteView {
             'selected'
           );
           this.elementHelpers.countAndShowSelected(countNotesSelected);
-          this.elementHelpers.translateYElement(headerAfterSelect, '-100');
+          this.elementHelpers.addClass(headerAfterSelect, 'translateHide');
         } else {
           this.elementHelpers.removeClass(
             (e.target as HTMLElement).parentElement,
@@ -427,7 +427,7 @@ export default class ListNoteView {
          */
         const listSelected = selectDOMClassAll('.selected');
         if (listSelected && listSelected.length < 1) {
-          this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+          this.elementHelpers.addClass(headerAfterSelect, 'translateShow');
         }
       };
 
@@ -710,7 +710,7 @@ export default class ListNoteView {
       if (noteId && headerAfterSelect) {
         deleteNote(noteId);
         this.elementHelpers.removeSelected();
-        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+        this.elementHelpers.addClass(headerAfterSelect, 'translateShow');
       }
     };
     if (note) {

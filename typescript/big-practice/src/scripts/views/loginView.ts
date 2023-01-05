@@ -122,16 +122,14 @@ export default class LoginView {
   showHideInputError(element: HTMLElement | null) {
     if (element) {
       const handler = () => {
-        if (element.parentNode) {
-          const message =
-            element.parentNode.querySelector('.message-error')?.textContent;
-          const ev = element;
+        const message =
+          element.parentNode?.querySelector('.message-error')?.textContent;
+        const ev = element;
 
-          if (message) {
-            ev.style.outlineColor = 'var(--danger-color)';
-          } else {
-            ev.style.outlineColor = 'var(--info-color)';
-          }
+        if (message) {
+          ev.style.outlineColor = 'var(--danger-color)';
+        } else {
+          ev.style.outlineColor = 'var(--info-color)';
         }
       };
 
