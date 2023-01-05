@@ -3,18 +3,18 @@ import HeaderController from './headerController';
 import NoteController from './noteController';
 
 export default class MenuController {
-  view: MenuView;
+  menuView: MenuView;
 
   noteController: NoteController;
 
   headerController: HeaderController;
 
   constructor(
-    view: MenuView,
+    menuView: MenuView,
     noteController: NoteController,
     headerController: HeaderController
   ) {
-    this.view = view;
+    this.menuView = menuView;
     this.noteController = noteController;
     this.headerController = headerController;
   }
@@ -25,13 +25,13 @@ export default class MenuController {
 
   bindEvents() {
     // Render menu component in the left site
-    this.view.renderMenu();
+    this.menuView.renderMenu();
 
     /**
      * Render to the corresponding interface when clicking to
      * change tab and it also change logo
      */
-    this.view.bindChangePage(
+    this.menuView.bindChangePage(
       () => this.noteController.renderTabs(),
       (tab) => this.headerController.headerView.changeLogoByTab(tab)
     );
