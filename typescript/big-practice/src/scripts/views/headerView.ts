@@ -96,10 +96,12 @@ export default class HeaderView {
    */
   showInformationUser() {
     const emailUser = selectDOMClass('.menu-user-email');
-    if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-      emailUser.textContent = user.email;
-    } else {
-      emailUser.textContent = 'Unknown';
+    if (emailUser) {
+      if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+        emailUser.textContent = user.email;
+      } else {
+        emailUser.textContent = 'Unknown';
+      }
     }
   }
 
@@ -127,7 +129,7 @@ export default class HeaderView {
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');
     const handler = () => {
       this.elementHelpers.removeSelected();
-      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+      this.elementHelpers.removeClass(headerAfterSelect, 'show');
     };
 
     this.eventHelpers.addEvent(btnClose, 'click', handler);
