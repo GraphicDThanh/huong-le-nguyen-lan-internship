@@ -9,12 +9,31 @@ export default class UserModel {
     this.fetchAPI = new FetchAPI();
   }
 
-  async getAllUsers() {
-    const users = await this.fetchAPI.getAllItems(URL_API.USERS_URL);
+  /**
+   * @description function get user by key with value take
+   * from input
+   *
+   * @param key is field want to find
+   * @param value is value of field want to find
+   *
+   * @returns {Arrya} users
+   */
+  async getUserByKey(key: string, value: string) {
+    const users = await this.fetchAPI.getItemByKey(
+      URL_API.USERS_URL,
+      `?${key}=${value}`
+    );
 
     return users;
   }
 
+  /**
+   * @description function
+   *
+   * @param userInformation is user's information take from input form
+   *
+   * @returns {Object} user
+   */
   async addUser(userInformation: User) {
     const user = await this.fetchAPI.postItem(
       userInformation,
