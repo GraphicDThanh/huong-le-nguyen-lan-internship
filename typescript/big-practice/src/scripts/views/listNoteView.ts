@@ -355,7 +355,7 @@ export default class ListNoteView {
       const index = this.elementHelpers.getAttributeElement(
         e.target,
         'data-id'
-      );
+      ) as string;
       handlePopup(index);
       this.elementHelpers.removeSelected();
       this.elementHelpers.removeClass(headerAfterSelect, 'show');
@@ -505,19 +505,21 @@ export default class ListNoteView {
         this.elementHelpers.countAndShowSelected(countNotesSelected);
       } else {
         e.stopPropagation();
-        const id = this.elementHelpers.getAttributeElement(noteItem, 'id') as string;
+        const id = this.elementHelpers.getAttributeElement(
+          noteItem,
+          'id'
+        ) as string;
         await findNote(id);
 
-          const title = selectDOMClass('.note-form-overlay .note-title');
-          const description = selectDOMClass(
-            '.note-form-overlay .note-description'
-          );
+        const title = selectDOMClass('.note-form-overlay .note-title');
+        const description = selectDOMClass(
+          '.note-form-overlay .note-description'
+        );
 
-          this.elementHelpers.showInputBreakDown(title);
-          this.elementHelpers.showInputBreakDown(description);
-          this.eventHelpers.stopEvents(title);
-          this.eventHelpers.stopEvents(description);
-        }
+        this.elementHelpers.showInputBreakDown(title);
+        this.elementHelpers.showInputBreakDown(description);
+        this.eventHelpers.stopEvents(title);
+        this.eventHelpers.stopEvents(description);
       }
     };
 

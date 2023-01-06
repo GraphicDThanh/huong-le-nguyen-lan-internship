@@ -130,7 +130,7 @@ export default class NoteController {
   async addNote(note: Note) {
     try {
       this.loadingPage.addLoading();
-      const noteItem = await this.model.addNote(note);
+      const noteItem = (await this.model.addNote(note)) as Note;
 
       const handlers = {
         handleDeleteNote: (id: string) => this.deleteNote(id),
