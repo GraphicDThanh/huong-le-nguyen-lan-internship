@@ -43,6 +43,13 @@ export default class NoteController {
     this.view.renderTabs(handlers);
   }
 
+  /**
+   * @description function render tab note or tab trash
+   * with default value tab = '' it will render tab note, when
+   * tab = 'trashNotes' it will render tab trash
+   *
+   * @param {String} tab is param to distinguish these two listNotes and trashNotes
+   */
   async renderTab(tab = '') {
     try {
       this.loadingPage.addLoading();
