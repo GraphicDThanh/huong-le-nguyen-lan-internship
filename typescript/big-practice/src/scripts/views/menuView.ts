@@ -69,10 +69,11 @@ export default class MenuView {
         )?.textContent;
 
         this.elementHelpers.removeMenuActive();
-        const index = (e.target as HTMLElement).getAttribute('data-id');
-        if (index && logoName) {
-          sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, index);
-          this.elementHelpers.showMenuActive();
+        sessionStorage.setItem(
+          STORAGE_KEYS.PAGE_NUMBER,
+          this.elementHelpers.getAttributeElement(e.target, 'data-id')
+        );
+        this.elementHelpers.showMenuActive();
 
           renderTabs();
           if (logoName === 'Notes') {
