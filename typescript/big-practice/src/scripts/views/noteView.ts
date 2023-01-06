@@ -1,7 +1,7 @@
 import iconPin from '../../assets/icons/icon-pin.svg';
 import iconColorBoard from '../../assets/icons/icon-color-board.svg';
 import iconColorTrash from '../../assets/icons/icon-trash.svg';
-import Note from '../types/note';
+import Note from '../interfaces/note';
 
 /**
  * @class noteView

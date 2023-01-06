@@ -35,16 +35,27 @@ export default class MenuView {
    *
    * @param {function} renderTabs is function transmitted in controller
    * @param {function} changeLogoFollowTab is function transmitted in controller
-   * @param {function} changeButtonBulkActions is function transmitted in controller
    */
   bindChangePage(
     renderTabs: () => void,
     changeLogoFollowTab: (tab: string) => void
   ) {
-    const menu = selectDOMClassAll('.nav li');
-
     renderTabs();
     this.elementHelpers.showMenuActive();
+    this.handleClickMenu(changeLogoFollowTab, renderTabs);
+  }
+
+  /**
+   * @description handle click change menu
+   *
+   * @param {function} renderTabs is function transmitted in controller
+   * @param {function} changeLogoFollowTab is function transmitted in controller
+   */
+  handleClickMenu(
+    changeLogoFollowTab: (tab: string) => void,
+    renderTabs: () => void
+  ) {
+    const menu = selectDOMClassAll('.nav li');
     const handler = (e: Event) => {
       const searchInput = selectDOMClass('.search') as HTMLInputElement;
       const iconClose = selectDOMClass('.icon-close');
@@ -58,19 +69,17 @@ export default class MenuView {
         )?.textContent;
 
         this.elementHelpers.removeMenuActive();
-        const index = (e.target as HTMLElement).getAttribute('data-id');
-        if (index) {
-          sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, index);
-          this.elementHelpers.showMenuActive();
-        }
+        sessionStorage.setItem(
+          STORAGE_KEYS.PAGE_NUMBER,
+          this.elementHelpers.getAttributeElement(e.target, 'data-id') as string
+        );
+        this.elementHelpers.showMenuActive();
 
         renderTabs();
-        if (logoName) {
-          if (logoName === 'Notes') {
-            changeLogoFollowTab('Keep');
-          } else {
-            changeLogoFollowTab(logoName);
-          }
+        if (logoName === 'Notes') {
+          changeLogoFollowTab('Keep');
+        } else {
+          changeLogoFollowTab(logoName as string);
         }
       }
 

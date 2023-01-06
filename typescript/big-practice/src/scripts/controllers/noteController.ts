@@ -1,5 +1,5 @@
 import NoteModel from '../models/noteModel';
-import Note from '../types/note';
+import Note from '../interfaces/note';
 import { renderPopupError } from '../utils/errorsDOM';
 import LoadingPage from '../utils/loadingPage';
 import ListNoteView from '../views/listNoteView';
@@ -35,47 +35,48 @@ export default class NoteController {
 
   renderTabs() {
     const handlers = {
-      renderTabNotes: () => this.renderTabNote(),
-      renderTabTrash: () => this.renderTabTrash(),
+      renderTabNotes: () => this.renderTab('listNotes'),
+      renderTabTrash: () => this.renderTab('trashNotes'),
       addNote: (note: Note) => this.addNote(note),
     };
 
     this.view.renderTabs(handlers);
   }
 
-  async renderTabTrash() {
+  /**
+   * @description function render tab note or tab trash
+   * with default value tab = '' it will render tab note, when
+   * tab = 'trashNotes' it will render tab trash
+   *
+   * @param {String} tab is param to distinguish these two listNotes and trashNotes
+   */
+  async renderTab(tab = '') {
     try {
       this.loadingPage.addLoading();
-      const listTrash: Note[] = await this.model.filterNotes('trashNotes');
-      // function render trash notes
-      this.view.renderListTrashNotes(listTrash, (noteId: string) =>
-        this.handleConfirmPopup(noteId)
-      );
 
-      // function show Empty Note if note is empty
-      this.view.showHideEmpty(listTrash, 'trashNotes');
-      this.loadingPage.setTimeoutLoading();
-    } catch (error) {
-      if (error instanceof Error) {
-        renderPopupError(error.message);
+      if (tab === 'trashNotes') {
+        const listTrash: Note[] = await this.model.filterNotes(tab);
+        // function render trash notes
+        this.view.renderListTrashNotes(listTrash, (noteId: string) =>
+          this.handleConfirmPopup(noteId)
+        );
+
+        // function show Empty Note if note is empty
+        this.view.showHideEmpty(listTrash, tab);
+      } else {
+        const handlers = {
+          handleDeleteNote: (id: string) => this.deleteNote(id),
+          handleShowNoteForm: (id: string) => this.handleNoteForm(id),
+        };
+        const listNotes: Note[] = await this.model.filterNotes(tab);
+
+        // function render list notes
+        this.view.renderListNotes(listNotes, handlers);
+
+        // function show Empty Note if note is empty
+        this.view.showHideEmpty(listNotes, tab);
       }
-    }
-  }
 
-  async renderTabNote() {
-    try {
-      this.loadingPage.addLoading();
-      const handlers = {
-        handleDeleteNote: (id: string) => this.deleteNote(id),
-        handleShowNoteForm: (id: string) => this.handleNoteForm(id),
-      };
-      const listNotes: Note[] = await this.model.filterNotes('listNotes');
-
-      // function render list notes
-      this.view.renderListNotes(listNotes, handlers);
-
-      // function show Empty Note if note is empty
-      this.view.showHideEmpty(listNotes, 'listNotes');
       this.loadingPage.setTimeoutLoading();
     } catch (error) {
       if (error instanceof Error) {
@@ -129,17 +130,15 @@ export default class NoteController {
   async addNote(note: Note) {
     try {
       this.loadingPage.addLoading();
-      const noteItem = await this.model.addNote(note);
+      const noteItem = (await this.model.addNote(note)) as Note;
 
       const handlers = {
         handleDeleteNote: (id: string) => this.deleteNote(id),
         handleShowNoteForm: (id: string) => this.handleNoteForm(id),
       };
 
-      if (noteItem) {
-        this.view.renderNote(noteItem, handlers);
-        this.loadingPage.removeLoading();
-      }
+      this.view.renderNote(noteItem, handlers);
+      this.loadingPage.removeLoading();
     } catch (error) {
       if (error instanceof Error) {
         renderPopupError(error.message);
@@ -158,9 +157,7 @@ export default class NoteController {
       this.loadingPage.addLoading();
       const noteItem = await this.model.deleteNote(noteId);
 
-      if (noteItem) {
-        this.view.removeNoteElement(noteItem.id);
-      }
+      this.view.removeNoteElement(noteItem.id);
       this.view.showHideEmpty(this.model.listNotes, 'listNotes');
       this.loadingPage.removeLoading();
     } catch (error) {
@@ -207,10 +204,8 @@ export default class NoteController {
         handleDeleteNote: (noteId: string) => this.deleteNote(noteId),
       };
 
-      if (noteItem) {
-        // function render form note
-        this.view.renderFormNote(noteItem, handlers);
-      }
+      // function render form note
+      this.view.renderFormNote(noteItem, handlers);
     } catch (error) {
       if (error instanceof Error) {
         renderPopupError(error.message);

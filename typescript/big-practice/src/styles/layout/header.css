@@ -1,11 +1,11 @@
 .header-wrapper,
 .header-default,
-.header-after-select  {
+.header-after-select {
   height: 65px;
 }
 
 .header-default,
-.header-after-select  {
+.header-after-select {
   padding: 0 10px;
   transition: transform ease-out 0.3s;
   border-bottom: 1px solid var(--fade-color);
@@ -94,7 +94,8 @@
 
 .focus-search {
   background-color: var(--light-color);
-  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 5px 0px;
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(14, 30, 37, 0.32) 0px 2px 5px 0px;
 }
 
 .blur-search {
@@ -126,7 +127,8 @@
   padding-top: 20px;
   z-index: 2;
   animation: opacityAnimation linear 0.5s;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .menu-user-info {
@@ -206,4 +208,8 @@
 
 .header-utilities .item-utilities:hover {
   background-color: var(--fade-color);
+}
+
+.header-wrapper .show {
+  transform: translateY(-100%);
 }

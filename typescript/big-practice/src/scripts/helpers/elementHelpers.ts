@@ -107,6 +107,23 @@ export default class ElementHelpers {
   }
 
   /**
+   * @description function get attribute
+   *
+   * @param element is element want get attribute
+   * @param attribute is the name of attribute
+   */
+  getAttributeElement(
+    element: HTMLElement | EventTarget | null,
+    attribute: string
+  ): string | undefined {
+    if (element) {
+      return (element as HTMLElement).getAttribute(attribute) as string;
+    }
+
+    return undefined;
+  }
+
+  /**
    * @description move an element follow Y-axis with numbers corresponding
    *
    * @param {Object} e is element you want to move
