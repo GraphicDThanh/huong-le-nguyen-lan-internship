@@ -71,16 +71,15 @@ export default class MenuView {
         this.elementHelpers.removeMenuActive();
         sessionStorage.setItem(
           STORAGE_KEYS.PAGE_NUMBER,
-          this.elementHelpers.getAttributeElement(e.target, 'data-id')
+          this.elementHelpers.getAttributeElement(e.target, 'data-id') as string
         );
         this.elementHelpers.showMenuActive();
 
-          renderTabs();
-          if (logoName === 'Notes') {
-            changeLogoFollowTab('Keep');
-          } else {
-            changeLogoFollowTab(logoName);
-          }
+        renderTabs();
+        if (logoName === 'Notes') {
+          changeLogoFollowTab('Keep');
+        } else {
+          changeLogoFollowTab(logoName as string);
         }
       }
 
