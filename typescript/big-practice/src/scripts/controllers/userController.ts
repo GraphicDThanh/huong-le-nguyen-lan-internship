@@ -1,5 +1,5 @@
 import UserModel from '../models/userModel';
-import User from '../types/user';
+import User from '../interfaces/user';
 import AuthenticationView from '../views/authenticationView';
 
 export default class UserController {

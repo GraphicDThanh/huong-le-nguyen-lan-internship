@@ -1,6 +1,6 @@
 const STORAGE_KEYS = {
   PAGE_NUMBER: 'pageNumber',
-  IS_LOGIN: 'isLogIn',
+  USER_ID: 'userId',
 };
 
 export default STORAGE_KEYS;

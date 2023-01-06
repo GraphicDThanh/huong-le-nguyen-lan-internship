@@ -26,7 +26,7 @@ export default class ListNoteView {
 
   eventHelpers: EventHelpers;
 
-  localStorage: LocalStorage<boolean>;
+  localStorage: LocalStorage<string>;
 
   headerView: HeaderView;
 
@@ -52,7 +52,7 @@ export default class ListNoteView {
    * localStorage is null
    */
   navigatePageWithLoginStatus() {
-    if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+    if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
       navigatePage('index.html');
     }
   }

@@ -2,7 +2,7 @@ import formElement from '../components/form';
 import { ERROR_MESSAGE } from '../constants/message';
 import STORAGE_KEYS from '../constants/storageKeys';
 import EventHelpers from '../helpers/eventHelpers';
-import User from '../types/user';
+import User from '../interfaces/user';
 import { hideError, showError } from '../utils/errorsDOM';
 import LocalStorage from '../utils/localStorage';
 import navigatePage from '../utils/navigatePage';
@@ -27,7 +27,7 @@ export default class AuthenticationView {
 
   eventHelpers: EventHelpers;
 
-  localStorage: LocalStorage<boolean>;
+  localStorage: LocalStorage<string>;
 
   constructor() {
     this.signUpForm = selectDOMById('sign-up-form') as HTMLFormElement;
@@ -179,7 +179,7 @@ export default class AuthenticationView {
 
       if (user.password === users[0].password) {
         hideError(passwordElement, labelPassword);
-        this.localStorage.setItems(STORAGE_KEYS.IS_LOGIN, true);
+        this.localStorage.setItems(STORAGE_KEYS.USER_ID, users[0].id);
         navigatePage('home.html');
       } else {
         showError(

@@ -1,10 +1,14 @@
 import HeaderView from '../views/headerView';
+import UserController from './userController';
 
 export default class HeaderController {
   headerView: HeaderView;
 
-  constructor(headerView: HeaderView) {
+  userController: UserController;
+
+  constructor(headerView: HeaderView, userController: UserController) {
     this.headerView = headerView;
+    this.userController = userController;
   }
 
   init() {
@@ -25,6 +29,10 @@ export default class HeaderController {
     this.headerView.bindLogOut();
 
     // function set username to menu user
-    this.headerView.showInformationUser();
+    this.headerView.showInformationUser(async (id: string) => {
+      const email = await this.userController.model.getUserByKey('id', id);
+
+      return email;
+    });
   }
 }

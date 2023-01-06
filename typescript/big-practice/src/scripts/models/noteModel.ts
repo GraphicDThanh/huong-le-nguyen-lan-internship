@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
 import Note from '../interfaces/note';
+import LocalStorage from '../utils/localStorage';
 
 /**
  * @class listNoteModel
@@ -10,10 +11,13 @@ import Note from '../interfaces/note';
 export default class NoteModel {
   fetchAPI: FetchAPI<Note>;
 
+  localStorage: LocalStorage<string>;
+
   listNotes: Note[];
 
   constructor() {
     this.fetchAPI = new FetchAPI();
+    this.localStorage = new LocalStorage();
     this.listNotes = [];
   }
 
@@ -30,6 +34,7 @@ export default class NoteModel {
       title: note.title,
       description: note.description,
       deletedAt: '',
+      userId: this.localStorage.getItems(),
     };
     const noteItem = await this.fetchAPI.postItem(
       patternNote,

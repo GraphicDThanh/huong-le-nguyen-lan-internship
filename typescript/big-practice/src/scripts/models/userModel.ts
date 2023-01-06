@@ -1,5 +1,6 @@
+import { v4 as uuidv4 } from 'uuid';
 import URL_API from '../constants/apiUrl';
-import User from '../types/user';
+import User from '../interfaces/user';
 import FetchAPI from '../utils/fetchAPI';
 
 export default class UserModel {
@@ -30,15 +31,18 @@ export default class UserModel {
   /**
    * @description function
    *
-   * @param userInformation is user's information take from input form
+   * @param userInfo is user's information take from input form
    *
    * @returns {Object} user
    */
-  async addUser(userInformation: User) {
-    const user = await this.fetchAPI.postItem(
-      userInformation,
-      URL_API.USERS_URL
-    );
+  async addUser(userInfo: User) {
+    const patternUser = {
+      id: uuidv4(),
+      email: userInfo.email,
+      password: userInfo.password,
+    };
+
+    const user = await this.fetchAPI.postItem(patternUser, URL_API.USERS_URL);
 
     return user;
   }

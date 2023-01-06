@@ -20,18 +20,18 @@ const userModel = new UserModel();
 const authenticationView = new AuthenticationView();
 
 const noteController = new NoteController(noteModel, listNoteView);
-const headerController = new HeaderController(headerView);
+const userController = new UserController(authenticationView, userModel);
+const headerController = new HeaderController(headerView, userController);
 const menuController = new MenuController(
   menuView,
   noteController,
   headerController
 );
-const userController = new UserController(authenticationView, userModel);
 
 (() => {
   const localStorage = new LocalStorage();
 
-  if (!localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+  if (!localStorage.getItems(STORAGE_KEYS.USER_ID)) {
     userController.init();
   } else {
     headerController.init();

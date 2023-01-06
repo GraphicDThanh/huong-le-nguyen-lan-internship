@@ -11,14 +11,14 @@ import {
   buttonBulkActionsComponent,
 } from '../components/header';
 import EventHelpers from '../helpers/eventHelpers';
-import user from '../../../data/mockUser';
+import User from '../interfaces/user';
 
 export default class HeaderView {
   mainWrapper: HTMLElement | null;
 
   homePage: HTMLElement | null;
 
-  localStorage: LocalStorage<boolean>;
+  localStorage: LocalStorage<string>;
 
   elementHelpers: ElementHelpers;
 
@@ -85,7 +85,7 @@ export default class HeaderView {
     const handler = () => {
       navigatePage('index.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      this.localStorage.removeItems(STORAGE_KEYS.IS_LOGIN);
+      this.localStorage.removeItems(STORAGE_KEYS.USER_ID);
     };
 
     this.eventHelpers.addEvent(btnLogout, 'click', handler);
@@ -93,12 +93,21 @@ export default class HeaderView {
 
   /**
    * @description set email to menu user
+   *
+   * @param {function} findUser is function find user by id take from
+   * localStorage
    */
-  showInformationUser() {
+  async showInformationUser(
+    findUser: (id: string) => Promise<User[] | undefined>
+  ) {
     const emailUser = selectDOMClass('.menu-user-email');
     if (emailUser) {
-      if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-        emailUser.textContent = user.email;
+      if (this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
+        const id = this.localStorage.getItems(STORAGE_KEYS.USER_ID) as string;
+        const user = await findUser(id);
+        if (user) {
+          emailUser.textContent = user[0].email;
+        }
       } else {
         emailUser.textContent = 'Unknown';
       }
