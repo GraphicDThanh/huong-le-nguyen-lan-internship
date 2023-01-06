@@ -7,7 +7,7 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import navigatePage from '../utils/navigatePage';
 import ElementHelpers from '../helpers/elementHelpers';
 import EventHelpers from '../helpers/eventHelpers';
-import User from '../types/user';
+import User from '../interfaces/user';
 
 export default class LoginView {
   loginForm: HTMLFormElement | null;
@@ -119,19 +119,16 @@ export default class LoginView {
    *
    * @param {Object} element is input your want to show hide error of label
    */
-  showHideInputError(element: HTMLElement | null) {
+  showHideInputError(el: HTMLElement | null) {
+    const element = el;
     if (element) {
       const handler = () => {
-        if (element.parentNode) {
-          const message =
-            element.parentNode.querySelector('.message-error')?.textContent;
-          const ev = element;
-
-          if (message) {
-            ev.style.outlineColor = 'var(--danger-color)';
-          } else {
-            ev.style.outlineColor = 'var(--info-color)';
-          }
+        const message =
+          element.parentNode?.querySelector('.message-error')?.textContent;
+        if (message) {
+          element.style.outlineColor = 'var(--danger-color)';
+        } else {
+          element.style.outlineColor = 'var(--info-color)';
         }
       };
 
