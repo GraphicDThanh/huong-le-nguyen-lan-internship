@@ -129,7 +129,7 @@ export default class HeaderView {
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');
     const handler = () => {
       this.elementHelpers.removeSelected();
-      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+      this.elementHelpers.removeClass(headerAfterSelect, 'show');
     };
 
     this.eventHelpers.addEvent(btnClose, 'click', handler);

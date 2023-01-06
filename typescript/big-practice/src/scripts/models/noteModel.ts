@@ -89,11 +89,9 @@ export default class NoteModel {
     const date = new Date().toISOString().slice(0, 10);
     const noteItem = this.findNote(id);
 
-    if (noteItem) {
-      noteItem.deletedAt = date;
-      await this.fetchAPI.putItem(id, noteItem, URL_API.NOTES_URL);
-      this.listNotes = this.listNotes.filter((note) => note.id !== id);
-    }
+    noteItem.deletedAt = date;
+    await this.fetchAPI.putItem(id, noteItem, URL_API.NOTES_URL);
+    this.listNotes = this.listNotes.filter((note) => note.id !== id);
 
     return noteItem;
   }
@@ -104,12 +102,8 @@ export default class NoteModel {
    * @param {String} id is id of note is selected
    */
   async deleteNoteInTrash(id: string) {
-    const noteItem = this.findNote(id);
-
-    if (noteItem && noteItem.id) {
-      await this.fetchAPI.deleteItem(noteItem.id, URL_API.NOTES_URL);
-      this.listNotes = this.listNotes.filter((note) => note.id !== id);
-    }
+    await this.fetchAPI.deleteItem(id, URL_API.NOTES_URL);
+    this.listNotes = this.listNotes.filter((note) => note.id !== id);
   }
 
   /**
@@ -119,8 +113,8 @@ export default class NoteModel {
    *
    *  @returns {Object} noteItem
    */
-  findNote(id: string): Note | undefined {
-    const noteItem = this.listNotes.find((note) => note.id === id);
+  findNote(id: string): Note {
+    const noteItem = this.listNotes.find((note) => note.id === id) as Note;
 
     return noteItem;
   }
@@ -132,14 +126,10 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async editNote(note) {
-    let noteItem = this.findNote(note.id);
-    noteItem.title = note.title;
-    noteItem.description = note.description;
-
-    noteItem = await this.fetchAPI.putItem(
+  async editNote(note: Note) {
+    const noteItem = await this.fetchAPI.putItem(
       note.id,
-      noteItem,
+      note,
       URL_API.NOTES_URL
     );
 
