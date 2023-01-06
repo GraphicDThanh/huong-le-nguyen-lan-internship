@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
-import Note from '../types/note';
+import Note from '../interfaces/note';
 
 /**
  * @class listNoteModel

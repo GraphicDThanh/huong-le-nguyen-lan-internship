@@ -7,7 +7,7 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import navigatePage from '../utils/navigatePage';
 import ElementHelpers from '../helpers/elementHelpers';
 import EventHelpers from '../helpers/eventHelpers';
-import User from '../types/user';
+import User from '../interfaces/user';
 
 export default class LoginView {
   loginForm: HTMLFormElement | null;
@@ -124,12 +124,11 @@ export default class LoginView {
       const handler = () => {
         const message =
           element.parentNode?.querySelector('.message-error')?.textContent;
-        const ev = element;
 
         if (message) {
-          ev.style.outlineColor = 'var(--danger-color)';
+          element.style.outlineColor = 'var(--danger-color)';
         } else {
-          ev.style.outlineColor = 'var(--info-color)';
+          element.style.outlineColor = 'var(--info-color)';
         }
       };
 

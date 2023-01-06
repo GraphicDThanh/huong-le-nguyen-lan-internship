@@ -15,7 +15,7 @@ import listNotesWrapper from '../components/listNotes';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/errorsDOM';
-import Note from '../types/note';
+import Note from '../interfaces/note';
 
 /**
  * @class listNoteView
