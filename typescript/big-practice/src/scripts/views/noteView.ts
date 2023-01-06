@@ -2,6 +2,7 @@ import iconPin from '../../assets/icons/icon-pin.svg';
 import iconColorBoard from '../../assets/icons/icon-color-board.svg';
 import iconColorTrash from '../../assets/icons/icon-trash.svg';
 import Note from '../types/note';
+import NOTE from '../constants/note';
 
 /**
  * @class noteView
@@ -41,7 +42,7 @@ export default class NoteView {
         <div class="note-utilities" data-id="${note.id}">
           <div class="note-btn">
             ${
-              tab === 'trashNotes'
+              tab === NOTE.TRASH_NOTES
                 ? `<button class="btn btn-delete" type="button" data-id="${note.id}">Delete</button>`
                 : `<figure class="item-utilities icon-delete" data-id="${note.id}">
               <img src="${iconColorTrash}" alt="icon trash" data-id="${note.id}">

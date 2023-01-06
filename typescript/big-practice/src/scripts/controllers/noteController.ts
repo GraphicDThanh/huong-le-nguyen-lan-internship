@@ -1,3 +1,4 @@
+import NOTE from '../constants/note';
 import NoteModel from '../models/noteModel';
 import Note from '../types/note';
 import { renderPopupError } from '../utils/errorsDOM';
@@ -35,8 +36,8 @@ export default class NoteController {
 
   renderTabs() {
     const handlers = {
-      renderTabNotes: () => this.renderTab('listNotes'),
-      renderTabTrash: () => this.renderTab('trashNotes'),
+      renderTabNotes: () => this.renderTab(NOTE.LIST_NOTES),
+      renderTabTrash: () => this.renderTab(NOTE.TRASH_NOTES),
       addNote: (note: Note) => this.addNote(note),
     };
 
@@ -54,7 +55,7 @@ export default class NoteController {
     try {
       this.loadingPage.addLoading();
 
-      if (tab === 'trashNotes') {
+      if (tab === NOTE.TRASH_NOTES) {
         const listTrash: Note[] = await this.model.filterNotes(tab);
         // function render trash notes
         this.view.renderListTrashNotes(listTrash, (noteId: string) =>
@@ -108,7 +109,7 @@ export default class NoteController {
         await this.model.deleteNoteInTrash(id);
 
         this.view.removeNoteElement(id);
-        this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+        this.view.showHideEmpty(this.model.listNotes, NOTE.TRASH_NOTES);
         this.loadingPage.removeLoading();
       });
     } catch (error) {
@@ -152,7 +153,7 @@ export default class NoteController {
       const noteItem = await this.model.deleteNote(noteId);
 
       this.view.removeNoteElement(noteItem.id);
-      this.view.showHideEmpty(this.model.listNotes, 'listNotes');
+      this.view.showHideEmpty(this.model.listNotes, NOTE.LIST_NOTES);
       this.loadingPage.removeLoading();
     } catch (error) {
       if (error instanceof Error) {
