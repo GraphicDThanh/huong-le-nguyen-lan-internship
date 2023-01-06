@@ -119,12 +119,12 @@ export default class LoginView {
    *
    * @param {Object} element is input your want to show hide error of label
    */
-  showHideInputError(element: HTMLElement | null) {
+  showHideInputError(el: HTMLElement | null) {
+    const element = el;
     if (element) {
       const handler = () => {
         const message =
           element.parentNode?.querySelector('.message-error')?.textContent;
-
         if (message) {
           element.style.outlineColor = 'var(--danger-color)';
         } else {
