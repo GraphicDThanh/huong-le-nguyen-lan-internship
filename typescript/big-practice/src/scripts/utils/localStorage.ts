@@ -5,7 +5,7 @@ export default class LocalStorage<T> {
    * @param {String} key is name of key in localStorage
    * @param {Array} value
    */
-  setItems(key: string, value: T) {
+  setItems(key: string, value: T): void {
     localStorage.setItem(key, JSON.stringify(value));
   }
 
@@ -31,7 +31,7 @@ export default class LocalStorage<T> {
    *
    * @param {String} key is name of key in localStorage
    */
-  removeItems(key: string) {
+  removeItems(key: string): void {
     localStorage.removeItem(key);
   }
 }
