@@ -16,6 +16,7 @@ import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/errorsDOM';
 import Note from '../types/note';
+import NOTE from '../constants/note';
 
 /**
  * @class listNoteView
@@ -71,12 +72,12 @@ export default class ListNoteView {
     const { renderTabNotes, renderTabTrash, addNote } = handlers;
 
     const trashNotes = {
-      tab: 'trashNotes',
+      tab: NOTE.TRASH_NOTES,
       message: 'No notes in Trash',
     };
 
     const listNotes = {
-      tab: 'listNotes',
+      tab: NOTE.LIST_NOTES,
       message: 'Notes you add appear here',
     };
 
@@ -119,12 +120,12 @@ export default class ListNoteView {
     );
 
     switch (tab) {
-      case 'listNotes':
+      case NOTE.LIST_NOTES:
         if (listNotesEmpty && listNoteElement) {
           this.commonEmptyList(list, listNotesEmpty, listNoteElement);
         }
         break;
-      case 'trashNotes':
+      case NOTE.TRASH_NOTES:
         if (listTrashEmpty && listTrashElement) {
           this.commonEmptyList(list, listTrashEmpty, listTrashElement);
         }
@@ -201,7 +202,7 @@ export default class ListNoteView {
       deletedAt: note.deletedAt,
     };
     const noteView = new NoteView(noteItem);
-    const noteElement = noteView.renderNote('listNotes');
+    const noteElement = noteView.renderNote(NOTE.LIST_NOTES);
     const { handleDeleteNote, handleShowNoteForm } = handlers;
 
     if (listNoteElement) {
@@ -274,7 +275,7 @@ export default class ListNoteView {
         };
 
         const noteView = new NoteView(noteItem);
-        const trashNote = noteView.renderNote('trashNotes');
+        const trashNote = noteView.renderNote(NOTE.TRASH_NOTES);
         listTrashElement.appendChild(trashNote);
         this.bindShowPopup(trashNote, handler);
         this.bindSelectedNote(trashNote);
