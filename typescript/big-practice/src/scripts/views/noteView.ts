@@ -19,7 +19,7 @@ export default class NoteView {
    *
    * @returns {Object} noteElement is a element note
    */
-  renderNote(tab: string) {
+  renderNote(tab: string): HTMLElement {
     const noteElement = document.createElement('div');
     noteElement.classList.add('note');
     const note = this.noteItem;
@@ -58,7 +58,7 @@ export default class NoteView {
    *
    * @returns {Object} formElement
    */
-  renderNoteForm() {
+  renderNoteForm(): HTMLElement {
     const formElement = document.createElement('div');
     formElement.setAttribute('class', 'overlay');
     const note = this.noteItem;
