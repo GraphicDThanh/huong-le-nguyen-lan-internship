@@ -14,7 +14,7 @@ const renderConfirmPopup = (
   message: string,
   typeButton?: string,
   item?: Note
-) => {
+): HTMLElement => {
   const confirmMessage = document.createElement('div');
   confirmMessage.setAttribute('class', 'overlay');
 

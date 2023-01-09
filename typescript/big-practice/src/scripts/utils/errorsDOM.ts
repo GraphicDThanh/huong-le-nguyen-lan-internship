@@ -12,7 +12,10 @@ const elementHelpers = new ElementHelpers();
  * @param {Object} element of input you want to hide message
  * @param {Object} label is label of input
  */
-const hideError = (element: HTMLElement | null, label: HTMLElement | null) => {
+const hideError = (
+  element: HTMLElement | null,
+  label: HTMLElement | null
+): void => {
   if (element && label) {
     const error = element.parentElement?.querySelector<HTMLElement>(
       '.message .message-error'
@@ -43,7 +46,7 @@ const showError = (
   element: HTMLElement | null,
   message: string,
   label: HTMLElement | null
-) => {
+): void => {
   if (element && label) {
     const error = element.parentElement?.querySelector(
       '.message .message-error'
@@ -67,7 +70,7 @@ const showError = (
  *
  * @param {String} errorMessage is message error
  */
-const renderPopupError = (errorMessage: string) => {
+const renderPopupError = (errorMessage: string): void => {
   const overlayWrapper = selectDOMClass('.overlay-wrapper');
   const eventHelpers = new EventHelpers();
 

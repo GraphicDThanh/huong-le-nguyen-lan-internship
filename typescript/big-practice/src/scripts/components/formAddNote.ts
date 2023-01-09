@@ -1,7 +1,7 @@
 import iconPin from '../../assets/icons/icon-pin.svg';
 import iconColorBoard from '../../assets/icons/icon-color-board.svg';
 
-const formAddNote = () => {
+const formAddNote = (): HTMLElement => {
   const formControl = document.createElement('div');
   formControl.setAttribute('class', 'note-wrapper');
 
