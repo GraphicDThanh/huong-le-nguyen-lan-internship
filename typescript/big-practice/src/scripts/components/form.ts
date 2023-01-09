@@ -1,7 +1,7 @@
 import logo from '../../assets/icons/google-keep.svg';
 import iconError from '../../assets/icons/error-icon.svg';
 
-const formElement = () => {
+const formElement = (): HTMLElement => {
   const form = document.createElement('form');
   const page = window.location.href.replace('http://localhost:1234/', '');
 

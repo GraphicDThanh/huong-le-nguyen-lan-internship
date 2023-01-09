@@ -2,7 +2,7 @@ import formElement from '../components/form';
 import { ERROR_MESSAGE } from '../constants/message';
 import STORAGE_KEYS from '../constants/storageKeys';
 import EventHelpers from '../helpers/eventHelpers';
-import User from '../types/user';
+import User from '../interfaces/user';
 import { hideError, showError } from '../utils/errorsDOM';
 import LocalStorage from '../utils/localStorage';
 import navigatePage from '../utils/navigatePage';
@@ -46,7 +46,7 @@ export default class AuthenticationView {
   /**
    * @description function render form login or sign up
    */
-  renderForm() {
+  renderForm(): void {
     const page = selectDOMClass('.index-page .container');
     page?.appendChild(formElement());
   }
@@ -54,7 +54,7 @@ export default class AuthenticationView {
   /**
    * @description function change to sign up page
    */
-  bindChangePage() {
+  bindChangePage(): void {
     const createAccount = selectDOMClass(
       '#login-form .btn-create-account-form'
     );
@@ -70,7 +70,7 @@ export default class AuthenticationView {
    * @param {Object} element is element bind event
    * @param {string} page is page want to move to
    */
-  changePage(element: HTMLElement | null, page: string) {
+  changePage(element: HTMLElement | null, page: string): void {
     if (element) {
       const handler = () => {
         navigatePage(page);
@@ -89,7 +89,7 @@ export default class AuthenticationView {
   bindSubmitForm(
     findUser: (email: string) => Promise<User[]>,
     createAccount: (user: User) => void
-  ) {
+  ): void {
     const formWrapper = selectDOMClass('.form-wrapper') as HTMLFormElement;
     const confirmPasswordElement = selectDOMClass('.confirm-password');
     const emailElement = selectDOMClass('.email');
@@ -135,7 +135,7 @@ export default class AuthenticationView {
     user: User,
     confirmPassword: string,
     createAccount: (user: User) => void
-  ) {
+  ): void {
     const confirmPasswordElement = selectDOMClass('.confirm-password');
     const emailElement = selectDOMClass('.email');
     const labelEmail = selectDOMClass('.label-email');
@@ -168,7 +168,7 @@ export default class AuthenticationView {
    * @param users is list users from data
    * @param user is information of user input
    */
-  handleValidLogin(users: User[], user: User) {
+  handleValidLogin(users: User[], user: User): void {
     const emailElement = selectDOMClass('.email');
     const labelEmail = selectDOMClass('.label-email');
     const passwordElement = selectDOMClass('.password');
@@ -197,7 +197,7 @@ export default class AuthenticationView {
   /**
    * @description bind events show hide label error for input
    */
-  bindShowHideInputError() {
+  bindShowHideInputError(): void {
     const confirmPassword = selectDOMClass('.confirm-password');
     const emailElement = selectDOMClass('.email');
     const passwordElement = selectDOMClass('.password');
@@ -216,7 +216,7 @@ export default class AuthenticationView {
    *
    * @param {Object} element is input your want to show hide error of label
    */
-  showHideInputError(el: HTMLElement | null) {
+  showHideInputError(el: HTMLElement | null): void {
     const element = el;
 
     if (element) {

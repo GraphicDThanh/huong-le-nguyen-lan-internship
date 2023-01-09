@@ -1,5 +1,5 @@
 import URL_API from '../constants/apiUrl';
-import User from '../types/user';
+import User from '../interfaces/user';
 import FetchAPI from '../utils/fetchAPI';
 
 export default class UserModel {
@@ -18,7 +18,7 @@ export default class UserModel {
    *
    * @returns {Arrya} users
    */
-  async getUserByKey(key: string, value: string) {
+  async getUserByKey(key: string, value: string): Promise<User[] | undefined> {
     const users = await this.fetchAPI.getItemByKey(
       URL_API.USERS_URL,
       `?${key}=${value}`
@@ -34,7 +34,7 @@ export default class UserModel {
    *
    * @returns {Object} user
    */
-  async addUser(userInformation: User) {
+  async addUser(userInformation: User): Promise<User | undefined> {
     const user = await this.fetchAPI.postItem(
       userInformation,
       URL_API.USERS_URL

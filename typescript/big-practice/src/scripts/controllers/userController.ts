@@ -12,14 +12,14 @@ export default class UserController {
     this.model = model;
   }
 
-  init() {
+  init(): void {
     this.authenticationView.renderForm();
     this.authenticationView.bindChangePage();
     this.authenticationView.bindShowHideInputError();
     this.createNewAccount();
   }
 
-  async createNewAccount() {
+  async createNewAccount(): Promise<void> {
     this.authenticationView.bindSubmitForm(
       async (email: string) => {
         const user = (await this.model.getUserByKey('email', email)) as User[];
