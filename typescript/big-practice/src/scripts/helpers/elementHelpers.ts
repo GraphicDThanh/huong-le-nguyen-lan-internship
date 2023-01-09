@@ -16,7 +16,7 @@ export default class ElementHelpers {
    *
    * @param {Object} el is element textarea
    */
-  showInputBreakDown(el: HTMLElement | null) {
+  showInputBreakDown(el: HTMLElement | null): void {
     if (el) {
       const element = el;
       element.style.height = `${element.scrollHeight}px`;
@@ -35,7 +35,7 @@ export default class ElementHelpers {
    *
    * @param {Object} el is element textarea
    */
-  commonInputBreakDown(el: HTMLElement | null) {
+  commonInputBreakDown(el: HTMLElement | null): void {
     if (el) {
       const element = el;
       const handler = () => {
@@ -54,7 +54,7 @@ export default class ElementHelpers {
    *
    * @param {Object} el is element text count note
    */
-  countAndShowSelected(el: HTMLElement | null) {
+  countAndShowSelected(el: HTMLElement | null): void {
     if (el) {
       const element = el;
       const listSelected = selectDOMClassAll('.selected');
@@ -77,7 +77,7 @@ export default class ElementHelpers {
     elementShow: HTMLElement,
     elementHide: HTMLElement,
     className: string
-  ) {
+  ): void {
     this.removeClass(elementShow, className);
     this.addClass(elementHide, className);
   }
@@ -88,7 +88,7 @@ export default class ElementHelpers {
    * @param {Object} element is element you want to add class
    * @param {String} className is class has been defined CSS properties
    */
-  addClass(element: HTMLElement | null, className: string) {
+  addClass(element: HTMLElement | null, className: string): void {
     if (element) {
       element.classList.add(className);
     }
@@ -100,7 +100,7 @@ export default class ElementHelpers {
    * @param {Object} element is element you want to remove class
    * @param {String} className is class has been defined CSS properties
    */
-  removeClass(element: HTMLElement | null, className: string) {
+  removeClass(element: HTMLElement | null, className: string): void {
     if (element) {
       element.classList.remove(className);
     }
@@ -129,7 +129,7 @@ export default class ElementHelpers {
    * @param {Object} e is element you want to move
    * @param {String} number is numbers corresponding you want to move to
    */
-  translateYElement(e: HTMLElement | null, number: string) {
+  translateYElement(e: HTMLElement | null, number: string): void {
     if (e) {
       const element = e;
       element.style.transform = `translateY(${number}%)`;
@@ -140,7 +140,7 @@ export default class ElementHelpers {
    * @description remove all elements have class
    * selected
    */
-  removeSelected() {
+  removeSelected(): void {
     const noteSelected = selectDOMClassAll('.selected');
 
     if (noteSelected) {
@@ -155,7 +155,7 @@ export default class ElementHelpers {
    * that means remove all the element have class
    * menu-color
    */
-  removeMenuActive() {
+  removeMenuActive(): void {
     const menu = selectDOMClassAll('.nav li');
 
     if (menu) {
@@ -171,7 +171,7 @@ export default class ElementHelpers {
    * @description function show which menu is active by
    * getting information from session
    */
-  showMenuActive() {
+  showMenuActive(): void {
     const menu = selectDOMClassAll('.nav li');
     const index = Number(sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER));
 

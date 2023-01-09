@@ -7,11 +7,11 @@ export default class HeaderController {
     this.headerView = headerView;
   }
 
-  init() {
+  init(): void {
     this.bindEvents();
   }
 
-  bindEvents() {
+  bindEvents(): void {
     // Render header component
     this.headerView.renderHeader();
 
