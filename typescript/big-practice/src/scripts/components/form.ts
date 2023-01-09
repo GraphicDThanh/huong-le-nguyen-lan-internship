@@ -50,13 +50,13 @@ const formElement = (): HTMLElement => {
           name="password"
           class="password form-input"
           placeholder="&nbsp;"
-          minlength="8"
           ${
             page === 'signUp'
-              ? `pattern = '^(?=.*?[a-z])(?=.*?[0-9]).{0,}$'`
+              ? `
+              minlength="8"
+              pattern = '^(?=.*?[a-z])(?=.*?[0-9]).{0,}$'`
               : ''
           }
-          
           title="Password must contain letters and at least one digit"
           required
           autocomplete="off"
