@@ -17,7 +17,7 @@ export default class UserModel {
    * @param key is field want to find
    * @param value is value of field want to find
    *
-   * @returns {Arrya} users
+   * @returns {Array} users
    */
   async getUserByKey(key: string, value: string) {
     const users = await this.fetchAPI.getItemByKey(

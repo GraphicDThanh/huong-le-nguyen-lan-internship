@@ -4,6 +4,7 @@ import URL_API from '../constants/apiUrl';
 import Note from '../interfaces/note';
 import NOTE from '../constants/note';
 import LocalStorage from '../utils/localStorage';
+import STORAGE_KEYS from '../constants/storageKeys';
 
 /**
  * @class listNoteModel
@@ -35,7 +36,7 @@ export default class NoteModel {
       title: note.title,
       description: note.description,
       deletedAt: '',
-      userId: this.localStorage.getItems(),
+      userId: this.localStorage.getItems(STORAGE_KEYS.USER_ID),
     };
     const noteItem = await this.fetchAPI.postItem(
       patternNote,
@@ -60,7 +61,10 @@ export default class NoteModel {
    * @returns {Array} listNotes after filter
    */
   async filterNotes(tab: string): Promise<Note[]> {
-    const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
+    const allNotes = await this.fetchAPI.getItemByKey(
+      URL_API.NOTES_URL,
+      `?userId=${this.localStorage.getItems(STORAGE_KEYS.USER_ID)}`
+    );
 
     if (Array.isArray(allNotes)) {
       // This condition filter that we can use this function for trashNotes and listNotes
