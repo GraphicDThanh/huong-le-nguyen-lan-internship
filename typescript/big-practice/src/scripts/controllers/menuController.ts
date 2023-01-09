@@ -5,11 +5,11 @@ export default class MenuController {
     this.headerController = headerController;
   }
 
-  init() {
+  init(): void {
     this.bindEvents();
   }
 
-  bindEvents() {
+  bindEvents(): void {
     // Render menu component in the left site
     this.menuView.renderMenu();
 
