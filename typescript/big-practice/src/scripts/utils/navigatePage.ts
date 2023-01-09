@@ -3,7 +3,7 @@
  *
  * @param {String} href is href of page or url
  */
-const navigatePage = (href: string) => {
+const navigatePage = (href: string): void => {
   window.location.href = href;
 };
 
