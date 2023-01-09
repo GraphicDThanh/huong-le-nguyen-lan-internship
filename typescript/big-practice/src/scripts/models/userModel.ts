@@ -19,7 +19,7 @@ export default class UserModel {
    *
    * @returns {Array} users
    */
-  async getUserByKey(key: string, value: string) {
+  async getUserByKey(key: string, value: string): Promise<User[] | undefined> {
     const users = await this.fetchAPI.getItemByKey(
       URL_API.USERS_URL,
       `?${key}=${value}`
@@ -35,7 +35,7 @@ export default class UserModel {
    *
    * @returns {Object} user
    */
-  async addUser(userInfo: User) {
+  async addUser(userInfo: User): Promise<User | undefined> {
     const patternUser = {
       id: uuidv4(),
       email: userInfo.email,
