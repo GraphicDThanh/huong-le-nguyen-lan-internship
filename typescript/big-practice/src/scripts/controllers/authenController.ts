@@ -7,7 +7,7 @@ export default class AuthenController {
     this.view = view;
   }
 
-  init() {
+  init(): void {
     this.view.bindLogin();
     this.view.bindShowHideInputError();
     this.view.bindCreateAccount();

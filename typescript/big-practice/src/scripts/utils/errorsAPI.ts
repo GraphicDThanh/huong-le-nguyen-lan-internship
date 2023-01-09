@@ -9,7 +9,7 @@ import CustomError from './customError';
  * @param {Object} items is data received after call api
  * @returns
  */
-const generateError = <T>(response: Response, items: T) => {
+const generateError = <T>(response: Response, items: T): T => {
   switch (response.status) {
     case STATUS_CODE.OK:
     case STATUS_CODE.CREATED:
