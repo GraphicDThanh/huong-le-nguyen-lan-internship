@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
 import Note from '../types/note';
+import NOTE from '../constants/note';
 
 /**
  * @class listNoteModel
@@ -59,11 +60,11 @@ export default class NoteModel {
     if (Array.isArray(allNotes)) {
       // This condition filter that we can use this function for trashNotes and listNotes
       switch (tab) {
-        case 'listNotes': {
+        case NOTE.LIST_NOTES: {
           this.listNotes = allNotes.filter((note) => !note.deletedAt);
           break;
         }
-        case 'trashNotes': {
+        case NOTE.TRASH_NOTES: {
           this.listNotes = allNotes.filter((note) => note.deletedAt);
           break;
         }
