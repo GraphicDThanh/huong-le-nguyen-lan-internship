@@ -36,7 +36,7 @@ export default class HeaderView {
    * @description render header with some components in header
    * like menu user, logo and input search
    */
-  renderHeader() {
+  renderHeader(): void {
     if (this.homePage) {
       this.homePage.insertBefore(headerComponent(), this.mainWrapper);
     }
@@ -62,7 +62,7 @@ export default class HeaderView {
    * @description function show hide menu user when click
    * to icon avatar
    */
-  bindShowMenuUser() {
+  bindShowMenuUser(): void {
     const avatarUser = selectDOMClass('.avatar-user-cover');
     const menuUserElement = selectDOMClass('.menu-user');
     const handler = () => {
@@ -80,7 +80,7 @@ export default class HeaderView {
    * @description function handle logout, when user click
    * it will move to login page
    */
-  bindLogOut() {
+  bindLogOut(): void {
     const btnLogout = selectDOMClass('.btn-logout');
     const handler = () => {
       navigatePage('index.html');
@@ -99,7 +99,7 @@ export default class HeaderView {
    */
   async showInformationUser(
     findUser: (id: string) => Promise<User[] | undefined>
-  ) {
+  ): void {
     const emailUser = selectDOMClass('.menu-user-email');
     if (emailUser) {
       if (this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
@@ -119,7 +119,7 @@ export default class HeaderView {
    *
    * @param {String} tab is according to each current tab
    */
-  changeLogoByTab(tab: string) {
+  changeLogoByTab(tab: string): void {
     const headerMenu = selectDOMClass('.header-menu');
     const inputSearch = selectDOMClass('.form-search');
     const iconLogo = selectDOMClass('.icon-logo');
@@ -135,7 +135,7 @@ export default class HeaderView {
    * @description function close header bulk actions of the
    * icon close in header when selected notes
    */
-  closeSelected() {
+  closeSelected(): void {
     const headerAfterSelect = selectDOMClass('.header-after-select');
     const btnClose = selectDOMClass('.count-and-close .icon-close-cover');
     const handler = () => {
@@ -150,7 +150,7 @@ export default class HeaderView {
    * @description event of logo and title logo in header, when
    * user click, it will go to home page
    */
-  bindNavigateHomePage() {
+  bindNavigateHomePage(): void {
     const logoName = selectDOMClass('.icon-logo h1');
     const logo = selectDOMClass('.logo');
 
@@ -166,7 +166,7 @@ export default class HeaderView {
    * in sessionStorage don't have key page_number. It
    * will set to session a key page_number with value is 0
    */
-  setDefaultPageNumber() {
+  setDefaultPageNumber(): void {
     if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
     }

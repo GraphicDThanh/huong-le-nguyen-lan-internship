@@ -11,11 +11,11 @@ export default class HeaderController {
     this.userController = userController;
   }
 
-  init() {
+  init(): void {
     this.bindEvents();
   }
 
-  bindEvents() {
+  bindEvents(): void {
     // Render header component
     this.headerView.renderHeader();
 

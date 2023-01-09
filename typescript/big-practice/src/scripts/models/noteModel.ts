@@ -29,7 +29,7 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async addNote(note: Note) {
+  async addNote(note: Note): Promise<Note | undefined> {
     const patternNote = {
       id: uuidv4(),
       title: note.title,
@@ -59,7 +59,7 @@ export default class NoteModel {
    *
    * @returns {Array} listNotes after filter
    */
-  async filterNotes(tab: string) {
+  async filterNotes(tab: string): Promise<Note[]> {
     const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
 
     if (Array.isArray(allNotes)) {
@@ -91,7 +91,7 @@ export default class NoteModel {
    *
    * @return {Object} noteItem
    */
-  async deleteNote(id: string) {
+  async deleteNote(id: string): Promise<Note> {
     const date = new Date().toISOString().slice(0, 10);
     const noteItem = this.findNote(id);
 
@@ -107,7 +107,7 @@ export default class NoteModel {
    *
    * @param {String} id is id of note is selected
    */
-  async deleteNoteInTrash(id: string) {
+  async deleteNoteInTrash(id: string): Promise<void> {
     await this.fetchAPI.deleteItem(id, URL_API.NOTES_URL);
     this.listNotes = this.listNotes.filter((note) => note.id !== id);
   }
@@ -132,7 +132,7 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async editNote(note: Note) {
+  async editNote(note: Note): Promise<Note | undefined> {
     const noteItem = await this.fetchAPI.putItem(
       note.id,
       note,
