@@ -96,10 +96,12 @@ export default class HeaderView {
    */
   showInformationUser() {
     const emailUser = selectDOMClass('.menu-user-email');
-    if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-      emailUser.textContent = user.email;
-    } else {
-      emailUser.textContent = 'Unknown';
+    if (emailUser) {
+      if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+        emailUser.textContent = user.email;
+      } else {
+        emailUser.textContent = 'Unknown';
+      }
     }
   }
 
