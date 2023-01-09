@@ -25,16 +25,16 @@ export default class NoteController {
     this.loadingPage = new LoadingPage();
   }
 
-  init() {
+  init(): void {
     this.bindEvents();
   }
 
-  bindEvents() {
+  bindEvents(): void {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
   }
 
-  renderTabs() {
+  renderTabs(): void {
     const handlers = {
       renderTabNotes: () => this.renderTab(NOTE.LIST_NOTES),
       renderTabTrash: () => this.renderTab(NOTE.TRASH_NOTES),
@@ -46,12 +46,12 @@ export default class NoteController {
 
   /**
    * @description function render tab note or tab trash
-   * with default value tab = '' it will render tab note, when
-   * tab = 'trashNotes' it will render tab trash
+   * when tab = 'trashNotes' it will render tab trash
+   * if the tab is different from trashNotes i will render tab Note
    *
    * @param {String} tab is param to distinguish these two listNotes and trashNotes
    */
-  async renderTab(tab = '') {
+  async renderTab(tab: string): Promise<void> {
     try {
       this.loadingPage.addLoading();
 
@@ -92,7 +92,7 @@ export default class NoteController {
    *
    * @param {String} noteId is id of note is selected
    */
-  async handleConfirmPopup(noteId) {
+  async handleConfirmPopup(noteId): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const note = await this.model.findNote(noteId);
@@ -122,7 +122,7 @@ export default class NoteController {
    *
    * @param {Object} note is a information of note
    */
-  async addNote(note: Note) {
+  async addNote(note: Note): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.addNote(note);
@@ -147,7 +147,7 @@ export default class NoteController {
    *
    * @param {String} noteId is id of note is selected
    */
-  async deleteNote(noteId: string) {
+  async deleteNote(noteId: string): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.deleteNote(noteId);
@@ -167,7 +167,7 @@ export default class NoteController {
    *
    * @param {Object} note is information of note
    */
-  async editNote(note) {
+  async editNote(note): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.editNote(note);
@@ -185,7 +185,7 @@ export default class NoteController {
    *
    * @param {String} id is a id of note
    */
-  async handleNoteForm(id: string) {
+  async handleNoteForm(id: string): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.findNote(id);

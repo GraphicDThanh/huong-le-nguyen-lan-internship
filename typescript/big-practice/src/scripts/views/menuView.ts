@@ -15,7 +15,7 @@ export default class MenuView {
   /**
    * @description render menu in the left
    */
-  renderMenu() {
+  renderMenu(): void {
     this.mainWrapper.insertBefore(menuComponent(), this.sectionWrapper);
   }
 
@@ -27,7 +27,7 @@ export default class MenuView {
    * @param {function} changeLogoFollowTab is function transmitted in controller
    * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  bindChangePage(renderTabs, changeLogoFollowTab) {
+  bindChangePage(renderTabs, changeLogoFollowTab): void {
     const menu = selectDOMClassAll('.nav li');
 
     renderTabs();
@@ -42,7 +42,7 @@ export default class MenuView {
    * @param {function} changeLogoFollowTab is function transmitted in controller
    * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  handleClickMenu(menu, changeLogoFollowTab, renderTabs) {
+  handleClickMenu(menu, changeLogoFollowTab, renderTabs): void {
     const handler = (e) => {
       const searchInput = selectDOMClass('.search');
       const iconClose = selectDOMClass('.icon-close');
