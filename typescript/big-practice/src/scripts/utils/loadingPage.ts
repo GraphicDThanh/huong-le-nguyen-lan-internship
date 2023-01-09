@@ -31,7 +31,7 @@ export default class LoadingPage {
   /**
    * @description function render loading page
    */
-  addLoading() {
+  addLoading(): void {
     if (this.overlay) {
       this.overlay.appendChild(this.createLoading());
     }
@@ -41,14 +41,14 @@ export default class LoadingPage {
    * @description function remove loading page
    * after 1s
    */
-  setTimeoutLoading() {
+  setTimeoutLoading(): void {
     setTimeout(() => this.removeLoading(), 800);
   }
 
   /**
    * @description function remove loading page
    */
-  removeLoading() {
+  removeLoading(): void {
     if (this.overlay) {
       this.overlay.innerHTML = '';
     }

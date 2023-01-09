@@ -23,7 +23,7 @@ export default class MenuView {
   /**
    * @description render menu in the left
    */
-  renderMenu() {
+  renderMenu(): void {
     if (this.mainWrapper) {
       this.mainWrapper.insertBefore(menuComponent(), this.sectionWrapper);
     }
@@ -39,7 +39,7 @@ export default class MenuView {
   bindChangePage(
     renderTabs: () => void,
     changeLogoFollowTab: (tab: string) => void
-  ) {
+  ): void {
     renderTabs();
     this.elementHelpers.showMenuActive();
     this.handleClickMenu(changeLogoFollowTab, renderTabs);
@@ -54,7 +54,7 @@ export default class MenuView {
   handleClickMenu(
     changeLogoFollowTab: (tab: string) => void,
     renderTabs: () => void
-  ) {
+  ): void {
     const menu = selectDOMClassAll('.nav li');
     const handler = (e: Event) => {
       const searchInput = selectDOMClass('.search') as HTMLInputElement;

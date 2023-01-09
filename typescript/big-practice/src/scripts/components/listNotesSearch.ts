@@ -1,4 +1,4 @@
-const listNotesSearch = () => {
+const listNotesSearch = (): HTMLElement => {
   const template = document.createElement('div');
   template.setAttribute('class', 'search-wrapper');
 

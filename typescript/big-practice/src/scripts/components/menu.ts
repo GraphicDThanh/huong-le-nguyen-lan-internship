@@ -4,7 +4,7 @@ import iconPen from '../../assets/icons/icon-pen.svg';
 import iconArchive from '../../assets/icons/icon-archive.svg';
 import iconTrash from '../../assets/icons/icon-trash.svg';
 
-const menuComponent = () => {
+const menuComponent = (): HTMLElement => {
   const menuElement = document.createElement('aside');
   menuElement.classList.add('menu-aside');
 
