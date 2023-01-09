@@ -1,15 +1,15 @@
 import ListNoteView from './views/listNoteView';
 import NoteModel from './models/noteModel';
 import NoteController from './controllers/noteController';
-import HeaderView from './views/headerView';
-import MenuView from './views/menuView';
-import HeaderController from './controllers/headerController';
-import MenuController from './controllers/menuController';
 import UserModel from './models/userModel';
 import AuthenticationView from './views/authenticationView';
 import UserController from './controllers/userController';
 import LocalStorage from './utils/localStorage';
 import STORAGE_KEYS from './constants/storageKeys';
+import HeaderView from './views/headerView';
+import MenuView from './views/menuView';
+import HeaderController from './controllers/headerController';
+import MenuController from './controllers/menuController';
 
 const noteModel = new NoteModel();
 
