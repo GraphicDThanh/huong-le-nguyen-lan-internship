@@ -147,7 +147,7 @@
   height: 100%;
 }
 
-.form-title {
+.form-wrapper .form-title {
   padding: 15px 0 30px 0;
   font-size: 25px;
   color: var(--text-color);
