@@ -1,15 +1,22 @@
 import UserModel from '../models/userModel';
 import User from '../interfaces/user';
 import AuthenticationView from '../views/authenticationView';
+import PAGE from '../constants/page';
+import navigatePage from '../utils/navigatePage';
+import STORAGE_KEYS from '../constants/storageKeys';
+import LocalStorage from '../utils/localStorage';
 
 export default class UserController {
   authenticationView: AuthenticationView;
 
   model: UserModel;
 
+  localStorage: LocalStorage<string>;
+
   constructor(authenticationView: AuthenticationView, model: UserModel) {
     this.authenticationView = authenticationView;
     this.model = model;
+    this.localStorage = new LocalStorage();
   }
 
   init(): void {
@@ -20,15 +27,51 @@ export default class UserController {
   }
 
   async createNewAccount(): Promise<void> {
-    this.authenticationView.bindSubmitForm(
-      async (email: string) => {
-        const user = (await this.model.getUserByKey('email', email)) as User[];
+    const handlers = {
+      handleValidSignUp: (user: User, confirmPassword: string) =>
+        this.handleSignUp(user, confirmPassword),
+      handleValidLogin: (user: User) => this.handleLogin(user),
+    };
 
-        return user;
-      },
-      (user: User) => {
-        this.model.addUser(user);
-      }
+    this.authenticationView.bindSubmitForm(handlers);
+  }
+
+  /**
+   * @description function handle form sign up
+   * @param {Object} user is information of input user enter
+   * @param confirmPassword is confirm password of input user enter
+   */
+  async handleSignUp(user: User, confirmPassword: string) {
+    const checkValid = await this.model.checkValid(
+      user,
+      PAGE.SIGN_UP,
+      confirmPassword
     );
+    this.authenticationView.showHideError(checkValid, PAGE.SIGN_UP);
+
+    if (!checkValid.isEmail && !checkValid.isPassword) {
+      this.model.addUser(user);
+      navigatePage('index.html');
+    }
+  }
+
+  /**
+   * @description function handle form login
+   *
+   * @param {Object} user is information of input user enter
+   */
+  async handleLogin(user: User) {
+    const checkValid = await this.model.checkValid(user, PAGE.LOGIN);
+    this.authenticationView.showHideError(checkValid, PAGE.LOGIN);
+
+    const users = (await this.model.getUserByKey(
+      'email',
+      user.email
+    )) as User[];
+
+    if (!checkValid.isEmail && !checkValid.isPassword) {
+      this.localStorage.setItems(STORAGE_KEYS.USER_ID, users[0].id);
+      navigatePage('home.html');
+    }
   }
 }

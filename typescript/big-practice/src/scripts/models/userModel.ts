@@ -1,6 +1,13 @@
+import { v4 as uuidv4 } from 'uuid';
 import URL_API from '../constants/apiUrl';
+import PAGE from '../constants/page';
 import User from '../interfaces/user';
 import FetchAPI from '../utils/fetchAPI';
+
+interface CheckAuthentication {
+  isEmail: boolean;
+  isPassword: boolean;
+}
 
 export default class UserModel {
   fetchAPI: FetchAPI<User>;
@@ -28,18 +35,76 @@ export default class UserModel {
   }
 
   /**
+   * @description function check if email and password match email and password in data
+   *
+   * @param user is information of input user enter
+   * @param page to distinguish between login page and sign up page
+   * @param confirmPassword is confirm password of input user enter
+   *
+   * @returns {Boolean} userValid
+   */
+  async checkValid(
+    user: User,
+    page: string,
+    confirmPassword?: string
+  ): Promise<CheckAuthentication> {
+    const users = (await this.getUserByKey('email', user.email)) as User[];
+    const userValid: CheckAuthentication = {
+      isEmail: false,
+      isPassword: false,
+    };
+
+    switch (page) {
+      case PAGE.SIGN_UP:
+        if (users.length && user.email === users[0].email) {
+          userValid.isEmail = true;
+
+          return userValid;
+        }
+
+        if (user.password !== confirmPassword) {
+          userValid.isPassword = true;
+
+          return userValid;
+        }
+        break;
+      case PAGE.LOGIN:
+        if (!users.length) {
+          userValid.isEmail = true;
+          userValid.isPassword = true;
+
+          return userValid;
+        }
+
+        if (users.length && user.password !== users[0].password) {
+          userValid.isPassword = true;
+
+          return userValid;
+        }
+        break;
+      default:
+        break;
+    }
+
+    return userValid;
+  }
+
+  /**
    * @description function add new user with information
    * user enter from input
    *
-   * @param userInformation is user's information take from input form
+   * @param userInfo is user's information take from input form
    *
    * @returns {Object} user
    */
-  async addUser(userInformation: User): Promise<User | undefined> {
-    const user = await this.fetchAPI.postItem(
-      userInformation,
-      URL_API.USERS_URL
-    );
+  async addUser(userInfo: User): Promise<User | undefined> {
+    const patternUser = {
+      id: uuidv4(),
+      email: userInfo.email,
+      password: userInfo.password,
+    };
+
+    const user = await this.fetchAPI.postItem(patternUser, URL_API.USERS_URL);
 
     return user;
   }
