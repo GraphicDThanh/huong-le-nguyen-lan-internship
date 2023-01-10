@@ -29,7 +29,8 @@ export default class UserModel {
   }
 
   /**
-   * @description function
+   * @description function add new user with information
+   * user enter from input
    *
    * @param userInfo is user's information take from input form
    *
