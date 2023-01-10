@@ -16,7 +16,7 @@ export default class UserModel {
    * @param key is field want to find
    * @param value is value of field want to find
    *
-   * @returns {Arrya} users
+   * @returns {Array} users
    */
   async getUserByKey(key: string, value: string): Promise<User[] | undefined> {
     const users = await this.fetchAPI.getItemByKey(
@@ -28,7 +28,8 @@ export default class UserModel {
   }
 
   /**
-   * @description function
+   * @description function add new user with information
+   * user enter from input
    *
    * @param userInformation is user's information take from input form
    *
