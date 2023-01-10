@@ -53,4 +53,20 @@ export default class EventHelpers {
       this.addEvent(element, 'click', handler);
     }
   }
+
+  /**
+   * @description function change page by click with url of page want to change
+   *
+   * @param {Object} element is element bind event
+   * @param {string} page is page want to move to
+   */
+  changePage(element: HTMLElement | null, page: string): void {
+    if (element) {
+      const handler = () => {
+        navigatePage(page);
+      };
+
+      this.addEvent(element, 'click', handler);
+    }
+  }
 }

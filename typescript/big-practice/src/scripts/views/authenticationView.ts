@@ -60,24 +60,8 @@ export default class AuthenticationView {
     );
     const signUp = selectDOMClass('#sign-up-form .btn-login-form');
 
-    this.changePage(signUp, 'index.html');
-    this.changePage(createAccount, 'signUp');
-  }
-
-  /**
-   * @description function change page by click with url of page want to change
-   *
-   * @param {Object} element is element bind event
-   * @param {string} page is page want to move to
-   */
-  changePage(element: HTMLElement | null, page: string): void {
-    if (element) {
-      const handler = () => {
-        navigatePage(page);
-      };
-
-      this.eventHelpers.addEvent(element, 'click', handler);
-    }
+    this.eventHelpers.changePage(signUp, 'index.html');
+    this.eventHelpers.changePage(createAccount, 'signUp');
   }
 
   /**
@@ -98,7 +82,7 @@ export default class AuthenticationView {
     const handler = async (e: Event) => {
       e.preventDefault();
 
-      if (formWrapper && passwordElement && emailElement) {
+      if (passwordElement && emailElement) {
         const formData = new FormData(formWrapper);
         const confirmPassword = formData.get('confirm-password') as string;
         const user = {
@@ -113,6 +97,7 @@ export default class AuthenticationView {
         } else {
           this.handleValidLogin(users, user);
         }
+
         passwordElement.blur();
         emailElement.blur();
       }
@@ -143,21 +128,21 @@ export default class AuthenticationView {
 
     if (!users.length) {
       hideError(emailElement, labelEmail);
-
-      if (user.password === confirmPassword) {
-        hideError(confirmPasswordElement, labelConfirmPassword);
-        createAccount(user);
-        navigatePage('index.html');
-      } else {
-        showError(
-          confirmPasswordElement,
-          ERROR_MESSAGE.PASSWORD_NOT_MATCH,
-          labelConfirmPassword
-        );
-      }
     } else {
       showError(emailElement, ERROR_MESSAGE.EMAIL_ALREADY_EXISTS, labelEmail);
+      // hideError(confirmPasswordElement, labelConfirmPassword);
+    }
+
+    if (user.password === confirmPassword) {
       hideError(confirmPasswordElement, labelConfirmPassword);
+      createAccount(user);
+      navigatePage('index.html');
+    } else {
+      showError(
+        confirmPasswordElement,
+        ERROR_MESSAGE.PASSWORD_NOT_MATCH,
+        labelConfirmPassword
+      );
     }
   }
 
@@ -176,21 +161,34 @@ export default class AuthenticationView {
 
     if (users.length && user.email === users[0].email) {
       hideError(emailElement, labelEmail);
-
-      if (user.password === users[0].password) {
-        hideError(passwordElement, labelPassword);
-        this.localStorage.setItems(STORAGE_KEYS.USER_ID, users[0].id);
-        navigatePage('home.html');
-      } else {
-        showError(
-          passwordElement,
-          ERROR_MESSAGE.PASSWORD_INCORRECT,
-          labelPassword
-        );
-      }
     } else {
       showError(emailElement, ERROR_MESSAGE.EMAIL_NOT_EXISTS, labelEmail);
+      // hideError(passwordElement, labelPassword);
+    }
+
+    if (user.password === users[0].password) {
       hideError(passwordElement, labelPassword);
+      this.localStorage.setItems(STORAGE_KEYS.USER_ID, users[0].id);
+      navigatePage('home.html');
+    } else {
+      showError(
+        passwordElement,
+        ERROR_MESSAGE.PASSWORD_INCORRECT,
+        labelPassword
+      );
+    }
+  }
+
+  conditionCheckField(
+    user: User,
+    data: string,
+    element: HTMLElement,
+    label: HTMLElement
+  ) {
+    if (user.password === data) {
+      hideError(element, label);
+    } else {
+      showError(element, ERROR_MESSAGE.PASSWORD_INCORRECT, label);
     }
   }
 
