@@ -52,7 +52,7 @@ export default class ListNoteView {
    * @description navigate page to index page if isLogin from
    * localStorage is null
    */
-  navigatePageWithLoginStatus() {
+  navigatePageWithLoginStatus(): void {
     if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
       navigatePage('index.html');
     }
