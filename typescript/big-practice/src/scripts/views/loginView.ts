@@ -9,16 +9,24 @@ import ElementHelpers from '../helpers/elementHelpers';
 import EventHelpers from '../helpers/eventHelpers';
 import User from '../interfaces/user';
 
+interface PatternElement {
+  value: string;
+  data: string;
+  element: HTMLElement;
+  label: HTMLElement;
+  message: string;
+}
+
 export default class LoginView {
-  loginForm: HTMLFormElement | null;
+  loginForm: HTMLFormElement;
 
-  emailElement: HTMLElement | null;
+  emailElement: HTMLElement;
 
-  passwordElement: HTMLElement | null;
+  passwordElement: HTMLElement;
 
-  labelEmail: HTMLElement | null;
+  labelEmail: HTMLElement;
 
-  labelPassword: HTMLElement | null;
+  labelPassword: HTMLElement;
 
   localStorage: LocalStorage<boolean>;
 
@@ -27,15 +35,15 @@ export default class LoginView {
   eventHelpers: EventHelpers;
 
   constructor() {
-    this.loginForm = selectDOMById('login-form') as HTMLFormElement;
-    this.emailElement = selectDOMClass('.email');
-    this.passwordElement = selectDOMClass('.password');
-    this.labelEmail = selectDOMClass('.label-email');
-    this.labelPassword = selectDOMClass('.label-password');
-
     this.localStorage = new LocalStorage();
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
+
+    this.loginForm = selectDOMById('login-form') as HTMLFormElement;
+    this.emailElement = selectDOMClass('.email')!;
+    this.passwordElement = selectDOMClass('.password')!;
+    this.labelEmail = selectDOMClass('.label-email')!;
+    this.labelPassword = selectDOMClass('.label-password')!;
   }
 
   /**
@@ -45,17 +53,16 @@ export default class LoginView {
     const handler = (e: Event) => {
       e.preventDefault();
 
-      if (this.loginForm && this.passwordElement && this.emailElement) {
-        const formData = new FormData(this.loginForm);
-        const user = {
-          email: formData.get('email'),
-          password: formData.get('password'),
-        } as User;
+      const formData = new FormData(this.loginForm);
+      const user = {
+        email: formData.get('email'),
+        password: formData.get('password'),
+      } as User;
 
-        this.handleInvalidUser(user);
-        this.passwordElement.blur();
-        this.emailElement.blur();
-      }
+      this.handleInvalidUser(user);
+
+      this.passwordElement.blur();
+      this.emailElement.blur();
     };
 
     this.eventHelpers.addEvent(this.loginForm, 'submit', handler);
@@ -68,39 +75,52 @@ export default class LoginView {
    * @param {String} email is value of input that user enters
    */
   handleInvalidUser(user: User) {
-    if (this.emailElement && this.passwordElement) {
-      if (user.email === userData.email) {
-        hideError(this.emailElement, this.labelEmail);
+    const emailField = {
+      value: user.email,
+      data: userData.email,
+      element: this.emailElement,
+      label: this.labelEmail,
+      message: ERROR_MESSAGE.EMAIL_NOT_EXISTS,
+    };
 
-        if (user.password === userData.password) {
-          hideError(this.passwordElement, this.labelPassword);
-        } else {
-          showError(
-            this.passwordElement,
-            ERROR_MESSAGE.PASSWORD_INCORRECT,
-            this.labelPassword
-          );
-        }
-      } else {
-        showError(
-          this.emailElement,
-          ERROR_MESSAGE.EMAIL_NOT_EXISTS,
-          this.labelEmail
-        );
-        hideError(this.passwordElement, this.labelPassword);
-      }
+    const passwordField = {
+      value: user.password,
+      data: userData.password,
+      element: this.passwordElement,
+      label: this.labelPassword,
+      message: ERROR_MESSAGE.PASSWORD_INCORRECT,
+    };
 
-      /**
-       * Condition if input email and password don't have valid class,
-       * then it will go to home page
-       */
-      if (
-        !this.emailElement.classList.contains('valid') &&
-        !this.passwordElement.classList.contains('valid')
-      ) {
-        this.localStorage.setItems(STORAGE_KEYS.IS_LOGIN, true);
-        navigatePage('home.html');
-      }
+    this.conditionCheckField(emailField);
+    this.conditionCheckField(passwordField);
+
+    /**
+     * Condition if input email and password don't have valid class,
+     * then it will go to home page
+     */
+    if (
+      !this.emailElement.classList.contains('valid') &&
+      !this.passwordElement.classList.contains('valid')
+    ) {
+      this.localStorage.setItems(STORAGE_KEYS.IS_LOGIN, true);
+      navigatePage('home.html');
+    }
+  }
+
+  /**
+   * @description condition to show hide error
+   *
+   * @param {Object} field is pattern of input login or sign up
+   */
+  conditionCheckField(patternElement: PatternElement) {
+    if (patternElement.value === patternElement.data) {
+      hideError(patternElement.element, patternElement.label);
+    } else {
+      showError(
+        patternElement.element,
+        patternElement.message,
+        patternElement.label
+      );
     }
   }
 
@@ -108,31 +128,7 @@ export default class LoginView {
    * @description bind events show hide label error for input
    */
   bindShowHideInputError() {
-    this.showHideInputError(this.emailElement);
-    this.showHideInputError(this.passwordElement);
-  }
-
-  /**
-   * @description when having errors, this function will
-   * keep outline of input red color, and avoid defined properties CSS
-   * focus of input
-   *
-   * @param {Object} element is input your want to show hide error of label
-   */
-  showHideInputError(el: HTMLElement | null) {
-    const element = el;
-    if (element) {
-      const handler = () => {
-        const message =
-          element.parentNode?.querySelector('.message-error')?.textContent;
-        if (message) {
-          element.style.outlineColor = 'var(--danger-color)';
-        } else {
-          element.style.outlineColor = 'var(--info-color)';
-        }
-      };
-
-      this.eventHelpers.addEvent(element, 'focus', handler);
-    }
+    this.elementHelpers.showHideInputError(this.emailElement);
+    this.elementHelpers.showHideInputError(this.passwordElement);
   }
 }
