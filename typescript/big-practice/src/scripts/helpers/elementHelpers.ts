@@ -187,22 +187,20 @@ export default class ElementHelpers {
    *
    * @param {Object} element is input your want to show hide error of label
    */
-  showHideInputError(el: HTMLElement | null): void {
+  showHideInputError(el: HTMLElement): void {
     const element = el;
 
-    if (element) {
-      const handler = () => {
-        const message =
-          element.parentNode?.querySelector('.message-error')?.textContent;
+    const handler = () => {
+      const message =
+        element.parentNode?.querySelector('.message-error')?.textContent;
 
-        if (message) {
-          element.style.outlineColor = 'var(--danger-color)';
-        } else {
-          element.style.outlineColor = 'var(--info-color)';
-        }
-      };
+      if (message) {
+        element.style.outlineColor = 'var(--danger-color)';
+      } else {
+        element.style.outlineColor = 'var(--info-color)';
+      }
+    };
 
-      this.eventHelpers.addEvent(element, 'focus', handler);
-    }
+    this.eventHelpers.addEvent(element, 'focus', handler);
   }
 }
