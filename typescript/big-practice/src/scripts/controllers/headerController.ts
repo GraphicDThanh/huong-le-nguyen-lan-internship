@@ -1,3 +1,4 @@
+import User from '../interfaces/user';
 import HeaderView from '../views/headerView';
 import UserController from './userController';
 
@@ -29,10 +30,13 @@ export default class HeaderController {
     this.headerView.bindLogOut();
 
     // function set username to menu user
-    this.headerView.showInformationUser(async (id: string) => {
-      const email = await this.userController.model.getUserByKey('id', id);
+    this.headerView.showInformationUser(async (id: string): Promise<User[]> => {
+      const users = (await this.userController.model.getUserByKey(
+        'id',
+        id
+      )) as User[];
 
-      return email;
+      return users;
     });
   }
 }
