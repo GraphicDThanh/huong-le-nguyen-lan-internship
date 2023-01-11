@@ -138,9 +138,7 @@ export default class NoteController {
         handleShowNoteForm: (id: string) => this.handleNoteForm(id),
       };
 
-      if (noteItem) {
-        this.view.renderNote(noteItem, handlers);
-      }
+      this.view.renderNote(noteItem, handlers);
       this.loadingPage.removeLoading();
     } catch (error) {
       if (error instanceof Error) {
