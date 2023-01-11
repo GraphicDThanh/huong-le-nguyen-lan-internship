@@ -41,7 +41,7 @@ export default class UserController {
    * @param {Object} user is information of input user enter
    * @param confirmPassword is confirm password of input user enter
    */
-  async handleSignUp(user: User, confirmPassword: string) {
+  async handleSignUp(user: User, confirmPassword: string): Promise<void> {
     const checkValid = await this.model.checkValid(
       user,
       PAGE.SIGN_UP,
@@ -60,7 +60,7 @@ export default class UserController {
    *
    * @param {Object} user is information of input user enter
    */
-  async handleLogin(user: User) {
+  async handleLogin(user: User): Promise<void> {
     const checkValid = await this.model.checkValid(user, PAGE.LOGIN);
     this.authenticationView.showHideError(checkValid, PAGE.LOGIN);
 
