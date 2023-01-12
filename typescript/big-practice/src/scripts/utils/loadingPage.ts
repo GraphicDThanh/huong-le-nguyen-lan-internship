@@ -4,11 +4,11 @@ import ElementHelpers from '../helpers/elementHelpers';
 export default class LoadingPage {
   elementHelpers: ElementHelpers;
 
-  overlay: HTMLElement | null;
+  overlay: HTMLElement;
 
   constructor() {
     this.elementHelpers = new ElementHelpers();
-    this.overlay = selectDOMClass('.overlay-wrapper');
+    this.overlay = selectDOMClass('.overlay-wrapper')!;
   }
 
   /**
@@ -32,9 +32,7 @@ export default class LoadingPage {
    * @description function render loading page
    */
   addLoading(): void {
-    if (this.overlay) {
-      this.overlay.appendChild(this.createLoading());
-    }
+    this.overlay.appendChild(this.createLoading());
   }
 
   /**
@@ -49,8 +47,6 @@ export default class LoadingPage {
    * @description function remove loading page
    */
   removeLoading(): void {
-    if (this.overlay) {
-      this.overlay.innerHTML = '';
-    }
+    this.overlay.innerHTML = '';
   }
 }
