@@ -149,28 +149,4 @@ export default class ElementHelpers {
 
     this.eventHelpers.addEvent(element, 'focus', handler);
   }
-
-  /**
-   * @description when having errors, this function will
-   * keep outline of input red color, and avoid defined properties CSS
-   * focus of input
-   *
-   * @param {Object} element is input your want to show hide error of label
-   */
-  showHideInputError(el: HTMLElement): void {
-    const element = el;
-
-    const handler = () => {
-      const message =
-        element.parentNode?.querySelector('.message-error')?.textContent;
-
-      if (message) {
-        element.style.outlineColor = 'var(--danger-color)';
-      } else {
-        element.style.outlineColor = 'var(--info-color)';
-      }
-    };
-
-    this.eventHelpers.addEvent(element, 'focus', handler);
-  }
 }
