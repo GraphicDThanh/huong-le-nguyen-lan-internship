@@ -15,7 +15,7 @@ import listNotesWrapper from '../components/listNotes';
 import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/errorsDOM';
-import Note from '../types/note';
+import Note from '../interfaces/note';
 import NOTE from '../constants/note';
 
 /**
@@ -27,7 +27,7 @@ export default class ListNoteView {
 
   eventHelpers: EventHelpers;
 
-  localStorage: LocalStorage<boolean>;
+  localStorage: LocalStorage<string>;
 
   headerView: HeaderView;
 
@@ -50,7 +50,7 @@ export default class ListNoteView {
    * localStorage is null
    */
   navigatePageWithLoginStatus(): void {
-    if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+    if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
       navigatePage('index.html');
     }
   }

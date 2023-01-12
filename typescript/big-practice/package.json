@@ -17,7 +17,7 @@
     "typescript": "4.9.3"
   },
   "scripts": {
-    "dev": "concurrently \"npm start\" \"npm run start-db\"",
+    "dev": "concurrently \"pnpm start\" \"pnpm run start-db\"",
     "start": "parcel ./src/pages/index.html ./src/pages/home.html",
     "build": "parcel build",
     "start-db": "json-server --watch data/db.json",
