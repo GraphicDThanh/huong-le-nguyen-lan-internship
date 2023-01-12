@@ -1,4 +1,4 @@
-import Note from '../types/note';
+import Note from '../interfaces/note';
 
 /**
  * @description function create confirm message with design message, type of button
