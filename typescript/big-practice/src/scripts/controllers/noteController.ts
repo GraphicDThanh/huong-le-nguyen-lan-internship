@@ -97,24 +97,20 @@ export default class NoteController {
       this.loadingPage.addLoading();
       const note = await this.model.findNote(noteId);
 
-      if (note) {
-        // function render confirm message
-        this.view.renderConfirmMessage(note);
-      }
+      // function render confirm message
+      this.view.renderConfirmMessage(note);
 
       // function close popup
       this.view.bindClosePopup();
 
       // function delete note in tab trash
       this.view.bindDeleteNoteInTrash(async (id) => {
-        if (id) {
-          this.loadingPage.addLoading();
-          await this.model.deleteNoteInTrash(id);
+        this.loadingPage.addLoading();
+        await this.model.deleteNoteInTrash(id);
 
-          this.view.removeNoteElement(id);
-          this.view.showHideEmpty(this.model.listNotes, NOTE.TRASH_NOTES);
-          this.loadingPage.removeLoading();
-        }
+        this.view.removeNoteElement(id);
+        this.view.showHideEmpty(this.model.listNotes, NOTE.TRASH_NOTES);
+        this.loadingPage.removeLoading();
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -176,11 +172,9 @@ export default class NoteController {
   async editNote(note: Note): Promise<void> {
     try {
       this.loadingPage.addLoading();
-      const noteItem = await this.model.editNote(note);
+      const noteItem = (await this.model.editNote(note)) as Note;
 
-      if (noteItem) {
-        this.view.editNote(noteItem);
-      }
+      this.view.editNote(noteItem);
       this.loadingPage.removeLoading();
     } catch (error) {
       if (error instanceof Error) {

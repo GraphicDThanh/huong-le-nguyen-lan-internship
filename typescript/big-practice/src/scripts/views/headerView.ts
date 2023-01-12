@@ -14,9 +14,9 @@ import EventHelpers from '../helpers/eventHelpers';
 import user from '../../../data/mockUser';
 
 export default class HeaderView {
-  mainWrapper: HTMLElement | null;
+  mainWrapper: HTMLElement;
 
-  homePage: HTMLElement | null;
+  homePage: HTMLElement;
 
   localStorage: LocalStorage<boolean>;
 
@@ -25,8 +25,8 @@ export default class HeaderView {
   eventHelpers: EventHelpers;
 
   constructor() {
-    this.mainWrapper = selectDOMClass('.main-wrapper');
-    this.homePage = selectDOMClass('.home-page');
+    this.mainWrapper = selectDOMClass('.main-wrapper')!;
+    this.homePage = selectDOMClass('.home-page')!;
     this.localStorage = new LocalStorage();
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
@@ -37,12 +37,10 @@ export default class HeaderView {
    * like menu user, logo and input search
    */
   renderHeader(): void {
-    if (this.homePage) {
-      this.homePage.insertBefore(headerComponent(), this.mainWrapper);
-    }
-    const headerDefault = selectDOMClass('.header-default');
-    const headerMenu = selectDOMClass('.header-menu');
-    const headerSelected = selectDOMClass('.header-after-select');
+    this.homePage.insertBefore(headerComponent(), this.mainWrapper);
+    const headerDefault = selectDOMClass('.header-default')!;
+    const headerMenu = selectDOMClass('.header-menu')!;
+    const headerSelected = selectDOMClass('.header-after-select')!;
     let tab = 'Keep';
 
     if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '4') {
@@ -50,12 +48,10 @@ export default class HeaderView {
     }
     this.setDefaultPageNumber();
 
-    if (headerSelected && headerMenu && headerDefault) {
-      headerSelected.appendChild(buttonBulkActionsComponent());
-      headerMenu.appendChild(logoComponent(tab));
-      headerMenu.appendChild(inputSearchComponent());
-      headerDefault.appendChild(menuUserComponent());
-    }
+    headerSelected.appendChild(buttonBulkActionsComponent());
+    headerMenu.appendChild(logoComponent(tab));
+    headerMenu.appendChild(inputSearchComponent());
+    headerDefault.appendChild(menuUserComponent());
   }
 
   /**
@@ -64,9 +60,9 @@ export default class HeaderView {
    */
   bindShowMenuUser(): void {
     const avatarUser = selectDOMClass('.avatar-user-cover');
-    const menuUserElement = selectDOMClass('.menu-user');
+    const menuUserElement = selectDOMClass('.menu-user')!;
     const handler = () => {
-      if (menuUserElement && menuUserElement.classList.contains('hide')) {
+      if (menuUserElement.classList.contains('hide')) {
         this.elementHelpers.removeClass(menuUserElement, 'hide');
       } else {
         this.elementHelpers.addClass(menuUserElement, 'hide');
@@ -95,13 +91,11 @@ export default class HeaderView {
    * @description set email to menu user
    */
   showInformationUser(): void {
-    const emailUser = selectDOMClass('.menu-user-email');
-    if (emailUser) {
-      if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-        emailUser.textContent = user.email;
-      } else {
-        emailUser.textContent = 'Unknown';
-      }
+    const emailUser = selectDOMClass('.menu-user-email')!;
+    if (this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
+      emailUser.textContent = user.email;
+    } else {
+      emailUser.textContent = 'Unknown';
     }
   }
 
@@ -111,15 +105,13 @@ export default class HeaderView {
    * @param {String} tab is according to each current tab
    */
   changeLogoByTab(tab: string): void {
-    const headerMenu = selectDOMClass('.header-menu');
-    const inputSearch = selectDOMClass('.form-search');
-    const iconLogo = selectDOMClass('.icon-logo');
+    const headerMenu = selectDOMClass('.header-menu')!;
+    const inputSearch = selectDOMClass('.form-search')!;
+    const iconLogo = selectDOMClass('.icon-logo')!;
 
-    if (iconLogo && headerMenu) {
-      iconLogo.remove();
-      headerMenu.insertBefore(logoComponent(tab), inputSearch);
-      this.bindNavigateHomePage();
-    }
+    iconLogo.remove();
+    headerMenu.insertBefore(logoComponent(tab), inputSearch);
+    this.bindNavigateHomePage();
   }
 
   /**
@@ -145,10 +137,7 @@ export default class HeaderView {
     const logoName = selectDOMClass('.icon-logo h1');
     const logo = selectDOMClass('.logo');
 
-    if (logo) {
-      this.eventHelpers.navigateHomePage(logo);
-    }
-
+    this.eventHelpers.navigateHomePage(logo);
     this.eventHelpers.navigateHomePage(logoName);
   }
 
