@@ -1,10 +1,11 @@
 import ListNoteView from './views/listNoteView';
 import NoteModel from './models/noteModel';
 import NoteController from './controllers/noteController';
-import AuthenController from './controllers/authenController';
-import LoginView from './views/loginView';
-import STORAGE_KEYS from './constants/storageKeys';
+import UserModel from './models/userModel';
+import AuthenticationView from './views/authenticationView';
+import UserController from './controllers/userController';
 import LocalStorage from './utils/localStorage';
+import STORAGE_KEYS from './constants/storageKeys';
 import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
@@ -15,11 +16,12 @@ const noteModel = new NoteModel();
 const listNoteView = new ListNoteView();
 const headerView = new HeaderView();
 const menuView = new MenuView();
-const loginView = new LoginView();
+const userModel = new UserModel();
+const authenticationView = new AuthenticationView();
 
 const noteController = new NoteController(noteModel, listNoteView);
-const headerController = new HeaderController(headerView);
-const authenController = new AuthenController(loginView);
+const userController = new UserController(authenticationView, userModel);
+const headerController = new HeaderController(headerView, userController);
 const menuController = new MenuController(
   menuView,
   noteController,
@@ -29,8 +31,8 @@ const menuController = new MenuController(
 (() => {
   const localStorage = new LocalStorage();
 
-  if (!localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
-    authenController.init();
+  if (!localStorage.getItems(STORAGE_KEYS.USER_ID)) {
+    userController.init();
   } else {
     headerController.init();
     menuController.init();
