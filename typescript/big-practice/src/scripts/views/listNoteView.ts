@@ -143,9 +143,11 @@ export default class ListNoteView {
     listElement: HTMLElement
   ): void {
     if (!list.length) {
-      this.elementHelpers.showHideElements(listEmpty, listElement, 'hide');
+      this.elementHelpers.removeClass(listEmpty, 'hide');
+      this.elementHelpers.addClass(listElement, 'hide');
     } else {
-      this.elementHelpers.showHideElements(listElement, listEmpty, 'hide');
+      this.elementHelpers.removeClass(listElement, 'hide');
+      this.elementHelpers.addClass(listEmpty, 'hide');
     }
   }
 
@@ -210,11 +212,9 @@ export default class ListNoteView {
    * @param {String} id is id of note
    */
   removeNoteElement(id: string): void {
-    const note = selectDOMById(id);
+    const note = selectDOMById(id)!;
 
-    if (note && id) {
-      note.remove();
-    }
+    note.remove();
   }
 
   /**
