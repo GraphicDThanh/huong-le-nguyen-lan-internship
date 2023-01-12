@@ -143,9 +143,11 @@ export default class ListNoteView {
     listElement: HTMLElement
   ): void {
     if (!list.length) {
-      this.elementHelpers.showHideElements(listEmpty, listElement, 'hide');
+      this.elementHelpers.removeClass(listEmpty, 'hide');
+      this.elementHelpers.addClass(listElement, 'hide');
     } else {
-      this.elementHelpers.showHideElements(listElement, listEmpty, 'hide');
+      this.elementHelpers.removeClass(listElement, 'hide');
+      this.elementHelpers.addClass(listEmpty, 'hide');
     }
   }
 
