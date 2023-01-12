@@ -59,7 +59,7 @@ export default class HeaderView {
    * to icon avatar
    */
   bindShowMenuUser(): void {
-    const avatarUser = selectDOMClass('.avatar-user-cover');
+    const avatarUser = selectDOMClass('.avatar-user-cover')!;
     const menuUserElement = selectDOMClass('.menu-user')!;
     const handler = () => {
       if (menuUserElement.classList.contains('hide')) {
@@ -77,7 +77,7 @@ export default class HeaderView {
    * it will move to login page
    */
   bindLogOut(): void {
-    const btnLogout = selectDOMClass('.btn-logout');
+    const btnLogout = selectDOMClass('.btn-logout')!;
     const handler = () => {
       navigatePage('index.html');
       sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
@@ -95,18 +95,16 @@ export default class HeaderView {
    */
   async showInformationUser(
     findUser: (id: string) => Promise<User[] | undefined>
-  ): void {
-    const emailUser = selectDOMClass('.menu-user-email');
-    if (emailUser) {
-      if (this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
-        const id = this.localStorage.getItems(STORAGE_KEYS.USER_ID) as string;
-        const user = await findUser(id);
-        if (user) {
-          emailUser.textContent = user[0].email;
-        }
-      } else {
-        emailUser.textContent = 'Unknown';
+  ): Promise<void> {
+    const emailUser = selectDOMClass('.menu-user-email')!;
+    if (this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
+      const id = this.localStorage.getItems(STORAGE_KEYS.USER_ID) as string;
+      const user = await findUser(id);
+      if (user) {
+        emailUser.textContent = user[0].email;
       }
+    } else {
+      emailUser.textContent = 'Unknown';
     }
   }
 
@@ -130,8 +128,8 @@ export default class HeaderView {
    * icon close in header when selected notes
    */
   closeSelected(): void {
-    const headerAfterSelect = selectDOMClass('.header-after-select');
-    const btnClose = selectDOMClass('.count-and-close .icon-close-cover');
+    const headerAfterSelect = selectDOMClass('.header-after-select')!;
+    const btnClose = selectDOMClass('.count-and-close .icon-close-cover')!;
     const handler = () => {
       this.elementHelpers.removeSelected();
       this.elementHelpers.removeClass(headerAfterSelect, 'show');
@@ -145,8 +143,8 @@ export default class HeaderView {
    * user click, it will go to home page
    */
   bindNavigateHomePage(): void {
-    const logoName = selectDOMClass('.icon-logo h1');
-    const logo = selectDOMClass('.logo');
+    const logoName = selectDOMClass('.icon-logo h1')!;
+    const logo = selectDOMClass('.logo')!;
 
     this.eventHelpers.navigateHomePage(logo);
     this.eventHelpers.navigateHomePage(logoName);

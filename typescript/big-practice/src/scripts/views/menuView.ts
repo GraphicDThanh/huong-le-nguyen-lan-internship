@@ -69,7 +69,10 @@ export default class MenuView {
         this.elementHelpers.removeMenuActive();
         sessionStorage.setItem(
           STORAGE_KEYS.PAGE_NUMBER,
-          this.elementHelpers.getAttributeElement(e.target, 'data-id') as string
+          this.elementHelpers.getAttributeElement(
+            e.target!,
+            'data-id'
+          ) as string
         );
         this.elementHelpers.showMenuActive();
 

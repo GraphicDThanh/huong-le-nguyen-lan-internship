@@ -156,8 +156,8 @@ export default class AuthenticationView {
    */
   bindShowHideInputError(): void {
     const confirmPassword = selectDOMClass('.confirm-password');
-    const emailElement = selectDOMClass('.email');
-    const passwordElement = selectDOMClass('.password');
+    const emailElement = selectDOMClass('.email')!;
+    const passwordElement = selectDOMClass('.password')!;
 
     this.elementHelpers.showHideInputError(emailElement);
     this.elementHelpers.showHideInputError(passwordElement);
