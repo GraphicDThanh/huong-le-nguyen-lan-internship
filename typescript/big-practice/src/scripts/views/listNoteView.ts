@@ -203,7 +203,6 @@ export default class ListNoteView {
     }
     this.bindDeleteNote(noteElement, handleDeleteNote);
     this.bindShowNoteForm(noteElement, handleShowNoteForm);
-    this.bindSelectedNote(noteElement);
   }
 
   /**
@@ -269,7 +268,6 @@ export default class ListNoteView {
       const trashNote = noteView.renderNote(NOTE.TRASH_NOTES);
       listTrashElement.appendChild(trashNote);
       this.bindShowPopup(trashNote, handler);
-      this.bindSelectedNote(trashNote);
     });
   }
 
@@ -337,10 +335,10 @@ export default class ListNoteView {
     const btnDeletes = note.querySelector(
       '.trash-wrapper .btn-delete'
     ) as HTMLElement;
-    const headerAfterSelect = selectDOMClass('.header-after-select');
+    const headerAfterSelect = selectDOMClass('.header-after-select')!;
     const handler = (e: Event) => {
       const index = this.elementHelpers.getAttributeElement(
-        e.target,
+        e.target!,
         'data-id'
       ) as string;
       handlePopup(index);
@@ -355,8 +353,8 @@ export default class ListNoteView {
    * @description function close confirm popup
    */
   bindClosePopup(): void {
-    const overlayConfirmMessage = selectDOMClass('.overlay-wrapper');
-    const btnClose = selectDOMClass('.btn-close-popup');
+    const overlayConfirmMessage = selectDOMClass('.overlay-wrapper')!;
+    const btnClose = selectDOMClass('.btn-close-popup')!;
 
     const handler = (e: Event) => {
       e.stopPropagation();
@@ -369,66 +367,15 @@ export default class ListNoteView {
   }
 
   /**
-   * @description events show header bulk actions and count notes selected
-   *
-   * @param {Object} noteElement is note element
-   */
-  bindSelectedNote(noteElement: HTMLElement): void {
-    const note = selectDOMById(`${noteElement.id}`)!;
-
-    const listIconCheck = note.querySelector('.icon-check') as HTMLElement;
-    const countNotesSelected = selectDOMClass('.count-selected');
-    const headerAfterSelect = selectDOMClass('.header-after-select');
-    const handler = (e: Event) => {
-      e.preventDefault();
-      e.stopPropagation();
-      const selectedElement = (
-        e.target as HTMLElement
-      ).parentElement?.classList.contains('selected');
-
-      /**
-       * condition if note doesn't have class selected it will add class
-       * and count note, it also turn on the header bulk actions
-       */
-      if (!selectedElement) {
-        this.elementHelpers.addClass(
-          (e.target as HTMLElement).parentElement,
-          'selected'
-        );
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-
-        this.elementHelpers.addClass(headerAfterSelect, 'show');
-      } else {
-        this.elementHelpers.removeClass(
-          (e.target as HTMLElement).parentElement,
-          'selected'
-        );
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-      }
-
-      /**
-       * condition if list don't have any note have class selected. It will
-       * close header bulk actions
-       */
-      const listSelected = selectDOMClassAll('.selected')!;
-      if (listSelected.length < 1) {
-        this.elementHelpers.removeClass(headerAfterSelect, 'show');
-      }
-    };
-
-    this.eventHelpers.addEvent(listIconCheck, 'click', handler);
-  }
-
-  /**
    * @description function delete note forever
    *
    * @param {function} deleteNoteTrash is function transmitted from model
    */
   bindDeleteNoteInTrash(deleteNoteTrash: (id: string) => void): void {
-    const deleteTrash = selectDOMClass('.btn-submit-action');
+    const deleteTrash = selectDOMClass('.btn-submit-action')!;
     const handler = (e: Event) => {
       e.stopPropagation();
-      const id = this.elementHelpers.getAttributeElement(e.target, 'data-id')!;
+      const id = this.elementHelpers.getAttributeElement(e.target!, 'data-id')!;
 
       deleteNoteTrash(id);
       this.overlayWrapper.innerHTML = '';
@@ -454,8 +401,8 @@ export default class ListNoteView {
    * @description function input break down of form note
    */
   inputBreakDownNoteForm(): void {
-    const title = selectDOMClass('.note-form-overlay .note-title');
-    const description = selectDOMClass('.note-form-overlay .note-description');
+    const title = selectDOMClass('.note-form-overlay .note-title')!;
+    const description = selectDOMClass('.note-form-overlay .note-description')!;
 
     this.elementHelpers.commonInputBreakDown(title);
     this.elementHelpers.commonInputBreakDown(description);
@@ -471,8 +418,8 @@ export default class ListNoteView {
     noteElement: HTMLElement,
     findNote: (id: string) => void
   ): void {
-    const noteItem = selectDOMById(`${noteElement.id}`);
-    const countNotesSelected = selectDOMClass('.count-selected');
+    const noteItem = selectDOMById(`${noteElement.id}`)!;
+    const countNotesSelected = selectDOMClass('.count-selected')!;
 
     const handler = async (e: Event) => {
       const selected = selectDOMClassAll('.selected')!;
@@ -480,10 +427,10 @@ export default class ListNoteView {
       if (selected.length) {
         const note = selectDOMById(
           this.elementHelpers.getAttributeElement(
-            (e.target as HTMLElement).parentElement,
+            (e.target as HTMLElement).parentElement!,
             'data-id'
           ) as string
-        );
+        )!;
         this.elementHelpers.addClass(note, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
       } else {
@@ -494,10 +441,10 @@ export default class ListNoteView {
         ) as string;
         await findNote(id);
 
-        const title = selectDOMClass('.note-form-overlay .note-title');
+        const title = selectDOMClass('.note-form-overlay .note-title')!;
         const description = selectDOMClass(
           '.note-form-overlay .note-description'
-        );
+        )!;
 
         this.elementHelpers.showInputBreakDown(title);
         this.elementHelpers.showInputBreakDown(description);
@@ -516,8 +463,8 @@ export default class ListNoteView {
    * @param {function} editNote is function transmitted from model
    */
   bindSaveNoteForm(editNote: (note: Note) => void): void {
-    const closeBtn = selectDOMClass('.note-form-overlay .btn-close');
-    const overlay = selectDOMClass('.overlay');
+    const closeBtn = selectDOMClass('.note-form-overlay .btn-close')!;
+    const overlay = selectDOMClass('.overlay')!;
     const formElement = selectDOMClass('.note-form-overlay') as HTMLFormElement;
     const noteItem = {
       id: formElement.id,
@@ -553,7 +500,7 @@ export default class ListNoteView {
     const buttonDelete = selectDOMClass('.note-form-overlay .btn-delete-form')!;
     const handler = (e: Event) => {
       e.stopPropagation();
-      const id = this.elementHelpers.getAttributeElement(e.target, 'data-id')!;
+      const id = this.elementHelpers.getAttributeElement(e.target!, 'data-id')!;
 
       deleteNote(id);
       this.overlayWrapper.innerHTML = '';
@@ -586,7 +533,7 @@ export default class ListNoteView {
    */
   bindAddNote(addNote: (note: Note) => void): void {
     const formElement = selectDOMClass('.form-add-note') as HTMLFormElement;
-    const homePage = selectDOMClass('.home-page');
+    const homePage = selectDOMClass('.home-page')!;
 
     const handler = () => {
       const formData = new FormData(formElement);
@@ -631,7 +578,7 @@ export default class ListNoteView {
   ): void {
     const formTitleElement = selectDOMClass('.form-title')!;
     const formUtilitiesElement = selectDOMClass('.form-utilities')!;
-    const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
+    const listNotesEmpty = selectDOMClass('.list-notes-empty-content')!;
     const inputAddElement = selectDOMClass(
       '.form-add-note .form-group-input .input-note'
     )!;
@@ -662,12 +609,12 @@ export default class ListNoteView {
     deleteNote: (id: string) => void
   ): void {
     const note = selectDOMById(`${noteElement.id}`)!;
-    const headerAfterSelect = selectDOMClass('.header-after-select');
+    const headerAfterSelect = selectDOMClass('.header-after-select')!;
 
     const handler = (e: Event) => {
       e.stopPropagation();
       const noteId = this.elementHelpers.getAttributeElement(
-        e.target,
+        e.target!,
         'data-id'
       )!;
 
