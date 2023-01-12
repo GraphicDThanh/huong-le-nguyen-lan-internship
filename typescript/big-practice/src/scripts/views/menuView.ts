@@ -9,24 +9,22 @@ export default class MenuView {
 
   eventHelpers: EventHelpers;
 
-  mainWrapper: HTMLElement | null;
+  mainWrapper: HTMLElement;
 
-  sectionWrapper: HTMLElement | null;
+  sectionWrapper: HTMLElement;
 
   constructor() {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
-    this.mainWrapper = selectDOMClass('.main-wrapper');
-    this.sectionWrapper = selectDOMClass('.section-wrapper');
+    this.mainWrapper = selectDOMClass('.main-wrapper')!;
+    this.sectionWrapper = selectDOMClass('.section-wrapper')!;
   }
 
   /**
    * @description render menu in the left
    */
   renderMenu(): void {
-    if (this.mainWrapper) {
-      this.mainWrapper.insertBefore(menuComponent(), this.sectionWrapper);
-    }
+    this.mainWrapper.insertBefore(menuComponent(), this.sectionWrapper);
   }
 
   /**
@@ -55,11 +53,11 @@ export default class MenuView {
     changeLogoFollowTab: (tab: string) => void,
     renderTabs: () => void
   ): void {
-    const menu = selectDOMClassAll('.nav li');
+    const menu = selectDOMClassAll('.nav li')!;
     const handler = (e: Event) => {
       const searchInput = selectDOMClass('.search') as HTMLInputElement;
-      const iconClose = selectDOMClass('.icon-close');
-      if (searchInput && searchInput.value) {
+      const iconClose = selectDOMClass('.icon-close')!;
+      if (searchInput.value) {
         searchInput.value = '';
       }
 
@@ -83,15 +81,11 @@ export default class MenuView {
         }
       }
 
-      if (iconClose) {
-        iconClose.style.visibility = 'hidden';
-      }
+      iconClose.style.visibility = 'hidden';
     };
 
-    if (menu) {
-      menu.forEach((element) => {
-        this.eventHelpers.addEvent(element, 'click', handler);
-      });
-    }
+    menu.forEach((element) => {
+      this.eventHelpers.addEvent(element, 'click', handler);
+    });
   }
 }
