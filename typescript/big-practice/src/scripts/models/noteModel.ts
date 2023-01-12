@@ -137,11 +137,15 @@ export default class NoteModel {
    * @returns {Object} noteItem
    */
   async editNote(note: Note): Promise<Note | undefined> {
-    const noteItem = await this.fetchAPI.putItem(
+    let noteItem = this.findNote(note.id);
+    noteItem.title = note.title;
+    noteItem.description = note.description;
+
+    noteItem = (await this.fetchAPI.putItem(
       note.id,
-      note,
+      noteItem,
       URL_API.NOTES_URL
-    );
+    )) as Note;
 
     return noteItem;
   }

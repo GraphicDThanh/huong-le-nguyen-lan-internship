@@ -1,3 +1,4 @@
+import NOTE from '../constants/note';
 import MenuView from '../views/menuView';
 import HeaderController from './headerController';
 import NoteController from './noteController';
@@ -33,6 +34,13 @@ export default class MenuController {
      */
     this.menuView.bindChangePage(
       () => this.noteController.renderTabs(),
+      (indexPage) => {
+        if (indexPage === '0') {
+          this.noteController.view.currentPage = NOTE.LIST_NOTES;
+        } else {
+          this.noteController.view.currentPage = NOTE.TRASH_NOTES;
+        }
+      },
       (tab) => this.headerController.headerView.changeLogoByTab(tab)
     );
   }

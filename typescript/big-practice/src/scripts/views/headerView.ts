@@ -146,7 +146,9 @@ export default class HeaderView {
     const logoName = selectDOMClass('.icon-logo h1')!;
     const logo = selectDOMClass('.logo')!;
 
-    this.eventHelpers.navigateHomePage(logo);
+    if (logo) {
+      this.eventHelpers.navigateHomePage(logo);
+    }
     this.eventHelpers.navigateHomePage(logoName);
   }
 

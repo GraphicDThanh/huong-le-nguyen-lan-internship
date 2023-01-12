@@ -10,10 +10,17 @@ import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
 import MenuController from './controllers/menuController';
+import NOTE from './constants/note';
 
 const noteModel = new NoteModel();
+let currentPage;
+if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
+  currentPage = NOTE.LIST_NOTES;
+} else {
+  currentPage = NOTE.TRASH_NOTES;
+}
 
-const listNoteView = new ListNoteView();
+const listNoteView = new ListNoteView(currentPage);
 const headerView = new HeaderView();
 const menuView = new MenuView();
 const userModel = new UserModel();

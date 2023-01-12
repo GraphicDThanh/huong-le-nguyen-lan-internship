@@ -32,34 +32,34 @@ export default class MenuView {
    * menu in the left. And after click, it will render out the corresponding interface
    *
    * @param {function} renderTabs is function transmitted in controller
+   * @param {function} changeTabBySession is function transmitted in controller
    * @param {function} changeLogoFollowTab is function transmitted in controller
    */
   bindChangePage(
     renderTabs: () => void,
+    changeTabBySession: (index: string) => void,
     changeLogoFollowTab: (tab: string) => void
   ): void {
     renderTabs();
     this.elementHelpers.showMenuActive();
-    this.handleClickMenu(changeLogoFollowTab, renderTabs);
+    this.handleClickMenu(changeLogoFollowTab, changeTabBySession, renderTabs);
   }
 
   /**
    * @description handle click change menu
    *
    * @param {function} renderTabs is function transmitted in controller
+   * @param {function} changeTabBySession is function transmitted in controller
    * @param {function} changeLogoFollowTab is function transmitted in controller
    */
   handleClickMenu(
     changeLogoFollowTab: (tab: string) => void,
+    changeTabBySession: (index: string) => void,
     renderTabs: () => void
   ): void {
     const menu = selectDOMClassAll('.nav li')!;
     const handler = (e: Event) => {
-      const searchInput = selectDOMClass('.search') as HTMLInputElement;
       const iconClose = selectDOMClass('.icon-close')!;
-      if (searchInput.value) {
-        searchInput.value = '';
-      }
 
       if ((e.target as HTMLElement).hasAttribute('data-id')) {
         const logoName = (e.target as HTMLElement).querySelector(
@@ -67,13 +67,12 @@ export default class MenuView {
         )?.textContent;
 
         this.elementHelpers.removeMenuActive();
-        sessionStorage.setItem(
-          STORAGE_KEYS.PAGE_NUMBER,
-          this.elementHelpers.getAttributeElement(
-            e.target!,
-            'data-id'
-          ) as string
-        );
+        const indexPage = this.elementHelpers.getAttributeElement(
+          e.target!,
+          'data-id'
+        ) as string;
+        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, indexPage);
+        changeTabBySession(indexPage);
         this.elementHelpers.showMenuActive();
 
         renderTabs();

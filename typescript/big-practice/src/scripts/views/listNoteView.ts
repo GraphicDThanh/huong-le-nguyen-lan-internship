@@ -1,11 +1,8 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import NoteView from './noteView';
 import ElementHelpers from '../helpers/elementHelpers';
 import EventHelpers from '../helpers/eventHelpers';
-import {
-  selectDOMClass,
-  selectDOMClassAll,
-  selectDOMById,
-} from '../utils/querySelectDOM';
+import { selectDOMClass, selectDOMById } from '../utils/querySelectDOM';
 import STORAGE_KEYS from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
 import { POPUP_MESSAGE } from '../constants/message';
@@ -29,17 +26,20 @@ export default class ListNoteView {
 
   localStorage: LocalStorage<string>;
 
+  currentPage: string;
+
   headerView: HeaderView;
 
   sectionWrapper: HTMLElement;
 
   overlayWrapper: HTMLElement;
 
-  constructor() {
+  constructor(currentPage: string) {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
     this.localStorage = new LocalStorage();
     this.headerView = new HeaderView();
+    this.currentPage = currentPage;
 
     this.sectionWrapper = selectDOMClass('.section-wrapper')!;
     this.overlayWrapper = selectDOMClass('.overlay-wrapper')!;
@@ -67,18 +67,17 @@ export default class ListNoteView {
     addNote: (note: Note) => void;
   }): void {
     const { renderTabNotes, renderTabTrash, addNote } = handlers;
-
     const trashNotes = {
-      tab: NOTE.TRASH_NOTES,
+      tab: this.currentPage,
       message: 'No notes in Trash',
     };
 
     const listNotes = {
-      tab: NOTE.LIST_NOTES,
+      tab: this.currentPage,
       message: 'Notes you add appear here',
     };
 
-    if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
+    if (this.currentPage === NOTE.LIST_NOTES) {
       this.sectionWrapper.innerHTML = '';
       this.sectionWrapper.appendChild(formAddNote());
 
@@ -102,9 +101,8 @@ export default class ListNoteView {
    * with the tab of listNotes or trashNotes
    *
    * @param {Array} list is a list of note or list of trash note
-   * @param {String} type is a tab if we need to use in listNotes or trashNotes
    */
-  showHideEmpty(list: Note[], tab: string): void {
+  showHideEmpty(list: Note[]): void {
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
     const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
     const listTrashElement = selectDOMClass('.trash-wrapper .list-notes');
@@ -112,7 +110,7 @@ export default class ListNoteView {
       '.trash-wrapper .list-notes-empty-content'
     );
 
-    switch (tab) {
+    switch (this.currentPage) {
       case NOTE.LIST_NOTES:
         if (listNotesEmpty && listNoteElement) {
           this.commonEmptyList(list, listNotesEmpty, listNoteElement);
@@ -179,7 +177,6 @@ export default class ListNoteView {
    * @param {Object} note is information of note
    * @param {function} handlers is a function transmitted from model
    */
-
   renderNote(
     note: Note,
     handlers: {
@@ -195,7 +192,7 @@ export default class ListNoteView {
       deletedAt: note.deletedAt,
     };
     const noteView = new NoteView(noteItem);
-    const noteElement = noteView.renderNote(NOTE.LIST_NOTES);
+    const noteElement = noteView.renderNote(this.currentPage);
     const { handleDeleteNote, handleShowNoteForm } = handlers;
 
     if (listNoteElement) {
@@ -265,7 +262,7 @@ export default class ListNoteView {
       };
 
       const noteView = new NoteView(noteItem);
-      const trashNote = noteView.renderNote(NOTE.TRASH_NOTES);
+      const trashNote = noteView.renderNote(this.currentPage);
       listTrashElement.appendChild(trashNote);
       this.bindShowPopup(trashNote, handler);
     });
@@ -419,38 +416,23 @@ export default class ListNoteView {
     findNote: (id: string) => void
   ): void {
     const noteItem = selectDOMById(`${noteElement.id}`)!;
-    const countNotesSelected = selectDOMClass('.count-selected')!;
-
     const handler = async (e: Event) => {
-      const selected = selectDOMClassAll('.selected')!;
+      e.stopPropagation();
+      const id = this.elementHelpers.getAttributeElement(
+        noteItem,
+        'id'
+      ) as string;
+      await findNote(id);
 
-      if (selected.length) {
-        const note = selectDOMById(
-          this.elementHelpers.getAttributeElement(
-            (e.target as HTMLElement).parentElement!,
-            'data-id'
-          ) as string
-        )!;
-        this.elementHelpers.addClass(note, 'selected');
-        this.elementHelpers.countAndShowSelected(countNotesSelected);
-      } else {
-        e.stopPropagation();
-        const id = this.elementHelpers.getAttributeElement(
-          noteItem,
-          'id'
-        ) as string;
-        await findNote(id);
+      const title = selectDOMClass('.note-form-overlay .note-title')!;
+      const description = selectDOMClass(
+        '.note-form-overlay .note-description'
+      )!;
 
-        const title = selectDOMClass('.note-form-overlay .note-title')!;
-        const description = selectDOMClass(
-          '.note-form-overlay .note-description'
-        )!;
-
-        this.elementHelpers.showInputBreakDown(title);
-        this.elementHelpers.showInputBreakDown(description);
-        this.eventHelpers.stopEvents(title);
-        this.eventHelpers.stopEvents(description);
-      }
+      this.elementHelpers.showInputBreakDown(title);
+      this.elementHelpers.showInputBreakDown(description);
+      this.eventHelpers.stopEvents(title);
+      this.eventHelpers.stopEvents(description);
     };
 
     this.eventHelpers.addEvent(noteItem, 'click', handler);
@@ -577,15 +559,17 @@ export default class ListNoteView {
     formElement: HTMLFormElement
   ): void {
     const formTitleElement = selectDOMClass('.form-title')!;
-    const formUtilitiesElement = selectDOMClass('.form-utilities')!;
+    const formUtilitiesElement = selectDOMClass('.form-utilities');
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content')!;
     const inputAddElement = selectDOMClass(
       '.form-add-note .form-group-input .input-note'
     )!;
     const inputTitleElement = selectDOMClass('.note-title')!;
 
-    this.elementHelpers.addClass(formUtilitiesElement, 'hide');
-    this.elementHelpers.addClass(formTitleElement, 'hide');
+    if (formUtilitiesElement && formTitleElement) {
+      this.elementHelpers.addClass(formUtilitiesElement, 'hide');
+      this.elementHelpers.addClass(formTitleElement, 'hide');
+    }
 
     if (note.title || note.description) {
       addNote(note);
