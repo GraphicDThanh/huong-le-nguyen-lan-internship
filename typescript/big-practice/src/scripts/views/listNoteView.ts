@@ -16,6 +16,7 @@ import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/errorsDOM';
 import Note from '../types/note';
+import NOTE from '../constants/note';
 
 /**
  * @class listNoteView
@@ -51,7 +52,7 @@ export default class ListNoteView {
    * @description navigate page to index page if isLogin from
    * localStorage is null
    */
-  navigatePageWithLoginStatus() {
+  navigatePageWithLoginStatus(): void {
     if (!this.localStorage.getItems(STORAGE_KEYS.IS_LOGIN)) {
       navigatePage('index.html');
     }
@@ -67,16 +68,16 @@ export default class ListNoteView {
     renderTabNotes: () => void;
     renderTabTrash: () => void;
     addNote: (note: Note) => void;
-  }) {
+  }): void {
     const { renderTabNotes, renderTabTrash, addNote } = handlers;
 
     const trashNotes = {
-      tab: 'trashNotes',
+      tab: NOTE.TRASH_NOTES,
       message: 'No notes in Trash',
     };
 
     const listNotes = {
-      tab: 'listNotes',
+      tab: NOTE.LIST_NOTES,
       message: 'Notes you add appear here',
     };
 
@@ -110,7 +111,7 @@ export default class ListNoteView {
    * @param {Array} list is a list of note or list of trash note
    * @param {String} type is a tab if we need to use in listNotes or trashNotes
    */
-  showHideEmpty(list: Note[], tab: string) {
+  showHideEmpty(list: Note[], tab: string): void {
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
     const listNoteElement = selectDOMClass('.note-wrapper .list-notes');
     const listTrashElement = selectDOMClass('.trash-wrapper .list-notes');
@@ -119,12 +120,12 @@ export default class ListNoteView {
     );
 
     switch (tab) {
-      case 'listNotes':
+      case NOTE.LIST_NOTES:
         if (listNotesEmpty && listNoteElement) {
           this.commonEmptyList(list, listNotesEmpty, listNoteElement);
         }
         break;
-      case 'trashNotes':
+      case NOTE.TRASH_NOTES:
         if (listTrashEmpty && listTrashElement) {
           this.commonEmptyList(list, listTrashEmpty, listTrashElement);
         }
@@ -147,7 +148,7 @@ export default class ListNoteView {
     list: Note[],
     listEmpty: HTMLElement,
     listElement: HTMLElement
-  ) {
+  ): void {
     if (!list.length) {
       this.elementHelpers.showHideElements(listEmpty, listElement, 'hide');
     } else {
@@ -168,7 +169,7 @@ export default class ListNoteView {
       handleDeleteNote: (id: string) => void;
       handleShowNoteForm: (id: string) => void;
     }
-  ) {
+  ): void {
     const listNoteElement = selectDOMClass('.list-notes');
     if (listNoteElement) {
       listNoteElement.innerHTML = '';
@@ -192,7 +193,7 @@ export default class ListNoteView {
       handleDeleteNote: (id: string) => void;
       handleShowNoteForm: (id: string) => void;
     }
-  ) {
+  ): void {
     const listNoteElement = selectDOMClass('.list-notes');
     const noteItem = {
       id: note.id,
@@ -201,7 +202,7 @@ export default class ListNoteView {
       deletedAt: note.deletedAt,
     };
     const noteView = new NoteView(noteItem);
-    const noteElement = noteView.renderNote('listNotes');
+    const noteElement = noteView.renderNote(NOTE.LIST_NOTES);
     const { handleDeleteNote, handleShowNoteForm } = handlers;
 
     if (listNoteElement) {
@@ -217,7 +218,7 @@ export default class ListNoteView {
    *
    * @param {String} id is id of note
    */
-  removeNoteElement(id: string) {
+  removeNoteElement(id: string): void {
     const note = selectDOMById(id);
 
     if (note) {
@@ -230,7 +231,7 @@ export default class ListNoteView {
    *
    * @param {Object} noteItem is information of note take from model returned
    */
-  editNote(noteItem) {
+  editNote(noteItem): void {
     const note = selectDOMById(noteItem.id);
     if (note) {
       const titleElement = note.querySelector('.note-title');
@@ -256,7 +257,10 @@ export default class ListNoteView {
    * @param {Array} listNotes is a list of trash notes from data
    * @param {function} handler is a function transmitted from model
    */
-  renderListTrashNotes(listNotes: Note[], handler: (noteId: string) => void) {
+  renderListTrashNotes(
+    listNotes: Note[],
+    handler: (noteId: string) => void
+  ): void {
     const listTrashElement = selectDOMClass('.list-notes');
     if (listTrashElement) {
       listTrashElement.innerHTML = '';
@@ -270,7 +274,7 @@ export default class ListNoteView {
         };
 
         const noteView = new NoteView(noteItem);
-        const trashNote = noteView.renderNote('trashNotes');
+        const trashNote = noteView.renderNote(NOTE.TRASH_NOTES);
         listTrashElement.appendChild(trashNote);
         this.bindShowPopup(trashNote, handler);
         this.bindSelectedNote(trashNote);
@@ -283,7 +287,7 @@ export default class ListNoteView {
    *
    * @param {Object} note is a note take from data
    */
-  renderConfirmMessage(note: Note) {
+  renderConfirmMessage(note: Note): void {
     if (this.overlayWrapper) {
       this.overlayWrapper.innerHTML = '';
 
@@ -308,8 +312,11 @@ export default class ListNoteView {
    */
   renderFormNote(
     note: Note,
-    handlers: { handleEditNote: () => void; handleDeleteNote: () => void }
-  ) {
+    handlers: {
+      handleEditNote: (note: Note) => void;
+      handleDeleteNote: (noteId: string) => void;
+    }
+  ): void {
     const noteItem = {
       id: note.id,
       title: note.title,
@@ -339,14 +346,17 @@ export default class ListNoteView {
    * @param {Object} note is trash note element is selected
    * @param {function} handlePopup is function transmitted
    */
-  bindShowPopup(note, handlePopup) {
+  bindShowPopup(note, handlePopup): void {
     const btnDeletes = note.querySelector('.trash-wrapper .btn-delete');
     const headerAfterSelect = selectDOMClass('.header-after-select');
-    const handler = (e) => {
-      const index = e.target.getAttribute('data-id');
+    const handler = (e: Event) => {
+      const index = this.elementHelpers.getAttributeElement(
+        e.target,
+        'data-id'
+      );
       handlePopup(index);
       this.elementHelpers.removeSelected();
-      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+      this.elementHelpers.removeClass(headerAfterSelect, 'show');
     };
 
     this.eventHelpers.addEvent(btnDeletes, 'click', handler);
@@ -355,7 +365,7 @@ export default class ListNoteView {
   /**
    * @description function close confirm popup
    */
-  bindClosePopup() {
+  bindClosePopup(): void {
     const overlayConfirmMessage = selectDOMClass('.overlay-wrapper');
     const btnClose = selectDOMClass('.btn-close-popup');
     const handler = (e) => {
@@ -373,7 +383,7 @@ export default class ListNoteView {
    *
    * @param {Object} noteElement is note element
    */
-  bindSelectedNote(noteElement) {
+  bindSelectedNote(noteElement): void {
     const note = selectDOMById(`${noteElement.id}`);
     const listIconCheck = note.querySelector('.icon-check');
     const countNotesSelected = selectDOMClass('.count-selected');
@@ -391,7 +401,8 @@ export default class ListNoteView {
       if (!selectedElement) {
         this.elementHelpers.addClass(e.target.parentElement, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
-        this.elementHelpers.translateYElement(headerAfterSelect, '-100');
+
+        this.elementHelpers.addClass(headerAfterSelect, 'show');
       } else {
         this.elementHelpers.removeClass(e.target.parentElement, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
@@ -403,7 +414,7 @@ export default class ListNoteView {
        */
       const listSelected = selectDOMClassAll('.selected');
       if (listSelected.length < 1) {
-        this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+        this.elementHelpers.removeClass(headerAfterSelect, 'show');
       }
     };
 
@@ -415,23 +426,26 @@ export default class ListNoteView {
    *
    * @param {function} deleteNoteTrash is function transmitted from model
    */
-  bindDeleteNoteInTrash(deleteNoteTrash) {
+  bindDeleteNoteInTrash(deleteNoteTrash: (id: string) => void): void {
     const deleteTrash = selectDOMClass('.btn-submit-action');
-    const handler = (e) => {
+    const handler = (e: Event) => {
       e.stopPropagation();
-      const index = e.target.getAttribute('data-id');
-
-      deleteNoteTrash(index);
-      this.overlayWrapper.innerHTML = '';
+      const id = this.elementHelpers.getAttributeElement(e.target, 'data-id');
+      if (id && this.overlayWrapper) {
+        deleteNoteTrash(id);
+        this.overlayWrapper.innerHTML = '';
+      }
     };
 
-    this.eventHelpers.addEvent(deleteTrash, 'click', handler);
+    if (deleteTrash) {
+      this.eventHelpers.addEvent(deleteTrash, 'click', handler);
+    }
   }
 
   /**
    * @description events of textarea to increase the length of input note
    */
-  bindInputBreakDown() {
+  bindInputBreakDown(): void {
     const inputAddElement = selectDOMClass(
       '.form-add-note .form-group-input .input-note'
     );
@@ -446,7 +460,7 @@ export default class ListNoteView {
   /**
    * @description function input break down of form note
    */
-  inputBreakDownNoteForm() {
+  inputBreakDownNoteForm(): void {
     const title = selectDOMClass('.note-form-overlay .note-title');
     const description = selectDOMClass('.note-form-overlay .note-description');
 
@@ -462,20 +476,23 @@ export default class ListNoteView {
    * @param {Object} noteElement is note element is selected
    * @param {function} findNote is function transmitted from model
    */
-  bindShowNoteForm(noteElement, findNote) {
+  bindShowNoteForm(noteElement, findNote): void {
     const noteItem = selectDOMById(`${noteElement.id}`);
     const countNotesSelected = selectDOMClass('.count-selected');
     const handler = async (e) => {
       const selected = selectDOMClassAll('.selected');
       if (selected.length) {
         const note = selectDOMById(
-          e.target.parentElement.getAttribute('data-id')
+          this.elementHelpers.getAttributeElement(
+            e.target.parentElement,
+            'data-id'
+          ) as string
         );
         this.elementHelpers.addClass(note, 'selected');
         this.elementHelpers.countAndShowSelected(countNotesSelected);
       } else {
         e.stopPropagation();
-        await findNote(noteItem.getAttribute('id'));
+        await findNote(this.elementHelpers.getAttributeElement(noteItem, 'id'));
 
         const title = selectDOMClass('.note-form-overlay .note-title');
         const description = selectDOMClass(
@@ -498,7 +515,7 @@ export default class ListNoteView {
    *
    * @param {function} editNote is function transmitted from model
    */
-  bindSaveNoteForm(editNote) {
+  bindSaveNoteForm(editNote): void {
     const closeBtn = selectDOMClass('.note-form-overlay .btn-close');
     const overlay = selectDOMClass('.overlay');
     const formElement = selectDOMClass('.note-form-overlay');
@@ -532,23 +549,26 @@ export default class ListNoteView {
    *
    * @param {function} deleteNote is function transmitted from model
    */
-  bindDeleteNoteForm(deleteNote) {
+  bindDeleteNoteForm(deleteNote: (id: string) => void): void {
     const buttonDelete = selectDOMClass('.note-form-overlay .btn-delete-form');
-    const handler = (e) => {
+    const handler = (e: Event) => {
       e.stopPropagation();
-      const id = e.target.getAttribute('data-id');
-
-      deleteNote(id);
-      this.overlayWrapper.innerHTML = '';
+      const id = this.elementHelpers.getAttributeElement(e.target, 'data-id');
+      if (id && this.overlayWrapper) {
+        deleteNote(id);
+        this.overlayWrapper.innerHTML = '';
+      }
     };
 
-    this.eventHelpers.addEvent(buttonDelete, 'click', handler);
+    if (buttonDelete) {
+      this.eventHelpers.addEvent(buttonDelete, 'click', handler);
+    }
   }
 
   /**
    * @description function events to show input form
    */
-  bindShowInput() {
+  bindShowInput(): void {
     const formTitleElement = selectDOMClass('.form-title');
     const formUtilitiesElement = selectDOMClass('.form-utilities');
     const inputAddElement = selectDOMClass(
@@ -571,7 +591,7 @@ export default class ListNoteView {
    *
    * @param {function} addNote is function transmitted from model
    */
-  bindAddNote(addNote: (note: Note) => void) {
+  bindAddNote(addNote: (note: Note) => void): void {
     const formElement = selectDOMClass('.form-add-note') as HTMLFormElement;
     const homePage = selectDOMClass('.home-page');
 
@@ -617,7 +637,7 @@ export default class ListNoteView {
     note: Note,
     addNote: (note: Note) => void,
     formElement: HTMLFormElement
-  ) {
+  ): void {
     const formTitleElement = selectDOMClass('.form-title');
     const formUtilitiesElement = selectDOMClass('.form-utilities');
     const listNotesEmpty = selectDOMClass('.list-notes-empty-content');
@@ -654,21 +674,33 @@ export default class ListNoteView {
    * @param {Object} noteElement is note element
    * @param {function} deleteNote is function delete transmitted from from the model
    */
-  bindDeleteNote(noteElement, deleteNote) {
+  bindDeleteNote(
+    noteElement: HTMLElement,
+    deleteNote: (id: string) => void
+  ): void {
     const note = selectDOMById(`${noteElement.id}`);
     const headerAfterSelect = selectDOMClass('.header-after-select');
-    const iconDeleteElement = note.querySelectorAll('.note-btn .icon-delete');
-    const handler = (e) => {
+
+    const handler = (e: Event) => {
       e.stopPropagation();
-      const noteId = e.target.getAttribute('data-id');
+      const noteId = this.elementHelpers.getAttributeElement(
+        e.target,
+        'data-id'
+      );
 
-      deleteNote(noteId);
-      this.elementHelpers.removeSelected();
-      this.elementHelpers.translateYElement(headerAfterSelect, '-200');
+      if (noteId && headerAfterSelect) {
+        deleteNote(noteId);
+        this.elementHelpers.removeSelected();
+        this.elementHelpers.removeClass(headerAfterSelect, 'show');
+      }
     };
-
-    iconDeleteElement.forEach((btn) => {
-      this.eventHelpers.addEvent(btn, 'click', handler);
-    });
+    if (note) {
+      const iconDeleteElement: NodeListOf<HTMLElement> = note.querySelectorAll(
+        '.note-btn .icon-delete'
+      );
+      iconDeleteElement.forEach((btn) => {
+        this.eventHelpers.addEvent(btn, 'click', handler);
+      });
+    }
   }
 }

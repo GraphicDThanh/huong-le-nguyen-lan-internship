@@ -1,3 +1,4 @@
+import NOTE from '../constants/note';
 import NoteModel from '../models/noteModel';
 import Note from '../types/note';
 import { renderPopupError } from '../utils/errorsDOM';
@@ -24,58 +25,59 @@ export default class NoteController {
     this.loadingPage = new LoadingPage();
   }
 
-  init() {
+  init(): void {
     this.bindEvents();
   }
 
-  bindEvents() {
+  bindEvents(): void {
     // Navigate page to index page if isLogin from localStorage is false
     this.view.navigatePageWithLoginStatus();
   }
 
-  renderTabs() {
+  renderTabs(): void {
     const handlers = {
-      renderTabNotes: () => this.renderTabNote(),
-      renderTabTrash: () => this.renderTabTrash(),
+      renderTabNotes: () => this.renderTab(NOTE.LIST_NOTES),
+      renderTabTrash: () => this.renderTab(NOTE.TRASH_NOTES),
       addNote: (note: Note) => this.addNote(note),
     };
 
     this.view.renderTabs(handlers);
   }
 
-  async renderTabTrash() {
+  /**
+   * @description function render tab note or tab trash
+   * when tab = 'trashNotes' it will render tab trash
+   * if the tab is different from trashNotes i will render tab Note
+   *
+   * @param {String} tab is param to distinguish these two listNotes and trashNotes
+   */
+  async renderTab(tab: string): Promise<void> {
     try {
       this.loadingPage.addLoading();
-      const listTrash: Note[] = await this.model.filterNotes('trashNotes');
-      // function render trash notes
-      this.view.renderListTrashNotes(listTrash, (noteId: string) =>
-        this.handleConfirmPopup(noteId)
-      );
 
-      // function show Empty Note if note is empty
-      this.view.showHideEmpty(listTrash, 'trashNotes');
-      this.loadingPage.setTimeoutLoading();
-    } catch (error) {
-      if (error instanceof Error) {
-        renderPopupError(error.message);
+      if (tab === NOTE.TRASH_NOTES) {
+        const listTrash: Note[] = await this.model.filterNotes(tab);
+        // function render trash notes
+        this.view.renderListTrashNotes(listTrash, (noteId: string) =>
+          this.handleConfirmPopup(noteId)
+        );
+
+        // function show Empty Note if note is empty
+        this.view.showHideEmpty(listTrash, tab);
+      } else {
+        const handlers = {
+          handleDeleteNote: (id: string) => this.deleteNote(id),
+          handleShowNoteForm: (id: string) => this.handleNoteForm(id),
+        };
+        const listNotes: Note[] = await this.model.filterNotes(tab);
+
+        // function render list notes
+        this.view.renderListNotes(listNotes, handlers);
+
+        // function show Empty Note if note is empty
+        this.view.showHideEmpty(listNotes, tab);
       }
-    }
-  }
 
-  async renderTabNote() {
-    try {
-      this.loadingPage.addLoading();
-      const handlers = {
-        handleDeleteNote: (id: string) => this.deleteNote(id),
-        handleShowNoteForm: (id: string) => this.handleNoteForm(id),
-      };
-      const listNotes: Note[] = await this.model.filterNotes('listNotes');
-
-      // function render list notes
-      this.view.renderListNotes(listNotes, handlers);
-
-      // function show Empty Note if note is empty
-      this.view.showHideEmpty(listNotes, 'listNotes');
       this.loadingPage.setTimeoutLoading();
     } catch (error) {
       if (error instanceof Error) {
@@ -90,7 +92,7 @@ export default class NoteController {
    *
    * @param {String} noteId is id of note is selected
    */
-  async handleConfirmPopup(noteId) {
+  async handleConfirmPopup(noteId): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const note = await this.model.findNote(noteId);
@@ -107,7 +109,7 @@ export default class NoteController {
         await this.model.deleteNoteInTrash(id);
 
         this.view.removeNoteElement(id);
-        this.view.showHideEmpty(this.model.listNotes, 'trashNotes');
+        this.view.showHideEmpty(this.model.listNotes, NOTE.TRASH_NOTES);
         this.loadingPage.removeLoading();
       });
     } catch (error) {
@@ -120,7 +122,7 @@ export default class NoteController {
    *
    * @param {Object} note is a information of note
    */
-  async addNote(note: Note) {
+  async addNote(note: Note): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.addNote(note);
@@ -145,16 +147,18 @@ export default class NoteController {
    *
    * @param {String} noteId is id of note is selected
    */
-  async deleteNote(noteId) {
+  async deleteNote(noteId: string): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.deleteNote(noteId);
 
       this.view.removeNoteElement(noteItem.id);
-      this.view.showHideEmpty(this.model.listNotes, 'listNotes');
+      this.view.showHideEmpty(this.model.listNotes, NOTE.LIST_NOTES);
       this.loadingPage.removeLoading();
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
@@ -163,7 +167,7 @@ export default class NoteController {
    *
    * @param {Object} note is information of note
    */
-  async editNote(note) {
+  async editNote(note): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.editNote(note);
@@ -181,20 +185,22 @@ export default class NoteController {
    *
    * @param {String} id is a id of note
    */
-  async handleNoteForm(id) {
+  async handleNoteForm(id: string): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const noteItem = await this.model.findNote(id);
 
       const handlers = {
-        handleEditNote: (note) => this.editNote(note),
-        handleDeleteNote: (noteId) => this.deleteNote(noteId),
+        handleEditNote: (note: Note) => this.editNote(note),
+        handleDeleteNote: (noteId: string) => this.deleteNote(noteId),
       };
 
       // function render form note
       this.view.renderFormNote(noteItem, handlers);
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 }

@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import URL_API from '../constants/apiUrl';
 import Note from '../types/note';
+import NOTE from '../constants/note';
 
 /**
  * @class listNoteModel
@@ -24,7 +25,7 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async addNote(note: Note) {
+  async addNote(note: Note): Promise<Note | undefined> {
     const patternNote = {
       id: uuidv4(),
       title: note.title,
@@ -35,7 +36,10 @@ export default class NoteModel {
       patternNote,
       URL_API.NOTES_URL
     );
-    this.listNotes.push(noteItem);
+
+    if (noteItem) {
+      this.listNotes.push(noteItem);
+    }
 
     return noteItem;
   }
@@ -50,22 +54,24 @@ export default class NoteModel {
    *
    * @returns {Array} listNotes after filter
    */
-  async filterNotes(tab: string) {
+  async filterNotes(tab: string): Promise<Note[]> {
     const allNotes = await this.fetchAPI.getAllItems(URL_API.NOTES_URL);
 
-    // This condition filter that we can use this function for trashNotes and listNotes
-    switch (tab) {
-      case 'listNotes': {
-        this.listNotes = allNotes.filter((note) => !note.deletedAt);
-        break;
+    if (Array.isArray(allNotes)) {
+      // This condition filter that we can use this function for trashNotes and listNotes
+      switch (tab) {
+        case NOTE.LIST_NOTES: {
+          this.listNotes = allNotes.filter((note) => !note.deletedAt);
+          break;
+        }
+        case NOTE.TRASH_NOTES: {
+          this.listNotes = allNotes.filter((note) => note.deletedAt);
+          break;
+        }
+        default:
+          console.log('Must enter a listNotes or trashNotes');
+          break;
       }
-      case 'trashNotes': {
-        this.listNotes = allNotes.filter((note) => note.deletedAt);
-        break;
-      }
-      default:
-        console.log('Must enter a listNotes or trashNotes');
-        break;
     }
 
     return this.listNotes;
@@ -80,7 +86,7 @@ export default class NoteModel {
    *
    * @return {Object} noteItem
    */
-  async deleteNote(id) {
+  async deleteNote(id: string): Promise<Note> {
     const date = new Date().toISOString().slice(0, 10);
     const noteItem = this.findNote(id);
 
@@ -96,10 +102,8 @@ export default class NoteModel {
    *
    * @param {String} id is id of note is selected
    */
-  async deleteNoteInTrash(id) {
-    const noteItem = this.findNote(id);
-
-    await this.fetchAPI.deleteItem(noteItem.id, URL_API.NOTES_URL);
+  async deleteNoteInTrash(id: string): Promise<void> {
+    await this.fetchAPI.deleteItem(id, URL_API.NOTES_URL);
     this.listNotes = this.listNotes.filter((note) => note.id !== id);
   }
 
@@ -110,8 +114,8 @@ export default class NoteModel {
    *
    *  @returns {Object} noteItem
    */
-  findNote(id) {
-    const noteItem = this.listNotes.find((note) => note.id === id);
+  findNote(id: string): Note {
+    const noteItem = this.listNotes.find((note) => note.id === id) as Note;
 
     return noteItem;
   }
@@ -123,14 +127,10 @@ export default class NoteModel {
    *
    * @returns {Object} noteItem
    */
-  async editNote(note) {
-    let noteItem = this.findNote(note.id);
-    noteItem.title = note.title;
-    noteItem.description = note.description;
-
-    noteItem = await this.fetchAPI.putItem(
+  async editNote(note: Note): Promise<Note | undefined> {
+    const noteItem = await this.fetchAPI.putItem(
       note.id,
-      noteItem,
+      note,
       URL_API.NOTES_URL
     );
 

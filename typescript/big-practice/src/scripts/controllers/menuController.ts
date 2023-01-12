@@ -1,23 +1,23 @@
 export default class MenuController {
-  constructor(view, noteController, headerController) {
-    this.view = view;
+  constructor(menuView, noteController, headerController) {
+    this.menuView = menuView;
     this.noteController = noteController;
     this.headerController = headerController;
   }
 
-  init() {
+  init(): void {
     this.bindEvents();
   }
 
-  bindEvents() {
+  bindEvents(): void {
     // Render menu component in the left site
-    this.view.renderMenu();
+    this.menuView.renderMenu();
 
     /**
      * Render to the corresponding interface when clicking to
      * change tab and it also change logo
      */
-    this.view.bindChangePage(
+    this.menuView.bindChangePage(
       () => this.noteController.renderTabs(),
       (tab) => this.headerController.headerView.changeLogoByTab(tab)
     );
