@@ -212,11 +212,9 @@ export default class ListNoteView {
    * @param {String} id is id of note
    */
   removeNoteElement(id: string): void {
-    const note = selectDOMById(id);
+    const note = selectDOMById(id)!;
 
-    if (note && id) {
-      note.remove();
-    }
+    note.remove();
   }
 
   /**
