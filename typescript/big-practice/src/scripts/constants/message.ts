@@ -12,6 +12,8 @@ const API_MESSAGE = {
 
 const ERROR_MESSAGE = {
   EMAIL_NOT_EXISTS: 'Email is not exists',
+  EMAIL_ALREADY_EXISTS: 'Email already exists',
+  PASSWORD_NOT_MATCH: 'Password is not match',
   PASSWORD_INCORRECT: 'Password incorrect',
 };
 

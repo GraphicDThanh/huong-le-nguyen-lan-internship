@@ -5,11 +5,19 @@ import STORAGE_KEYS from '../constants/storageKeys';
 import EventHelpers from '../helpers/eventHelpers';
 
 export default class MenuView {
+  elementHelpers: ElementHelpers;
+
+  eventHelpers: EventHelpers;
+
+  mainWrapper: HTMLElement;
+
+  sectionWrapper: HTMLElement;
+
   constructor() {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
-    this.mainWrapper = selectDOMClass('.main-wrapper');
-    this.sectionWrapper = selectDOMClass('.section-wrapper');
+    this.mainWrapper = selectDOMClass('.main-wrapper')!;
+    this.sectionWrapper = selectDOMClass('.section-wrapper')!;
   }
 
   /**
@@ -25,37 +33,43 @@ export default class MenuView {
    *
    * @param {function} renderTabs is function transmitted in controller
    * @param {function} changeLogoFollowTab is function transmitted in controller
-   * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  bindChangePage(renderTabs, changeLogoFollowTab): void {
-    const menu = selectDOMClassAll('.nav li');
-
+  bindChangePage(
+    renderTabs: () => void,
+    changeLogoFollowTab: (tab: string) => void
+  ): void {
     renderTabs();
     this.elementHelpers.showMenuActive();
-    this.handleClickMenu(menu, changeLogoFollowTab, renderTabs);
+    this.handleClickMenu(changeLogoFollowTab, renderTabs);
   }
 
   /**
-   * @description function handle click change page
+   * @description handle click change menu
    *
    * @param {function} renderTabs is function transmitted in controller
    * @param {function} changeLogoFollowTab is function transmitted in controller
-   * @param {function} changeButtonBulkActions is function transmitted in controller
    */
-  handleClickMenu(menu, changeLogoFollowTab, renderTabs): void {
-    const handler = (e) => {
-      const searchInput = selectDOMClass('.search');
-      const iconClose = selectDOMClass('.icon-close');
+  handleClickMenu(
+    changeLogoFollowTab: (tab: string) => void,
+    renderTabs: () => void
+  ): void {
+    const menu = selectDOMClassAll('.nav li')!;
+    const handler = (e: Event) => {
+      const searchInput = selectDOMClass('.search') as HTMLInputElement;
+      const iconClose = selectDOMClass('.icon-close')!;
       if (searchInput.value) {
         searchInput.value = '';
       }
 
-      if (e.target.hasAttribute('data-id')) {
-        const logoName = e.target.querySelector('span').textContent;
+      if ((e.target as HTMLElement).hasAttribute('data-id')) {
+        const logoName = (e.target as HTMLElement).querySelector(
+          'span'
+        )?.textContent;
+
         this.elementHelpers.removeMenuActive();
         sessionStorage.setItem(
           STORAGE_KEYS.PAGE_NUMBER,
-          this.elementHelpers.getAttributeElement(e.target, 'data-id')
+          this.elementHelpers.getAttributeElement(e.target, 'data-id') as string
         );
         this.elementHelpers.showMenuActive();
 
@@ -63,9 +77,10 @@ export default class MenuView {
         if (logoName === 'Notes') {
           changeLogoFollowTab('Keep');
         } else {
-          changeLogoFollowTab(logoName);
+          changeLogoFollowTab(logoName as string);
         }
       }
+
       iconClose.style.visibility = 'hidden';
     };
 

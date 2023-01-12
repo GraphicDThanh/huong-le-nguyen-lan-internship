@@ -1,6 +1,6 @@
 import NOTE from '../constants/note';
 import NoteModel from '../models/noteModel';
-import Note from '../types/note';
+import Note from '../interfaces/note';
 import { renderPopupError } from '../utils/errorsDOM';
 import LoadingPage from '../utils/loadingPage';
 import ListNoteView from '../views/listNoteView';
@@ -92,7 +92,7 @@ export default class NoteController {
    *
    * @param {String} noteId is id of note is selected
    */
-  async handleConfirmPopup(noteId): Promise<void> {
+  async handleConfirmPopup(noteId: string): Promise<void> {
     try {
       this.loadingPage.addLoading();
       const note = await this.model.findNote(noteId);
@@ -113,7 +113,9 @@ export default class NoteController {
         this.loadingPage.removeLoading();
       });
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
@@ -125,7 +127,7 @@ export default class NoteController {
   async addNote(note: Note): Promise<void> {
     try {
       this.loadingPage.addLoading();
-      const noteItem = await this.model.addNote(note);
+      const noteItem = (await this.model.addNote(note)) as Note;
 
       const handlers = {
         handleDeleteNote: (id: string) => this.deleteNote(id),
@@ -167,15 +169,17 @@ export default class NoteController {
    *
    * @param {Object} note is information of note
    */
-  async editNote(note): Promise<void> {
+  async editNote(note: Note): Promise<void> {
     try {
       this.loadingPage.addLoading();
-      const noteItem = await this.model.editNote(note);
+      const noteItem = (await this.model.editNote(note)) as Note;
 
       this.view.editNote(noteItem);
       this.loadingPage.removeLoading();
     } catch (error) {
-      renderPopupError(error.message);
+      if (error instanceof Error) {
+        renderPopupError(error.message);
+      }
     }
   }
 
