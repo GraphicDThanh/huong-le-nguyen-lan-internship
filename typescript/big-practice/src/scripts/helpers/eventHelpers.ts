@@ -1,4 +1,4 @@
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import navigatePage from '../utils/navigatePage';
 
 export default class EventHelpers {
@@ -42,7 +42,7 @@ export default class EventHelpers {
   navigateHomePage(element: HTMLElement): void {
     const handler = () => {
       navigatePage('home.html');
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+      sessionStorage.setItem(StorageKeys.PAGE_NUMBER, '0');
     };
 
     this.addEvent(element, 'click', handler);

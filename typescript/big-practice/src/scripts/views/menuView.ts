@@ -1,7 +1,7 @@
 import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
 import menuComponent from '../components/menu';
 import ElementHelpers from '../helpers/elementHelpers';
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import EventHelpers from '../helpers/eventHelpers';
 
 export default class MenuView {
@@ -71,7 +71,7 @@ export default class MenuView {
           e.target!,
           'data-id'
         ) as string;
-        sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, indexPage);
+        sessionStorage.setItem(StorageKeys.PAGE_NUMBER, indexPage);
         changeTabBySession(indexPage);
         this.elementHelpers.showMenuActive();
 

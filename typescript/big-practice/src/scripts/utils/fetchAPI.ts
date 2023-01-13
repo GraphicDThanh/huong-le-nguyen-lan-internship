@@ -1,11 +1,11 @@
-import URL_API from '../constants/apiUrl';
+import UrlAPI from '../constants/apiUrl';
 import { checkCustomError, generateError } from './errorsAPI';
 
 export default class FetchAPI<T> {
   baseURL: string;
 
   constructor() {
-    this.baseURL = `${URL_API.BASE_URL}`;
+    this.baseURL = `${UrlAPI.BASE_URL}`;
   }
 
   /**

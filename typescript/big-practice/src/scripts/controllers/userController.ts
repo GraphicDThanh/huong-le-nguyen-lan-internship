@@ -1,9 +1,9 @@
 import UserModel from '../models/userModel';
 import User from '../interfaces/user';
 import AuthenticationView from '../views/authenticationView';
-import PAGE from '../constants/page';
+import Page from '../constants/page';
 import navigatePage from '../utils/navigatePage';
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import LocalStorage from '../utils/localStorage';
 
 export default class UserController {
@@ -44,10 +44,10 @@ export default class UserController {
   async handleSignUp(user: User, confirmPassword: string): Promise<void> {
     const checkValid = await this.model.checkValid(
       user,
-      PAGE.SIGN_UP,
+      Page.SIGN_UP,
       confirmPassword
     );
-    this.authenticationView.showHideError(checkValid, PAGE.SIGN_UP);
+    this.authenticationView.showHideError(checkValid, Page.SIGN_UP);
 
     if (!checkValid.isEmail && !checkValid.isPassword) {
       this.model.addUser(user);
@@ -61,8 +61,8 @@ export default class UserController {
    * @param {Object} user is information of input user enter
    */
   async handleLogin(user: User): Promise<void> {
-    const checkValid = await this.model.checkValid(user, PAGE.LOGIN);
-    this.authenticationView.showHideError(checkValid, PAGE.LOGIN);
+    const checkValid = await this.model.checkValid(user, Page.LOGIN);
+    this.authenticationView.showHideError(checkValid, Page.LOGIN);
 
     const users = (await this.model.getUserByKey(
       'email',
@@ -70,7 +70,7 @@ export default class UserController {
     )) as User[];
 
     if (!checkValid.isEmail && !checkValid.isPassword) {
-      this.localStorage.setItems(STORAGE_KEYS.USER_ID, users[0].id);
+      this.localStorage.setItems(StorageKeys.USER_ID, users[0].id);
       navigatePage('home.html');
     }
   }

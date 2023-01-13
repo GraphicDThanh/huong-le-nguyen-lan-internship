@@ -1,6 +1,6 @@
 import formElement from '../components/form';
-import { ERROR_MESSAGE } from '../constants/message';
-import PAGE from '../constants/page';
+import { ErrorMessage } from '../constants/message';
+import Page from '../constants/page';
 import ElementHelpers from '../helpers/elementHelpers';
 import EventHelpers from '../helpers/eventHelpers';
 import User from '../interfaces/user';
@@ -91,7 +91,7 @@ export default class AuthenticationView {
    *
    * @param {String} page to distinguish between login page and sign up page
    */
-  showHideError(checkValid: CheckAuthentication, page: string): void {
+  showHideError(checkValid: CheckAuthentication, page: number): void {
     const emailElement = selectDOMClass('.email')!;
     const labelEmail = selectDOMClass('.label-email')!;
     const passwordElement = selectDOMClass('.password')!;
@@ -99,31 +99,31 @@ export default class AuthenticationView {
     const confirmPasswordElement = selectDOMClass('.confirm-password')!;
     const labelConfirmPassword = selectDOMClass('.label-confirm-password')!;
 
-    if (page === PAGE.SIGN_UP) {
+    if (page === Page.SIGN_UP) {
       this.conditionValidField(
         checkValid.isEmail,
         emailElement,
         labelEmail,
-        ERROR_MESSAGE.EMAIL_ALREADY_EXISTS
+        ErrorMessage.EMAIL_ALREADY_EXISTS
       );
       this.conditionValidField(
         checkValid.isPassword,
         confirmPasswordElement,
         labelConfirmPassword,
-        ERROR_MESSAGE.PASSWORD_NOT_MATCH
+        ErrorMessage.PASSWORD_NOT_MATCH
       );
     } else {
       this.conditionValidField(
         checkValid.isEmail,
         emailElement,
         labelEmail,
-        ERROR_MESSAGE.EMAIL_NOT_EXISTS
+        ErrorMessage.EMAIL_NOT_EXISTS
       );
       this.conditionValidField(
         checkValid.isPassword,
         passwordElement,
         labelPassword,
-        ERROR_MESSAGE.PASSWORD_INCORRECT
+        ErrorMessage.PASSWORD_INCORRECT
       );
     }
   }

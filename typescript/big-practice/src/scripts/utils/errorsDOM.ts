@@ -1,4 +1,4 @@
-import { POPUP_MESSAGE } from '../constants/message';
+import { PopupMessage } from '../constants/message';
 import EventHelpers from '../helpers/eventHelpers';
 import renderConfirmPopup from './confirmPopup';
 import { selectDOMClass } from './querySelectDOM';
@@ -69,7 +69,7 @@ const renderPopupError = (errorMessage: string): void => {
     overlayWrapper.innerHTML = '';
   };
   overlayWrapper.appendChild(
-    renderConfirmPopup(`${POPUP_MESSAGE.ERRORS_MSG}${errorMessage}`)
+    renderConfirmPopup(`${PopupMessage.ERRORS_MSG}${errorMessage}`)
   );
 
   const btnClose = selectDOMClass('.btn-close-popup')!;

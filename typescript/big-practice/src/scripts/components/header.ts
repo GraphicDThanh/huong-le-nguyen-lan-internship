@@ -1,5 +1,5 @@
 import iconClose from '../../assets/icons/icon-close.svg';
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import iconTrash from '../../assets/icons/icon-trash-blue.svg';
 
 const buttonBulkActionsComponent = (): HTMLElement => {
@@ -8,7 +8,7 @@ const buttonBulkActionsComponent = (): HTMLElement => {
 
   headerBulkActions.innerHTML = `
     ${
-      sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
+      sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '0'
         ? `<figure class="item-utilities btn-delete-bulk-actions">
             <img src="${iconTrash}" alt="icon trash">
           </figure>`

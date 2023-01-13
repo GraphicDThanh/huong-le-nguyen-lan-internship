@@ -5,19 +5,19 @@ import UserModel from './models/userModel';
 import AuthenticationView from './views/authenticationView';
 import UserController from './controllers/userController';
 import LocalStorage from './utils/localStorage';
-import STORAGE_KEYS from './constants/storageKeys';
+import StorageKeys from './constants/storageKeys';
 import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
 import MenuController from './controllers/menuController';
-import NOTE from './constants/note';
+import Menu from './constants/note';
 
 const noteModel = new NoteModel();
 let currentPage;
-if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0') {
-  currentPage = NOTE.LIST_NOTES;
+if (sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '0') {
+  currentPage = Menu.LIST_NOTES;
 } else {
-  currentPage = NOTE.TRASH_NOTES;
+  currentPage = Menu.TRASH_NOTES;
 }
 
 const listNoteView = new ListNoteView(currentPage);
@@ -38,7 +38,7 @@ const menuController = new MenuController(
 (() => {
   const localStorage = new LocalStorage();
 
-  if (!localStorage.getItems(STORAGE_KEYS.USER_ID)) {
+  if (!localStorage.getItems(StorageKeys.USER_ID)) {
     userController.init();
   } else {
     headerController.init();

@@ -1,6 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
-import URL_API from '../constants/apiUrl';
-import PAGE from '../constants/page';
+import UrlAPI from '../constants/apiUrl';
+import Page from '../constants/page';
 import User from '../interfaces/user';
 import FetchAPI from '../utils/fetchAPI';
 
@@ -27,7 +26,7 @@ export default class UserModel {
    */
   async getUserByKey(key: string, value: string): Promise<User[] | undefined> {
     const users = await this.fetchAPI.getItemByKey(
-      URL_API.USERS_URL,
+      UrlAPI.USERS_URL,
       `?${key}=${value}`
     );
 
@@ -45,7 +44,7 @@ export default class UserModel {
    */
   async checkValid(
     user: User,
-    page: string,
+    page: number,
     confirmPassword?: string
   ): Promise<CheckAuthentication> {
     const users = (await this.getUserByKey('email', user.email)) as User[];
@@ -55,7 +54,7 @@ export default class UserModel {
     };
 
     switch (page) {
-      case PAGE.SIGN_UP:
+      case Page.SIGN_UP:
         if (users.length && user.email === users[0].email) {
           userValid.isEmail = true;
 
@@ -68,7 +67,7 @@ export default class UserModel {
           return userValid;
         }
         break;
-      case PAGE.LOGIN:
+      case Page.LOGIN:
         if (!users.length) {
           userValid.isEmail = true;
           userValid.isPassword = true;
@@ -99,12 +98,12 @@ export default class UserModel {
    */
   async addUser(userInfo: User): Promise<User | undefined> {
     const patternUser = {
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       email: userInfo.email,
       password: userInfo.password,
     };
 
-    const user = await this.fetchAPI.postItem(patternUser, URL_API.USERS_URL);
+    const user = await this.fetchAPI.postItem(patternUser, UrlAPI.USERS_URL);
 
     return user;
   }

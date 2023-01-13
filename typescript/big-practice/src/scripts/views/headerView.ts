@@ -3,7 +3,7 @@ import logoComponent from '../components/logo';
 import inputSearchComponent from '../components/inputSearch';
 import menuUserComponent from '../components/menuUser';
 import navigatePage from '../utils/navigatePage';
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import LocalStorage from '../utils/localStorage';
 import ElementHelpers from '../helpers/elementHelpers';
 import {
@@ -43,7 +43,7 @@ export default class HeaderView {
     const headerSelected = selectDOMClass('.header-after-select')!;
     let tab = 'Keep';
 
-    if (sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '4') {
+    if (sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '4') {
       tab = 'Trash';
     }
     this.setDefaultPageNumber();
@@ -80,8 +80,8 @@ export default class HeaderView {
     const btnLogout = selectDOMClass('.btn-logout')!;
     const handler = () => {
       navigatePage('index.html');
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
-      this.localStorage.removeItems(STORAGE_KEYS.USER_ID);
+      sessionStorage.setItem(StorageKeys.PAGE_NUMBER, '0');
+      this.localStorage.removeItems(StorageKeys.USER_ID);
     };
 
     this.eventHelpers.addEvent(btnLogout, 'click', handler);
@@ -97,8 +97,8 @@ export default class HeaderView {
     findUser: (id: string) => Promise<User[] | undefined>
   ): Promise<void> {
     const emailUser = selectDOMClass('.menu-user-email')!;
-    if (this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
-      const id = this.localStorage.getItems(STORAGE_KEYS.USER_ID) as string;
+    if (this.localStorage.getItems(StorageKeys.USER_ID)) {
+      const id = this.localStorage.getItems(StorageKeys.USER_ID) as string;
       const user = await findUser(id);
       if (user) {
         emailUser.textContent = user[0].email;
@@ -158,8 +158,8 @@ export default class HeaderView {
    * will set to session a key page_number with value is 0
    */
   setDefaultPageNumber(): void {
-    if (!sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER)) {
-      sessionStorage.setItem(STORAGE_KEYS.PAGE_NUMBER, '0');
+    if (!sessionStorage.getItem(StorageKeys.PAGE_NUMBER)) {
+      sessionStorage.setItem(StorageKeys.PAGE_NUMBER, '0');
     }
   }
 }

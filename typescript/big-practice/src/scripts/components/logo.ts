@@ -1,4 +1,4 @@
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import iconLogo from '../../assets/icons/google-keep.svg';
 
 const logoComponent = (tab: string): HTMLElement => {
@@ -8,7 +8,7 @@ const logoComponent = (tab: string): HTMLElement => {
   logoElement.innerHTML = `
     <figure class="icon-logo-cover">
       ${
-        sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER) === '0'
+        sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '0'
           ? `<img class="logo" src="${iconLogo}" alt="icon logo">`
           : ''
       } 

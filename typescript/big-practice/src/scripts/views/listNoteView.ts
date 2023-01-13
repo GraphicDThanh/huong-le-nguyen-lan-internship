@@ -3,9 +3,9 @@ import NoteView from './noteView';
 import ElementHelpers from '../helpers/elementHelpers';
 import EventHelpers from '../helpers/eventHelpers';
 import { selectDOMClass, selectDOMById } from '../utils/querySelectDOM';
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import renderConfirmPopup from '../utils/confirmPopup';
-import { POPUP_MESSAGE } from '../constants/message';
+import { PopupMessage } from '../constants/message';
 import LocalStorage from '../utils/localStorage';
 import formAddNote from '../components/formAddNote';
 import listNotesWrapper from '../components/listNotes';
@@ -13,7 +13,7 @@ import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/errorsDOM';
 import Note from '../interfaces/note';
-import NOTE from '../constants/note';
+import Menu from '../constants/note';
 
 /**
  * @class listNoteView
@@ -26,7 +26,7 @@ export default class ListNoteView {
 
   localStorage: LocalStorage<string>;
 
-  currentPage: string;
+  currentPage: number;
 
   headerView: HeaderView;
 
@@ -34,7 +34,7 @@ export default class ListNoteView {
 
   overlayWrapper: HTMLElement;
 
-  constructor(currentPage: string) {
+  constructor(currentPage: number) {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
     this.localStorage = new LocalStorage();
@@ -50,7 +50,7 @@ export default class ListNoteView {
    * localStorage is null
    */
   navigatePageWithLoginStatus(): void {
-    if (!this.localStorage.getItems(STORAGE_KEYS.USER_ID)) {
+    if (!this.localStorage.getItems(StorageKeys.USER_ID)) {
       navigatePage('index.html');
     }
   }
@@ -77,7 +77,7 @@ export default class ListNoteView {
       message: 'Notes you add appear here',
     };
 
-    if (this.currentPage === NOTE.LIST_NOTES) {
+    if (this.currentPage === Menu.LIST_NOTES) {
       this.sectionWrapper.innerHTML = '';
       this.sectionWrapper.appendChild(formAddNote());
 
@@ -111,12 +111,12 @@ export default class ListNoteView {
     );
 
     switch (this.currentPage) {
-      case NOTE.LIST_NOTES:
+      case Menu.LIST_NOTES:
         if (listNotesEmpty && listNoteElement) {
           this.commonEmptyList(list, listNotesEmpty, listNoteElement);
         }
         break;
-      case NOTE.TRASH_NOTES:
+      case Menu.TRASH_NOTES:
         if (listTrashEmpty && listTrashElement) {
           this.commonEmptyList(list, listTrashEmpty, listTrashElement);
         }
@@ -219,23 +219,21 @@ export default class ListNoteView {
    * @param {Object} noteItem is information of note take from model returned
    */
   editNote(noteItem: Note): void {
-    const note = selectDOMById(noteItem.id);
-    if (note) {
-      const titleElement = note.querySelector('.note-title')!;
-      const descriptionElement = note.querySelector('.note-description')!;
-      const emptyNoteElement = note.querySelector(
-        '.note-content .note-empty'
-      ) as HTMLElement;
+    const note = selectDOMById(noteItem.id)!;
+    const titleElement = note.querySelector('.note-title')!;
+    const descriptionElement = note.querySelector('.note-description')!;
+    const emptyNoteElement = note.querySelector(
+      '.note-content .note-empty'
+    ) as HTMLElement;
 
-      if (!noteItem.title && !noteItem.description) {
-        this.elementHelpers.removeClass(emptyNoteElement, 'hide');
-        titleElement.textContent = '';
-        descriptionElement.textContent = '';
-      } else {
-        this.elementHelpers.addClass(emptyNoteElement, 'hide');
-        titleElement.textContent = noteItem.title;
-        descriptionElement.textContent = noteItem.description;
-      }
+    if (!noteItem.title && !noteItem.description) {
+      this.elementHelpers.removeClass(emptyNoteElement, 'hide');
+      titleElement.textContent = '';
+      descriptionElement.textContent = '';
+    } else {
+      this.elementHelpers.addClass(emptyNoteElement, 'hide');
+      titleElement.textContent = noteItem.title;
+      descriptionElement.textContent = noteItem.description;
     }
   }
 
@@ -278,11 +276,11 @@ export default class ListNoteView {
 
     if (note) {
       this.overlayWrapper.appendChild(
-        renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete', note)
+        renderConfirmPopup(PopupMessage.DELETE_NOTE, 'Delete', note)
       );
     } else {
       this.overlayWrapper.appendChild(
-        renderConfirmPopup(POPUP_MESSAGE.DELETE_NOTE, 'Delete')
+        renderConfirmPopup(PopupMessage.DELETE_NOTE, 'Delete')
       );
     }
   }
@@ -329,9 +327,7 @@ export default class ListNoteView {
    * @param {function} handlePopup is function transmitted
    */
   bindShowPopup(note: HTMLElement, handlePopup: (index: string) => void): void {
-    const btnDeletes = note.querySelector(
-      '.trash-wrapper .btn-delete'
-    ) as HTMLElement;
+    const btnDeletes = note.querySelector('.btn-delete') as HTMLElement;
     const headerAfterSelect = selectDOMClass('.header-after-select')!;
     const handler = (e: Event) => {
       const index = this.elementHelpers.getAttributeElement(
@@ -448,6 +444,11 @@ export default class ListNoteView {
     const closeBtn = selectDOMClass('.note-form-overlay .btn-close')!;
     const overlay = selectDOMClass('.overlay')!;
     const formElement = selectDOMClass('.note-form-overlay') as HTMLFormElement;
+    const title = (formElement.querySelector('.note-title') as HTMLInputElement)
+      .value;
+    const description = (
+      formElement.querySelector('.note-description') as HTMLInputElement
+    ).value;
     const noteItem = {
       id: formElement.id,
     };
@@ -463,8 +464,12 @@ export default class ListNoteView {
         description: formData.get('description'),
       } as Note;
 
-      editNote(note);
-      this.overlayWrapper.innerHTML = '';
+      if (description !== note.description || title !== note.title) {
+        editNote(note);
+        this.overlayWrapper.innerHTML = '';
+      } else {
+        this.overlayWrapper.innerHTML = '';
+      }
     };
 
     this.eventHelpers.stopEvents(closeBtn);

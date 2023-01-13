@@ -1,4 +1,4 @@
-import STATUS_CODE from '../constants/statusCode';
+import StatusCode from '../constants/statusCode';
 import CustomError from './customError';
 
 /**
@@ -11,33 +11,33 @@ import CustomError from './customError';
  */
 const generateError = <T>(response: Response, items: T): T => {
   switch (response.status) {
-    case STATUS_CODE.OK:
-    case STATUS_CODE.CREATED:
+    case StatusCode.OK:
+    case StatusCode.CREATED:
       return items;
-    case STATUS_CODE.BAD_REQUEST:
+    case StatusCode.BAD_REQUEST:
       throw Object.assign(
         new CustomError(`${response.status} Bad Request`, response.status)
       );
-    case STATUS_CODE.UNAUTHORIZED:
+    case StatusCode.UNAUTHORIZED:
       throw Object.assign(
         new CustomError(`${response.status} Unauthorized`, response.status)
       );
-    case STATUS_CODE.FORBIDDEN:
+    case StatusCode.FORBIDDEN:
       throw Object.assign(
         new CustomError(`${response.status} Forbidden`, response.status)
       );
-    case STATUS_CODE.NOT_FOUND:
+    case StatusCode.NOT_FOUND:
       throw Object.assign(
         new CustomError(`${response.status} Page Not Found`, response.status)
       );
-    case STATUS_CODE.INTERNAL_SERVER_ERROR:
+    case StatusCode.INTERNAL_SERVER_ERROR:
       throw Object.assign(
         new CustomError(
           `${response.status} Internal Server Error`,
           response.status
         )
       );
-    case STATUS_CODE.SERVER_UNAVAILABLE:
+    case StatusCode.SERVER_UNAVAILABLE:
       throw Object.assign(
         new CustomError(
           `${response.status} Service Unavailable`,

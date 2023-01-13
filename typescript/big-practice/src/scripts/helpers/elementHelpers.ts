@@ -1,4 +1,4 @@
-import STORAGE_KEYS from '../constants/storageKeys';
+import StorageKeys from '../constants/storageKeys';
 import { selectDOMClassAll } from '../utils/querySelectDOM';
 import EventHelpers from './eventHelpers';
 
@@ -123,7 +123,7 @@ export default class ElementHelpers {
    */
   showMenuActive(): void {
     const menu = selectDOMClassAll('.nav li')!;
-    const index = Number(sessionStorage.getItem(STORAGE_KEYS.PAGE_NUMBER));
+    const index = Number(sessionStorage.getItem(StorageKeys.PAGE_NUMBER));
 
     this.addClass(menu[index], 'menu-color');
   }

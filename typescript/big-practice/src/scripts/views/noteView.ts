@@ -2,7 +2,7 @@ import iconPin from '../../assets/icons/icon-pin.svg';
 import iconColorBoard from '../../assets/icons/icon-color-board.svg';
 import iconColorTrash from '../../assets/icons/icon-trash.svg';
 import Note from '../interfaces/note';
-import NOTE from '../constants/note';
+import Menu from '../constants/note';
 
 /**
  * @class noteView
@@ -20,7 +20,7 @@ export default class NoteView {
    *
    * @returns {Object} noteElement is a element note
    */
-  renderNote(tab: string): HTMLElement {
+  renderNote(tab: number): HTMLElement {
     const noteElement = document.createElement('div');
     noteElement.classList.add('note');
     const note = this.noteItem;
@@ -39,7 +39,7 @@ export default class NoteView {
       <div class="note-utilities" data-id="${note.id}">
         <div class="note-btn">
           ${
-            tab === NOTE.TRASH_NOTES
+            tab === Menu.TRASH_NOTES
               ? `<button class="btn btn-delete" type="button" data-id="${note.id}">Delete</button>`
               : `<figure class="item-utilities icon-delete" data-id="${note.id}">
             <img src="${iconColorTrash}" alt="icon trash" data-id="${note.id}">
@@ -67,7 +67,7 @@ export default class NoteView {
           <div class="form-group">
             <textarea name="title" class="input-note note-title" rows="1" placeholder="Title">${note.title}</textarea>
             <figure class="icon-pin-cover">
-              <img src="${iconPin}" alt="icon pin">
+              <img src="${iconPin}" alt="icon pin" hidden>
             </figure>
           </div>
         </div>
@@ -77,7 +77,7 @@ export default class NoteView {
         <div class="form-utilities">
           <div class="form-group">
             <div class="item-utilities">
-              <img src="${iconColorBoard}" alt="icon color board">
+              <img src="${iconColorBoard}" alt="icon color board" hidden>
             </div>
             <div class="form-buttons">
               <button class="btn btn-delete-form" type="button" data-id="${note.id}">Delete</button>
