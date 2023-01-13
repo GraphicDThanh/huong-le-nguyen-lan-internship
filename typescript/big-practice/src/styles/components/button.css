@@ -28,7 +28,7 @@
 
 .btn-change-form {
   padding: 10px 10px;
-  color: #1a73e8;
+  color: var(--info-color);
   background-color: transparent;
 }
 

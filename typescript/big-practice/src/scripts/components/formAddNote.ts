@@ -12,7 +12,7 @@ const formAddNote = (): HTMLElement => {
           <div class="form-group">
             <textarea name="title" class="input-note note-title" rows="1" placeholder="Title"></textarea>
             <figure class="icon-pin-cover">
-              <img src="${iconPin}" alt="icon pin">
+              <img src="${iconPin}" alt="icon pin" hidden>
             </figure>
           </div>
         </div>
@@ -22,7 +22,7 @@ const formAddNote = (): HTMLElement => {
         <div class="form-utilities hide">
           <div class="form-group">
             <div class="item-utilities">
-              <img src="${iconColorBoard}" alt="icon color board">
+              <img src="${iconColorBoard}" alt="icon color board" hidden>
             </div>
             <div class="form-buttons">
               <button class="btn btn-close" type="submit">Close</button>

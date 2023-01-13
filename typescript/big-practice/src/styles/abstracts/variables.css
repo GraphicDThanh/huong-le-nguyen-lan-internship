@@ -10,7 +10,7 @@
   --info-color-darker: #1566d1;
   --hover-utilities-color: #e6e7e7;
   --hover-button-color: #faf9f9;
-  
+
   /* Font-color */
   --text-color: #202124;
   --text-fade-color: #5f6368;
@@ -22,8 +22,8 @@
   --background-opacity: rgba(14, 14, 15, 0.4);
 
   /* Font-family */
-  --font-regular: "openSans-regular";
-  --font-light: "openSans-light";
-  --font-logo: "PTsans-regular";
-  --font-default: "Arial, sans-serif";
+  --font-regular: 'openSans-regular';
+  --font-light: 'openSans-light';
+  --font-logo: 'PTsans-regular';
+  --font-default: 'Arial, sans-serif';
 }

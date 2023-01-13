@@ -74,6 +74,7 @@
   justify-content: center;
   background-color: var(--secondary-color);
   gap: 20px;
+  visibility: hidden;
   border-radius: 8px;
 }
 

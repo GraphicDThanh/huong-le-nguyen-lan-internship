@@ -38,7 +38,7 @@
 ### Development Environment
 
 - Node v16.17
-- npm v8.15.0
+- pnpm v7.19.0
 - Parcel v2.7
 - Eslint v8.29
 - Prettier v2.8
@@ -75,8 +75,8 @@
   - `git checkout feat/typescript-big-practice`
 - Step 4: `cd  typescript/big-practice`
 - Step 5: Now you need to install packages
-  - `$ npm i`
+  - `$ pnpm i`
 - Step 6: After installing the packages
-  - `$ npm run dev`
+  - `$ pnpm run dev`
 - Step 7: Open [localhost](http://localhost:1234) to see the website
 - Step 8: User can sign up and login

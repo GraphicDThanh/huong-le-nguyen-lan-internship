@@ -17,19 +17,19 @@ const menuComponent = (): HTMLElement => {
             <span>Notes</span>
           </a>
         </li>
-        <li class="nav-item disable">
+        <li class="nav-item disable" hidden>
           <a href="javascript:void(0)" class="nav-link">
             <img src="${iconBell}" alt="icon bell">
             <span>Reminders</span>
           </a>
         </li>
-        <li class="nav-item disable">
+        <li class="nav-item disable" hidden>
           <a href="javascript:void(0)" class="nav-link">
             <img src="${iconPen}" alt="icon pen">
             <span>Edit labels</span>
           </a>
         </li>
-        <li class="nav-item disable">
+        <li class="nav-item disable" hidden>
           <a href="javascript:void(0)" class="nav-link">
             <img src="${iconArchive}" alt="icon archive">
             <span>Archive</span>
