@@ -1,6 +1,6 @@
-const STORAGE_KEYS = {
-  PAGE_NUMBER: 'pageNumber',
-  USER_ID: 'userId',
-};
+enum StorageKeys {
+  PAGE_NUMBER = 'pageNumber',
+  USER_ID = 'userId',
+}
 
-export default STORAGE_KEYS;
+export default StorageKeys;
