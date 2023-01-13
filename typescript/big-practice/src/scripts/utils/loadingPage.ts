@@ -39,8 +39,8 @@ export default class LoadingPage {
    * @description function remove loading page
    * after 1s
    */
-  setTimeoutLoading(): void {
-    setTimeout(() => this.removeLoading(), 800);
+  setTimeoutLoading(time: number): void {
+    setTimeout(() => this.removeLoading(), time);
   }
 
   /**

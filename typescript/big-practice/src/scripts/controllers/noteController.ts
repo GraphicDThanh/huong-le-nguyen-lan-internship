@@ -1,4 +1,4 @@
-import NOTE from '../constants/note';
+import Menu from '../constants/note';
 import NoteModel from '../models/noteModel';
 import Note from '../interfaces/note';
 import { renderPopupError } from '../utils/errorsDOM';
@@ -55,7 +55,7 @@ export default class NoteController {
     try {
       this.loadingPage.addLoading();
 
-      if (this.view.currentPage === NOTE.TRASH_NOTES) {
+      if (this.view.currentPage === Menu.TRASH_NOTES) {
         const listTrash: Note[] = await this.model.filterNotes(
           this.view.currentPage
         );
@@ -82,7 +82,7 @@ export default class NoteController {
         this.view.showHideEmpty(listNotes);
       }
 
-      this.loadingPage.setTimeoutLoading();
+      this.loadingPage.setTimeoutLoading(800);
     } catch (error) {
       if (error instanceof Error) {
         renderPopupError(error.message);
@@ -98,7 +98,6 @@ export default class NoteController {
    */
   async handleConfirmPopup(noteId: string): Promise<void> {
     try {
-      this.loadingPage.addLoading();
       const note = await this.model.findNote(noteId);
 
       // function render confirm message
@@ -114,7 +113,8 @@ export default class NoteController {
 
         this.view.removeNoteElement(id);
         this.view.showHideEmpty(this.model.listNotes);
-        this.loadingPage.removeLoading();
+        this.loadingPage.addLoading();
+        this.loadingPage.setTimeoutLoading(300);
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -139,7 +139,7 @@ export default class NoteController {
       };
 
       this.view.renderNote(noteItem, handlers);
-      this.loadingPage.removeLoading();
+      this.loadingPage.setTimeoutLoading(300);
     } catch (error) {
       if (error instanceof Error) {
         renderPopupError(error.message);
@@ -155,12 +155,12 @@ export default class NoteController {
    */
   async deleteNote(noteId: string): Promise<void> {
     try {
-      this.loadingPage.addLoading();
       const noteItem = await this.model.deleteNote(noteId);
 
       this.view.removeNoteElement(noteItem.id);
       this.view.showHideEmpty(this.model.listNotes);
-      this.loadingPage.removeLoading();
+      this.loadingPage.addLoading();
+      this.loadingPage.setTimeoutLoading(300);
     } catch (error) {
       if (error instanceof Error) {
         renderPopupError(error.message);
@@ -175,11 +175,11 @@ export default class NoteController {
    */
   async editNote(note: Note): Promise<void> {
     try {
-      this.loadingPage.addLoading();
       const noteItem = (await this.model.editNote(note)) as Note;
 
       this.view.editNote(noteItem);
-      this.loadingPage.removeLoading();
+      this.loadingPage.addLoading();
+      this.loadingPage.setTimeoutLoading(300);
     } catch (error) {
       if (error instanceof Error) {
         renderPopupError(error.message);
