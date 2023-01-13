@@ -13,7 +13,7 @@ import navigatePage from '../utils/navigatePage';
 import HeaderView from './headerView';
 import { renderPopupError } from '../utils/errorsDOM';
 import Note from '../interfaces/note';
-import Menu from '../constants/note';
+import Menu from '../constants/menu';
 
 /**
  * @class listNoteView

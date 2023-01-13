@@ -12,6 +12,7 @@ import {
 } from '../components/header';
 import EventHelpers from '../helpers/eventHelpers';
 import User from '../interfaces/user';
+import Menu from '../constants/menu';
 
 export default class HeaderView {
   mainWrapper: HTMLElement;

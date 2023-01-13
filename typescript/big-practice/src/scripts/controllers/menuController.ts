@@ -1,4 +1,4 @@
-import Menu from '../constants/note';
+import Menu from '../constants/menu';
 import MenuView from '../views/menuView';
 import HeaderController from './headerController';
 import NoteController from './noteController';

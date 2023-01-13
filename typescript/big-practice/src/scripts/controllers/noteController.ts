@@ -1,4 +1,4 @@
-import Menu from '../constants/note';
+import Menu from '../constants/menu';
 import NoteModel from '../models/noteModel';
 import Note from '../interfaces/note';
 import { renderPopupError } from '../utils/errorsDOM';

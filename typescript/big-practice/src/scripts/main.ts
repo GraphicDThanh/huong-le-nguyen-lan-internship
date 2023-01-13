@@ -10,14 +10,15 @@ import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
 import MenuController from './controllers/menuController';
-import Menu from './constants/note';
+import Menu from './constants/menu';
 
 const noteModel = new NoteModel();
 let currentPage;
-if (sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '0') {
-  currentPage = Menu.LIST_NOTES;
-} else {
+
+if (sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '1') {
   currentPage = Menu.TRASH_NOTES;
+} else {
+  currentPage = Menu.LIST_NOTES;
 }
 
 const listNoteView = new ListNoteView(currentPage);

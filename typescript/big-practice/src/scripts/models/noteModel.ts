@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import UrlAPI from '../constants/apiUrl';
 import Note from '../interfaces/note';
-import Menu from '../constants/note';
+import Menu from '../constants/menu';
 import LocalStorage from '../utils/localStorage';
 import StorageKeys from '../constants/storageKeys';
 
