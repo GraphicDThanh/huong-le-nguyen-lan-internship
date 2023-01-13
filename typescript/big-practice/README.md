@@ -79,6 +79,4 @@
 - Step 6: After installing the packages
   - `$ npm run dev`
 - Step 7: Open [localhost](http://localhost:1234) to see the website
-- Step 8: User information to login this app
-  - email: abc@gmail.com
-  - password: 123456789a
+- Step 8: User can sign up and login
