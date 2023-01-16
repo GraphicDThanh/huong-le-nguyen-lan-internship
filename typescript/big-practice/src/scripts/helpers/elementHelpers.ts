@@ -19,13 +19,6 @@ export default class ElementHelpers {
   showInputBreakDown(el: HTMLElement): void {
     const element = el;
     element.style.height = `${element.scrollHeight}px`;
-    const height = element.style.height.split('px')[0];
-
-    if (Number(height) > 500) {
-      element.style.height = '400px';
-    } else {
-      element.style.height = `${element.scrollHeight}px`;
-    }
   }
 
   /**
@@ -37,9 +30,7 @@ export default class ElementHelpers {
     const element = el;
     const handler = () => {
       element.style.height = '1px';
-      element.style.height = `${
-        element.scrollHeight < 250 ? element.scrollHeight : '250'
-      }px`;
+      this.showInputBreakDown(element);
     };
 
     this.eventHelpers.addEvent(element, 'input', handler);
