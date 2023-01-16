@@ -42,9 +42,7 @@ export default class NoteModel {
       UrlAPI.NOTES_URL
     );
 
-    if (noteItem) {
-      this.listNotes.push(noteItem);
-    }
+    this.listNotes.push(noteItem!);
 
     return noteItem;
   }
