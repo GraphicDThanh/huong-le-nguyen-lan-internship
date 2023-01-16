@@ -1,7 +1,6 @@
 {
   "name": "my-project",
   "devDependencies": {
-    "@types/uuid": "9.0.0",
     "@typescript-eslint/eslint-plugin": "5.45.1",
     "@typescript-eslint/parser": "5.45.1",
     "concurrently": "7.5.0",
@@ -23,8 +22,5 @@
     "start-db": "json-server --watch data/db.json",
     "lint:eslint": "eslint --ignore-path .gitignore . --ext .js,.jsx,.ts,.tsx",
     "fix:eslint": "eslint --fix --ignore-path .gitignore . --ext .js,.jsx,.ts,.tsx"
-  },
-  "dependencies": {
-    "uuid": "9.0.0"
   }
 }

@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import FetchAPI from '../utils/fetchAPI';
 import UrlAPI from '../constants/apiUrl';
 import Note from '../interfaces/note';
@@ -32,7 +31,7 @@ export default class NoteModel {
    */
   async addNote(note: Note): Promise<Note | undefined> {
     const patternNote = {
-      id: uuidv4(),
+      id: crypto.randomUUID(),
       title: note.title,
       description: note.description,
       deletedAt: '',

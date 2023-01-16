@@ -6,7 +6,7 @@
 - Description: For one user but just when user logged in can use this app. User's note data will save in JSON server
 - Design:
   - Home page based on [Google Keep](https://keep.google.com/)
-  - Login page based on [Google login](https://accounts.google.com/v3/signin/identifier?dsh=S604568833%3A1669618114483646&hl=vi&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=ARgdvAs4p4kElAglL315rF4bWPsa1lvmR-Q-Dtq5aE-k0fgPr0CXJShwoVW7SpdWCpLZPMwSNGQ5Jg)
+  - Login page and Sign up page based on [Google login](https://accounts.google.com/v3/signin/identifier?dsh=S604568833%3A1669618114483646&hl=vi&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=ARgdvAs4p4kElAglL315rF4bWPsa1lvmR-Q-Dtq5aE-k0fgPr0CXJShwoVW7SpdWCpLZPMwSNGQ5Jg)
 - Plan: [plan](https://docs.google.com/document/d/1PmVpm1iUnGtteS2p_BiP2o6RohPkYhZL015WfNVRzwA/edit#heading=h.xkxditrpo70s)
 
 ### Targets
@@ -21,8 +21,8 @@
 ### Information
 
 - Timeline
-  - Estimate day: 8 days
-  - Actual day:
+  - Estimate day: 10 days
+  - Actual day: 14 days
 - Techniques:
   - HTML5/CSS3
   - JavaScript
