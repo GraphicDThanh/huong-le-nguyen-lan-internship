@@ -132,9 +132,9 @@ export default class ElementHelpers {
       const message =
         element.parentNode?.querySelector('.message-error')?.textContent;
       if (message) {
-        element.style.outlineColor = 'var(--danger-color)';
+        this.addClass(element, 'message-error-outline');
       } else {
-        element.style.outlineColor = 'var(--info-color)';
+        this.removeClass(element, 'message-error-outline');
       }
     };
 

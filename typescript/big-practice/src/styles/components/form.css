@@ -180,6 +180,10 @@
   padding-left: 5px;
 }
 
+.message-error-outline:focus {
+  outline-color: var(--danger-color);
+}
+
 .error-icon {
   width: 15px;
   height: 15px;
