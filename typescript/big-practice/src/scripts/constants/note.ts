@@ -1,6 +1,6 @@
-const NOTE = {
-  LIST_NOTES: 'listNotes',
-  TRASH_NOTES: 'trashNotes',
-};
+enum Menu {
+  LIST_NOTES,
+  TRASH_NOTES,
+}
 
-export default NOTE;
+export default Menu;

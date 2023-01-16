@@ -1,6 +1,6 @@
-const PAGE = {
-  LOGIN: 'login',
-  SIGN_UP: 'signUp',
-};
+enum Page {
+  LOGIN,
+  SIGN_UP,
+}
 
-export default PAGE;
+export default Page;
