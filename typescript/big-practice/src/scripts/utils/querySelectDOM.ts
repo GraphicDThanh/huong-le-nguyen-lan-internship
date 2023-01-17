@@ -5,7 +5,7 @@
  *
  * @returns {Object} element after query
  */
-function querySelector(classes: string) {
+const querySelector = (classes: string) => {
   return document.querySelector(classes);
 }
 
@@ -16,7 +16,7 @@ function querySelector(classes: string) {
  *
  * @returns {Object} element after query
  */
-function querySelectorAll(classes: string) {
+const querySelectorAll = (classes: string) => {
   return document.querySelectorAll(classes);
 }
 
@@ -27,7 +27,7 @@ function querySelectorAll(classes: string) {
  *
  * @returns {Object} element after query
  */
-function getElementById(id: string) {
+const getElementById = (id: string) => {
   return document.getElementById(id);
 }
 
