@@ -4,6 +4,7 @@
 
 - Build a Note Web Application
 - Description: For one user but just when user logged in can use this app. User's note data will save in JSON server
+- TypeScript in this app helps to bind input and output data. Make the code transparent and less prone to data type errors
 - Design:
   - Home page based on [Google Keep](https://keep.google.com/)
   - Login page and Sign up page based on [Google login](https://accounts.google.com/v3/signin/identifier?dsh=S604568833%3A1669618114483646&hl=vi&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=ARgdvAs4p4kElAglL315rF4bWPsa1lvmR-Q-Dtq5aE-k0fgPr0CXJShwoVW7SpdWCpLZPMwSNGQ5Jg)
@@ -48,7 +49,7 @@
 
 - Google Keep is an app that can help you keep your notes in a modern way with the facilities provided. With a user-friendly interface, Google Keep can add, edit, and delete your notes.
 
-### Main App Feature
+### Main App Features
 
 - Login:
   - Form login validate email format and password
