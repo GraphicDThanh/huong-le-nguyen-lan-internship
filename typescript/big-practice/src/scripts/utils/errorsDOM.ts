@@ -1,7 +1,7 @@
 import { PopupMessage } from '../constants/message';
 import EventHelpers from '../helpers/eventHelpers';
 import renderConfirmPopup from './confirmPopup';
-import { selectDOMClass } from './querySelectDOM';
+import { querySelector } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
 
 const elementHelpers = new ElementHelpers();
@@ -12,16 +12,16 @@ const elementHelpers = new ElementHelpers();
  * @param {Object} element of input you want to hide message
  * @param {Object} label is label of input
  */
-const hideError = (element: HTMLElement, label: HTMLElement): void => {
-  const error = element.parentElement?.querySelector<HTMLElement>(
+const hideError = (element: Element, label: Element): void => {
+  const error = element.parentElement?.querySelector<Element>(
     '.message .message-error'
   );
-  const errorIcon = element.parentElement?.querySelector<HTMLElement>(
+  const errorIcon = element.parentElement?.querySelector<Element>(
     '.message .error-icon'
   );
 
   if (error && errorIcon) {
-    error.innerText = '';
+    (error as HTMLElement).innerText = '';
     elementHelpers.addClass(errorIcon, 'hide');
     elementHelpers.removeClass(label, 'error');
     elementHelpers.removeClass(element, 'valid');
@@ -37,15 +37,11 @@ const hideError = (element: HTMLElement, label: HTMLElement): void => {
  * @param {String} message is message error of field
  * @param {Object} label is label of input
  */
-const showError = (
-  element: HTMLElement,
-  message: string,
-  label: HTMLElement
-): void => {
+const showError = (element: Element, message: string, label: Element): void => {
   const error = element.parentElement!.querySelector(
     '.message .message-error'
   )!;
-  const errorIcon = element.parentElement!.querySelector<HTMLElement>(
+  const errorIcon = element.parentElement!.querySelector<Element>(
     '.message .error-icon'
   )!;
 
@@ -62,7 +58,7 @@ const showError = (
  * @param {String} errorMessage is message error
  */
 const renderPopupError = (errorMessage: string): void => {
-  const overlayWrapper = selectDOMClass('.overlay-wrapper')!;
+  const overlayWrapper = querySelector('.overlay-wrapper')!;
   const eventHelpers = new EventHelpers();
 
   const handler = () => {
@@ -72,7 +68,7 @@ const renderPopupError = (errorMessage: string): void => {
     renderConfirmPopup(`${PopupMessage.ERRORS_MSG}${errorMessage}`)
   );
 
-  const btnClose = selectDOMClass('.btn-close-popup')!;
+  const btnClose = querySelector('.btn-close-popup')!;
   eventHelpers.addEvent(btnClose, 'click', handler);
 };
 

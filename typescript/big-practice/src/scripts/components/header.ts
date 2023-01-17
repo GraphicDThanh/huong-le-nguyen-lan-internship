@@ -2,7 +2,7 @@ import iconClose from '../../assets/icons/icon-close.svg';
 import StorageKeys from '../constants/storageKeys';
 import iconTrash from '../../assets/icons/icon-trash-blue.svg';
 
-const buttonBulkActionsComponent = (): HTMLElement => {
+const buttonBulkActionsComponent = (): Element => {
   const headerBulkActions = document.createElement('div');
   headerBulkActions.classList.add('header-utilities');
 
@@ -19,7 +19,7 @@ const buttonBulkActionsComponent = (): HTMLElement => {
   return headerBulkActions;
 };
 
-const headerComponent = (): HTMLElement => {
+const headerComponent = (): Element => {
   const headerElement = document.createElement('header');
   headerElement.classList.add('header-wrapper');
 

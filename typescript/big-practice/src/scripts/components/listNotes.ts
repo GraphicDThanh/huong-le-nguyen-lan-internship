@@ -7,7 +7,7 @@ interface Note {
   message: string;
 }
 
-const listNotesWrapper = (note: Note): HTMLElement => {
+const listNotesWrapper = (note: Note): Element => {
   const wrapper = document.createElement('div');
   wrapper.setAttribute(
     'class',

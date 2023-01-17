@@ -1,14 +1,14 @@
-import { selectDOMClass } from './querySelectDOM';
+import { querySelector } from './querySelectDOM';
 import ElementHelpers from '../helpers/elementHelpers';
 
 export default class LoadingPage {
   elementHelpers: ElementHelpers;
 
-  overlay: HTMLElement;
+  overlay: Element;
 
   constructor() {
     this.elementHelpers = new ElementHelpers();
-    this.overlay = selectDOMClass('.overlay-wrapper')!;
+    this.overlay = querySelector('.overlay-wrapper')!;
   }
 
   /**

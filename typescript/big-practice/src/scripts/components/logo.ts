@@ -1,7 +1,7 @@
 import StorageKeys from '../constants/storageKeys';
 import iconLogo from '../../assets/icons/google-keep.svg';
 
-const logoComponent = (tab: string): HTMLElement => {
+const logoComponent = (tab: string): Element => {
   const logoElement = document.createElement('div');
   logoElement.classList.add('icon-logo');
 

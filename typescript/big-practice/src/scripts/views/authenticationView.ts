@@ -5,7 +5,7 @@ import ElementHelpers from '../helpers/elementHelpers';
 import EventHelpers from '../helpers/eventHelpers';
 import User from '../interfaces/user';
 import { hideError, showError } from '../utils/errorsDOM';
-import { selectDOMClass } from '../utils/querySelectDOM';
+import { querySelector } from '../utils/querySelectDOM';
 
 interface CheckAuthentication {
   isEmail: boolean;
@@ -26,7 +26,7 @@ export default class AuthenticationView {
    * @description function render form login or sign up
    */
   renderForm(): void {
-    const page = selectDOMClass('.index-page .container');
+    const page = querySelector('.index-page .container');
     page?.appendChild(formElement());
   }
 
@@ -34,10 +34,8 @@ export default class AuthenticationView {
    * @description function change to sign up page
    */
   bindChangePage(): void {
-    const createAccount = selectDOMClass(
-      '#login-form .btn-create-account-form'
-    );
-    const signUp = selectDOMClass('#sign-up-form .btn-login-form');
+    const createAccount = querySelector('#login-form .btn-create-account-form');
+    const signUp = querySelector('#sign-up-form .btn-login-form');
 
     this.eventHelpers.changePage(signUp, 'index.html');
     this.eventHelpers.changePage(createAccount, 'signUp');
@@ -54,10 +52,10 @@ export default class AuthenticationView {
     handleValidLogin: (user: User) => void;
   }): void {
     const { handleValidSignUp, handleValidLogin } = handlers;
-    const formWrapper = selectDOMClass('.form-wrapper') as HTMLFormElement;
-    const confirmPasswordElement = selectDOMClass('.confirm-password')!;
-    const emailElement = selectDOMClass('.email')!;
-    const passwordElement = selectDOMClass('.password')!;
+    const formWrapper = querySelector('.form-wrapper') as HTMLFormElement;
+    const confirmPasswordElement = querySelector('.confirm-password')!;
+    const emailElement = querySelector('.email')!;
+    const passwordElement = querySelector('.password')!;
 
     const handler = async (e: Event) => {
       e.preventDefault();
@@ -71,13 +69,13 @@ export default class AuthenticationView {
 
       if (confirmPasswordElement) {
         handleValidSignUp(user, confirmPassword);
-        confirmPasswordElement.blur();
+        (confirmPasswordElement as HTMLElement).blur();
       } else {
         handleValidLogin(user);
       }
 
-      passwordElement.blur();
-      emailElement.blur();
+      (passwordElement as HTMLElement).blur();
+      (emailElement as HTMLElement).blur();
     };
 
     this.eventHelpers.addEvent(formWrapper, 'submit', handler);
@@ -92,12 +90,12 @@ export default class AuthenticationView {
    * @param {String} page to distinguish between login page and sign up page
    */
   showHideError(checkValid: CheckAuthentication, page: number): void {
-    const emailElement = selectDOMClass('.email')!;
-    const labelEmail = selectDOMClass('.label-email')!;
-    const passwordElement = selectDOMClass('.password')!;
-    const labelPassword = selectDOMClass('.label-password')!;
-    const confirmPasswordElement = selectDOMClass('.confirm-password')!;
-    const labelConfirmPassword = selectDOMClass('.label-confirm-password')!;
+    const emailElement = querySelector('.email')!;
+    const labelEmail = querySelector('.label-email')!;
+    const passwordElement = querySelector('.password')!;
+    const labelPassword = querySelector('.label-password')!;
+    const confirmPasswordElement = querySelector('.confirm-password')!;
+    const labelConfirmPassword = querySelector('.label-confirm-password')!;
 
     if (page === Page.SIGN_UP) {
       this.conditionValidField(
@@ -140,8 +138,8 @@ export default class AuthenticationView {
    */
   conditionValidField(
     isValid: boolean,
-    element: HTMLElement,
-    label: HTMLElement,
+    element: Element,
+    label: Element,
     message: string
   ): void {
     if (isValid) {
@@ -155,9 +153,9 @@ export default class AuthenticationView {
    * @description bind events show hide label error for input
    */
   bindShowHideInputError(): void {
-    const confirmPassword = selectDOMClass('.confirm-password');
-    const emailElement = selectDOMClass('.email')!;
-    const passwordElement = selectDOMClass('.password')!;
+    const confirmPassword = querySelector('.confirm-password');
+    const emailElement = querySelector('.email')!;
+    const passwordElement = querySelector('.password')!;
 
     this.elementHelpers.showHideInputError(emailElement);
     this.elementHelpers.showHideInputError(passwordElement);

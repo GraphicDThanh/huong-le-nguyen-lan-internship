@@ -1,4 +1,4 @@
-import { selectDOMClass } from '../utils/querySelectDOM';
+import { querySelector } from '../utils/querySelectDOM';
 import logoComponent from '../components/logo';
 import inputSearchComponent from '../components/inputSearch';
 import menuUserComponent from '../components/menuUser';
@@ -12,12 +12,11 @@ import {
 } from '../components/header';
 import EventHelpers from '../helpers/eventHelpers';
 import User from '../interfaces/user';
-import Menu from '../constants/menu';
 
 export default class HeaderView {
-  mainWrapper: HTMLElement;
+  mainWrapper: Element;
 
-  homePage: HTMLElement;
+  homePage: Element;
 
   localStorage: LocalStorage<string>;
 
@@ -26,8 +25,8 @@ export default class HeaderView {
   eventHelpers: EventHelpers;
 
   constructor() {
-    this.mainWrapper = selectDOMClass('.main-wrapper')!;
-    this.homePage = selectDOMClass('.home-page')!;
+    this.mainWrapper = querySelector('.main-wrapper')!;
+    this.homePage = querySelector('.home-page')!;
     this.localStorage = new LocalStorage();
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
@@ -39,9 +38,9 @@ export default class HeaderView {
    */
   renderHeader(): void {
     this.homePage.insertBefore(headerComponent(), this.mainWrapper);
-    const headerDefault = selectDOMClass('.header-default')!;
-    const headerMenu = selectDOMClass('.header-menu')!;
-    const headerSelected = selectDOMClass('.header-after-select')!;
+    const headerDefault = querySelector('.header-default')!;
+    const headerMenu = querySelector('.header-menu')!;
+    const headerSelected = querySelector('.header-after-select')!;
     let tab = 'Keep';
 
     if (sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '4') {
@@ -60,8 +59,8 @@ export default class HeaderView {
    * to icon avatar
    */
   bindShowMenuUser(): void {
-    const avatarUser = selectDOMClass('.avatar-user-cover')!;
-    const menuUserElement = selectDOMClass('.menu-user')!;
+    const avatarUser = querySelector('.avatar-user-cover')!;
+    const menuUserElement = querySelector('.menu-user')!;
     const handler = () => {
       if (menuUserElement.classList.contains('hide')) {
         this.elementHelpers.removeClass(menuUserElement, 'hide');
@@ -78,7 +77,7 @@ export default class HeaderView {
    * it will move to login page
    */
   bindLogOut(): void {
-    const btnLogout = selectDOMClass('.btn-logout')!;
+    const btnLogout = querySelector('.btn-logout')!;
     const handler = () => {
       navigatePage('index.html');
       sessionStorage.setItem(StorageKeys.PAGE_NUMBER, '0');
@@ -97,7 +96,7 @@ export default class HeaderView {
   async showInformationUser(
     findUser: (id: string) => Promise<User[] | undefined>
   ): Promise<void> {
-    const emailUser = selectDOMClass('.menu-user-email')!;
+    const emailUser = querySelector('.menu-user-email')!;
     if (this.localStorage.getItems(StorageKeys.USER_ID)) {
       const id = this.localStorage.getItems(StorageKeys.USER_ID) as string;
       const user = await findUser(id);
@@ -115,9 +114,9 @@ export default class HeaderView {
    * @param {String} tab is according to each current tab
    */
   changeLogoByTab(tab: string): void {
-    const headerMenu = selectDOMClass('.header-menu')!;
-    const inputSearch = selectDOMClass('.form-search')!;
-    const iconLogo = selectDOMClass('.icon-logo')!;
+    const headerMenu = querySelector('.header-menu')!;
+    const inputSearch = querySelector('.form-search')!;
+    const iconLogo = querySelector('.icon-logo')!;
 
     iconLogo.remove();
     headerMenu.insertBefore(logoComponent(tab), inputSearch);
@@ -129,8 +128,8 @@ export default class HeaderView {
    * icon close in header when selected notes
    */
   closeSelected(): void {
-    const headerAfterSelect = selectDOMClass('.header-after-select')!;
-    const btnClose = selectDOMClass('.count-and-close .icon-close-cover')!;
+    const headerAfterSelect = querySelector('.header-after-select')!;
+    const btnClose = querySelector('.count-and-close .icon-close-cover')!;
     const handler = () => {
       this.elementHelpers.removeSelected();
       this.elementHelpers.removeClass(headerAfterSelect, 'show');
@@ -144,8 +143,8 @@ export default class HeaderView {
    * user click, it will go to home page
    */
   bindNavigateHomePage(): void {
-    const logoName = selectDOMClass('.icon-logo h1')!;
-    const logo = selectDOMClass('.logo')!;
+    const logoName = querySelector('.icon-logo h1')!;
+    const logo = querySelector('.logo')!;
 
     if (logo) {
       this.eventHelpers.navigateHomePage(logo);

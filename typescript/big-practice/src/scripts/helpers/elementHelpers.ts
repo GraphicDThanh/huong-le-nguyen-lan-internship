@@ -1,5 +1,5 @@
 import StorageKeys from '../constants/storageKeys';
-import { selectDOMClassAll } from '../utils/querySelectDOM';
+import { querySelectorAll } from '../utils/querySelectDOM';
 import EventHelpers from './eventHelpers';
 
 export default class ElementHelpers {
@@ -16,9 +16,9 @@ export default class ElementHelpers {
    *
    * @param {Object} el is element textarea
    */
-  showInputBreakDown(el: HTMLElement): void {
+  showInputBreakDown(el: Element): void {
     const element = el;
-    element.style.height = `${element.scrollHeight}px`;
+    (element as HTMLElement).style.height = `${element.scrollHeight}px`;
   }
 
   /**
@@ -26,10 +26,10 @@ export default class ElementHelpers {
    *
    * @param {Object} el is element textarea
    */
-  commonInputBreakDown(el: HTMLElement): void {
+  commonInputBreakDown(el: Element): void {
     const element = el;
     const handler = () => {
-      element.style.height = '1px';
+      (element as HTMLElement).style.height = '1px';
       this.showInputBreakDown(element);
     };
 
@@ -41,9 +41,9 @@ export default class ElementHelpers {
    *
    * @param {Object} el is element text count note
    */
-  countAndShowSelected(el: HTMLElement): void {
+  countAndShowSelected(el: Element): void {
     const element = el;
-    const listSelected = selectDOMClassAll('.selected')!;
+    const listSelected = querySelectorAll('.selected')!;
 
     element.innerHTML = `${listSelected.length} Selected`;
   }
@@ -54,7 +54,7 @@ export default class ElementHelpers {
    * @param {Object} element is element you want to add class
    * @param {String} className is class has been defined CSS properties
    */
-  addClass(element: HTMLElement, className: string): void {
+  addClass(element: Element, className: string): void {
     element.classList.add(className);
   }
 
@@ -64,7 +64,7 @@ export default class ElementHelpers {
    * @param {Object} element is element you want to remove class
    * @param {String} className is class has been defined CSS properties
    */
-  removeClass(element: HTMLElement, className: string): void {
+  removeClass(element: Element, className: string): void {
     element.classList.remove(className);
   }
 
@@ -75,10 +75,10 @@ export default class ElementHelpers {
    * @param attribute is the name of attribute
    */
   getAttributeElement(
-    element: HTMLElement | EventTarget,
+    element: Element | EventTarget,
     attribute: string
   ): string {
-    return (element as HTMLElement).getAttribute(attribute) as string;
+    return (element as Element).getAttribute(attribute) as string;
   }
 
   /**
@@ -86,7 +86,7 @@ export default class ElementHelpers {
    * selected
    */
   removeSelected(): void {
-    const noteSelected = selectDOMClassAll('.selected')!;
+    const noteSelected = querySelectorAll('.selected')!;
 
     noteSelected.forEach((note) => {
       this.removeClass(note, 'selected');
@@ -99,7 +99,7 @@ export default class ElementHelpers {
    * menu-color
    */
   removeMenuActive(): void {
-    const menu = selectDOMClassAll('.nav li')!;
+    const menu = querySelectorAll('.nav li')!;
 
     menu.forEach((element) => {
       if (element.classList.contains('menu-color')) {
@@ -113,7 +113,7 @@ export default class ElementHelpers {
    * getting information from session
    */
   showMenuActive(): void {
-    const menu = selectDOMClassAll('.nav li')!;
+    const menu = querySelectorAll('.nav li')!;
     const index = Number(sessionStorage.getItem(StorageKeys.PAGE_NUMBER));
 
     this.addClass(menu[index], 'menu-color');
@@ -126,7 +126,7 @@ export default class ElementHelpers {
    *
    * @param {Object} element is input your want to show hide error of label
    */
-  showHideInputError(el: HTMLElement) {
+  showHideInputError(el: Element) {
     const element = el;
     const handler = () => {
       const message =

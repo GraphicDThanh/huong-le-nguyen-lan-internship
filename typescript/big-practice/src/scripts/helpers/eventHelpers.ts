@@ -7,7 +7,7 @@ export default class EventHelpers {
    *
    * @param {Object} element is element want to avoid bubbling event
    */
-  stopEvents(element: HTMLElement): void {
+  stopEvents(element: Element): void {
     const handler = (e: Event) => {
       e.stopPropagation();
     };
@@ -23,7 +23,7 @@ export default class EventHelpers {
    * @param {function} handler is a function to handle event you just already bound
    */
   addEvent(
-    element: HTMLElement,
+    element: Element,
     events: string,
     handler: (e: Event) => void
   ): void {
@@ -39,7 +39,7 @@ export default class EventHelpers {
    * @param {Object} element is element want to
    * add event click move to home page
    */
-  navigateHomePage(element: HTMLElement): void {
+  navigateHomePage(element: Element): void {
     const handler = () => {
       navigatePage('home.html');
       sessionStorage.setItem(StorageKeys.PAGE_NUMBER, '0');
@@ -54,7 +54,7 @@ export default class EventHelpers {
    * @param {Object} element is element bind event
    * @param {string} page is page want to move to
    */
-  changePage(element: HTMLElement | null, page: string): void {
+  changePage(element: Element | null, page: string): void {
     if (element) {
       const handler = () => {
         navigatePage(page);

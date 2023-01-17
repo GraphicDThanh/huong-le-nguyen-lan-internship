@@ -1,4 +1,4 @@
-import { selectDOMClass, selectDOMClassAll } from '../utils/querySelectDOM';
+import { querySelector, querySelectorAll } from '../utils/querySelectDOM';
 import menuComponent from '../components/menu';
 import ElementHelpers from '../helpers/elementHelpers';
 import StorageKeys from '../constants/storageKeys';
@@ -9,15 +9,15 @@ export default class MenuView {
 
   eventHelpers: EventHelpers;
 
-  mainWrapper: HTMLElement;
+  mainWrapper: Element;
 
-  sectionWrapper: HTMLElement;
+  sectionWrapper: Element;
 
   constructor() {
     this.elementHelpers = new ElementHelpers();
     this.eventHelpers = new EventHelpers();
-    this.mainWrapper = selectDOMClass('.main-wrapper')!;
-    this.sectionWrapper = selectDOMClass('.section-wrapper')!;
+    this.mainWrapper = querySelector('.main-wrapper')!;
+    this.sectionWrapper = querySelector('.section-wrapper')!;
   }
 
   /**
@@ -57,12 +57,12 @@ export default class MenuView {
     changeTabBySession: (index: string) => void,
     renderTabs: () => void
   ): void {
-    const menu = selectDOMClassAll('.nav li')!;
+    const menu = querySelectorAll('.nav li')!;
     const handler = (e: Event) => {
-      const iconClose = selectDOMClass('.icon-close')!;
+      const iconClose = querySelector('.icon-close')!;
 
-      if ((e.target as HTMLElement).hasAttribute('data-id')) {
-        const logoName = (e.target as HTMLElement).querySelector(
+      if ((e.target as Element).hasAttribute('data-id')) {
+        const logoName = (e.target as Element).querySelector(
           'span'
         )?.textContent;
 
@@ -83,7 +83,7 @@ export default class MenuView {
         }
       }
 
-      iconClose.style.visibility = 'hidden';
+      (iconClose as HTMLElement).style.visibility = 'hidden';
     };
 
     menu.forEach((element) => {

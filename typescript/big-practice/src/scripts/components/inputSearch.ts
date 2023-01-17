@@ -1,7 +1,7 @@
 import iconSearch from '../../assets/icons/icon-search.svg';
 import iconClose from '../../assets/icons/icon-close.svg';
 
-const inputSearchComponent = (): HTMLElement => {
+const inputSearchComponent = (): Element => {
   const inputSearchElement = document.createElement('form');
   inputSearchElement.classList.add('form-search');
 
