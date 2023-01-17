@@ -17,8 +17,10 @@ export default class NoteView {
 
   /**
    * @description function create a note
-   *
-   * @returns {Object} noteElement is a element note
+   * 
+   * @param {Number} tab note of trash transmitted from view 
+   * 
+   * @returns {Element} noteElement is a element note
    */
   renderNote(tab: number): Element {
     const noteElement = document.createElement('div');
@@ -54,7 +56,7 @@ export default class NoteView {
   /**
    * @description function create a note form
    *
-   * @returns {Object} formElement
+   * @returns {Element} formElement
    */
   renderNoteForm(): Element {
     const formElement = document.createElement('div');

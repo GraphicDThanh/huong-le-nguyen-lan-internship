@@ -132,8 +132,8 @@ export default class AuthenticationView {
    *
    * @param {Boolean} isValid is transmitted from controller to know
    * field have error or not
-   * @param {Object} element is element of field
-   * @param {Object} label is label of field
+   * @param {Element} element is element of field
+   * @param {Element} label is label of field
    * @param {String} message is message error
    */
   conditionValidField(
