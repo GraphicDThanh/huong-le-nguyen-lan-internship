@@ -34,6 +34,8 @@ export default class NoteModel {
       id: crypto.randomUUID(),
       title: note.title,
       description: note.description,
+      createdAt: new Date().toLocaleString(),
+      updatedAt: new Date().toLocaleString(),
       deletedAt: '',
       userId: this.localStorage.getItems(StorageKeys.USER_ID),
     };
@@ -93,7 +95,7 @@ export default class NoteModel {
    * @return {Object} noteItem
    */
   async deleteNote(id: string): Promise<Note> {
-    const date = new Date().toISOString().slice(0, 10);
+    const date = new Date().toLocaleString();
     const noteItem = this.findNote(id);
 
     noteItem.deletedAt = date;
@@ -137,6 +139,7 @@ export default class NoteModel {
     let noteItem = this.findNote(note.id);
     noteItem.title = note.title;
     noteItem.description = note.description;
+    noteItem.updatedAt = new Date().toLocaleString();
 
     noteItem = (await this.fetchAPI.putItem(
       note.id,
