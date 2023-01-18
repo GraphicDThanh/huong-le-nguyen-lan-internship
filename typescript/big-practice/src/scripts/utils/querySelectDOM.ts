@@ -3,9 +3,9 @@
  *
  * @param {String} classes is class of element want to select
  *
- * @returns {Object} element after query
+ * @returns {Element} element after query
  */
-const selectDOMClass = (classes: string): HTMLElement | null => {
+const querySelector = (classes: string) => {
   return document.querySelector(classes);
 }
 
@@ -14,9 +14,9 @@ const selectDOMClass = (classes: string): HTMLElement | null => {
  *
  * @param {String} classes is class of element want to select
  *
- * @returns {Object} element after query
+ * @returns {Element} element after query
  */
-const selectDOMClassAll = (classes: string): NodeListOf<HTMLElement> | null => {
+const querySelectorAll = (classes: string) => {
   return document.querySelectorAll(classes);
 }
 
@@ -25,10 +25,10 @@ const selectDOMClassAll = (classes: string): NodeListOf<HTMLElement> | null => {
  *
  * @param {String} id is id of element want to select
  *
- * @returns {Object} element after query
+ * @returns {Element} element after query
  */
-const selectDOMById = (id: string): HTMLElement | null => {
+const getElementById = (id: string) => {
   return document.getElementById(id);
 }
 
-export { selectDOMClass, selectDOMClassAll, selectDOMById };
+export { querySelector, querySelectorAll, getElementById };

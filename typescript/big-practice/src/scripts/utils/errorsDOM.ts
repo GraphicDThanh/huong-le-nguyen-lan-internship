@@ -9,8 +9,8 @@ const elementHelpers = new ElementHelpers();
  * @description function hide error of field you want to hide by
  * adding a class have properties hide and remove class valid
  *
- * @param {Object} element of input you want to hide message
- * @param {Object} label is label of input
+ * @param {Element} element of input you want to hide message
+ * @param {Element} label is label of input
  */
 const hideError = (element: Element, label: Element): void => {
   const error = element.parentElement?.querySelector<Element>(
@@ -33,9 +33,9 @@ const hideError = (element: Element, label: Element): void => {
  * show and message error of this field by remove class
  * hide and add class valid
  *
- * @param {Object} element of input you want to show message
+ * @param {Element} element of input you want to show message
  * @param {String} message is message error of field
- * @param {Object} label is label of input
+ * @param {Element} label is label of input
  */
 const showError = (element: Element, message: string, label: Element): void => {
   const error = element.parentElement!.querySelector(

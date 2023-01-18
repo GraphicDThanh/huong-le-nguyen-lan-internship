@@ -1,5 +1,5 @@
 {
-  "name": "my-project",
+  "name": "GoogleKeep",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "5.45.1",
     "@typescript-eslint/parser": "5.45.1",
