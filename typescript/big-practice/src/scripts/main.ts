@@ -11,10 +11,10 @@ import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
 import MenuController from './controllers/menuController';
 import Menu from './constants/menu';
+import navigatePage from './utils/navigatePage';
 
-const noteModel = new NoteModel();
 let currentPage;
-
+const noteModel = new NoteModel();
 if (sessionStorage.getItem(StorageKeys.PAGE_NUMBER) === '1') {
   currentPage = Menu.TRASH_NOTES;
 } else {
@@ -39,11 +39,17 @@ const menuController = new MenuController(
 (() => {
   const localStorage = new LocalStorage();
 
-  if (!localStorage.getItems(StorageKeys.USER_ID)) {
-    userController.init();
-  } else {
-    headerController.init();
-    menuController.init();
-    noteController.init();
-  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const value = localStorage.getItems(StorageKeys.USER_ID) as string;
+    if (!value) {
+      userController.init();
+    } else if (value.length != 36) {
+      navigatePage('index.html');
+      localStorage.removeItems(StorageKeys.USER_ID);
+    } else {
+      headerController.init();
+      menuController.init();
+      noteController.init();
+    }
+  });
 })();
