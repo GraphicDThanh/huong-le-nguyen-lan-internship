@@ -8,7 +8,7 @@ import Note from '../interfaces/note';
  * @param {String} typeButton type of button
  * @param {Object} item is information of item is selected
  *
- * @returns {Object} confirmMessage
+ * @returns {Element} confirmMessage
  */
 const renderConfirmPopup = (
   message: string,

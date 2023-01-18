@@ -132,8 +132,8 @@ export default class ListNoteView {
    * check list empty or not to show or hide message
    *
    * @param {Array} list is list of note or list of note trash
-   * @param {Object} listEmpty is element has message empty list
-   * @param {Object} listElement is element has list of note or trash
+   * @param {Element} listEmpty is element has message empty list
+   * @param {Element} listElement is element has list of note or trash
    */
   commonEmptyList(
     list: Note[],
@@ -404,7 +404,7 @@ export default class ListNoteView {
   /**
    * @description function show note form of note is selected
    *
-   * @param {Object} noteElement is note element is selected
+   * @param {Element} noteElement is note element is selected
    * @param {function} findNote is function transmitted from model
    */
   bindShowNoteForm(noteElement: Element, findNote: (id: string) => void): void {
@@ -553,7 +553,7 @@ export default class ListNoteView {
    *
    * @param {Object} note is note information
    * @param {function} addNote function transmitted from controller
-   * @param {Object} formElement form add note to clear input
+   * @param {Element} formElement form add note to clear input
    */
   addNote(
     note: Note,
@@ -587,7 +587,7 @@ export default class ListNoteView {
   /**
    * @description function delete note of each note
    *
-   * @param {Object} noteElement is note element
+   * @param {Element} noteElement is note element
    * @param {function} deleteNote is function delete transmitted from from the model
    */
   bindDeleteNote(noteElement: Element, deleteNote: (id: string) => void): void {

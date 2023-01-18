@@ -14,7 +14,7 @@ export default class ElementHelpers {
    * length of text and if height of textarea more than
    * 500. It will stop in 400px
    *
-   * @param {Object} el is element textarea
+   * @param {Element} el is element textarea
    */
   showInputBreakDown(el: Element): void {
     const element = el;
@@ -24,7 +24,7 @@ export default class ElementHelpers {
   /**
    * @description common events of textarea to increase the length
    *
-   * @param {Object} el is element textarea
+   * @param {Element} el is element textarea
    */
   commonInputBreakDown(el: Element): void {
     const element = el;
@@ -39,7 +39,7 @@ export default class ElementHelpers {
   /**
    * @description function count element and show total
    *
-   * @param {Object} el is element text count note
+   * @param {Element} el is element text count note
    */
   countAndShowSelected(el: Element): void {
     const element = el;
@@ -51,7 +51,7 @@ export default class ElementHelpers {
   /**
    * @description add class which is defined CSS properties to element
    *
-   * @param {Object} element is element you want to add class
+   * @param {Element} element is element you want to add class
    * @param {String} className is class has been defined CSS properties
    */
   addClass(element: Element, className: string): void {
@@ -61,7 +61,7 @@ export default class ElementHelpers {
   /**
    * @description remove class of element
    *
-   * @param {Object} element is element you want to remove class
+   * @param {Element} element is element you want to remove class
    * @param {String} className is class has been defined CSS properties
    */
   removeClass(element: Element, className: string): void {
@@ -71,8 +71,8 @@ export default class ElementHelpers {
   /**
    * @description function get attribute
    *
-   * @param element is element want get attribute
-   * @param attribute is the name of attribute
+   * @param {Element} element is element want get attribute
+   * @param {String} attribute is the name of attribute
    */
   getAttributeElement(
     element: Element | EventTarget,
@@ -124,7 +124,7 @@ export default class ElementHelpers {
    * keep outline of input red color, and avoid defined properties CSS
    * focus of input
    *
-   * @param {Object} element is input your want to show hide error of label
+   * @param {Element} element is input your want to show hide error of label
    */
   showHideInputError(el: Element) {
     const element = el;

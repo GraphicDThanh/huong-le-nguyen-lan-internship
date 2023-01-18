@@ -3,7 +3,7 @@
  *
  * @param {String} classes is class of element want to select
  *
- * @returns {Object} element after query
+ * @returns {Element} element after query
  */
 const querySelector = (classes: string) => {
   return document.querySelector(classes);
@@ -14,7 +14,7 @@ const querySelector = (classes: string) => {
  *
  * @param {String} classes is class of element want to select
  *
- * @returns {Object} element after query
+ * @returns {Element} element after query
  */
 const querySelectorAll = (classes: string) => {
   return document.querySelectorAll(classes);
@@ -25,7 +25,7 @@ const querySelectorAll = (classes: string) => {
  *
  * @param {String} id is id of element want to select
  *
- * @returns {Object} element after query
+ * @returns {Element} element after query
  */
 const getElementById = (id: string) => {
   return document.getElementById(id);

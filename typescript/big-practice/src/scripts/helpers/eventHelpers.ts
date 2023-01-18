@@ -5,7 +5,7 @@ export default class EventHelpers {
   /**
    * @description function stop overlay bubbling event
    *
-   * @param {Object} element is element want to avoid bubbling event
+   * @param {Element} element is element want to avoid bubbling event
    */
   stopEvents(element: Element): void {
     const handler = (e: Event) => {
@@ -18,7 +18,7 @@ export default class EventHelpers {
   /**
    * @description function bind event for element
    *
-   * @param {Object} element is element you want to bind event
+   * @param {Element} element is element you want to bind event
    * @param {String} events is type of event
    * @param {function} handler is a function to handle event you just already bound
    */
@@ -36,7 +36,7 @@ export default class EventHelpers {
    * @description function move to home page when
    * click to element
    *
-   * @param {Object} element is element want to
+   * @param {Element} element is element want to
    * add event click move to home page
    */
   navigateHomePage(element: Element): void {
@@ -51,7 +51,7 @@ export default class EventHelpers {
   /**
    * @description function change page by click with url of page want to change
    *
-   * @param {Object} element is element bind event
+   * @param {Element} element is element bind event
    * @param {string} page is page want to move to
    */
   changePage(element: Element | null, page: string): void {
