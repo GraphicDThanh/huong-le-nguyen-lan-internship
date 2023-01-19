@@ -51,7 +51,7 @@ export default class UserController {
 
     if (!checkValid.isEmail && !checkValid.isPassword) {
       this.model.addUser(user);
-      navigatePage('index.html');
+      navigatePage('/');
     }
   }
 

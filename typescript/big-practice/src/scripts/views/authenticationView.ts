@@ -1,4 +1,4 @@
-import formElement from '../templates/form';
+import formElement from '../components/form';
 import { ErrorMessage } from '../constants/message';
 import Page from '../constants/page';
 import ElementHelpers from '../helpers/elementHelpers';
@@ -37,8 +37,8 @@ export default class AuthenticationView {
     const createAccount = querySelector('#login-form .btn-create-account-form');
     const signUp = querySelector('#sign-up-form .btn-login-form');
 
-    this.eventHelpers.changePage(signUp, 'index.html');
-    this.eventHelpers.changePage(createAccount, 'signUp');
+    this.eventHelpers.changePage(signUp, '/');
+    this.eventHelpers.changePage(createAccount, 'signup');
   }
 
   /**

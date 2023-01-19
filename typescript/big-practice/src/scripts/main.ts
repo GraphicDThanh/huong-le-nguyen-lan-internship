@@ -4,13 +4,13 @@ import NoteController from './controllers/noteController';
 import UserModel from './models/userModel';
 import AuthenticationView from './views/authenticationView';
 import UserController from './controllers/userController';
-import LocalStorage from './utils/localStorage';
 import StorageKeys from './constants/storageKeys';
 import HeaderView from './views/headerView';
 import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
 import MenuController from './controllers/menuController';
 import Menu from './constants/menu';
+import Router from './routes';
 
 const noteModel = new NoteModel();
 let currentPage;
@@ -35,15 +35,12 @@ const menuController = new MenuController(
   noteController,
   headerController
 );
+const router = new Router(
+  headerController,
+  menuController,
+  noteController,
+  userController
+);
 
-(() => {
-  const localStorage = new LocalStorage();
-
-  if (!localStorage.getItems(StorageKeys.USER_ID)) {
-    userController.init();
-  } else {
-    headerController.init();
-    menuController.init();
-    noteController.init();
-  }
-})();
+const url = window.location.pathname;
+router.navigate(url);
