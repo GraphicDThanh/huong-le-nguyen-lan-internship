@@ -97,7 +97,10 @@ export default class HeaderView {
     if (this.localStorage.getItems(StorageKeys.USER_ID)) {
       const id = this.localStorage.getItems(StorageKeys.USER_ID) as string;
       const user = await findUser(id);
-      if (user) {
+      if (!user?.length) {
+        navigatePage('/');
+        this.localStorage.removeItems(StorageKeys.USER_ID);
+      } else {
         emailUser.textContent = user[0].email;
       }
     } else {
