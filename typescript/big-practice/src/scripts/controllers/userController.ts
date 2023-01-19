@@ -1,10 +1,10 @@
-import UserModel from '../models/userModel';
-import User from '../interfaces/user';
-import AuthenticationView from '../views/authenticationView';
-import Page from '../constants/page';
-import navigatePage from '../utils/navigatePage';
-import StorageKeys from '../constants/storageKeys';
-import LocalStorage from '../utils/localStorage';
+import UserModel from 'models/userModel';
+import User from 'interfaces/user';
+import AuthenticationView from 'views/authenticationView';
+import Page from 'constants/page';
+import navigatePage from 'utils/navigatePage';
+import StorageKeys from 'constants/storageKeys';
+import LocalStorage from 'utils/localStorage';
 
 export default class UserController {
   authenticationView: AuthenticationView;

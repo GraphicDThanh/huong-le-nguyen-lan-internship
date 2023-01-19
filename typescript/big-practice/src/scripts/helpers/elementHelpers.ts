@@ -1,5 +1,5 @@
-import StorageKeys from '../constants/storageKeys';
-import { querySelectorAll } from '../utils/querySelectDOM';
+import StorageKeys from 'constants/storageKeys';
+import { querySelectorAll } from 'utils/querySelectDOM';
 import EventHelpers from './eventHelpers';
 
 export default class ElementHelpers {

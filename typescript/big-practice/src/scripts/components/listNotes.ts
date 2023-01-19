@@ -1,6 +1,6 @@
-import iconTrash from '../../assets/icons/icon-in-trash.svg';
-import iconLight from '../../assets/icons/icon-light.svg';
-import Menu from 'scripts/constants/menu';
+import iconTrash from 'assets/icons/icon-in-trash.svg';
+import iconLight from 'assets/icons/icon-light.svg';
+import Menu from 'constants/menu';
 
 interface Note {
   tab: number;

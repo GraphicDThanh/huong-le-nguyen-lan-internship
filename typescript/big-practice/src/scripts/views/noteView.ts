@@ -1,8 +1,8 @@
-import iconPin from '../../assets/icons/icon-pin.svg';
-import iconColorBoard from '../../assets/icons/icon-color-board.svg';
-import iconColorTrash from '../../assets/icons/icon-trash.svg';
-import Note from '../interfaces/note';
-import Menu from '../constants/menu';
+import iconPin from 'assets/icons/icon-pin.svg';
+import iconColorBoard from 'assets/icons/icon-color-board.svg';
+import iconColorTrash from 'assets/icons/icon-trash.svg';
+import Note from 'interfaces/note';
+import Menu from 'constants/menu';
 
 /**
  * @class noteView
@@ -17,9 +17,9 @@ export default class NoteView {
 
   /**
    * @description function create a note
-   * 
-   * @param {Number} tab note of trash transmitted from view 
-   * 
+   *
+   * @param {Number} tab note of trash transmitted from view
+   *
    * @returns {Element} noteElement is a element note
    */
   renderNote(tab: number): Element {

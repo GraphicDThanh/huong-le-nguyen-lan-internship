@@ -1,5 +1,5 @@
 import { querySelector } from './querySelectDOM';
-import ElementHelpers from '../helpers/elementHelpers';
+import ElementHelpers from 'helpers/elementHelpers';
 
 export default class LoadingPage {
   elementHelpers: ElementHelpers;

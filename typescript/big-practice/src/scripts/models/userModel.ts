@@ -1,7 +1,7 @@
-import UrlAPI from '../constants/apiUrl';
-import Page from '../constants/page';
-import User from '../interfaces/user';
-import FetchAPI from '../utils/fetchAPI';
+import UrlAPI from 'constants/apiUrl';
+import Page from 'constants/page';
+import User from 'interfaces/user';
+import FetchAPI from 'utils/fetchAPI';
 
 interface CheckAuthentication {
   isEmail: boolean;

@@ -1,5 +1,5 @@
-import logo from '../../assets/icons/google-keep.svg';
-import iconError from '../../assets/icons/error-icon.svg';
+import logo from 'assets/icons/google-keep.svg';
+import iconError from 'assets/icons/error-icon.svg';
 
 const formElement = (): Element => {
   const form = document.createElement('form');

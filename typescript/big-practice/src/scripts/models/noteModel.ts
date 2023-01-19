@@ -1,9 +1,9 @@
-import FetchAPI from '../utils/fetchAPI';
-import UrlAPI from '../constants/apiUrl';
-import Note from '../interfaces/note';
-import Menu from '../constants/menu';
-import LocalStorage from '../utils/localStorage';
-import StorageKeys from '../constants/storageKeys';
+import FetchAPI from 'utils/fetchAPI';
+import UrlAPI from 'constants/apiUrl';
+import Note from 'interfaces/note';
+import Menu from 'constants/menu';
+import LocalStorage from 'utils/localStorage';
+import StorageKeys from 'constants/storageKeys';
 
 /**
  * @class listNoteModel
