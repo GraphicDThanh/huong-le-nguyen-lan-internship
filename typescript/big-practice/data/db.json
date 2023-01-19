@@ -1,4 +1,10 @@
 {
   "notes": [],
-  "users": []
+  "users": [
+    {
+      "id": "ad72fc21-79d6-4f21-a25a-e5fed9262025",
+      "email": "a@gmail.com",
+      "password": "1234567a"
+    }
+  ]
 }
