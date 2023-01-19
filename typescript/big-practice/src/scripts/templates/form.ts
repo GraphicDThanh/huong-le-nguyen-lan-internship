@@ -8,7 +8,7 @@ const formElement = (): Element => {
   form.setAttribute('class', 'form-wrapper');
   form.setAttribute(
     'id',
-    `${page === 'signUp' ? 'sign-up-form' : 'login-form'}`
+    `${page === 'signup' ? 'sign-up-form' : 'login-form'}`
   );
 
   form.innerHTML = `
@@ -16,7 +16,7 @@ const formElement = (): Element => {
       <img src="${logo}" alt="logo google keep" />
     </figure>
     ${
-      page === 'signUp'
+      page === 'signup'
         ? `<h1 class="form-title">Sign up</h1>`
         : '<h1 class="form-title">Log in</h1>'
     }
@@ -73,7 +73,7 @@ const formElement = (): Element => {
       </div>
 
       ${
-        page === 'signUp'
+        page === 'signup'
           ? `<div class="form-group">
           <input
             type="password"
@@ -101,7 +101,7 @@ const formElement = (): Element => {
     </div>
 
     ${
-      page === 'signUp'
+      page === 'signup'
         ? `<div class="form-button">
         <button type="button" class="btn-form btn-change-form btn-login-form">
           Sign in instead

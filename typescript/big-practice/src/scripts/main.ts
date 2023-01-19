@@ -11,6 +11,7 @@ import MenuView from 'views/menuView';
 import HeaderController from 'controllers/headerController';
 import MenuController from 'controllers/menuController';
 import Menu from 'constants/menu';
+import Router from './router';
 
 const noteModel = new NoteModel();
 let currentPage;
@@ -35,15 +36,14 @@ const menuController = new MenuController(
   noteController,
   headerController
 );
+const router = new Router(
+  headerController,
+  menuController,
+  noteController,
+  userController
+);
 
-(() => {
-  const localStorage = new LocalStorage();
-
-  if (!localStorage.getItems(StorageKeys.USER_ID)) {
-    userController.init();
-  } else {
-    headerController.init();
-    menuController.init();
-    noteController.init();
-  }
-})();
+document.addEventListener('DOMContentLoaded', () => {
+  const url = window.location.pathname;
+  router.navigate(url);
+});
