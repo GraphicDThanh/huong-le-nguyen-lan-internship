@@ -42,5 +42,7 @@ const router = new Router(
   userController
 );
 
-const url = window.location.pathname;
-router.navigate(url);
+document.addEventListener('DOMContentLoaded', () => {
+  const url = window.location.pathname;
+  router.navigate(url);
+});

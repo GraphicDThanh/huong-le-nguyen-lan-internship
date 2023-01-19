@@ -4,6 +4,7 @@ import NoteController from './controllers/noteController';
 import UserController from './controllers/userController';
 import LocalStorage from './utils/localStorage';
 import StorageKeys from './constants/storageKeys';
+import navigatePage from './utils/navigatePage';
 
 export default class Router {
   headerController: HeaderController;
@@ -35,10 +36,12 @@ export default class Router {
    * @param {function} callback function of router
    */
   authentication(callback: () => void) {
-    if (this.localStorage.getItems(StorageKeys.USER_ID)) {
+    const value = this.localStorage.getItems(StorageKeys.USER_ID);
+    if (value && value.length === 36) {
       callback();
     } else {
-      this.navigate('/');
+      this.localStorage.removeItems(StorageKeys.USER_ID);
+      navigatePage('/');
     }
   }
 
@@ -47,7 +50,7 @@ export default class Router {
       path: '/',
       name: 'login',
       handler: (): void => {
-        this.load('login', () => {
+        this.load('/', () => {
           this.userController.init();
         });
       },
@@ -62,11 +65,11 @@ export default class Router {
       },
     },
     {
-      path: '/home',
+      path: '/home.html',
       name: 'home',
       handler: () => {
         this.authentication(() => {
-          this.load('home', () => {
+          this.load('home.html', () => {
             this.headerController.init();
             this.menuController.init();
             this.noteController.init();
@@ -87,7 +90,7 @@ export default class Router {
     if (!router) {
       this.navigate('/');
     }
-    router!.handler?.();
+    router!.handler();
   }
 
   /**
