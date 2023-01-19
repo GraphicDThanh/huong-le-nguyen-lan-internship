@@ -1,8 +1,8 @@
-import { querySelector, querySelectorAll } from '../utils/querySelectDOM';
-import menuComponent from '../components/menu';
-import ElementHelpers from '../helpers/elementHelpers';
-import StorageKeys from '../constants/storageKeys';
-import EventHelpers from '../helpers/eventHelpers';
+import { querySelector, querySelectorAll } from 'utils/querySelectDOM';
+import menuComponent from 'components/menu';
+import ElementHelpers from 'helpers/elementHelpers';
+import StorageKeys from 'constants/storageKeys';
+import EventHelpers from 'helpers/eventHelpers';
 
 export default class MenuView {
   elementHelpers: ElementHelpers;

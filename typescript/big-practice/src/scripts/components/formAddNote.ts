@@ -1,5 +1,5 @@
-import iconPin from '../../assets/icons/icon-pin.svg';
-import iconColorBoard from '../../assets/icons/icon-color-board.svg';
+import iconPin from 'assets/icons/icon-pin.svg';
+import iconColorBoard from 'assets/icons/icon-color-board.svg';
 
 const formAddNote = (): Element => {
   const formControl = document.createElement('div');

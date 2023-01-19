@@ -1,5 +1,5 @@
-import StorageKeys from '../constants/storageKeys';
-import iconLogo from '../../assets/icons/google-keep.svg';
+import StorageKeys from 'constants/storageKeys';
+import iconLogo from 'assets/icons/google-keep.svg';
 
 const logoComponent = (tab: string): Element => {
   const logoElement = document.createElement('div');

@@ -1,5 +1,5 @@
-import User from '../interfaces/user';
-import HeaderView from '../views/headerView';
+import User from 'interfaces/user';
+import HeaderView from 'views/headerView';
 import UserController from './userController';
 
 export default class HeaderController {
