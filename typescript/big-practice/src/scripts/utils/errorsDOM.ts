@@ -1,8 +1,8 @@
-import { PopupMessage } from '../constants/message';
-import EventHelpers from '../helpers/eventHelpers';
-import renderConfirmPopup from '../components/confirmPopup';
+import { PopupMessage } from 'constants/message';
+import EventHelpers from 'helpers/eventHelpers';
+import renderConfirmPopup from './confirmPopup';
 import { querySelector } from './querySelectDOM';
-import ElementHelpers from '../helpers/elementHelpers';
+import ElementHelpers from 'helpers/elementHelpers';
 
 const elementHelpers = new ElementHelpers();
 /**

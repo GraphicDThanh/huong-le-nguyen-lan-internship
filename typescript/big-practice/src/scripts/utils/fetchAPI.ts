@@ -1,4 +1,4 @@
-import UrlAPI from '../constants/apiUrl';
+import UrlAPI from 'constants/apiUrl';
 import { checkCustomError, generateError } from './errorsAPI';
 
 export default class FetchAPI<T> {

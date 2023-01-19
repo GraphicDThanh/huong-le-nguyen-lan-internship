@@ -1,4 +1,4 @@
-import avatar from '../../assets/images/avatar.png';
+import avatar from 'assets/images/avatar.png';
 
 const menuUserComponent = (): Element => {
   const menuUserElement = document.createElement('div');

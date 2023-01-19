@@ -1,6 +1,6 @@
-import iconClose from '../../assets/icons/icon-close.svg';
-import StorageKeys
-import iconTrash from '../../assets/icons/icon-trash-blue.svg';
+import iconClose from 'assets/icons/icon-close.svg';
+import StorageKeys from 'constants/storageKeys';
+import iconTrash from 'assets/icons/icon-trash-blue.svg';
 
 const buttonBulkActionsComponent = (): Element => {
   const headerBulkActions = document.createElement('div');
