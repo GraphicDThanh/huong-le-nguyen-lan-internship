@@ -1,8 +1,8 @@
-import iconNotes from '../../assets/icons/icon-notes.svg';
-import iconBell from '../../assets/icons/icon-bell.svg';
-import iconPen from '../../assets/icons/icon-pen.svg';
-import iconArchive from '../../assets/icons/icon-archive.svg';
-import iconTrash from '../../assets/icons/icon-trash.svg';
+import iconNotes from 'assets/icons/icon-notes.svg';
+import iconBell from 'assets/icons/icon-bell.svg';
+import iconPen from 'assets/icons/icon-pen.svg';
+import iconArchive from 'assets/icons/icon-archive.svg';
+import iconTrash from 'assets/icons/icon-trash.svg';
 
 const menuComponent = (): Element => {
   const menuElement = document.createElement('aside');

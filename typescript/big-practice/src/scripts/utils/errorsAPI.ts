@@ -1,4 +1,4 @@
-import StatusCode from '../constants/statusCode';
+import StatusCode from 'constants/statusCode';
 import CustomError from './customError';
 
 /**

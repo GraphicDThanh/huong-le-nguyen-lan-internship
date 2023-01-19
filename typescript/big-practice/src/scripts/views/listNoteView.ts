@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import NoteView from './noteView';
-import ElementHelpers from '../helpers/elementHelpers';
-import EventHelpers from '../helpers/eventHelpers';
-import { querySelector, getElementById } from '../utils/querySelectDOM';
-import StorageKeys from '../constants/storageKeys';
-import renderConfirmPopup from '../components/confirmPopup';
-import { PopupMessage } from '../constants/message';
-import LocalStorage from '../utils/localStorage';
-import formAddNote from '../components/formAddNote';
-import listNotesWrapper from '../components/listNotes';
-import navigatePage from '../utils/navigatePage';
+import ElementHelpers from 'helpers/elementHelpers';
+import EventHelpers from 'helpers/eventHelpers';
+import { querySelector, getElementById } from 'utils/querySelectDOM';
+import StorageKeys from 'constants/storageKeys';
+import renderConfirmPopup from 'utils/confirmPopup';
+import { PopupMessage } from 'constants/message';
+import LocalStorage from 'utils/localStorage';
+import formAddNote from 'components/formAddNote';
+import listNotesWrapper from 'components/listNotes';
+import navigatePage from 'utils/navigatePage';
 import HeaderView from './headerView';
-import { renderPopupError } from '../utils/errorsDOM';
-import Note from '../interfaces/note';
-import Menu from '../constants/menu';
+import { renderPopupError } from 'utils/errorsDOM';
+import Note from 'interfaces/note';
+import Menu from 'constants/menu';
 
 /**
  * @class listNoteView

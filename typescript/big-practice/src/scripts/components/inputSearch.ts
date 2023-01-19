@@ -1,5 +1,5 @@
-import iconSearch from '../../assets/icons/icon-search.svg';
-import iconClose from '../../assets/icons/icon-close.svg';
+import iconSearch from 'assets/icons/icon-search.svg';
+import iconClose from 'assets/icons/icon-close.svg';
 
 const inputSearchComponent = (): Element => {
   const inputSearchElement = document.createElement('form');

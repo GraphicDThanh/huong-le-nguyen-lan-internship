@@ -1,5 +1,5 @@
-import StorageKeys from '../constants/storageKeys';
-import navigatePage from '../utils/navigatePage';
+import StorageKeys from 'constants/storageKeys';
+import navigatePage from 'utils/navigatePage';
 
 export default class EventHelpers {
   /**

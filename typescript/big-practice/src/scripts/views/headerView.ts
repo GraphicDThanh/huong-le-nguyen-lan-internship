@@ -1,17 +1,14 @@
-import { querySelector } from '../utils/querySelectDOM';
-import logoComponent from '../components/logo';
-import inputSearchComponent from '../components/inputSearch';
-import menuUserComponent from '../components/menuUser';
-import navigatePage from '../utils/navigatePage';
-import StorageKeys from '../constants/storageKeys';
-import LocalStorage from '../utils/localStorage';
-import ElementHelpers from '../helpers/elementHelpers';
-import {
-  headerComponent,
-  buttonBulkActionsComponent,
-} from '../components/header';
-import EventHelpers from '../helpers/eventHelpers';
-import User from '../interfaces/user';
+import { querySelector } from 'utils/querySelectDOM';
+import logoComponent from 'components/logo';
+import inputSearchComponent from 'components/inputSearch';
+import menuUserComponent from 'components/menuUser';
+import navigatePage from 'utils/navigatePage';
+import StorageKeys from 'constants/storageKeys';
+import LocalStorage from 'utils/localStorage';
+import ElementHelpers from 'helpers/elementHelpers';
+import { headerComponent, buttonBulkActionsComponent } from 'components/header';
+import EventHelpers from 'helpers/eventHelpers';
+import User from 'interfaces/user';
 
 export default class HeaderView {
   mainWrapper: Element;
