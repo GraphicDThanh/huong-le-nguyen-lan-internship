@@ -15,6 +15,18 @@
     "prettier": "2.8.0",
     "typescript": "4.9.3"
   },
+  "alias": {
+    "components": "./src/scripts/components",
+    "constants": "./src/scripts/constants",
+    "controllers": "./src/scripts/controllers",
+    "helpers": "./src/scripts/helpers",
+    "interfaces": "./src/scripts/interfaces",
+    "models": "./src/scripts/models",
+    "utils": "./src/scripts/utils",
+    "templates": "./src/scripts/templates",
+    "assets": "./src/assets",
+    "views": "./src/scripts/views"
+  },
   "scripts": {
     "dev": "concurrently \"pnpm start\" \"pnpm run start-db\"",
     "start": "parcel ./src/pages/index.html ./src/pages/home.html",

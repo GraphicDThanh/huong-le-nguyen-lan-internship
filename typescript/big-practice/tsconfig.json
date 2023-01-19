@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*"],
+  "include": ["src"],
   "exclude": ["node_modules"],
   "compilerOptions": {
     "target": "es2016",
@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "strictNullChecks": true,
     "allowJs": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "baseUrl": "./src/scripts"
   }
 }
