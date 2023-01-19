@@ -10,7 +10,7 @@ import MenuView from './views/menuView';
 import HeaderController from './controllers/headerController';
 import MenuController from './controllers/menuController';
 import Menu from './constants/menu';
-import Router from './routes';
+import Router from './router';
 
 const noteModel = new NoteModel();
 let currentPage;

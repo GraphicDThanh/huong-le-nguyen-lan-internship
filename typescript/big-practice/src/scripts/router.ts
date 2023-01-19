@@ -29,6 +29,11 @@ export default class Router {
     this.localStorage = new LocalStorage();
   }
 
+  /**
+   * @description function check if the user is logged in or not
+   *
+   * @param {function} callback function of router
+   */
   authentication(callback: () => void) {
     if (this.localStorage.getItems(StorageKeys.USER_ID)) {
       callback();
@@ -71,17 +76,26 @@ export default class Router {
     },
   ];
 
+  /**
+   * @description function navigate page with path get from url
+   *
+   * @param {string} path is path get from url
+   */
   navigate(path: string): void {
     const router = this.router.find((i) => i.path === path);
 
     if (!router) {
       this.navigate('/');
-
-      return;
     }
-    router.handler?.();
+    router!.handler?.();
   }
 
+  /**
+   * @description function change path
+   *
+   * @param {string} path is path of page
+   * @param {function} callback function of router
+   */
   load(path: string, callback: () => void) {
     window.history.replaceState({}, document.title, path);
     callback();
