@@ -1,5 +1,5 @@
 import iconClose from '../../assets/icons/icon-close.svg';
-import StorageKeys from '../constants/storageKeys';
+import StorageKeys
 import iconTrash from '../../assets/icons/icon-trash-blue.svg';
 
 const buttonBulkActionsComponent = (): Element => {

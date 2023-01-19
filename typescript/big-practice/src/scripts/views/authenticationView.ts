@@ -1,4 +1,4 @@
-import formElement from '../components/form';
+import formElement from '../templates/form';
 import { ErrorMessage } from '../constants/message';
 import Page from '../constants/page';
 import ElementHelpers from '../helpers/elementHelpers';
