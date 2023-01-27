@@ -4,7 +4,7 @@ import ElementHelpers from 'helpers/elementHelpers';
 import EventHelpers from 'helpers/eventHelpers';
 import { querySelector, getElementById } from 'utils/querySelectDOM';
 import StorageKeys from 'constants/storageKeys';
-import renderConfirmPopup from 'utils/confirmPopup';
+import renderConfirmPopup from 'components/confirmPopup';
 import { PopupMessage } from 'constants/message';
 import LocalStorage from 'utils/localStorage';
 import formAddNote from 'components/formAddNote';

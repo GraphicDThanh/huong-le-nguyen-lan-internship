@@ -1,6 +1,6 @@
 import { PopupMessage } from 'constants/message';
 import EventHelpers from 'helpers/eventHelpers';
-import renderConfirmPopup from './confirmPopup';
+import renderConfirmPopup from 'components/confirmPopup';
 import { querySelector } from './querySelectDOM';
 import ElementHelpers from 'helpers/elementHelpers';
 
