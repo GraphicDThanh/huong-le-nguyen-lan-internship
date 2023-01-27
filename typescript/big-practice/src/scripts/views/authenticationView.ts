@@ -1,11 +1,11 @@
-import formElement from '../components/form';
-import { ErrorMessage } from '../constants/message';
-import Page from '../constants/page';
-import ElementHelpers from '../helpers/elementHelpers';
-import EventHelpers from '../helpers/eventHelpers';
-import User from '../interfaces/user';
-import { hideError, showError } from '../utils/errorsDOM';
-import { querySelector } from '../utils/querySelectDOM';
+import formElement from 'templates/form';
+import { ErrorMessage } from 'constants/message';
+import Page from 'constants/page';
+import ElementHelpers from 'helpers/elementHelpers';
+import EventHelpers from 'helpers/eventHelpers';
+import User from 'interfaces/user';
+import { hideError, showError } from 'utils/errorsDOM';
+import { querySelector } from 'utils/querySelectDOM';
 
 interface CheckAuthentication {
   isEmail: boolean;
