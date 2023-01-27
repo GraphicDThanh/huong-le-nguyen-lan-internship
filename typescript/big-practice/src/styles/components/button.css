@@ -1,0 +1,37 @@
+.btn {
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  padding: 8px 25px;
+}
+
+.btn:hover {
+  background-color: var(--hover-button-color);
+}
+
+.btn-form {
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-submit-form {
+  padding: 10px 25px;
+  color: var(--light-color);
+  background-color: var(--info-color);
+}
+
+.btn-submit-form:hover {
+  background-color: var(--info-color-darker);
+}
+
+.btn-change-form {
+  padding: 10px 10px;
+  color: var(--info-color);
+  background-color: transparent;
+}
+
+.btn-change-form:hover {
+  background-color: rgb(31, 119, 235, 0.04);
+}

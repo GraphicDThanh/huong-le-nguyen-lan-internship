@@ -1,0 +1,35 @@
+.menu-aside {
+  width: 15%;
+  height: 805px;
+  padding: 8px 0;
+}
+
+.nav-item {
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 0 25px 25px 0;
+}
+
+.nav .nav-item:not(.menu-color):hover {
+  background-color: var(--secondary-color);
+}
+
+.menu-color {
+  background-color: var(--primary-color);
+}
+
+.nav .nav-item .nav-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.nav .nav-item .nav-link img {
+  vertical-align: sub;
+  margin-right: 20px;
+}
+
+.disable,
+.disable a {
+  cursor: context-menu;
+}
