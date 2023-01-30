@@ -39,14 +39,14 @@ const Comment = (props: CommentProps) => {
 const UserInfo = (props: UserInfoProps) => {
   return (
     <div className='UserInfo'>
-      <Avatar {...props.author} />
+      <Avatar {...props} />
       <div className='UserInfo-name'>{props.author.name}</div>
     </div>
   );
 };
 
 const Avatar = (props: UserInfoProps) => {
-  return <img className='Avatar' src={props.avatarUrl} alt={props.name} />;
+  return <img className='Avatar' src={props.author.avatarUrl} alt={props.author.name} />;
 };
 
 export { FunctionAndClassComponents, Welcome, Comment };
