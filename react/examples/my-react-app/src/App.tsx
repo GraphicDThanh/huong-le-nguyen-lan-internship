@@ -7,6 +7,8 @@ import {
 } from './exercises/introducingJSX';
 import Tick from './exercises/renderingElements';
 import { Comment } from './exercises/componentsAndProps';
+import { Clock, Clocks } from './exercises/stateAndLifecycle';
+import { Form, FormElement, Toggle } from './exercises/handlingEvents';
 
 function App() {
   const data = {
@@ -29,6 +31,11 @@ function App() {
       <Welcome name='Cahal' />
       <Welcome name='Edite' />
       <Comment {...data} />
+      <Clock />
+      <Form />
+      <FormElement />
+      <Toggle />
+      <Clocks />
     </div>
   );
 }
