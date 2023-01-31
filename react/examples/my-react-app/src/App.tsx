@@ -9,6 +9,8 @@ import Tick from './exercises/renderingElements';
 import { Comment } from './exercises/componentsAndProps';
 import { Clock, Clocks } from './exercises/stateAndLifecycle';
 import { Form, FormElement, Toggle } from './exercises/handlingEvents';
+import { Greeting, LoginControl, Mailbox } from './exercises/conditionalRendering';
+import Page from './exercises/preventingComponentFromRendering';
 
 function App() {
   const data = {
@@ -19,6 +21,8 @@ function App() {
     text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
     date: new Date().toLocaleString(),
   };
+
+  const messages = ['React', 'Re: React', 'Re:Re: React'];
 
   return (
     <div className='App'>
@@ -36,6 +40,10 @@ function App() {
       <FormElement />
       <Toggle />
       <Clocks />
+      <Greeting isLoggedIn={false} />
+      <LoginControl />
+      <Mailbox unreadMessages={messages} />
+      <Page />
     </div>
   );
 }
