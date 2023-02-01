@@ -11,6 +11,14 @@ import { Clock, Clocks } from './exercises/stateAndLifecycle';
 import { Form, FormElement, Toggle } from './exercises/handlingEvents';
 import { Greeting, LoginControl, Mailbox } from './exercises/conditionalRendering';
 import Page from './exercises/preventingComponentFromRendering';
+import Number from './exercises/listsAndKeys';
+import { TodoTasks, NumberList, Blog } from './exercises/keys';
+import NameForm from './exercises/form1';
+import EssageForm from './exercises/form2';
+import FlavorForm from './exercises/form3';
+import FileInput from './exercises/form4';
+import Reservation from './exercises/form5';
+import ControlledInput from './exercises/form6';
 
 function App() {
   const data = {
@@ -23,6 +31,29 @@ function App() {
   };
 
   const messages = ['React', 'Re: React', 'Re:Re: React'];
+  const numbers = [1, 2, 3, 4, 5];
+  const posts = [
+    { id: 1, title: 'Hello World', content: 'Welcome to learning React!' },
+    { id: 2, title: 'Installation', content: 'You can install React from npm.' },
+  ];
+  const flavors = [
+    {
+      value: 'grapefruit',
+      name: 'Grapefruit',
+    },
+    {
+      value: 'lime',
+      name: 'Lime',
+    },
+    {
+      value: 'coconut',
+      name: 'Coconut',
+    },
+    {
+      value: 'mango',
+      name: 'Mango',
+    },
+  ];
 
   return (
     <div className='App'>
@@ -44,6 +75,21 @@ function App() {
       <LoginControl />
       <Mailbox unreadMessages={messages} />
       <Page />
+      <Number numbers={numbers} />
+      <TodoTasks />
+      <NumberList numbers={numbers} />
+      <Blog posts={posts} />
+      <NameForm />
+      <EssageForm />
+      <br />
+      <FlavorForm flavor={flavors} />
+      <br />
+      <FileInput />
+      <br />
+      <Reservation />
+      {setTimeout(() => {
+        <ControlledInput />;
+      }, 1000)}
     </div>
   );
 }
