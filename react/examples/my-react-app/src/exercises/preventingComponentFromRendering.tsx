@@ -5,8 +5,6 @@ interface State {
 }
 
 const WarningBanner = (props: { warn: boolean }) => {
-  console.log(props);
-
   if (!props.warn) {
     return null;
   }

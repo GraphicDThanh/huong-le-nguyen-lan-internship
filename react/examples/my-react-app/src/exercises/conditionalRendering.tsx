@@ -75,8 +75,6 @@ interface MailBoxProps {
 }
 
 const Mailbox = (props: MailBoxProps) => {
-  console.log(props);
-
   const unreadMessages = props.unreadMessages;
   return (
     <div>
