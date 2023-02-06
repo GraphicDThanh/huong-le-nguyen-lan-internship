@@ -6,7 +6,21 @@ import { Button } from './Button';
 export default {
   title: 'Example/Button',
   component: Button,
-  argTypes: { onClick: { action: 'clicked' } },
+  parameters: {
+    backgrounds: {
+      values: [
+        { name: 'ocean', value: '#26C6DA' },
+        { name: 'blue', value: '#00f' },
+      ],
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ margin: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;

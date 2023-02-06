@@ -36,6 +36,20 @@
 }
 
 .list-item .title input {
+  width: 100%;
   border: none;
   outline: none;
+}
+
+.pin-button {
+  cursor: pointer;
+  outline: none;
+  background-color: #fff;
+  border: none;
+  width: 25px;
+  height: 25px;
+}
+
+.pin-button img {
+  width: 100%;
 }
