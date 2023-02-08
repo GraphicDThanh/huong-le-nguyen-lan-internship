@@ -1,6 +1,6 @@
 import React from 'react';
 import './task.css';
-import Star from '../../assets/star.svg';
+import star from '../../assets/star.svg';
 
 interface Task {
   title: string;
@@ -47,7 +47,8 @@ export default function Task({
           aria-label={`pinTask-${id}`}
           key={`pinTask-${id}`}
         >
-          <img src={Star} alt='' />
+          {/* <img src={require('path/to/svg')} /> */}
+          <img src={star} alt='' />
         </button>
       )}
     </div>

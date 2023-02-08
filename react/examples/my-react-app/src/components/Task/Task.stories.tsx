@@ -14,45 +14,36 @@ export default {
   argTypes: {
     onArchiveTask: { action: 'onArchiveTask' },
     onPinTask: { action: 'onPinTask' },
+    handleOnChange: { action: 'handleOnChange' },
   },
-  decorators: [
-    (Story, context) => {
-      const { args } = context;
-      const [value, setValue] = useState('');
-
-      const handleChange = (e) => {
-        setValue(e.target.value);
-      };
-
-      return (
-        <div>
-          <p>{value}</p>
-          <Story {...args} title={value} handleOnChange={handleChange} />
-        </div>
-      );
-    },
-  ],
 } as ComponentMeta<typeof Task>;
 
-const Template: ComponentStory<typeof Task> = (args) => <Task {...args} />;
+const Template = (args) => {
+  console.log(args);
+
+  const [value, setValue] = useState('default');
+
+  const handleOnChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return <Task {...args} title={value} handleOnChange={handleOnChange} />;
+};
 
 export const Default = Template.bind({});
 Default.args = {
-  // title: 'Build date picker',
   status: 'TASK_INBOX',
   id: '1',
 };
 
 export const Pinned = Template.bind({});
 Pinned.args = {
-  // title: 'QA dropdown',
   status: 'TASK_PINNED',
   id: '2',
 };
 
 export const Archived = Template.bind({});
 Archived.args = {
-  // title: 'Write schema for account menu',
   status: 'TASK_ARCHIVED',
   id: '3',
 };
