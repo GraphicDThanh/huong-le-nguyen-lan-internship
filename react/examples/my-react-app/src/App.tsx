@@ -20,6 +20,10 @@ import FileInput from './exercises/form4';
 import Reservation from './exercises/form5';
 import ControlledInput from './exercises/form6';
 
+import Calculator from './exercises/liftingStateUp';
+import { TemperatureInput } from './exercises/liftingStateUp2';
+import { WelcomeDialog, SignUpDialog } from './exercises/compositionVSInheritance';
+
 function App() {
   const data = {
     author: {
@@ -57,6 +61,14 @@ function App() {
 
   return (
     <div className='App'>
+      <label htmlFor=''>Calculator</label>
+      <Calculator />
+      <br />
+      <TemperatureInput scale='c' />
+      <TemperatureInput scale='f' />
+      <br />
+      <WelcomeDialog />
+      <SignUpDialog />
       <EmbeddingExpressionJSX />
       <SpecifyingChildrenWithJSX />
       <RepresentsObjects />
@@ -89,8 +101,7 @@ function App() {
       <Reservation />
       {setTimeout(() => {
         <ControlledInput />;
-      }, 1000)}
-    </div>
+      }, 1000)}    </div>
   );
 }
 
