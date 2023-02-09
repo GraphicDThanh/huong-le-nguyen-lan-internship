@@ -22,6 +22,6 @@
     "jsx": "react-jsx",
     "incremental": true
   },
-  "include": ["*/.ts", "*/.tsx", "src/custom.d.ts"],
+  "include": ["*/.ts", "*/.tsx", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

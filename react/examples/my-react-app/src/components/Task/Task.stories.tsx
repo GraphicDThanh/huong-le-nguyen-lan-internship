@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
 import { useState } from 'react';
 import Task from './Task';
 
@@ -18,12 +17,12 @@ export default {
   },
 } as ComponentMeta<typeof Task>;
 
-const Template = (args) => {
+const Template: ComponentStory<typeof Task> = (args) => {
   console.log(args);
 
   const [value, setValue] = useState('default');
 
-  const handleOnChange = (event) => {
+  const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
   };
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import './task.css';
 import star from '../../assets/star.svg';
 
@@ -8,7 +7,7 @@ interface Task {
   status: string;
   onArchiveTask: () => void;
   onPinTask: () => void;
-  handleOnChange: () => void;
+  handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Task({
@@ -47,7 +46,6 @@ export default function Task({
           aria-label={`pinTask-${id}`}
           key={`pinTask-${id}`}
         >
-          {/* <img src={require('path/to/svg')} /> */}
           <img src={star} alt='' />
         </button>
       )}
