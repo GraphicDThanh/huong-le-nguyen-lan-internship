@@ -1,4 +1,3 @@
-import React from 'react';
 import { FunctionAndClassComponents, Welcome } from './exercises/componentsAndProps';
 import {
   EmbeddingExpressionJSX,
@@ -18,8 +17,6 @@ import EssageForm from './exercises/form2';
 import FlavorForm from './exercises/form3';
 import FileInput from './exercises/form4';
 import Reservation from './exercises/form5';
-import ControlledInput from './exercises/form6';
-
 import Calculator from './exercises/liftingStateUp';
 import { TemperatureInput } from './exercises/liftingStateUp2';
 import { WelcomeDialog, SignUpDialog } from './exercises/compositionVSInheritance';
@@ -99,9 +96,7 @@ function App() {
       <FileInput />
       <br />
       <Reservation />
-      {setTimeout(() => {
-        <ControlledInput />;
-      }, 1000)}    </div>
+    </div>
   );
 }
 
