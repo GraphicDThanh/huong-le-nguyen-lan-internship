@@ -29,6 +29,7 @@ specifiers:
   tsconfig-paths-webpack-plugin: 4.0.0
   typescript: 4.9.3
   vite: 4.1.0
+  vite-tsconfig-paths: ^4.0.5
 
 dependencies:
   react: 18.2.0
@@ -61,6 +62,7 @@ devDependencies:
   tsconfig-paths-webpack-plugin: 4.0.0
   typescript: 4.9.3
   vite: 4.1.0
+  vite-tsconfig-paths: 4.0.5_typescript@4.9.3
 
 packages:
 
@@ -7332,6 +7334,10 @@ packages:
       - supports-color
     dev: true
 
+  /globrex/0.1.2:
+    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
+    dev: true
+
   /gopd/1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
     dependencies:
@@ -11296,6 +11302,19 @@ packages:
       typescript: 4.9.3
     dev: true
 
+  /tsconfck/2.0.2_typescript@4.9.3:
+    resolution: {integrity: sha512-H3DWlwKpow+GpVLm/2cpmok72pwRr1YFROV3YzAmvzfGFiC1zEM/mc9b7+1XnrxuXtEbhJ7xUSIqjPFbedp7aQ==}
+    engines: {node: ^14.13.1 || ^16 || >=18, pnpm: ^7.18.0}
+    hasBin: true
+    peerDependencies:
+      typescript: ^4.3.5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      typescript: 4.9.3
+    dev: true
+
   /tsconfig-paths-webpack-plugin/4.0.0:
     resolution: {integrity: sha512-fw/7265mIWukrSHd0i+wSwx64kYUSAKPfxRDksjKIYTxSAp9W9/xcZVBF4Kl0eqQd5eBpAQ/oQrc5RyM/0c1GQ==}
     engines: {node: '>=10.13.0'}
@@ -11708,6 +11727,17 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
+    dev: true
+
+  /vite-tsconfig-paths/4.0.5_typescript@4.9.3:
+    resolution: {integrity: sha512-/L/eHwySFYjwxoYt1WRJniuK/jPv+WGwgRGBYx3leciR5wBeqntQpUE6Js6+TJemChc+ter7fDBKieyEWDx4yQ==}
+    dependencies:
+      debug: 4.3.4
+      globrex: 0.1.2
+      tsconfck: 2.0.2_typescript@4.9.3
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
     dev: true
 
   /vite/4.1.0:
