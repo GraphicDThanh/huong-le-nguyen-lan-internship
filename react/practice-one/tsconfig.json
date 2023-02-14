@@ -21,12 +21,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "incremental": true,
-    "baseUrl": "src/",
+    "baseUrl": "src",
     "paths": {
-      "@components/*": ["components/*"],
-      "@contexts/*": ["contexts/*"],
-      "@assets/*": ["assets/*"],
-      "@constants/*": ["constants/*"]
+      "": ["./"]
     }
   },
   "include": ["*/.ts", "*/.tsx", "src"],
