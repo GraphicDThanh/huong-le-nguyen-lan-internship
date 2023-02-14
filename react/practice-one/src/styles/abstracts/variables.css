@@ -1,0 +1,31 @@
+:root {
+  /* Color */
+  --primary-color: #23a6f0;
+  --primary-color-darker: #119dee;
+  --primary-color-lighter: #8ec2f2;
+  --warm-color: #f3cd03;
+  --alert-color: #e77c40;
+  --dark-color: #252b42;
+  --dark-color-lighter: #2e3552;
+  --white: #fff;
+
+  /* Text-color */
+  --text-color: #737373;
+  --text-fade-color: #bdbdbd;
+
+  /* Font-size */
+  --huge: 58px;
+  --bigger: 40px;
+  --big: 30px;
+  --medium: 24px;
+  --small: 20px;
+  --smaller: 16px;
+  --normal: 14px;
+
+  /* Font-family */
+  --font-medium: 'montserrat-medium';
+  --font-semiBold: 'montserrat-semiBold';
+  --font-bold: 'montserrat-bold';
+  --font-extraBold: 'montserrat-extraBold';
+  --font-default: 'Tahoma, sans-serif';
+}
