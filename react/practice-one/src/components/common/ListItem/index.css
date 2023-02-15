@@ -1,0 +1,12 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.list-item a {
+  text-decoration: none;
+  color: var(--white);
+  font-family: var(--font-semiBold), var(--font-default);
+  font-size: var(--normal);
+}

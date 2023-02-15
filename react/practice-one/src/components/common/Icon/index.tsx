@@ -1,10 +1,15 @@
 import './index.css';
-import Search from 'assets/icons/search.svg';
 
-const Icon = () => {
+const Icon = (props) => {
   return (
-    <figure className='icon icon-sm'>
-      <img src={Search} alt='' />
+    <figure
+      className={`icon icon-${props.size}`}
+      onClick={props.onClick}
+      onMouseMove={props.onMouseOver}
+      onMouseLeave={props.onMouseLeave}
+      data-index={props.index}
+    >
+      <img src={props.icon} alt='' data-index={props.index} />
     </figure>
   );
 };
