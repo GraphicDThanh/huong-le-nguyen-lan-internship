@@ -3,7 +3,7 @@
   gap: 10px;
 }
 
-.list p {
+.list .title {
   width: max-content;
   color: var(--white);
   font-family: var(--font-bold), var(--font-default);
