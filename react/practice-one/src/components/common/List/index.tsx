@@ -1,16 +1,14 @@
 import { ListItem } from '../ListItem';
 import './index.css';
 
-const List = () => {
-  const listItem = Array(5).fill(0);
-
+const List = (props) => {
   return (
-    <div className='list list-column'>
-      <p className='title'>Get In Touch</p>
-      {listItem.map(() => (
-        <ListItem />
+    <ul className='list list-column'>
+      {props.title && <p className='title'>{props.title}</p>}
+      {props.listItem.map((item) => (
+        <ListItem icon={item.icon} size={props.size} title={item.title} />
       ))}
-    </div>
+    </ul>
   );
 };
 

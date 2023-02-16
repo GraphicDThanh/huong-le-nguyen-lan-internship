@@ -9,4 +9,5 @@
   color: var(--white);
   font-family: var(--font-semiBold), var(--font-default);
   font-size: var(--normal);
+  line-height: 24px;
 }
