@@ -1,51 +1,50 @@
-.icon {
+.image {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
 }
 
-.icon.icon-xxxl {
+.image.image-xxxl {
   width: 74px;
   height: 56px;
 }
 
-.icon.icon-xxl {
+.image.image-xxl {
   width: 72px;
   height: 72px;
 }
 
-.icon.icon-xl {
+.image.image-xl {
   width: 68px;
   height: 60px;
 }
 
-.icon.icon-lg {
+.image.image-lg {
   width: 37px;
   height: 52px;
 }
 
-.icon.icon-md {
+.image.image-md {
   width: 32px;
   height: 32px;
 }
 
-.icon.icon-sm {
+.image.image-sm {
   width: 24px;
   height: 24px;
 }
 
-.icon.icon-xs {
+.image.image-xs {
   width: 18px;
   height: 18px;
 }
 
-.icon.icon-xxs {
+.image.image-xxs {
   width: 12px;
   height: 10px;
 }
 
-.icon img {
+.image img {
   width: 100%;
   height: 100%;
 }

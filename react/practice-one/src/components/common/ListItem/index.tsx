@@ -1,11 +1,15 @@
-import { Icon } from 'components/common/Icon';
+import { Image } from 'components/common/Image';
 import './index.css';
 
 const ListItem = (props) => {
+  const TagName = props.tagName;
+
   return (
     <li className='list-item'>
-      {props.icon && <Icon icon={props.icon} size={props.size} />}
-      <a href='javascript:void(0)'>{props.title}</a>
+      {props.image && <Image image={props.image} size={props.size} />}
+      <TagName href='#' className='item'>
+        {props.title}
+      </TagName>
     </li>
   );
 };

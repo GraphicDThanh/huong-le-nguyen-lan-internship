@@ -4,7 +4,7 @@
   gap: 10px;
 }
 
-.list-item a {
+.list-item .item {
   text-decoration: none;
   color: var(--white);
   font-family: var(--font-semiBold), var(--font-default);

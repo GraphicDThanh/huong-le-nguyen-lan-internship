@@ -1,7 +1,14 @@
 .typography {
-  color: var(--white);
   font-family: var(--font-default);
   text-align: center;
+}
+
+.typography.typography-color-primary {
+  color: var(--white);
+}
+
+.typography.typography-color-secondary {
+  color: var(--dark-color);
 }
 
 .typography.typography-medium {
