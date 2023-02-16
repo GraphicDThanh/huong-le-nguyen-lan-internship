@@ -1,0 +1,7 @@
+.option {
+  padding: 10px 15px;
+}
+
+.option:hover {
+  background-color: #f2f2f2;
+}
