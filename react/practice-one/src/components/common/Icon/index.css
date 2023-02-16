@@ -5,9 +5,24 @@
   cursor: pointer;
 }
 
-.icon.icon-lg {
+.icon.icon-xxxl {
+  width: 74px;
+  height: 56px;
+}
+
+.icon.icon-xxl {
   width: 72px;
   height: 72px;
+}
+
+.icon.icon-xl {
+  width: 68px;
+  height: 60px;
+}
+
+.icon.icon-lg {
+  width: 37px;
+  height: 52px;
 }
 
 .icon.icon-md {
@@ -16,13 +31,18 @@
 }
 
 .icon.icon-sm {
-  width: 25px;
-  height: 25px;
+  width: 24px;
+  height: 24px;
 }
 
 .icon.icon-xs {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+}
+
+.icon.icon-xxs {
+  width: 12px;
+  height: 10px;
 }
 
 .icon img {
