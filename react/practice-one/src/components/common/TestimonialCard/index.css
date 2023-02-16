@@ -19,7 +19,7 @@
   line-height: 24px;
 }
 
-.testimonial-card .card-avatar .icon {
+.testimonial-card .card-avatar .image {
   display: none;
 }
 
@@ -52,7 +52,7 @@
     left: -45px;
   }
 
-  .testimonial-card .card-avatar .icon {
+  .testimonial-card .card-avatar .image {
     display: block;
   }
 }

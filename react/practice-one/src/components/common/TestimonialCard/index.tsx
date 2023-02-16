@@ -1,4 +1,4 @@
-import { Icon } from '../Icon';
+import { Image } from '../Image';
 import './index.css';
 import Star from 'assets/icons/star.svg';
 import StarFill from 'assets/icons/star-fill.svg';
@@ -6,31 +6,11 @@ import AvatarWoman from 'assets/images/avatar-woman.png';
 import { useState } from 'react';
 
 const TestimonialCard = () => {
-  const [stars, setState] = useState({
-    click: Array(5).fill(false),
-    mouseOver: Array(5).fill(false),
-  });
+  const [starsClick, setsStarsClick] = useState(1);
+  const stars = Array(5).fill(0);
 
-  const getCurrentIndex = (event: Event) => {
-    stars.mouseOver.fill(false);
-    const img = event.target as HTMLImageElement;
-    const currentIndex = parseInt(img.getAttribute('data-index') || '0');
-
-    return currentIndex;
-  };
-
-  const handleClick = (event: Event) => {
-    const index = getCurrentIndex(event);
-    setState({ ...stars, click: [...stars.mouseOver.fill(true, 0, index + 1)] });
-  };
-
-  const handleMouseOver = (event: MouseEvent) => {
-    const index = getCurrentIndex(event);
-    setState({ ...stars, mouseOver: [...stars.mouseOver.fill(true, 0, index + 1)] });
-  };
-
-  const handleMouseLeave = () => {
-    setState({ ...stars, mouseOver: [...stars.mouseOver.fill(false)] });
+  const handleClick = (value: number) => {
+    setsStarsClick(value);
   };
 
   return (
@@ -40,17 +20,16 @@ const TestimonialCard = () => {
         <p className='card-job'>Design</p>
       </div>
       <div className='card-avatar'>
-        <Icon icon={AvatarWoman} size='lg' />
+        <Image image={AvatarWoman} size='xxl' />
       </div>
       <div className='rate'>
-        {stars.mouseOver.map((star, index) => {
+        {stars.map((_, index) => {
           return (
-            <Icon
-              icon={star ? StarFill : Star}
-              onClick={handleClick}
-              onMouseOver={handleMouseOver}
-              onMouseLeave={handleMouseLeave}
+            <Image
+              image={starsClick > index ? StarFill : Star}
+              onClick={() => handleClick(index + 1)}
               index={index}
+              key={index}
             />
           );
         })}
