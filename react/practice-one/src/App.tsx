@@ -50,36 +50,6 @@ function App() {
     { title: 'Contact', href: '#contact' },
   ];
 
-  const listItem = [
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheck,
-      title: '1GB  Cloud storage',
-    },
-    {
-      image: CircleCheck,
-      title: 'Email and community support',
-    },
-  ];
-
-  const listMenu = [
-    { title: 'Home', href: '#home' },
-    { title: 'Product', href: '#product' },
-    { title: 'Pricing', href: '#pricing' },
-    { title: 'Contact', href: '#contact' },
-  ];
-
   return (
     <div className='App'>
       <Button variant='quaternary' title='123' type='button' as='a' href='' />
