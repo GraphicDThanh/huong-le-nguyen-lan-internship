@@ -1,16 +1,21 @@
 import { Button } from '../Button';
-import chartImg from 'assets/images/chart.png';
 import './index.css';
 
-const ProjectCard = () => {
+interface Props {
+  name?: string;
+  title?: string;
+  background: string;
+}
+
+const ProjectCard = (props: Props) => {
   return (
-    <div className='project-card' style={{ backgroundImage: `url(${chartImg})` }}>
+    <div className='project-card' style={{ backgroundImage: `url(${props.background})` }}>
       <div className='card-description'>
-        <p className='card-name'>Tax Management</p>
-        <p className='card-title'>Life Tips From Top Ten Adventure Travelers</p>
+        <p className='card-name'>{props.name}</p>
+        <p className='card-title'>{props.title}</p>
       </div>
       <div className='card-action'>
-        <Button variant='primary' size='sm' />
+        <Button variant='primary' size='sm' title='View Project' />
       </div>
     </div>
   );

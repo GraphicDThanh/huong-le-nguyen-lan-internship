@@ -1,54 +1,42 @@
 import { List } from '../List';
-import CircleCheckFill from 'assets/icons/circle-check-fill.svg';
-import CircleCheck from 'assets/icons/circle-check.svg';
 import './index.css';
 import { Button } from '../Button';
+import ListItemProps from 'interface/listItem';
 
-const PricingCard = () => {
-  const listItem = [
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheck,
-      title: '1GB  Cloud storage',
-    },
-    {
-      image: CircleCheck,
-      title: 'Email and community support',
-    },
-  ];
+interface Props {
+  status?: 'new';
+  title?: string;
+  name?: string;
+  price?: string;
+  listItem: ListItemProps[];
+}
+
+const PricingCard = (props: Props) => {
+  const { price = '0' } = props;
 
   return (
     <div className='pricing-card'>
-      <div className='card-status'>
-        <span className='status'>New</span>
-      </div>
+      {props.status && (
+        <div className='card-status'>
+          <span className='status'>New</span>
+        </div>
+      )}
       <div className='card-header'>
-        <p className='card-title'>FREE</p>
-        <p className='card-name'>Organize across all apps by hand</p>
+        <p className='card-title'>{props.title}</p>
+        <p className='card-name'>{props.name}</p>
       </div>
       <div className='card-price'>
-        <p className='price'>0</p>
+        <p className='price'>{price}</p>
         <div className='unit-and-month'>
           <p className='unit'>$</p>
           <p className='month'>Per Month</p>
         </div>
       </div>
       <div className='card-list'>
-        <List image={CircleCheckFill} size='md' listItem={listItem} />
+        <List size='md' listItem={props.listItem} tagName='p' />
       </div>
       <div className='card-action'>
-        <Button variant='tertiary' size='lg' />
+        <Button variant='tertiary' size='xl' title='Try for free' />
       </div>
     </div>
   );
