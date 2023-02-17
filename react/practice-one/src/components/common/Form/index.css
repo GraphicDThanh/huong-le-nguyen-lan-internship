@@ -1,0 +1,17 @@
+.form.form-contact {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.form.form-contact .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media screen and (min-width: 1440px) {
+  .form.form-contact .form-group {
+    flex-direction: row;
+  }
+}
