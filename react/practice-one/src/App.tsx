@@ -18,8 +18,39 @@ import { FeatureCard } from 'components/common/FeatureCard';
 import { Logo } from 'components/common/Logo';
 import logo from 'assets/icons/logo.svg';
 import { Form } from 'components/common/Form';
+import { Form } from 'components/common/Form';
 
 function App() {
+  const listItem = [
+    {
+      image: CircleCheckFill,
+      title: 'Unlimited product updates',
+    },
+    {
+      image: CircleCheckFill,
+      title: 'Unlimited product updates',
+    },
+    {
+      image: CircleCheckFill,
+      title: 'Unlimited product updates',
+    },
+    {
+      image: CircleCheck,
+      title: '1GB  Cloud storage',
+    },
+    {
+      image: CircleCheck,
+      title: 'Email and community support',
+    },
+  ];
+
+  const listMenu = [
+    { title: 'Home', href: '#home' },
+    { title: 'Product', href: '#product' },
+    { title: 'Pricing', href: '#pricing' },
+    { title: 'Contact', href: '#contact' },
+  ];
+
   const listItem = [
     {
       image: CircleCheckFill,
@@ -55,16 +86,13 @@ function App() {
       <Button variant='quaternary' title='123' type='button' as='a' href='' />
       <PricingCard title='FREE' name='Organize across all apps by hand' listItem={listItem} />
       <br />
-      <br />
       <Form classes='form-contact' />
-      <br />
       <br />
       <ProjectCard
         name='Tax management'
         title='Life Tips From top Ten Adventure Travelers'
         background={chartImg}
       />
-      <br />
       <br />
       <TestimonialCard
         description='This proved to be 
@@ -84,36 +112,6 @@ function App() {
         image={AvatarWoman}
       />
       <List listItem={listMenu} classes='list-menu' tagName='a' />
-      {/* <Typography /> */}
-      {/* <Image /> */}
-      <br />
-      {/* <ListItem /> */}
-      <br />
-      {/* <List /> */}
-      {/* <br /> */}
-      {/* <Input /> */}
-      <br />
-      {/* <br /> */}
-      {/* <Textarea /> */}
-      <br />
-      {/* <Select /> */}
-      <br />
-      {/* <TestimonialCard /> */}
-      {/* <br /> */}
-      {/* <PricingCard /> */}
-      <br />
-      {/* <ProjectCard /> */}
-      <br />
-      {/* <FeatureCard /> */}
-      <br />
-      {/* <Logo logo={logo} href='#' /> */}
-      {/* <PricingCard />
-      <br />
-      <ProjectCard />
-      <br />
-      <FeatureCard />
-      <br />
-      <Logo logo={logo} /> */}
     </div>
   );
 }
