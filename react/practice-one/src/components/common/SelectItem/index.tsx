@@ -1,7 +1,21 @@
 import './index.css';
 
-const SelectItem = () => {
-  return <span className='option'>123</span>;
+interface Props {
+  value: string | number;
+  text: string;
+  onClick?: (e: React.MouseEvent) => void;
+}
+
+const SelectItem = (props: Props) => {
+  return (
+    <span
+      className='option'
+      data-option={props.value}
+      onClick={(e: React.MouseEvent) => props.onClick?.(e)}
+    >
+      {props.text}
+    </span>
+  );
 };
 
 export { SelectItem };

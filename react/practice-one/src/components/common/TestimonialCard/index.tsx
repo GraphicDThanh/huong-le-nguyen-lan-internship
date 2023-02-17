@@ -2,10 +2,16 @@ import { Image } from '../Image';
 import './index.css';
 import Star from 'assets/icons/star.svg';
 import StarFill from 'assets/icons/star-fill.svg';
-import AvatarWoman from 'assets/images/avatar-woman.png';
 import { useState } from 'react';
 
-const TestimonialCard = () => {
+interface Props {
+  name?: string;
+  job?: string;
+  image?: string;
+  description?: string;
+}
+
+const TestimonialCard = (props: Props) => {
   const [starsClick, setsStarsClick] = useState(1);
   const stars = Array(5).fill(0);
 
@@ -16,11 +22,11 @@ const TestimonialCard = () => {
   return (
     <div className='testimonial-card'>
       <div className='card-header'>
-        <p className='card-name'>Regina Miles</p>
-        <p className='card-job'>Design</p>
+        <p className='card-name'>{props.name}</p>
+        <p className='card-job'>{props.job}</p>
       </div>
       <div className='card-avatar'>
-        <Image image={AvatarWoman} size='xxl' />
+        <Image image={props.image} size='xxl' />
       </div>
       <div className='rate'>
         {stars.map((_, index) => {
@@ -35,11 +41,7 @@ const TestimonialCard = () => {
         })}
       </div>
       <div className='card-description'>
-        <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione inventore saepe, numquam
-          architecto commodi maxime nihil quam sapiente qui nisi, voluptatem nulla? Ipsam sint
-          facere animi ab doloremque amet tempora!
-        </p>
+        <p>{props.description}</p>
       </div>
     </div>
   );

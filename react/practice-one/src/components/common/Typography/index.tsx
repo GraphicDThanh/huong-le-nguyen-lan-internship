@@ -1,17 +1,26 @@
+import { ReactNode } from 'react';
 import './index.css';
 
-const Typography = () => {
+interface Props {
+  text: string;
+  classes?: 'banner-title' | 'section-text';
+  weight?: 'medium' | 'semiBold' | 'bold' | 'extraBold';
+  color?: 'primary' | 'secondary';
+  size?: 'xs' | 'sm' | 'md' | 'nor' | 'lg' | 'xl' | 'hg';
+  tagName?: 'h1' | 'h2' | 'h3' | 'p';
+  children: ReactNode;
+}
+
+const Typography = (props: Props) => {
+  const { weight = 'medium', color = 'primary', size = 'xs', tagName = 'p' } = props;
+  const TagName = tagName;
+
   return (
-    <>
-      <h1 className='typography typography-bold banner-title'>
-        We Ensure A Best Insurance Service
-      </h1>
-      <p className='typography typography-medium typography-nor section-text'>
-        Problems trying to resolve the conflict between the two major realms of Classical physics:
-        Newtonian mechanics
-      </p>
-      <h1 className='typography typography-bold typography-xlg'>What Clients Say</h1>
-    </>
+    <TagName
+      className={`typography typography-${weight} typography-${size} typography-${color} ${props.classes}`}
+    >
+      {props.text || props.children}
+    </TagName>
   );
 };
 

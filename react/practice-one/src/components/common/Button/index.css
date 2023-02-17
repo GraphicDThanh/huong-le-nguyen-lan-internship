@@ -2,7 +2,17 @@
   font-family: var(--font-bold), var(--font-default);
   color: var(--white);
   font-size: var(--normal);
+  text-decoration: none;
   cursor: pointer;
+}
+
+.btn.btn-quaternary {
+  border: none;
+  color: var(--white);
+}
+
+.btn.btn-quaternary:hover {
+  color: var(--primary-color);
 }
 
 .btn.btn-primary,
@@ -49,6 +59,10 @@
 }
 
 .btn.btn-lg {
+  padding: 15px 72px;
+}
+
+.btn.btn-xl {
   padding: 15px 82px;
 }
 
@@ -61,5 +75,9 @@
   .btn.btn-secondary:hover {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
+  }
+
+  .btn.btn-lg {
+    padding: 15px 40px;
   }
 }
