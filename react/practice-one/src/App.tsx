@@ -18,7 +18,6 @@ import { FeatureCard } from 'components/common/FeatureCard';
 import { Logo } from 'components/common/Logo';
 import logo from 'assets/icons/logo.svg';
 import { Form } from 'components/common/Form';
-import { Form } from 'components/common/Form';
 
 function App() {
   const listItem = [
