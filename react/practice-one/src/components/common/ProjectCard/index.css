@@ -18,7 +18,7 @@
 }
 
 .project-card .card-description .card-name {
-  font-family: var(--font-semiBold), var(--font-default);
+  font-family: var(--font-medium), var(--font-default);
   font-size: var(--normal);
 }
 
