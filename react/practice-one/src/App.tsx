@@ -52,7 +52,12 @@ function App() {
 
   return (
     <div className='App'>
-      <Button variant='quaternary' title='123' type='button' as='a' href='' />
+      <Typography text='Pricing' classes='banner-title' weight='extraBold' />
+      <Typography text='Pricing' classes='section-text' weight='extraBold' color='secondary' />
+      <br />
+      <Textarea name='message' placeholder='Message' />
+      <br />
+      <Button variant='primary' title='123' type='button' as='button' size='xs' />
       <PricingCard title='FREE' name='Organize across all apps by hand' listItem={listItem} />
       <br />
       <Form classes='form-contact' />
@@ -81,6 +86,7 @@ function App() {
         image={AvatarWoman}
       />
       <List listItem={listMenu} classes='list-menu' tagName='a' />
+      <ListItem title='123123' />
     </div>
   );
 }
