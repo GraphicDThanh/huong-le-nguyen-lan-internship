@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Textarea } from './index';
+import { Input } from './index';
 
 export default {
-  title: 'PracticeOne/Textarea',
-  component: Textarea,
+  title: 'PracticeOne/Input',
+  component: Input,
   decorators: [
     (Story) => (
       <div style={{ margin: '3em' }}>
@@ -11,12 +11,12 @@ export default {
       </div>
     ),
   ],
-} as ComponentMeta<typeof Textarea>;
+} as ComponentMeta<typeof Input>;
 
-const Template: ComponentStory<typeof Textarea> = (args) => <Textarea {...args} />;
+const Template: ComponentStory<typeof Input> = (args) => <Input {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  name: 'message',
-  placeholder: 'Message',
+  name: 'fullName',
+  placeholder: 'Full Name',
 };

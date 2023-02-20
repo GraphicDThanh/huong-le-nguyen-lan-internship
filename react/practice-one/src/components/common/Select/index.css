@@ -23,8 +23,7 @@
   transform: rotate(45deg);
 }
 
-.input-select .placeholder,
-.select-options .option {
+.input-select .placeholder {
   font-family: var(--font-semiBold), var(--font-default);
   font-size: var(--normal);
   color: var(--text-fade-color);
