@@ -5,6 +5,7 @@ interface Props {
   name?: string;
   title?: string;
   background: string;
+  onclick?: (e: React.MouseEvent) => void;
 }
 
 const ProjectCard = (props: Props) => {
@@ -15,7 +16,12 @@ const ProjectCard = (props: Props) => {
         <p className='card-title'>{props.title}</p>
       </div>
       <div className='card-action'>
-        <Button variant='primary' size='sm' title='View Project' />
+        <Button
+          variant='primary'
+          size='sm'
+          title='View Project'
+          onClick={(e) => props.onclick?.(e)}
+        />
       </div>
     </div>
   );
