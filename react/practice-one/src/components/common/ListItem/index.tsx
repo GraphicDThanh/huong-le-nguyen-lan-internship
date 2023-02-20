@@ -8,8 +8,10 @@ const ListItem = (props: ListItemProps) => {
 
   return (
     <li className='list-item'>
-      {props.image && <Image image={props.image} size={props.size} />}
-      <TagName className='item'>{props.title}</TagName>
+      {props.image && <Image image={props.image} size={props.size} href={props.href} />}
+      <TagName href={props.href} className='item'>
+        {props.title}
+      </TagName>
     </li>
   );
 };
