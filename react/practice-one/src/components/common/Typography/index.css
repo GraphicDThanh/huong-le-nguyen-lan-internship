@@ -61,7 +61,7 @@
   line-height: 25px;
 }
 
-.banner-title {
+.typography.banner-title {
   font-size: var(--bigger);
   line-height: 57px;
 }
@@ -76,13 +76,13 @@
     line-height: 25px;
   }
 
-  .banner-title {
+  .typography.banner-title {
     max-width: 800px;
     font-size: var(--huge);
     line-height: 80px;
   }
 
-  .section-text {
+  .typography.section-text {
     max-width: 470px;
   }
 }
