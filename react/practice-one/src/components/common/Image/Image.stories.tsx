@@ -1,6 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Image } from './index';
-import AvatarWoman from '../../../assets/images/avatar-woman.png';
+import AvatarWoman from 'assets/images/avatar-woman.png';
 
 export default {
   title: 'PracticeOne/Image',
@@ -18,8 +18,8 @@ const Template: ComponentStory<typeof Image> = (args) => {
   return <Image {...args} />;
 };
 
-export const images = Template.bind({});
-images.args = {
+export const Default = Template.bind({});
+Default.args = {
   image: AvatarWoman,
   size: 'xxl',
   alt: 'avatar woman',
