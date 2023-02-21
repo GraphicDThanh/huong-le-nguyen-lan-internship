@@ -4,7 +4,7 @@ import CircleCheckFill from 'assets/icons/circle-check-fill.svg';
 import CircleCheck from 'assets/icons/circle-check.svg';
 
 export default {
-  title: 'PracticeOne/PricingCard',
+  title: 'PracticeOne/Common/PricingCard',
   component: PricingCard,
   decorators: [
     (Story) => (

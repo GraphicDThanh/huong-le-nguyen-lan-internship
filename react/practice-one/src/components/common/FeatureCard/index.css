@@ -18,7 +18,7 @@
 }
 
 .feature-card .card-description .card-text {
-  padding-top: 10px;
+  padding-top: 8px;
   font-family: var(--font-medium), var(--font-default);
   font-size: var(--normal);
   line-height: 20px;

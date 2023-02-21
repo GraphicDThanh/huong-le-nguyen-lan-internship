@@ -1,4 +1,5 @@
-.logo {
+.logo .logo-link {
+  display: block;
   width: 145px;
   height: 32px;
 }

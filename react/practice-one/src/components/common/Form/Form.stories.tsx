@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Form } from './index';
 
 export default {
-  title: 'PracticeOne/Form',
+  title: 'PracticeOne/Common/Form',
   component: Form,
   decorators: [
     (Story) => (

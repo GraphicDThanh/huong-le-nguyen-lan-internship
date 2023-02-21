@@ -3,7 +3,7 @@ import { FeatureCard } from './index';
 import Users from 'assets/icons/users.svg';
 
 export default {
-  title: 'PracticeOne/FeatureCard',
+  title: 'PracticeOne/Common/FeatureCard',
   component: FeatureCard,
   decorators: [
     (Story) => (

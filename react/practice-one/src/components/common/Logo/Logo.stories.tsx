@@ -3,7 +3,7 @@ import { Logo } from './index';
 import LogoIcon from 'assets/icons/logo.svg';
 
 export default {
-  title: 'PracticeOne/Logo',
+  title: 'PracticeOne/Common/Logo',
   component: Logo,
   decorators: [
     (Story) => (

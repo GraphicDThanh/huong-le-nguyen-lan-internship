@@ -3,7 +3,7 @@ import { ProjectCard } from './index';
 import Forest from 'assets/images/forest.png';
 
 export default {
-  title: 'PracticeOne/ProjectCard',
+  title: 'PracticeOne/Common/ProjectCard',
   component: ProjectCard,
   decorators: [
     (Story) => (
