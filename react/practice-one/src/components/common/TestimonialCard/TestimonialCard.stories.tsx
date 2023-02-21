@@ -3,7 +3,7 @@ import { TestimonialCard } from './index';
 import AvatarWoman from 'assets/images/avatar-woman.png';
 
 export default {
-  title: 'PracticeOne/TestimonialCard',
+  title: 'PracticeOne/Common/TestimonialCard',
   component: TestimonialCard,
   decorators: [
     (Story) => (

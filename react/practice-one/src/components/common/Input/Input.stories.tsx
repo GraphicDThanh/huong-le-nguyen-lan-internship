@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Input } from './index';
 
 export default {
-  title: 'PracticeOne/Input',
+  title: 'PracticeOne/Common/Input',
   component: Input,
   decorators: [
     (Story) => (
