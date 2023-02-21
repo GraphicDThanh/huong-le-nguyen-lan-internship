@@ -22,6 +22,7 @@ const List = (props: Props) => {
           tagName={props.tagName}
           key={index}
           href={item.href}
+          weight={props.weight}
         />
       ))}
     </ul>

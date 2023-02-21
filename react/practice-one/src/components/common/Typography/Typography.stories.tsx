@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Typography } from './index';
 
 export default {
-  title: 'PracticeOne/Typography',
+  title: 'PracticeOne/Common/Typography',
   component: Typography,
   decorators: [
     (Story) => (

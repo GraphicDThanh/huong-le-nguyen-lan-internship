@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Select } from './index';
 
 export default {
-  title: 'PracticeOne/Select',
+  title: 'PracticeOne/Common/Select',
   component: Select,
   decorators: [
     (Story) => (

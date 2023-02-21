@@ -3,7 +3,7 @@ import './index.css';
 
 interface Props {
   variant?: 'primary' | 'secondary' | 'tertiary' | 'quaternary';
-  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
   type?: 'button' | 'submit' | 'reset';
   children?: ReactNode;
   title?: string;

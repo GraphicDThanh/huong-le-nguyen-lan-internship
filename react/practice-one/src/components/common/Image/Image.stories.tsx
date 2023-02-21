@@ -3,7 +3,7 @@ import { Image } from './index';
 import AvatarWoman from 'assets/images/avatar-woman.png';
 
 export default {
-  title: 'PracticeOne/Image',
+  title: 'PracticeOne/Common/Image',
   component: Image,
   decorators: [
     (Story) => (

@@ -34,6 +34,7 @@ const TestimonialCard = (props: Props) => {
             <Image
               image={starsClick > index ? StarFill : Star}
               onClick={() => handleClick(index + 1)}
+              pointer={true}
               index={index}
               key={index}
             />

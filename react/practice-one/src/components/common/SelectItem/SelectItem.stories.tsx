@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { SelectItem } from './index';
 
 export default {
-  title: 'PracticeOne/SelectItem',
+  title: 'PracticeOne/Common/SelectItem',
   component: SelectItem,
   decorators: [
     (Story) => (

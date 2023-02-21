@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Textarea } from './index';
 
 export default {
-  title: 'PracticeOne/Textarea',
+  title: 'PracticeOne/Common/Textarea',
   component: Textarea,
   decorators: [
     (Story) => (

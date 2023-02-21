@@ -4,6 +4,9 @@
   font-size: var(--normal);
   text-decoration: none;
   cursor: pointer;
+  display: flex;
+  gap: 15px;
+  align-items: center;
 }
 
 .btn.btn-quaternary {
@@ -55,14 +58,18 @@
 }
 
 .btn.btn-md {
-  padding: 15px 40px;
+  padding: 15px 25px;
 }
 
 .btn.btn-lg {
-  padding: 15px 72px;
+  padding: 15px 40px;
 }
 
 .btn.btn-xl {
+  padding: 15px 72px;
+}
+
+.btn.btn-xxl {
   padding: 15px 82px;
 }
 
@@ -79,5 +86,9 @@
 
   .btn.btn-lg {
     padding: 15px 40px;
+  }
+
+  .btn.btn-sm {
+    padding: 15px 36px;
   }
 }

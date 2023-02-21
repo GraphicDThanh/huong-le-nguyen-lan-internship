@@ -3,7 +3,7 @@ import { ListItem } from './index';
 import Facebook from 'assets/icons/facebook.svg';
 
 export default {
-  title: 'PracticeOne/ListItem',
+  title: 'PracticeOne/Common/ListItem',
   component: ListItem,
   decorators: [
     (Story) => {
