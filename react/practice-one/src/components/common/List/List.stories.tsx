@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { List } from './index';
 
 export default {
-  title: 'PracticeOne/List',
+  title: 'PracticeOne/Common/List',
   component: List,
   decorators: [
     (Story) => {
