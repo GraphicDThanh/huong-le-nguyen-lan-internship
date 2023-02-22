@@ -33,11 +33,17 @@ const Pricing = () => {
     <div className='pricing-wrapper'>
       <div className='container'>
         <div className='pricing-title'>
-          <Typography text='Pricing' tagName='h2' size='xl' weight='bold' classes='section-title' />
+          <Typography
+            text='Pricing'
+            tagName='h2'
+            size='xl'
+            weight='bold'
+            classTypography='section-title'
+          />
           <Typography
             text='Problems trying to resolve the conflict between the two major
             realms of Classical physics: Newtonian mechanics '
-            classes='section-text'
+            classTypography='section-text'
             size='nor'
             weight='medium'
           />

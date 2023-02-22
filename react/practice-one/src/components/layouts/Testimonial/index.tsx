@@ -15,7 +15,7 @@ const Testimonial = () => {
             tagName='h2'
             size='xl'
             weight='bold'
-            classes='section-title'
+            classTypography='section-title'
             statusText='primary-text'
           />
           <Typography
@@ -23,13 +23,13 @@ const Testimonial = () => {
             tagName='h2'
             size='xl'
             weight='bold'
-            classes='section-title'
+            classTypography='section-title'
             statusText='secondary-text'
           />
 
           <Typography
             text='Problems trying to resolve the conflict between the two major realms of Classical physics: Newtonian mechanics '
-            classes='section-text'
+            classTypography='section-text'
             size='nor'
             weight='medium'
           />
