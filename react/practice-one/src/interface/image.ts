@@ -1,6 +1,5 @@
 interface ImageProps {
   image?: string;
-  classes?: 'primary-icon' | 'secondary-icon';
   size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
   index?: string | number;
   href?: string;
