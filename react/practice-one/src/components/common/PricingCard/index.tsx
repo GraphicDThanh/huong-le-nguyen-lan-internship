@@ -36,7 +36,7 @@ const PricingCard = (props: Props) => {
         <List size='md' listItem={props.listItem} tagName='p' />
       </div>
       <div className='card-action'>
-        <Button variant='tertiary' size='xl' title='Try for free' />
+        <Button variant='tertiary' size='xxl' title='Try for free' />
       </div>
     </div>
   );

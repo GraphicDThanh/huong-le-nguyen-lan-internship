@@ -7,7 +7,7 @@
   box-sizing: border-box;
   border: 0.5px solid var(--primary-color);
   display: flex;
-  gap: 35px;
+  gap: 40px;
   flex-direction: column;
 }
 
@@ -18,7 +18,7 @@
   background-color: var(--alert-color);
   border-radius: 100%;
   top: -26px;
-  right: 16px;
+  right: 20px;
 }
 
 .pricing-card .card-status .status {
@@ -29,7 +29,7 @@
 .pricing-card .card-header .card-name,
 .unit-and-month .unit,
 .unit-and-month .month {
-  line-height: 24px;
+  line-height: 22px;
 }
 
 .pricing-card .card-header {
@@ -49,6 +49,8 @@
 }
 
 .pricing-card .card-header .card-name {
+  width: 160px;
+  margin: auto;
   font-size: var(--smaller);
   color: var(--text-color);
 }
@@ -89,7 +91,10 @@
 
 @media screen and (min-width: 1440px) {
   .pricing-card .card-price {
+    box-sizing: border-box;
+    padding-top: 8px;
     height: 70px;
+    order: 2;
     position: relative;
   }
 
@@ -102,7 +107,7 @@
     position: absolute;
     font-family: var(--font-bold), var(--font-default);
     font-size: var(--smallest);
-    padding-top: 5px;
+    padding-top: 10px;
     left: 0;
     right: 0;
     text-align: center;
@@ -110,10 +115,6 @@
 
   .pricing-card .card-header {
     order: 1;
-  }
-
-  .pricing-card .card-price {
-    order: 2;
   }
 
   .pricing-card .card-action {

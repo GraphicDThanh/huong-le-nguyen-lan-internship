@@ -92,7 +92,7 @@ const Form = (props: Props) => {
         onChange={() => {}}
       />
       <div className='form-action'>
-        <Button type='submit' title='Book Appointment' variant='tertiary' size='lg' />
+        <Button type='submit' title='Book Appointment' variant='tertiary' size='xl' />
       </div>
     </form>
   );
