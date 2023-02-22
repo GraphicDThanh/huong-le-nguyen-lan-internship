@@ -43,7 +43,21 @@
   font-size: var(--big);
 }
 
+.list-menu .title,
+.list-menu .list-item {
+  width: 100%;
+}
+
+.list-link .list-item:hover a {
+  color: var(--primary-color);
+}
+
 @media screen and (min-width: 1440px) {
+  .list-menu .title,
+  .list-menu .list-item {
+    width: max-content;
+  }
+
   .list-menu,
   .list-menu .list-item:hover {
     background-color: transparent;
