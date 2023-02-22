@@ -28,16 +28,16 @@ const Template: ComponentStory<typeof List> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  classesList: 'list-row',
+  classList: 'list-row',
 };
 
 export const ListMenu = Template.bind({});
 ListMenu.args = {
-  classesList: 'list-menu',
+  classList: 'list-menu',
 };
 
 export const Title = Template.bind({});
 Title.args = {
   listTitle: 'Home',
-  classesList: 'list-column',
+  classList: 'list-column',
 };

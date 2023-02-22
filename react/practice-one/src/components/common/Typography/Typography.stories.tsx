@@ -18,7 +18,7 @@ const Template: ComponentStory<typeof Typography> = (args) => <Typography {...ar
 export const BannerTitle = Template.bind({});
 BannerTitle.args = {
   text: 'Pricing',
-  classes: 'banner-title',
+  classTypography: 'banner-title',
   tagName: 'h1',
   weight: 'extraBold',
 };
@@ -29,5 +29,5 @@ Secondary.args = {
   tagName: 'h2',
   size: 'md',
   weight: 'medium',
-  classes: 'section-text',
+  classTypography: 'section-text',
 };

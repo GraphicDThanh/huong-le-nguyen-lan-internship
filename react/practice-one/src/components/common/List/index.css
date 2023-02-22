@@ -48,10 +48,6 @@
   width: 100%;
 }
 
-.list-link .list-item:hover a {
-  color: var(--primary-color);
-}
-
 @media screen and (min-width: 1440px) {
   .list-menu .title,
   .list-menu .list-item {

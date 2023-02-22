@@ -3,7 +3,7 @@ import './index.css';
 
 interface Props {
   text: string;
-  classes?: 'banner-title' | 'section-text' | 'section-title' | 'banner-title';
+  classTypography?: 'banner-title' | 'section-text' | 'section-title' | 'banner-title';
   statusText?: 'primary-text' | 'secondary-text';
   weight?: 'medium' | 'semiBold' | 'bold' | 'extraBold';
   color?: 'primary' | 'secondary';
@@ -18,7 +18,7 @@ const Typography = (props: Props) => {
 
   return (
     <TagName
-      className={`typography typography-${weight} typography-${props.size} typography-color-${color} ${props.classes} ${props.statusText}`}
+      className={`typography typography-${weight} typography-${props.size} typography-color-${color} ${props.classTypography} ${props.statusText}`}
     >
       {props.text || props.children}
     </TagName>

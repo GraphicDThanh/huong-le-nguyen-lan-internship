@@ -7,7 +7,7 @@ const ListItem = (props: ListItemProps) => {
   const TagName = tagName;
 
   return (
-    <li className={`list-item item-${weight}`}>
+    <li className={`list-item item-${weight} ${props.classListItem}`}>
       {props.image && <Image image={props.image} size={props.size} href={props.href} />}
       <TagName href={props.href} className='item'>
         {props.title}
