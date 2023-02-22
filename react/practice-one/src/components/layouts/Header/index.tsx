@@ -41,7 +41,7 @@ const Header = () => {
             />
           </div>
           <div className='nav-pc nav-content'>
-            <List listItem={listMenu} tagName='a' classesList='list-link' weight='medium' />
+            <List listItem={listMenu} tagName='a' classList='list-menu' weight='medium' />
             <div className='btn-authentication'>
               <Button as='a' title='Login' variant='quaternary' href='#' />
               <Button variant='tertiary' size='md'>
@@ -52,7 +52,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {menu && <List listItem={listMenu} tagName='a' classesList='list-menu' />}
+      {menu && <List listItem={listMenu} tagName='a' classList='list-menu' />}
     </header>
   );
 };

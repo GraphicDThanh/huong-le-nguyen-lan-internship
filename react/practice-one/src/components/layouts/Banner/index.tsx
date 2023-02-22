@@ -13,7 +13,7 @@ const Banner = () => {
           <Typography
             text='We Ensure A Best Insurance Service'
             weight='bold'
-            classes='banner-title'
+            classTypography='banner-title'
             tagName='h1'
           />
           <Typography

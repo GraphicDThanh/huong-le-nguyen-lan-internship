@@ -50,6 +50,10 @@
     gap: 24px;
   }
 
+  .header-wrapper .container .list .list-item {
+    padding: 0;
+  }
+
   .header-wrapper > .list {
     display: none;
   }
