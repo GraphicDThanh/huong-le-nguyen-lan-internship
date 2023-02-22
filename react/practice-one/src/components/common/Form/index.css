@@ -7,7 +7,11 @@
 .form.form-contact .form-group {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 22px;
+}
+
+.form.form-contact .form-action {
+  padding-top: 25px;
 }
 
 @media screen and (min-width: 1440px) {
