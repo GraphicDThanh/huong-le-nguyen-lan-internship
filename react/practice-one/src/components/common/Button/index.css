@@ -84,6 +84,10 @@
     border-color: var(--primary-color);
   }
 
+  .btn.btn-xl {
+    padding: 15px 40px;
+  }
+
   .btn.btn-lg {
     padding: 15px 40px;
   }
