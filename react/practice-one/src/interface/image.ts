@@ -5,6 +5,7 @@ interface ImageProps {
   index?: string | number;
   href?: string;
   alt?: string;
+  statusImage?: 'primary-image' | 'secondary-image';
   pointer?: boolean;
   onClick?: (e: React.MouseEvent) => void;
   onMouseEnter?: (e: React.MouseEvent) => void;

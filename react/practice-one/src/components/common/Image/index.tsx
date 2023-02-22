@@ -6,7 +6,9 @@ const Image = (props: ImageProps) => {
 
   return (
     <figure
-      className={`image image-${props.size} ${pointer && 'cursor-pointer'} ${props.classes}`}
+      className={`image image-${props.size} ${pointer && 'cursor-pointer'} ${props.classes} ${
+        props.statusImage
+      }`}
       onClick={(e) => props.onClick?.(e)}
       onMouseLeave={(e) => props.onMouseLeave?.(e)}
       onMouseEnter={(e) => props.onMouseEnter?.(e)}

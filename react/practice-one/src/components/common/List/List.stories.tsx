@@ -7,7 +7,7 @@ export default {
   decorators: [
     (Story) => {
       return (
-        <div style={{ margin: '3em' }}>
+        <div style={{ padding: '3em', backgroundColor: '#6A6A6A' }}>
           <Story />
         </div>
       );
@@ -28,11 +28,16 @@ const Template: ComponentStory<typeof List> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  classes: 'list-row',
+  classesList: 'list-row',
+};
+
+export const ListMenu = Template.bind({});
+ListMenu.args = {
+  classesList: 'list-menu',
 };
 
 export const Title = Template.bind({});
 Title.args = {
   listTitle: 'Home',
-  classes: 'list-column',
+  classesList: 'list-column',
 };
