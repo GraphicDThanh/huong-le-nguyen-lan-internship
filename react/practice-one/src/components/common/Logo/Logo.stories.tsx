@@ -7,7 +7,7 @@ export default {
   component: Logo,
   decorators: [
     (Story) => (
-      <div style={{ margin: '3em' }}>
+      <div style={{ padding: '3em', backgroundColor: '#6A6A6A' }}>
         <Story />
       </div>
     ),
