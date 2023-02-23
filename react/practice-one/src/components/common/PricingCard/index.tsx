@@ -1,7 +1,7 @@
 import { List } from '../List';
 import './index.css';
 import { Button } from '../Button';
-import ListItemProps from 'interface/listItem';
+import { ListItemProps } from '../ListItem';
 
 interface Props {
   status?: 'new';
