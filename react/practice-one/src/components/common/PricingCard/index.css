@@ -1,0 +1,127 @@
+.pricing-card {
+  position: relative;
+  padding: 50px 40px;
+  width: 327px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-sizing: border-box;
+  border: 0.5px solid var(--primary-color);
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+}
+
+.pricing-card .card-status {
+  position: absolute;
+  width: max-content;
+  padding: 30px 15px;
+  background-color: var(--alert-color);
+  border-radius: 100%;
+  top: -26px;
+  right: 20px;
+}
+
+.pricing-card .card-status .status {
+  font-size: var(--medium);
+  color: var(--white);
+}
+
+.pricing-card .card-header .card-name,
+.unit-and-month .unit,
+.unit-and-month .month {
+  line-height: 22px;
+}
+
+.pricing-card .card-header {
+  text-align: center;
+}
+
+.pricing-card .card-header .card-title,
+.pricing-card .card-header .card-name,
+.pricing-card .card-status .status {
+  font-family: var(--font-bold), var(--font-default);
+}
+
+.pricing-card .card-header .card-title {
+  font-size: var(--medium);
+  line-height: 32px;
+  padding-bottom: 35px;
+}
+
+.pricing-card .card-header .card-name {
+  width: 160px;
+  margin: auto;
+  font-size: var(--smaller);
+  color: var(--text-color);
+}
+
+.pricing-card .card-price {
+  color: var(--primary-color);
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pricing-card .card-price .price {
+  font-size: var(--bigger);
+}
+
+.pricing-card .card-price .price,
+.unit-and-month .unit {
+  font-family: var(--font-bold), var(--font-default);
+}
+
+.unit-and-month .unit {
+  font-size: var(--smaller);
+}
+
+.unit-and-month .month {
+  color: var(--primary-color-lighter);
+  font-family: var(--font-medium), var(--font-default);
+  font-size: var(--normal);
+}
+
+.pricing-card .card-list .list {
+  gap: 16px;
+}
+
+.pricing-card .card-list .list-item .item {
+  color: var(--dark-color);
+}
+
+@media screen and (min-width: 1440px) {
+  .pricing-card .card-price {
+    box-sizing: border-box;
+    padding-top: 8px;
+    height: 70px;
+    order: 2;
+    position: relative;
+  }
+
+  .unit-and-month .unit {
+    padding: 8px 0;
+    font-size: var(--bigger);
+  }
+
+  .unit-and-month .month {
+    position: absolute;
+    font-family: var(--font-bold), var(--font-default);
+    font-size: var(--smallest);
+    padding-top: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+  }
+
+  .pricing-card .card-header {
+    order: 1;
+  }
+
+  .pricing-card .card-action {
+    order: 3;
+  }
+
+  .pricing-card .card-list {
+    order: 4;
+  }
+}
