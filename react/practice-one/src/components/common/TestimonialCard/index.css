@@ -1,0 +1,58 @@
+.testimonial-card {
+  width: 325px;
+  box-sizing: border-box;
+  background-color: var(--white);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 85px 32px 40px;
+}
+
+.testimonial-card .card-header .card-name {
+  font-family: var(--font-bold), var(--font-default);
+  font-size: var(--medium);
+  line-height: 32px;
+}
+
+.testimonial-card .card-header .card-job {
+  font-family: var(--font-semiBold), var(--font-default);
+  line-height: 24px;
+}
+
+.testimonial-card .card-avatar .image {
+  display: none;
+}
+
+.testimonial-card .rate {
+  display: flex;
+  padding: 15px 0;
+  gap: 8px;
+}
+
+.testimonial-card .card-header .card-job,
+.testimonial-card .card-description {
+  font-size: var(--normal);
+  color: var(--text-color);
+}
+
+.testimonial-card .card-description {
+  font-family: var(--font-medium), var(--font-default);
+  line-height: 20px;
+}
+
+@media screen and (min-width: 1440px) {
+  .testimonial-card {
+    min-width: 450px;
+    padding: 30px 40px;
+  }
+
+  .testimonial-card .card-avatar {
+    position: absolute;
+    top: 30px;
+    left: -45px;
+  }
+
+  .testimonial-card .card-avatar .image {
+    display: block;
+  }
+}
