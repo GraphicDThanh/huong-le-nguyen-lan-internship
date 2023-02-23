@@ -22,7 +22,6 @@
   - Actual day:
 - Techniques:
   - HTML5/CSS3
-  - JavaScript
   - [TypeScript](https://www.typescriptlang.org/)
   - [ReactJS](https://reactjs.org/)
   - [Storybook](https://storybook.js.org/)
@@ -65,4 +64,4 @@
 ### Note
 
 - If you get errors about using pnpm to run Storybook
-- Try to create file `.npmrc` and add `node-linker=hoisted`
+- Try to add `node-linker=hoisted` to `.npmrc` file
