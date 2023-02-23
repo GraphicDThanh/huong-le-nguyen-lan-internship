@@ -1,16 +1,26 @@
 import './index.css';
-import ImageProps from 'interface/image';
+
+interface ImageProps {
+  image?: string;
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
+  index?: string | number;
+  href?: string;
+  alt?: string;
+  pointer?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+  onMouseEnter?: (e: React.MouseEvent) => void;
+  onMouseLeave?: (e: React.MouseEvent) => void;
+}
 
 const Image = (props: ImageProps) => {
   const { pointer = false } = props;
 
   return (
     <figure
-      className={`image image-${props.size} ${pointer && 'cursor-pointer'} ${props.statusImage}`}
+      className={`image image-${props.size} ${pointer && 'cursor-pointer'}`}
       onClick={(e) => props.onClick?.(e)}
       onMouseLeave={(e) => props.onMouseLeave?.(e)}
       onMouseEnter={(e) => props.onMouseEnter?.(e)}
-      data-index={props.index}
     >
       {props.href ? (
         <a href={props.href}>
@@ -24,3 +34,4 @@ const Image = (props: ImageProps) => {
 };
 
 export { Image };
+export type { ImageProps };

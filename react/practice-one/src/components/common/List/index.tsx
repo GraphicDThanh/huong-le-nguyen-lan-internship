@@ -1,8 +1,7 @@
-import { ListItem } from '../ListItem';
-import ListItemProps from 'interface/listItem';
+import { ListItem, ListItemProps } from '../ListItem';
 import './index.css';
 
-interface Props extends ListItemProps {
+interface Props extends Pick<ListItemProps, 'tagName' | 'weight' | 'size'> {
   listTitle?: string;
   classList?: 'list-column' | 'list-row' | 'list-menu';
   listItem: ListItemProps[];
@@ -17,7 +16,7 @@ const List = (props: Props) => {
       {props.listItem.map((item, index) => (
         <ListItem
           image={item.image}
-          size={item.size}
+          size={props.size}
           title={item.title}
           tagName={props.tagName}
           key={index}
