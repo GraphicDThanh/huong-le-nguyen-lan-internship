@@ -1,0 +1,39 @@
+.industry-wrapper {
+  padding: 75px 0 98px;
+  background-color: var(--dark-color);
+}
+
+.industry-wrapper .container,
+.industry-wrapper .industry-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.industry-wrapper .industry-title {
+  width: 230px;
+  gap: 30px;
+}
+
+.industry-wrapper .industry-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 60px;
+}
+
+@media screen and (min-width: 1440px) {
+  .industry-wrapper {
+    padding: 112px 0;
+  }
+
+  .industry-wrapper .industry-title {
+    gap: 12px;
+  }
+
+  .industry-wrapper .industry-content {
+    padding-top: 98px;
+    flex-direction: row;
+  }
+}
