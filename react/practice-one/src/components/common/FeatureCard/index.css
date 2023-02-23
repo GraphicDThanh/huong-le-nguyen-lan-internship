@@ -1,0 +1,25 @@
+.feature-card {
+  width: 235px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.feature-card .card-description {
+  color: var(--white);
+  text-align: center;
+}
+
+.feature-card .card-description .card-title {
+  font-family: var(--font-bold), var(--font-default);
+  font-size: var(--smaller);
+  line-height: 24px;
+}
+
+.feature-card .card-description .card-text {
+  padding-top: 8px;
+  font-family: var(--font-medium), var(--font-default);
+  font-size: var(--normal);
+  line-height: 20px;
+}

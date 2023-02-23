@@ -1,0 +1,109 @@
+.typography {
+  font-family: var(--font-default);
+  text-align: center;
+}
+
+.typography.typography-color-primary {
+  color: var(--white);
+}
+
+.typography.typography-color-secondary {
+  color: var(--dark-color);
+}
+
+.typography.typography-medium {
+  font-family: var(--font-medium);
+}
+
+.typography.typography-semiBold {
+  font-family: var(--font-semiBold);
+}
+
+.typography.typography-bold {
+  font-family: var(--font-bold);
+}
+
+.typography.typography-extraBold {
+  font-family: var(--font-extraBold);
+}
+
+.typography.typography-hg {
+  font-size: var(--huge);
+  line-height: 80px;
+}
+
+.typography.typography-xl {
+  font-size: var(--bigger);
+  line-height: 57px;
+}
+
+.typography.typography-lg {
+  font-size: var(--big);
+  line-height: 45px;
+}
+
+.typography.typography-nor {
+  font-size: var(--normal);
+  line-height: 20px;
+}
+
+.typography.typography-md {
+  font-size: var(--medium);
+}
+
+.typography.typography-sm {
+  font-size: var(--small);
+  line-height: 30px;
+}
+
+.typography.typography-xs {
+  font-size: var(--smaller);
+  line-height: 25px;
+}
+
+.typography.banner-title {
+  font-size: var(--bigger);
+  line-height: 57px;
+}
+
+.typography.section-text {
+  width: 260px;
+}
+
+.typography.secondary-text {
+  display: none;
+}
+
+@media screen and (min-width: 1440px) {
+  .typography.typography-bold {
+    font-family: var(--font-extraBold);
+  }
+
+  .typography.typography-lg {
+    font-size: var(--normal);
+    line-height: 25px;
+  }
+
+  .typography.banner-title {
+    max-width: 555px;
+    font-size: var(--huge);
+    line-height: 80px;
+  }
+
+  .typography.section-title {
+    font-family: var(--font-semiBold);
+    width: fit-content;
+  }
+
+  .typography.section-text {
+    width: 400px;
+  }
+
+  .typography.primary-text {
+    display: none;
+  }
+
+  .typography.secondary-text {
+    display: block;
+  }
+}

@@ -1,0 +1,54 @@
+.image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image.image-xxxl {
+  width: 74px;
+  height: 56px;
+}
+
+.image.image-xxl {
+  width: 72px;
+  height: 72px;
+}
+
+.image.image-xl {
+  width: 68px;
+  height: 60px;
+}
+
+.image.image-lg {
+  width: 37px;
+  height: 52px;
+}
+
+.image.image-md {
+  width: 32px;
+  height: 32px;
+}
+
+.image.image-sm {
+  width: 24px;
+  height: 24px;
+}
+
+.image.image-xs {
+  width: 18px;
+  height: 18px;
+}
+
+.image.image-xxs {
+  width: 12px;
+  height: 10px;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+}
+
+.image.cursor-pointer {
+  cursor: pointer;
+}

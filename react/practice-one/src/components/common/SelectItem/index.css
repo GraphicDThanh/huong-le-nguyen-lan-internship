@@ -1,0 +1,12 @@
+.option {
+  cursor: pointer;
+  font-family: var(--font-semiBold), var(--font-default);
+  font-size: var(--normal);
+  color: var(--text-fade-color);
+  background-color: var(--white);
+  padding: 10px 15px;
+}
+
+.option:hover {
+  background-color: #f2f2f2;
+}
