@@ -13,8 +13,8 @@ export default {
   ],
 } as ComponentMeta<typeof Form>;
 
-const Template: ComponentStory<typeof Form> = (args) => {
-  return <Form {...args} />;
+const Template: ComponentStory<typeof Form> = () => {
+  return <Form />;
 };
 
 export const Default = Template.bind({});
