@@ -42,10 +42,6 @@
 - Prettier v2.8.3
 - TypeScript v4.9.3
 
-### App Bio
-
-- Google Keep is an app that can help you keep your notes in a modern way with the facilities provided. With a user-friendly interface, Google Keep can add, edit, and delete your notes.
-
 ### Getting Started
 
 - Step 1: Clone repository
