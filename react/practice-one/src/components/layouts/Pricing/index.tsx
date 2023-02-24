@@ -30,7 +30,7 @@ const Pricing = () => {
   ];
 
   return (
-    <div className='pricing-wrapper'>
+    <div className='pricing-wrapper' id='pricing'>
       <div className='container'>
         <div className='pricing-title'>
           <Typography

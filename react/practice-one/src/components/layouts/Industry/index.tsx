@@ -9,7 +9,7 @@ import Chart from 'assets/images/chart.png';
 
 const Industry = () => {
   return (
-    <div className='industry-wrapper'>
+    <div className='industry-wrapper' id='product'>
       <div className='container'>
         <div className='industry-title'>
           <Typography

@@ -4,7 +4,7 @@ import './index.css';
 
 const Contact = () => {
   return (
-    <div className='contact-wrapper'>
+    <div className='contact-wrapper' id='contact'>
       <div className='container'>
         <div className='contact-title'>
           <Typography text='Contact Us' size='nor' weight='extraBold' color='secondary' />
