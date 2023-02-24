@@ -12,15 +12,23 @@ interface Props {
   children?: ReactNode;
 }
 
-const Typography = (props: Props) => {
-  const { weight = 'medium', color = 'primary', tagName = 'p' } = props;
+const Typography = ({
+  text,
+  classTypography,
+  statusText,
+  weight = 'medium',
+  color = 'primary',
+  size,
+  tagName = 'p',
+  children,
+}: Props) => {
   const TagName = tagName;
 
   return (
     <TagName
-      className={`typography typography-${weight} typography-${props.size} typography-color-${color} ${props.classTypography} ${props.statusText}`}
+      className={`typography typography-${weight} typography-${size} typography-color-${color} ${classTypography} ${statusText}`}
     >
-      {props.text || props.children}
+      {text || children}
     </TagName>
   );
 };

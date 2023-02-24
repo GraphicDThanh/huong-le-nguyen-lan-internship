@@ -5,11 +5,7 @@ import { Select } from '../Select';
 import { Textarea } from '../Textarea';
 import './index.css';
 
-interface Props {
-  classes?: 'form-contact';
-}
-
-const Form = (props: Props) => {
+const Form = () => {
   const [data, setData] = useState({
     fullName: '',
     email: '',
@@ -58,27 +54,39 @@ const Form = (props: Props) => {
     });
   };
 
+  const handleOnChange = (e: React.ChangeEvent) => {
+    const valueInput = (e.target as HTMLInputElement).value;
+    const name = (e.target as HTMLInputElement).name;
+
+    setData((prev) => {
+      return {
+        ...prev,
+        [name]: valueInput,
+      };
+    });
+  };
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log('send');
   };
 
   return (
-    <form className={`form ${props.classes}`} onSubmit={(e) => onSubmit(e)}>
+    <form className='form form-contact' onSubmit={(e) => onSubmit(e)}>
       <div className='form-group'>
         <Input
           name='fullName'
           type='text'
           value={data.fullName}
           placeholder='Full Name'
-          onChange={() => {}}
+          onChange={handleOnChange}
         />
         <Input
           name='email'
           type='email'
           value={data.email}
           placeholder='example@gmail.com'
-          onChange={() => {}}
+          onChange={handleOnChange}
         />
       </div>
       <div className='form-group'>
@@ -89,7 +97,7 @@ const Form = (props: Props) => {
         name='description'
         placeholder='Message'
         value={data.description}
-        onChange={() => {}}
+        onChange={handleOnChange}
       />
       <div className='form-action'>
         <Button type='submit' title='Book Appointment' variant='tertiary' size='xl' />

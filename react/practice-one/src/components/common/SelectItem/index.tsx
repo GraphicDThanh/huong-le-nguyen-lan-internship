@@ -6,14 +6,10 @@ interface Props {
   onClick?: (e: React.MouseEvent) => void;
 }
 
-const SelectItem = (props: Props) => {
+const SelectItem = ({ value, text, onClick }: Props) => {
   return (
-    <span
-      className='option'
-      data-option={props.value}
-      onClick={(e: React.MouseEvent) => props.onClick?.(e)}
-    >
-      {props.text}
+    <span className='option' data-option={value} onClick={(e: React.MouseEvent) => onClick?.(e)}>
+      {text}
     </span>
   );
 };

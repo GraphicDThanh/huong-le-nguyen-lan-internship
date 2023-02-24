@@ -6,13 +6,11 @@ interface Props {
   alt?: string;
 }
 
-const Logo = (props: Props) => {
-  const { alt = 'Logo' } = props;
-
+const Logo = ({ href, logo, alt = 'Logo' }: Props) => {
   return (
     <figure className='logo'>
-      <a className='logo-link' href={props.href}>
-        <img src={props.logo} alt={alt} />
+      <a className='logo-link' href={href}>
+        <img src={logo} alt={alt} />
       </a>
     </figure>
   );

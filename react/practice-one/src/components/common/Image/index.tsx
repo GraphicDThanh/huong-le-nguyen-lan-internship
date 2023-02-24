@@ -1,26 +1,44 @@
 import './index.css';
-import ImageProps from 'interface/image';
 
-const Image = (props: ImageProps) => {
-  const { pointer = false } = props;
+interface ImageProps {
+  image?: string;
+  size?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'xxxl';
+  index?: string | number;
+  href?: string;
+  alt?: string;
+  pointer?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+  onMouseEnter?: (e: React.MouseEvent) => void;
+  onMouseLeave?: (e: React.MouseEvent) => void;
+}
 
+const Image = ({
+  size,
+  href,
+  image,
+  alt,
+  pointer = false,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+}: ImageProps) => {
   return (
     <figure
-      className={`image image-${props.size} ${pointer && 'cursor-pointer'} ${props.statusImage}`}
-      onClick={(e) => props.onClick?.(e)}
-      onMouseLeave={(e) => props.onMouseLeave?.(e)}
-      onMouseEnter={(e) => props.onMouseEnter?.(e)}
-      data-index={props.index}
+      className={`image image-${size} ${pointer && 'cursor-pointer'}`}
+      onClick={(e) => onClick?.(e)}
+      onMouseLeave={(e) => onMouseLeave?.(e)}
+      onMouseEnter={(e) => onMouseEnter?.(e)}
     >
-      {props.href ? (
-        <a href={props.href}>
-          <img src={props.image} alt={props.alt} />
+      {href ? (
+        <a href={href}>
+          <img src={image} alt={alt} />
         </a>
       ) : (
-        <img src={props.image} alt={props.alt} />
+        <img src={image} alt={alt} />
       )}
     </figure>
   );
 };
 
 export { Image };
+export type { ImageProps };

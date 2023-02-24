@@ -11,7 +11,7 @@ interface Props {
   description?: string;
 }
 
-const TestimonialCard = (props: Props) => {
+const TestimonialCard = ({ name, job, image, description }: Props) => {
   const [starsClick, setsStarsClick] = useState(1);
   const stars = Array(5).fill(0);
 
@@ -22,11 +22,11 @@ const TestimonialCard = (props: Props) => {
   return (
     <div className='testimonial-card'>
       <div className='card-header'>
-        <p className='card-name'>{props.name}</p>
-        <p className='card-job'>{props.job}</p>
+        <p className='card-name'>{name}</p>
+        <p className='card-job'>{job}</p>
       </div>
       <div className='card-avatar'>
-        <Image image={props.image} size='xxl' />
+        <Image image={image} size='xxl' />
       </div>
       <div className='rate'>
         {stars.map((_, index) => {
@@ -35,14 +35,13 @@ const TestimonialCard = (props: Props) => {
               image={starsClick > index ? StarFill : Star}
               onClick={() => handleClick(index + 1)}
               pointer={true}
-              index={index}
               key={index}
             />
           );
         })}
       </div>
       <div className='card-description'>
-        <p>{props.description}</p>
+        <p>{description}</p>
       </div>
     </div>
   );

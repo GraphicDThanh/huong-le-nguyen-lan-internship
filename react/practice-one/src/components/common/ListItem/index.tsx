@@ -1,19 +1,35 @@
-import { Image } from 'components/common/Image';
-import ListItemProps from 'interface/listItem';
+import { Image, ImageProps } from 'components/common/Image';
 import './index.css';
+import { ReactNode } from 'react';
 
-const ListItem = (props: ListItemProps) => {
-  const { tagName = 'a', weight = 'semiBold' } = props;
+interface ListItemProps extends Pick<ImageProps, 'image' | 'size' | 'href'> {
+  tagName?: 'p' | 'a';
+  classListItem?: 'hover-link';
+  href?: string;
+  title?: string;
+  weight?: 'semiBold' | 'medium';
+}
+
+const ListItem = ({
+  tagName = 'a',
+  weight = 'semiBold',
+  classListItem,
+  href,
+  title,
+  image,
+  size,
+}: ListItemProps) => {
   const TagName = tagName;
 
   return (
-    <li className={`list-item item-${weight} ${props.classListItem}`}>
-      {props.image && <Image image={props.image} size={props.size} href={props.href} />}
-      <TagName href={props.href} className='item'>
-        {props.title}
+    <li className={`list-item item-${weight} ${classListItem}`}>
+      {image && <Image image={image} size={size} href={href} />}
+      <TagName href={href} className='item'>
+        {title}
       </TagName>
     </li>
   );
 };
 
 export { ListItem };
+export type { ListItemProps };
