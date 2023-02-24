@@ -8,20 +8,15 @@ interface Props {
   onclick?: (e: React.MouseEvent) => void;
 }
 
-const ProjectCard = (props: Props) => {
+const ProjectCard = ({ name, title, background, onclick }: Props) => {
   return (
-    <div className='project-card' style={{ backgroundImage: `url(${props.background})` }}>
+    <div className='project-card' style={{ backgroundImage: `url(${background})` }}>
       <div className='card-description'>
-        <p className='card-name'>{props.name}</p>
-        <p className='card-title'>{props.title}</p>
+        <p className='card-name'>{name}</p>
+        <p className='card-title'>{title}</p>
       </div>
       <div className='card-action'>
-        <Button
-          variant='primary'
-          size='sm'
-          title='View Project'
-          onClick={(e) => props.onclick?.(e)}
-        />
+        <Button variant='primary' size='sm' title='View Project' onClick={(e) => onclick?.(e)} />
       </div>
     </div>
   );

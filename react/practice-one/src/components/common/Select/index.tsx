@@ -13,7 +13,7 @@ interface Props {
   onClick?: (e: React.MouseEvent) => void;
 }
 
-const Select = (props: Props) => {
+const Select = ({ data, selectItems, onClick }: Props) => {
   const [options, setOptions] = useState(false);
 
   const clickOpenOptions = () => {
@@ -25,18 +25,18 @@ const Select = (props: Props) => {
   return (
     <div className='select-dropdown'>
       <div className='input-select' onClick={() => clickOpenOptions()}>
-        <span className='placeholder'>{props.data.text}</span>
+        <span className='placeholder'>{data.text}</span>
         <span className='arrow-select'></span>
       </div>
       {options && (
         <div className='select-options'>
-          {props.selectItems.map((item, index) => (
+          {selectItems.map((item, index) => (
             <SelectItem
               key={index}
               text={item.text}
               value={item.value}
               onClick={(e) => {
-                props.onClick?.(e);
+                onClick?.(e);
                 setOptions(false);
               }}
             />

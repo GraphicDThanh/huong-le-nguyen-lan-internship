@@ -8,18 +8,24 @@ interface ListItemProps extends Pick<ImageProps, 'image' | 'size' | 'href'> {
   href?: string;
   title?: string;
   weight?: 'semiBold' | 'medium';
-  children?: ReactNode;
 }
 
-const ListItem = (props: ListItemProps) => {
-  const { tagName = 'a', weight = 'semiBold' } = props;
+const ListItem = ({
+  tagName = 'a',
+  weight = 'semiBold',
+  classListItem,
+  href,
+  title,
+  image,
+  size,
+}: ListItemProps) => {
   const TagName = tagName;
 
   return (
-    <li className={`list-item item-${weight} ${props.classListItem}`}>
-      {props.image && <Image image={props.image} size={props.size} href={props.href} />}
-      <TagName href={props.href} className='item'>
-        {props.title}
+    <li className={`list-item item-${weight} ${classListItem}`}>
+      {image && <Image image={image} size={size} href={href} />}
+      <TagName href={href} className='item'>
+        {title}
       </TagName>
     </li>
   );

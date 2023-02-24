@@ -12,12 +12,18 @@ interface Props {
   onClick?: (e: React.MouseEvent) => void;
 }
 
-const Button = (props: Props) => {
-  const { variant = 'primary', type = 'button', as: Component = 'button', ...rest } = props;
-
+const Button = ({
+  variant = 'primary',
+  type = 'button',
+  as: Component = 'button',
+  children,
+  title,
+  size,
+  ...rest
+}: Props) => {
   return (
-    <Component type={type} className={`btn btn-${variant} btn-${props.size}`} {...rest}>
-      {props.children || props.title}
+    <Component type={type} className={`btn btn-${variant} btn-${size}`} {...rest}>
+      {children || title}
     </Component>
   );
 };

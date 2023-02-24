@@ -12,22 +12,29 @@ interface ImageProps {
   onMouseLeave?: (e: React.MouseEvent) => void;
 }
 
-const Image = (props: ImageProps) => {
-  const { pointer = false } = props;
-
+const Image = ({
+  size,
+  href,
+  image,
+  alt,
+  pointer = false,
+  onClick,
+  onMouseEnter,
+  onMouseLeave,
+}: ImageProps) => {
   return (
     <figure
-      className={`image image-${props.size} ${pointer && 'cursor-pointer'}`}
-      onClick={(e) => props.onClick?.(e)}
-      onMouseLeave={(e) => props.onMouseLeave?.(e)}
-      onMouseEnter={(e) => props.onMouseEnter?.(e)}
+      className={`image image-${size} ${pointer && 'cursor-pointer'}`}
+      onClick={(e) => onClick?.(e)}
+      onMouseLeave={(e) => onMouseLeave?.(e)}
+      onMouseEnter={(e) => onMouseEnter?.(e)}
     >
-      {props.href ? (
-        <a href={props.href}>
-          <img src={props.image} alt={props.alt} />
+      {href ? (
+        <a href={href}>
+          <img src={image} alt={alt} />
         </a>
       ) : (
-        <img src={props.image} alt={props.alt} />
+        <img src={image} alt={alt} />
       )}
     </figure>
   );

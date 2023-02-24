@@ -7,22 +7,20 @@ interface Props extends Pick<ListItemProps, 'tagName' | 'weight' | 'size'> {
   listItem: ListItemProps[];
 }
 
-const List = (props: Props) => {
-  const { classList = 'list-column' } = props;
-
+const List = ({ listItem, classList = 'list-column', listTitle, size, tagName, weight }: Props) => {
   return (
     <ul className={`list ${classList}`}>
-      {props.listTitle && <p className='title'>{props.listTitle}</p>}
-      {props.listItem.map((item, index) => (
+      {listTitle && <p className='title'>{listTitle}</p>}
+      {listItem.map((item, index) => (
         <ListItem
           image={item.image}
-          size={props.size}
+          size={size}
           title={item.title}
-          tagName={props.tagName}
+          tagName={tagName}
           key={index}
           classListItem='hover-link'
           href={item.href}
-          weight={props.weight}
+          weight={weight}
         />
       ))}
     </ul>

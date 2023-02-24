@@ -11,19 +11,17 @@ interface Props {
   listItem: ListItemProps[];
 }
 
-const PricingCard = (props: Props) => {
-  const { price = '0' } = props;
-
+const PricingCard = ({ status, title, name, price = '0', listItem }: Props) => {
   return (
     <div className='pricing-card'>
-      {props.status && (
+      {status && (
         <div className='card-status'>
           <span className='status'>New</span>
         </div>
       )}
       <div className='card-header'>
-        <p className='card-title'>{props.title}</p>
-        <p className='card-name'>{props.name}</p>
+        <p className='card-title'>{title}</p>
+        <p className='card-name'>{name}</p>
       </div>
       <div className='card-price'>
         <p className='price'>{price}</p>
@@ -33,7 +31,7 @@ const PricingCard = (props: Props) => {
         </div>
       </div>
       <div className='card-list'>
-        <List size='md' listItem={props.listItem} tagName='p' />
+        <List size='md' listItem={listItem} tagName='p' />
       </div>
       <div className='card-action'>
         <Button variant='tertiary' size='xxl' title='Try for free' />
