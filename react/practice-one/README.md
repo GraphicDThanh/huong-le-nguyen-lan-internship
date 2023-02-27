@@ -58,7 +58,7 @@
   - Website: `$ pnpm run start`
   - Storybook: `$ pnpm run storybook`
 - Step 7:
-  - http://localhost:1234 to see the website
+  - http://127.0.0.1:5173/ to see the website
   - http://localhost:6006 to see Storybook
 
 ### Note
