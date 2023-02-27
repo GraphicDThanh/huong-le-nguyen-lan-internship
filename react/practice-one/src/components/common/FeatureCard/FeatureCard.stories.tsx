@@ -19,7 +19,6 @@ const Template: ComponentStory<typeof FeatureCard> = (args) => <FeatureCard {...
 export const Default = Template.bind({});
 Default.args = {
   image: Users,
-  size: 'xxxl',
   title: 'Peace of Mind',
   text: 'So it really behaves like neither. Now we have given up.',
 };

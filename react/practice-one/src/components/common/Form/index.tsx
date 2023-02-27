@@ -1,11 +1,15 @@
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { Select } from '../Select';
 import { Textarea } from '../Textarea';
 import './index.css';
 
-const Form = () => {
+interface Props {
+  onSubmit: (e: React.FormEvent) => void;
+}
+
+const Form = ({ onSubmit }: Props) => {
   const [data, setData] = useState({
     fullName: '',
     email: '',
@@ -66,13 +70,8 @@ const Form = () => {
     });
   };
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log('send');
-  };
-
   return (
-    <form className='form form-contact' onSubmit={(e) => onSubmit(e)}>
+    <form className='form form-contact' onSubmit={onSubmit}>
       <div className='form-group'>
         <Input
           name='fullName'
@@ -90,8 +89,8 @@ const Form = () => {
         />
       </div>
       <div className='form-group'>
-        <Select data={data.city} selectItems={listCity} onClick={(e) => handleOptionsCity(e)} />
-        <Select data={data.time} selectItems={listTime} onClick={(e) => handleOptionsTime(e)} />
+        <Select data={data.city} selectItems={listCity} onClick={handleOptionsCity} />
+        <Select data={data.time} selectItems={listTime} onClick={handleOptionsTime} />
       </div>
       <Textarea
         name='description'

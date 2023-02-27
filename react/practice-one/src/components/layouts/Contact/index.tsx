@@ -3,6 +3,11 @@ import { Typography } from 'components/common/Typography';
 import './index.css';
 
 const Contact = () => {
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('success');
+  };
+
   return (
     <div className='contact-wrapper' id='contact'>
       <div className='container'>
@@ -17,7 +22,7 @@ const Contact = () => {
           />
         </div>
         <div className='contact-content'>
-          <Form classes='form-contact' />
+          <Form onSubmit={onSubmit} />
         </div>
       </div>
     </div>

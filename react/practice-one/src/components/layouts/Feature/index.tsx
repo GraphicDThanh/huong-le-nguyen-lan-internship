@@ -13,19 +13,16 @@ const Feature = () => {
           image={Frame}
           title='Peace of Mind'
           text='So it really behaves like neither. Now we have given up.'
-          size='xl'
         />
         <FeatureCard
           image={Map}
           title='Set For Life'
           text='They were used to create the machines that launched.'
-          size='xl'
         />
         <FeatureCard
           image={Users}
           title='100% Satisfaction'
           text='So it really behaves like neither. Now we have given up.'
-          size='xl'
         />
       </div>
     </div>
