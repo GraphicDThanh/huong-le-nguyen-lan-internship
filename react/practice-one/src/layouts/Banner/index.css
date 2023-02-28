@@ -1,6 +1,6 @@
 .banner {
   padding: 85px 0 42px 0;
-  background-image: url(../../../assets/images/background-banner.jpg);
+  background-image: url(../../assets/images/background-banner.jpg);
   background-position: -58% 20%;
   background-size: 600%;
   position: relative;
@@ -52,7 +52,7 @@
 
   .banner-wrapper {
     background-size: cover;
-    background-image: url(../../../assets/images/background-banner.jpg);
+    background-image: url(../../assets/images/background-banner.jpg);
   }
 
   .banner-content {

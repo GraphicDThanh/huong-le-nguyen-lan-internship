@@ -6,11 +6,11 @@ import HaftBar from 'assets/icons/haft-bar.svg';
 import Cart from 'assets/icons/cart.svg';
 import Arrow from 'assets/icons/arrow-right.svg';
 
-import { Image } from 'components/common/Image';
-import { Logo } from 'components/common/Logo';
+import { Image } from 'components/Image';
+import { Logo } from 'components/Logo';
 import { useState } from 'react';
-import { List } from 'components/common/List';
-import { Button } from 'components/common/Button';
+import { List } from 'components/List';
+import { Button } from 'components/Button';
 
 const Header = () => {
   const [menu, setMenu] = useState(false);

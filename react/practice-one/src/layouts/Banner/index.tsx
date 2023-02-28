@@ -1,7 +1,7 @@
 import './index.css';
-import { Typography } from 'components/common/Typography';
+import { Typography } from 'components/Typography';
 import { Header } from '../Header';
-import { Button } from 'components/common/Button';
+import { Button } from 'components/Button';
 
 const Banner = () => {
   return (

@@ -1,5 +1,5 @@
-import { ProjectCard } from 'components/common/ProjectCard';
-import { Typography } from 'components/common/Typography';
+import { ProjectCard } from 'components/ProjectCard';
+import { Typography } from 'components/Typography';
 import './index.css';
 
 import Forest from 'assets/images/forest.png';

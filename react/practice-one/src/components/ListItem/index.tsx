@@ -1,6 +1,5 @@
-import { Image, ImageProps } from 'components/common/Image';
+import { Image, ImageProps } from 'components/Image';
 import './index.css';
-import { ReactNode } from 'react';
 
 interface ListItemProps extends Pick<ImageProps, 'image' | 'size' | 'href'> {
   tagName?: 'p' | 'a';

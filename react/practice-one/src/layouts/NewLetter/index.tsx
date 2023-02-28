@@ -1,5 +1,5 @@
-import { Button } from 'components/common/Button';
-import { Typography } from 'components/common/Typography';
+import { Button } from 'components/Button';
+import { Typography } from 'components/Typography';
 import './index.css';
 
 const NewLetter = () => {

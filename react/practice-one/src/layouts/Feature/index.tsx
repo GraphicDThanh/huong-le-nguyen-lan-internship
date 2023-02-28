@@ -1,4 +1,4 @@
-import { FeatureCard } from 'components/common/FeatureCard';
+import { FeatureCard } from 'components/FeatureCard';
 import './index.css';
 
 import Frame from 'assets/icons/frame.svg';

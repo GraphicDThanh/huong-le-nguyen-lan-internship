@@ -2,8 +2,8 @@ import './index.css';
 import AvatarWoman from 'assets/images/avatar-woman.png';
 import AvatarMan from 'assets/images/avatar-man.png';
 
-import { TestimonialCard } from 'components/common/TestimonialCard';
-import { Typography } from 'components/common/Typography';
+import { TestimonialCard } from 'components/TestimonialCard';
+import { Typography } from 'components/Typography';
 
 const Testimonial = () => {
   return (

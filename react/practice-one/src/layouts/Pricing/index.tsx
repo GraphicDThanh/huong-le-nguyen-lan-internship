@@ -1,5 +1,5 @@
-import { PricingCard } from 'components/common/PricingCard';
-import { Typography } from 'components/common/Typography';
+import { PricingCard } from 'components/PricingCard';
+import { Typography } from 'components/Typography';
 import './index.css';
 
 import CircleCheckFill from 'assets/icons/circle-check-fill.svg';

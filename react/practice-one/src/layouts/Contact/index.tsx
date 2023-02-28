@@ -1,5 +1,5 @@
-import { Form } from 'components/common/Form';
-import { Typography } from 'components/common/Typography';
+import { Form } from 'components/Form';
+import { Typography } from 'components/Typography';
 import './index.css';
 
 const Contact = () => {
