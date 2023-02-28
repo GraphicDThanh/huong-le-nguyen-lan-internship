@@ -19,10 +19,7 @@ const Form = ({ onSubmit }: Props) => {
     description: '',
   });
 
-  const handleOptionsCity = (e: React.MouseEvent) => {
-    const value = (e.target as HTMLButtonElement).dataset.option!;
-    const text = (e.target as HTMLButtonElement).innerHTML!;
-
+  const handleOptionsCity = (value: string, text: string) => {
     setData((prev) => {
       return {
         ...prev,
@@ -34,10 +31,7 @@ const Form = ({ onSubmit }: Props) => {
     });
   };
 
-  const handleOptionsTime = (e: React.MouseEvent) => {
-    const value = (e.target as HTMLButtonElement).dataset.option!;
-    const text = (e.target as HTMLButtonElement).innerHTML!;
-
+  const handleOptionsTime = (value: string, text: string) => {
     setData((prev) => {
       return {
         ...prev,
@@ -80,8 +74,8 @@ const Form = ({ onSubmit }: Props) => {
         />
       </div>
       <div className='form-group'>
-        <Select data={data.city} selectItems={listCity} onClick={handleOptionsCity} />
-        <Select data={data.time} selectItems={listTime} onClick={handleOptionsTime} />
+        <Select data={data.city} selectItems={listCity} onChange={handleOptionsCity} />
+        <Select data={data.time} selectItems={listTime} onChange={handleOptionsTime} />
       </div>
       <Textarea
         name='description'
