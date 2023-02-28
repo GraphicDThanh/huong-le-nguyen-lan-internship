@@ -1,3 +1,4 @@
+import { listCity, listTime } from 'constants/listData';
 import { useState } from 'react';
 import { Button } from '../Button';
 import { Input } from '../Input';
@@ -17,16 +18,6 @@ const Form = ({ onSubmit }: Props) => {
     time: { value: '', text: '4:00 Available' },
     description: '',
   });
-  const listCity = [
-    { text: 'Ho Chi Minh', value: 'hcm' },
-    { text: 'DaNang', value: 'dn' },
-    { text: 'HaNoi', value: 'hn' },
-  ];
-  const listTime = [
-    { text: '4:00 Available', value: '4pm' },
-    { text: '5:00 Available', value: '5pm' },
-    { text: '6:00 Available', value: '6pm' },
-  ];
 
   const handleOptionsCity = (e: React.MouseEvent) => {
     const value = (e.target as HTMLButtonElement).dataset.option!;

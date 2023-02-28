@@ -1,9 +1,7 @@
 import './index.css';
-import AvatarWoman from 'assets/images/avatar-woman.png';
-import AvatarMan from 'assets/images/avatar-man.png';
-
 import { TestimonialCard } from 'components/common/TestimonialCard';
 import { Typography } from 'components/common/Typography';
+import { listTestimonial } from 'constants/listData';
 
 const Testimonial = () => {
   return (
@@ -35,24 +33,16 @@ const Testimonial = () => {
           />
         </div>
         <div className='testimonial-content'>
-          <TestimonialCard
-            image={AvatarWoman}
-            description='This proved to be impossible using the traditional concepts of space and time. Einstein
-            developed a new view of time first and then space. This proved to be impossible
-            using the traditional concepts of space and time. Einstein developed a
-            new view of time first and then space.'
-            job='Designer'
-            name='Regina Miles'
-          />
-          <TestimonialCard
-            image={AvatarMan}
-            description='This proved to be impossible using the traditional concepts of space and time. Einstein
-            developed a new view of time first and then space. This proved to be impossible
-            using the traditional concepts of space and time. Einstein developed a
-            new view of time first and then space.'
-            job='Designer'
-            name='Regina Miles'
-          />
+          {listTestimonial.map((item) => (
+            <TestimonialCard
+              key={item.id}
+              image={item.image}
+              description={item.description}
+              rate={item.rate}
+              job={item.job}
+              name={item.name}
+            />
+          ))}
         </div>
       </div>
     </div>

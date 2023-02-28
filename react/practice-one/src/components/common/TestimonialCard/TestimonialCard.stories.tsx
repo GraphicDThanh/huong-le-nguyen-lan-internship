@@ -21,6 +21,7 @@ Default.args = {
   name: 'Regina Miles',
   job: 'Designer',
   image: AvatarWoman,
+  rate: 3,
   description:
     'This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space. This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space.',
 };

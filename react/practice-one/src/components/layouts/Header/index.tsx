@@ -11,15 +11,10 @@ import { Logo } from 'components/common/Logo';
 import { useState } from 'react';
 import { List } from 'components/common/List';
 import { Button } from 'components/common/Button';
+import { listMenuHeader } from 'constants/listData';
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
-  const listMenu = [
-    { title: 'Home', href: '#home' },
-    { title: 'Product', href: '#product' },
-    { title: 'Pricing', href: '#pricing' },
-    { title: 'Contact', href: '#contact' },
-  ];
   const openMenu = () => {
     setMenu((prev) => !prev);
   };
@@ -41,7 +36,7 @@ const Header = () => {
             />
           </div>
           <div className='nav-pc nav-content'>
-            <List listItem={listMenu} tagName='a' classList='list-menu' weight='medium' />
+            <List listItem={listMenuHeader} tagName='a' classList='list-menu' weight='medium' />
             <div className='btn-authentication'>
               <Button as='a' title='Login' variant='quaternary' href='#' />
               <Button variant='tertiary' size='md'>
@@ -52,7 +47,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {menu && <List listItem={listMenu} tagName='a' classList='list-menu' />}
+      {menu && <List listItem={listMenuHeader} tagName='a' classList='list-menu' />}
     </header>
   );
 };
