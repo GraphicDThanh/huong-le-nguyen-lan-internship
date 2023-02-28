@@ -209,7 +209,7 @@ const listTestimonial = [
   {
     id: 1,
     image: AvatarWoman,
-    rate: 3,
+    rate: 4,
     description:
       'This proved to be impossible using the traditional concepts of space and time. Einstein developed a new view of time first and then space. This proved to be impossible using the traditional concepts of space and time. Einstein developed anew view of time first and then space.',
     job: 'Designer',

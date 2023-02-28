@@ -37,6 +37,7 @@ const Testimonial = () => {
             <TestimonialCard
               key={item.id}
               image={item.image}
+              rate={item.rate}
               description={item.description}
               job={item.job}
               name={item.name}
