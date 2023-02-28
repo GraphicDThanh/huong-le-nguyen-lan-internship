@@ -4,8 +4,8 @@ import './index.css';
 interface ListItemProps extends Pick<ImageProps, 'image' | 'size' | 'href'> {
   tagName?: 'p' | 'a';
   classListItem?: 'hover-link';
-  primaryImage?: 'string';
-  secondaryImage?: 'string';
+  primaryImage?: string;
+  secondaryImage?: string;
   href?: string;
   title?: string;
   weight?: 'semiBold' | 'medium';

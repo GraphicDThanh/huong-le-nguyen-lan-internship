@@ -1,34 +1,9 @@
 import { PricingCard } from 'components/PricingCard';
 import { Typography } from 'components/Typography';
+import { listPricing } from 'constants/listData';
 import './index.css';
 
-import CircleCheckFill from 'assets/icons/circle-check-fill.svg';
-import CircleCheck from 'assets/icons/circle-check.svg';
-
 const Pricing = () => {
-  const listItem = [
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheckFill,
-      title: 'Unlimited product updates',
-    },
-    {
-      image: CircleCheck,
-      title: '1GB  Cloud storage',
-    },
-    {
-      image: CircleCheck,
-      title: 'Email and community support',
-    },
-  ];
-
   return (
     <div className='pricing-wrapper' id='pricing'>
       <div className='container'>
@@ -49,25 +24,16 @@ const Pricing = () => {
           />
         </div>
         <div className='pricing-content'>
-          <PricingCard
-            title='FREE'
-            name='Organize across all apps by hand'
-            price='0'
-            listItem={listItem}
-          />
-          <PricingCard
-            title='SILVER'
-            name='Organize across all apps by hand'
-            price='9.99'
-            status='new'
-            listItem={listItem}
-          />
-          <PricingCard
-            title='GOLD'
-            name='Organize across all apps by hand'
-            price='19.99'
-            listItem={listItem}
-          />
+          {listPricing.map((item) => (
+            <PricingCard
+              key={item.id}
+              title={item.title}
+              status={item.status}
+              name={item.name}
+              price={item.price}
+              listItem={item.listItem}
+            />
+          ))}
         </div>
       </div>
     </div>

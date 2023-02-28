@@ -17,4 +17,8 @@
   .form-input {
     width: 295px;
   }
+
+  .form-input::placeholder {
+    color: var(--text-color);
+  }
 }

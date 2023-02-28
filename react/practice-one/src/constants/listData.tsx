@@ -5,6 +5,7 @@ import Users from 'assets/icons/users.svg';
 import Phone from 'assets/icons/phone.svg';
 import Send from 'assets/icons/send.svg';
 import PhonePC from 'assets/icons/phone-pc.svg';
+import Target from 'assets/icons/target.svg';
 import MapPC from 'assets/icons/map-pc.svg';
 import MailPC from 'assets/icons/mail-pc.svg';
 import Forest from 'assets/images/forest.png';
@@ -15,7 +16,7 @@ import CircleCheckFill from 'assets/icons/circle-check-fill.svg';
 import CircleCheck from 'assets/icons/circle-check.svg';
 import AvatarWoman from 'assets/images/avatar-woman.png';
 import AvatarMan from 'assets/images/avatar-man.png';
-import { ListItemProps } from 'components/common/ListItem';
+import { ListItemProps } from 'components/ListItem';
 
 const listCity = [
   { text: 'Ho Chi Minh', value: 'hcm' },
@@ -40,7 +41,7 @@ const listFeature = [
   },
   {
     id: 2,
-    image: Map,
+    image: Target,
     title: 'Set For Life',
     text: 'They were used to create the machines that launched.',
   },
@@ -158,23 +159,23 @@ const listProject = [
 
 const listItem = [
   {
-    image: CircleCheckFill,
+    primaryImage: CircleCheckFill,
     title: 'Unlimited product updates',
   },
   {
-    image: CircleCheckFill,
+    primaryImage: CircleCheckFill,
     title: 'Unlimited product updates',
   },
   {
-    image: CircleCheckFill,
+    primaryImage: CircleCheckFill,
     title: 'Unlimited product updates',
   },
   {
-    image: CircleCheck,
+    primaryImage: CircleCheck,
     title: '1GB  Cloud storage',
   },
   {
-    image: CircleCheck,
+    primaryImage: CircleCheck,
     title: 'Email and community support',
   },
 ];
@@ -191,6 +192,7 @@ const listPricing = [
     id: 2,
     title: 'SILVER',
     name: 'Organize across all apps by hand',
+    status: 'new' as 'new',
     price: '9.99',
     listItem: listItem,
   },
@@ -230,6 +232,7 @@ export {
   listStars,
   listFeature,
   listProject,
+  listItem,
   listTestimonial,
   listPricing,
   listMenuFooter,

@@ -73,6 +73,22 @@ const Form = ({ onSubmit }: Props) => {
           onChange={handleOnChange}
         />
       </div>
+      <div className='form-group pc'>
+        <Input
+          name='fullName'
+          type='text'
+          value={data.fullName}
+          placeholder='Full Name *'
+          onChange={handleOnChange}
+        />
+        <Input
+          name='email'
+          type='email'
+          value={data.email}
+          placeholder='Email *'
+          onChange={handleOnChange}
+        />
+      </div>
       <div className='form-group'>
         <Select data={data.city} selectItems={listCity} onChange={handleOptionsCity} />
         <Select data={data.time} selectItems={listTime} onChange={handleOptionsTime} />

@@ -27,6 +27,7 @@
 }
 
 .new-letter-wrapper .new-letter-title p {
+  color: var(--dark-color);
   width: 200px;
 }
 
@@ -47,5 +48,9 @@
   .new-letter-wrapper .new-letter-title p,
   .new-letter-wrapper .new-letter-title h2 {
     width: max-content;
+  }
+
+  .new-letter-wrapper .new-letter-title p {
+    color: var(--text-color);
   }
 }
