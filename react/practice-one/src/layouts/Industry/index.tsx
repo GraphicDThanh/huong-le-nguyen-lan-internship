@@ -1,7 +1,11 @@
-import { ProjectCard } from 'components/common/ProjectCard';
-import { Typography } from 'components/common/Typography';
-import { listProject } from 'constants/listData';
+import { ProjectCard } from 'components/ProjectCard';
+import { Typography } from 'components/Typography';
 import './index.css';
+
+import Forest from 'assets/images/forest.png';
+import SkyStar from 'assets/images/sky-star.png';
+import Economy from 'assets/images/economy.png';
+import Chart from 'assets/images/chart.png';
 
 const Industry = () => {
   return (
@@ -33,14 +37,26 @@ const Industry = () => {
           />
         </div>
         <div className='industry-content'>
-          {listProject.map((item) => (
-            <ProjectCard
-              key={item.id}
-              background={item.background}
-              name={item.name}
-              title={item.title}
-            />
-          ))}
+          <ProjectCard
+            background={Forest}
+            name='Tax Management'
+            title='Life Tips From Top Ten Adventure Travelers'
+          />
+          <ProjectCard
+            background={SkyStar}
+            name='Tax Management'
+            title='Life Tips From Top Ten Adventure Travelers'
+          />
+          <ProjectCard
+            background={Economy}
+            name='Tax Management'
+            title='Life Tips From Top Ten Adventure Travelers'
+          />
+          <ProjectCard
+            background={Chart}
+            name='Tax Management'
+            title='Life Tips From Top Ten Adventure Travelers'
+          />
         </div>
       </div>
     </div>

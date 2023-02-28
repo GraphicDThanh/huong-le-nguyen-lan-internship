@@ -1,6 +1,6 @@
-import { List } from 'components/common/List';
-import { Typography } from 'components/common/Typography';
-import { Image } from 'components/common/Image';
+import { List } from 'components/List';
+import { Typography } from 'components/Typography';
+import { Image } from 'components/Image';
 import './index.css';
 
 import Facebook from 'assets/icons/facebook.svg';

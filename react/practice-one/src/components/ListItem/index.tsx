@@ -1,4 +1,4 @@
-import { Image, ImageProps } from 'components/common/Image';
+import { Image, ImageProps } from 'components/Image';
 import './index.css';
 
 interface ListItemProps extends Pick<ImageProps, 'image' | 'size' | 'href'> {
