@@ -12,14 +12,14 @@ const HomePage = () => {
   return (
     <div className='home-page'>
       <Banner />
-      <body className='main-content'>
+      <section className='main-content'>
         <Testimonial />
         <Feature />
         <Industry />
         <Pricing />
         <Contact />
         <NewLetter />
-      </body>
+      </section>
       <Footer />
     </div>
   );

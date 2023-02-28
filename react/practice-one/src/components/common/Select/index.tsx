@@ -22,24 +22,21 @@ const Select = ({ data, selectItems, onClick }: Props) => {
     });
   };
 
+  const handleOnClick = (e: React.MouseEvent) => {
+    onClick?.(e);
+    setOptions(false);
+  };
+
   return (
     <div className='select-dropdown'>
-      <div className='input-select' onClick={() => clickOpenOptions()}>
+      <div className='input-select' onClick={clickOpenOptions}>
         <span className='placeholder'>{data.text}</span>
         <span className='arrow-select'></span>
       </div>
       {options && (
         <div className='select-options'>
           {selectItems.map((item, index) => (
-            <SelectItem
-              key={index}
-              text={item.text}
-              value={item.value}
-              onClick={(e) => {
-                onClick?.(e);
-                setOptions(false);
-              }}
-            />
+            <SelectItem key={index} text={item.text} value={item.value} onClick={handleOnClick} />
           ))}
         </div>
       )}

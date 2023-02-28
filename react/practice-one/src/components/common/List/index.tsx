@@ -13,7 +13,8 @@ const List = ({ listItem, classList = 'list-column', listTitle, size, tagName, w
       {listTitle && <p className='title'>{listTitle}</p>}
       {listItem.map((item, index) => (
         <ListItem
-          image={item.image}
+          primaryImage={item.primaryImage}
+          secondaryImage={item.secondaryImage}
           size={size}
           title={item.title}
           tagName={tagName}

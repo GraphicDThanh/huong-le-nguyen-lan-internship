@@ -8,7 +8,7 @@ interface Props {
 
 const SelectItem = ({ value, text, onClick }: Props) => {
   return (
-    <span className='option' data-option={value} onClick={(e: React.MouseEvent) => onClick?.(e)}>
+    <span className='option' data-option={value} onClick={onClick}>
       {text}
     </span>
   );

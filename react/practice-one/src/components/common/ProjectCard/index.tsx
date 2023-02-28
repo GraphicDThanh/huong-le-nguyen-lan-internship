@@ -16,7 +16,7 @@ const ProjectCard = ({ name, title, background, onclick }: Props) => {
         <p className='card-title'>{title}</p>
       </div>
       <div className='card-action'>
-        <Button variant='primary' size='sm' title='View Project' onClick={(e) => onclick?.(e)} />
+        <Button variant='primary' size='sm' title='View Project' onClick={onclick} />
       </div>
     </div>
   );
