@@ -14,7 +14,7 @@ const NewLetter = () => {
             size='md'
             weight='bold'
           />
-          <Typography text='the quick fox jumps over the lazy dog' size='nor' color='secondary' />
+          <Typography text='the quick fox jumps over the lazy dog' size='nor' />
         </div>
         <div className='new-letter-content'>
           <Button variant='tertiary' title='Contact Us' size='lg' />
