@@ -1,36 +1,27 @@
-import { FunctionAndClassComponents, Welcome } from './exercises/componentsAndProps';
+import { FunctionAndClassComponents, Welcome } from 'exercises/componentsAndProps';
+import { SignUpDialog } from 'exercises/compositionVSInheritance';
+import { Greeting, LoginControl, Mailbox } from 'exercises/conditionalRendering';
+import NameForm from 'exercises/form1';
+import EssageForm from 'exercises/form2';
+import FlavorForm from 'exercises/form3';
+import FileInput from 'exercises/form4';
+import Reservation from 'exercises/form5';
+import { Form, FormElement, Toggle } from 'exercises/handlingEvents';
 import {
   EmbeddingExpressionJSX,
-  SpecifyingChildrenWithJSX,
   RepresentsObjects,
-} from './exercises/introducingJSX';
-import Tick from './exercises/renderingElements';
-import { Comment } from './exercises/componentsAndProps';
-import { Clock, Clocks } from './exercises/stateAndLifecycle';
-import { Form, FormElement, Toggle } from './exercises/handlingEvents';
-import { Greeting, LoginControl, Mailbox } from './exercises/conditionalRendering';
-import Page from './exercises/preventingComponentFromRendering';
-import Number from './exercises/listsAndKeys';
-import { TodoTasks, NumberList, Blog } from './exercises/keys';
-import NameForm from './exercises/form1';
-import EssageForm from './exercises/form2';
-import FlavorForm from './exercises/form3';
-import FileInput from './exercises/form4';
-import Reservation from './exercises/form5';
-import Calculator from './exercises/liftingStateUp';
-import { TemperatureInput } from './exercises/liftingStateUp2';
-import { WelcomeDialog, SignUpDialog } from './exercises/compositionVSInheritance';
+  SpecifyingChildrenWithJSX,
+} from 'exercises/introducingJSX';
+import { Blog, NumberList, TodoTasks } from 'exercises/keys';
+import Calculator from 'exercises/liftingStateUp';
+import { TemperatureInput } from 'exercises/liftingStateUp2';
+import Number from 'exercises/listsAndKeys';
+import Page from 'exercises/preventingComponentFromRendering';
+import Tick from 'exercises/renderingElements';
+import { Clock, Clocks } from 'exercises/stateAndLifecycle';
+import { Example } from 'hooks/state';
 
 function App() {
-  const data = {
-    author: {
-      avatarUrl: 'https://i.stack.imgur.com/ONspp.png',
-      name: 'Sara',
-    },
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    date: new Date().toLocaleString(),
-  };
-
   const messages = ['React', 'Re: React', 'Re:Re: React'];
   const numbers = [1, 2, 3, 4, 5];
   const posts = [
@@ -58,13 +49,12 @@ function App() {
 
   return (
     <div className='App'>
-      <label htmlFor=''>Calculator</label>
+      <p>Calculator</p>
       <Calculator />
       <br />
       <TemperatureInput scale='c' />
       <TemperatureInput scale='f' />
       <br />
-      <WelcomeDialog />
       <SignUpDialog />
       <EmbeddingExpressionJSX />
       <SpecifyingChildrenWithJSX />
@@ -74,7 +64,6 @@ function App() {
       <Welcome name='Sara' />
       <Welcome name='Cahal' />
       <Welcome name='Edite' />
-      <Comment {...data} />
       <Clock />
       <Form />
       <FormElement />
@@ -96,6 +85,8 @@ function App() {
       <FileInput />
       <br />
       <Reservation />
+      <h1>HOOKS</h1>
+      <Example />
     </div>
   );
 }
