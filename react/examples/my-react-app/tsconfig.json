@@ -20,7 +20,11 @@
     "experimentalDecorators": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "src",
+    "paths": {
+      "": ["./"]
+    }
   },
   "include": ["*/.ts", "*/.tsx", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
