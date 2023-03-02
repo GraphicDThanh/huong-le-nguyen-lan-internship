@@ -19,7 +19,11 @@ import Number from 'exercises/listsAndKeys';
 import Page from 'exercises/preventingComponentFromRendering';
 import Tick from 'exercises/renderingElements';
 import { Clock, Clocks } from 'exercises/stateAndLifecycle';
+import { ExampleContext } from 'hooks/Context/ExampleContext';
+import { ThemeProvider } from 'hooks/Context/ThemeProvider';
 import { Example } from 'hooks/state';
+import { Count } from 'hooks/useEffect';
+import './App.css';
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -87,6 +91,10 @@ function App() {
       <Reservation />
       <h1>HOOKS</h1>
       <Example />
+      <Count />
+      <ThemeProvider>
+        <ExampleContext />
+      </ThemeProvider>
     </div>
   );
 }
