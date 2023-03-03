@@ -30,12 +30,21 @@
       "@typescript-eslint/parser": [".ts", ".tsx"]
     }
   },
+  "env": {
+    "browser": true,
+    "node": true
+  },
   "rules": {
     "prettier/prettier": ["error"],
+    "@typescript-eslint/ban-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/state-in-constructor": "off",
     "import/prefer-default-export": "off",
     "react/function-component-definition": "off",
     "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "off",
     "import/extensions": "off"
   }
 }
