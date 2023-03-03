@@ -21,8 +21,12 @@ import Tick from 'exercises/renderingElements';
 import { Clock, Clocks } from 'exercises/stateAndLifecycle';
 import { ExampleContext } from 'hooks/Context/ExampleContext';
 import { ThemeProvider } from 'hooks/Context/ThemeProvider';
+import { Container } from 'hooks/Memo/Container';
 import { Example } from 'hooks/state';
+import { ContainerUseCallback } from 'hooks/UseCallback/ContainerUseCallback';
 import { Count } from 'hooks/useEffect';
+import { ContainerUseMemo } from 'hooks/UseMemo/ContainerUseMemo';
+import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
 
 function App() {
@@ -95,6 +99,18 @@ function App() {
       <ThemeProvider>
         <ExampleContext />
       </ThemeProvider>
+      <UseRefDemo />
+      <TextInputWithFocusButton />
+      <UseRefTest />
+      <br />
+      <br />
+      <Container />
+      <br />
+      <br />
+      <ContainerUseCallback />
+      <br />
+      <br />
+      <ContainerUseMemo />
     </div>
   );
 }
