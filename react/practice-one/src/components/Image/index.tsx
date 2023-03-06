@@ -25,9 +25,9 @@ const Image = ({
   return (
     <figure
       className={`image image-${size} ${pointer && 'cursor-pointer'}`}
-      onClick={(e) => onClick?.(e)}
-      onMouseLeave={(e) => onMouseLeave?.(e)}
-      onMouseEnter={(e) => onMouseEnter?.(e)}
+      onClick={onClick}
+      onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter}
     >
       {href ? (
         <a href={href}>

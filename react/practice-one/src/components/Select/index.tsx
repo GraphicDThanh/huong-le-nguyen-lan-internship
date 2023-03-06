@@ -4,16 +4,16 @@ import './index.css';
 
 interface SelectItems {
   text: string;
-  value: string | number;
+  value: string;
 }
 
 interface Props {
   data: SelectItems;
   selectItems: SelectItems[];
-  onClick?: (e: React.MouseEvent) => void;
+  onChange: (value: string, text: string) => void;
 }
 
-const Select = ({ data, selectItems, onClick }: Props) => {
+const Select = ({ data, selectItems, onChange }: Props) => {
   const [options, setOptions] = useState(false);
 
   const clickOpenOptions = () => {
@@ -22,24 +22,21 @@ const Select = ({ data, selectItems, onClick }: Props) => {
     });
   };
 
+  const handleClickItem = (value: string, text: string) => {
+    setOptions(false);
+    onChange?.(value, text);
+  };
+
   return (
     <div className='select-dropdown'>
-      <div className='input-select' onClick={() => clickOpenOptions()}>
+      <div className='input-select' onClick={clickOpenOptions}>
         <span className='placeholder'>{data.text}</span>
         <span className='arrow-select'></span>
       </div>
       {options && (
         <div className='select-options'>
           {selectItems.map((item, index) => (
-            <SelectItem
-              key={index}
-              text={item.text}
-              value={item.value}
-              onClick={(e) => {
-                onClick?.(e);
-                setOptions(false);
-              }}
-            />
+            <SelectItem key={index} text={item.text} value={item.value} onClick={handleClickItem} />
           ))}
         </div>
       )}

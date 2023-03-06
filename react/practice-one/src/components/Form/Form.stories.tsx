@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React from 'react';
 import { Form } from './index';
 
 export default {
@@ -14,10 +15,12 @@ export default {
 } as ComponentMeta<typeof Form>;
 
 const Template: ComponentStory<typeof Form> = () => {
-  return <Form />;
+  const onSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('success');
+  };
+
+  return <Form onSubmit={onSubmit} />;
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  classes: 'form-contact',
-};

@@ -1,11 +1,16 @@
-import { FormEvent, useState } from 'react';
+import { listCity, listTime } from 'constants/listData';
+import { useState } from 'react';
 import { Button } from '../Button';
 import { Input } from '../Input';
 import { Select } from '../Select';
 import { Textarea } from '../Textarea';
 import './index.css';
 
-const Form = () => {
+interface Props {
+  onSubmit: (e: React.FormEvent) => void;
+}
+
+const Form = ({ onSubmit }: Props) => {
   const [data, setData] = useState({
     fullName: '',
     email: '',
@@ -13,21 +18,8 @@ const Form = () => {
     time: { value: '', text: '4:00 Available' },
     description: '',
   });
-  const listCity = [
-    { text: 'Ho Chi Minh', value: 'hcm' },
-    { text: 'DaNang', value: 'dn' },
-    { text: 'HaNoi', value: 'hn' },
-  ];
-  const listTime = [
-    { text: '4:00 Available', value: '4pm' },
-    { text: '5:00 Available', value: '5pm' },
-    { text: '6:00 Available', value: '6pm' },
-  ];
 
-  const handleOptionsCity = (e: React.MouseEvent) => {
-    const value = (e.target as HTMLButtonElement).dataset.option!;
-    const text = (e.target as HTMLButtonElement).innerHTML!;
-
+  const handleOptionsCity = (value: string, text: string) => {
     setData((prev) => {
       return {
         ...prev,
@@ -39,10 +31,7 @@ const Form = () => {
     });
   };
 
-  const handleOptionsTime = (e: React.MouseEvent) => {
-    const value = (e.target as HTMLButtonElement).dataset.option!;
-    const text = (e.target as HTMLButtonElement).innerHTML!;
-
+  const handleOptionsTime = (value: string, text: string) => {
     setData((prev) => {
       return {
         ...prev,
@@ -66,13 +55,8 @@ const Form = () => {
     });
   };
 
-  const onSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log('send');
-  };
-
   return (
-    <form className='form form-contact' onSubmit={(e) => onSubmit(e)}>
+    <form className='form form-contact' onSubmit={onSubmit}>
       <div className='form-group'>
         <Input
           name='fullName'
@@ -89,9 +73,25 @@ const Form = () => {
           onChange={handleOnChange}
         />
       </div>
+      <div className='form-group pc'>
+        <Input
+          name='fullName'
+          type='text'
+          value={data.fullName}
+          placeholder='Full Name *'
+          onChange={handleOnChange}
+        />
+        <Input
+          name='email'
+          type='email'
+          value={data.email}
+          placeholder='Email *'
+          onChange={handleOnChange}
+        />
+      </div>
       <div className='form-group'>
-        <Select data={data.city} selectItems={listCity} onClick={(e) => handleOptionsCity(e)} />
-        <Select data={data.time} selectItems={listTime} onClick={(e) => handleOptionsTime(e)} />
+        <Select data={data.city} selectItems={listCity} onChange={handleOptionsCity} />
+        <Select data={data.time} selectItems={listTime} onChange={handleOptionsTime} />
       </div>
       <Textarea
         name='description'

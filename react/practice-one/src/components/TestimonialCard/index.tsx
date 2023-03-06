@@ -1,23 +1,18 @@
 import { Image } from '../Image';
 import './index.css';
-import Star from 'assets/icons/star.svg';
 import StarFill from 'assets/icons/star-fill.svg';
-import { useState } from 'react';
+import { listStars } from 'constants/listData';
 
 interface Props {
   name?: string;
   job?: string;
+  rate?: number;
   image?: string;
   description?: string;
 }
 
-const TestimonialCard = ({ name, job, image, description }: Props) => {
-  const [starsClick, setsStarsClick] = useState(1);
-  const stars = Array(5).fill(0);
-
-  const handleClick = (value: number) => {
-    setsStarsClick(value);
-  };
+const TestimonialCard = ({ name, job, image, rate, description }: Props) => {
+  const stars = listStars.fill(StarFill, 0, rate);
 
   return (
     <div className='testimonial-card'>
@@ -29,15 +24,8 @@ const TestimonialCard = ({ name, job, image, description }: Props) => {
         <Image image={image} size='xxl' />
       </div>
       <div className='rate'>
-        {stars.map((_, index) => {
-          return (
-            <Image
-              image={starsClick > index ? StarFill : Star}
-              onClick={() => handleClick(index + 1)}
-              pointer={true}
-              key={index}
-            />
-          );
+        {stars.map((item, index) => {
+          return <Image image={item} key={index} />;
         })}
       </div>
       <div className='card-description'>
