@@ -1,0 +1,33 @@
+.contact-wrapper {
+  padding: 118px 60px 118px 60px;
+  background-image: url('../../assets/images/background-family.jpg');
+  background-position: 54%;
+  background-repeat: no-repeat;
+  background-size: 500%;
+}
+
+.contact-wrapper .contact-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-wrapper .contact-title h2 {
+  text-align: inherit;
+  padding-left: 10px;
+}
+
+.contact-wrapper .contact-content {
+  padding-top: 40px;
+}
+
+@media screen and (min-width: 1440px) {
+  .contact-wrapper {
+    padding: 90px 0;
+    background-size: 100%;
+  }
+
+  .contact-wrapper .contact-title h2 {
+    padding: 0;
+  }
+}

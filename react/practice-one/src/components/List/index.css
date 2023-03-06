@@ -1,0 +1,75 @@
+.list {
+  display: flex;
+  gap: 10px;
+}
+
+.list .title {
+  width: max-content;
+  color: var(--white);
+  font-family: var(--font-bold), var(--font-default);
+  padding-bottom: 10px;
+}
+
+.list.list-column {
+  flex-direction: column;
+}
+
+.list.list-row {
+  flex-direction: row;
+  gap: 20px;
+}
+
+.list-menu {
+  background-color: var(--dark-color);
+  flex-direction: column;
+  gap: 0;
+}
+
+.list-menu .list-item {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.list-menu .list-item:hover {
+  background-color: var(--dark-color-lighter);
+}
+
+.list-menu .list-item a {
+  font-family: var(--font-medium), var(--font-default);
+  font-size: var(--big);
+}
+
+.list-menu .title,
+.list-menu .list-item {
+  width: 100%;
+}
+
+@media screen and (min-width: 1440px) {
+  .list-menu .title,
+  .list-menu .list-item {
+    width: max-content;
+  }
+
+  .list-menu,
+  .list-menu .list-item:hover {
+    background-color: transparent;
+  }
+
+  .list-menu {
+    font-family: var(--font-semiBold), var(--font-default);
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .list-menu .list-item a {
+    font-size: var(--normal);
+  }
+
+  .list-menu .list-item a:hover {
+    color: var(--primary-color);
+  }
+}

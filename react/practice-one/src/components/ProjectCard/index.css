@@ -1,0 +1,35 @@
+.project-card {
+  width: 330px;
+  height: 452px;
+  padding: 30px 20px 35px 28px;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  background-size: cover;
+}
+
+.project-card .card-description {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  gap: 20px;
+}
+
+.project-card .card-description .card-name {
+  font-family: var(--font-medium), var(--font-default);
+  font-size: var(--normal);
+}
+
+.project-card .card-description .card-title {
+  font-family: var(--font-bold), var(--font-default);
+  font-size: var(--medium);
+  line-height: 32px;
+}
+
+@media screen and (min-width: 1440px) {
+  .project-card {
+    padding: 15px 20px 12px 15px;
+  }
+}

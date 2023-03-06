@@ -1,0 +1,38 @@
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content .feature-wrapper {
+  order: 1;
+}
+
+.main-content .testimonial-wrapper {
+  order: 2;
+}
+
+.main-content .industry-wrapper {
+  order: 3;
+}
+
+.main-content .pricing-wrapper {
+  order: 4;
+}
+
+.main-content .contact-wrapper {
+  order: 5;
+}
+
+.main-content .new-letter-wrapper {
+  order: 6;
+}
+
+@media screen and (min-width: 1440px) {
+  .main-content .feature-wrapper {
+    order: 2;
+  }
+
+  .main-content .testimonial-wrapper {
+    order: 1;
+  }
+}
