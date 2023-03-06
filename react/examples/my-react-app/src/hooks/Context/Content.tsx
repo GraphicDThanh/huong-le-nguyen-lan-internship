@@ -1,4 +1,4 @@
-import { Paragraph } from './Paragrapth';
+import { Paragraph } from './Paragraph';
 
 const Content = () => (
   <div>

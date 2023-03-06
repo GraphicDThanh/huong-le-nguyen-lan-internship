@@ -5,7 +5,7 @@ interface State {
   price: string;
 }
 
-const ContainerUseMemo = () => {
+const ExampleUseMemo = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
   const [products, setProducts] = useState<State[]>([]);
@@ -51,4 +51,4 @@ const ContainerUseMemo = () => {
   );
 };
 
-export { ContainerUseMemo };
+export { ExampleUseMemo };

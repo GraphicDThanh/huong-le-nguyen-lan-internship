@@ -21,11 +21,15 @@ import Tick from 'exercises/renderingElements';
 import { Clock, Clocks } from 'exercises/stateAndLifecycle';
 import { ExampleContext } from 'hooks/Context/ExampleContext';
 import { ThemeProvider } from 'hooks/Context/ThemeProvider';
+import { BoxProvider } from 'hooks/Context2/BoxProvider';
+import { ComponentBox } from 'hooks/Context2/ComponentBox';
 import { Container } from 'hooks/Memo/Container';
 import { Example } from 'hooks/state';
-import { ContainerUseCallback } from 'hooks/UseCallback/ContainerUseCallback';
+import { ExampleUseCallback } from 'hooks/UseCallback/ExampleUseCallback';
 import { Count } from 'hooks/useEffect';
-import { ContainerUseMemo } from 'hooks/UseMemo/ContainerUseMemo';
+import { ExampleUseMemo } from 'hooks/UseMemo/ExampleUseMemo';
+import { ExampleReducer } from 'hooks/useReducer/exampleReducer';
+import { TodoList } from 'hooks/useReducer/todo';
 import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
 
@@ -107,10 +111,23 @@ function App() {
       <Container />
       <br />
       <br />
-      <ContainerUseCallback />
+      <ExampleUseCallback />
       <br />
       <br />
-      <ContainerUseMemo />
+      <ExampleUseMemo />
+      <br />
+      <br />
+      <ExampleReducer />
+      <br />
+      <br />
+      <TodoList />
+      <br />
+      <br />
+      <br />
+      <br />
+      <BoxProvider>
+        <ComponentBox />
+      </BoxProvider>
     </div>
   );
 }
