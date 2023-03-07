@@ -50,7 +50,7 @@ const reducerTodo = (
 
 const TodoList = () => {
   const [state, dispatch] = useReducer(reducerTodo, initStateTodoList);
-  const { job, jobs } = state as { job: string; jobs: [] };
+  const { job, jobs } = state;
   const handleSubmit = () => {
     dispatch(addJob(job));
     dispatch(setJob(''));

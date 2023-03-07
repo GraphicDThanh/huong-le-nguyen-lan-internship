@@ -6,7 +6,7 @@ const ComponentWrapper = () => {
   const { changeColor, handleChangeColor } = useContext(BoxContext);
   console.log('wrapper');
 
-  return <Component2 changeColor={changeColor} handleChangeColor={handleChangeColor!} />;
+  return <Component2 changeColor={changeColor!} handleChangeColor={handleChangeColor!} />;
 };
 
 export { ComponentWrapper };
