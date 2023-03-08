@@ -8,7 +8,7 @@ import { Provider2 } from './Provider2';
 
 const Box = () => {
   const context = useContext(WrapContext);
-  const { handleSetText, text } = context;
+  const { text } = context;
   console.log('render-parent');
 
   return (
@@ -25,9 +25,6 @@ const Box = () => {
           <Com4 />
         </Provider2>
       </div>
-      <button type='button' onClick={handleSetText}>
-        Change Text
-      </button>
     </div>
   );
 };

@@ -28,6 +28,7 @@ import { ComponentBox2 } from 'hooks/Context3/ComponentBox';
 import { WrapperProvider } from 'hooks/Context3/WrapperProvider';
 import { Box } from 'hooks/Context4/Box';
 import { Provider } from 'hooks/Context4/Provider';
+import { ContainerAPI } from 'hooks/ExampleFetchAPI/ContainerAPI';
 import { Container } from 'hooks/Memo/Container';
 import { Example } from 'hooks/state';
 import { ExampleUseCallback } from 'hooks/UseCallback/ExampleUseCallback';
@@ -148,6 +149,7 @@ function App() {
       <Provider>
         <Box />
       </Provider>
+      <ContainerAPI />
     </div>
   );
 }
