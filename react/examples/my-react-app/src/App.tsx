@@ -1,36 +1,45 @@
-import { FunctionAndClassComponents, Welcome } from './exercises/componentsAndProps';
+import { FunctionAndClassComponents, Welcome } from 'exercises/componentsAndProps';
+import { SignUpDialog } from 'exercises/compositionVSInheritance';
+import { Greeting, LoginControl, Mailbox } from 'exercises/conditionalRendering';
+import NameForm from 'exercises/form1';
+import EssageForm from 'exercises/form2';
+import FlavorForm from 'exercises/form3';
+import FileInput from 'exercises/form4';
+import Reservation from 'exercises/form5';
+import { Form, FormElement, Toggle } from 'exercises/handlingEvents';
 import {
   EmbeddingExpressionJSX,
-  SpecifyingChildrenWithJSX,
   RepresentsObjects,
-} from './exercises/introducingJSX';
-import Tick from './exercises/renderingElements';
-import { Comment } from './exercises/componentsAndProps';
-import { Clock, Clocks } from './exercises/stateAndLifecycle';
-import { Form, FormElement, Toggle } from './exercises/handlingEvents';
-import { Greeting, LoginControl, Mailbox } from './exercises/conditionalRendering';
-import Page from './exercises/preventingComponentFromRendering';
-import Number from './exercises/listsAndKeys';
-import { TodoTasks, NumberList, Blog } from './exercises/keys';
-import NameForm from './exercises/form1';
-import EssageForm from './exercises/form2';
-import FlavorForm from './exercises/form3';
-import FileInput from './exercises/form4';
-import Reservation from './exercises/form5';
-import Calculator from './exercises/liftingStateUp';
-import { TemperatureInput } from './exercises/liftingStateUp2';
-import { WelcomeDialog, SignUpDialog } from './exercises/compositionVSInheritance';
+  SpecifyingChildrenWithJSX,
+} from 'exercises/introducingJSX';
+import { Blog, NumberList, TodoTasks } from 'exercises/keys';
+import Calculator from 'exercises/liftingStateUp';
+import { TemperatureInput } from 'exercises/liftingStateUp2';
+import Number from 'exercises/listsAndKeys';
+import Page from 'exercises/preventingComponentFromRendering';
+import Tick from 'exercises/renderingElements';
+import { Clock, Clocks } from 'exercises/stateAndLifecycle';
+import { ExampleContext } from 'hooks/Context/ExampleContext';
+import { ThemeProvider } from 'hooks/Context/ThemeProvider';
+import { BoxProvider } from 'hooks/Context2/BoxProvider';
+import { ComponentBox } from 'hooks/Context2/ComponentBox';
+import { BoxProvider2 } from 'hooks/Context3/BoxProvider';
+import { ComponentBox2 } from 'hooks/Context3/ComponentBox';
+import { WrapperProvider } from 'hooks/Context3/WrapperProvider';
+import { Box } from 'hooks/Context4/Box';
+import { Provider } from 'hooks/Context4/Provider';
+import { ContainerAPI } from 'hooks/ExampleFetchAPI/ContainerAPI';
+import { Container } from 'hooks/Memo/Container';
+import { Example } from 'hooks/state';
+import { ExampleUseCallback } from 'hooks/UseCallback/ExampleUseCallback';
+import { Count } from 'hooks/useEffect/useEffect';
+import { ExampleUseMemo } from 'hooks/UseMemo/ExampleUseMemo';
+import { ExampleReducer } from 'hooks/useReducer/exampleReducer';
+import { TodoList } from 'hooks/useReducer/todo';
+import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
+import './App.css';
 
 function App() {
-  const data = {
-    author: {
-      avatarUrl: 'https://i.stack.imgur.com/ONspp.png',
-      name: 'Sara',
-    },
-    text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-    date: new Date().toLocaleString(),
-  };
-
   const messages = ['React', 'Re: React', 'Re:Re: React'];
   const numbers = [1, 2, 3, 4, 5];
   const posts = [
@@ -58,13 +67,12 @@ function App() {
 
   return (
     <div className='App'>
-      <label htmlFor=''>Calculator</label>
+      <p>Calculator</p>
       <Calculator />
       <br />
       <TemperatureInput scale='c' />
       <TemperatureInput scale='f' />
       <br />
-      <WelcomeDialog />
       <SignUpDialog />
       <EmbeddingExpressionJSX />
       <SpecifyingChildrenWithJSX />
@@ -74,7 +82,6 @@ function App() {
       <Welcome name='Sara' />
       <Welcome name='Cahal' />
       <Welcome name='Edite' />
-      <Comment {...data} />
       <Clock />
       <Form />
       <FormElement />
@@ -96,6 +103,53 @@ function App() {
       <FileInput />
       <br />
       <Reservation />
+      <h1>HOOKS</h1>
+      <Example />
+      <Count />
+      <ThemeProvider>
+        <ExampleContext />
+      </ThemeProvider>
+      <UseRefDemo />
+      <TextInputWithFocusButton />
+      <UseRefTest />
+      <br />
+      <br />
+      <Container />
+      <br />
+      <br />
+      <ExampleUseCallback />
+      <br />
+      <br />
+      <ExampleUseMemo />
+      <br />
+      <br />
+      <ExampleReducer />
+      <br />
+      <br />
+      <TodoList />
+      <br />
+      <br />
+      <br />
+      <br />
+      <BoxProvider>
+        <ComponentBox />
+      </BoxProvider>
+      <br />
+      <br />
+      <br />
+      <br />
+      <WrapperProvider>
+        <BoxProvider2>
+          <ComponentBox2 />
+        </BoxProvider2>
+      </WrapperProvider>
+      <br />
+      <br />
+      <br />
+      <Provider>
+        <Box />
+      </Provider>
+      <ContainerAPI />
     </div>
   );
 }
