@@ -1,0 +1,23 @@
+:root {
+  /* Color */
+  --primary-color: #00072b;
+  --secondary-color: #454d59;
+  --tertiary-color: #0c0033;
+  --success-color: #7fc008;
+  --warning-color: #db303f;
+  --light-color: #c9cfda;
+  --fade-color: #dfe2e9;
+  --hover-fade-color: #f3f1f1;
+  --white: #fff;
+
+  /* Font-size */
+  --large: 60px;
+  --normal: 14px;
+  --small: 12px;
+
+  /* Font-family */
+  --font-regular: 'openSans-regular';
+  --font-semiBold: 'openSans-semiBold';
+  --font-bold: 'openSans-bold';
+  --font-default: 'Tahoma, sans-serif';
+}
