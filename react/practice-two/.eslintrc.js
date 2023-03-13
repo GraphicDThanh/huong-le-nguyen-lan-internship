@@ -77,6 +77,8 @@ module.exports = {
       },
     ],
     'no-shadow': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
     '@typescript-eslint/no-shadow': ['error'],
     'react/jsx-no-useless-fragment': [2, { allowExpressions: true }],
   },
