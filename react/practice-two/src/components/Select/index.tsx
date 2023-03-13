@@ -12,8 +12,7 @@ interface SelectProps {
 const Select = ({ valueSelected, onChange, name, options }: SelectProps) => {
   return (
     <select className='select-wrapper' name={name} value={valueSelected} onChange={onChange}>
-      {options &&
-        options.map((item) => <SelectItem text={item.text} value={item.value} key={item.id} />)}
+      {options && options.map((item) => <SelectItem name={item.name} key={item.id} />)}
     </select>
   );
 };

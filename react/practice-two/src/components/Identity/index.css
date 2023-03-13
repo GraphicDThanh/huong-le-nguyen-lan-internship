@@ -5,3 +5,7 @@
   align-items: center;
   gap: 12px;
 }
+
+.identity-wrapper span {
+  width: 70%;
+}
