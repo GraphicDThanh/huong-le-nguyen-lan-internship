@@ -1,0 +1,35 @@
+.typography {
+  font-family: var(--font-default);
+}
+
+.typography.typography-color-primary {
+  color: var(--primary-color);
+}
+
+.typography.typography-color-tertiary {
+  color: var(--tertiary-color);
+}
+
+.typography.typography-size-lg {
+  font-size: var(--large);
+}
+
+.typography.typography-size-nor {
+  font-size: var(--normal);
+}
+
+.typography.typography-size-sm {
+  font-size: var(--small);
+}
+
+.typography.typography-weight-regular {
+  font-family: var(--font-regular);
+}
+
+.typography.typography-weight-bold {
+  font-family: var(--font-bold);
+}
+
+.typography.typography-weight-semiBold {
+  font-family: var(--font-semiBold);
+}

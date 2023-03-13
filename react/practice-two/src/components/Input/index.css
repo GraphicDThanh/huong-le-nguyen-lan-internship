@@ -1,0 +1,12 @@
+.text-input {
+  width: 100%;
+  padding-top: 8px;
+  border: none;
+  outline: none;
+  font-family: var(--font-regular), var(--font-default);
+}
+
+.text-input::placeholder {
+  color: var(--light-color);
+  font-size: var(--normal);
+}
