@@ -10,6 +10,9 @@
   --hover-fade-color: #f3f1f1;
   --white: #fff;
 
+  /* Background color */
+  --background-opacity: rgba(14, 14, 15, 0.4);
+
   /* Font-size */
   --large: 60px;
   --normal: 14px;
