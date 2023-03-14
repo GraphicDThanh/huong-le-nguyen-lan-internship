@@ -5,7 +5,7 @@ interface ImageProps {
   image: string;
   variant?: 'circle';
   alt?: string;
-  size: 'normal' | 'small';
+  size: 'normal' | 'small' | 'large';
   cursorPointer?: boolean;
   onClick?: (e: MouseEvent) => void;
 }
