@@ -1,0 +1,27 @@
+.input-file-wrapper {
+  font-family: var(--font-semiBold), var(--font-default);
+  font-size: var(--small);
+  cursor: pointer;
+}
+
+.input-file-wrapper input {
+  display: none;
+}
+
+.input-file-primary {
+  padding: 8px 15px;
+  border-radius: 4px;
+  background-color: var(--fade-color);
+}
+
+.input-file-primary:hover {
+  background-color: var(--light-color);
+}
+
+.input-file-secondary {
+  color: var(--primary-color);
+}
+
+.input-file-secondary:hover {
+  color: var(--secondary-color);
+}
