@@ -7,6 +7,7 @@ import { TableCell } from '../TableCell';
 import { TableRow } from '../TableRow';
 import More from 'assets/icons/more.svg';
 import { ActionMenu } from 'components/ActionMenu';
+import { SelectItemProps } from 'components/SelectItem';
 
 interface DataProduct {
   id?: string;
@@ -18,6 +19,8 @@ interface DataProduct {
   brandImage: string;
   brandName: string;
   price: number;
+  statuses?: SelectItemProps;
+  types?: SelectItemProps;
 }
 
 interface ProductRowProps extends DataProduct {
@@ -59,7 +62,7 @@ const ProductRow = ({
         <Identity image={productImage} text={productName} />
       </TableCell>
       <TableCell tagName='td'>
-        {status ? (
+        {status === '1' ? (
           <Label text='Available' variant='success' />
         ) : (
           <Label text='Sold out' variant='warning' />
