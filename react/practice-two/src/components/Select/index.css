@@ -15,3 +15,18 @@
   background-repeat: no-repeat;
   -webkit-appearance: none;
 }
+
+.select-box {
+  font-family: var(--font-semiBold), var(--font-default);
+  color: var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.select-box .select-wrapper {
+  border: 1px solid var(--fade-color);
+  border-radius: 5px;
+  padding: 8px 35px 8px 10px;
+  width: 100%;
+}
