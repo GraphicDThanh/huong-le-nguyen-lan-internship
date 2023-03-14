@@ -1,0 +1,29 @@
+.text-input-default {
+  width: 100%;
+  padding-top: 8px;
+  border: none;
+  outline: none;
+  font-family: var(--font-regular), var(--font-default);
+}
+
+.text-input-default::placeholder {
+  color: var(--light-color);
+  font-size: var(--normal);
+}
+
+.text-input-primary {
+  border: 1px solid var(--fade-color);
+  border-radius: 5px;
+  padding: 8px 10px;
+  outline: none;
+  font-family: var(--font-regular), var(--font-default);
+}
+
+.text-wrapper {
+  font-family: var(--font-semiBold), var(--font-default);
+  color: var(--primary-color);
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 10px;
+}

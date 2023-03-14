@@ -1,0 +1,26 @@
+.label-wrapper {
+  width: fit-content;
+  font-family: var(--font-regular), var(--font-default);
+  line-height: 18px;
+  padding: 5px 12px;
+  border: 1px;
+  border-style: solid;
+}
+
+.label-wrapper.label-primary {
+  border-color: var(--fade-color);
+  color: var(--secondary-color);
+  border-radius: 8px;
+}
+
+.label-wrapper.label-success {
+  border-color: var(--success-color);
+  color: var(--success-color);
+  border-radius: 8px;
+}
+
+.label-wrapper.label-warning {
+  border-color: var(--warning-color);
+  color: var(--warning-color);
+  border-radius: 8px;
+}

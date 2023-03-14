@@ -1,0 +1,11 @@
+.action-menu-wrapper {
+  max-width: 98px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  box-shadow: -1.41px 1.41px 5.66px rgba(0, 0, 0, 0.25);
+  background-color: var(--white);
+}
