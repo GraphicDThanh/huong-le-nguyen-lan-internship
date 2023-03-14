@@ -1,0 +1,26 @@
+.image-wrapper {
+  width: fit-content;
+}
+
+.image-wrapper.image-size-normal {
+  width: 48px;
+  height: 48px;
+}
+
+.image-wrapper.image-size-small {
+  width: 25px;
+  height: 25px;
+}
+
+.image-wrapper .image.image-circle {
+  border-radius: 50%;
+}
+
+.image-wrapper .image {
+  width: 100%;
+  height: 100%;
+}
+
+.image-wrapper.image-cursor-pointer {
+  cursor: pointer;
+}
