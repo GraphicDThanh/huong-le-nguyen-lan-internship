@@ -1,0 +1,4 @@
+.table-header {
+  padding: 0 10px;
+  border-bottom: 2px solid var(--light-color);
+}

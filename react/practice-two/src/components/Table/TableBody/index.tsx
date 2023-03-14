@@ -1,0 +1,12 @@
+import { ReactNode } from 'react';
+import './index.css';
+
+interface TableBodyProps {
+  children: ReactNode;
+}
+
+const TableBody = ({ children }: TableBodyProps) => {
+  return <tbody className='table-body'>{children}</tbody>;
+};
+
+export { TableBody };
