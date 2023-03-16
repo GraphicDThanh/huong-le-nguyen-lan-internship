@@ -10,11 +10,11 @@ import { TableRow } from '../TableRow';
 import { DataProduct, ProductRow, ProductRowProps } from './ProductRow';
 
 interface DataFilter {
-  product: string;
+  productName: string;
   statusesId: string;
   typesId: string;
   quantity: string;
-  brand: string;
+  brandName: string;
   price: string;
 }
 
@@ -41,8 +41,8 @@ const ProductsTable = ({
         <TableRow classTableRow='header'>
           <TableCell title='Product' tagName='th'>
             <Input
-              name='product'
-              value={dataFilter.product}
+              name='productName'
+              value={dataFilter.productName}
               placeholder='Search'
               onChange={handleSearch}
             />
@@ -75,8 +75,8 @@ const ProductsTable = ({
           </TableCell>
           <TableCell title='Brand' tagName='th'>
             <Input
-              name='brand'
-              value={dataFilter.brand}
+              name='brandName'
+              value={dataFilter.brandName}
               placeholder='Search'
               onChange={handleSearch}
             />
@@ -92,7 +92,6 @@ const ProductsTable = ({
           <TableCell title='Action' tagName='th' />
         </TableRow>
       </TableHeader>
-
       <TableBody>
         {Array.isArray(data) &&
           data.map((item) => (
