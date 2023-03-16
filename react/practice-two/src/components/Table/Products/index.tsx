@@ -11,8 +11,8 @@ import { DataProduct, ProductRow, ProductRowProps } from './ProductRow';
 
 interface DataFilter {
   product: string;
-  status: string;
-  type: string;
+  statusesId: string;
+  typesId: string;
   quantity: string;
   brand: string;
   price: string;
@@ -49,17 +49,19 @@ const ProductsTable = ({
           </TableCell>
           <TableCell title='Status' tagName='th'>
             <Select
-              name='status'
+              name='statusesId'
               options={listStatus}
-              valueSelected={dataFilter.status}
+              optionAll={true}
+              valueSelected={dataFilter.statusesId}
               onChange={handleSearch}
             />
           </TableCell>
           <TableCell title='Type' tagName='th'>
             <Select
-              name='type'
+              name='typesId'
               options={listType}
-              valueSelected={dataFilter.type}
+              optionAll={true}
+              valueSelected={dataFilter.typesId}
               onChange={handleSearch}
             />
           </TableCell>
@@ -92,7 +94,7 @@ const ProductsTable = ({
       </TableHeader>
 
       <TableBody>
-        {data &&
+        {Array.isArray(data) &&
           data.map((item) => (
             <ProductRow
               key={item.id}
@@ -114,4 +116,4 @@ const ProductsTable = ({
   );
 };
 
-export { ProductsTable };
+export default ProductsTable;
