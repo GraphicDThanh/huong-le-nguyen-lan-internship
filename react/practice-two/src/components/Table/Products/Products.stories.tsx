@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ProductsTable } from './index';
+import ProductsTable from '.';
 import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
 import { ChangeEvent, useState } from 'react';
@@ -13,27 +13,36 @@ export default {
 const Template: ComponentStory<typeof ProductsTable> = () => {
   const [filter, setFilter] = useState({
     product: '',
-    status: '',
-    type: '',
+    statusesId: '',
+    typesId: '',
     quantity: '',
     brand: '',
     price: '',
   });
+
   const listStatus = [
     { id: '1', name: 'Available' },
     { id: '2', name: 'Sold out' },
   ];
+
   const listType = [
     { id: '1', name: 'TV' },
     { id: '2', name: 'Smart Phone' },
   ];
+
   const data = [
     {
       id: '1',
       productImage: Product,
       productName: 'Louis Vuitton',
-      status: '1',
-      type: 'Bravo',
+      statuses: {
+        id: '1',
+        name: 'Available',
+      },
+      types: {
+        id: '1',
+        name: 'TV',
+      },
       quantity: 123,
       brandImage: Avatar,
       brandName: 'Evan Flores',
@@ -43,8 +52,14 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
       id: '2',
       productImage: Product,
       productName: 'Louis Vuitton',
-      status: '2',
-      type: 'Bravo',
+      statuses: {
+        id: '1',
+        name: 'Available',
+      },
+      types: {
+        id: '1',
+        name: 'TV',
+      },
       quantity: 123,
       brandImage: Avatar,
       brandName: 'Evan Flores',
@@ -54,8 +69,14 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
       id: '3',
       productImage: Product,
       productName: 'Louis Vuitton',
-      status: '1',
-      type: 'Bravo',
+      statuses: {
+        id: '1',
+        name: 'Available',
+      },
+      types: {
+        id: '1',
+        name: 'TV',
+      },
       quantity: 123,
       brandImage: Avatar,
       brandName: 'Evan Flores',
