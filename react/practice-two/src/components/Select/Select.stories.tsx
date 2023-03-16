@@ -11,9 +11,8 @@ export default {
 const Template: ComponentStory<typeof Select> = () => {
   const [data, setData] = useState('');
   const listOption = [
-    { id: '1', text: 'All', value: 'all' },
-    { id: '2', text: 'Available', value: 'avail' },
-    { id: '3', text: 'Sold out', value: 'sold' },
+    { id: '1', name: 'Available' },
+    { id: '2', name: 'Sold out' },
   ];
   const handleSetData = (e: ChangeEvent) => {
     setData((e.target as HTMLInputElement).value);
