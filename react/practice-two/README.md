@@ -56,13 +56,15 @@
 - Step 5: Now you need to install packages
   - `$ pnpm i`
 - Step 6: After installing the packages
+  - `$ pnpm start-db`
+- Step 7: Open another terminal
   - Website: `$ pnpm run start`
   - Storybook: `$ pnpm run storybook`
-- Step 7:
+- Step 8:
   - http://127.0.0.1:5173/ to see the website
   - http://localhost:6006 to see Storybook
 
 ### Note
 
 - If you get errors about using pnpm to run Storybook
-- Try to add `node-linker=hoisted` to `.npmrc` file
+- Try to add `node-linker=hoisted` to `.npmrc` file. After that remove all the storybook in project or clone and run project again
