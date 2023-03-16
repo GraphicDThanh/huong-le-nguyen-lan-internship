@@ -16,11 +16,11 @@ const HomePage = () => {
   const [isProductUpdate, setIsProductUpdate] = useState(false);
   const [modal, setModal] = useState(false);
   const [filter, setFilter] = useState({
-    product: '',
+    productName: '',
     statusesId: '',
     typesId: '',
     quantity: '',
-    brand: '',
+    brandName: '',
     price: '',
   });
   const [productItem, setProductItem] = useState<DataProduct>({
@@ -125,6 +125,7 @@ const HomePage = () => {
         setProducts(data as DataProduct[]);
       }
     };
+
     fetchData();
   }, [isProductUpdate, filter]);
 
