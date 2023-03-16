@@ -8,24 +8,29 @@ import { TableRow } from '../TableRow';
 import More from 'assets/icons/more.svg';
 import { ActionMenu } from 'components/ActionMenu';
 import { SelectItemProps } from 'components/SelectItem';
+import { getDataById } from 'services/fetchAPI';
+import URL_API from 'constants/apiUrl';
+import { CustomError } from 'helpers/handleErrors';
 
 interface DataProduct {
   id?: string;
   productImage: string;
   productName: string;
-  status: string;
-  type: string;
-  quantity: number;
+  status?: string;
+  type?: string;
+  quantity: number | string;
   brandImage: string;
   brandName: string;
-  price: number;
+  price: number | string;
+  statusesId?: string;
+  typesId?: string;
   statuses?: SelectItemProps;
   types?: SelectItemProps;
 }
 
 interface ProductRowProps extends DataProduct {
-  handleDelete: () => void;
-  handleEdit: () => void;
+  handleDelete: (id: string) => void;
+  handleEdit: (item: DataProduct) => void;
 }
 
 const ProductRow = ({
@@ -42,17 +47,36 @@ const ProductRow = ({
   handleEdit,
 }: ProductRowProps) => {
   const [menuPopup, setMenuPopup] = useState(false);
+
+  /**
+   * @description function show hide popup menu
+   */
   const handleShowHidePopup = () => {
     setMenuPopup((prev) => !prev);
   };
 
-  const onEdit = () => {
-    handleEdit();
+  /**
+   * @description function set state to modal after click open modal
+   *
+   * @param {MouseEvent} e is event of onClick
+   */
+  const handleModalEdit = async (e: React.MouseEvent) => {
+    const idItem = (e.target as HTMLInputElement).id;
+    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, idItem);
+
+    if ((data as CustomError).messageError) {
+      alert((data as CustomError).messageError);
+    } else {
+      handleEdit(data as DataProduct);
+    }
     setMenuPopup(false);
   };
 
+  /**
+   * @description function delete item with id
+   */
   const onDelete = () => {
-    handleDelete();
+    handleDelete(id!);
     setMenuPopup(false);
   };
 
@@ -69,7 +93,7 @@ const ProductRow = ({
         )}
       </TableCell>
       <TableCell tagName='td'>
-        <Typography text={type} weight='regular' />
+        <Typography text={type!} weight='regular' />
       </TableCell>
       <TableCell tagName='td'>
         <Label text={String(quantity)} variant='primary' />
@@ -88,7 +112,7 @@ const ProductRow = ({
           cursorPointer={true}
           onClick={handleShowHidePopup}
         />
-        {menuPopup && <ActionMenu id={id} handleDelete={onDelete} handleEdit={onEdit} />}
+        {menuPopup && <ActionMenu id={id} handleDelete={onDelete} handleEdit={handleModalEdit} />}
       </TableCell>
     </TableRow>
   );
