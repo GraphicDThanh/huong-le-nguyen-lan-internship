@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import ProductsTable from '.';
+import { ProductsTable } from '.';
 import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
 import { ChangeEvent, useState } from 'react';
@@ -12,11 +12,11 @@ export default {
 
 const Template: ComponentStory<typeof ProductsTable> = () => {
   const [filter, setFilter] = useState({
-    product: '',
+    productName: '',
     statusesId: '',
     typesId: '',
     quantity: '',
-    brand: '',
+    brandName: '',
     price: '',
   });
 
@@ -85,15 +85,17 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
   ];
 
   const handleSearch = (e: ChangeEvent) => {
-    const name = (e.target as HTMLInputElement).name;
-    const value = (e.target as HTMLInputElement).value;
+    if (e.target instanceof HTMLInputElement) {
+      const name = e.target.name;
+      const value = e.target.value;
 
-    setFilter((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+      setFilter((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
 
   const handleDelete = () => {

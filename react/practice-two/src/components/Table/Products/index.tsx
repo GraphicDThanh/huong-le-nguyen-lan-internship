@@ -115,4 +115,4 @@ const ProductsTable = ({
   );
 };
 
-export default ProductsTable;
+export { ProductsTable };

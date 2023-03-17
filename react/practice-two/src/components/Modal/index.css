@@ -1,0 +1,38 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--background-opacity);
+  animation: opacityAnimation linear 0.2s;
+}
+
+.modal-wrapper {
+  min-width: 720px;
+  height: fit-content;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: var(--white);
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+}
+
+.modal-wrapper .modal-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px 30px 10px 30px;
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 1;
+  }
+}

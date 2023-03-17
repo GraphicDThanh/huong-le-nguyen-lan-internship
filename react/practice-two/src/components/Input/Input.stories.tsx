@@ -11,7 +11,9 @@ export default {
 const Template: ComponentStory<typeof Input> = (args) => {
   const [data, setData] = useState('');
   const handleSetData = (e: ChangeEvent) => {
-    setData((e.target as HTMLInputElement).value);
+    if (e.target instanceof HTMLInputElement) {
+      setData(e.target.value);
+    }
   };
   const { name = 'name', value = data, onChange = handleSetData, ...rest } = args;
 
