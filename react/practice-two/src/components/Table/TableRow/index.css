@@ -1,0 +1,20 @@
+.table-row {
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 200px 100px 100px 110px 150px 70px 45px;
+  border-bottom: 1px solid var(--fade-color);
+}
+
+.table-row.table-row-header {
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.table-row .action-menu-wrapper {
+  position: absolute;
+  right: 12px;
+  z-index: 10;
+}
