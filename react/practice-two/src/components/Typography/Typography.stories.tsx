@@ -1,4 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+
+// Components
 import { Typography } from './index';
 
 export default {

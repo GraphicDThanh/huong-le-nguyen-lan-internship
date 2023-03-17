@@ -1,8 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Image } from './index';
+
+// Images
 import Avatar from 'assets/images/avatar.jpg';
 import Product from 'assets/images/product.jpg';
 import More from 'assets/icons/more.svg';
+
+// Components
+import { Image } from './index';
 
 export default {
   title: 'PracticeTwo/Image',

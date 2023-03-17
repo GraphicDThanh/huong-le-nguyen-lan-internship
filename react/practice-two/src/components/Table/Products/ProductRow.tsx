@@ -1,15 +1,23 @@
+import { useState } from 'react';
+
+// Images
+import More from 'assets/icons/more.svg';
+
+// Component
+import { TableCell } from '../TableCell';
+import { TableRow } from '../TableRow';
 import { Identity } from 'components/Identity';
 import { Image } from 'components/Image';
 import { Label } from 'components/Label';
 import { Typography } from 'components/Typography';
-import { useState } from 'react';
-import { TableCell } from '../TableCell';
-import { TableRow } from '../TableRow';
-import More from 'assets/icons/more.svg';
 import { ActionMenu } from 'components/ActionMenu';
 import { SelectItemProps } from 'components/SelectItem';
-import { getDataById } from 'services/fetchAPI';
-import { URL_API } from 'constants';
+
+// Services
+import { getDataById } from '@services';
+
+// Constants
+import { URL_API } from '@constants';
 
 interface DataProduct {
   id?: string;

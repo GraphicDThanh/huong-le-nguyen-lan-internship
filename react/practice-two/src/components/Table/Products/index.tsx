@@ -1,12 +1,14 @@
-import { Input } from 'components/Input';
-import { Select } from 'components/Select';
-import { SelectItemProps } from 'components/SelectItem';
 import { ChangeEvent } from 'react';
+
+// Components
 import { Table } from '..';
 import { TableBody } from '../TableBody';
 import { TableCell } from '../TableCell';
 import { TableHeader } from '../TableHeader';
 import { TableRow } from '../TableRow';
+import { Input } from 'components/Input';
+import { Select } from 'components/Select';
+import { SelectItemProps } from 'components/SelectItem';
 import { DataProduct, ProductRow, ProductRowProps } from './ProductRow';
 
 interface DataFilter {

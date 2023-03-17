@@ -1,4 +1,6 @@
 import { ChangeEvent } from 'react';
+
+// Styles
 import './index.css';
 
 interface InputFileProps {

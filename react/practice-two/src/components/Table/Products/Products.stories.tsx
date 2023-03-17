@@ -1,8 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ProductsTable } from '.';
+import { ChangeEvent, useState } from 'react';
+
+// Images
 import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
-import { ChangeEvent, useState } from 'react';
+
+// Components
+import { ProductsTable } from '.';
 
 export default {
   title: 'PracticeTwo/Table/Products',

@@ -1,17 +1,27 @@
+import { ChangeEvent, useState } from 'react';
+
+// Styles
+import './index.css';
+
+// Components
+import { Modal } from '..';
 import { Button } from 'components/Button';
 import { Image } from 'components/Image';
 import { Input } from 'components/Input';
 import { Select } from 'components/Select';
 import { SelectItemProps } from 'components/SelectItem';
 import { DataProduct } from 'components/Table/Products/ProductRow';
-import { ChangeEvent, useState } from 'react';
-import { Modal } from '..';
 import { InputFile } from 'components/InputFile';
-import './index.css';
-import { convertBase64 } from 'helpers/convert';
-import { updateData } from 'services/fetchAPI';
-import { URL_API } from 'constants';
-import { validation } from 'helpers/validation';
+
+// Services
+import { updateData } from '@services';
+
+// Constants
+import { URL_API } from '@constants';
+
+// Helpers
+import { validation } from '@helpers';
+import { convertBase64 } from '@helpers';
 
 interface ModalProps {
   dataStatus: SelectItemProps[];

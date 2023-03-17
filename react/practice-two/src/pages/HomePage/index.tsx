@@ -1,12 +1,20 @@
+import { ChangeEvent, useEffect, useState } from 'react';
+
+// Styles
+import './index.css';
+
+// Components
 import { ProductsTable } from 'components/Table/Products';
 import { Typography } from 'components/Typography';
-import './index.css';
-import { ChangeEvent, useEffect, useState } from 'react';
-import { deleteData, getAllData } from 'services/fetchAPI';
-import { URL_API } from 'constants';
 import { SelectItemProps } from 'components/SelectItem';
 import { ProductModal } from 'components/Modal/ProductModal';
 import { DataProduct } from 'components/Table/Products/ProductRow';
+
+// Constants
+import { URL_API } from '@constants';
+
+// Services
+import { getAllData, deleteData } from '@services';
 
 const HomePage = () => {
   const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);

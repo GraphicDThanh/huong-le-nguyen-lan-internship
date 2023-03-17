@@ -1,5 +1,5 @@
-import { URL_API } from 'constants';
-import { CustomErrors, customErrors } from 'helpers/handleErrors';
+import { URL_API } from '@constants';
+import { customErrors, CustomErrors } from 'helpers/handleErrors';
 
 /**
  * @description function get all items

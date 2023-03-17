@@ -1,5 +1,9 @@
-import './index.css';
 import { Button } from 'components/Button';
+
+// Styles
+import './index.css';
+
+// Components
 import { MouseEvent } from 'react';
 
 interface ActionMenuProps {

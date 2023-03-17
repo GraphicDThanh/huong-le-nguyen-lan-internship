@@ -1,5 +1,7 @@
-import './index.css';
 import { ReactNode } from 'react';
+
+// Styles
+import './index.css';
 
 interface TableRowProps {
   children: ReactNode;
