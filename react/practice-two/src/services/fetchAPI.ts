@@ -1,5 +1,5 @@
-import URL_API from 'constants/apiUrl';
-import { CustomError, generateError } from 'helpers/handleErrors';
+import { URL_API } from 'constants/apiUrl';
+import { CustomErrors, customErrors } from 'helpers/handleErrors';
 
 /**
  * @description function get all items
@@ -8,15 +8,15 @@ import { CustomError, generateError } from 'helpers/handleErrors';
  *
  * @returns {Array} list item
  */
-const getAllData = async <T>(url: string): Promise<T[] | CustomError> => {
+const getAllData = async <T>(url: string): Promise<T[] | CustomErrors> => {
   try {
     const response = await fetch(`${URL_API.BASE_URL}${url}`);
     const data: T[] = await response.json();
-    const dataItem = generateError(response, data);
+    const dataItem = customErrors(response, data);
 
     return dataItem;
   } catch (error) {
-    return error as CustomError;
+    return error as CustomErrors;
   }
 };
 
@@ -28,15 +28,15 @@ const getAllData = async <T>(url: string): Promise<T[] | CustomError> => {
  *
  * @returns {Object} item
  */
-const getDataById = async <T>(url: string, id: string): Promise<T | CustomError> => {
+const getDataById = async <T>(url: string, id: string): Promise<T | CustomErrors> => {
   try {
     const response = await fetch(`${URL_API.BASE_URL}${url}/${id}`);
     const data: T = await response.json();
-    const dataItem = generateError(response, data);
+    const dataItem = customErrors(response, data);
 
     return dataItem;
   } catch (error) {
-    return error as CustomError;
+    return error as CustomErrors;
   }
 };
 
@@ -49,7 +49,7 @@ const getDataById = async <T>(url: string, id: string): Promise<T | CustomError>
  *
  * @return {Object} item
  */
-const putItem = async <T>(id: string, dataItem: T, url: string): Promise<T | CustomError> => {
+const updateData = async <T>(id: string, dataItem: T, url: string): Promise<T | CustomErrors> => {
   try {
     const options = {
       method: 'PATCH',
@@ -60,11 +60,11 @@ const putItem = async <T>(id: string, dataItem: T, url: string): Promise<T | Cus
     };
     const response = await fetch(`${URL_API.BASE_URL}${url}/${id}`, options);
     const data: T = await response.json();
-    const item = generateError(response, data);
+    const item = customErrors(response, data);
 
     return item;
   } catch (error) {
-    return error as CustomError;
+    return error as CustomErrors;
   }
 };
 
@@ -74,7 +74,7 @@ const putItem = async <T>(id: string, dataItem: T, url: string): Promise<T | Cus
  * @param {String} id is id of note
  * @param {String} url is endpoint
  */
-const deleteData = async <T>(url: string, id: string): Promise<T | CustomError> => {
+const deleteData = async <T>(url: string, id: string): Promise<T | CustomErrors> => {
   try {
     const options = {
       method: 'DELETE',
@@ -84,12 +84,12 @@ const deleteData = async <T>(url: string, id: string): Promise<T | CustomError> 
     };
     const response = await fetch(`${URL_API.BASE_URL}${url}/${id}`, options);
     const data: T = await response.json();
-    const dataItem = generateError(response, data);
+    const dataItem = customErrors(response, data);
 
     return dataItem;
   } catch (error) {
-    return error as CustomError;
+    return error as CustomErrors;
   }
 };
 
-export { getAllData, getDataById, deleteData, putItem };
+export { getAllData, getDataById, deleteData, updateData };

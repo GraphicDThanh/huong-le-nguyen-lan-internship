@@ -2,6 +2,5 @@
   font-family: var(--font-regular), var(--font-default);
   font-size: var(--normal);
   color: var(--primary-color);
-  /* padding: 5px 10px; */
   cursor: pointer;
 }
