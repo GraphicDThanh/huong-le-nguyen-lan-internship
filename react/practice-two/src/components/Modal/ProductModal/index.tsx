@@ -20,16 +20,16 @@ interface ModalProps {
   product: DataProduct;
   showHideModal: () => void;
   isProductUpdate: () => void;
-  handleDelete: (id: string) => void;
+  handleConfirmDelete: () => void;
 }
 
 const ProductModal = ({
   product,
-  showHideModal,
-  handleDelete,
   dataStatus,
-  isProductUpdate,
   dataTypes,
+  showHideModal,
+  handleConfirmDelete,
+  isProductUpdate,
 }: ModalProps) => {
   const [data, setData] = useState(product);
   const [errorsMessage, setErrorsMessage] = useState<DataProduct>({
@@ -105,8 +105,7 @@ const ProductModal = ({
    * @description function delete item with id
    */
   const onDelete = () => {
-    handleDelete(data.id!);
-    showHideModal();
+    handleConfirmDelete();
   };
 
   return (

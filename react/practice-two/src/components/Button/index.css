@@ -43,6 +43,15 @@
   color: var(--white);
 }
 
+.btn.btn-secondary.btn-color-default {
+  border: 1px solid var(--secondary-color);
+}
+
+.btn.btn-secondary.btn-color-default:hover {
+  background-color: var(--secondary-color);
+  color: var(--white);
+}
+
 .btn.btn-color-success {
   color: var(--success-color);
 }

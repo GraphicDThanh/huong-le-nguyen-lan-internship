@@ -29,6 +29,7 @@ interface DataProduct {
 }
 
 interface ProductRowProps extends DataProduct {
+  handleDataModalOnRow: (item: DataProduct) => void;
   handleDelete: (id: string) => void;
   handleEdit: (item: DataProduct) => void;
 }
@@ -43,7 +44,7 @@ const ProductRow = ({
   brandImage,
   brandName,
   price,
-  handleDelete,
+  handleDataModalOnRow,
   handleEdit,
 }: ProductRowProps) => {
   const [menuPopup, setMenuPopup] = useState(false);
@@ -76,7 +77,17 @@ const ProductRow = ({
    * @description function delete item with id
    */
   const onDelete = () => {
-    handleDelete(id!);
+    handleDataModalOnRow({
+      id,
+      productImage,
+      productName,
+      type,
+      quantity,
+      status,
+      brandImage,
+      brandName,
+      price,
+    });
     setMenuPopup(false);
   };
 

@@ -1,13 +1,14 @@
-import ProductsTable from 'components/Table/Products';
+import { ProductsTable } from 'components/Table/Products';
 import { Typography } from 'components/Typography';
 import './index.css';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { deleteData, getAllData } from 'services/fetchAPI';
 import URL_API from 'constants/apiUrl';
 import { SelectItemProps } from 'components/SelectItem';
 import { ProductModal } from 'components/Modal/ProductModal';
 import { DataProduct } from 'components/Table/Products/ProductRow';
 import { CustomError } from 'helpers/handleErrors';
+import { ConfirmModal } from 'components/Modal/ConfirmModal';
 
 const HomePage = () => {
   const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);
@@ -15,6 +16,7 @@ const HomePage = () => {
   const [products, setProducts] = useState<DataProduct[]>([]);
   const [isProductUpdate, setIsProductUpdate] = useState(false);
   const [modal, setModal] = useState(false);
+  const [confirmModal, setConfirmModal] = useState(false);
   const [filter, setFilter] = useState({
     productName: '',
     statusesId: '',
@@ -34,6 +36,28 @@ const HomePage = () => {
     type: '',
     price: 0,
   });
+
+  /**
+   * @description flags to check if the data after
+   * editing and deleting has been changed or not
+   */
+  const handleProductUpdate = () => {
+    setIsProductUpdate((prev) => !prev);
+  };
+
+  /**
+   * @description function show hide modal
+   */
+  const showHideModal = () => {
+    setModal((prev) => !prev);
+  };
+
+  /**
+   * @description function show hide modal
+   */
+  const showHideConfirmModal = useCallback(() => {
+    setConfirmModal((prev) => !prev);
+  }, []);
 
   /**
    * @description function get value when input change value
@@ -63,7 +87,14 @@ const HomePage = () => {
       alert((data as CustomError).messageError);
     } else {
       handleProductUpdate();
+      setModal(false);
+      setConfirmModal(false);
     }
+  };
+
+  const handleDataModalOnRow = (item: DataProduct) => {
+    setProductItem(item);
+    showHideConfirmModal();
   };
 
   /**
@@ -74,21 +105,6 @@ const HomePage = () => {
   const handleDataModal = (item: DataProduct) => {
     setProductItem(item);
     showHideModal();
-  };
-
-  /**
-   * @description function show hide modal
-   */
-  const showHideModal = () => {
-    setModal((prev) => !prev);
-  };
-
-  /**
-   * @description flags to check if the data after
-   * editing and deleting has been changed or not
-   */
-  const handleProductUpdate = () => {
-    setIsProductUpdate((prev) => !prev);
   };
 
   useEffect(() => {
@@ -142,6 +158,7 @@ const HomePage = () => {
           listType={dataTypes}
           handleSearch={handleSearch}
           handleDelete={handleDelete}
+          handleDataModalOnRow={handleDataModalOnRow}
           handleEdit={handleDataModal}
         />
       </main>
@@ -152,7 +169,16 @@ const HomePage = () => {
           dataTypes={dataTypes}
           isProductUpdate={handleProductUpdate}
           showHideModal={showHideModal}
-          handleDelete={handleDelete}
+          handleConfirmDelete={showHideConfirmModal}
+        />
+      )}
+      {confirmModal && (
+        <ConfirmModal
+          description='Do you want to delete this ?'
+          id={productItem.id!}
+          onConfirm={handleDelete}
+          showHideModal={showHideConfirmModal}
+          textButtonConfirm='Delete'
         />
       )}
     </div>

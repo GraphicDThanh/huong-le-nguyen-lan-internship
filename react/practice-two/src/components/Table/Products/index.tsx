@@ -18,7 +18,8 @@ interface DataFilter {
   price: string;
 }
 
-interface ProductsTableProps extends Pick<ProductRowProps, 'handleDelete' | 'handleEdit'> {
+interface ProductsTableProps
+  extends Pick<ProductRowProps, 'handleDataModalOnRow' | 'handleEdit' | 'handleDelete'> {
   dataFilter: DataFilter;
   listStatus: SelectItemProps[];
   listType: SelectItemProps[];
@@ -33,6 +34,7 @@ const ProductsTable = ({
   data,
   handleSearch,
   handleDelete,
+  handleDataModalOnRow,
   handleEdit,
 }: ProductsTableProps) => {
   return (
@@ -106,6 +108,7 @@ const ProductsTable = ({
               brandImage={item.brandImage}
               brandName={item.brandName}
               price={item.price}
+              handleDataModalOnRow={handleDataModalOnRow}
               handleDelete={handleDelete}
               handleEdit={handleEdit}
             />
@@ -115,4 +118,4 @@ const ProductsTable = ({
   );
 };
 
-export default ProductsTable;
+export { ProductsTable };
