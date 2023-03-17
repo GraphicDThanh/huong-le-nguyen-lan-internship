@@ -1,4 +1,4 @@
-import { URL_API } from 'constants/apiUrl';
+import { URL_API } from 'constants';
 import { CustomErrors, customErrors } from 'helpers/handleErrors';
 
 /**

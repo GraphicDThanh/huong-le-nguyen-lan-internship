@@ -9,7 +9,7 @@ import More from 'assets/icons/more.svg';
 import { ActionMenu } from 'components/ActionMenu';
 import { SelectItemProps } from 'components/SelectItem';
 import { getDataById } from 'services/fetchAPI';
-import { URL_API } from 'constants/apiUrl';
+import { URL_API } from 'constants';
 
 interface DataProduct {
   id?: string;

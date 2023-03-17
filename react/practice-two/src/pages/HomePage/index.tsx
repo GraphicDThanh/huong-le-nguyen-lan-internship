@@ -3,7 +3,7 @@ import { Typography } from 'components/Typography';
 import './index.css';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { deleteData, getAllData } from 'services/fetchAPI';
-import { URL_API } from 'constants/apiUrl';
+import { URL_API } from 'constants';
 import { SelectItemProps } from 'components/SelectItem';
 import { ProductModal } from 'components/Modal/ProductModal';
 import { DataProduct } from 'components/Table/Products/ProductRow';

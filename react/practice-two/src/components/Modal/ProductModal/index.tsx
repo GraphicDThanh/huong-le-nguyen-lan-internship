@@ -10,7 +10,7 @@ import { InputFile } from 'components/InputFile';
 import './index.css';
 import { convertBase64 } from 'helpers/convert';
 import { updateData } from 'services/fetchAPI';
-import { URL_API } from 'constants/apiUrl';
+import { URL_API } from 'constants';
 import { validation } from 'helpers/validation';
 
 interface ModalProps {
