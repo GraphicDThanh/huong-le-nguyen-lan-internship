@@ -1,13 +1,12 @@
-import ProductsTable from 'components/Table/Products';
+import { ProductsTable } from 'components/Table/Products';
 import { Typography } from 'components/Typography';
 import './index.css';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { deleteData, getAllData } from 'services/fetchAPI';
-import URL_API from 'constants/apiUrl';
+import { URL_API } from 'constants/apiUrl';
 import { SelectItemProps } from 'components/SelectItem';
 import { ProductModal } from 'components/Modal/ProductModal';
 import { DataProduct } from 'components/Table/Products/ProductRow';
-import { CustomError } from 'helpers/handleErrors';
 
 const HomePage = () => {
   const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);
@@ -41,15 +40,17 @@ const HomePage = () => {
    * @param {ChangeEvent} e is event of input
    */
   const handleSearch = (e: ChangeEvent) => {
-    const name = (e.target as HTMLInputElement).name;
-    const value = (e.target as HTMLInputElement).value;
+    if (e.target instanceof HTMLInputElement) {
+      const name = e.target.name;
+      const value = e.target.value;
 
-    setFilter((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+      setFilter((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
 
   /**
@@ -58,12 +59,19 @@ const HomePage = () => {
    * @param {String} id is id of item which is selected
    */
   const handleDelete = async (id: string) => {
-    const data = await deleteData(URL_API.PRODUCTS, id);
-    if ((data as CustomError).messageError) {
-      alert((data as CustomError).messageError);
+    const data = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
+    if ('messageError' in data) {
+      alert(data.messageError);
     } else {
       handleProductUpdate();
     }
+  };
+
+  /**
+   * @description function show hide modal
+   */
+  const showHideModal = () => {
+    setModal((prev) => !prev);
   };
 
   /**
@@ -74,13 +82,6 @@ const HomePage = () => {
   const handleDataModal = (item: DataProduct) => {
     setProductItem(item);
     showHideModal();
-  };
-
-  /**
-   * @description function show hide modal
-   */
-  const showHideModal = () => {
-    setModal((prev) => !prev);
   };
 
   /**
@@ -96,11 +97,16 @@ const HomePage = () => {
       const types = await getAllData<SelectItemProps>(URL_API.TYPES);
       const status = await getAllData<SelectItemProps>(URL_API.STATUSES);
 
-      if ((types as CustomError).messageError || (status as CustomError).messageError) {
-        alert(((types as CustomError) || (status as CustomError)).messageError);
+      if ('messageError' in types && !Array.isArray(types)) {
+        alert(types.messageError);
       } else {
-        setDataStatus(status as SelectItemProps[]);
-        setDataTypes(types as SelectItemProps[]);
+        setDataTypes(types);
+      }
+
+      if ('messageError' in status && !Array.isArray(status)) {
+        alert(status.messageError);
+      } else {
+        setDataStatus(status);
       }
     };
     fetchData();
@@ -119,10 +125,10 @@ const HomePage = () => {
         `${URL_API.PRODUCTS}?_expand=statuses&_expand=types${param}`,
       );
 
-      if ((data as CustomError).messageError) {
-        alert((data as CustomError).messageError);
+      if ('messageError' in data) {
+        alert(data.messageError);
       } else {
-        setProducts(data as DataProduct[]);
+        setProducts(data);
       }
     };
 
