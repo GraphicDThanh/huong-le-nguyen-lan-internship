@@ -15,7 +15,9 @@ const Template: ComponentStory<typeof Select> = () => {
     { id: '2', name: 'Sold out' },
   ];
   const handleSetData = (e: ChangeEvent) => {
-    setData((e.target as HTMLInputElement).value);
+    if (e.target instanceof HTMLInputElement) {
+      setData(e.target.value);
+    }
   };
 
   return (

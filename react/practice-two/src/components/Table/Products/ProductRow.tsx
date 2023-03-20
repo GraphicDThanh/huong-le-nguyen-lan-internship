@@ -9,8 +9,7 @@ import More from 'assets/icons/more.svg';
 import { ActionMenu } from 'components/ActionMenu';
 import { SelectItemProps } from 'components/SelectItem';
 import { getDataById } from 'services/fetchAPI';
-import URL_API from 'constants/apiUrl';
-import { CustomError } from 'helpers/handleErrors';
+import { URL_API } from 'constants/apiUrl';
 
 interface DataProduct {
   id?: string;
@@ -62,15 +61,18 @@ const ProductRow = ({
    * @param {MouseEvent} e is event of onClick
    */
   const handleModalEdit = async (e: React.MouseEvent) => {
-    const idItem = (e.target as HTMLInputElement).id;
-    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, idItem);
+    if (e.target instanceof HTMLElement) {
+      console.log('a');
+      const idItem = e.target.id;
+      const data = await getDataById<DataProduct>(URL_API.PRODUCTS, idItem);
 
-    if ((data as CustomError).messageError) {
-      alert((data as CustomError).messageError);
-    } else {
-      handleEdit(data as DataProduct);
+      if ('messageError' in data) {
+        alert(data.messageError);
+      } else {
+        handleEdit(data);
+      }
+      setMenuPopup(false);
     }
-    setMenuPopup(false);
   };
 
   /**

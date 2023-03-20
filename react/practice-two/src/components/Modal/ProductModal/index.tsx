@@ -9,9 +9,8 @@ import { Modal } from '..';
 import { InputFile } from 'components/InputFile';
 import './index.css';
 import { convertBase64 } from 'helpers/convert';
-import { putItem } from 'services/fetchAPI';
-import URL_API from 'constants/apiUrl';
-import { CustomError } from 'helpers/handleErrors';
+import { updateData } from 'services/fetchAPI';
+import { URL_API } from 'constants/apiUrl';
 import { validation } from 'helpers/validation';
 
 interface ModalProps {
@@ -49,15 +48,17 @@ const ProductModal = ({
    * @param {ChangeEvent} e is event of input
    */
   const handleOnChange = (e: ChangeEvent) => {
-    const name = (e.target as HTMLInputElement).name;
-    const value = (e.target as HTMLInputElement).value;
+    if (e.target instanceof HTMLInputElement) {
+      const name = e.target.name;
+      const value = e.target.value;
 
-    setData(() => {
-      return {
-        ...data,
-        [name]: value,
-      };
-    });
+      setData(() => {
+        return {
+          ...data,
+          [name]: value,
+        };
+      });
+    }
   };
 
   /**
@@ -66,16 +67,18 @@ const ProductModal = ({
    * @param {ChangeEvent} e is event of input file
    */
   const handleChangeInputFile = async (e: ChangeEvent) => {
-    const name = (e.target as HTMLInputElement).name;
-    const file = (e.target as HTMLInputElement).files![0];
-    const image = await convertBase64(file);
+    if (e.target instanceof HTMLInputElement) {
+      const name = e.target.name;
+      const file = e.target.files![0];
+      const image = await convertBase64(file);
 
-    setData(() => {
-      return {
-        ...data,
-        [name]: image,
-      };
-    });
+      setData(() => {
+        return {
+          ...data,
+          [name]: image,
+        };
+      });
+    }
   };
 
   /**
@@ -85,19 +88,19 @@ const ProductModal = ({
    */
   const onSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validation<DataProduct>(data, ['quantity', 'price']);
+    const errors = validation(data);
 
-    if (Object.keys(errors).length === 0) {
-      const item = await putItem<DataProduct>(data.id!, data, URL_API.PRODUCTS);
+    if (errors.isValid) {
+      const item = await updateData<DataProduct>(data.id!, data, URL_API.PRODUCTS);
 
-      if ((item as CustomError).messageError) {
-        alert((item as CustomError).messageError);
+      if ('messageError' in item) {
+        alert(item.messageError);
       } else {
         isProductUpdate();
         showHideModal();
       }
     } else {
-      setErrorsMessage(errors);
+      setErrorsMessage(errors.result);
     }
   };
 
