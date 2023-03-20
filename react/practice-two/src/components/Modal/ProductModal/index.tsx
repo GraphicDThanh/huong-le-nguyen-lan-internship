@@ -41,13 +41,11 @@ const ProductModal = ({
   dataTypes,
 }: ModalProps) => {
   const [data, setData] = useState(product);
-  const [errorsMessage, setErrorsMessage] = useState<DataProduct>({
-    productImage: '',
+  const [errorsMessage, setErrorsMessage] = useState<
+    Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>
+  >({
     productName: '',
-    status: '',
-    type: '',
     quantity: '',
-    brandImage: '',
     brandName: '',
     price: '',
   });
@@ -95,9 +93,12 @@ const ProductModal = ({
    */
   const onSave = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validation(data);
+    const errors = validation<
+      DataProduct,
+      Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>
+    >(data, ['price', 'quantity']);
 
-    if (errors.isValid) {
+    if (Object.values(errors).every((value) => value === '')) {
       const item = await updateData<DataProduct>(data.id!, data, URL_API.PRODUCTS);
 
       if ('messageError' in item) {
@@ -107,7 +108,7 @@ const ProductModal = ({
         showHideModal();
       }
     } else {
-      setErrorsMessage(errors.result);
+      setErrorsMessage(errors);
     }
   };
 
