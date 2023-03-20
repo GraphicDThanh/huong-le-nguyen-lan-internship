@@ -3,7 +3,7 @@ import { MESSAGE_ERRORS } from '@constants';
 const checkEmpty = (value: string): string => {
   switch (true) {
     // case empty
-    case value === '':
+    case !value:
       return MESSAGE_ERRORS.EMPTY_FIELD;
     default:
       return '';
@@ -13,7 +13,7 @@ const checkEmpty = (value: string): string => {
 const checkNumber = (value: string): string => {
   switch (true) {
     // case empty
-    case value === '':
+    case !value:
       return MESSAGE_ERRORS.EMPTY_FIELD;
     // case error if value not number
     case isNaN(Number(value)):
@@ -34,7 +34,7 @@ const checkNumber = (value: string): string => {
  *
  * @returns {Object} return object with message error
  */
-const validation = <T extends object, X>(data: T, fieldsNumber = ['']): X => {
+const validation = <T extends Record<string, string>, X>(data: T, fieldsNumber = ['']): X => {
   let errorsMessage = {};
   for (const [key, value] of Object.entries(data)) {
     // Check which fields are the fields to check number

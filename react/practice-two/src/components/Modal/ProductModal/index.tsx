@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 // Styles
 import './index.css';
@@ -24,26 +24,26 @@ import { validation } from '@helpers';
 import { convertBase64 } from '@helpers';
 
 interface ModalProps {
-  dataStatus: SelectItemProps[];
-  dataTypes: SelectItemProps[];
-  product: DataProduct;
+  status: SelectItemProps[];
+  types: SelectItemProps[];
+  productItem: DataProduct;
   showHideModal: () => void;
   isProductUpdate: () => void;
   handleDelete: (id: string) => void;
 }
 
+type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
+
 const ProductModal = ({
-  product,
+  productItem,
   showHideModal,
   handleDelete,
-  dataStatus,
+  status,
   isProductUpdate,
-  dataTypes,
+  types,
 }: ModalProps) => {
-  const [data, setData] = useState(product);
-  const [errorsMessage, setErrorsMessage] = useState<
-    Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>
-  >({
+  const [product, setProduct] = useState(productItem);
+  const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
     productName: '',
     quantity: '',
     brandName: '',
@@ -59,9 +59,9 @@ const ProductModal = ({
     const name = e.target.name;
     const value = e.target.value;
 
-    setData(() => {
+    setProduct(() => {
       return {
-        ...data,
+        ...product,
         [name]: value,
       };
     });
@@ -79,8 +79,8 @@ const ProductModal = ({
     if (file) {
       const image = await convertBase64(file);
 
-      setData(() => ({
-        ...data,
+      setProduct(() => ({
+        ...product,
         [name]: image,
       }));
     }
@@ -91,15 +91,12 @@ const ProductModal = ({
    *
    * @param {SubmitEvent} e is submit event of form
    */
-  const onSave = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validation<
-      DataProduct,
-      Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>
-    >(data, ['price', 'quantity']);
+    const errors = validation<DataProduct, ErrorMessage>(product, ['price', 'quantity']);
 
-    if (Object.values(errors).every((value) => value === '')) {
-      const item = await updateData<DataProduct>(data.id!, data, URL_API.PRODUCTS);
+    if (Object.values(errors).every((value) => !value) && product.id) {
+      const item = await updateData<DataProduct>(product.id, product, URL_API.PRODUCTS);
 
       if ('messageError' in item) {
         alert(item.messageError);
@@ -116,8 +113,10 @@ const ProductModal = ({
    * @description function delete item with id
    */
   const onDelete = () => {
-    handleDelete(data.id!);
-    showHideModal();
+    if (product.id) {
+      handleDelete(product.id);
+      showHideModal();
+    }
   };
 
   return (
@@ -125,7 +124,7 @@ const ProductModal = ({
       <form className='form-wrapper' onSubmit={onSave}>
         <div className='form-body'>
           <div className='form-aside'>
-            <Image image={data.productImage} size='large' />
+            <Image image={product.productImage} size='large' />
             <InputFile
               id='productImage'
               name='productImage'
@@ -140,7 +139,7 @@ const ProductModal = ({
                   title="Product's Name"
                   name='productName'
                   variant='primary'
-                  value={data.productName}
+                  value={product.productName}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.productName}</span>
@@ -152,7 +151,7 @@ const ProductModal = ({
                   title='Quantity'
                   name='quantity'
                   variant='primary'
-                  value={String(data.quantity)}
+                  value={String(product.quantity)}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.quantity}</span>
@@ -164,14 +163,14 @@ const ProductModal = ({
                   title="Brand's Name"
                   name='brandName'
                   variant='primary'
-                  value={data.brandName}
+                  value={product.brandName}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.brandName}</span>
               </div>
 
               <div className='group-image'>
-                <Image size='small' variant='circle' image={data.brandImage} />
+                <Image size='small' variant='circle' image={product.brandImage} />
                 <InputFile
                   id='brandImage'
                   name='brandImage'
@@ -187,7 +186,7 @@ const ProductModal = ({
                   title='Price'
                   name='price'
                   variant='primary'
-                  value={String(data.price)}
+                  value={String(product.price)}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.price}</span>
@@ -195,17 +194,17 @@ const ProductModal = ({
 
               <Select
                 title='Status'
-                options={dataStatus}
+                options={status}
                 name='statusesId'
-                valueSelected={data.statusesId!}
+                valueSelected={product.statusesId ? product.statusesId : ''}
                 onChange={handleOnChange}
               />
 
               <Select
                 title='Types'
-                options={dataTypes}
+                options={types}
                 name='typesId'
-                valueSelected={data.typesId!}
+                valueSelected={product.typesId ? product.typesId : ''}
                 onChange={handleOnChange}
               />
             </div>
