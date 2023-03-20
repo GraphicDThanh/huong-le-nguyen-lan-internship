@@ -9,7 +9,7 @@ interface InputFileProps {
   id: string;
   text: string;
   variant?: 'primary' | 'secondary';
-  onChange: (e: ChangeEvent) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputFile = ({

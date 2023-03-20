@@ -4,7 +4,7 @@ import { ChangeEvent } from 'react';
 import './index.css';
 
 // Components
-import { SelectItem, SelectItemProps } from 'components/SelectItem';
+import { SelectItem, SelectItemProps } from '@components';
 
 interface SelectProps {
   valueSelected: string;
@@ -12,7 +12,7 @@ interface SelectProps {
   options: SelectItemProps[];
   optionAll?: boolean;
   title?: string;
-  onChange?: (e: ChangeEvent) => void;
+  onChange?: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 const Select = ({ valueSelected, optionAll, onChange, title, name, options }: SelectProps) => {

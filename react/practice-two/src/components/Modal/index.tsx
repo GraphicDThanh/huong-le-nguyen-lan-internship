@@ -7,7 +7,7 @@ import './index.css';
 import Cancel from 'assets/icons/cancel.svg';
 
 // Components
-import { Image } from 'components/Image';
+import { Image } from '@components';
 
 interface ModalProps {
   children: ReactNode;

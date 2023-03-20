@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ChangeEvent, useState } from 'react';
 
 // Components
-import { Select } from './index';
+import { Select } from '.';
 
 export default {
   title: 'PracticeTwo/Select',
@@ -16,10 +16,8 @@ const Template: ComponentStory<typeof Select> = () => {
     { id: '1', name: 'Available' },
     { id: '2', name: 'Sold out' },
   ];
-  const handleSetData = (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      setData(e.target.value);
-    }
+  const handleSetData = (e: ChangeEvent<HTMLSelectElement>) => {
+    setData(e.target.value);
   };
 
   return (

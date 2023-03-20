@@ -4,11 +4,11 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import './index.css';
 
 // Components
-import { ProductsTable } from 'components/Table/Products';
-import { Typography } from 'components/Typography';
-import { SelectItemProps } from 'components/SelectItem';
-import { ProductModal } from 'components/Modal/ProductModal';
-import { DataProduct } from 'components/Table/Products/ProductRow';
+import { ProductsTable } from '@components';
+import { Typography } from '@components';
+import { SelectItemProps } from '@components';
+import { ProductModal } from '@components';
+import { DataProduct } from '@components';
 
 // Constants
 import { URL_API } from '@constants';
@@ -47,18 +47,16 @@ const HomePage = () => {
    *
    * @param {ChangeEvent} e is event of input
    */
-  const handleSearch = (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      const name = e.target.name;
-      const value = e.target.value;
+  const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-      setFilter((prev) => {
-        return {
-          ...prev,
-          [name]: value,
-        };
-      });
-    }
+    setFilter((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   /**

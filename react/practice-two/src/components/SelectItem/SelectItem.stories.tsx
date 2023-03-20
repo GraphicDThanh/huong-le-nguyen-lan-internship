@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 // Components
-import { SelectItem } from './index';
+import { SelectItem } from '.';
 
 export default {
   title: 'PracticeTwo/SelectItem',

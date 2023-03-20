@@ -1,15 +1,15 @@
 import { ChangeEvent } from 'react';
 
 // Components
-import { Table } from '..';
-import { TableBody } from '../TableBody';
-import { TableCell } from '../TableCell';
-import { TableHeader } from '../TableHeader';
-import { TableRow } from '../TableRow';
-import { Input } from 'components/Input';
-import { Select } from 'components/Select';
-import { SelectItemProps } from 'components/SelectItem';
-import { DataProduct, ProductRow, ProductRowProps } from './ProductRow';
+import { Table } from '@components';
+import { TableBody } from '@components';
+import { TableCell } from '@components';
+import { TableHeader } from '@components';
+import { TableRow } from '@components';
+import { Input } from '@components';
+import { Select } from '@components';
+import { SelectItemProps } from '@components';
+import { DataProduct, ProductRow, ProductRowProps } from '@components';
 
 interface DataFilter {
   productName: string;
@@ -25,7 +25,7 @@ interface ProductsTableProps extends Pick<ProductRowProps, 'handleDelete' | 'han
   listStatus: SelectItemProps[];
   listType: SelectItemProps[];
   data: DataProduct[];
-  handleSearch: (e: ChangeEvent) => void;
+  handleSearch: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
 
 const ProductsTable = ({

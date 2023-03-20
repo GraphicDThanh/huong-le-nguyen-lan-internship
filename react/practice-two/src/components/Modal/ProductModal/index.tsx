@@ -4,14 +4,14 @@ import { ChangeEvent, useState } from 'react';
 import './index.css';
 
 // Components
-import { Modal } from '..';
-import { Button } from 'components/Button';
-import { Image } from 'components/Image';
-import { Input } from 'components/Input';
-import { Select } from 'components/Select';
-import { SelectItemProps } from 'components/SelectItem';
-import { DataProduct } from 'components/Table/Products/ProductRow';
-import { InputFile } from 'components/InputFile';
+import { Modal } from '@components';
+import { Button } from '@components';
+import { Image } from '@components';
+import { Input } from '@components';
+import { Select } from '@components';
+import { SelectItemProps } from '@components';
+import { DataProduct } from '@components';
+import { InputFile } from '@components';
 
 // Services
 import { updateData } from '@services';
@@ -57,18 +57,16 @@ const ProductModal = ({
    *
    * @param {ChangeEvent} e is event of input
    */
-  const handleOnChange = (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      const name = e.target.name;
-      const value = e.target.value;
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-      setData(() => {
-        return {
-          ...data,
-          [name]: value,
-        };
-      });
-    }
+    setData(() => {
+      return {
+        ...data,
+        [name]: value,
+      };
+    });
   };
 
   /**
@@ -76,18 +74,17 @@ const ProductModal = ({
    *
    * @param {ChangeEvent} e is event of input file
    */
-  const handleChangeInputFile = async (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      const name = e.target.name;
-      const file = e.target.files![0];
+  const handleChangeInputFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const [file] = e.target.files || [];
+
+    if (file) {
       const image = await convertBase64(file);
 
-      setData(() => {
-        return {
-          ...data,
-          [name]: image,
-        };
-      });
+      setData(() => ({
+        ...data,
+        [name]: image,
+      }));
     }
   };
 

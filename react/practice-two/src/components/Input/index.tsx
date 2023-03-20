@@ -9,7 +9,7 @@ interface InputProps {
   variant?: 'default' | 'primary';
   placeholder?: string;
   title?: string;
-  onChange?: (e: ChangeEvent) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({ name, value, placeholder, variant = 'default', title, onChange }: InputProps) => {

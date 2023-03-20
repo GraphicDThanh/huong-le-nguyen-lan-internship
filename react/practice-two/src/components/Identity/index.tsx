@@ -2,7 +2,7 @@
 import './index.css';
 
 // Components
-import { Image, ImageProps } from 'components/Image';
+import { Image, ImageProps } from '@components';
 
 interface IdentityProps extends Pick<ImageProps, 'image' | 'variant'> {
   text: string;

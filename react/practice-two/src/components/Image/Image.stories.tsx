@@ -6,7 +6,7 @@ import Product from 'assets/images/product.jpg';
 import More from 'assets/icons/more.svg';
 
 // Components
-import { Image } from './index';
+import { Image } from '.';
 
 export default {
   title: 'PracticeTwo/Image',

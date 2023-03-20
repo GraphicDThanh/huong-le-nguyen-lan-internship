@@ -9,7 +9,7 @@ interface ButtonProps {
   variant: 'primary' | 'secondary';
   type?: 'button' | 'submit';
   color?: 'success' | 'warning' | 'default' | 'light';
-  onClick?: (e: MouseEvent) => void;
+  onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = ({

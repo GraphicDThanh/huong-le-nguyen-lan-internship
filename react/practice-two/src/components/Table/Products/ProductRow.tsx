@@ -1,17 +1,17 @@
-import { useState } from 'react';
+import { MouseEvent, useState } from 'react';
 
 // Images
 import More from 'assets/icons/more.svg';
 
 // Component
-import { TableCell } from '../TableCell';
-import { TableRow } from '../TableRow';
-import { Identity } from 'components/Identity';
-import { Image } from 'components/Image';
-import { Label } from 'components/Label';
-import { Typography } from 'components/Typography';
-import { ActionMenu } from 'components/ActionMenu';
-import { SelectItemProps } from 'components/SelectItem';
+import { TableCell } from '@components';
+import { TableRow } from '@components';
+import { Identity } from '@components';
+import { Image } from '@components';
+import { Label } from '@components';
+import { Typography } from '@components';
+import { ActionMenu } from '@components';
+import { SelectItemProps } from '@components';
 
 // Services
 import { getDataById } from '@services';
@@ -67,19 +67,16 @@ const ProductRow = ({
    *
    * @param {MouseEvent} e is event of onClick
    */
-  const handleModalEdit = async (e: React.MouseEvent) => {
-    if (e.target instanceof HTMLElement) {
-      console.log('a');
-      const idItem = e.target.id;
-      const data = await getDataById<DataProduct>(URL_API.PRODUCTS, idItem);
+  const handleModalEdit = async (e: MouseEvent<HTMLButtonElement>) => {
+    const idItem = (e.target as HTMLButtonElement).id;
+    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, idItem);
 
-      if ('messageError' in data) {
-        alert(data.messageError);
-      } else {
-        handleEdit(data);
-      }
-      setMenuPopup(false);
+    if ('messageError' in data) {
+      alert(data.messageError);
+    } else {
+      handleEdit(data);
     }
+    setMenuPopup(false);
   };
 
   /**

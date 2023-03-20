@@ -1,15 +1,15 @@
-import { Button } from 'components/Button';
+import { MouseEvent } from 'react';
 
 // Styles
 import './index.css';
 
 // Components
-import { MouseEvent } from 'react';
+import { Button } from '@components';
 
 interface ActionMenuProps {
   id?: string;
-  handleEdit: (e: MouseEvent) => void;
-  handleDelete: (e: MouseEvent) => void;
+  handleEdit: (e: MouseEvent<HTMLButtonElement>) => void;
+  handleDelete: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ActionMenu = ({ id, handleDelete, handleEdit }: ActionMenuProps) => {
