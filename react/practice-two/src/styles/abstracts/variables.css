@@ -19,8 +19,8 @@
   --small: 12px;
 
   /* Font-family */
-  --font-regular: 'openSans-regular';
-  --font-semiBold: 'openSans-semiBold';
-  --font-bold: 'openSans-bold';
+  --font-regular: 'OpenSans-regular';
+  --font-semiBold: 'OpenSans-semiBold';
+  --font-bold: 'OpenSans-bold';
   --font-default: 'Tahoma, sans-serif';
 }
