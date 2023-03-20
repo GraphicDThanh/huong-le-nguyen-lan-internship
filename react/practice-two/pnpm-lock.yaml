@@ -32,6 +32,7 @@ specifiers:
   tsconfig-paths-webpack-plugin: 4.0.0
   typescript: 4.9.3
   vite: 4.1.0
+  vite-plugin-environment: ^1.1.2
   vite-tsconfig-paths: 4.0.5
 
 dependencies:
@@ -69,6 +70,7 @@ devDependencies:
   prettier: 2.8.3
   tsconfig-paths-webpack-plugin: 4.0.0
   typescript: 4.9.3
+  vite-plugin-environment: 1.1.3_vite@4.1.0
 
 packages:
 
@@ -11938,6 +11940,14 @@ packages:
       is-buffer: 2.0.5
       unist-util-stringify-position: 2.0.3
       vfile-message: 2.0.4
+    dev: true
+
+  /vite-plugin-environment/1.1.3_vite@4.1.0:
+    resolution: {integrity: sha512-9LBhB0lx+2lXVBEWxFZC+WO7PKEyE/ykJ7EPWCq95NEcCpblxamTbs5Dm3DLBGzwODpJMEnzQywJU8fw6XGGGA==}
+    peerDependencies:
+      vite: '>= 2.7'
+    dependencies:
+      vite: 4.1.0
     dev: true
 
   /vite-tsconfig-paths/4.0.5_typescript@4.9.3:
