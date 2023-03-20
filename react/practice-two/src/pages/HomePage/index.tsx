@@ -159,9 +159,9 @@ const HomePage = () => {
       </main>
       {modal && (
         <ProductModal
-          product={productItem}
-          dataStatus={dataStatus}
-          dataTypes={dataTypes}
+          productItem={productItem}
+          status={dataStatus}
+          types={dataTypes}
           isProductUpdate={handleProductUpdate}
           showHideModal={showHideModal}
           handleDelete={handleDelete}
