@@ -8,23 +8,19 @@ import { Button } from '@components';
 
 interface ActionMenuProps {
   id?: string;
-  handleEdit: (e: MouseEvent<HTMLButtonElement>) => void;
+  handleEdit: (id: string) => void;
   handleDelete: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ActionMenu = ({ id, handleDelete, handleEdit }: ActionMenuProps) => {
+  const onEdit = () => {
+    handleEdit(id!);
+  };
+
   return (
     <div className='action-menu-wrapper'>
+      <Button text='Edit' color='default' type='button' onClick={onEdit} variant='primary' />
       <Button
-        id={id}
-        text='Edit'
-        color='default'
-        type='button'
-        onClick={handleEdit}
-        variant='primary'
-      />
-      <Button
-        id={id}
         text='Delete'
         color='warning'
         type='button'

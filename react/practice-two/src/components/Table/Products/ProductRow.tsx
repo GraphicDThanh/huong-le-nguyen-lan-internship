@@ -1,4 +1,4 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 
 // Images
 import More from 'assets/icons/more.svg';
@@ -67,9 +67,8 @@ const ProductRow = ({
    *
    * @param {MouseEvent} e is event of onClick
    */
-  const handleModalEdit = async (e: MouseEvent<HTMLButtonElement>) => {
-    const idItem = (e.target as HTMLButtonElement).id;
-    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, idItem);
+  const handleModalEdit = async (id: string) => {
+    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, id);
 
     if ('messageError' in data) {
       alert(data.messageError);
@@ -93,11 +92,7 @@ const ProductRow = ({
         <Identity image={productImage} text={productName} />
       </TableCell>
       <TableCell tagName='td'>
-        {status === '1' ? (
-          <Label text='Available' variant='success' />
-        ) : (
-          <Label text='Sold out' variant='warning' />
-        )}
+        <Label text={status!} variant={`${status === 'Available' ? 'success' : 'warning'}`} />
       </TableCell>
       <TableCell tagName='td'>
         <Typography text={type!} weight='regular' />
