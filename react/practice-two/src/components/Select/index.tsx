@@ -38,4 +38,4 @@ const Select = ({ valueSelected, optionAll, onChange, title, name, options }: Se
   );
 };
 
-export { Select };
+export default Select;

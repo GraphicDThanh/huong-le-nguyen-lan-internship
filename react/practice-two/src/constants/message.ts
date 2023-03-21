@@ -4,4 +4,4 @@ const MESSAGE_ERRORS = {
   NOT_A_NUMBER: 'Not a number',
 };
 
-export { MESSAGE_ERRORS };
+export default MESSAGE_ERRORS;

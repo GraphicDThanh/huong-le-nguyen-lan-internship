@@ -33,4 +33,4 @@ const validation = <T>(data: T, fieldsNumber = ['']): T => {
   return errorsMessage as T;
 };
 
-export { validation };
+export default validation;

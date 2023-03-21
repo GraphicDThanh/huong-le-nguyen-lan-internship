@@ -27,4 +27,4 @@ const Modal = ({ children, showHideModal }: ModalProps) => {
   );
 };
 
-export { Modal };
+export default Modal;
