@@ -1,3 +1,3 @@
-export * from './convert';
 export * from './handleErrors';
-export * from './validation';
+export { default as convertBase64 } from './convert';
+export { default as validation } from './validation';

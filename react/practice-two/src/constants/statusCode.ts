@@ -9,4 +9,4 @@ const STATUS_CODE = {
   SERVER_UNAVAILABLE: 503,
 };
 
-export { STATUS_CODE };
+export default STATUS_CODE;

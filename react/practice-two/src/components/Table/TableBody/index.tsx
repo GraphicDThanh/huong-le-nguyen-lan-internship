@@ -11,4 +11,4 @@ const TableBody = ({ children }: TableBodyProps) => {
   return <tbody className='table-body'>{children}</tbody>;
 };
 
-export { TableBody };
+export default TableBody;

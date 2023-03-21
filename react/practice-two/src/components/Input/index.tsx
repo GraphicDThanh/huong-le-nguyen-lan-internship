@@ -41,4 +41,4 @@ const Input = ({ name, value, placeholder, variant = 'default', title, onChange 
   );
 };
 
-export { Input };
+export default Input;
