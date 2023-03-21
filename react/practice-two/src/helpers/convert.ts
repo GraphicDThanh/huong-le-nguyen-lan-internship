@@ -20,4 +20,4 @@ const convertBase64 = (file: File): Promise<string | ArrayBuffer | null> => {
   });
 };
 
-export { convertBase64 };
+export default convertBase64;

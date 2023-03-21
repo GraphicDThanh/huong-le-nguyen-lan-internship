@@ -19,4 +19,4 @@ const Button = ({ text, variant, color = 'default', type = 'button', onClick }: 
   );
 };
 
-export { Button };
+export default Button;

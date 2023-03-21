@@ -27,4 +27,4 @@ const ActionMenu = ({ id, onDelete, onEdit }: ActionMenuProps) => {
   );
 };
 
-export { ActionMenu };
+export default ActionMenu;

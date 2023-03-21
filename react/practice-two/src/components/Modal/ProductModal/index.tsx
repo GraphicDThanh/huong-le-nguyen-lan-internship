@@ -228,4 +228,4 @@ const ProductModal = ({
   );
 };
 
-export { ProductModal };
+export default ProductModal;

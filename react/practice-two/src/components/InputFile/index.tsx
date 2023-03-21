@@ -28,4 +28,4 @@ const InputFile = ({
   );
 };
 
-export { InputFile };
+export default InputFile;

@@ -11,4 +11,4 @@ const Table = ({ children }: TableProps) => {
   return <table className='table-wrapper'>{children}</table>;
 };
 
-export { Table };
+export default Table;
