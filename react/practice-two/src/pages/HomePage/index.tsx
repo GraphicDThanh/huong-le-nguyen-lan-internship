@@ -4,11 +4,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import './index.css';
 
 // Components
-import { ProductsTable } from '@components';
-import { Typography } from '@components';
-import { SelectItemProps } from '@components';
-import { ProductModal } from '@components';
-import { DataProduct } from '@components';
+import { ProductsTable, Typography, SelectItemProps, ProductModal, DataProduct } from '@components';
 
 // Constants
 import { URL_API } from '@constants';
@@ -51,12 +47,14 @@ const HomePage = () => {
     const name = e.target.name;
     const value = e.target.value;
 
-    setFilter((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    if (name && value) {
+      setFilter((prev) => {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      });
+    }
   };
 
   /**
@@ -148,23 +146,23 @@ const HomePage = () => {
       </header>
       <main>
         <ProductsTable
-          dataFilter={filter}
-          data={products}
+          filters={filter}
+          products={products}
           listStatus={dataStatus}
           listType={dataTypes}
-          handleSearch={handleSearch}
-          handleDelete={handleDelete}
-          handleEdit={handleDataModal}
+          onSearch={handleSearch}
+          onDelete={handleDelete}
+          onEdit={handleDataModal}
         />
       </main>
       {modal && (
         <ProductModal
-          product={productItem}
-          dataStatus={dataStatus}
-          dataTypes={dataTypes}
-          isProductUpdate={handleProductUpdate}
+          productItem={productItem}
+          status={dataStatus}
+          types={dataTypes}
+          fragProductUpdate={handleProductUpdate}
           showHideModal={showHideModal}
-          handleDelete={handleDelete}
+          onDelete={handleDelete}
         />
       )}
     </div>

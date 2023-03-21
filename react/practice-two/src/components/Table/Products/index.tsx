@@ -1,17 +1,21 @@
 import { ChangeEvent } from 'react';
 
 // Components
-import { Table } from '@components';
-import { TableBody } from '@components';
-import { TableCell } from '@components';
-import { TableHeader } from '@components';
-import { TableRow } from '@components';
-import { Input } from '@components';
-import { Select } from '@components';
-import { SelectItemProps } from '@components';
-import { DataProduct, ProductRow, ProductRowProps } from '@components';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow,
+  Input,
+  Select,
+  SelectItemProps,
+  DataProduct,
+  ProductRow,
+  ProductRowProps,
+} from '@components';
 
-interface DataFilter {
+interface Filters {
   productName: string;
   statusesId: string;
   typesId: string;
@@ -20,22 +24,22 @@ interface DataFilter {
   price: string;
 }
 
-interface ProductsTableProps extends Pick<ProductRowProps, 'handleDelete' | 'handleEdit'> {
-  dataFilter: DataFilter;
+interface ProductsTableProps extends Pick<ProductRowProps, 'onDelete' | 'onEdit'> {
+  filters: Filters;
   listStatus: SelectItemProps[];
   listType: SelectItemProps[];
-  data: DataProduct[];
-  handleSearch: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
+  products: DataProduct[];
+  onSearch: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
 
 const ProductsTable = ({
-  dataFilter,
+  filters,
   listStatus,
   listType,
-  data,
-  handleSearch,
-  handleDelete,
-  handleEdit,
+  products,
+  onSearch,
+  onDelete,
+  onEdit,
 }: ProductsTableProps) => {
   return (
     <Table>
@@ -44,9 +48,9 @@ const ProductsTable = ({
           <TableCell title='Product' tagName='th'>
             <Input
               name='productName'
-              value={dataFilter.productName}
+              value={filters.productName}
               placeholder='Search'
-              onChange={handleSearch}
+              onChange={onSearch}
             />
           </TableCell>
           <TableCell title='Status' tagName='th'>
@@ -54,8 +58,8 @@ const ProductsTable = ({
               name='statusesId'
               options={listStatus}
               optionAll={true}
-              valueSelected={dataFilter.statusesId}
-              onChange={handleSearch}
+              valueSelected={filters.statusesId}
+              onChange={onSearch}
             />
           </TableCell>
           <TableCell title='Type' tagName='th'>
@@ -63,53 +67,53 @@ const ProductsTable = ({
               name='typesId'
               options={listType}
               optionAll={true}
-              valueSelected={dataFilter.typesId}
-              onChange={handleSearch}
+              valueSelected={filters.typesId}
+              onChange={onSearch}
             />
           </TableCell>
           <TableCell title='Quantity' tagName='th'>
             <Input
               name='quantity'
-              value={String(dataFilter.quantity)}
+              value={String(filters.quantity)}
               placeholder='Search'
-              onChange={handleSearch}
+              onChange={onSearch}
             />
           </TableCell>
           <TableCell title='Brand' tagName='th'>
             <Input
               name='brandName'
-              value={dataFilter.brandName}
+              value={filters.brandName}
               placeholder='Search'
-              onChange={handleSearch}
+              onChange={onSearch}
             />
           </TableCell>
           <TableCell title='Price' tagName='th'>
             <Input
               name='price'
-              value={String(dataFilter.price)}
+              value={String(filters.price)}
               placeholder='Search'
-              onChange={handleSearch}
+              onChange={onSearch}
             />
           </TableCell>
           <TableCell title='Action' tagName='th' />
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Array.isArray(data) &&
-          data.map((item) => (
+        {Array.isArray(products) &&
+          products.map((item) => (
             <ProductRow
               key={item.id}
               id={item.id}
               productImage={item.productImage}
               productName={item.productName}
-              status={item.statuses!.id!}
-              type={item.types!.name}
+              status={item.statuses ? item.statuses.name : ''}
+              type={item.types ? item.types.name : ''}
               quantity={item.quantity}
               brandImage={item.brandImage}
               brandName={item.brandName}
               price={item.price}
-              handleDelete={handleDelete}
-              handleEdit={handleEdit}
+              onDelete={onDelete}
+              onEdit={onEdit}
             />
           ))}
       </TableBody>
