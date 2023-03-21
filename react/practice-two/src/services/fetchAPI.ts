@@ -1,5 +1,4 @@
-import { URL_API } from 'constants/apiUrl';
-import { CustomErrors, customErrors } from 'helpers/handleErrors';
+import { CustomErrors, customErrors } from '@helpers';
 
 /**
  * @description function get all items
@@ -10,7 +9,7 @@ import { CustomErrors, customErrors } from 'helpers/handleErrors';
  */
 const getAllData = async <T>(url: string): Promise<T[] | CustomErrors> => {
   try {
-    const response = await fetch(`${URL_API.BASE_URL}${url}`);
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}${url}`);
     const data: T[] = await response.json();
     const dataItem = customErrors(response, data);
 
@@ -30,7 +29,7 @@ const getAllData = async <T>(url: string): Promise<T[] | CustomErrors> => {
  */
 const getDataById = async <T>(url: string, id: string): Promise<T | CustomErrors> => {
   try {
-    const response = await fetch(`${URL_API.BASE_URL}${url}/${id}`);
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}${url}/${id}`);
     const data: T = await response.json();
     const dataItem = customErrors(response, data);
 
@@ -58,7 +57,7 @@ const updateData = async <T>(id: string, dataItem: T, url: string): Promise<T | 
         'Content-Type': 'application/json',
       },
     };
-    const response = await fetch(`${URL_API.BASE_URL}${url}/${id}`, options);
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}${url}/${id}`, options);
     const data: T = await response.json();
     const item = customErrors(response, data);
 
@@ -82,7 +81,7 @@ const deleteData = async <T>(url: string, id: string): Promise<T | CustomErrors>
         'Content-Type': 'application/json',
       },
     };
-    const response = await fetch(`${URL_API.BASE_URL}${url}/${id}`, options);
+    const response = await fetch(`${import.meta.env.VITE_BASE_URL}${url}/${id}`, options);
     const data: T = await response.json();
     const dataItem = customErrors(response, data);
 

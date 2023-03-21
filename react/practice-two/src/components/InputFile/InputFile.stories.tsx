@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { InputFile } from './index';
+
+// Components
+import InputFile from '.';
 
 export default {
   title: 'PracticeTwo/InputFile',

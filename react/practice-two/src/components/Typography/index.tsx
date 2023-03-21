@@ -1,3 +1,4 @@
+// Styles
 import './index.css';
 
 interface TypographyProps {
@@ -26,4 +27,4 @@ const Typography = ({
   );
 };
 
-export { Typography };
+export default Typography;

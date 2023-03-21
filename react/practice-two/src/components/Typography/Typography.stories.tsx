@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Typography } from './index';
+
+// Components
+import Typography from '.';
 
 export default {
   title: 'PracticeTwo/Typography',

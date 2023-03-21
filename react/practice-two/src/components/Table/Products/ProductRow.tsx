@@ -1,15 +1,25 @@
-import { Identity } from 'components/Identity';
-import { Image } from 'components/Image';
-import { Label } from 'components/Label';
-import { Typography } from 'components/Typography';
 import { useState } from 'react';
-import { TableCell } from '../TableCell';
-import { TableRow } from '../TableRow';
+
+// Images
 import More from 'assets/icons/more.svg';
-import { ActionMenu } from 'components/ActionMenu';
-import { SelectItemProps } from 'components/SelectItem';
-import { getDataById } from 'services/fetchAPI';
-import { URL_API } from 'constants/apiUrl';
+
+// Component
+import {
+  TableCell,
+  TableRow,
+  Identity,
+  Image,
+  Label,
+  Typography,
+  ActionMenu,
+  SelectItemProps,
+} from '@components';
+
+// Services
+import { getDataById } from '@services';
+
+// Constants
+import { URL_API } from '@constants';
 
 interface DataProduct {
   id?: string;
@@ -28,9 +38,8 @@ interface DataProduct {
 }
 
 interface ProductRowProps extends DataProduct {
-  handleDataModalOnRow: (item: DataProduct) => void;
-  handleDelete: (id: string) => void;
-  handleEdit: (item: DataProduct) => void;
+  onDelete: (id: string) => void;
+  onEdit: (item: DataProduct) => void;
 }
 
 const ProductRow = ({
@@ -43,8 +52,8 @@ const ProductRow = ({
   brandImage,
   brandName,
   price,
-  handleDataModalOnRow,
-  handleEdit,
+  onDelete,
+  onEdit,
 }: ProductRowProps) => {
   const [menuPopup, setMenuPopup] = useState(false);
 
@@ -60,37 +69,25 @@ const ProductRow = ({
    *
    * @param {MouseEvent} e is event of onClick
    */
-  const handleModalEdit = async (e: React.MouseEvent) => {
-    if (e.target instanceof HTMLElement) {
-      console.log('a');
-      const idItem = e.target.id;
-      const data = await getDataById<DataProduct>(URL_API.PRODUCTS, idItem);
+  const handleModalEdit = async (id: string) => {
+    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, id);
 
-      if ('messageError' in data) {
-        alert(data.messageError);
-      } else {
-        handleEdit(data);
-      }
-      setMenuPopup(false);
+    if ('messageError' in data) {
+      alert(data.messageError);
+    } else {
+      onEdit(data);
     }
+    setMenuPopup(false);
   };
 
   /**
    * @description function delete item with id
    */
-  const onDelete = () => {
-    handleDataModalOnRow({
-      id,
-      productImage,
-      productName,
-      type,
-      quantity,
-      status,
-      brandImage,
-      brandName,
-      price,
-    });
-    setMenuPopup(false);
+  const handleDelete = () => {
+    if (id) {
+      onDelete(id);
+      setMenuPopup(false);
+    }
   };
 
   return (
@@ -99,14 +96,13 @@ const ProductRow = ({
         <Identity image={productImage} text={productName} />
       </TableCell>
       <TableCell tagName='td'>
-        {status === '1' ? (
-          <Label text='Available' variant='success' />
-        ) : (
-          <Label text='Sold out' variant='warning' />
-        )}
+        <Label
+          text={status ? status : ''}
+          variant={`${status === 'Available' ? 'success' : 'warning'}`}
+        />
       </TableCell>
       <TableCell tagName='td'>
-        <Typography text={type!} weight='regular' />
+        <Typography text={type ? type : ''} weight='regular' />
       </TableCell>
       <TableCell tagName='td'>
         <Label text={String(quantity)} variant='primary' />
@@ -125,7 +121,7 @@ const ProductRow = ({
           cursorPointer={true}
           onClick={handleShowHidePopup}
         />
-        {menuPopup && <ActionMenu id={id} handleDelete={onDelete} handleEdit={handleModalEdit} />}
+        {menuPopup && <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />}
       </TableCell>
     </TableRow>
   );

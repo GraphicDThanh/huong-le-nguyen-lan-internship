@@ -1,5 +1,8 @@
-import { Image, ImageProps } from 'components/Image';
+// Styles
 import './index.css';
+
+// Components
+import { Image, ImageProps } from '@components';
 
 interface IdentityProps extends Pick<ImageProps, 'image' | 'variant'> {
   text: string;
@@ -14,4 +17,4 @@ const Identity = ({ text, image, variant }: IdentityProps) => {
   );
 };
 
-export { Identity };
+export default Identity;

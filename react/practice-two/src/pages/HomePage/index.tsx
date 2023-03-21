@@ -1,15 +1,16 @@
-import { ProductsTable } from 'components/Table/Products';
-import { ProductsTable } from 'components/Table/Products';
-import { Typography } from 'components/Typography';
+import { ChangeEvent, useEffect, useState } from 'react';
+
+// Styles
 import './index.css';
-import { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { deleteData, getAllData } from 'services/fetchAPI';
-import { URL_API } from 'constants/apiUrl';
-import { SelectItemProps } from 'components/SelectItem';
-import { ProductModal } from 'components/Modal/ProductModal';
-import { DataProduct } from 'components/Table/Products/ProductRow';
-import { CustomErrors } from 'helpers/handleErrors';
-import { ConfirmModal } from 'components/Modal/ConfirmModal';
+
+// Components
+import { ProductsTable, Typography, SelectItemProps, ProductModal, DataProduct } from '@components';
+
+// Constants
+import { URL_API } from '@constants';
+
+// Services
+import { getAllData, deleteData } from '@services';
 
 const HomePage = () => {
   const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);
@@ -65,11 +66,11 @@ const HomePage = () => {
    *
    * @param {ChangeEvent} e is event of input
    */
-  const handleSearch = (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      const name = e.target.name;
-      const value = e.target.value;
+  const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
+    if (name && value) {
       setFilter((prev) => {
         return {
           ...prev,
@@ -175,24 +176,23 @@ const HomePage = () => {
       </header>
       <main>
         <ProductsTable
-          dataFilter={filter}
-          data={products}
+          filters={filter}
+          products={products}
           listStatus={dataStatus}
           listType={dataTypes}
-          handleSearch={handleSearch}
-          handleDelete={handleDelete}
-          handleDataModalOnRow={handleDataModalOnRow}
-          handleEdit={handleDataModal}
+          onSearch={handleSearch}
+          onDelete={handleDelete}
+          onEdit={handleDataModal}
         />
       </main>
       {modal && (
         <ProductModal
-          product={productItem}
-          dataStatus={dataStatus}
-          dataTypes={dataTypes}
-          isProductUpdate={handleProductUpdate}
+          productItem={productItem}
+          status={dataStatus}
+          types={dataTypes}
+          fragProductUpdate={handleProductUpdate}
           showHideModal={showHideModal}
-          handleConfirmDelete={showHideConfirmModal}
+          onDelete={showHideConfirmModal}
         />
       )}
       {confirmModal && (

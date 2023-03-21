@@ -1,4 +1,6 @@
 import { ChangeEvent } from 'react';
+
+// Styles
 import './index.css';
 
 interface InputProps {
@@ -7,7 +9,7 @@ interface InputProps {
   variant?: 'default' | 'primary';
   placeholder?: string;
   title?: string;
-  onChange?: (e: ChangeEvent) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({ name, value, placeholder, variant = 'default', title, onChange }: InputProps) => {
@@ -39,4 +41,4 @@ const Input = ({ name, value, placeholder, variant = 'default', title, onChange 
   );
 };
 
-export { Input };
+export default Input;
