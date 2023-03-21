@@ -8,25 +8,21 @@ import { Button } from '@components';
 
 interface ActionMenuProps {
   id?: string;
-  handleEdit: (id: string) => void;
-  handleDelete: (e: MouseEvent<HTMLButtonElement>) => void;
+  onEdit: (id: string) => void;
+  onDelete: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const ActionMenu = ({ id, handleDelete, handleEdit }: ActionMenuProps) => {
-  const onEdit = () => {
-    handleEdit(id!);
+const ActionMenu = ({ id, onDelete, onEdit }: ActionMenuProps) => {
+  const handleEdit = () => {
+    if (id) {
+      onEdit(id);
+    }
   };
 
   return (
     <div className='action-menu-wrapper'>
-      <Button text='Edit' color='default' type='button' onClick={onEdit} variant='primary' />
-      <Button
-        text='Delete'
-        color='warning'
-        type='button'
-        onClick={handleDelete}
-        variant='primary'
-      />
+      <Button text='Edit' color='default' type='button' onClick={handleEdit} variant='primary' />
+      <Button text='Delete' color='warning' type='button' onClick={onDelete} variant='primary' />
     </div>
   );
 };
