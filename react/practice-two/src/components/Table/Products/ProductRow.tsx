@@ -4,14 +4,16 @@ import { useState } from 'react';
 import More from 'assets/icons/more.svg';
 
 // Component
-import { TableCell } from '@components';
-import { TableRow } from '@components';
-import { Identity } from '@components';
-import { Image } from '@components';
-import { Label } from '@components';
-import { Typography } from '@components';
-import { ActionMenu } from '@components';
-import { SelectItemProps } from '@components';
+import {
+  TableCell,
+  TableRow,
+  Identity,
+  Image,
+  Label,
+  Typography,
+  ActionMenu,
+  SelectItemProps,
+} from '@components';
 
 // Services
 import { getDataById } from '@services';
@@ -36,8 +38,8 @@ interface DataProduct {
 }
 
 interface ProductRowProps extends DataProduct {
-  handleDelete: (id: string) => void;
-  handleEdit: (item: DataProduct) => void;
+  onDelete: (id: string) => void;
+  onEdit: (item: DataProduct) => void;
 }
 
 const ProductRow = ({
@@ -50,8 +52,8 @@ const ProductRow = ({
   brandImage,
   brandName,
   price,
-  handleDelete,
-  handleEdit,
+  onDelete,
+  onEdit,
 }: ProductRowProps) => {
   const [menuPopup, setMenuPopup] = useState(false);
 
@@ -73,7 +75,7 @@ const ProductRow = ({
     if ('messageError' in data) {
       alert(data.messageError);
     } else {
-      handleEdit(data);
+      onEdit(data);
     }
     setMenuPopup(false);
   };
@@ -81,9 +83,11 @@ const ProductRow = ({
   /**
    * @description function delete item with id
    */
-  const onDelete = () => {
-    handleDelete(id!);
-    setMenuPopup(false);
+  const handleDelete = () => {
+    if (id) {
+      onDelete(id);
+      setMenuPopup(false);
+    }
   };
 
   return (
@@ -92,10 +96,13 @@ const ProductRow = ({
         <Identity image={productImage} text={productName} />
       </TableCell>
       <TableCell tagName='td'>
-        <Label text={status!} variant={`${status === 'Available' ? 'success' : 'warning'}`} />
+        <Label
+          text={status ? status : ''}
+          variant={`${status === 'Available' ? 'success' : 'warning'}`}
+        />
       </TableCell>
       <TableCell tagName='td'>
-        <Typography text={type!} weight='regular' />
+        <Typography text={type ? type : ''} weight='regular' />
       </TableCell>
       <TableCell tagName='td'>
         <Label text={String(quantity)} variant='primary' />
@@ -114,7 +121,7 @@ const ProductRow = ({
           cursorPointer={true}
           onClick={handleShowHidePopup}
         />
-        {menuPopup && <ActionMenu id={id} handleDelete={onDelete} handleEdit={handleModalEdit} />}
+        {menuPopup && <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />}
       </TableCell>
     </TableRow>
   );

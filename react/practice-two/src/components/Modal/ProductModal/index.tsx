@@ -4,14 +4,16 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import './index.css';
 
 // Components
-import { Modal } from '@components';
-import { Button } from '@components';
-import { Image } from '@components';
-import { Input } from '@components';
-import { Select } from '@components';
-import { SelectItemProps } from '@components';
-import { DataProduct } from '@components';
-import { InputFile } from '@components';
+import {
+  Modal,
+  Button,
+  Image,
+  Input,
+  Select,
+  SelectItemProps,
+  DataProduct,
+  InputFile,
+} from '@components';
 
 // Services
 import { updateData } from '@services';
@@ -20,27 +22,26 @@ import { updateData } from '@services';
 import { URL_API } from '@constants';
 
 // Helpers
-import { validation } from '@helpers';
-import { convertBase64 } from '@helpers';
+import { validation, convertBase64 } from '@helpers';
 
 interface ModalProps {
   status: SelectItemProps[];
   types: SelectItemProps[];
   productItem: DataProduct;
   showHideModal: () => void;
-  isProductUpdate: () => void;
-  handleDelete: (id: string) => void;
+  fragProductUpdate: () => void;
+  onDelete: (id: string) => void;
 }
 
 type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
 
 const ProductModal = ({
   productItem,
-  showHideModal,
-  handleDelete,
   status,
-  isProductUpdate,
   types,
+  fragProductUpdate,
+  showHideModal,
+  onDelete,
 }: ModalProps) => {
   const [product, setProduct] = useState(productItem);
   const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
@@ -59,12 +60,14 @@ const ProductModal = ({
     const name = e.target.name;
     const value = e.target.value;
 
-    setProduct(() => {
-      return {
-        ...product,
-        [name]: value,
-      };
-    });
+    if (name && value) {
+      setProduct(() => {
+        return {
+          ...product,
+          [name]: value,
+        };
+      });
+    }
   };
 
   /**
@@ -91,7 +94,7 @@ const ProductModal = ({
    *
    * @param {SubmitEvent} e is submit event of form
    */
-  const onSave = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const errors = validation<DataProduct, ErrorMessage>(product, ['price', 'quantity']);
 
@@ -101,7 +104,7 @@ const ProductModal = ({
       if ('messageError' in item) {
         alert(item.messageError);
       } else {
-        isProductUpdate();
+        fragProductUpdate();
         showHideModal();
       }
     } else {
@@ -112,16 +115,16 @@ const ProductModal = ({
   /**
    * @description function delete item with id
    */
-  const onDelete = () => {
+  const handleDelete = () => {
     if (product.id) {
-      handleDelete(product.id);
+      onDelete(product.id);
       showHideModal();
     }
   };
 
   return (
     <Modal showHideModal={showHideModal}>
-      <form className='form-wrapper' onSubmit={onSave}>
+      <form className='form-wrapper' onSubmit={handleSave}>
         <div className='form-body'>
           <div className='form-aside'>
             <Image image={product.productImage} size='large' />
@@ -217,7 +220,7 @@ const ProductModal = ({
             color='warning'
             text='Delete'
             type='button'
-            onClick={onDelete}
+            onClick={handleDelete}
           />
         </div>
       </form>
