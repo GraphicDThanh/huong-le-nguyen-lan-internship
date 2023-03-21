@@ -2,7 +2,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ChangeEvent, useState } from 'react';
 
 // Components
-import { Input } from '.';
+import Input from '.';
 
 export default {
   title: 'PracticeTwo/Input',

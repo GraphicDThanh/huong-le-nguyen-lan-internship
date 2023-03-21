@@ -121,4 +121,4 @@ const ProductsTable = ({
   );
 };
 
-export { ProductsTable };
+export default ProductsTable;

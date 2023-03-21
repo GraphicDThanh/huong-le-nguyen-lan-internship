@@ -5,7 +5,7 @@ import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
 
 // Components
-import { Identity } from '.';
+import Identity from '.';
 
 export default {
   title: 'PracticeTwo/Identity',

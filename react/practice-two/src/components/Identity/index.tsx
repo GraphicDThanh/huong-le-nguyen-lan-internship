@@ -17,4 +17,4 @@ const Identity = ({ text, image, variant }: IdentityProps) => {
   );
 };
 
-export { Identity };
+export default Identity;

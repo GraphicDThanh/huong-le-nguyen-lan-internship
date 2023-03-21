@@ -20,4 +20,4 @@ const TableCell = ({ children, title, tagName = 'td' }: TableCellProps) => {
   );
 };
 
-export { TableCell };
+export default TableCell;

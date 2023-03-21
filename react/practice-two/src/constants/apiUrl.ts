@@ -5,4 +5,4 @@ const URL_API = {
   STATUSES: '/statuses',
 };
 
-export { URL_API };
+export default URL_API;

@@ -5,7 +5,7 @@ import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
 
 // Components
-import { ProductModal } from '.';
+import ProductModal from '.';
 
 export default {
   title: 'PracticeTwo/Modal/ProductModal',

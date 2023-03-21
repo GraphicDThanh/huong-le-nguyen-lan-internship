@@ -11,4 +11,4 @@ const TableHeader = ({ children }: TableHeaderProps) => {
   return <thead className='table-header'>{children}</thead>;
 };
 
-export { TableHeader };
+export default TableHeader;
