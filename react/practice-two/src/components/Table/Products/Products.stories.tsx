@@ -34,7 +34,7 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
     { id: '2', name: 'Smart Phone' },
   ];
 
-  const data = [
+  const products = [
     {
       id: '1',
       productImage: Product,
@@ -110,13 +110,13 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
 
   return (
     <ProductsTable
-      dataFilter={filter}
-      data={data}
-      listStatus={listStatus}
-      listType={listType}
-      handleSearch={handleSearch}
-      handleDelete={handleDelete}
-      handleEdit={handleEdit}
+      filters={filter}
+      products={products}
+      status={listStatus}
+      types={listType}
+      onSearch={handleSearch}
+      onDelete={handleDelete}
+      onEdit={handleEdit}
     />
   );
 };
