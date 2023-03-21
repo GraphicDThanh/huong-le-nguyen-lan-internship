@@ -6,7 +6,7 @@ import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
 
 // Components
-import { ProductsTable } from '.';
+import ProductsTable from '.';
 
 export default {
   title: 'PracticeTwo/Table/Products',

@@ -50,4 +50,4 @@ const validation = <T extends Record<string, string>, X>(data: T, fieldsNumber =
   return errorsMessage as X;
 };
 
-export { validation };
+export default validation;

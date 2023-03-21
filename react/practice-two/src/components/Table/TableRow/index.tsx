@@ -12,4 +12,4 @@ const TableRow = ({ children, classTableRow }: TableRowProps) => {
   return <tr className={`table-row table-row-${classTableRow}`}>{children}</tr>;
 };
 
-export { TableRow };
+export default TableRow;

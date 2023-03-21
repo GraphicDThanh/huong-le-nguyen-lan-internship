@@ -35,4 +35,4 @@ const ActionMenu = ({ id, handleDelete, handleEdit }: ActionMenuProps) => {
   );
 };
 
-export { ActionMenu };
+export default ActionMenu;

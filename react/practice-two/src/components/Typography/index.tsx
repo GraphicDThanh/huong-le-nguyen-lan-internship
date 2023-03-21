@@ -27,4 +27,4 @@ const Typography = ({
   );
 };
 
-export { Typography };
+export default Typography;
