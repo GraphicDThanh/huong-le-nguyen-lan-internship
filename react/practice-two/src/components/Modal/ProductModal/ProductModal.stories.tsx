@@ -14,7 +14,7 @@ export default {
 } as ComponentMeta<typeof ProductModal>;
 
 const Template: ComponentStory<typeof ProductModal> = () => {
-  const data = {
+  const product = {
     id: '1',
     productImage: Product,
     productName: 'Louis Vuitton',
@@ -26,12 +26,12 @@ const Template: ComponentStory<typeof ProductModal> = () => {
     price: 200,
   };
 
-  const dataStatus = [
+  const status = [
     { id: '1', name: 'Available' },
     { id: '2', name: 'Sold out' },
   ];
 
-  const dataTypes = [
+  const types = [
     { id: '1', name: 'TV' },
     { id: '2', name: 'Smart Phone' },
   ];
@@ -44,17 +44,17 @@ const Template: ComponentStory<typeof ProductModal> = () => {
     console.log('handle delete');
   };
 
-  const isProductUpdate = () => {
+  const fragProductUpdate = () => {
     console.log('product update');
   };
 
   return (
     <ProductModal
-      handleDelete={handleDelete}
-      isProductUpdate={isProductUpdate}
-      product={data}
-      dataStatus={dataStatus}
-      dataTypes={dataTypes}
+      productItem={product}
+      status={status}
+      types={types}
+      onDelete={handleDelete}
+      fragProductUpdate={fragProductUpdate}
       showHideModal={showHideModal}
     />
   );
