@@ -1,43 +1,52 @@
-import { Button } from 'components/Button';
-import { Image } from 'components/Image';
-import { Input } from 'components/Input';
-import { Select } from 'components/Select';
-import { SelectItemProps } from 'components/SelectItem';
-import { DataProduct } from 'components/Table/Products/ProductRow';
-import { ChangeEvent, useState } from 'react';
-import { Modal } from '..';
-import { InputFile } from 'components/InputFile';
+import { ChangeEvent, FormEvent, useState } from 'react';
+
+// Styles
 import './index.css';
-import { convertBase64 } from 'helpers/convert';
-import { updateData } from 'services/fetchAPI';
-import { URL_API } from 'constants/apiUrl';
-import { validation } from 'helpers/validation';
+
+// Components
+import {
+  Modal,
+  Button,
+  Image,
+  Input,
+  Select,
+  SelectItemProps,
+  DataProduct,
+  InputFile,
+} from '@components';
+
+// Services
+import { updateData } from '@services';
+
+// Constants
+import { URL_API } from '@constants';
+
+// Helpers
+import { validation, convertBase64 } from '@helpers';
 
 interface ModalProps {
-  dataStatus: SelectItemProps[];
-  dataTypes: SelectItemProps[];
-  product: DataProduct;
+  status: SelectItemProps[];
+  types: SelectItemProps[];
+  productItem: DataProduct;
   showHideModal: () => void;
-  isProductUpdate: () => void;
-  handleDelete: (id: string) => void;
+  fragProductUpdate: () => void;
+  onDelete: (id: string) => void;
 }
 
+type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
+
 const ProductModal = ({
-  product,
+  productItem,
+  status,
+  types,
+  fragProductUpdate,
   showHideModal,
-  handleDelete,
-  dataStatus,
-  isProductUpdate,
-  dataTypes,
+  onDelete,
 }: ModalProps) => {
-  const [data, setData] = useState(product);
-  const [errorsMessage, setErrorsMessage] = useState<DataProduct>({
-    productImage: '',
+  const [product, setProduct] = useState(productItem);
+  const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
     productName: '',
-    status: '',
-    type: '',
     quantity: '',
-    brandImage: '',
     brandName: '',
     price: '',
   });
@@ -47,14 +56,14 @@ const ProductModal = ({
    *
    * @param {ChangeEvent} e is event of input
    */
-  const handleOnChange = (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      const name = e.target.name;
-      const value = e.target.value;
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-      setData(() => {
+    if (name && value) {
+      setProduct(() => {
         return {
-          ...data,
+          ...product,
           [name]: value,
         };
       });
@@ -66,18 +75,17 @@ const ProductModal = ({
    *
    * @param {ChangeEvent} e is event of input file
    */
-  const handleChangeInputFile = async (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      const name = e.target.name;
-      const file = e.target.files![0];
+  const handleChangeInputFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const [file] = e.target.files || [];
+
+    if (file) {
       const image = await convertBase64(file);
 
-      setData(() => {
-        return {
-          ...data,
-          [name]: image,
-        };
-      });
+      setProduct(() => ({
+        ...product,
+        [name]: image,
+      }));
     }
   };
 
@@ -86,38 +94,40 @@ const ProductModal = ({
    *
    * @param {SubmitEvent} e is submit event of form
    */
-  const onSave = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validation(data);
+    const errors = validation<DataProduct, ErrorMessage>(product, ['price', 'quantity']);
 
-    if (errors.isValid) {
-      const item = await updateData<DataProduct>(data.id!, data, URL_API.PRODUCTS);
+    if (Object.values(errors).every((value) => !value) && product.id) {
+      const item = await updateData<DataProduct>(product.id, product, URL_API.PRODUCTS);
 
       if ('messageError' in item) {
         alert(item.messageError);
       } else {
-        isProductUpdate();
+        fragProductUpdate();
         showHideModal();
       }
     } else {
-      setErrorsMessage(errors.result);
+      setErrorsMessage(errors);
     }
   };
 
   /**
    * @description function delete item with id
    */
-  const onDelete = () => {
-    handleDelete(data.id!);
-    showHideModal();
+  const handleDelete = () => {
+    if (product.id) {
+      onDelete(product.id);
+      showHideModal();
+    }
   };
 
   return (
     <Modal showHideModal={showHideModal}>
-      <form className='form-wrapper' onSubmit={onSave}>
+      <form className='form-wrapper' onSubmit={handleSave}>
         <div className='form-body'>
           <div className='form-aside'>
-            <Image image={data.productImage} size='large' />
+            <Image image={product.productImage} size='large' />
             <InputFile
               id='productImage'
               name='productImage'
@@ -132,7 +142,7 @@ const ProductModal = ({
                   title="Product's Name"
                   name='productName'
                   variant='primary'
-                  value={data.productName}
+                  value={product.productName}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.productName}</span>
@@ -144,7 +154,7 @@ const ProductModal = ({
                   title='Quantity'
                   name='quantity'
                   variant='primary'
-                  value={String(data.quantity)}
+                  value={String(product.quantity)}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.quantity}</span>
@@ -156,14 +166,14 @@ const ProductModal = ({
                   title="Brand's Name"
                   name='brandName'
                   variant='primary'
-                  value={data.brandName}
+                  value={product.brandName}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.brandName}</span>
               </div>
 
               <div className='group-image'>
-                <Image size='small' variant='circle' image={data.brandImage} />
+                <Image size='small' variant='circle' image={product.brandImage} />
                 <InputFile
                   id='brandImage'
                   name='brandImage'
@@ -179,7 +189,7 @@ const ProductModal = ({
                   title='Price'
                   name='price'
                   variant='primary'
-                  value={String(data.price)}
+                  value={String(product.price)}
                   onChange={handleOnChange}
                 />
                 <span className='error-message'>{errorsMessage.price}</span>
@@ -187,17 +197,17 @@ const ProductModal = ({
 
               <Select
                 title='Status'
-                options={dataStatus}
+                options={status}
                 name='statusesId'
-                valueSelected={data.statusesId!}
+                valueSelected={product.statusesId ? product.statusesId : ''}
                 onChange={handleOnChange}
               />
 
               <Select
                 title='Types'
-                options={dataTypes}
+                options={types}
                 name='typesId'
-                valueSelected={data.typesId!}
+                valueSelected={product.typesId ? product.typesId : ''}
                 onChange={handleOnChange}
               />
             </div>
@@ -210,7 +220,7 @@ const ProductModal = ({
             color='warning'
             text='Delete'
             type='button'
-            onClick={onDelete}
+            onClick={handleDelete}
           />
         </div>
       </form>
@@ -218,4 +228,4 @@ const ProductModal = ({
   );
 };
 
-export { ProductModal };
+export default ProductModal;

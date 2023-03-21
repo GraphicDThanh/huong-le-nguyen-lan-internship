@@ -1,5 +1,7 @@
-import './index.css';
 import { ReactNode } from 'react';
+
+// Styles
+import './index.css';
 
 interface TableCellProps {
   title?: string;
@@ -18,4 +20,4 @@ const TableCell = ({ children, title, tagName = 'td' }: TableCellProps) => {
   );
 };
 
-export { TableCell };
+export default TableCell;

@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+
+// Styles
 import './index.css';
 
 interface TableBodyProps {
@@ -9,4 +11,4 @@ const TableBody = ({ children }: TableBodyProps) => {
   return <tbody className='table-body'>{children}</tbody>;
 };
 
-export { TableBody };
+export default TableBody;

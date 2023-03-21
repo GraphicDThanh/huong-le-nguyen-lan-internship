@@ -1,6 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { ChangeEvent, useState } from 'react';
-import { Input } from './index';
+
+// Components
+import Input from '.';
 
 export default {
   title: 'PracticeTwo/Input',
@@ -10,10 +12,8 @@ export default {
 
 const Template: ComponentStory<typeof Input> = (args) => {
   const [data, setData] = useState('');
-  const handleSetData = (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      setData(e.target.value);
-    }
+  const handleSetData = (e: ChangeEvent<HTMLInputElement>) => {
+    setData(e.target.value);
   };
   const { name = 'name', value = data, onChange = handleSetData, ...rest } = args;
 

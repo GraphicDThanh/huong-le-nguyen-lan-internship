@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+
+// Styles
 import './index.css';
 
 interface TableHeaderProps {
@@ -9,4 +11,4 @@ const TableHeader = ({ children }: TableHeaderProps) => {
   return <thead className='table-header'>{children}</thead>;
 };
 
-export { TableHeader };
+export default TableHeader;

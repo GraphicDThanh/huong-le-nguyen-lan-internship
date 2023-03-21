@@ -1,7 +1,11 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Identity } from './index';
+
+// Images
 import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
+
+// Components
+import Identity from '.';
 
 export default {
   title: 'PracticeTwo/Identity',

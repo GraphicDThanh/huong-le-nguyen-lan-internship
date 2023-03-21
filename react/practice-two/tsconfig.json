@@ -23,7 +23,11 @@
     "incremental": true,
     "baseUrl": "src",
     "paths": {
-      "": ["./"]
+      "@constants": ["./constants"],
+      "@components": ["./components"],
+      "@pages": ["./pages"],
+      "@helpers": ["./helpers"],
+      "@services": ["./services"]
     }
   },
   "include": ["*/.ts", "*/.tsx", "src"],

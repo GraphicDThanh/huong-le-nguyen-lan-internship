@@ -1,4 +1,6 @@
 import { ChangeEvent } from 'react';
+
+// Styles
 import './index.css';
 
 interface InputFileProps {
@@ -7,7 +9,7 @@ interface InputFileProps {
   id: string;
   text: string;
   variant?: 'primary' | 'secondary';
-  onChange: (e: ChangeEvent) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputFile = ({
@@ -26,4 +28,4 @@ const InputFile = ({
   );
 };
 
-export { InputFile };
+export default InputFile;

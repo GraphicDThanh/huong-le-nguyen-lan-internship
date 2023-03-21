@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ActionMenu } from './index';
+
+// Components
+import ActionMenu from '.';
 
 export default {
   title: 'PracticeTwo/ActionMenu',

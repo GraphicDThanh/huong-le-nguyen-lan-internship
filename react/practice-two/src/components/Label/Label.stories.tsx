@@ -1,5 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Label } from './index';
+
+// Components
+import Label from '.';
 
 export default {
   title: 'PracticeTwo/Label',

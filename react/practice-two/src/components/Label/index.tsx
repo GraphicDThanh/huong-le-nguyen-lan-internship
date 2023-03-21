@@ -1,3 +1,4 @@
+// Styles
 import './index.css';
 
 interface LabelProps {
@@ -13,4 +14,4 @@ const Label = ({ text, variant }: LabelProps) => {
   );
 };
 
-export { Label };
+export default Label;

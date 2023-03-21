@@ -1,4 +1,4 @@
-import { MESSAGE } from 'constants/message';
+import { MESSAGE_ERRORS } from '@constants';
 
 /**
  * @description function validation with data of all input
@@ -10,15 +10,15 @@ import { MESSAGE } from 'constants/message';
  */
 const validation = <T>(data: T, fieldsNumber = ['']): T => {
   let errorsMessage = {};
-  for (const [key, value] of Object.entries(data as { [key: string]: string })) {
+  for (const [key, value] of Object.entries(data)) {
     // Check which fields are the fields to check number
     if (fieldsNumber.includes(key)) {
       // Check value is number or not
       if (isNaN(Number(value))) {
-        errorsMessage = { ...errorsMessage, [key]: MESSAGE.NOT_A_NUMBER };
+        errorsMessage = { ...errorsMessage, [key]: MESSAGE_ERRORS.NOT_A_NUMBER };
         // Check value greater than 0
       } else if (Number(value) < 1) {
-        errorsMessage = { ...errorsMessage, [key]: MESSAGE.GREATER_THAN_ZERO };
+        errorsMessage = { ...errorsMessage, [key]: MESSAGE_ERRORS.GREATER_THAN_ZERO };
       } else {
         errorsMessage = { ...errorsMessage };
       }
@@ -26,11 +26,11 @@ const validation = <T>(data: T, fieldsNumber = ['']): T => {
 
     // Check value is empty or not
     if (!value) {
-      errorsMessage = { ...errorsMessage, [key]: MESSAGE.EMPTY_FIELD };
+      errorsMessage = { ...errorsMessage, [key]: MESSAGE_ERRORS.EMPTY_FIELD };
     }
   }
 
   return errorsMessage as T;
 };
 
-export { validation };
+export default validation;

@@ -1,4 +1,6 @@
 import { MouseEvent } from 'react';
+
+// Styles
 import './index.css';
 
 interface ImageProps {

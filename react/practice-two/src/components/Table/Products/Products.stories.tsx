@@ -1,8 +1,12 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ProductsTable } from '.';
+import { ChangeEvent, useState } from 'react';
+
+// Images
 import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
-import { ChangeEvent, useState } from 'react';
+
+// Components
+import ProductsTable from '.';
 
 export default {
   title: 'PracticeTwo/Table/Products',
@@ -84,18 +88,16 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
     },
   ];
 
-  const handleSearch = (e: ChangeEvent) => {
-    if (e.target instanceof HTMLInputElement) {
-      const name = e.target.name;
-      const value = e.target.value;
+  const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
-      setFilter((prev) => {
-        return {
-          ...prev,
-          [name]: value,
-        };
-      });
-    }
+    setFilter((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
 
   const handleDelete = () => {

@@ -1,4 +1,4 @@
-import { STATUS_CODE } from 'constants/statusCode';
+import { STATUS_CODE } from '@constants';
 
 type CustomErrors = {
   messageError: string;
