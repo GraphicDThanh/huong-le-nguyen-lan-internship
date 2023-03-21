@@ -26,16 +26,16 @@ interface Filters {
 
 interface ProductsTableProps extends Pick<ProductRowProps, 'onDelete' | 'onEdit'> {
   filters: Filters;
-  listStatus: SelectItemProps[];
-  listType: SelectItemProps[];
+  status: SelectItemProps[];
+  types: SelectItemProps[];
   products: DataProduct[];
   onSearch: (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void;
 }
 
 const ProductsTable = ({
   filters,
-  listStatus,
-  listType,
+  status,
+  types,
   products,
   onSearch,
   onDelete,
@@ -56,7 +56,7 @@ const ProductsTable = ({
           <TableCell title='Status' tagName='th'>
             <Select
               name='statusesId'
-              options={listStatus}
+              options={status}
               optionAll={true}
               valueSelected={filters.statusesId}
               onChange={onSearch}
@@ -65,7 +65,7 @@ const ProductsTable = ({
           <TableCell title='Type' tagName='th'>
             <Select
               name='typesId'
-              options={listType}
+              options={types}
               optionAll={true}
               valueSelected={filters.typesId}
               onChange={onSearch}
