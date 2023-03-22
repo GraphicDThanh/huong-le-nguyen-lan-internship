@@ -2,7 +2,7 @@
   font-family: var(--font-semiBold), var(--font-default);
   font-size: var(--normal);
   color: var(--primary-color);
-  padding: 10px 0 40px 0;
+  padding: 20px 0 40px 0;
 }
 
 .confirm-modal-cta {
