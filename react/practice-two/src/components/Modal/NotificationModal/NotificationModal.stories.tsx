@@ -1,19 +1,19 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import ConfirmModal from '.';
+import NotificationModal from '.';
 
 export default {
-  title: 'PracticeTwo/Modal/ConfirmModal',
-  component: ConfirmModal,
+  title: 'PracticeTwo/Modal/NotificationModal',
+  component: NotificationModal,
   decorators: [(Story) => <Story />],
-} as ComponentMeta<typeof ConfirmModal>;
+} as ComponentMeta<typeof NotificationModal>;
 
-const Template: ComponentStory<typeof ConfirmModal> = () => {
+const Template: ComponentStory<typeof NotificationModal> = () => {
   const onConfirm = async (id: string) => {
     console.log('id', id);
   };
 
   return (
-    <ConfirmModal
+    <NotificationModal
       description='Do you want to delete this ?'
       id='1'
       onConfirm={onConfirm}

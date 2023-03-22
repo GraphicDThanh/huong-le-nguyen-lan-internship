@@ -2,21 +2,21 @@ import { createContext, ReactNode, useCallback, useMemo, useState } from 'react'
 
 interface State {
   itemModal: boolean;
-  confirmModal: boolean;
+  notificationModal: boolean;
 }
 
 interface Context extends State {
   showHideItemModal: () => void;
-  showHideConfirmModal: () => void;
+  showHideNotificationModal: () => void;
 }
 
 const initState = {
   itemModal: false,
-  confirmModal: false,
+  notificationModal: false,
   showHideItemModal: () => {
     // set state
   },
-  showHideConfirmModal: () => {
+  showHideNotificationModal: () => {
     // set state
   },
 };
@@ -25,14 +25,14 @@ const ModalContext = createContext<Context>(initState);
 
 const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [itemModal, setItemModal] = useState(false);
-  const [confirmModal, setConfirmModal] = useState(false);
+  const [notificationModal, setNotificationModal] = useState(false);
 
   const showHideItemModal = useCallback(() => {
     setItemModal((prev) => !prev);
   }, []);
 
-  const showHideConfirmModal = useCallback(() => {
-    setConfirmModal((prev) => {
+  const showHideNotificationModal = useCallback(() => {
+    setNotificationModal((prev) => {
       return !prev;
     });
   }, []);
@@ -40,11 +40,11 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
   const value = useMemo(
     () => ({
       itemModal,
-      confirmModal,
+      notificationModal,
       showHideItemModal,
-      showHideConfirmModal,
+      showHideNotificationModal,
     }),
-    [itemModal, confirmModal, showHideItemModal, showHideConfirmModal],
+    [itemModal, notificationModal, showHideItemModal, showHideNotificationModal],
   );
 
   return <ModalContext.Provider value={value}>{children}</ModalContext.Provider>;

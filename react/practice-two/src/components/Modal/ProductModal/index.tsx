@@ -37,7 +37,7 @@ interface ModalProps {
 type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
 
 const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalProps) => {
-  const { showHideConfirmModal, showHideItemModal } = useContext(ModalContext);
+  const { showHideNotificationModal, showHideItemModal } = useContext(ModalContext);
   const [product, setProduct] = useState(productItem);
   const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
     productName: '',
@@ -205,7 +205,7 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
             color='warning'
             text='Delete'
             type='button'
-            onClick={showHideConfirmModal}
+            onClick={showHideNotificationModal}
           />
         </div>
       </form>

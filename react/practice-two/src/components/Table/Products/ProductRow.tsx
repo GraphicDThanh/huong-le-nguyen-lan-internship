@@ -58,7 +58,7 @@ const ProductRow = ({
   onEdit,
   handleSetProductItem,
 }: ProductRowProps) => {
-  const { showHideConfirmModal } = useContext(ModalContext);
+  const { showHideNotificationModal } = useContext(ModalContext);
   const [menuPopup, setMenuPopup] = useState(false);
 
   /**
@@ -89,7 +89,7 @@ const ProductRow = ({
    */
   const handleDelete = () => {
     if (id) {
-      showHideConfirmModal(); /// Because of this
+      showHideNotificationModal(); /// Because of this
       handleSetProductItem({
         id,
         productImage,

@@ -9,7 +9,7 @@ import {
   SelectItemProps,
   ProductModal,
   DataProduct,
-  ConfirmModal,
+  NotificationModal,
 } from '@components';
 
 // Constants
@@ -22,7 +22,7 @@ import { getAllData, deleteData } from '@services';
 import { ModalContext } from '@contexts';
 
 const HomePage = () => {
-  const { itemModal, confirmModal, showHideConfirmModal, showHideItemModal } =
+  const { itemModal, notificationModal, showHideNotificationModal, showHideItemModal } =
     useContext(ModalContext);
   const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);
   const [dataTypes, setDataTypes] = useState<SelectItemProps[]>([]);
@@ -104,9 +104,9 @@ const HomePage = () => {
       alert(data.messageError);
     } else if (!itemModal) {
       showHideItemModal();
-      showHideConfirmModal();
+      showHideNotificationModal();
     } else {
-      showHideConfirmModal();
+      showHideNotificationModal();
     }
     handleProductUpdate();
   }, []);
@@ -173,8 +173,8 @@ const HomePage = () => {
           fragProductUpdate={handleProductUpdate}
         />
       )}
-      {confirmModal && (
-        <ConfirmModal
+      {notificationModal && (
+        <NotificationModal
           description='Do you want to delete this ?'
           id={productItem.id || ''}
           onConfirm={handleConfirm}
