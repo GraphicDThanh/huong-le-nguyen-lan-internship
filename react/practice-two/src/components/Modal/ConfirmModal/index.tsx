@@ -1,33 +1,33 @@
-import { Button } from 'components/Button';
-import { Modal } from '..';
+import { useContext } from 'react';
+
+// Styles
 import './index.css';
+
+// Components
+import { Button, Modal } from '@components';
+
+// Contexts
+import { ModalContext } from '@contexts';
 
 interface ConfirmModalProps {
   id: string;
   textButtonConfirm: string;
   description: string;
-  showHideModal: () => void;
-  onConfirm: (id: string) => void;
+  onConfirm: (id: string) => Promise<void>;
 }
 
-const ConfirmModal = ({
-  showHideModal,
-  onConfirm,
-  description,
-  id,
-  textButtonConfirm,
-}: ConfirmModalProps) => {
+const ConfirmModal = ({ description, id, textButtonConfirm, onConfirm }: ConfirmModalProps) => {
+  const { showHideConfirmModal } = useContext(ModalContext);
+
   /**
    * @description function handle action confirm of modal
    */
-  const handleActionConfirm = () => {
-    console.log(id);
-    showHideModal();
+  const handleActionConfirm = async () => {
     onConfirm(id);
   };
 
   return (
-    <Modal showHideModal={showHideModal}>
+    <Modal showHideModal={showHideConfirmModal}>
       <p className='confirm-modal-description'>{description}</p>
       <div className='confirm-modal-cta'>
         <Button
@@ -42,11 +42,11 @@ const ConfirmModal = ({
           color='default'
           text='Cancel'
           type='button'
-          onClick={showHideModal}
+          onClick={showHideConfirmModal}
         />
       </div>
     </Modal>
   );
 };
 
-export { ConfirmModal };
+export default ConfirmModal;

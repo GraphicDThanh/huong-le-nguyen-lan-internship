@@ -1,5 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { ConfirmModal } from '.';
+import ConfirmModal from '.';
 
 export default {
   title: 'PracticeTwo/Modal/ConfirmModal',
@@ -8,12 +8,8 @@ export default {
 } as ComponentMeta<typeof ConfirmModal>;
 
 const Template: ComponentStory<typeof ConfirmModal> = () => {
-  const onConfirm = () => {
-    console.log('confirm');
-  };
-
-  const showHideModal = () => {
-    console.log('show hide modal');
+  const onConfirm = async (id: string) => {
+    console.log('id', id);
   };
 
   return (
@@ -21,7 +17,6 @@ const Template: ComponentStory<typeof ConfirmModal> = () => {
       description='Do you want to delete this ?'
       id='1'
       onConfirm={onConfirm}
-      showHideModal={showHideModal}
       textButtonConfirm='Delete'
     />
   );

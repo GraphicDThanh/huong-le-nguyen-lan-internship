@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, memo, useContext, useState } from 'react';
 
 // Styles
 import './index.css';
@@ -24,25 +24,20 @@ import { URL_API } from '@constants';
 // Helpers
 import { validation, convertBase64 } from '@helpers';
 
+// Contexts
+import { ModalContext } from '@contexts';
+
 interface ModalProps {
   status: SelectItemProps[];
   types: SelectItemProps[];
   productItem: DataProduct;
-  showHideModal: () => void;
   fragProductUpdate: () => void;
-  onDelete: (id: string) => void;
 }
 
 type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
 
-const ProductModal = ({
-  productItem,
-  status,
-  types,
-  fragProductUpdate,
-  showHideModal,
-  onDelete,
-}: ModalProps) => {
+const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalProps) => {
+  const { showHideConfirmModal, showHideItemModal } = useContext(ModalContext);
   const [product, setProduct] = useState(productItem);
   const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
     productName: '',
@@ -54,13 +49,13 @@ const ProductModal = ({
   /**
    * @description function get value when input change their value
    *
-   * @param {ChangeEvent} e is event of input
+   * @param {ChangeEvent} e is event of input or select
    */
   const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    if (name && value) {
+    if (name) {
       setProduct(() => {
         return {
           ...product,
@@ -105,25 +100,15 @@ const ProductModal = ({
         alert(item.messageError);
       } else {
         fragProductUpdate();
-        showHideModal();
+        showHideItemModal();
       }
     } else {
       setErrorsMessage(errors);
     }
   };
 
-  /**
-   * @description function delete item with id
-   */
-  const handleDelete = () => {
-    if (product.id) {
-      onDelete(product.id);
-      showHideModal();
-    }
-  };
-
   return (
-    <Modal showHideModal={showHideModal}>
+    <Modal showHideModal={showHideItemModal}>
       <form className='form-wrapper' onSubmit={handleSave}>
         <div className='form-body'>
           <div className='form-aside'>
@@ -199,7 +184,7 @@ const ProductModal = ({
                 title='Status'
                 options={status}
                 name='statusesId'
-                valueSelected={product.statusesId ? product.statusesId : ''}
+                valueSelected={product.statusesId || ''}
                 onChange={handleOnChange}
               />
 
@@ -207,7 +192,7 @@ const ProductModal = ({
                 title='Types'
                 options={types}
                 name='typesId'
-                valueSelected={product.typesId ? product.typesId : ''}
+                valueSelected={product.typesId || ''}
                 onChange={handleOnChange}
               />
             </div>
@@ -220,7 +205,7 @@ const ProductModal = ({
             color='warning'
             text='Delete'
             type='button'
-            onClick={handleDelete}
+            onClick={showHideConfirmModal}
           />
         </div>
       </form>
@@ -228,4 +213,4 @@ const ProductModal = ({
   );
 };
 
-export default ProductModal;
+export default memo(ProductModal);

@@ -1,10 +1,16 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, memo, useCallback, useContext, useEffect, useState } from 'react';
 
 // Styles
 import './index.css';
 
 // Components
-import { ProductsTable, Typography, SelectItemProps, ProductModal, DataProduct } from '@components';
+import {
+  ProductsTable,
+  SelectItemProps,
+  ProductModal,
+  DataProduct,
+  ConfirmModal,
+} from '@components';
 
 // Constants
 import { URL_API } from '@constants';
@@ -12,13 +18,16 @@ import { URL_API } from '@constants';
 // Services
 import { getAllData, deleteData } from '@services';
 
+// Contexts
+import { ModalContext } from '@contexts';
+
 const HomePage = () => {
+  const { itemModal, confirmModal, showHideConfirmModal, showHideItemModal } =
+    useContext(ModalContext);
   const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);
   const [dataTypes, setDataTypes] = useState<SelectItemProps[]>([]);
   const [products, setProducts] = useState<DataProduct[]>([]);
-  const [isProductUpdate, setIsProductUpdate] = useState(false);
-  const [modal, setModal] = useState(false);
-  const [confirmModal, setConfirmModal] = useState(false);
+  const [fragProductUpdate, setFragProductUpdate] = useState(false);
   const [filter, setFilter] = useState({
     productName: '',
     statusesId: '',
@@ -43,22 +52,15 @@ const HomePage = () => {
    * @description flags to check if the data after
    * editing and deleting has been changed or not
    */
-  const handleProductUpdate = () => {
-    setIsProductUpdate((prev) => !prev);
-  };
+  const handleProductUpdate = useCallback(() => {
+    setFragProductUpdate((prev) => !prev);
+  }, []);
 
   /**
-   * @description function show hide modal
+   * @description function set product to product state
    */
-  const showHideModal = () => {
-    setModal((prev) => !prev);
-  };
-
-  /**
-   * @description function show hide modal
-   */
-  const showHideConfirmModal = useCallback(() => {
-    setConfirmModal((prev) => !prev);
+  const handleSetProductItem = useCallback((item: DataProduct) => {
+    setProductItem(item);
   }, []);
 
   /**
@@ -66,11 +68,11 @@ const HomePage = () => {
    *
    * @param {ChangeEvent} e is event of input
    */
-  const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    if (name && value) {
+    if (name) {
       setFilter((prev) => {
         return {
           ...prev,
@@ -78,53 +80,36 @@ const HomePage = () => {
         };
       });
     }
-  };
-
-  /**
-   * @description function delete item with id
-   *
-   * @param {String} id is id of item which is selected
-   */
-  const handleDelete = async (id: string) => {
-    const data = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
-    if ('messageError' in data) {
-      alert(data.messageError);
-    } else {
-      handleProductUpdate();
-      setModal(false);
-      setConfirmModal(false);
-    }
-  };
-
-  const handleDataModalOnRow = (item: DataProduct) => {
-    setProductItem(item);
-    showHideConfirmModal();
-  };
-
-  /**
-   * @description function show hide modal
-   */
-  const showHideModal = () => {
-    setModal((prev) => !prev);
-  };
+  }, []);
 
   /**
    * @description function set state to get data to modal
    *
    * @param {Object} item is data item after call api
    */
-  const handleDataModal = (item: DataProduct) => {
-    setProductItem(item);
-    showHideModal();
-  };
+  const handleDataModal = useCallback((item: DataProduct) => {
+    showHideItemModal(); // here
+    handleSetProductItem(item);
+  }, []);
 
   /**
-   * @description flags to check if the data after
-   * editing and deleting has been changed or not
+   * @description function delete of confirm modal
+   *
+   * @param {String} id is id of product which is selected
    */
-  const handleProductUpdate = () => {
-    setIsProductUpdate((prev) => !prev);
-  };
+  const handleConfirm = useCallback(async (id: string) => {
+    const data = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
+
+    if ('messageError' in data) {
+      alert(data.messageError);
+    } else if (!itemModal) {
+      showHideItemModal();
+      showHideConfirmModal();
+    } else {
+      showHideConfirmModal();
+    }
+    handleProductUpdate();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -167,45 +152,37 @@ const HomePage = () => {
     };
 
     fetchData();
-  }, [isProductUpdate, filter]);
+  }, [fragProductUpdate, filter]);
 
   return (
-    <div className='container'>
-      <header className='header-wrapper'>
-        <Typography text='Management' tagName='h1' weight='bold' color='tertiary' size='lg' />
-      </header>
-      <main>
-        <ProductsTable
-          filters={filter}
-          products={products}
-          listStatus={dataStatus}
-          listType={dataTypes}
-          onSearch={handleSearch}
-          onDelete={handleDelete}
-          onEdit={handleDataModal}
-        />
-      </main>
-      {modal && (
+    <main className='main-wrapper'>
+      <ProductsTable
+        filters={filter}
+        products={products}
+        status={dataStatus}
+        types={dataTypes}
+        onSearch={handleSearch}
+        onEdit={handleDataModal}
+        handleSetProductItem={handleSetProductItem}
+      />
+      {itemModal && (
         <ProductModal
           productItem={productItem}
           status={dataStatus}
           types={dataTypes}
           fragProductUpdate={handleProductUpdate}
-          showHideModal={showHideModal}
-          onDelete={showHideConfirmModal}
         />
       )}
       {confirmModal && (
         <ConfirmModal
           description='Do you want to delete this ?'
-          id={productItem.id!}
-          onConfirm={handleDelete}
-          showHideModal={showHideConfirmModal}
+          id={productItem.id || ''}
+          onConfirm={handleConfirm}
           textButtonConfirm='Delete'
         />
       )}
-    </div>
+    </main>
   );
 };
 
-export { HomePage };
+export default memo(HomePage);

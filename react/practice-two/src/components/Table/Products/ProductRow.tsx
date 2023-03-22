@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useContext, useEffect, useMemo, useState } from 'react';
 
 // Images
 import More from 'assets/icons/more.svg';
@@ -21,6 +21,9 @@ import { getDataById } from '@services';
 // Constants
 import { URL_API } from '@constants';
 
+// Contexts
+import { ModalContext } from '@contexts';
+
 interface DataProduct {
   id?: string;
   productImage: string;
@@ -38,8 +41,8 @@ interface DataProduct {
 }
 
 interface ProductRowProps extends DataProduct {
-  onDelete: (id: string) => void;
   onEdit: (item: DataProduct) => void;
+  handleSetProductItem: (item: DataProduct) => void;
 }
 
 const ProductRow = ({
@@ -52,9 +55,10 @@ const ProductRow = ({
   brandImage,
   brandName,
   price,
-  onDelete,
   onEdit,
+  handleSetProductItem,
 }: ProductRowProps) => {
+  const { showHideConfirmModal } = useContext(ModalContext);
   const [menuPopup, setMenuPopup] = useState(false);
 
   /**
@@ -75,17 +79,28 @@ const ProductRow = ({
     if ('messageError' in data) {
       alert(data.messageError);
     } else {
-      onEdit(data);
+      onEdit(data); /// Because of this
     }
     setMenuPopup(false);
   };
 
   /**
-   * @description function delete item with id
+   * @description function show confirm and set id for confirm popup
    */
   const handleDelete = () => {
     if (id) {
-      onDelete(id);
+      showHideConfirmModal(); /// Because of this
+      handleSetProductItem({
+        id,
+        productImage,
+        productName,
+        type,
+        quantity,
+        status,
+        brandImage,
+        brandName,
+        price,
+      });
       setMenuPopup(false);
     }
   };
@@ -127,5 +142,5 @@ const ProductRow = ({
   );
 };
 
-export { ProductRow };
+export default memo(ProductRow);
 export type { DataProduct, ProductRowProps };

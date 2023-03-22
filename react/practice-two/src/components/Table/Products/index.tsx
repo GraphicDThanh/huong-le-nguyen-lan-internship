@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 // Components
 import {
@@ -24,7 +24,7 @@ interface Filters {
   price: string;
 }
 
-interface ProductsTableProps extends Pick<ProductRowProps, 'onDelete' | 'onEdit'> {
+interface ProductsTableProps extends Pick<ProductRowProps, 'onEdit' | 'handleSetProductItem'> {
   filters: Filters;
   status: SelectItemProps[];
   types: SelectItemProps[];
@@ -38,8 +38,8 @@ const ProductsTable = ({
   types,
   products,
   onSearch,
-  onDelete,
   onEdit,
+  handleSetProductItem,
 }: ProductsTableProps) => {
   return (
     <Table>
@@ -112,8 +112,8 @@ const ProductsTable = ({
               brandImage={item.brandImage}
               brandName={item.brandName}
               price={item.price}
-              onDelete={onDelete}
               onEdit={onEdit}
+              handleSetProductItem={handleSetProductItem}
             />
           ))}
       </TableBody>
@@ -121,4 +121,4 @@ const ProductsTable = ({
   );
 };
 
-export default ProductsTable;
+export default memo(ProductsTable);
