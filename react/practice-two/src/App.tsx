@@ -1,9 +1,11 @@
+import { Header } from '@layouts';
 import { HomePage } from '@pages';
 import './App.css';
 
 function App() {
   return (
-    <div className='App'>
+    <div className='container'>
+      <Header />
       <HomePage />
     </div>
   );
