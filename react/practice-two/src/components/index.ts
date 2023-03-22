@@ -1,6 +1,7 @@
 export * from './Image';
 export * from './SelectItem';
 export * from './Table/Products/ProductRow';
+export { default as ProductRow } from './Table/Products/ProductRow';
 export { default as ActionMenu } from './ActionMenu';
 export { default as Button } from './Button';
 export { default as Identity } from './Identity';
@@ -17,3 +18,4 @@ export { default as TableCell } from './Table/TableCell';
 export { default as TableHeader } from './Table/TableHeader';
 export { default as TableRow } from './Table/TableRow';
 export { default as Typography } from './Typography';
+export { default as ConfirmModal } from './Modal/ConfirmModal';
