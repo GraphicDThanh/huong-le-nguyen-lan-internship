@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 5px;
   display: grid;
-  grid-template-columns: 200px 100px 100px 110px 150px 70px 45px;
+  grid-template-columns: 260px 100px 100px 110px 150px 70px 45px;
   border-bottom: 1px solid var(--fade-color);
 }
 
