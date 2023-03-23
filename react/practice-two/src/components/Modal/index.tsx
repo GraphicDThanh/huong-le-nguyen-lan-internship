@@ -21,7 +21,7 @@ const Modal = ({ children, showHideModal }: ModalProps) => {
         <div className='modal-header'>
           <Image image={Cancel} size='small' onClick={showHideModal} cursorPointer={true} />
         </div>
-        {children}
+        <div className='modal-body'>{children}</div>
       </div>
     </div>
   );
