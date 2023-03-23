@@ -7,7 +7,7 @@ interface ButtonProps {
   text: string;
   variant: 'primary' | 'secondary';
   type?: 'button' | 'submit';
-  color?: 'success' | 'warning' | 'default' | 'light';
+  color?: 'success' | 'warning' | 'default';
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
