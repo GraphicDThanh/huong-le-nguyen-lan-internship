@@ -12,3 +12,7 @@
   font-family: 'OpenSans-semiBold';
   src: url('../../assets/fonts/OpenSans-SemiBold.ttf');
 }
+
+body {
+  height: 100vh;
+}

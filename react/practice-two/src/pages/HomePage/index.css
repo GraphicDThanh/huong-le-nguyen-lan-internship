@@ -1,9 +1,3 @@
-.container {
-  height: 100vh;
-  box-sizing: border-box;
-  padding: 30px 200px;
-}
-
-.container .header-wrapper {
-  padding-bottom: 100px;
+.main-wrapper {
+  padding-bottom: 50px;
 }
