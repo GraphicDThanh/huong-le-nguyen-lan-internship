@@ -8,4 +8,5 @@
 
 .identity-wrapper span {
   width: 70%;
+  line-height: initial;
 }
