@@ -1,9 +1,11 @@
+import { Header } from '@layouts';
 import { HomePage } from '@pages';
 import './styles/main.css';
 
 const App = () => {
   return (
-    <div>
+    <div className='container'>
+      <Header />
       <HomePage />
     </div>
   );

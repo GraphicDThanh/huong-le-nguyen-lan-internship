@@ -100,8 +100,8 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
     });
   };
 
-  const handleDelete = () => {
-    console.log('delete');
+  const handleSetProductItem = () => {
+    console.log('handle set product item');
   };
 
   const handleEdit = () => {
@@ -115,8 +115,8 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
       status={listStatus}
       types={listType}
       onSearch={handleSearch}
-      onDelete={handleDelete}
       onEdit={handleEdit}
+      handleSetProductItem={handleSetProductItem}
     />
   );
 };
