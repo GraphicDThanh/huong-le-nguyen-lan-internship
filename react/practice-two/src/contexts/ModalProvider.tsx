@@ -4,7 +4,7 @@ interface State {
   itemModal: boolean;
   notificationModal: boolean;
   errorsModal: {
-    state: boolean;
+    status: boolean;
     message: string;
   };
 }
@@ -19,7 +19,7 @@ const initState = {
   itemModal: false,
   notificationModal: false,
   errorsModal: {
-    state: false,
+    status: false,
     message: 'errors',
   },
 };
@@ -29,7 +29,7 @@ const ModalContext = createContext<Context>(initState as Context);
 const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [itemModal, setItemModal] = useState(false);
   const [notificationModal, setNotificationModal] = useState(false);
-  const [errorsModal, setErrorsModal] = useState({ state: false, message: '' });
+  const [errorsModal, setErrorsModal] = useState({ status: false, message: '' });
 
   const showHideItemModal = useCallback(() => {
     setItemModal((prev) => !prev);
@@ -48,7 +48,7 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
   const showHideErrorsModal = useCallback((message?: string) => {
     setErrorsModal(() => {
       return {
-        state: message ? true : false,
+        status: message ? true : false,
         message: message || '',
       };
     });
