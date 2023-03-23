@@ -25,9 +25,11 @@
     "paths": {
       "@constants": ["./constants"],
       "@components": ["./components"],
-      "@pages": ["./pages"],
       "@helpers": ["./helpers"],
-      "@services": ["./services"]
+      "@contexts": ["./contexts"],
+      "@services": ["./services"],
+      "@pages": ["./pages"],
+      "@layouts": ["./layouts"]
     }
   },
   "include": ["*/.ts", "*/.tsx", "src"],

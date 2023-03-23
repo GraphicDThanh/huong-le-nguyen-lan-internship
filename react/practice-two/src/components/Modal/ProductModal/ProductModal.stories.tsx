@@ -36,14 +36,6 @@ const Template: ComponentStory<typeof ProductModal> = () => {
     { id: '2', name: 'Smart Phone' },
   ];
 
-  const showHideModal = () => {
-    console.log('open');
-  };
-
-  const handleDelete = () => {
-    console.log('handle delete');
-  };
-
   const fragProductUpdate = () => {
     console.log('product update');
   };
@@ -53,9 +45,7 @@ const Template: ComponentStory<typeof ProductModal> = () => {
       productItem={product}
       status={status}
       types={types}
-      onDelete={handleDelete}
       fragProductUpdate={fragProductUpdate}
-      showHideModal={showHideModal}
     />
   );
 };
