@@ -86,7 +86,8 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
   };
 
   /**
-   * @description function save data after edit
+   * @description function that saves the data taken from the inputs
+   *  and calls the API after pressing submit of the modal form
    *
    * @param {SubmitEvent} e is submit event of form
    */

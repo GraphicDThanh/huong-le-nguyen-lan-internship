@@ -69,8 +69,8 @@ const ProductRow = ({
   };
 
   /**
-   * @description function set information of product which is selected
-   * after call API
+   * @description function calls the API to get the product's data by id.
+   *  And show the data to the form
    *
    * @param {MouseEvent} e is event of onClick
    */
@@ -114,12 +114,12 @@ const ProductRow = ({
         </TableCell>
         <TableCell tagName='td'>
           <Label
-            text={status ? status : ''}
+            text={status || ''}
             variant={`${status === 'Available' ? 'success' : 'warning'}`}
           />
         </TableCell>
         <TableCell tagName='td'>
-          <Typography text={type ? type : ''} weight='regular' />
+          <Typography text={type || ''} weight='regular' />
         </TableCell>
         <TableCell tagName='td'>
           <Label text={String(quantity)} variant='primary' />

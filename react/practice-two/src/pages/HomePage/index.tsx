@@ -70,7 +70,7 @@ const HomePage = () => {
   }, []);
 
   /**
-   * @description function get value when input change value
+   * @description function get value search when input change value
    *
    * @param {ChangeEvent} e is event of input
    */
@@ -89,7 +89,8 @@ const HomePage = () => {
   }, []);
 
   /**
-   * @description function set state to get data to modal
+   * @description function shows the product modal
+   *  and set information of the product in it
    *
    * @param {Object} item is data item after call api
    */
