@@ -9,6 +9,7 @@
 }
 
 .table-row.table-row-header {
+  padding: 5px 30px 5px 5px;
   align-items: flex-start;
   gap: 20px;
 }
