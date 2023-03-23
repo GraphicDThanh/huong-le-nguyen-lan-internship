@@ -1,4 +1,4 @@
-import { ChangeEvent, memo, useCallback, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react';
 
 // Styles
 import './index.css';
@@ -185,4 +185,4 @@ const HomePage = () => {
   );
 };
 
-export default memo(HomePage);
+export default HomePage;
