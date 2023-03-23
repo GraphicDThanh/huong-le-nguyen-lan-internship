@@ -79,7 +79,7 @@ const ProductRow = ({
     if ('messageError' in data) {
       alert(data.messageError);
     } else {
-      onEdit(data); /// Because of this
+      onEdit(data);
     }
     setMenuPopup(false);
   };
@@ -89,7 +89,7 @@ const ProductRow = ({
    */
   const handleDelete = () => {
     if (id) {
-      showHideNotificationModal(); /// Because of this
+      showHideNotificationModal();
       handleSetProductItem({
         id,
         productImage,
