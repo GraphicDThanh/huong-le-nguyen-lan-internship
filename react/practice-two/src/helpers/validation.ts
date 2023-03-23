@@ -34,7 +34,7 @@ const checkNumber = (value: string): string => {
  *
  * @returns {Object} return object with message error
  */
-const validation = <T extends object, X>(data: T, fieldsNumber = ['']): X => {
+const validation = <T extends object>(data: T, fieldsNumber = ['']): T => {
   let errorsMessage = {};
   for (const [key, value] of Object.entries(data)) {
     // Check which fields are the fields to check number
@@ -47,7 +47,7 @@ const validation = <T extends object, X>(data: T, fieldsNumber = ['']): X => {
     }
   }
 
-  return errorsMessage as X;
+  return errorsMessage as T;
 };
 
 export default validation;

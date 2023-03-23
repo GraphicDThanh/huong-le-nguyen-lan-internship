@@ -96,7 +96,7 @@ const ProductModal = ({
    */
   const handleSave = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const errors = validation<DataProduct, ErrorMessage>(product, ['price', 'quantity']);
+    const errors = validation<ErrorMessage>(product, ['price', 'quantity']);
 
     if (Object.values(errors).every((value) => !value) && product.id) {
       const item = await updateData<DataProduct>(product.id, product, URL_API.PRODUCTS);
