@@ -1,4 +1,4 @@
-import { ChangeEvent, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react';
 
 // Styles
 import './index.css';
