@@ -173,6 +173,16 @@ const HomePage = () => {
           fragProductUpdate={handleProductUpdate}
         />
       )}
+      {notificationModal && (
+        <NotificationModal
+          onCancel={showHideNotificationModal}
+          variant='confirm'
+          description='Do you want to delete this ?'
+          id={productItem.id || ''}
+          onConfirm={handleConfirm}
+          textButtonConfirm='Delete'
+        />
+      )}
     </main>
   );
 };
