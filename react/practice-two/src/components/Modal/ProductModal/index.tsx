@@ -60,7 +60,7 @@ const ProductModal = ({
     const name = e.target.name;
     const value = e.target.value;
 
-    if (name && value) {
+    if (name) {
       setProduct(() => {
         return {
           ...product,
@@ -199,7 +199,7 @@ const ProductModal = ({
                 title='Status'
                 options={status}
                 name='statusesId'
-                valueSelected={product.statusesId ? product.statusesId : ''}
+                valueSelected={product.statusesId || ''}
                 onChange={handleOnChange}
               />
 
@@ -207,7 +207,7 @@ const ProductModal = ({
                 title='Types'
                 options={types}
                 name='typesId'
-                valueSelected={product.typesId ? product.typesId : ''}
+                valueSelected={product.typesId || ''}
                 onChange={handleOnChange}
               />
             </div>
