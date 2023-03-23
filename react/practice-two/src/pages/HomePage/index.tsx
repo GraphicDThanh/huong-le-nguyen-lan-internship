@@ -88,7 +88,7 @@ const HomePage = () => {
    * @param {Object} item is data item after call api
    */
   const handleDataModal = useCallback((item: DataProduct) => {
-    showHideItemModal(); // here
+    showHideItemModal();
     handleSetProductItem(item);
   }, []);
 
@@ -171,14 +171,6 @@ const HomePage = () => {
           status={dataStatus}
           types={dataTypes}
           fragProductUpdate={handleProductUpdate}
-        />
-      )}
-      {notificationModal && (
-        <NotificationModal
-          description='Do you want to delete this ?'
-          id={productItem.id || ''}
-          onConfirm={handleConfirm}
-          textButtonConfirm='Delete'
         />
       )}
     </main>
