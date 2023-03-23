@@ -69,7 +69,8 @@ const ProductRow = ({
   };
 
   /**
-   * @description function set state to modal after click open modal
+   * @description function set information of product which is selected
+   * after call API
    *
    * @param {MouseEvent} e is event of onClick
    */
