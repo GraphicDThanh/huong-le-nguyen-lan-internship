@@ -191,9 +191,9 @@ const HomePage = () => {
       )}
       {notificationModal && (
         <NotificationModal
+          id={productItem.id || ''}
           variant='confirm'
           description='Do you want to delete this ?'
-          id={productItem.id || ''}
           textButtonConfirm='Delete'
           onConfirm={handleConfirm}
           onCancel={showHideNotificationModal}
