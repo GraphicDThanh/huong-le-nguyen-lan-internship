@@ -9,7 +9,7 @@
 }
 
 .modal-wrapper {
-  min-width: 720px;
+  max-width: 720px;
   height: fit-content;
   position: absolute;
   top: 50%;
@@ -23,6 +23,10 @@
   display: flex;
   justify-content: flex-end;
   padding: 20px 30px 10px 30px;
+}
+
+.modal-wrapper .modal-body {
+  padding: 0 40px 25px 40px;
 }
 
 @keyframes opacityAnimation {
