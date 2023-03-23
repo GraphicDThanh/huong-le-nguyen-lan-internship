@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, memo, useContext, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 
 // Styles
 import './index.css';
@@ -214,4 +214,4 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
   );
 };
 
-export default memo(ProductModal);
+export default ProductModal;
