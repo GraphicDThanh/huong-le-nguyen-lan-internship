@@ -13,15 +13,9 @@ interface Context extends State {
 const initState = {
   itemModal: false,
   notificationModal: false,
-  showHideItemModal: () => {
-    // set state
-  },
-  showHideNotificationModal: () => {
-    // set state
-  },
 };
 
-const ModalContext = createContext<Context>(initState);
+const ModalContext = createContext<Context>(initState as Context);
 
 const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [itemModal, setItemModal] = useState(false);
