@@ -199,7 +199,7 @@ const HomePage = () => {
           onCancel={showHideNotificationModal}
         />
       )}
-      {errorsModal.state && (
+      {errorsModal.status && (
         <NotificationModal
           variant='notification'
           description={errorsModal.message}
