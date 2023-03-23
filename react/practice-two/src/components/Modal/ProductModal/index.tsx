@@ -37,7 +37,8 @@ interface ModalProps {
 type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
 
 const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalProps) => {
-  const { showHideNotificationModal, showHideItemModal } = useContext(ModalContext);
+  const { showHideNotificationModal, showHideItemModal, showHideErrorsModal } =
+    useContext(ModalContext);
   const [product, setProduct] = useState(productItem);
   const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
     productName: '',
@@ -97,7 +98,7 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
       const item = await updateData<DataProduct>(product.id, product, URL_API.PRODUCTS);
 
       if ('messageError' in item) {
-        alert(item.messageError);
+        showHideErrorsModal(item.messageError);
       } else {
         fragProductUpdate();
         showHideItemModal();

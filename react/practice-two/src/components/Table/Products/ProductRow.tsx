@@ -1,4 +1,4 @@
-import { memo, useContext, useEffect, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 
 // Images
 import More from 'assets/icons/more.svg';
@@ -58,7 +58,7 @@ const ProductRow = ({
   onEdit,
   handleSetProductItem,
 }: ProductRowProps) => {
-  const { showHideNotificationModal } = useContext(ModalContext);
+  const { showHideNotificationModal, showHideErrorsModal } = useContext(ModalContext);
   const [menuPopup, setMenuPopup] = useState(false);
 
   /**
@@ -74,12 +74,12 @@ const ProductRow = ({
    * @param {MouseEvent} e is event of onClick
    */
   const handleModalEdit = async (id: string) => {
-    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, id);
+    const product = await getDataById<DataProduct>(URL_API.PRODUCTS, id);
 
-    if ('messageError' in data) {
-      alert(data.messageError);
+    if ('messageError' in product) {
+      showHideErrorsModal(product.messageError);
     } else {
-      onEdit(data); /// Because of this
+      onEdit(product);
     }
     setMenuPopup(false);
   };
@@ -89,7 +89,7 @@ const ProductRow = ({
    */
   const handleDelete = () => {
     if (id) {
-      showHideNotificationModal(); /// Because of this
+      showHideNotificationModal();
       handleSetProductItem({
         id,
         productImage,
@@ -105,42 +105,44 @@ const ProductRow = ({
     }
   };
 
-  return (
-    <TableRow>
-      <TableCell tagName='td'>
-        <Identity image={productImage} text={productName} />
-      </TableCell>
-      <TableCell tagName='td'>
-        <Label
-          text={status ? status : ''}
-          variant={`${status === 'Available' ? 'success' : 'warning'}`}
-        />
-      </TableCell>
-      <TableCell tagName='td'>
-        <Typography text={type ? type : ''} weight='regular' />
-      </TableCell>
-      <TableCell tagName='td'>
-        <Label text={String(quantity)} variant='primary' />
-      </TableCell>
-      <TableCell tagName='td'>
-        <Identity image={brandImage} text={brandName} variant='circle' />
-      </TableCell>
-      <TableCell tagName='td'>
-        <Typography text={String(price)} weight='regular' />
-      </TableCell>
-      <TableCell tagName='td'>
-        <Image
-          image={More}
-          size='small'
-          alt='icon more'
-          cursorPointer={true}
-          onClick={handleShowHidePopup}
-        />
-        {menuPopup && <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />}
-      </TableCell>
-    </TableRow>
-  );
+  return useMemo(() => {
+    return (
+      <TableRow>
+        <TableCell tagName='td'>
+          <Identity image={productImage} text={productName} />
+        </TableCell>
+        <TableCell tagName='td'>
+          <Label
+            text={status ? status : ''}
+            variant={`${status === 'Available' ? 'success' : 'warning'}`}
+          />
+        </TableCell>
+        <TableCell tagName='td'>
+          <Typography text={type ? type : ''} weight='regular' />
+        </TableCell>
+        <TableCell tagName='td'>
+          <Label text={String(quantity)} variant='primary' />
+        </TableCell>
+        <TableCell tagName='td'>
+          <Identity image={brandImage} text={brandName} variant='circle' />
+        </TableCell>
+        <TableCell tagName='td'>
+          <Typography text={String(price)} weight='regular' />
+        </TableCell>
+        <TableCell tagName='td'>
+          <Image
+            image={More}
+            size='small'
+            alt='icon more'
+            cursorPointer={true}
+            onClick={handleShowHidePopup}
+          />
+          {menuPopup && <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />}
+        </TableCell>
+      </TableRow>
+    );
+  }, [menuPopup, productImage, productName, type, quantity, status, brandImage, brandName, price]);
 };
 
-export default memo(ProductRow);
+export default ProductRow;
 export type { DataProduct, ProductRowProps };
