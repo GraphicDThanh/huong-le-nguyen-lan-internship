@@ -74,12 +74,12 @@ const ProductRow = ({
    * @param {MouseEvent} e is event of onClick
    */
   const handleModalEdit = async (id: string) => {
-    const data = await getDataById<DataProduct>(URL_API.PRODUCTS, id);
+    const product = await getDataById<DataProduct>(URL_API.PRODUCTS, id);
 
-    if ('messageError' in data) {
-      alert(data.messageError);
+    if ('messageError' in product) {
+      alert(product.messageError);
     } else {
-      onEdit(data);
+      onEdit(product);
     }
     setMenuPopup(false);
   };
