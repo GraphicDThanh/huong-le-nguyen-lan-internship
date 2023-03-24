@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
 // Images
 import More from 'assets/icons/more.svg';
@@ -21,9 +21,6 @@ import { getDataById } from '@services';
 // Constants
 import { URL_API } from '@constants';
 
-// Contexts
-import { ModalContext } from '@contexts';
-
 interface DataProduct {
   id?: string;
   productImage: string;
@@ -43,6 +40,8 @@ interface DataProduct {
 interface ProductRowProps extends DataProduct {
   onEdit: (item: DataProduct) => void;
   handleSetProductItem: (item: DataProduct) => void;
+  showHideErrorsModal: (message?: string) => void;
+  showHideNotificationModal: () => void;
 }
 
 const ProductRow = ({
@@ -57,8 +56,9 @@ const ProductRow = ({
   price,
   onEdit,
   handleSetProductItem,
+  showHideErrorsModal,
+  showHideNotificationModal,
 }: ProductRowProps) => {
-  const { showHideNotificationModal, showHideErrorsModal } = useContext(ModalContext);
   const [menuPopup, setMenuPopup] = useState(false);
 
   /**
@@ -69,8 +69,8 @@ const ProductRow = ({
   };
 
   /**
-   * @description function set information of product which is selected
-   * after call API
+   * @description function calls the API to get the product's data by id.
+   *  And show the data to the form
    *
    * @param {MouseEvent} e is event of onClick
    */
@@ -114,12 +114,12 @@ const ProductRow = ({
         </TableCell>
         <TableCell tagName='td'>
           <Label
-            text={status ? status : ''}
+            text={status || ''}
             variant={`${status === 'Available' ? 'success' : 'warning'}`}
           />
         </TableCell>
         <TableCell tagName='td'>
-          <Typography text={type ? type : ''} weight='regular' />
+          <Typography text={type || ''} weight='regular' />
         </TableCell>
         <TableCell tagName='td'>
           <Label text={String(quantity)} variant='primary' />
