@@ -15,12 +15,6 @@ import {
   SelectItemProps,
 } from '@components';
 
-// Services
-import { getDataById } from '@services';
-
-// Constants
-import { URL_API } from '@constants';
-
 interface DataProduct {
   id?: string;
   productImage: string;
