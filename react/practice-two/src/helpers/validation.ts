@@ -51,7 +51,7 @@ const checkNumber = (value: string): string => {
 const validation = <T extends object>(data: T, fieldsNumber = ['']): T => {
   let errorsMessage = {};
   for (const [key, value] of Object.entries(data)) {
-    // Check which fields are the fields to check number
+    // Check which fields want to check as number
     if (fieldsNumber.includes(key)) {
       errorsMessage = { ...errorsMessage, [key]: checkNumber(String(value)) };
     }

@@ -48,7 +48,7 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   /**
-   * @description function set state to show hide and
+   * @description function set state to show hide
    * message if have any errors
    *
    * @param {String} message is message errors
