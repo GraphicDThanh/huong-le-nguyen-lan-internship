@@ -1,5 +1,12 @@
 import { MESSAGE_ERRORS } from '@constants';
 
+/**
+ * @description function check empty or not
+ *
+ * @param {string} value of input
+ *
+ * @returns {string} a message error or empty string
+ */
 const checkEmpty = (value: string): string => {
   switch (true) {
     // case empty
@@ -10,6 +17,13 @@ const checkEmpty = (value: string): string => {
   }
 };
 
+/**
+ * @description function check value is number or not
+ *
+ * @param {String} value of input
+ *
+ * @returns {string} a message error or empty string
+ */
 const checkNumber = (value: string): string => {
   switch (true) {
     // case empty
