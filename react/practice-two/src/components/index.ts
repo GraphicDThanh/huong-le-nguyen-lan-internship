@@ -18,4 +18,4 @@ export { default as TableCell } from './Table/TableCell';
 export { default as TableHeader } from './Table/TableHeader';
 export { default as TableRow } from './Table/TableRow';
 export { default as Typography } from './Typography';
-export { default as ConfirmModal } from './Modal/ConfirmModal';
+export { default as NotificationModal } from './Modal/NotificationModal';

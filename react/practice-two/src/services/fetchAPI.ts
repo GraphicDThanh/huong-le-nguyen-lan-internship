@@ -68,7 +68,7 @@ const updateData = async <T>(id: string, dataItem: T, url: string): Promise<T | 
 };
 
 /**
- * @description function delete item in api
+ * @description function delete item by id
  *
  * @param {String} id is id of note
  * @param {String} url is endpoint
