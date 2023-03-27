@@ -8,5 +8,6 @@
 
 .identity-wrapper span {
   width: 70%;
+  overflow-wrap: break-word;
   line-height: initial;
 }

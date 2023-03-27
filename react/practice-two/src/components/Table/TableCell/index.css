@@ -1,7 +1,8 @@
 .table-cell .title {
+  padding-bottom: 8px;
   font-family: var(--font-semiBold), var(--font-default);
   font-size: var(--normal);
   color: var(--primary-color);
   text-align: left;
-  padding-bottom: 8px;
+  overflow-wrap: break-word;
 }

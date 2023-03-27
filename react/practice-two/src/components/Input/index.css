@@ -7,6 +7,12 @@
   font-family: var(--font-regular), var(--font-default);
 }
 
+.text-input-default::-webkit-outer-spin-button,
+.text-input-default::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .text-input-default::placeholder {
   color: var(--light-color);
   font-size: var(--normal);
