@@ -1,14 +1,24 @@
-import { Header } from '@layouts';
-import { HomePage } from '@pages';
-import './App.css';
+// Styles
+import './styles/main.css';
 
-function App() {
+// Layouts
+import { Header } from '@layouts';
+
+// Pages
+import { HomePage } from '@pages';
+
+// Contexts
+import { ModalProvider } from '@contexts';
+
+const App = () => {
   return (
     <div className='container'>
       <Header />
-      <HomePage />
+      <ModalProvider>
+        <HomePage />
+      </ModalProvider>
     </div>
   );
-}
+};
 
 export default App;
