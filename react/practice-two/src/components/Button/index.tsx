@@ -4,7 +4,6 @@ import { MouseEvent } from 'react';
 import './index.css';
 
 interface ButtonProps {
-  id?: string;
   text: string;
   variant: 'primary' | 'secondary';
   type?: 'button' | 'submit';
@@ -12,21 +11,9 @@ interface ButtonProps {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({
-  text,
-  variant,
-  id,
-  color = 'default',
-  type = 'button',
-  onClick,
-}: ButtonProps) => {
+const Button = ({ text, variant, color = 'default', type = 'button', onClick }: ButtonProps) => {
   return (
-    <button
-      id={id}
-      type={type}
-      className={`btn btn-${variant} btn-color-${color}`}
-      onClick={onClick}
-    >
+    <button type={type} className={`btn btn-${variant} btn-color-${color}`} onClick={onClick}>
       {text}
     </button>
   );

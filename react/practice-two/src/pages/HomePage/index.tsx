@@ -1,10 +1,16 @@
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react';
 
 // Styles
 import './index.css';
 
 // Components
-import { ProductsTable, Typography, SelectItemProps, ProductModal, DataProduct } from '@components';
+import {
+  ProductsTable,
+  SelectItemProps,
+  ProductModal,
+  DataProduct,
+  NotificationModal,
+} from '@components';
 
 // Constants
 import { URL_API } from '@constants';
@@ -12,12 +18,22 @@ import { URL_API } from '@constants';
 // Services
 import { getAllData, deleteData } from '@services';
 
+// Contexts
+import { ModalContext } from '@contexts';
+
 const HomePage = () => {
-  const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);
-  const [dataTypes, setDataTypes] = useState<SelectItemProps[]>([]);
+  const {
+    itemModal,
+    notificationModal,
+    errorsModal,
+    showHideNotificationModal,
+    showHideItemModal,
+    showHideErrorsModal,
+  } = useContext(ModalContext);
+  const [status, setStatus] = useState<SelectItemProps[]>([]);
+  const [types, setTypes] = useState<SelectItemProps[]>([]);
   const [products, setProducts] = useState<DataProduct[]>([]);
-  const [isProductUpdate, setIsProductUpdate] = useState(false);
-  const [modal, setModal] = useState(false);
+  const [fragProductUpdate, setFragProductUpdate] = useState(false);
   const [filter, setFilter] = useState({
     productName: '',
     statusesId: '',
@@ -39,15 +55,30 @@ const HomePage = () => {
   });
 
   /**
-   * @description function get value when input change value
+   * @description flags to check if the data after
+   * editing and deleting has been changed or not
+   */
+  const handleProductUpdate = useCallback(() => {
+    setFragProductUpdate((prev) => !prev);
+  }, []);
+
+  /**
+   * @description function set product to product state
+   */
+  const handleSetProductItem = useCallback((item: DataProduct) => {
+    setProductItem(item);
+  }, []);
+
+  /**
+   * @description function get value search when input change value
    *
    * @param {ChangeEvent} e is event of input
    */
-  const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    if (name && value) {
+    if (name) {
       setFilter((prev) => {
         return {
           ...prev,
@@ -55,62 +86,63 @@ const HomePage = () => {
         };
       });
     }
-  };
+  }, []);
 
   /**
-   * @description function delete item with id
-   *
-   * @param {String} id is id of item which is selected
-   */
-  const handleDelete = async (id: string) => {
-    const data = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
-    if ('messageError' in data) {
-      alert(data.messageError);
-    } else {
-      handleProductUpdate();
-    }
-  };
-
-  /**
-   * @description function show hide modal
-   */
-  const showHideModal = () => {
-    setModal((prev) => !prev);
-  };
-
-  /**
-   * @description function set state to get data to modal
+   * @description function shows the product modal
+   *  and set information of the product in it
    *
    * @param {Object} item is data item after call api
    */
-  const handleDataModal = (item: DataProduct) => {
-    setProductItem(item);
-    showHideModal();
-  };
+  const handleDataModal = useCallback((item: DataProduct) => {
+    showHideItemModal();
+    handleSetProductItem(item);
+  }, []);
 
   /**
-   * @description flags to check if the data after
-   * editing and deleting has been changed or not
+   * @description function delete of confirm modal
+   *
+   * @param {String} id is id of product which is selected
    */
-  const handleProductUpdate = () => {
-    setIsProductUpdate((prev) => !prev);
-  };
+  const handleConfirm = useCallback(
+    async (id: string) => {
+      const product = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
+
+      if ('messageError' in product) {
+        showHideErrorsModal(product.messageError);
+      } else if (itemModal) {
+        showHideItemModal();
+        showHideNotificationModal();
+      } else {
+        showHideNotificationModal();
+      }
+      handleProductUpdate();
+    },
+    [itemModal],
+  );
+
+  /**
+   * @description function cancel/ close errors modal
+   */
+  const handleCancel = useCallback(() => {
+    showHideErrorsModal();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const types = await getAllData<SelectItemProps>(URL_API.TYPES);
-      const status = await getAllData<SelectItemProps>(URL_API.STATUSES);
+      const listTypes = await getAllData<SelectItemProps>(URL_API.TYPES);
+      const listStatus = await getAllData<SelectItemProps>(URL_API.STATUSES);
 
-      if ('messageError' in types && !Array.isArray(types)) {
-        alert(types.messageError);
+      if ('messageError' in listTypes && !Array.isArray(listTypes)) {
+        showHideErrorsModal(listTypes.messageError);
       } else {
-        setDataTypes(types);
+        setTypes(listTypes);
       }
 
-      if ('messageError' in status && !Array.isArray(status)) {
-        alert(status.messageError);
+      if ('messageError' in listStatus && !Array.isArray(listStatus)) {
+        showHideErrorsModal(listStatus.messageError);
       } else {
-        setDataStatus(status);
+        setStatus(listStatus);
       }
     };
     fetchData();
@@ -125,48 +157,58 @@ const HomePage = () => {
     }
 
     const fetchData = async () => {
-      const data = await getAllData<DataProduct>(
+      const listProduct = await getAllData<DataProduct>(
         `${URL_API.PRODUCTS}?_expand=statuses&_expand=types${param}`,
       );
 
-      if ('messageError' in data) {
-        alert(data.messageError);
+      if ('messageError' in listProduct) {
+        showHideErrorsModal(listProduct.messageError);
       } else {
-        setProducts(data);
+        setProducts(listProduct);
       }
     };
 
     fetchData();
-  }, [isProductUpdate, filter]);
+  }, [fragProductUpdate, filter]);
 
   return (
-    <div className='container'>
-      <header className='header-wrapper'>
-        <Typography text='Management' tagName='h1' weight='bold' color='tertiary' size='lg' />
-      </header>
-      <main>
-        <ProductsTable
-          filters={filter}
-          products={products}
-          listStatus={dataStatus}
-          listType={dataTypes}
-          onSearch={handleSearch}
-          onDelete={handleDelete}
-          onEdit={handleDataModal}
-        />
-      </main>
-      {modal && (
+    <main className='main-wrapper'>
+      <ProductsTable
+        filters={filter}
+        products={products}
+        status={status}
+        types={types}
+        onSearch={handleSearch}
+        onEdit={handleDataModal}
+        handleSetProductItem={handleSetProductItem}
+      />
+      {itemModal && (
         <ProductModal
           productItem={productItem}
-          status={dataStatus}
-          types={dataTypes}
+          status={status}
+          types={types}
           fragProductUpdate={handleProductUpdate}
-          showHideModal={showHideModal}
-          onDelete={handleDelete}
         />
       )}
-    </div>
+      {notificationModal && (
+        <NotificationModal
+          id={productItem.id || ''}
+          variant='confirm'
+          description='Do you want to delete this ?'
+          textButtonConfirm='Delete'
+          onConfirm={handleConfirm}
+          onCancel={showHideNotificationModal}
+        />
+      )}
+      {errorsModal.status && (
+        <NotificationModal
+          variant='notification'
+          description={errorsModal.message}
+          onCancel={handleCancel}
+        />
+      )}
+    </main>
   );
 };
 
-export { HomePage };
+export default HomePage;

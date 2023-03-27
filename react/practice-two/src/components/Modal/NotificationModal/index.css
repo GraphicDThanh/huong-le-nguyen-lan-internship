@@ -1,0 +1,12 @@
+.confirm-modal-description {
+  font-family: var(--font-semiBold), var(--font-default);
+  font-size: var(--normal);
+  color: var(--primary-color);
+  padding: 20px 0 40px 0;
+}
+
+.confirm-modal-cta {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
