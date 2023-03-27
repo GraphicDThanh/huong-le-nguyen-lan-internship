@@ -49,8 +49,8 @@ const HomePage = () => {
     quantity: 0,
     brandImage: '',
     brandName: '',
-    status: '',
-    type: '',
+    statusesId: '',
+    typesId: '',
     price: 0,
   });
 

@@ -49,14 +49,15 @@ const ProductRow = ({
   productImage,
   productName,
   type,
+  typesId,
   quantity,
   status,
+  statusesId,
   brandImage,
   brandName,
   price,
   onEdit,
   handleSetProductItem,
-  showHideErrorsModal,
   showHideNotificationModal,
 }: ProductRowProps) => {
   const [menuPopup, setMenuPopup] = useState(false);
@@ -75,13 +76,19 @@ const ProductRow = ({
    * @param {MouseEvent} e is event of onClick
    */
   const handleModalEdit = async (id: string) => {
-    const product = await getDataById<DataProduct>(URL_API.PRODUCTS, id);
-
-    if ('messageError' in product) {
-      showHideErrorsModal(product.messageError);
-    } else {
-      onEdit(product);
-    }
+    onEdit({
+      id,
+      productImage,
+      productName,
+      type,
+      typesId,
+      quantity,
+      status,
+      statusesId,
+      brandImage,
+      brandName,
+      price,
+    });
     setMenuPopup(false);
   };
 
@@ -96,8 +103,10 @@ const ProductRow = ({
         productImage,
         productName,
         type,
+        typesId,
         quantity,
         status,
+        statusesId,
         brandImage,
         brandName,
         price,
