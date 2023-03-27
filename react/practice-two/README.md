@@ -31,6 +31,18 @@
   - [Prettier](https://prettier.io/)
 - Editor: Visual Studio Code.
 
+### Main App Features:
+
+- Filter:
+  - By name
+  - By status
+  - By type
+  - By quantity
+  - By brand
+  - By price
+- Edit
+- Delete
+
 ### Development Environment
 
 - Node v16.16
