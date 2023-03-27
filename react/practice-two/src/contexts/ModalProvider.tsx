@@ -31,10 +31,16 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [notificationModal, setNotificationModal] = useState(false);
   const [errorsModal, setErrorsModal] = useState({ status: false, message: '' });
 
+  /**
+   * @description function show hide item modal
+   */
   const showHideItemModal = useCallback(() => {
     setItemModal((prev) => !prev);
   }, []);
 
+  /**
+   * @description function show hide notification modal
+   */
   const showHideNotificationModal = useCallback(() => {
     setNotificationModal((prev) => {
       return !prev;
@@ -44,6 +50,8 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
   /**
    * @description function set state to show hide and
    * message if have any errors
+   *
+   * @param {String} message is message errors
    */
   const showHideErrorsModal = useCallback((message?: string) => {
     setErrorsModal(() => {
