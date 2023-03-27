@@ -1,4 +1,4 @@
-import { ChangeEvent, memo } from 'react';
+import { ChangeEvent, useContext, useMemo } from 'react';
 
 // Components
 import {
@@ -14,6 +14,9 @@ import {
   ProductRow,
   ProductRowProps,
 } from '@components';
+
+// Contexts
+import { ModalContext } from '@contexts';
 
 interface Filters {
   productName: string;
@@ -41,84 +44,96 @@ const ProductsTable = ({
   onEdit,
   handleSetProductItem,
 }: ProductsTableProps) => {
+  const { showHideNotificationModal, showHideErrorsModal } = useContext(ModalContext);
+
   return (
     <Table>
-      <TableHeader>
-        <TableRow classTableRow='header'>
-          <TableCell title='Product' tagName='th'>
-            <Input
-              name='productName'
-              value={filters.productName}
-              placeholder='Search'
-              onChange={onSearch}
-            />
-          </TableCell>
-          <TableCell title='Status' tagName='th'>
-            <Select
-              name='statusesId'
-              options={status}
-              optionAll={true}
-              valueSelected={filters.statusesId}
-              onChange={onSearch}
-            />
-          </TableCell>
-          <TableCell title='Type' tagName='th'>
-            <Select
-              name='typesId'
-              options={types}
-              optionAll={true}
-              valueSelected={filters.typesId}
-              onChange={onSearch}
-            />
-          </TableCell>
-          <TableCell title='Quantity' tagName='th'>
-            <Input
-              name='quantity'
-              value={String(filters.quantity)}
-              placeholder='Search'
-              onChange={onSearch}
-            />
-          </TableCell>
-          <TableCell title='Brand' tagName='th'>
-            <Input
-              name='brandName'
-              value={filters.brandName}
-              placeholder='Search'
-              onChange={onSearch}
-            />
-          </TableCell>
-          <TableCell title='Price' tagName='th'>
-            <Input
-              name='price'
-              value={String(filters.price)}
-              placeholder='Search'
-              onChange={onSearch}
-            />
-          </TableCell>
-          <TableCell title='Action' tagName='th' />
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {Array.isArray(products) &&
-          products.map((item) => (
-            <ProductRow
-              key={item.id}
-              id={item.id}
-              productImage={item.productImage}
-              productName={item.productName}
-              status={item.statuses ? item.statuses.name : ''}
-              type={item.types ? item.types.name : ''}
-              quantity={item.quantity}
-              brandImage={item.brandImage}
-              brandName={item.brandName}
-              price={item.price}
-              onEdit={onEdit}
-              handleSetProductItem={handleSetProductItem}
-            />
-          ))}
-      </TableBody>
+      {useMemo(() => {
+        return (
+          <TableHeader>
+            <TableRow classTableRow='header'>
+              <TableCell title='Product' tagName='th'>
+                <Input
+                  name='productName'
+                  value={filters.productName}
+                  placeholder='Search'
+                  onChange={onSearch}
+                />
+              </TableCell>
+              <TableCell title='Status' tagName='th'>
+                <Select
+                  name='statusesId'
+                  options={status}
+                  optionAll={true}
+                  valueSelected={filters.statusesId}
+                  onChange={onSearch}
+                />
+              </TableCell>
+              <TableCell title='Type' tagName='th'>
+                <Select
+                  name='typesId'
+                  options={types}
+                  optionAll={true}
+                  valueSelected={filters.typesId}
+                  onChange={onSearch}
+                />
+              </TableCell>
+              <TableCell title='Quantity' tagName='th'>
+                <Input
+                  name='quantity'
+                  value={String(filters.quantity)}
+                  placeholder='Search'
+                  onChange={onSearch}
+                />
+              </TableCell>
+              <TableCell title='Brand' tagName='th'>
+                <Input
+                  name='brandName'
+                  value={filters.brandName}
+                  placeholder='Search'
+                  onChange={onSearch}
+                />
+              </TableCell>
+              <TableCell title='Price' tagName='th'>
+                <Input
+                  name='price'
+                  value={String(filters.price)}
+                  placeholder='Search'
+                  onChange={onSearch}
+                />
+              </TableCell>
+              <TableCell title='Action' tagName='th' />
+            </TableRow>
+          </TableHeader>
+        );
+      }, [filters, status, types])}
+      {useMemo(() => {
+        return (
+          <TableBody>
+            {Array.isArray(products) &&
+              products.map((item) => (
+                <ProductRow
+                  key={item.id}
+                  id={item.id}
+                  productImage={item.productImage}
+                  productName={item.productName}
+                  status={item.statuses ? item.statuses.name : ''}
+                  type={item.types ? item.types.name : ''}
+                  quantity={item.quantity}
+                  brandImage={item.brandImage}
+                  brandName={item.brandName}
+                  price={item.price}
+                  onEdit={onEdit}
+                  handleSetProductItem={handleSetProductItem}
+                  showHideNotificationModal={showHideNotificationModal}
+                  showHideErrorsModal={showHideErrorsModal}
+                />
+              ))}
+          </TableBody>
+        );
+      }, [products])}
     </Table>
   );
 };
 
-export default memo(ProductsTable);
+export default ProductsTable;

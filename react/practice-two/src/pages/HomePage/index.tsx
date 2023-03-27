@@ -22,10 +22,16 @@ import { getAllData, deleteData } from '@services';
 import { ModalContext } from '@contexts';
 
 const HomePage = () => {
-  const { itemModal, notificationModal, showHideNotificationModal, showHideItemModal } =
-    useContext(ModalContext);
-  const [dataStatus, setDataStatus] = useState<SelectItemProps[]>([]);
-  const [dataTypes, setDataTypes] = useState<SelectItemProps[]>([]);
+  const {
+    itemModal,
+    notificationModal,
+    errorsModal,
+    showHideNotificationModal,
+    showHideItemModal,
+    showHideErrorsModal,
+  } = useContext(ModalContext);
+  const [status, setStatus] = useState<SelectItemProps[]>([]);
+  const [types, setTypes] = useState<SelectItemProps[]>([]);
   const [products, setProducts] = useState<DataProduct[]>([]);
   const [fragProductUpdate, setFragProductUpdate] = useState(false);
   const [filter, setFilter] = useState({
@@ -64,7 +70,7 @@ const HomePage = () => {
   }, []);
 
   /**
-   * @description function get value when input change value
+   * @description function get value search when input change value
    *
    * @param {ChangeEvent} e is event of input
    */
@@ -83,7 +89,8 @@ const HomePage = () => {
   }, []);
 
   /**
-   * @description function set state to get data to modal
+   * @description function shows the product modal
+   *  and set information of the product in it
    *
    * @param {Object} item is data item after call api
    */
@@ -97,35 +104,45 @@ const HomePage = () => {
    *
    * @param {String} id is id of product which is selected
    */
-  const handleConfirm = useCallback(async (id: string) => {
-    const data = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
+  const handleConfirm = useCallback(
+    async (id: string) => {
+      const product = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
 
-    if ('messageError' in data) {
-      alert(data.messageError);
-    } else if (!itemModal) {
-      showHideItemModal();
-      showHideNotificationModal();
-    } else {
-      showHideNotificationModal();
-    }
-    handleProductUpdate();
+      if ('messageError' in product) {
+        showHideErrorsModal(product.messageError);
+      } else if (itemModal) {
+        showHideItemModal();
+        showHideNotificationModal();
+      } else {
+        showHideNotificationModal();
+      }
+      handleProductUpdate();
+    },
+    [itemModal],
+  );
+
+  /**
+   * @description function cancel/ close errors modal
+   */
+  const handleCancel = useCallback(() => {
+    showHideErrorsModal();
   }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const types = await getAllData<SelectItemProps>(URL_API.TYPES);
-      const status = await getAllData<SelectItemProps>(URL_API.STATUSES);
+      const listTypes = await getAllData<SelectItemProps>(URL_API.TYPES);
+      const listStatus = await getAllData<SelectItemProps>(URL_API.STATUSES);
 
-      if ('messageError' in types && !Array.isArray(types)) {
-        alert(types.messageError);
+      if ('messageError' in listTypes && !Array.isArray(listTypes)) {
+        showHideErrorsModal(listTypes.messageError);
       } else {
-        setDataTypes(types);
+        setTypes(listTypes);
       }
 
-      if ('messageError' in status && !Array.isArray(status)) {
-        alert(status.messageError);
+      if ('messageError' in listStatus && !Array.isArray(listStatus)) {
+        showHideErrorsModal(listStatus.messageError);
       } else {
-        setDataStatus(status);
+        setStatus(listStatus);
       }
     };
     fetchData();
@@ -140,14 +157,14 @@ const HomePage = () => {
     }
 
     const fetchData = async () => {
-      const data = await getAllData<DataProduct>(
+      const listProduct = await getAllData<DataProduct>(
         `${URL_API.PRODUCTS}?_expand=statuses&_expand=types${param}`,
       );
 
-      if ('messageError' in data) {
-        alert(data.messageError);
+      if ('messageError' in listProduct) {
+        showHideErrorsModal(listProduct.messageError);
       } else {
-        setProducts(data);
+        setProducts(listProduct);
       }
     };
 
@@ -159,8 +176,8 @@ const HomePage = () => {
       <ProductsTable
         filters={filter}
         products={products}
-        status={dataStatus}
-        types={dataTypes}
+        status={status}
+        types={types}
         onSearch={handleSearch}
         onEdit={handleDataModal}
         handleSetProductItem={handleSetProductItem}
@@ -168,19 +185,26 @@ const HomePage = () => {
       {itemModal && (
         <ProductModal
           productItem={productItem}
-          status={dataStatus}
-          types={dataTypes}
+          status={status}
+          types={types}
           fragProductUpdate={handleProductUpdate}
         />
       )}
       {notificationModal && (
         <NotificationModal
-          onCancel={showHideNotificationModal}
+          id={productItem.id || ''}
           variant='confirm'
           description='Do you want to delete this ?'
-          id={productItem.id || ''}
-          onConfirm={handleConfirm}
           textButtonConfirm='Delete'
+          onConfirm={handleConfirm}
+          onCancel={showHideNotificationModal}
+        />
+      )}
+      {errorsModal.status && (
+        <NotificationModal
+          variant='notification'
+          description={errorsModal.message}
+          onCancel={handleCancel}
         />
       )}
     </main>
