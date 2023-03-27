@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { memo, useState } from 'react';
 
 // Images
 import More from 'assets/icons/more.svg';
@@ -105,44 +105,39 @@ const ProductRow = ({
     setMenuPopup(false);
   };
 
-  return useMemo(() => {
-    return (
-      <TableRow>
-        <TableCell tagName='td'>
-          <Identity image={productImage} text={productName} />
-        </TableCell>
-        <TableCell tagName='td'>
-          <Label
-            text={status || ''}
-            variant={`${status === 'Available' ? 'success' : 'warning'}`}
-          />
-        </TableCell>
-        <TableCell tagName='td'>
-          <Typography text={type || ''} weight='regular' />
-        </TableCell>
-        <TableCell tagName='td'>
-          <Label text={String(quantity)} variant='primary' />
-        </TableCell>
-        <TableCell tagName='td'>
-          <Identity image={brandImage} text={brandName} variant='circle' />
-        </TableCell>
-        <TableCell tagName='td'>
-          <Typography text={String(price)} weight='regular' />
-        </TableCell>
-        <TableCell tagName='td'>
-          <Image
-            image={More}
-            size='small'
-            alt='icon more'
-            cursorPointer={true}
-            onClick={handleShowHidePopup}
-          />
-          {menuPopup && <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />}
-        </TableCell>
-      </TableRow>
-    );
-  }, [menuPopup, productImage, productName, type, quantity, status, brandImage, brandName, price]);
+  return (
+    <TableRow>
+      <TableCell tagName='td'>
+        <Identity image={productImage} text={productName} alt={productName} />
+      </TableCell>
+      <TableCell tagName='td'>
+        <Label text={status || ''} variant={`${status === 'Available' ? 'success' : 'warning'}`} />
+      </TableCell>
+      <TableCell tagName='td'>
+        <Typography text={type || ''} weight='regular' />
+      </TableCell>
+      <TableCell tagName='td'>
+        <Label text={String(quantity)} variant='primary' />
+      </TableCell>
+      <TableCell tagName='td'>
+        <Identity image={brandImage} text={brandName} variant='circle' alt={brandName} />
+      </TableCell>
+      <TableCell tagName='td'>
+        <Typography text={`$${String(price)}`} weight='regular' />
+      </TableCell>
+      <TableCell tagName='td'>
+        <Image
+          image={More}
+          size='small'
+          alt='icon more'
+          cursorPointer={true}
+          onClick={handleShowHidePopup}
+        />
+        {menuPopup && <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />}
+      </TableCell>
+    </TableRow>
+  );
 };
 
-export default ProductRow;
+export default memo(ProductRow);
 export type { DataProduct, ProductRowProps };

@@ -81,6 +81,7 @@ const ProductsTable = ({
               <TableCell title='Quantity' tagName='th'>
                 <Input
                   name='quantity'
+                  type='number'
                   value={String(filters.quantity)}
                   placeholder='Search'
                   onChange={onSearch}
@@ -97,6 +98,7 @@ const ProductsTable = ({
               <TableCell title='Price' tagName='th'>
                 <Input
                   name='price'
+                  type='number'
                   value={String(filters.price)}
                   placeholder='Search'
                   onChange={onSearch}
@@ -107,33 +109,29 @@ const ProductsTable = ({
           </TableHeader>
         );
       }, [filters, status, types])}
-      {useMemo(() => {
-        return (
-          <TableBody>
-            {Array.isArray(products) &&
-              products.map((item) => (
-                <ProductRow
-                  key={item.id}
-                  id={item.id}
-                  productImage={item.productImage}
-                  productName={item.productName}
-                  status={item.statuses ? item.statuses.name : ''}
-                  type={item.types ? item.types.name : ''}
-                  statusesId={item.statuses ? item.statuses.id : ''}
-                  typesId={item.types ? item.types.id : ''}
-                  quantity={item.quantity}
-                  brandImage={item.brandImage}
-                  brandName={item.brandName}
-                  price={item.price}
-                  onEdit={onEdit}
-                  handleSetProductItem={handleSetProductItem}
-                  showHideNotificationModal={showHideNotificationModal}
-                  showHideErrorsModal={showHideErrorsModal}
-                />
-              ))}
-          </TableBody>
-        );
-      }, [products])}
+      <TableBody>
+        {Array.isArray(products) &&
+          products.map((item) => (
+            <ProductRow
+              key={item.id}
+              id={item.id}
+              productImage={item.productImage}
+              productName={item.productName}
+              status={item.statuses ? item.statuses.name : ''}
+              type={item.types ? item.types.name : ''}
+              statusesId={item.statuses ? item.statuses.id : ''}
+              typesId={item.types ? item.types.id : ''}
+              quantity={item.quantity}
+              brandImage={item.brandImage}
+              brandName={item.brandName}
+              price={item.price}
+              onEdit={onEdit}
+              handleSetProductItem={handleSetProductItem}
+              showHideNotificationModal={showHideNotificationModal}
+              showHideErrorsModal={showHideErrorsModal}
+            />
+          ))}
+      </TableBody>
     </Table>
   );
 };
