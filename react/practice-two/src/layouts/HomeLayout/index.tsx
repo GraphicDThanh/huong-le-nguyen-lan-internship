@@ -64,6 +64,8 @@ const HomeLayout = () => {
 
   /**
    * @description function set product to product state
+   *
+   * @param {Object} item is product item
    */
   const handleSetProductItem = useCallback((item: DataProduct) => {
     setProductItem(item);

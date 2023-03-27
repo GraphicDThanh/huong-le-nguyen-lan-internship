@@ -66,10 +66,8 @@ const ProductRow = ({
   /**
    * @description function calls the API to get the product's data by id.
    *  And show the data to the form
-   *
-   * @param {MouseEvent} e is event of onClick
    */
-  const handleModalEdit = async (id: string) => {
+  const handleModalEdit = async () => {
     onEdit({
       id,
       productImage,
@@ -90,23 +88,21 @@ const ProductRow = ({
    * @description function show confirm and set id for confirm popup
    */
   const handleDelete = () => {
-    if (id) {
-      showHideNotificationModal();
-      handleSetProductItem({
-        id,
-        productImage,
-        productName,
-        type,
-        typesId,
-        quantity,
-        status,
-        statusesId,
-        brandImage,
-        brandName,
-        price,
-      });
-      setMenuPopup(false);
-    }
+    showHideNotificationModal();
+    handleSetProductItem({
+      id,
+      productImage,
+      productName,
+      type,
+      typesId,
+      quantity,
+      status,
+      statusesId,
+      brandImage,
+      brandName,
+      price,
+    });
+    setMenuPopup(false);
   };
 
   return useMemo(() => {
