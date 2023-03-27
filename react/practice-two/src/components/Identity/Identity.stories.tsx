@@ -10,7 +10,13 @@ import Identity from '.';
 export default {
   title: 'PracticeTwo/Identity',
   component: Identity,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Identity>;
 
 const Template: ComponentStory<typeof Identity> = (args) => <Identity {...args} />;

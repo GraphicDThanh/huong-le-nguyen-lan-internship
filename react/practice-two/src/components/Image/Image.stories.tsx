@@ -13,7 +13,7 @@ export default {
   component: Image,
   decorators: [
     (Story) => (
-      <div style={{ padding: '3em', backgroundColor: '#6A6A6A' }}>
+      <div style={{ padding: '3em' }}>
         <Story />
       </div>
     ),

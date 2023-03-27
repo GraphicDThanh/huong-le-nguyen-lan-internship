@@ -11,7 +11,13 @@ import ProductsTable from '.';
 export default {
   title: 'PracticeTwo/Table/Products',
   component: ProductsTable,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof ProductsTable>;
 
 const Template: ComponentStory<typeof ProductsTable> = () => {

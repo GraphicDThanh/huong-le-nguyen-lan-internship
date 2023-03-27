@@ -6,7 +6,13 @@ import { SelectItem } from '.';
 export default {
   title: 'PracticeTwo/SelectItem',
   component: SelectItem,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof SelectItem>;
 
 const Template: ComponentStory<typeof SelectItem> = (args) => <SelectItem {...args} />;

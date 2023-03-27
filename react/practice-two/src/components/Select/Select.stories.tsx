@@ -7,7 +7,13 @@ import Select from '.';
 export default {
   title: 'PracticeTwo/Select',
   component: Select,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = () => {

@@ -7,7 +7,13 @@ import Input from '.';
 export default {
   title: 'PracticeTwo/Input',
   component: Input,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => {

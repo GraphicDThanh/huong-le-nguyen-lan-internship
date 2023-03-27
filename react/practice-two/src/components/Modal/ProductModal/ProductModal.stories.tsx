@@ -10,7 +10,6 @@ import ProductModal from '.';
 export default {
   title: 'PracticeTwo/Modal/ProductModal',
   component: ProductModal,
-  decorators: [(Story) => <Story />],
 } as ComponentMeta<typeof ProductModal>;
 
 const Template: ComponentStory<typeof ProductModal> = () => {

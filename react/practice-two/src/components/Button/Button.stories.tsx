@@ -6,7 +6,6 @@ import Button from '.';
 export default {
   title: 'PracticeTwo/Button',
   component: Button,
-  decorators: [(Story) => <Story />],
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
@@ -17,6 +16,13 @@ Primary.args = {
   variant: 'primary',
   type: 'button',
 };
+Primary.decorators = [
+  (Story) => (
+    <div style={{ padding: '3em', backgroundColor: '#6A6A6A' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export const Secondary = Template.bind({});
 Secondary.args = {
@@ -25,3 +31,10 @@ Secondary.args = {
   color: 'warning',
   type: 'button',
 };
+Secondary.decorators = [
+  (Story) => (
+    <div style={{ padding: '3em' }}>
+      <Story />
+    </div>
+  ),
+];

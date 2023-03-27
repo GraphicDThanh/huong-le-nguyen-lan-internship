@@ -6,7 +6,13 @@ import Typography from '.';
 export default {
   title: 'PracticeTwo/Typography',
   component: Typography,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Typography>;
 
 const Template: ComponentStory<typeof Typography> = (args) => <Typography {...args} />;

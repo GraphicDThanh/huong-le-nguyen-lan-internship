@@ -6,7 +6,13 @@ import InputFile from '.';
 export default {
   title: 'PracticeTwo/InputFile',
   component: InputFile,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof InputFile>;
 
 const Template: ComponentStory<typeof InputFile> = (args) => {

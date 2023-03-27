@@ -4,7 +4,6 @@ import NotificationModal from '.';
 export default {
   title: 'PracticeTwo/Modal/NotificationModal',
   component: NotificationModal,
-  decorators: [(Story) => <Story />],
 } as ComponentMeta<typeof NotificationModal>;
 
 const Template: ComponentStory<typeof NotificationModal> = (args) => {

@@ -6,7 +6,13 @@ import Label from '.';
 export default {
   title: 'PracticeTwo/Label',
   component: Label,
-  decorators: [(Story) => <Story />],
+  decorators: [
+    (Story) => (
+      <div style={{ padding: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof Label>;
 
 const Template: ComponentStory<typeof Label> = (args) => <Label {...args} />;
