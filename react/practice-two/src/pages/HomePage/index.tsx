@@ -1,6 +1,3 @@
-// Styles
-import './index.css';
-
 // Contexts
 import { ModalProvider } from '@contexts';
 
