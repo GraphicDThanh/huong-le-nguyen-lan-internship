@@ -216,7 +216,7 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
         </form>
       </Modal>
     );
-  }, [product, status, types]);
+  }, [product, errorsMessage, status, types]);
 };
 
 export default ProductModal;
