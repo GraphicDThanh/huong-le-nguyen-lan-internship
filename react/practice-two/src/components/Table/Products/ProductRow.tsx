@@ -1,4 +1,4 @@
-import { memo, useState } from 'react';
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 // Images
 import More from 'assets/icons/more.svg';
@@ -34,8 +34,6 @@ interface DataProduct {
 interface ProductRowProps extends DataProduct {
   onEdit: (item: DataProduct) => void;
   handleSetProductItem: (item: DataProduct) => void;
-  showHideErrorsModal: (message?: string) => void;
-  showHideNotificationModal: () => void;
 }
 
 const ProductRow = ({
@@ -52,22 +50,29 @@ const ProductRow = ({
   price,
   onEdit,
   handleSetProductItem,
-  showHideNotificationModal,
 }: ProductRowProps) => {
   const [menuPopup, setMenuPopup] = useState(false);
+  const popup = useRef<HTMLDivElement>(null);
+  const iconImage = useRef<HTMLDivElement>(null);
 
   /**
-   * @description function show hide popup menu
+   * @description function handle show hide popup menu
+   *
+   * @param {Event} e is event click
    */
-  const handleShowHidePopup = () => {
-    setMenuPopup((prev) => !prev);
-  };
+  const handleShowHideMenuPopup = useCallback((event: Event) => {
+    if (popup.current && !popup.current.contains(event.target as Node)) {
+      setMenuPopup(false);
+    } else if (iconImage.current && iconImage.current?.contains(event.target as Node)) {
+      setMenuPopup((prev) => !prev);
+    }
+  }, []);
 
   /**
    * @description function calls the API to get the product's data by id.
    *  And show the data to the form
    */
-  const handleModalEdit = async () => {
+  const handleModalEdit = useCallback(async () => {
     onEdit({
       id,
       productImage,
@@ -82,13 +87,24 @@ const ProductRow = ({
       price,
     });
     setMenuPopup(false);
-  };
+  }, [
+    id,
+    productImage,
+    productName,
+    type,
+    typesId,
+    quantity,
+    status,
+    statusesId,
+    brandImage,
+    brandName,
+    price,
+  ]);
 
   /**
    * @description function show confirm and set id for confirm popup
    */
-  const handleDelete = () => {
-    showHideNotificationModal();
+  const handleDelete = useCallback(() => {
     handleSetProductItem({
       id,
       productImage,
@@ -103,7 +119,15 @@ const ProductRow = ({
       price,
     });
     setMenuPopup(false);
-  };
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener('click', handleShowHideMenuPopup, true);
+
+    return () => {
+      document.removeEventListener('click', handleShowHideMenuPopup, true);
+    };
+  }, []);
 
   return (
     <TableRow>
@@ -126,14 +150,14 @@ const ProductRow = ({
         <Typography text={`$${String(price)}`} weight='regular' />
       </TableCell>
       <TableCell tagName='td'>
-        <Image
-          image={More}
-          size='small'
-          alt='icon more'
-          cursorPointer={true}
-          onClick={handleShowHidePopup}
-        />
-        {menuPopup && <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />}
+        <div ref={iconImage}>
+          <Image image={More} size='small' alt='icon more' cursorPointer={true} />
+        </div>
+        {menuPopup && (
+          <div ref={popup}>
+            <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />
+          </div>
+        )}
       </TableCell>
     </TableRow>
   );

@@ -1,4 +1,4 @@
-import { ChangeEvent, useContext, useMemo } from 'react';
+import { ChangeEvent, memo } from 'react';
 
 // Components
 import {
@@ -14,9 +14,6 @@ import {
   ProductRow,
   ProductRowProps,
 } from '@components';
-
-// Contexts
-import { ModalContext } from '@contexts';
 
 interface Filters {
   productName: string;
@@ -44,71 +41,65 @@ const ProductsTable = ({
   onEdit,
   handleSetProductItem,
 }: ProductsTableProps) => {
-  const { showHideNotificationModal, showHideErrorsModal } = useContext(ModalContext);
-
   return (
     <Table>
-      {useMemo(() => {
-        return (
-          <TableHeader>
-            <TableRow classTableRow='header'>
-              <TableCell title='Product' tagName='th'>
-                <Input
-                  name='productName'
-                  value={filters.productName}
-                  placeholder='Search'
-                  onChange={onSearch}
-                />
-              </TableCell>
-              <TableCell title='Status' tagName='th'>
-                <Select
-                  name='statusesId'
-                  options={status}
-                  optionAll={true}
-                  valueSelected={filters.statusesId}
-                  onChange={onSearch}
-                />
-              </TableCell>
-              <TableCell title='Type' tagName='th'>
-                <Select
-                  name='typesId'
-                  options={types}
-                  optionAll={true}
-                  valueSelected={filters.typesId}
-                  onChange={onSearch}
-                />
-              </TableCell>
-              <TableCell title='Quantity' tagName='th'>
-                <Input
-                  name='quantity'
-                  type='number'
-                  value={String(filters.quantity)}
-                  placeholder='Search'
-                  onChange={onSearch}
-                />
-              </TableCell>
-              <TableCell title='Brand' tagName='th'>
-                <Input
-                  name='brandName'
-                  value={filters.brandName}
-                  placeholder='Search'
-                  onChange={onSearch}
-                />
-              </TableCell>
-              <TableCell title='Price' tagName='th'>
-                <Input
-                  name='price'
-                  type='number'
-                  value={String(filters.price)}
-                  placeholder='Search'
-                  onChange={onSearch}
-                />
-              </TableCell>
-              <TableCell title='Action' tagName='th' />
-            </TableRow>
-          </TableHeader>
-        );
-      }, [filters, status, types])}
+      <TableHeader>
+        <TableRow classTableRow='header'>
+          <TableCell title='Product' tagName='th'>
+            <Input
+              name='productName'
+              value={filters.productName}
+              placeholder='Search'
+              onChange={onSearch}
+            />
+          </TableCell>
+          <TableCell title='Status' tagName='th'>
+            <Select
+              name='statusesId'
+              options={status}
+              optionAll={true}
+              valueSelected={filters.statusesId}
+              onChange={onSearch}
+            />
+          </TableCell>
+          <TableCell title='Type' tagName='th'>
+            <Select
+              name='typesId'
+              options={types}
+              optionAll={true}
+              valueSelected={filters.typesId}
+              onChange={onSearch}
+            />
+          </TableCell>
+          <TableCell title='Quantity' tagName='th'>
+            <Input
+              name='quantity'
+              type='number'
+              value={String(filters.quantity)}
+              placeholder='Search'
+              onChange={onSearch}
+            />
+          </TableCell>
+          <TableCell title='Brand' tagName='th'>
+            <Input
+              name='brandName'
+              value={filters.brandName}
+              placeholder='Search'
+              onChange={onSearch}
+            />
+          </TableCell>
+          <TableCell title='Price' tagName='th'>
+            <Input
+              name='price'
+              type='number'
+              value={String(filters.price)}
+              placeholder='Search'
+              onChange={onSearch}
+            />
+          </TableCell>
+          <TableCell title='Action' tagName='th' />
+        </TableRow>
+      </TableHeader>
       <TableBody>
         {Array.isArray(products) &&
           products.map((item) => (
@@ -127,8 +118,6 @@ const ProductsTable = ({
               price={item.price}
               onEdit={onEdit}
               handleSetProductItem={handleSetProductItem}
-              showHideNotificationModal={showHideNotificationModal}
-              showHideErrorsModal={showHideErrorsModal}
             />
           ))}
       </TableBody>
@@ -136,4 +125,4 @@ const ProductsTable = ({
   );
 };
 
-export default ProductsTable;
+export default memo(ProductsTable);
