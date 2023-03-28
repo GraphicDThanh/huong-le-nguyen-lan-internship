@@ -13,7 +13,11 @@ interface ButtonProps {
 
 const Button = ({ text, variant, color = 'default', type = 'button', onClick }: ButtonProps) => {
   return (
-    <button type={type} className={`btn btn-${variant} btn-color-${color}`} onClick={onClick}>
+    <button
+      type={type}
+      className={`btn ${variant ? `btn-${variant}` : ''} btn-color-${color}`}
+      onClick={onClick}
+    >
       {text}
     </button>
   );

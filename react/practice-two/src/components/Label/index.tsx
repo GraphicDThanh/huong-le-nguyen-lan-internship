@@ -8,7 +8,7 @@ interface LabelProps {
 
 const Label = ({ text, variant }: LabelProps) => {
   return (
-    <div className={`label-wrapper label-${variant}`}>
+    <div className={`label-wrapper ${variant ? `label-${variant}` : ''}`}>
       <span>{text}</span>
     </div>
   );

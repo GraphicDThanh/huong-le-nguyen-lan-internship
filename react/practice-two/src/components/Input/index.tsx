@@ -7,12 +7,21 @@ interface InputProps {
   name: string;
   value: string;
   variant?: 'default' | 'primary';
+  type?: 'text' | 'number';
   placeholder?: string;
   title?: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = ({ name, value, placeholder, variant = 'default', title, onChange }: InputProps) => {
+const Input = ({
+  name,
+  value,
+  placeholder,
+  variant = 'default',
+  title,
+  type = 'text',
+  onChange,
+}: InputProps) => {
   return (
     <>
       {title ? (
@@ -20,7 +29,7 @@ const Input = ({ name, value, placeholder, variant = 'default', title, onChange 
           <label htmlFor=''>{title}</label>
           <input
             className={`text-input text-input-${variant}`}
-            type='text'
+            type={type}
             name={name}
             value={value}
             placeholder={placeholder}
@@ -30,7 +39,7 @@ const Input = ({ name, value, placeholder, variant = 'default', title, onChange 
       ) : (
         <input
           className={`text-input text-input-${variant}`}
-          type='text'
+          type={type}
           name={name}
           value={value}
           placeholder={placeholder}

@@ -9,7 +9,9 @@ interface TableRowProps {
 }
 
 const TableRow = ({ children, classTableRow }: TableRowProps) => {
-  return <tr className={`table-row table-row-${classTableRow}`}>{children}</tr>;
+  return (
+    <tr className={`table-row ${classTableRow ? `table-row-${classTableRow}` : ''}`}>{children}</tr>
+  );
 };
 
 export default TableRow;

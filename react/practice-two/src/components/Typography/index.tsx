@@ -20,7 +20,9 @@ const Typography = ({
 
   return (
     <TagName
-      className={`typography typography-color-${color} typography-size-${size} typography-weight-${weight}`}
+      className={`typography typography-color-${color} typography-size-${size} ${
+        weight ? `typography-weight-${weight}` : ''
+      }`}
     >
       {text}
     </TagName>

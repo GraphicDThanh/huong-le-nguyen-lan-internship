@@ -15,7 +15,9 @@ interface ImageProps {
 const Image = ({ image, variant, alt, size, cursorPointer, onClick }: ImageProps) => {
   return (
     <figure
-      className={`image-wrapper image-size-${size} ${cursorPointer && 'image-cursor-pointer'}`}
+      className={`image-wrapper ${size ? `image-size-${size}` : ''} ${
+        cursorPointer ? 'image-cursor-pointer' : ''
+      }`}
       onClick={onClick}
     >
       <img className={`image image-${variant}`} src={image} alt={alt} />
