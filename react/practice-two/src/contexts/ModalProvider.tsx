@@ -54,11 +54,9 @@ const ModalProvider = ({ children }: { children: ReactNode }) => {
    * @param {String} message is message errors
    */
   const showHideErrorsModal = useCallback((message?: string) => {
-    setErrorsModal(() => {
-      return {
-        status: message ? true : false,
-        message: message || '',
-      };
+    setErrorsModal({
+      status: message ? true : false,
+      message: message || '',
     });
   }, []);
 

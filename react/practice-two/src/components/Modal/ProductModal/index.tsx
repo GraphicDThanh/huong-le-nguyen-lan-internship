@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useContext, useMemo, useState } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useContext, useMemo, useState } from 'react';
 
 // Styles
 import './index.css';
@@ -52,38 +52,42 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
    *
    * @param {ChangeEvent} e is event of input or select
    */
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
+  const handleOnChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const name = e.target.name;
+      const value = e.target.value;
 
-    if (name) {
-      setProduct(() => {
-        return {
+      if (name) {
+        setProduct({
           ...product,
           [name]: value,
-        };
-      });
-    }
-  };
+        });
+      }
+    },
+    [product],
+  );
 
   /**
    * @description function get file when value of input file change
    *
    * @param {ChangeEvent} e is event of input file
    */
-  const handleChangeInputFile = async (e: ChangeEvent<HTMLInputElement>) => {
-    const name = e.target.name;
-    const [file] = e.target.files || [];
+  const handleChangeInputFile = useCallback(
+    async (e: ChangeEvent<HTMLInputElement>) => {
+      const name = e.target.name;
+      const [file] = e.target.files || [];
 
-    if (file) {
-      const image = await convertBase64(file);
+      if (file) {
+        const image = await convertBase64(file);
 
-      setProduct(() => ({
-        ...product,
-        [name]: image,
-      }));
-    }
-  };
+        setProduct({
+          ...product,
+          [name]: image,
+        });
+      }
+    },
+    [product],
+  );
 
   /**
    * @description function that saves the data taken from the inputs
@@ -91,25 +95,28 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
    *
    * @param {SubmitEvent} e is submit event of form
    */
-  const handleSave = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const errors = validation<ErrorMessage>(product, ['price', 'quantity']);
+  const handleSave = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const errors = validation<ErrorMessage>(product, ['price', 'quantity']);
 
-    if (Object.values(errors).every((value) => !value) && product.id && product !== productItem) {
-      const item = await updateData<DataProduct>(product.id, product, URL_API.PRODUCTS);
+      if (Object.values(errors).every((value) => !value) && product.id && product !== productItem) {
+        const item = await updateData<DataProduct>(product.id, product, URL_API.PRODUCTS);
 
-      if ('messageError' in item) {
-        showHideErrorsModal(item.messageError);
-      } else {
-        fragProductUpdate();
+        if ('messageError' in item) {
+          showHideErrorsModal(item.messageError);
+        } else {
+          fragProductUpdate();
+          showHideItemModal();
+        }
+      } else if (product === productItem) {
         showHideItemModal();
+      } else {
+        setErrorsMessage(errors);
       }
-    } else if (product === productItem) {
-      showHideItemModal();
-    } else {
-      setErrorsMessage(errors);
-    }
-  };
+    },
+    [product],
+  );
 
   return useMemo(() => {
     return (
