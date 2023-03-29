@@ -3,6 +3,7 @@ import './index.css';
 
 // Components
 import { Button, Modal } from '@components';
+import { useCallback } from 'react';
 
 interface NotificationModalProps {
   id?: string;
@@ -24,11 +25,11 @@ const NotificationModal = ({
   /**
    * @description function handle action confirm of modal
    */
-  const handleActionConfirm = () => {
+  const handleActionConfirm = useCallback(() => {
     if (id) {
       onConfirm!(id);
     }
-  };
+  }, []);
 
   return (
     <Modal showHideModal={onCancel}>
