@@ -150,13 +150,9 @@ const ProductRow = ({
         <Typography text={`$${String(price)}`} weight='regular' />
       </TableCell>
       <TableCell tagName='td'>
-        <div ref={iconImage}>
-          <Image image={More} size='small' alt='icon more' cursorPointer={true} />
-        </div>
+        <Image ref={iconImage} image={More} size='small' alt='icon more' cursorPointer={true} />
         {menuPopup && (
-          <div ref={popup}>
-            <ActionMenu id={id} onDelete={handleDelete} onEdit={handleModalEdit} />
-          </div>
+          <ActionMenu ref={popup} id={id} onDelete={handleDelete} onEdit={handleModalEdit} />
         )}
       </TableCell>
     </TableRow>

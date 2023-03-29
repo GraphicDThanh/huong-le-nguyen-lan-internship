@@ -1,4 +1,4 @@
-import { LegacyRef, useCallback, useContext } from 'react';
+import { forwardRef, useCallback, useContext } from 'react';
 
 // Styles
 import './index.css';
@@ -13,7 +13,10 @@ interface ActionMenuProps {
   onDelete: () => void;
 }
 
-const ActionMenu = ({ id, onDelete, onEdit }: ActionMenuProps) => {
+const ActionMenu = forwardRef<HTMLDivElement, ActionMenuProps>(function ActionMenu(
+  { id, onDelete, onEdit },
+  ref,
+) {
   const { showHideNotificationModal } = useContext(ModalContext);
 
   /**
@@ -34,7 +37,7 @@ const ActionMenu = ({ id, onDelete, onEdit }: ActionMenuProps) => {
   }, [onDelete]);
 
   return (
-    <div className='action-menu-wrapper'>
+    <div className='action-menu-wrapper' ref={ref}>
       <Button text='Edit' color='default' type='button' onClick={handleEdit} variant='primary' />
       <Button
         text='Delete'
@@ -45,6 +48,6 @@ const ActionMenu = ({ id, onDelete, onEdit }: ActionMenuProps) => {
       />
     </div>
   );
-};
+});
 
 export default ActionMenu;
