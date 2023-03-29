@@ -154,7 +154,7 @@ const HomeLayout = () => {
     let param = '&';
     for (const [key, value] of Object.entries(filter)) {
       if (value) {
-        param += `${key}=${value}&`;
+        param += `${key}_like=${value}&`;
       }
     }
 
