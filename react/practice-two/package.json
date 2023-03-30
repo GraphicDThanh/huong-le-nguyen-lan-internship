@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
+    "dev": "concurrently \"npm start\" \"npm run start-db\"",
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.20.12",
+    "concurrently": "^7.5.0",
     "@storybook/addon-actions": "6.5.16",
     "@storybook/addon-essentials": "6.5.16",
     "@storybook/addon-interactions": "6.5.16",
