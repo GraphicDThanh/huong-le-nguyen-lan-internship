@@ -8,7 +8,6 @@ import { Button } from '@components';
 import { ModalContext } from '@contexts';
 
 interface ActionMenuProps {
-  id?: string;
   onEdit: () => void;
   onDelete: () => void;
 }

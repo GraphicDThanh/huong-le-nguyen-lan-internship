@@ -151,9 +151,7 @@ const ProductRow = ({
       </TableCell>
       <TableCell tagName='td'>
         <Image ref={iconImage} image={More} size='small' alt='icon more' cursorPointer={true} />
-        {menuPopup && (
-          <ActionMenu ref={popup} id={id} onDelete={handleDelete} onEdit={handleModalEdit} />
-        )}
+        {menuPopup && <ActionMenu ref={popup} onDelete={handleDelete} onEdit={handleModalEdit} />}
       </TableCell>
     </TableRow>
   );
