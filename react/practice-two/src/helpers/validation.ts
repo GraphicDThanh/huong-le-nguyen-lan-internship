@@ -10,7 +10,7 @@ import { MESSAGE_ERRORS } from '@constants';
 const checkEmpty = (value: string): string => {
   switch (true) {
     // case empty
-    case !value:
+    case !value.trim():
       return MESSAGE_ERRORS.EMPTY_FIELD;
     default:
       return '';
@@ -27,14 +27,14 @@ const checkEmpty = (value: string): string => {
 const checkNumber = (value: string): string => {
   switch (true) {
     // case empty
-    case !value:
+    case !value.trim():
       return MESSAGE_ERRORS.EMPTY_FIELD;
-    // case error if value not number
+    // case if value is not a number
     case isNaN(Number(value)):
       return MESSAGE_ERRORS.NOT_A_NUMBER;
-    // case error if value less than 0
-    case Number(value) < 1:
-      return MESSAGE_ERRORS.GREATER_THAN_ZERO;
+    // case if value is not positive number
+    case Number(value) < 0:
+      return MESSAGE_ERRORS.POSITIVE_NUMBER;
     default:
       return '';
   }

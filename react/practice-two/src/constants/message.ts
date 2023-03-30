@@ -1,6 +1,6 @@
 const MESSAGE_ERRORS = {
   EMPTY_FIELD: 'Cant not be flank',
-  GREATER_THAN_ZERO: 'Greater than 0',
+  POSITIVE_NUMBER: 'Must be a positive number',
   NOT_A_NUMBER: 'Not a number',
 };
 
