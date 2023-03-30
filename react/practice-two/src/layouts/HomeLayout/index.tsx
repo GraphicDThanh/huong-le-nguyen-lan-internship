@@ -12,11 +12,8 @@ import {
   NotificationModal,
 } from '@components';
 
-// Constants
-import { URL_API } from '@constants';
-
 // Services
-import { getAllData, deleteData } from '@services';
+import { getTypes, getStatuses, deleteProduct, getProductsByParam } from '@services';
 
 // Contexts
 import { ModalContext } from '@contexts';
@@ -108,7 +105,7 @@ const HomeLayout = () => {
    */
   const handleConfirm = useCallback(
     async (id: string) => {
-      const product = await deleteData<DataProduct>(URL_API.PRODUCTS, id);
+      const product = await deleteProduct<DataProduct>(id);
 
       if ('messageError' in product) {
         showHideErrorsModal(product.messageError);
@@ -132,8 +129,8 @@ const HomeLayout = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const listTypes = await getAllData<SelectItemProps>(URL_API.TYPES);
-      const listStatus = await getAllData<SelectItemProps>(URL_API.STATUSES);
+      const listTypes = await getTypes<SelectItemProps>();
+      const listStatus = await getStatuses<SelectItemProps>();
 
       if ('messageError' in listTypes && !Array.isArray(listTypes)) {
         showHideErrorsModal(listTypes.messageError);
@@ -159,9 +156,7 @@ const HomeLayout = () => {
     }
 
     const fetchData = async () => {
-      const listProduct = await getAllData<DataProduct>(
-        `${URL_API.PRODUCTS}?_expand=statuses&_expand=types${param}`,
-      );
+      const listProduct = await getProductsByParam<DataProduct>(param);
 
       if ('messageError' in listProduct) {
         showHideErrorsModal(listProduct.messageError);

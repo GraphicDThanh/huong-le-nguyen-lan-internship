@@ -16,10 +16,7 @@ import {
 } from '@components';
 
 // Services
-import { updateData } from '@services';
-
-// Constants
-import { URL_API } from '@constants';
+import { updateProduct } from '@services';
 
 // Helpers
 import { validation, convertBase64 } from '@helpers';
@@ -101,7 +98,7 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
       const errors = validation<ErrorMessage>(product, ['price', 'quantity']);
 
       if (Object.values(errors).every((value) => !value) && product.id && product !== productItem) {
-        const item = await updateData<DataProduct>(product.id, product, URL_API.PRODUCTS);
+        const item = await updateProduct<DataProduct>(product.id, product);
 
         if ('messageError' in item) {
           showHideErrorsModal(item.messageError);
