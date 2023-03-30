@@ -28,12 +28,12 @@ interface ModalProps {
   status: SelectItemProps[];
   types: SelectItemProps[];
   productItem: DataProduct;
-  fragProductUpdate: () => void;
+  flagProductUpdate: () => void;
 }
 
 type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
 
-const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalProps) => {
+const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalProps) => {
   const { showHideNotificationModal, showHideItemModal, showHideErrorsModal } =
     useContext(ModalContext);
   const [product, setProduct] = useState(productItem);
@@ -103,7 +103,7 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
         if ('messageError' in item) {
           showHideErrorsModal(item.messageError);
         } else {
-          fragProductUpdate();
+          flagProductUpdate();
           showHideItemModal();
         }
       } else if (product === productItem) {

@@ -35,7 +35,7 @@ const Template: ComponentStory<typeof ProductModal> = () => {
     { id: '2', name: 'Smart Phone' },
   ];
 
-  const fragProductUpdate = () => {
+  const flagProductUpdate = () => {
     console.log('product update');
   };
 
@@ -44,7 +44,7 @@ const Template: ComponentStory<typeof ProductModal> = () => {
       productItem={product}
       status={status}
       types={types}
-      fragProductUpdate={fragProductUpdate}
+      flagProductUpdate={flagProductUpdate}
     />
   );
 };
