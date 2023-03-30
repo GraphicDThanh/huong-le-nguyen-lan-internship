@@ -29,7 +29,7 @@ const NotificationModal = ({
     if (id) {
       onConfirm!(id);
     }
-  }, []);
+  }, [onConfirm, id]);
 
   return (
     <Modal showHideModal={onCancel}>

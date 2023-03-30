@@ -115,7 +115,7 @@ const ProductModal = ({ productItem, status, types, fragProductUpdate }: ModalPr
         setErrorsMessage(errors);
       }
     },
-    [product],
+    [product, productItem],
   );
 
   return useMemo(() => {

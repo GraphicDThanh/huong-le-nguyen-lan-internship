@@ -119,7 +119,7 @@ const ProductRow = ({
       price,
     });
     setMenuPopup(false);
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     document.addEventListener('click', handleShowHideMenuPopup, true);

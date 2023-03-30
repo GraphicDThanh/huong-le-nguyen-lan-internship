@@ -9,12 +9,12 @@ import { ModalContext } from '@contexts';
 
 interface ActionMenuProps {
   id?: string;
-  onEdit: (id: string) => void;
+  onEdit: () => void;
   onDelete: () => void;
 }
 
 const ActionMenu = forwardRef<HTMLDivElement, ActionMenuProps>(function ActionMenu(
-  { id, onDelete, onEdit },
+  { onDelete, onEdit },
   ref,
 ) {
   const { showHideNotificationModal } = useContext(ModalContext);
@@ -23,9 +23,7 @@ const ActionMenu = forwardRef<HTMLDivElement, ActionMenuProps>(function ActionMe
    * @description function handle action edit button
    */
   const handleEdit = useCallback(() => {
-    if (id) {
-      onEdit(id);
-    }
+    onEdit();
   }, [onEdit]);
 
   /**
