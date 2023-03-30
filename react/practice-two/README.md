@@ -1,6 +1,4 @@
-# Practice One ReactJS
-
-### Overview
+# Practice Two ReactJ
 
 - This document provides information about practice-two ReactJS
 - Create a website products management following this design: [design](<https://www.figma.com/file/sl1LCYYdr3IA0IPEIrDvw5/Table-UI-3.0-%7C-Variants-Update-(Community)?node-id=0-1&t=g1Okt3QfjOMDRcLA-0>)
@@ -63,16 +61,14 @@
     - `$ git clone git@github.com:GraphicDThanh/huong-le-nguyen-lan-internship.git`
 - Step 2: `cd huong-le-nguyen-lan-internship`
 - Step 3: Move to branch feat/practice-two
-  - `git checkout feat/practice-two`
+  - `$ git checkout feat/practice-two-react`
 - Step 4: `cd  react/practice-two`
 - Step 5: Now you need to install packages
   - `$ pnpm i`
-- Step 6: After installing the packages
-  - `$ pnpm start-db`
-- Step 7: Open another terminal
-  - Website: `$ pnpm run start`
-  - Storybook: `$ pnpm run storybook`
-- Step 8:
+- Step 6:
+  - To see website run: `$ pnpm run dev`
+  - To see Storybook run: `$ pnpm run storybook`
+- Step 7:
   - http://127.0.0.1:5173/ to see the website
   - http://localhost:6006 to see Storybook
 
@@ -80,3 +76,7 @@
 
 - If you get errors about using pnpm to run Storybook
 - Try to add `node-linker=hoisted` to `.npmrc` file. After that remove all the storybook in project or clone and run project again
+
+### Secrets
+
+- Create file .env has the same level as .env.example. After that, please contact me to get the key
