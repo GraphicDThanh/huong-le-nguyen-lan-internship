@@ -13,6 +13,7 @@ import {
   DataProduct,
   ProductRow,
   ProductRowProps,
+  Typography,
 } from '@components';
 
 interface Filters {
@@ -101,7 +102,7 @@ const ProductsTable = ({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Array.isArray(products) &&
+        {Array.isArray(products) && products.length ? (
           products.map((item) => (
             <ProductRow
               key={item.id}
@@ -119,7 +120,10 @@ const ProductsTable = ({
               onEdit={onEdit}
               handleSetProductItem={handleSetProductItem}
             />
-          ))}
+          ))
+        ) : (
+          <Typography text='No products to display' weight='semiBold' />
+        )}
       </TableBody>
     </Table>
   );

@@ -5,6 +5,10 @@
   overflow-y: scroll;
 }
 
+.table-body > p {
+  text-align: center;
+}
+
 .table-body::-webkit-scrollbar {
   width: 15px;
 }
