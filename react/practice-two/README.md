@@ -1,4 +1,4 @@
-# Practice Two ReactJ
+# Practice Two ReactJS
 
 - This document provides information about practice-two ReactJS
 - Create a website products management following this design: [design](<https://www.figma.com/file/sl1LCYYdr3IA0IPEIrDvw5/Table-UI-3.0-%7C-Variants-Update-(Community)?node-id=0-1&t=g1Okt3QfjOMDRcLA-0>)
@@ -15,11 +15,11 @@
 ### Information
 
 - Timeline
-  - Estimate day:
-  - Actual day:
+  - Estimate day: 9 days
+  - Actual day: 16 days
 - Techniques Stack:
-  - HTML5/CSS3
-  - JavaScript
+  - [HTML5](https://developer.mozilla.org/en-US/docs/Glossary/HTML5)/[CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS)
+  - [JavaScript](https://www.w3schools.com/js/)
   - [TypeScript](https://www.typescriptlang.org/)
   - [ReactJS](https://reactjs.org/)
   - [Storybook](https://storybook.js.org/)
@@ -31,15 +31,16 @@
 
 ### Main App Features:
 
-- Filter:
+- User can view products
+- Filter products:
   - By name
   - By status
   - By type
   - By quantity
   - By brand
   - By price
-- Edit
-- Delete
+- Edit products
+- Delete products
 
 ### Development Environment
 
