@@ -38,3 +38,19 @@ Secondary.decorators = [
     </div>
   ),
 ];
+
+export const Disable = Template.bind({});
+Disable.args = {
+  text: 'Edit',
+  variant: 'secondary',
+  color: 'warning',
+  type: 'button',
+  isDisable: true,
+};
+Disable.decorators = [
+  (Story) => (
+    <div style={{ padding: '3em' }}>
+      <Story />
+    </div>
+  ),
+];

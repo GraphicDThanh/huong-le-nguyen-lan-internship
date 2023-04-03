@@ -52,6 +52,15 @@
   color: var(--white);
 }
 
+.btn.btn-secondary.btn-disable,
+.btn.btn-secondary.btn-disable:hover {
+  background-color: var(--hover-fade-color);
+  color: var(--primary-color);
+  border: none;
+  cursor: default;
+  opacity: 0.8;
+}
+
 .btn.btn-color-success {
   color: var(--success-color);
 }

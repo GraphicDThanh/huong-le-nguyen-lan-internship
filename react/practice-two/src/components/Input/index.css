@@ -1,3 +1,9 @@
+.text-input::-webkit-outer-spin-button,
+.text-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .text-input-default {
   width: 100%;
   padding-top: 8px;
@@ -5,12 +11,6 @@
   outline: none;
   background-color: transparent;
   font-family: var(--font-regular), var(--font-default);
-}
-
-.text-input-default::-webkit-outer-spin-button,
-.text-input-default::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .text-input-default::placeholder {

@@ -8,15 +8,26 @@ interface ButtonProps {
   variant: 'primary' | 'secondary';
   type?: 'button' | 'submit';
   color?: 'success' | 'warning' | 'default';
+  isDisable?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
 }
 
-const Button = ({ text, variant, color = 'default', type = 'button', onClick }: ButtonProps) => {
+const Button = ({
+  text,
+  variant,
+  color = 'default',
+  type = 'button',
+  onClick,
+  isDisable,
+}: ButtonProps) => {
   return (
     <button
       type={type}
-      className={`btn ${variant ? `btn-${variant}` : ''} btn-color-${color}`}
+      className={`btn ${variant ? `btn-${variant}` : ''} btn-color-${color} ${
+        isDisable ? 'btn-disable' : ''
+      }`}
       onClick={onClick}
+      disabled={isDisable}
     >
       {text}
     </button>
