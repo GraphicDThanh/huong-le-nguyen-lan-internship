@@ -20,4 +20,26 @@ const convertBase64 = (file: File): Promise<string | ArrayBuffer | null> => {
   });
 };
 
-export default convertBase64;
+/**
+ * @description convert a number to a string with abbreviation suffixes (e.g. 1.5K, 2M)
+ *
+ * @param number the input number to convert
+ *
+ * @returns a string with abbreviation suffixes
+ */
+const formatPrice = (value: number): string => {
+  let number = 0;
+
+  switch (true) {
+    case value >= 1000:
+      number = value / 1000;
+      return `${number}K`;
+    case value >= 1000000:
+      number = value / 1000000;
+      return `${number}M`;
+    default:
+      return `${value}`;
+  }
+};
+
+export { convertBase64, formatPrice };

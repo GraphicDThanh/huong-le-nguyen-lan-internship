@@ -14,6 +14,7 @@ import {
   ActionMenu,
   SelectItemProps,
 } from '@components';
+import { formatPrice } from 'helpers/convert';
 
 interface DataProduct {
   id?: string;
@@ -147,7 +148,7 @@ const ProductRow = ({
         <Identity image={brandImage} text={brandName} variant='circle' alt={brandName} />
       </TableCell>
       <TableCell tagName='td'>
-        <Typography text={`$${String(price)}`} weight='regular' />
+        <Typography text={`$${formatPrice(Number(price))}`} weight='regular' />
       </TableCell>
       <TableCell tagName='td'>
         <Image ref={iconImage} image={More} size='small' alt='icon more' cursorPointer={true} />
