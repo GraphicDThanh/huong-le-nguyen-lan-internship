@@ -17,6 +17,16 @@ import { getTypes, getStatuses, deleteProduct, getProductsByParam } from '@servi
 
 // Contexts
 import { ModalContext } from '@contexts';
+import { useDebounce } from '@helpers';
+
+interface Filter {
+  productName: string;
+  statusesId: string;
+  typesId: string;
+  quantity: string;
+  brandName: string;
+  price: string;
+}
 
 const HomeLayout = () => {
   const {
@@ -31,7 +41,7 @@ const HomeLayout = () => {
   const [types, setTypes] = useState<SelectItemProps[]>([]);
   const [products, setProducts] = useState<DataProduct[]>([]);
   const [flagProductUpdate, setFlagProductUpdate] = useState(false);
-  const [filter, setFilter] = useState({
+  const [filter, setFilter] = useState<Filter>({
     productName: '',
     statusesId: '',
     typesId: '',
@@ -50,6 +60,7 @@ const HomeLayout = () => {
     typesId: '',
     price: 0,
   });
+  const debouncedSearchTerm = useDebounce<Filter>(filter, 500);
 
   /**
    * @description flags to check if the data after
@@ -149,7 +160,7 @@ const HomeLayout = () => {
 
   useEffect(() => {
     let param = '&';
-    for (const [key, value] of Object.entries(filter)) {
+    for (const [key, value] of Object.entries(debouncedSearchTerm)) {
       if (value) {
         param += `${key}_like=${value}&`;
       }
@@ -166,7 +177,7 @@ const HomeLayout = () => {
     };
 
     fetchData();
-  }, [flagProductUpdate, filter]);
+  }, [flagProductUpdate, debouncedSearchTerm]);
 
   return (
     <main className='main-wrapper'>
