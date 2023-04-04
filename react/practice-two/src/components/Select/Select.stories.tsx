@@ -17,7 +17,7 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 const Template: ComponentStory<typeof Select> = () => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState<string>('');
   const listOption = [
     { id: '1', name: 'Available' },
     { id: '2', name: 'Sold out' },

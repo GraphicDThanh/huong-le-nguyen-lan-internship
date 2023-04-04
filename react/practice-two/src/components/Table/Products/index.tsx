@@ -130,3 +130,4 @@ const ProductsTable = ({
 };
 
 export default memo(ProductsTable);
+export type { Filters };

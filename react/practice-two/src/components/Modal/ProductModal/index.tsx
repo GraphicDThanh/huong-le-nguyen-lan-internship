@@ -36,7 +36,7 @@ type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' |
 const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalProps) => {
   const { showHideNotificationModal, showHideItemModal, showHideErrorsModal } =
     useContext(ModalContext);
-  const [product, setProduct] = useState(productItem);
+  const [product, setProduct] = useState<DataProduct>(productItem);
   const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
     productName: '',
     quantity: '',

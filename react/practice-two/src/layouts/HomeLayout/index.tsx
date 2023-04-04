@@ -30,7 +30,7 @@ const HomeLayout = () => {
   const [status, setStatus] = useState<SelectItemProps[]>([]);
   const [types, setTypes] = useState<SelectItemProps[]>([]);
   const [products, setProducts] = useState<DataProduct[]>([]);
-  const [flagProductUpdate, setFlagProductUpdate] = useState(false);
+  const [flagProductUpdate, setFlagProductUpdate] = useState<boolean>(false);
   const [filter, setFilter] = useState({
     productName: '',
     statusesId: '',
