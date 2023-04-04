@@ -76,7 +76,7 @@ const ProductsTable = ({
             <Input
               name='quantity'
               type='number'
-              value={String(filters.quantity)}
+              value={filters.quantity}
               placeholder='Search'
               onChange={onSearch}
             />
@@ -93,7 +93,7 @@ const ProductsTable = ({
             <Input
               name='price'
               type='number'
-              value={String(filters.price)}
+              value={filters.price}
               placeholder='Search'
               onChange={onSearch}
             />
@@ -102,7 +102,7 @@ const ProductsTable = ({
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Array.isArray(products) && products.length ? (
+        {products.length > 0 ? (
           products.map((item) => (
             <ProductRow
               key={item.id}
@@ -111,8 +111,8 @@ const ProductsTable = ({
               productName={item.productName}
               status={item.statuses ? item.statuses.name : ''}
               type={item.types ? item.types.name : ''}
-              statusesId={item.statuses ? item.statuses.id : ''}
-              typesId={item.types ? item.types.id : ''}
+              statusesId={item.statuses ? item.statuses.value : ''}
+              typesId={item.types ? item.types.value : ''}
               quantity={item.quantity}
               brandImage={item.brandImage}
               brandName={item.brandName}

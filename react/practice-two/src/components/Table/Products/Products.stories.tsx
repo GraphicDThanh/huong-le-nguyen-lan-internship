@@ -95,8 +95,7 @@ const Template: ComponentStory<typeof ProductsTable> = () => {
   ];
 
   const handleSearch = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name, value } = e.target;
 
     setFilter((prev) => {
       return {
