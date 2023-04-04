@@ -10,11 +10,11 @@ import {
   Input,
   Select,
   SelectItemProps,
-  DataProduct,
-  ProductRow,
-  ProductRowProps,
   Typography,
 } from '@components';
+
+// Components of pages
+import { ProductRow, DataProduct, ProductRowProps } from '@pages';
 
 interface Filters {
   productName: string;
@@ -111,8 +111,8 @@ const ProductsTable = ({
               productName={item.productName}
               status={item.statuses ? item.statuses.name : ''}
               type={item.types ? item.types.name : ''}
-              statusesId={item.statuses ? item.statuses.value : ''}
-              typesId={item.types ? item.types.value : ''}
+              statusesId={item.statuses ? item.statuses.id : ''}
+              typesId={item.types ? item.types.id : ''}
               quantity={item.quantity}
               brandImage={item.brandImage}
               brandName={item.brandName}

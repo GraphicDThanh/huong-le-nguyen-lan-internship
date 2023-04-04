@@ -11,9 +11,10 @@ import {
   Image,
   Label,
   Typography,
-  ActionMenu,
   SelectItemProps,
 } from '@components';
+
+import { ActionMenu } from '@pages';
 
 interface DataProduct {
   id?: string;

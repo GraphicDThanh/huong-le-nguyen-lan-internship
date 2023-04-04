@@ -4,16 +4,9 @@ import { ChangeEvent, FormEvent, useCallback, useContext, useMemo, useState } fr
 import './index.css';
 
 // Components
-import {
-  Modal,
-  Button,
-  Image,
-  Input,
-  Select,
-  SelectItemProps,
-  DataProduct,
-  InputFile,
-} from '@components';
+import { Modal, Button, Image, Input, Select, SelectItemProps, InputFile } from '@components';
+
+import { DataProduct } from '@pages';
 
 // Services
 import { updateProduct } from '@services';
