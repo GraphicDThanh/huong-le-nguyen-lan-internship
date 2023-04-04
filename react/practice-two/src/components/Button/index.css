@@ -35,11 +35,11 @@
 }
 
 .btn.btn-secondary.btn-color-warning {
-  border: 1px solid var(--warning-color);
+  border: 1px solid var(--color-warning);
 }
 
 .btn.btn-secondary.btn-color-warning:hover {
-  background-color: var(--warning-color);
+  background-color: var(--color-warning);
   color: var(--color-white);
 }
 
@@ -66,7 +66,7 @@
 }
 
 .btn.btn-color-warning {
-  color: var(--warning-color);
+  color: var(--color-warning);
 }
 
 .btn.btn-color-default {

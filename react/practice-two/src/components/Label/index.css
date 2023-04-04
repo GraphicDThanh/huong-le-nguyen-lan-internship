@@ -20,7 +20,7 @@
 }
 
 .label-wrapper.label-warning {
-  border-color: var(--warning-color);
-  color: var(--warning-color);
+  border-color: var(--color-warning);
+  color: var(--color-warning);
   border-radius: 8px;
 }
