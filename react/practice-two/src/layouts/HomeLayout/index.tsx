@@ -74,8 +74,7 @@ const HomeLayout = () => {
    * @param {ChangeEvent} e is event of input
    */
   const handleSearch = useCallback((e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name, value } = e.target;
 
     if (name) {
       setFilter((prev) => {
