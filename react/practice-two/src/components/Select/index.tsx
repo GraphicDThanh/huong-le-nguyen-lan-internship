@@ -17,24 +17,16 @@ interface SelectProps {
 
 const Select = ({ valueSelected, optionAll, onChange, title, name, options }: SelectProps) => {
   return (
-    <>
-      {title ? (
-        <div className='select-box'>
-          <label htmlFor=''>{title}</label>
-          <select className='select-wrapper' name={name} value={valueSelected} onChange={onChange}>
-            {optionAll && <SelectItem id='' name='All' />}
-            {Array.isArray(options) &&
-              options.map((item) => <SelectItem id={item.id} name={item.name} key={item.id} />)}
-          </select>
-        </div>
-      ) : (
-        <select className='select-wrapper' name={name} value={valueSelected} onChange={onChange}>
-          {optionAll && <SelectItem id='' name='All' />}
-          {Array.isArray(options) &&
-            options.map((item) => <SelectItem id={item.id} name={item.name} key={item.id} />)}
-        </select>
-      )}
-    </>
+    <div className={title && 'select-box'}>
+      {title ?? <label>{title}</label>}
+      <select className='select-wrapper' name={name} value={valueSelected} onChange={onChange}>
+        {optionAll && <SelectItem value='' name='All' />}
+        {options.length > 0 &&
+          options.map((item) => (
+            <SelectItem value={item.value} name={item.name} key={item.value} />
+          ))}
+      </select>
+    </div>
   );
 };
 

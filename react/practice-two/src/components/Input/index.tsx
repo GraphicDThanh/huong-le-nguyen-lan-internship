@@ -26,7 +26,7 @@ const Input = ({
     <>
       {title ? (
         <div className='text-wrapper'>
-          <label htmlFor=''>{title}</label>
+          <label>{title}</label>
           <input
             className={`text-input text-input-${variant}`}
             type={type}
