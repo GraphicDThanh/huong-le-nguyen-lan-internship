@@ -11,15 +11,15 @@ import { Image } from '@components';
 
 interface ModalProps {
   children: ReactNode;
-  showHideModal: () => void;
+  toggleModal: () => void;
 }
 
-const Modal = ({ children, showHideModal }: ModalProps) => {
+const Modal = ({ children, toggleModal }: ModalProps) => {
   return (
     <div className='overlay'>
       <div className='modal-wrapper'>
         <div className='modal-header'>
-          <Image image={Cancel} size='small' onClick={showHideModal} cursorPointer={true} />
+          <Image image={Cancel} size='sm' onClick={toggleModal} isCursorPointer={true} />
         </div>
         <div className='modal-body'>{children}</div>
       </div>

@@ -31,5 +31,5 @@ export const Secondary = Template.bind({});
 Secondary.args = {
   text: 'Evan Flores',
   image: Avatar,
-  variant: 'circle',
+  isCircle: true,
 };

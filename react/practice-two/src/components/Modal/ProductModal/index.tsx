@@ -51,8 +51,7 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
    */
   const handleOnChange = useCallback(
     (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-      const name = e.target.name;
-      const value = e.target.value;
+      const { name, value } = e.target;
 
       if (name) {
         setProduct({
@@ -71,7 +70,7 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
    */
   const handleChangeInputFile = useCallback(
     async (e: ChangeEvent<HTMLInputElement>) => {
-      const name = e.target.name;
+      const { name } = e.target;
       const [file] = e.target.files || [];
 
       if (file) {
@@ -117,11 +116,11 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
 
   return useMemo(() => {
     return (
-      <Modal showHideModal={showHideItemModal}>
+      <Modal toggleModal={showHideItemModal}>
         <form className='form-wrapper' onSubmit={handleSave}>
           <div className='form-body'>
             <div className='form-aside'>
-              <Image image={product.productImage} size='large' />
+              <Image image={product.productImage} size='lg' />
               <InputFile
                 id='productImage'
                 name='productImage'
@@ -167,7 +166,7 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
                 </div>
 
                 <div className='group-image'>
-                  <Image size='small' variant='circle' image={product.brandImage} />
+                  <Image size='sm' isCircle={true} image={product.brandImage} />
                   <InputFile
                     id='brandImage'
                     name='brandImage'

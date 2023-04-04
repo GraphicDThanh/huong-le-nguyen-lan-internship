@@ -26,21 +26,21 @@ export const Default = Template.bind({});
 Default.args = {
   image: Product,
   alt: 'product',
-  size: 'normal',
+  size: 'md',
 };
 
 export const Circle = Template.bind({});
 Circle.args = {
   image: Avatar,
-  variant: 'circle',
+  isCircle: true,
   alt: 'avatar',
-  size: 'small',
+  size: 'sm',
 };
 
 export const Icon = Template.bind({});
 Icon.args = {
   image: More,
   alt: 'icon more',
-  size: 'small',
-  cursorPointer: true,
+  size: 'sm',
+  isCursorPointer: true,
 };

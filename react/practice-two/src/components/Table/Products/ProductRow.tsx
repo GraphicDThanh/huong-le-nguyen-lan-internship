@@ -144,13 +144,13 @@ const ProductRow = ({
         <Label text={String(quantity)} variant='primary' />
       </TableCell>
       <TableCell tagName='td'>
-        <Identity image={brandImage} text={brandName} variant='circle' alt={brandName} />
+        <Identity image={brandImage} text={brandName} isCircle={true} alt={brandName} />
       </TableCell>
       <TableCell tagName='td'>
         <Typography text={`$${String(price)}`} weight='regular' />
       </TableCell>
       <TableCell tagName='td'>
-        <Image ref={iconImage} image={More} size='small' alt='icon more' cursorPointer={true} />
+        <Image ref={iconImage} image={More} size='sm' alt='icon more' isCursorPointer={true} />
         {menuPopup && <ActionMenu ref={popup} onDelete={handleDelete} onEdit={handleModalEdit} />}
       </TableCell>
     </TableRow>
