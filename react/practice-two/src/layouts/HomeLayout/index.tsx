@@ -17,7 +17,7 @@ import { getTypes, getStatuses, deleteProduct, getProductsByParam } from '@servi
 
 // Contexts
 import { ModalContext } from '@contexts';
-import { useDebounce } from '@helpers';
+import { useDebounce } from '@hooks';
 
 interface Filter {
   productName: string;
