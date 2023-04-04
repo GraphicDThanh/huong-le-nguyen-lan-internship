@@ -6,7 +6,7 @@ import './index.css';
 interface ButtonProps {
   text: string;
   variant: 'primary' | 'secondary';
-  type?: 'button' | 'submit';
+  type?: 'button' | 'submit' | 'reset';
   color?: 'success' | 'warning' | 'default';
   isDisable?: boolean;
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
