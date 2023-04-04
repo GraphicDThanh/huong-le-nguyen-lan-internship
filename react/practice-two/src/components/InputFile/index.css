@@ -1,6 +1,6 @@
 .input-file-wrapper {
   font-family: var(--font-semiBold), var(--font-default);
-  font-size: var(--small);
+  font-size: var(--font-small);
   cursor: pointer;
 }
 
@@ -11,17 +11,17 @@
 .input-file-primary {
   padding: 8px 15px;
   border-radius: 4px;
-  background-color: var(--fade-color);
+  background-color: var(--color-fade);
 }
 
 .input-file-primary:hover {
-  background-color: var(--light-color);
+  background-color: var(--color-light);
 }
 
 .input-file-secondary {
-  color: var(--primary-color);
+  color: var(--color-primary);
 }
 
 .input-file-secondary:hover {
-  color: var(--secondary-color);
+  color: var(--color-secondary);
 }

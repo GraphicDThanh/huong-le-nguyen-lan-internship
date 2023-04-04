@@ -1,7 +1,7 @@
 .confirm-modal-description {
   font-family: var(--font-semiBold), var(--font-default);
-  font-size: var(--normal);
-  color: var(--primary-color);
+  font-size: var(--font-normal);
+  color: var(--color-primary);
   padding: 20px 0 40px 0;
 }
 

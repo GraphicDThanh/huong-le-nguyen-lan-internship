@@ -46,7 +46,7 @@
 .form-control .error-message {
   font-family: var(--font-semiBold), var(--font-default);
   color: var(--warning-color);
-  font-size: var(--small);
+  font-size: var(--font-small);
   margin-top: 5px;
   display: block;
 }

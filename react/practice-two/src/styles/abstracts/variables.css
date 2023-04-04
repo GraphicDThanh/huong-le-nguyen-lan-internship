@@ -1,22 +1,22 @@
 :root {
   /* Color */
-  --primary-color: #00072b;
-  --secondary-color: #454d59;
-  --tertiary-color: #0c0033;
-  --success-color: #7fc008;
-  --warning-color: #db303f;
-  --light-color: #c9cfda;
-  --fade-color: #dfe2e9;
-  --hover-fade-color: #f3f1f1;
-  --white: #fff;
+  --color-primary: #00072b;
+  --color-secondary: #454d59;
+  --color-tertiary: #0c0033;
+  --color-success: #7fc008;
+  --color-warning: #db303f;
+  --color-light: #c9cfda;
+  --color-fade: #dfe2e9;
+  --color-hover-fade: #f3f1f1;
+  --color-white: #fff;
 
   /* Background color */
   --background-opacity: rgba(14, 14, 15, 0.4);
 
   /* Font-size */
-  --large: 60px;
-  --normal: 14px;
-  --small: 12px;
+  --font-large: 60px;
+  --font-normal: 14px;
+  --font-small: 12px;
 
   /* Font-family */
   --font-regular: 'OpenSans-regular';

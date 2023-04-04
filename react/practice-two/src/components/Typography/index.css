@@ -3,23 +3,23 @@
 }
 
 .typography.typography-color-primary {
-  color: var(--primary-color);
+  color: var(--color-primary);
 }
 
 .typography.typography-color-tertiary {
-  color: var(--tertiary-color);
+  color: var(--color-tertiary);
 }
 
 .typography.typography-size-lg {
-  font-size: var(--large);
+  font-size: var(--font-large);
 }
 
 .typography.typography-size-nor {
-  font-size: var(--normal);
+  font-size: var(--font-normal);
 }
 
 .typography.typography-size-sm {
-  font-size: var(--small);
+  font-size: var(--font-small);
 }
 
 .typography.typography-weight-regular {

@@ -1,6 +1,6 @@
 .identity-wrapper {
   font-family: var(--font-regular), var(--font-default);
-  color: var(--primary-color);
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   gap: 12px;

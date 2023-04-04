@@ -8,14 +8,14 @@
 }
 
 .label-wrapper.label-primary {
-  border-color: var(--fade-color);
-  color: var(--secondary-color);
+  border-color: var(--color-fade);
+  color: var(--color-secondary);
   border-radius: 8px;
 }
 
 .label-wrapper.label-success {
-  border-color: var(--success-color);
-  color: var(--success-color);
+  border-color: var(--color-success);
+  color: var(--color-success);
   border-radius: 8px;
 }
 
