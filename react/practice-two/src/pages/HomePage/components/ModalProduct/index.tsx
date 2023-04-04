@@ -26,7 +26,7 @@ interface ModalProps {
 
 type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
 
-const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalProps) => {
+const ModalProduct = ({ productItem, status, types, flagProductUpdate }: ModalProps) => {
   const { showHideNotificationModal, showHideItemModal, showHideErrorsModal } =
     useContext(ModalContext);
   const [product, setProduct] = useState(productItem);
@@ -216,4 +216,4 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
   }, [product, errorsMessage, status, types]);
 };
 
-export default ProductModal;
+export default ModalProduct;

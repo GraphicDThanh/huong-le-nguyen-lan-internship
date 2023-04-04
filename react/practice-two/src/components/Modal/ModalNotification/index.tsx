@@ -5,7 +5,7 @@ import './index.css';
 import { Button, Modal } from '@components';
 import { useCallback } from 'react';
 
-interface NotificationModalProps {
+interface ModalNotificationProps {
   id?: string;
   textButtonConfirm?: string;
   description: string;
@@ -14,14 +14,14 @@ interface NotificationModalProps {
   onCancel: () => void;
 }
 
-const NotificationModal = ({
+const ModalNotification = ({
   description,
   id,
   textButtonConfirm,
   variant,
   onConfirm,
   onCancel,
-}: NotificationModalProps) => {
+}: ModalNotificationProps) => {
   /**
    * @description function handle action confirm of modal
    */
@@ -58,4 +58,4 @@ const NotificationModal = ({
   );
 };
 
-export default NotificationModal;
+export default ModalNotification;

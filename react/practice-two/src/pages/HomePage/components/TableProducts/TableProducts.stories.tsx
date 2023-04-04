@@ -9,7 +9,7 @@ import Avatar from 'assets/images/avatar.jpg';
 import ProductsTable from '.';
 
 export default {
-  title: 'PracticeTwo/Table/Products',
+  title: 'PracticeTwo/HomePage/TableProducts',
   component: ProductsTable,
   decorators: [
     (Story) => (

@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import ActionMenu from '.';
 
 export default {
-  title: 'PracticeTwo/ActionMenu',
+  title: 'PracticeTwo/HomePage/ActionMenu',
   component: ActionMenu,
   decorators: [
     (Story) => (
