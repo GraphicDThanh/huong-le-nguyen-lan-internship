@@ -14,6 +14,7 @@ import {
   SelectItemProps,
 } from '@components';
 
+// Components of pages
 import { ActionMenu } from '@pages';
 
 interface DataProduct {

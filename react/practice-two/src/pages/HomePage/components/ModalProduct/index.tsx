@@ -6,6 +6,7 @@ import './index.css';
 // Components
 import { Modal, Button, Image, Input, Select, SelectItemProps, InputFile } from '@components';
 
+// Components of pages
 import { DataProduct } from '@pages';
 
 // Services

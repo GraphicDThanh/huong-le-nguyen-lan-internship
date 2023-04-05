@@ -5,6 +5,8 @@ import './index.css';
 
 // Components
 import { Button } from '@components';
+
+// Context
 import { ModalContext } from '@contexts';
 
 interface ActionMenuProps {
