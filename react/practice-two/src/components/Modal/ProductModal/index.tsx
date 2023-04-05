@@ -100,19 +100,26 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
    *
    * @param {SubmitEvent} e is submit event of form
    */
-  const handleSave = useCallback(
+  const handleOnSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
+      // if have product's id and product has any change, we will call API to update product
       if (product.id && product !== productItem) {
         const item = await updateProduct<DataProduct>(product.id, product);
 
+        // If in the process of calling the API, it returns an object containing an error,
+        // an error message will be displayed
         if ('messageError' in item) {
           showHideErrorsModal(item.messageError);
+
+          // if don't have any errors, list products will update
         } else {
           flagProductUpdate();
           showHideItemModal();
         }
+
+        // if product doesn't have any change, the modal will close
       } else if (product === productItem) {
         showHideItemModal();
       }
@@ -134,7 +141,7 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
   return useMemo(() => {
     return (
       <Modal showHideModal={showHideItemModal}>
-        <form className='form-wrapper' onSubmit={handleSave}>
+        <form className='form-wrapper' onSubmit={handleOnSubmit}>
           <div className='form-body'>
             <div className='form-aside'>
               <Image image={product.productImage} size='large' />
