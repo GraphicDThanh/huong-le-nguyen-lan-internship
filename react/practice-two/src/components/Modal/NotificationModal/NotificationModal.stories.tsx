@@ -12,7 +12,6 @@ const Template: ComponentStory<typeof NotificationModal> = (args) => {
 
 export const Notification = Template.bind({});
 Notification.args = {
-  variant: 'notification',
   description: '404 Page Not Found',
   onCancel: () => {
     console.log('close');
@@ -22,7 +21,7 @@ Notification.args = {
 export const Confirm = Template.bind({});
 Confirm.args = {
   id: '1',
-  variant: 'confirm',
+  isConfirm: true,
   textButtonConfirm: 'Delete',
   description: 'Do you want to delete this ?',
   onConfirm: async (id: string) => {

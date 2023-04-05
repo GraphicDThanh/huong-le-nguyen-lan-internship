@@ -9,7 +9,7 @@ interface NotificationModalProps {
   id?: string;
   textButtonConfirm?: string;
   description: string;
-  variant: 'confirm' | 'notification';
+  isConfirm?: boolean;
   onConfirm?: (id: string) => Promise<void>;
   onCancel: () => void;
 }
@@ -18,7 +18,7 @@ const NotificationModal = ({
   description,
   id,
   textButtonConfirm,
-  variant,
+  isConfirm,
   onConfirm,
   onCancel,
 }: NotificationModalProps) => {
@@ -35,7 +35,7 @@ const NotificationModal = ({
     <Modal showHideModal={onCancel}>
       <p className='confirm-modal-description'>{description}</p>
       <div className='confirm-modal-cta'>
-        {variant === 'confirm' && (
+        {isConfirm && (
           <>
             <Button
               variant='secondary'

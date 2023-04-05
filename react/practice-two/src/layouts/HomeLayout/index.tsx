@@ -189,19 +189,15 @@ const HomeLayout = () => {
       {notificationModal && (
         <NotificationModal
           id={productItem.id || ''}
-          variant='confirm'
           description='Do you want to delete this ?'
           textButtonConfirm='Delete'
+          isConfirm={true}
           onConfirm={handleConfirm}
           onCancel={showHideNotificationModal}
         />
       )}
       {errorsModal.status && (
-        <NotificationModal
-          variant='notification'
-          description={errorsModal.message}
-          onCancel={handleCancel}
-        />
+        <NotificationModal description={errorsModal.message} onCancel={handleCancel} />
       )}
     </main>
   );
