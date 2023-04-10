@@ -29,6 +29,7 @@
       "@contexts": ["./contexts"],
       "@services": ["./services"],
       "@pages": ["./pages"],
+      "@hooks": ["./hooks"],
       "@layouts": ["./layouts"]
     }
   },
