@@ -40,7 +40,6 @@ dependencies:
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   vite: 4.1.0
-  vite-tsconfig-paths: 4.0.5_typescript@4.9.3
 
 devDependencies:
   '@babel/core': 7.20.12
@@ -71,6 +70,7 @@ devDependencies:
   prettier: 2.8.3
   tsconfig-paths-webpack-plugin: 4.0.0
   typescript: 4.9.3
+  vite-tsconfig-paths: 4.0.5_typescript@4.9.3
 
 packages:
 
@@ -7444,6 +7444,7 @@ packages:
 
   /globrex/0.1.2:
     resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
+    dev: true
 
   /gopd/1.0.1:
     resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
@@ -11568,7 +11569,7 @@ packages:
         optional: true
     dependencies:
       typescript: 4.9.3
-    dev: false
+    dev: true
 
   /tsconfig-paths-webpack-plugin/4.0.0:
     resolution: {integrity: sha512-fw/7265mIWukrSHd0i+wSwx64kYUSAKPfxRDksjKIYTxSAp9W9/xcZVBF4Kl0eqQd5eBpAQ/oQrc5RyM/0c1GQ==}
@@ -11678,6 +11679,7 @@ packages:
     resolution: {integrity: sha512-CIfGzTelbKNEnLpLdGFgdyKhG23CKdKgQPOBc+OUNrkJ2vr+KSzsSV5kq5iWhEQbok+quxgGzrAtGWCyU7tHnA==}
     engines: {node: '>=4.2.0'}
     hasBin: true
+    dev: true
 
   /uglify-js/3.17.4:
     resolution: {integrity: sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==}
@@ -11991,7 +11993,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
-    dev: false
+    dev: true
 
   /vite/4.1.0:
     resolution: {integrity: sha512-YoUKE/9bbK4C8ZeSYMDDEF8H5aypmWUq4WisftDhntR1gkI2zt2SGT/5Wd2xu6ZoVXkCyO3U4844KWG9e4nFoQ==}
