@@ -29,9 +29,6 @@ const checkNumber = (value: string): string => {
     // case empty
     case !value.trim():
       return MESSAGE_ERRORS.EMPTY_FIELD;
-    // case if value is not a number
-    case isNaN(Number(value)):
-      return MESSAGE_ERRORS.NOT_A_NUMBER;
     // case if value is not positive number
     case Number(value) < 0:
       return MESSAGE_ERRORS.POSITIVE_NUMBER;

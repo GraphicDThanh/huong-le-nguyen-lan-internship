@@ -1,4 +1,12 @@
-import { ChangeEvent, FormEvent, useCallback, useContext, useMemo, useState } from 'react';
+import {
+  ChangeEvent,
+  FormEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 // Styles
 import './index.css';
@@ -34,9 +42,9 @@ interface ModalProps {
 type ErrorMessage = Pick<DataProduct, 'productName' | 'quantity' | 'brandName' | 'price'>;
 
 const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalProps) => {
-  const { showHideNotificationModal, showHideItemModal, showHideErrorsModal } =
-    useContext(ModalContext);
+  const { showHideItemModal, showHideErrorsModal } = useContext(ModalContext);
   const [product, setProduct] = useState(productItem);
+  const [isErrors, setIsErrors] = useState(true);
   const [errorsMessage, setErrorsMessage] = useState<ErrorMessage>({
     productName: '',
     quantity: '',
@@ -92,33 +100,48 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
    *
    * @param {SubmitEvent} e is submit event of form
    */
-  const handleSave = useCallback(
+  const handleOnSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const errors = validation<ErrorMessage>(product, ['price', 'quantity']);
 
-      if (Object.values(errors).every((value) => !value) && product.id && product !== productItem) {
+      // if have product's id and product has any change, we will call API to update product
+      if (product.id && product !== productItem) {
         const item = await updateProduct<DataProduct>(product.id, product);
 
+        // If in the process of calling the API, it returns an object containing an error,
+        // an error message will be displayed
         if ('messageError' in item) {
           showHideErrorsModal(item.messageError);
+
+          // if don't have any errors, list products will update
         } else {
           flagProductUpdate();
           showHideItemModal();
         }
+
+        // if product doesn't have any change, the modal will close
       } else if (product === productItem) {
         showHideItemModal();
-      } else {
-        setErrorsMessage(errors);
       }
     },
     [product, productItem],
   );
 
+  useEffect(() => {
+    const errors = validation<ErrorMessage>(product, ['price', 'quantity']);
+    setErrorsMessage(errors);
+
+    if (Object.values(errors).every((value) => !value)) {
+      setIsErrors(false);
+    } else {
+      setIsErrors(true);
+    }
+  }, [product]);
+
   return useMemo(() => {
     return (
       <Modal showHideModal={showHideItemModal}>
-        <form className='form-wrapper' onSubmit={handleSave}>
+        <form className='form-wrapper' onSubmit={handleOnSubmit}>
           <div className='form-body'>
             <div className='form-aside'>
               <Image image={product.productImage} size='large' />
@@ -148,6 +171,7 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
                     title='Quantity'
                     name='quantity'
                     variant='primary'
+                    type='number'
                     value={String(product.quantity)}
                     onChange={handleOnChange}
                   />
@@ -183,6 +207,7 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
                     title='Price'
                     name='price'
                     variant='primary'
+                    type='number'
                     value={String(product.price)}
                     onChange={handleOnChange}
                   />
@@ -208,13 +233,19 @@ const ProductModal = ({ productItem, status, types, flagProductUpdate }: ModalPr
             </div>
           </div>
           <div className='form-cta'>
-            <Button variant='secondary' color='success' text='Save' type='submit' />
             <Button
               variant='secondary'
-              color='warning'
-              text='Delete'
+              color='success'
+              text='Save'
+              type='submit'
+              isDisable={isErrors}
+            />
+            <Button
+              variant='secondary'
+              color='default'
+              text='Cancel'
               type='button'
-              onClick={showHideNotificationModal}
+              onClick={showHideItemModal}
             />
           </div>
         </form>

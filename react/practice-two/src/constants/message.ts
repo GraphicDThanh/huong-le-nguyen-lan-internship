@@ -1,7 +1,6 @@
 const MESSAGE_ERRORS = {
-  EMPTY_FIELD: 'Cant not be flank',
+  EMPTY_FIELD: 'Can not be empty',
   POSITIVE_NUMBER: 'Must be a positive number',
-  NOT_A_NUMBER: 'Not a number',
 };
 
 export default MESSAGE_ERRORS;
