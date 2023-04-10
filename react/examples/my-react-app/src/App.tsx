@@ -38,6 +38,8 @@ import { ExampleReducer } from 'hooks/useReducer/exampleReducer';
 import { TodoList } from 'hooks/useReducer/todo';
 import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
+import ErrorBoundary from 'advanced/errorBoundary/ErrorBoundary';
+import ComponentsTest from 'advanced/errorBoundary/ComponentTest';
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -67,10 +69,13 @@ function App() {
 
   return (
     <div className='App'>
+      <ErrorBoundary fallback={<h1>Something wrong!</h1>}>
+        <ComponentsTest />
+      </ErrorBoundary>
       <p>Calculator</p>
       <Calculator />
       <br />
-      <TemperatureInput scale='c' />
+      <TemperatureInput scale='p' />
       <TemperatureInput scale='f' />
       <br />
       <SignUpDialog />
