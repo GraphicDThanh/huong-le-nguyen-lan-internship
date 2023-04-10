@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "concurrently \"npm start\" \"npm run start-db\"",
+    "dev": "concurrently \"pnpm start\" \"pnpm run start-db\"",
     "start-db": "json-server --watch data/db.json -p 3000",
     "start": "vite --port 4000",
     "build": "tsc && vite build",
