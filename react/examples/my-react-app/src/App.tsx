@@ -38,6 +38,7 @@ import { ExampleReducer } from 'hooks/useReducer/exampleReducer';
 import { TodoList } from 'hooks/useReducer/todo';
 import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
+import TaskApp from 'advanced/reducer/Todo';
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -67,6 +68,10 @@ function App() {
 
   return (
     <div className='App'>
+      <TaskApp />
+      <br />
+      <br />
+      <br />
       <p>Calculator</p>
       <Calculator />
       <br />
