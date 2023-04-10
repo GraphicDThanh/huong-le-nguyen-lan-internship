@@ -38,6 +38,7 @@ import { ExampleReducer } from 'hooks/useReducer/exampleReducer';
 import { TodoList } from 'hooks/useReducer/todo';
 import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
+import WordAdder from 'advanced/WordsAdder';
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -67,6 +68,9 @@ function App() {
 
   return (
     <div className='App'>
+      <WordAdder />
+      <br />
+      <br />
       <p>Calculator</p>
       <Calculator />
       <br />
