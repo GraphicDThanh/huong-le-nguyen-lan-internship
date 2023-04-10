@@ -11,10 +11,12 @@ import {
   Image,
   Label,
   Typography,
-  ActionMenu,
   SelectItemProps,
 } from '@components';
 import { formatPrice } from 'helpers/convert';
+
+// Components of pages
+import { ActionMenu } from '@pages';
 
 interface DataProduct {
   id?: string;

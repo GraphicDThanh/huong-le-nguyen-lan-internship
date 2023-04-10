@@ -4,13 +4,10 @@ import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react
 import './index.css';
 
 // Components
-import {
-  ProductsTable,
-  SelectItemProps,
-  ProductModal,
-  DataProduct,
-  NotificationModal,
-} from '@components';
+import { SelectItemProps, ModalNotification } from '@components';
+
+// Components of page
+import { ProductsTable, ModalProduct, DataProduct } from '@pages';
 
 // Services
 import { getTypes, getStatuses, deleteProduct, getProductsByParam } from '@services';
@@ -190,7 +187,7 @@ const HomeLayout = () => {
         handleSetProductItem={handleSetProductItem}
       />
       {itemModal && (
-        <ProductModal
+        <ModalProduct
           productItem={productItem}
           status={status}
           types={types}
@@ -198,7 +195,7 @@ const HomeLayout = () => {
         />
       )}
       {notificationModal && (
-        <NotificationModal
+        <ModalNotification
           id={productItem.id || ''}
           description='Do you want to delete this ?'
           textButtonConfirm='Delete'
@@ -208,7 +205,11 @@ const HomeLayout = () => {
         />
       )}
       {errorsModal.status && (
-        <NotificationModal description={errorsModal.message} onCancel={handleCancel} />
+        <ModalNotification
+          variant='notification'
+          description={errorsModal.message}
+          onCancel={handleCancel}
+        />
       )}
     </main>
   );

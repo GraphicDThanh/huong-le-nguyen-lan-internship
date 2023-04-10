@@ -1,13 +1,13 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import NotificationModal from '.';
+import ModalNotification from '.';
 
 export default {
-  title: 'PracticeTwo/Modal/NotificationModal',
-  component: NotificationModal,
-} as ComponentMeta<typeof NotificationModal>;
+  title: 'PracticeTwo/Modal/ModalNotification',
+  component: ModalNotification,
+} as ComponentMeta<typeof ModalNotification>;
 
-const Template: ComponentStory<typeof NotificationModal> = (args) => {
-  return <NotificationModal {...args} />;
+const Template: ComponentStory<typeof ModalNotification> = (args) => {
+  return <ModalNotification {...args} />;
 };
 
 export const Notification = Template.bind({});
