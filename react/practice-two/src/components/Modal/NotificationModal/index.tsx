@@ -32,7 +32,7 @@ const NotificationModal = ({
   }, [onConfirm, id]);
 
   return (
-    <Modal showHideModal={onCancel}>
+    <Modal toggleModal={onCancel}>
       <p className='confirm-modal-description'>{description}</p>
       <div className='confirm-modal-cta'>
         {isConfirm && (
@@ -40,17 +40,10 @@ const NotificationModal = ({
             <Button
               variant='secondary'
               color='warning'
-              text={textButtonConfirm || ''}
-              type='button'
+              text={textButtonConfirm || 'Delete'}
               onClick={handleActionConfirm}
             />
-            <Button
-              variant='secondary'
-              color='default'
-              text='Cancel'
-              type='button'
-              onClick={onCancel}
-            />
+            <Button variant='secondary' color='default' text='Cancel' onClick={onCancel} />
           </>
         )}
       </div>

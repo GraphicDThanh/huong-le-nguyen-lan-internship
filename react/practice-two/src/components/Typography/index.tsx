@@ -4,7 +4,7 @@ import './index.css';
 interface TypographyProps {
   tagName?: 'h1' | 'h2' | 'h3' | 'p';
   text: string;
-  size?: 'nor' | 'sm' | 'lg';
+  size?: 'sm' | 'md' | 'lg';
   color?: 'primary' | 'tertiary';
   weight: 'regular' | 'bold' | 'semiBold';
 }
@@ -12,7 +12,7 @@ interface TypographyProps {
 const Typography = ({
   tagName = 'p',
   text,
-  size = 'nor',
+  size = 'md',
   color = 'primary',
   weight,
 }: TypographyProps) => {

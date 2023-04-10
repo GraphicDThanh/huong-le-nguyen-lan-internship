@@ -19,6 +19,6 @@ const Template: ComponentStory<typeof SelectItem> = (args) => <SelectItem {...ar
 
 export const Default = Template.bind({});
 Default.args = {
-  id: '1',
+  value: '1',
   name: 'Available',
 };

@@ -2,13 +2,13 @@
 import './index.css';
 
 interface SelectItemProps {
-  id?: string;
+  value?: string;
   name: string;
 }
 
-const SelectItem = ({ id, name }: SelectItemProps) => {
+const SelectItem = ({ value, name }: SelectItemProps) => {
   return (
-    <option className='select-item' value={id}>
+    <option className='select-item' value={value}>
       {name}
     </option>
   );

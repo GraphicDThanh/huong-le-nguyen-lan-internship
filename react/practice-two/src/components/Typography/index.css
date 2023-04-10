@@ -14,7 +14,7 @@
   font-size: var(--font-large);
 }
 
-.typography.typography-size-nor {
+.typography.typography-size-md {
   font-size: var(--font-normal);
 }
 
