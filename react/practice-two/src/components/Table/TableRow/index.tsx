@@ -5,7 +5,7 @@ import './index.css';
 
 interface TableRowProps {
   children: ReactNode;
-  classTableRow?: 'header';
+  classTableRow?: 'header' | 'message';
 }
 
 const TableRow = ({ children, classTableRow }: TableRowProps) => {

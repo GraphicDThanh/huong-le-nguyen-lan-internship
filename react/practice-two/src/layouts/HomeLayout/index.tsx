@@ -205,11 +205,7 @@ const HomeLayout = () => {
         />
       )}
       {errorsModal.status && (
-        <ModalNotification
-          variant='notification'
-          description={errorsModal.message}
-          onCancel={handleCancel}
-        />
+        <ModalNotification description={errorsModal.message} onCancel={handleCancel} />
       )}
     </main>
   );

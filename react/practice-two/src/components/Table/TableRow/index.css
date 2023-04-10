@@ -14,6 +14,12 @@
   gap: 20px;
 }
 
+.table-row.table-row-message {
+  display: flex;
+  justify-content: center;
+  border-bottom: none;
+}
+
 .table-row .action-menu-wrapper {
   position: absolute;
   right: 12px;

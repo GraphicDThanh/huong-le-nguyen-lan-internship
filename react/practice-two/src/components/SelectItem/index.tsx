@@ -3,6 +3,7 @@ import './index.css';
 
 interface SelectItemProps {
   value?: string;
+  id?: string;
   name: string;
 }
 

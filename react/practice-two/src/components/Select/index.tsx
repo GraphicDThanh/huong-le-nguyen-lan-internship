@@ -22,9 +22,7 @@ const Select = ({ valueSelected, optionAll, onChange, title, name, options }: Se
       <select className='select-wrapper' name={name} value={valueSelected} onChange={onChange}>
         {optionAll && <SelectItem value='' name='All' />}
         {options.length > 0 &&
-          options.map((item) => (
-            <SelectItem value={item.value} name={item.name} key={item.value} />
-          ))}
+          options.map((item) => <SelectItem value={item.id} name={item.name} key={item.id} />)}
       </select>
     </div>
   );

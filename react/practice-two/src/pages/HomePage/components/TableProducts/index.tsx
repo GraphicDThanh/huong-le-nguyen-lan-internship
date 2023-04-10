@@ -122,7 +122,11 @@ const ProductsTable = ({
             />
           ))
         ) : (
-          <Typography text='No products to display' weight='semiBold' />
+          <TableRow classTableRow='message'>
+            <TableCell tagName='td'>
+              <Typography text='No products to display' weight='semiBold' />
+            </TableCell>
+          </TableRow>
         )}
       </TableBody>
     </Table>
