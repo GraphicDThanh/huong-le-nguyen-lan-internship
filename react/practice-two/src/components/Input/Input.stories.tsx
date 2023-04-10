@@ -17,7 +17,7 @@ export default {
 } as ComponentMeta<typeof Input>;
 
 const Template: ComponentStory<typeof Input> = (args) => {
-  const [data, setData] = useState('');
+  const [data, setData] = useState<string>('');
   const handleSetData = (e: ChangeEvent<HTMLInputElement>) => {
     setData(e.target.value);
   };

@@ -6,7 +6,7 @@ import Product from 'assets/images/product.jpg';
 import Avatar from 'assets/images/avatar.jpg';
 
 // Components
-import ProductsTable from '.';
+import ProductsTable, { Filters } from '.';
 
 export default {
   title: 'PracticeTwo/Table/Products',
@@ -21,7 +21,7 @@ export default {
 } as ComponentMeta<typeof ProductsTable>;
 
 const Template: ComponentStory<typeof ProductsTable> = () => {
-  const [filter, setFilter] = useState({
+  const [filter, setFilter] = useState<Filters>({
     productName: '',
     statusesId: '',
     typesId: '',

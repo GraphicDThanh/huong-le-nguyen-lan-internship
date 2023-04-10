@@ -3,10 +3,12 @@ import { createContext, ReactNode, useCallback, useMemo, useState } from 'react'
 interface State {
   itemModal: boolean;
   notificationModal: boolean;
-  errorsModal: {
-    status: boolean;
-    message: string;
-  };
+  errorsModal: ErrorModal;
+}
+
+interface ErrorModal {
+  status: boolean;
+  message: string;
 }
 
 interface Context extends State {
@@ -27,9 +29,12 @@ const initState = {
 const ModalContext = createContext<Context>(initState as Context);
 
 const ModalProvider = ({ children }: { children: ReactNode }) => {
-  const [itemModal, setItemModal] = useState(false);
-  const [notificationModal, setNotificationModal] = useState(false);
-  const [errorsModal, setErrorsModal] = useState({ status: false, message: '' });
+  const [itemModal, setItemModal] = useState<boolean>(false);
+  const [notificationModal, setNotificationModal] = useState<boolean>(false);
+  const [errorsModal, setErrorsModal] = useState<ErrorModal>({
+    status: false,
+    message: '',
+  });
 
   /**
    * @description function show hide item modal
