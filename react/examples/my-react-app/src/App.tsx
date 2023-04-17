@@ -39,6 +39,9 @@ import { TodoList } from 'hooks/useReducer/todo';
 import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
 import PageContext from 'advanced/context/PageContext';
+import AlbumArtist from 'advanced/suspense/AlbumArtist';
+import BoxSearch from 'advanced/suspenseSearch/BoxSearch';
+import BoxApp from 'advanced/suspenseHidingContents/SuspenseHidingContent';
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -72,6 +75,20 @@ function App() {
       <br />
       <br />
       <br />
+      <h1>Advanced</h1>
+      <br />
+      <AlbumArtist />
+      <br />
+      <br />
+      <BoxSearch />
+      <br />
+      <br />
+      <br />
+      <hr />
+      <BoxApp />
+      <br />
+      <br />
+      <hr />
       <p>Calculator</p>
       <Calculator />
       <br />
