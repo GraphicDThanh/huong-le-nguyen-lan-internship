@@ -40,6 +40,12 @@ import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/u
 import './App.css';
 import ErrorBoundary from 'advanced/errorBoundary/ErrorBoundary';
 import ComponentsTest from 'advanced/errorBoundary/ComponentTest';
+import WordAdder from 'advanced/WordsAdder';
+import TaskApp from 'advanced/reducer/Todo';
+import PageContext from 'advanced/context/PageContext';
+import AlbumArtist from 'advanced/suspense/AlbumArtist';
+import BoxSearch from 'advanced/suspenseSearch/BoxSearch';
+import BoxApp from 'advanced/suspenseHidingContents/SuspenseHidingContent';
 
 function App() {
   const messages = ['React', 'Re: React', 'Re:Re: React'];
@@ -72,6 +78,31 @@ function App() {
       <ErrorBoundary fallback={<h1>Something wrong!</h1>}>
         <ComponentsTest />
       </ErrorBoundary>
+      <WordAdder />
+      <br />
+      <br />
+      <TaskApp />
+      <br />
+      <br />
+      <br />
+      <PageContext />
+      <br />
+      <br />
+      <br />
+      <h1>Advanced</h1>
+      <br />
+      <AlbumArtist />
+      <br />
+      <br />
+      <BoxSearch />
+      <br />
+      <br />
+      <br />
+      <hr />
+      <BoxApp />
+      <br />
+      <br />
+      <hr />
       <p>Calculator</p>
       <Calculator />
       <br />

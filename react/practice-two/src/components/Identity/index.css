@@ -1,0 +1,13 @@
+.identity-wrapper {
+  font-family: var(--font-regular), var(--font-default);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.identity-wrapper span {
+  width: 70%;
+  overflow-wrap: break-word;
+  line-height: initial;
+}
