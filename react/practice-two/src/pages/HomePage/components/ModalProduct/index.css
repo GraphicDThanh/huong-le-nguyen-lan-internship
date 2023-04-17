@@ -1,0 +1,52 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.form-wrapper .form-body {
+  display: flex;
+  gap: 50px;
+}
+
+.form-wrapper .form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group-split {
+  display: flex;
+  gap: 10px;
+}
+
+.form-group-split .group-image {
+  padding: 20px 0 0 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-group-split .select-box {
+  width: 100%;
+}
+
+.form-wrapper .form-cta {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.form-wrapper .form-aside {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-control .error-message {
+  font-family: var(--font-semiBold), var(--font-default);
+  color: var(--color-warning);
+  font-size: var(--font-small);
+  margin-top: 5px;
+  display: block;
+}

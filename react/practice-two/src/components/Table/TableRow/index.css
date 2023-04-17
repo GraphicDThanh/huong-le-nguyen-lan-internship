@@ -1,0 +1,27 @@
+.table-row {
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 260px 100px 100px 110px 150px 70px 45px;
+  border-bottom: 1px solid var(--color-fade);
+}
+
+.table-row.table-row-header {
+  padding: 5px 30px 5px 5px;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.table-row.table-row-message {
+  display: flex;
+  justify-content: center;
+  border-bottom: none;
+}
+
+.table-row .action-menu-wrapper {
+  position: absolute;
+  right: 12px;
+  z-index: 10;
+}

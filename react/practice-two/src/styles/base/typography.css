@@ -1,0 +1,18 @@
+@font-face {
+  font-family: 'OpenSans-bold';
+  src: url('../../assets/fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'OpenSans-regular';
+  src: url('../../assets/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'OpenSans-semiBold';
+  src: url('../../assets/fonts/OpenSans-SemiBold.ttf');
+}
+
+body {
+  height: 100vh;
+}
