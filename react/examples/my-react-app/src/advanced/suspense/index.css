@@ -1,0 +1,27 @@
+.bio {
+  font-style: italic;
+}
+
+.panel {
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.glimmer-panel {
+  border: 1px dashed #aaa;
+  background: linear-gradient(90deg, rgba(221, 221, 221, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  border-radius: 6px;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.glimmer-line {
+  display: block;
+  width: 60%;
+  height: 20px;
+  margin: 10px;
+  border-radius: 4px;
+  background: #f0f0f0;
+}

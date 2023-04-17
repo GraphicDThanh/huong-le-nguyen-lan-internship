@@ -1,0 +1,6 @@
+.select-item {
+  font-family: var(--font-regular), var(--font-default);
+  font-size: var(--font-normal);
+  color: var(--color-primary);
+  cursor: pointer;
+}

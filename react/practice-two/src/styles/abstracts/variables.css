@@ -1,0 +1,26 @@
+:root {
+  /* Color */
+  --color-primary: #00072b;
+  --color-secondary: #454d59;
+  --color-tertiary: #0c0033;
+  --color-success: #7fc008;
+  --color-warning: #db303f;
+  --color-light: #c9cfda;
+  --color-fade: #dfe2e9;
+  --color-hover-fade: #f3f1f1;
+  --color-white: #fff;
+
+  /* Background color */
+  --background-opacity: rgba(14, 14, 15, 0.4);
+
+  /* Font-size */
+  --font-large: 60px;
+  --font-normal: 14px;
+  --font-small: 12px;
+
+  /* Font-family */
+  --font-regular: 'OpenSans-regular';
+  --font-semiBold: 'OpenSans-semiBold';
+  --font-bold: 'OpenSans-bold';
+  --font-default: 'Tahoma, sans-serif';
+}
