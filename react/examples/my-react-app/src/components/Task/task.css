@@ -1,0 +1,55 @@
+.list-item {
+  padding: 10px;
+  border-radius: 2px;
+  background-color: #fff;
+  display: flex;
+  gap: 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+}
+
+.list-item .checkbox input {
+  appearance: none;
+  border: 1px solid #26c6da;
+  height: 15px;
+  width: 15px;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-item .checkbox input::after {
+  background-image: url('../../assets/tick.svg');
+  background-repeat: no-repeat;
+  content: '';
+  padding: 7px;
+  display: none;
+}
+
+.list-item .checkbox input:checked:after {
+  display: block;
+}
+
+.list-item .title {
+  width: 100%;
+}
+
+.list-item .title input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+.pin-button {
+  cursor: pointer;
+  outline: none;
+  background-color: #fff;
+  border: none;
+  width: 25px;
+  height: 25px;
+}
+
+.pin-button img {
+  width: 100%;
+}

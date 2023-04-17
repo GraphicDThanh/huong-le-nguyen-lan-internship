@@ -1,0 +1,33 @@
+.form.form-contact {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.form.form-contact .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form.form-contact .form-group.pc {
+  display: none;
+}
+
+.form.form-contact .form-action {
+  padding-top: 25px;
+}
+
+@media screen and (min-width: 1440px) {
+  .form.form-contact .form-group {
+    flex-direction: row;
+  }
+
+  .form.form-contact .form-group:first-child {
+    display: none;
+  }
+
+  .form.form-contact .form-group.pc {
+    display: flex;
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "practice-one",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.20.12",
+    "@storybook/addon-actions": "6.5.16",
+    "@storybook/addon-essentials": "6.5.16",
+    "@storybook/addon-interactions": "6.5.16",
+    "@storybook/addon-links": "6.5.16",
+    "@storybook/builder-vite": "0.4.2",
+    "@storybook/react": "6.5.16",
+    "@storybook/testing-library": "0.0.13",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "@typescript-eslint/eslint-plugin": "5.49.0",
+    "@typescript-eslint/parser": "5.49.0",
+    "@vitejs/plugin-react": "3.1.0",
+    "babel-loader": "8.3.0",
+    "eslint": "8.33.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-storybook": "0.6.10",
+    "prettier": "2.8.3",
+    "tsconfig-paths-webpack-plugin": "4.0.0",
+    "typescript": "4.9.3",
+    "vite": "4.1.0",
+    "vite-tsconfig-paths": "^4.0.5"
+  }
+}

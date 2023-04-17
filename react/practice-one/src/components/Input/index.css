@@ -1,0 +1,24 @@
+.form-input {
+  width: 285px;
+  padding: 15px 20px;
+  outline: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 1px solid var(--text-fade-color);
+  font-family: var(--font-semiBold), var(--font-default);
+  font-size: var(--normal);
+}
+
+.form-input::placeholder {
+  color: var(--text-fade-color);
+}
+
+@media screen and (min-width: 1440px) {
+  .form-input {
+    width: 295px;
+  }
+
+  .form-input::placeholder {
+    color: var(--text-color);
+  }
+}

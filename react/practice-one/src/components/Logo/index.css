@@ -1,0 +1,10 @@
+.logo .logo-link {
+  display: block;
+  width: 145px;
+  height: 32px;
+}
+
+.logo .logo-link img {
+  width: 100%;
+  height: 100%;
+}

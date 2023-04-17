@@ -1,0 +1,36 @@
+.text-input::-webkit-outer-spin-button,
+.text-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.text-input-default {
+  width: 100%;
+  padding-top: 8px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  font-family: var(--font-regular), var(--font-default);
+}
+
+.text-input-default::placeholder {
+  color: var(--color-light);
+  font-size: var(--font-normal);
+}
+
+.text-input-primary {
+  border: 1px solid var(--color-fade);
+  border-radius: 5px;
+  padding: 8px 10px;
+  outline: none;
+  font-family: var(--font-regular), var(--font-default);
+}
+
+.text-wrapper {
+  font-family: var(--font-semiBold), var(--font-default);
+  color: var(--color-primary);
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 10px;
+}
