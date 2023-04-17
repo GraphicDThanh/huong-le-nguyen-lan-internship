@@ -38,6 +38,7 @@ import { ExampleReducer } from 'hooks/useReducer/exampleReducer';
 import { TodoList } from 'hooks/useReducer/todo';
 import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
+import WordAdder from 'advanced/WordsAdder';
 import TaskApp from 'advanced/reducer/Todo';
 import PageContext from 'advanced/context/PageContext';
 import AlbumArtist from 'advanced/suspense/AlbumArtist';
@@ -72,6 +73,9 @@ function App() {
 
   return (
     <div className='App'>
+      <WordAdder />
+      <br />
+      <br />
       <TaskApp />
       <br />
       <br />
