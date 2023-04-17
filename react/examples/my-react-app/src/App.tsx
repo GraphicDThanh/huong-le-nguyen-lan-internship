@@ -38,6 +38,7 @@ import { ExampleReducer } from 'hooks/useReducer/exampleReducer';
 import { TodoList } from 'hooks/useReducer/todo';
 import { TextInputWithFocusButton, UseRefDemo, UseRefTest } from 'hooks/UseRef/useRef';
 import './App.css';
+import PageContext from 'advanced/context/PageContext';
 import AlbumArtist from 'advanced/suspense/AlbumArtist';
 import BoxSearch from 'advanced/suspenseSearch/BoxSearch';
 import BoxApp from 'advanced/suspenseHidingContents/SuspenseHidingContent';
@@ -70,6 +71,10 @@ function App() {
 
   return (
     <div className='App'>
+      <PageContext />
+      <br />
+      <br />
+      <br />
       <h1>Advanced</h1>
       <br />
       <AlbumArtist />
